@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+// Norevia Labs — PASSO 2/3 do deploy (local, sem credencial de conta).
+//
+//   node site/deploy.mjs upload
+//
+// Lê site/deploy/session.json ({ jwt, buckets } devolvido pelo passo 1 via MCP), envia os arquivos
+// pedidos em `buckets` para o endpoint de assets usando SOMENTE o JWT de upload (curta duração, 1 h),
+// e gera site/deploy/step3-deploy.js — o código do passo 3 com o JWT de conclusão embutido.
+// Veja site/DEPLOY.md.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const SITE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const DIST = path.join(SITE_DIR, 'dist');
+const DEPLOY = path.join(SITE_DIR, 'deploy');
+const ACCOUNT = '0322dfe28640d56dbda3929744a51fc4';
+const MIME = {
+  html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', json: 'application/json; charset=utf-8',
+  svg: 'image/svg+xml', xml: 'application/xml; charset=utf-8', txt: 'text/plain; charset=utf-8', png: 'image/png', jpg: 'image/jpeg', webp: 'image/webp', ico: 'image/x-icon',
+};
+
+const cmd = process.argv[2];
+if (cmd !== 'upload') {
+  console.error('uso: node site/deploy.mjs upload   (depois do passo 1; veja site/DEPLOY.md)');
+  process.exit(2);
+}
+
+const manifest = JSON.parse(fs.readFileSync(path.join(DEPLOY, 'manifest.json'), 'utf8'));
+let session = JSON.parse(fs.readFileSync(path.join(DEPLOY, 'session.json'), 'utf8'));
+if (session.result) session = session.result; // aceita o envelope inteiro também
+const { jwt } = session;
+if (!jwt) throw new Error('session.json sem jwt');
+// Sem "buckets" no session.json: envia todos os arquivos do manifest em lotes de 40 (mais simples de colar).
+const buckets = Array.isArray(session.buckets) ? session.buckets : (() => {
+  const all = Object.values(manifest).map((m) => m.hash);
+  const out = [];
+  for (let i = 0; i < all.length; i += 40) out.push(all.slice(i, i + 40));
+  return out;
+})();
+
+const byHash = new Map(Object.entries(manifest).map(([p, m]) => [m.hash, p]));
+let completion = buckets.length ? null : jwt;
+let sent = 0;
+for (const [i, bucket] of buckets.entries()) {
+  const form = new FormData();
+  for (const hash of bucket) {
+    const p = byHash.get(hash);
+    if (!p) throw new Error(`hash ${hash} não está no manifest — rode o build e o passo 1 de novo`);
+    const buf = fs.readFileSync(path.join(DIST, p));
+    const ext = path.extname(p).slice(1).toLowerCase();
+    form.append(hash, new File([buf.toString('base64')], hash, { type: MIME[ext] || 'application/octet-stream' }));
+    sent++;
+  }
+  const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/workers/assets/upload?base64=true`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${jwt}` },
+    body: form,
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || body.success === false) throw new Error(`upload do bucket ${i + 1} falhou: HTTP ${res.status} ${JSON.stringify(body.errors || body)}`);
+  if (body.result?.jwt) completion = body.result.jwt;
+  console.log(`bucket ${i + 1}/${buckets.length} ok (${bucket.length} arquivos, HTTP ${res.status})`);
+}
+if (!completion) throw new Error('nenhum JWT de conclusão recebido');
+
+const worker = fs.readFileSync(path.join(DEPLOY, 'worker.js'), 'utf8');
+const headers = fs.readFileSync(path.join(DEPLOY, 'headers.txt'), 'utf8');
+const step3 = `async () => {
+  // PASSO 3/3 — publica o Worker "norevia" com os assets enviados e garante o domínio custom.
+  // Gerado por site/deploy.mjs em ${new Date().toISOString()}. O JWT abaixo expira em ~1 h.
+  // Toca SOMENTE no script "norevia" e no custom domain norevia.coldcodelabs.com.
+  const ACCOUNT = '${ACCOUNT}';
+  const ZONE = '957d6bafdcc985eb048619403adb6b35';
+  const NAME = 'norevia';
+  const HOST = 'norevia.coldcodelabs.com';
+  const code = ${JSON.stringify(worker)};
+  const metadata = {
+    main_module: 'worker.js',
+    compatibility_date: '2025-10-01',
+    bindings: [{ type: 'assets', name: 'ASSETS' }],
+    assets: {
+      jwt: ${JSON.stringify(completion)},
+      config: { html_handling: 'auto-trailing-slash', not_found_handling: '404-page', _headers: ${JSON.stringify(headers)} },
+    },
+  };
+  const form = new FormData();
+  form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+  form.append('worker.js', new Blob([code], { type: 'application/javascript+module' }), 'worker.js');
+  const up = await cloudflare.request({ method: 'PUT', path: \`/accounts/\${ACCOUNT}/workers/scripts/\${NAME}\`, body: form });
+
+  const list = await cloudflare.request({ method: 'GET', path: \`/accounts/\${ACCOUNT}/workers/domains\`, query: { hostname: HOST } });
+  let dom = (list.result || []).find((d) => d.hostname === HOST);
+  if (dom && dom.service !== NAME) throw new Error(\`hostname \${HOST} já pertence ao Worker \${dom.service}; abortado\`);
+  if (!dom) {
+    const dns = await cloudflare.request({ method: 'GET', path: \`/zones/\${ZONE}/dns_records\`, query: { name: HOST } });
+    if ((dns.result || []).length) throw new Error(\`já existe registro DNS para \${HOST}; abortado para não sobrescrever\`);
+    dom = (await cloudflare.request({ method: 'PUT', path: \`/accounts/\${ACCOUNT}/workers/domains\`, body: { hostname: HOST, service: NAME, zone_id: ZONE } })).result;
+  }
+  return { ok: up.success, script: up.result && { id: up.result.id, modified_on: up.result.modified_on, has_assets: up.result.has_assets }, domain: dom && { id: dom.id, hostname: dom.hostname, service: dom.service } };
+}
+`;
+fs.writeFileSync(path.join(DEPLOY, 'step3-deploy.js'), step3);
+console.log(`upload concluído: ${sent} arquivo(s) enviados (${Object.keys(manifest).length} no manifest; os demais já estavam na Cloudflare).`);
+console.log(`próximo: rode o conteúdo de site/deploy/step3-deploy.js com mcp__cloudflare__execute (em até 1 h).`);
