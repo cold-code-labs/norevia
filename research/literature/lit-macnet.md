@@ -1,50 +1,50 @@
 ---
 id: lit-macnet
-title: MacNet — escalonamento de colaboração multiagente em DAGs ("collaborative scaling law")
+title: MacNet — scaling multi-agent collaboration on DAGs ("collaborative scaling law")
 area: literature
-evidence: relato-autores
-tags: [escalonamento-de-agentes, topologia, lei-de-escala, saturacao, comunicacao]
+evidence: author-reported
+tags: [agent-scaling, topology, scaling-law, saturation, communication]
 sources:
   - "Qian, C., Xie, Z., Wang, Y., Liu, W., Zhu, K., Xia, H., Dang, Y., Du, Z., Chen, W., Yang, C., Liu, Z. & Sun, M. (2025). Scaling Large Language Model-based Multi-Agent Collaboration. ICLR 2025. arXiv:2406.07155v3. https://arxiv.org/abs/2406.07155v3"
 related: [lit-more-agents, lit-scaling-agent-systems, lit-more-llm-calls]
 updated: 2026-11-07
 primary_opened: true
-version: "v3 (17 mar. 2025); v1 11 jun. 2024; v2 28 fev. 2025"
-summary: Organizar agentes GPT-3.5 em DAGs mostra ganho de qualidade em forma logística com o número de nós e saturação por volta de 16 nós, a um custo de contexto e tokens que cresce rápido.
+version: "v3 (17 Mar 2025); v1 11 Jun 2024; v2 28 Feb 2025"
+summary: Organizing GPT-3.5 agents in DAGs shows a logistic-shaped quality gain with the number of nodes and saturation at around 16 nodes, at a context and token cost that grows quickly.
 ---
 
-## Pergunta
-Adicionar agentes que colaboram, organizados em grafo acíclico dirigido, produz uma lei de escala parecida com a neural? Quais topologias funcionam melhor?
+## Question
+Does adding collaborating agents, organized in a directed acyclic graph, produce a scaling law similar to the neural one? Which topologies work best?
 
-## Método
-MacNet: nós são "atores" e arestas são "críticos". O raciocínio segue a ordem topológica do DAG; cada interação tem até 3 rodadas. O controle de memória passa adiante só os artefatos, não o diálogo inteiro (Sec. 2.3). Modelo: GPT-3.5; modelos abertos só na nota de rodapé 5. Benchmarks: MMLU, HumanEval, SRDD e CommonGen-Hard; "Quality" é a média deles. Baselines: CoT, AutoGPT, GPTSwarm, AgentVerse. Topologias: chain, star, tree, mesh, layer e random. Escala de 2^0 a 2^6 nós, que segundo os autores passa de mil agentes no mesh, contando nós e arestas.
+## Method
+MacNet: nodes are "actors" and edges are "critics". Reasoning follows the topological order of the DAG; each interaction has up to 3 rounds. Memory control passes on only the artifacts, not the whole dialogue (Sec. 2.3). Model: GPT-3.5; open models only in footnote 5. Benchmarks: MMLU, HumanEval, SRDD and CommonGen-Hard; "Quality" is their mean. Baselines: CoT, AutoGPT, GPTSwarm, AgentVerse. Topologies: chain, star, tree, mesh, layer and random. Scale from 2^0 to 2^6 nodes, which according to the authors exceeds a thousand agents in the mesh, counting nodes and edges.
 
-## Resultado relatado
-- Tabela 1, Quality média com cerca de 4 nós: MacNet-Random 0,6522 (melhor); Mesh 0,6316; Chain 0,6078; CoT 0,5757; AgentVerse 0,5805; GPTSwarm 0,5163.
-- O ganho não é uniforme. No HumanEval, MacNet-Chain (0,3720) fica abaixo de CoT (0,6098) e de AgentVerse (0,7256), embora o texto diga que a chain supera "todos os baselines".
-- Lei colaborativa (Eq. 6): f(|V|) = γ / (1 + e^(−β(log|V| − α))) + δ, uma logística em log(nº de nós). Parâmetros específicos por topologia; os valores ajustados não foram publicados no HTML.
-- Saturação: os autores chamam 2^4 nós de "escolha razoável" e dizem que a maioria das topologias satura por volta de cem agentes (Sec. 3.3).
-- Controle: o voto majoritário melhora só 0,9% e estabiliza em cerca de 8 agentes. O AgentVerse sofre "explosão de contexto" acima de 30 agentes (Sec. 3.3).
-- Topologia random leva cerca de 51,92% menos tempo que mesh. Inverter arestas degrada o resultado; topologias divergentes superam as convergentes (Sec. 3.2, Fig. 6).
-- Comprimento de tokens 7,51× maior de 2^0 para 2^4 agentes; sugestões dos críticos implementadas em 93,10% dos casos (Sec. 3.4).
+## Reported result
+- Table 1, mean Quality with about 4 nodes: MacNet-Random 0.6522 (best); Mesh 0.6316; Chain 0.6078; CoT 0.5757; AgentVerse 0.5805; GPTSwarm 0.5163.
+- The gain is not uniform. On HumanEval, MacNet-Chain (0.3720) falls below CoT (0.6098) and AgentVerse (0.7256), although the text says the chain outperforms "all baselines".
+- Collaborative law (Eq. 6): f(|V|) = γ / (1 + e^(−β(log|V| − α))) + δ, a logistic in log(no. of nodes). Topology-specific parameters; the fitted values were not published in the HTML.
+- Saturation: the authors call 2^4 nodes a "reasonable choice" and say most topologies saturate at around a hundred agents (Sec. 3.3).
+- Control: majority vote improves by only 0.9% and plateaus at about 8 agents. AgentVerse suffers "context explosion" above 30 agents (Sec. 3.3).
+- The random topology takes about 51.92% less time than mesh. Reversing edges degrades the result; divergent topologies outperform convergent ones (Sec. 3.2, Fig. 6).
+- Token length 7.51× larger from 2^0 to 2^4 agents; critics' suggestions implemented in 93.10% of cases (Sec. 3.4).
 
-## Custo/compute considerado?
-Parcialmente. Há análise de crescimento de contexto: O(n²) sem controle de memória, O(n) com controle (Eq. 5). Uma interação exige pelo menos 2×|E| rodadas. Também há tempo e tokens relativos. Não há custo monetário nem comparação com um agente único que receba o mesmo orçamento de tokens.
+## Cost/compute considered?
+Partially. There is an analysis of context growth: O(n²) without memory control, O(n) with control (Eq. 5). An interaction requires at least 2×|E| rounds. There is also relative time and tokens. There is no monetary cost nor a comparison with a single agent given the same token budget.
 
-## Ameaças à validade
-- Um único modelo (GPT-3.5) nos resultados principais.
-- Métricas de SRDD e CommonGen dependem de avaliadores automáticos e LLM.
-- A lei vale só para escala de rede; os autores deixam perfis, ferramentas e protocolos para trabalho futuro (nota 9).
-- Não há baseline de agente único com compute igualado, então o ganho pode refletir mais tokens e não colaboração.
-- Contradição interna entre o texto e a Tabela 1 sobre a chain no HumanEval.
+## Threats to validity
+- A single model (GPT-3.5) in the main results.
+- SRDD and CommonGen metrics depend on automatic and LLM evaluators.
+- The law holds only for network scale; the authors leave profiles, tools and protocols to future work (note 9).
+- There is no matched-compute single-agent baseline, so the gain may reflect more tokens rather than collaboration.
+- Internal contradiction between the text and Table 1 about the chain on HumanEval.
 
-## Relevância para a pergunta central
-É a evidência mais citada de uma "lei de escala colaborativa", mas mede qualidade em função do número de nós, não do custo. Para a Norevia, mostra que existe uma faixa de saturação (cerca de 16 nós) e que topologia importa, sem responder se o mesmo gasto num único agente renderia mais.
+## Relevance to the central question
+It is the most cited evidence of a "collaborative scaling law", but it measures quality as a function of the number of nodes, not of cost. For Norevia, it shows that there is a saturation range (about 16 nodes) and that topology matters, without answering whether the same spend on a single agent would yield more.
 
-## Hipóteses candidatas
-- candidata: o ganho de colaboração segue uma logística em log(N) e satura cedo; o ponto ótimo de custo fica antes da saturação de qualidade.
-- candidata: topologias esparsas e divergentes dão melhor qualidade por token que as densas.
-- candidata: sem controle de memória, o custo de contexto cresce como O(N²) e domina qualquer ganho para N moderado.
+## Candidate hypotheses
+- candidate: the collaboration gain follows a logistic in log(N) and saturates early; the cost optimum lies before quality saturation.
+- candidate: sparse and divergent topologies give better quality per token than dense ones.
+- candidate: without memory control, context cost grows as O(N²) and dominates any gain for moderate N.
 
-## Verificação
-Abertos em 2026-11-07: https://arxiv.org/abs/2406.07155 (v3 e ICLR 2025 confirmados no campo comments) e https://arxiv.org/html/2406.07155v3. Números extraídos por leitor automático, sem conferência manual célula a célula. Valores ajustados de α, β, γ, δ não localizados (lacuna). Resultados com modelos abertos não detalhados (lacuna).
+## Verification
+Opened on 2026-11-07: https://arxiv.org/abs/2406.07155 (v3 and ICLR 2025 confirmed in the comments field) and https://arxiv.org/html/2406.07155v3. Numbers extracted by an automatic reader, without manual cell-by-cell checking. Fitted values of α, β, γ, δ not located (gap). Results with open models not detailed (gap).

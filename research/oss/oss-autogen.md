@@ -1,193 +1,193 @@
 ---
 id: oss-autogen
-title: "AutoGen — group chat com gerente central e condições de término componíveis"
+title: "AutoGen — group chat with a central manager and composable termination conditions"
 area: oss
-evidence: implementacao-observada
-tags: [group-chat, orquestrador-central, termination-conditions, selector-llm, handoff, magentic-one, ledger, replanejamento, contexto-limitado, projeto-arquivado]
+evidence: observed-implementation
+tags: [group-chat, central-orchestrator, termination-conditions, selector-llm, handoff, magentic-one, ledger, replanning, bounded-context, archived-project]
 sources:
-  - "https://github.com/microsoft/autogen/tree/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d (commit inspecionado, clone raso em 2026-11-07)"
-related: [oss-matriz, oss-padroes, oss-openai-swarm, oss-openai-agents-sdk, oss-langgraph-swarm, oss-langgraph-supervisor, oss-crewai, oss-camel, oss-metagpt, oss-chatdev-macnet, oss-moa]
+  - "https://github.com/microsoft/autogen/tree/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d (inspected commit, shallow clone on 2026-11-07)"
+related: [oss-matrix, oss-patterns, oss-openai-swarm, oss-openai-agents-sdk, oss-langgraph-swarm, oss-langgraph-supervisor, oss-crewai, oss-camel, oss-metagpt, oss-chatdev-macnet, oss-moa]
 updated: 2026-11-07
-summary: "No AutoGen (AgentChat), um gerente central escolhe quem fala: em rodízio, por LLM, por handoff ou por ledger com replanejamento. O término vem de condições componíveis (&, |); o limite de tokens é verificado só depois de cada turno, sobre o uso já relatado. Por padrão a equipe não tem aceite mecânico, e o repositório está arquivado."
+summary: "In AutoGen (AgentChat), a central manager chooses who speaks: round-robin, by LLM, by handoff, or by ledger with replanning. Termination comes from composable conditions (&, |); the token limit is checked only after each turn, against usage already reported. By default the team has no mechanical acceptance, and the repository is archived."
 ---
 
-# AutoGen (AgentChat): gerente central e condições de término componíveis
+# AutoGen (AgentChat): central manager and composable termination conditions
 
-## Identificação
+## Identification
 
 - **URL:** https://github.com/microsoft/autogen
-- **SHA inspecionado:** `d07c667a3239ea4ab7af62a53b0f4ff205a1f23d`
-- **Data do commit:** 2026-10-28T14:45:27+00:00 (`git log -1 --format=%cI`)
-- **Licença:** licença dupla, conforme os arquivos lidos.
-  - `LICENSE` é a Creative Commons Attribution 4.0 International (`LICENSE:L1`).
-  - `LICENSE-CODE` é a MIT License, "Copyright (c) Microsoft Corporation." (`LICENSE-CODE:L1-L3`).
-  - O README explica a divisão: CC-BY-4.0 cobre a documentação e o conteúdo, e MIT cobre o código (`README.md:L229-L231`) **[README/docs]**.
-- **Status do projeto:** o README marca o projeto como arquivado. **[README/docs]**
-  - Selo "status-archived" e o aviso "Project archived and no longer maintained" (`README.md:L14-L19`).
-  - Novos usuários devem usar o Microsoft Agent Framework (`README.md:L29-L31`).
-  - O README também se descreve como em "maintenance mode", aceitando só correções de bug, patches de segurança e documentação (`README.md:L222`).
-- **Escopo do que foi lido** (os caminhos de `python/packages/` aparecem abreviados ao longo do card):
-  - **Equipes** (`autogen-agentchat/src/autogen_agentchat/teams/_group_chat/`):
-    - `_base_group_chat_manager.py` (inteiro);
-    - `_round_robin_group_chat.py` (trechos);
-    - `_selector_group_chat.py` (L60-L310 e a assinatura);
+- **Inspected SHA:** `d07c667a3239ea4ab7af62a53b0f4ff205a1f23d`
+- **Commit date:** 2026-10-28T14:45:27+00:00 (`git log -1 --format=%cI`)
+- **License:** dual license, according to the files read.
+  - `LICENSE` is the Creative Commons Attribution 4.0 International (`LICENSE:L1`).
+  - `LICENSE-CODE` is the MIT License, "Copyright (c) Microsoft Corporation." (`LICENSE-CODE:L1-L3`).
+  - The README explains the split: CC-BY-4.0 covers documentation and content, and MIT covers code (`README.md:L229-L231`) **[README/docs]**.
+- **Project status:** the README marks the project as archived. **[README/docs]**
+  - "status-archived" badge and the notice "Project archived and no longer maintained" (`README.md:L14-L19`).
+  - New users should use the Microsoft Agent Framework (`README.md:L29-L31`).
+  - The README also describes itself as in "maintenance mode", accepting only bug fixes, security patches and documentation (`README.md:L222`).
+- **Scope of what was read** (paths under `python/packages/` appear abbreviated throughout the card):
+  - **Teams** (`autogen-agentchat/src/autogen_agentchat/teams/_group_chat/`):
+    - `_base_group_chat_manager.py` (in full);
+    - `_round_robin_group_chat.py` (excerpts);
+    - `_selector_group_chat.py` (L60-L310 and the signature);
     - `_swarm_group_chat.py` (L20-L150);
     - `_magentic_one/_magentic_one_orchestrator.py` (L60-L536);
-    - `_magentic_one/_magentic_one_group_chat.py` (assinatura);
+    - `_magentic_one/_magentic_one_group_chat.py` (signature);
     - `_chat_agent_container.py` (L1-L140);
-    - `_graph/_digraph_group_chat.py` (só a guarda de ciclos);
-    - `_base_group_chat.py` (só o construtor).
-  - **Término:** `conditions/_terminations.py` (trechos) e `base/_termination.py` (L79-L160).
-  - **Agentes:** `agents/_code_executor_agent.py` (L430-L640, por grep e trechos) e `agents/_assistant_agent.py` (por grep).
-  - **Contexto:** `autogen-core/src/autogen_core/model_context/*.py`.
+    - `_graph/_digraph_group_chat.py` (only the cycle guard);
+    - `_base_group_chat.py` (only the constructor).
+  - **Termination:** `conditions/_terminations.py` (excerpts) and `base/_termination.py` (L79-L160).
+  - **Agents:** `agents/_code_executor_agent.py` (L430-L640, by grep and excerpts) and `agents/_assistant_agent.py` (by grep).
+  - **Context:** `autogen-core/src/autogen_core/model_context/*.py`.
   - **Benchmark:**
     - `agbench/benchmarks/HumanEval/Templates/AgentChat/{scenario.py,custom_code_executor.py}`;
-    - `agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py` (trechos);
-    - `agbench/src/agbench/tabulate_cmd.py` (por grep).
-  - Não li `dotnet/`, `autogen-ext` (salvo um grep) nem `autogen-studio`.
+    - `agbench/benchmarks/GAIA/Templates/ParallelAgents/scenario.py` (excerpts);
+    - `agbench/src/agbench/tabulate_cmd.py` (by grep).
+  - I did not read `dotnet/`, `autogen-ext` (except for one grep) or `autogen-studio`.
 
-## Mecanismo
+## Mechanism
 
-**1. Topologia de comunicação.**
-- **Barramento com gerente.** Um `BaseGroupChatManager` assina o tópico do grupo. Cada participante vive num `ChatAgentContainer` e recebe as respostas dos outros, que guarda em `_message_buffer`. A comunicação é um broadcast completo pelo tópico, mediado pelo gerente.
-  - Fontes: `.../teams/_group_chat/_base_group_chat_manager.py:L25-L35`, `L116-L121` e `.../teams/_group_chat/_chat_agent_container.py:L53-L66` **[código]**.
-- **Quem pode falar.** O gerente publica `GroupChatRequestPublish` só para os falantes escolhidos (`_base_group_chat_manager.py:L172-L193`) **[código]**.
-- **Equipes aninhadas.** Uma `Team` pode participar como membro de outra equipe (`_chat_agent_container.py:L85-L105`) **[código]**.
-- **`GraphFlow`.** Executa um grafo dirigido. Se o grafo tiver ciclos, a equipe exige uma condição de término ou `max_turns` (`.../_graph/_digraph_group_chat.py:L340-L341`) **[código]**.
+**1. Communication topology.**
+- **Bus with a manager.** A `BaseGroupChatManager` subscribes to the group topic. Each participant lives in a `ChatAgentContainer` and receives the others' responses, which it stores in `_message_buffer`. Communication is a full broadcast over the topic, mediated by the manager.
+  - Sources: `.../teams/_group_chat/_base_group_chat_manager.py:L25-L35`, `L116-L121` and `.../teams/_group_chat/_chat_agent_container.py:L53-L66` **[code]**.
+- **Who may speak.** The manager publishes `GroupChatRequestPublish` only to the chosen speakers (`_base_group_chat_manager.py:L172-L193`) **[code]**.
+- **Nested teams.** A `Team` can participate as a member of another team (`_chat_agent_container.py:L85-L105`) **[code]**.
+- **`GraphFlow`.** Executes a directed graph. If the graph has cycles, the team requires a termination condition or `max_turns` (`.../_graph/_digraph_group_chat.py:L340-L341`) **[code]**.
 
-**2. Quem decide quem age.** O gerente decide, por meio de `select_speaker`.
-- **`RoundRobinGroupChat`:** índice circular, de forma determinística (`_round_robin_group_chat.py:L72-L82`) **[código]**.
+**2. Who decides who acts.** The manager decides, through `select_speaker`.
+- **`RoundRobinGroupChat`:** circular index, deterministically (`_round_robin_group_chat.py:L72-L82`) **[code]**.
 - **`SelectorGroupChat`:**
-  - Ordem de precedência:
-    1. `selector_func`, se devolver um nome (`_selector_group_chat.py:L163-L177`);
-    2. senão, `candidate_func` filtra os candidatos (`L180-L192`);
-    3. senão, o falante anterior é removido quando `allow_repeated_speaker=False` (`L196-L199`).
-  - Depois disso, um LLM escolhe com até `max_selector_attempts` tentativas, recebendo feedback quando cita zero nomes, vários nomes ou repete o falante (`L232-L300`).
-  - Se todas as tentativas falharem, o falante anterior volta a falar, ou o primeiro candidato quando não há anterior (`L302-L308`).
-  - Padrões: `allow_repeated_speaker=False` e `max_selector_attempts=3` (`L615-L616`) **[código]**.
-- **`Swarm`:** o próximo falante é o `target` do último `HandoffMessage`. Sem handoff, o falante atual continua, e o primeiro participante começa (`_swarm_group_chat.py:L45`, `L81-L97`) **[código]**.
+  - Order of precedence:
+    1. `selector_func`, if it returns a name (`_selector_group_chat.py:L163-L177`);
+    2. otherwise, `candidate_func` filters the candidates (`L180-L192`);
+    3. otherwise, the previous speaker is removed when `allow_repeated_speaker=False` (`L196-L199`).
+  - After that, an LLM chooses with up to `max_selector_attempts` attempts, receiving feedback when it names zero names, several names, or repeats the speaker (`L232-L300`).
+  - If all attempts fail, the previous speaker speaks again, or the first candidate when there is no previous one (`L302-L308`).
+  - Defaults: `allow_repeated_speaker=False` and `max_selector_attempts=3` (`L615-L616`) **[code]**.
+- **`Swarm`:** the next speaker is the `target` of the last `HandoffMessage`. Without a handoff, the current speaker continues, and the first participant starts (`_swarm_group_chat.py:L45`, `L81-L97`) **[code]**.
 - **`MagenticOneGroupChat`:**
-  - O orquestrador LLM gera fatos e um plano, que formam o *task ledger* (`_magentic_one_orchestrator.py:L156-L186`).
-  - A cada passo, gera um *progress ledger* em JSON com os campos `is_request_satisfied`, `is_progress_being_made`, `is_in_loop`, `instruction_or_question` e `next_speaker` (`L300-L384`).
-  - A estrutura do JSON é validada até `_max_json_retries=10` vezes (`L94`, `L318-L384`) **[código]**.
+  - The LLM orchestrator generates facts and a plan, which form the *task ledger* (`_magentic_one_orchestrator.py:L156-L186`).
+  - At each step, it generates a *progress ledger* in JSON with the fields `is_request_satisfied`, `is_progress_being_made`, `is_in_loop`, `instruction_or_question` and `next_speaker` (`L300-L384`).
+  - The JSON structure is validated up to `_max_json_retries=10` times (`L94`, `L318-L384`) **[code]**.
 
-**3. Critério de término.**
-- **Composição.** As condições são componíveis com `&` e `|` (`base/_termination.py:L79-L86`) **[código]**.
-  - `AndTerminationCondition` só para quando todas as condições disparam (`L102-L121`).
-  - `OrTerminationCondition` para quando qualquer uma dispara (`L153-L160`).
-- **Ponto de checagem.** O gerente avalia a condição sobre o *delta* depois que todos os falantes ativos respondem, e em seguida aplica `max_turns` (`_base_group_chat_manager.py:L152-L161`, `L195-L228`) **[código]**.
-- **Condições disponíveis** (`conditions/_terminations.py`) **[código]**:
+**3. Termination criterion.**
+- **Composition.** Conditions are composable with `&` and `|` (`base/_termination.py:L79-L86`) **[code]**.
+  - `AndTerminationCondition` stops only when all conditions fire (`L102-L121`).
+  - `OrTerminationCondition` stops when any one fires (`L153-L160`).
+- **Checkpoint.** The manager evaluates the condition on the *delta* after all active speakers respond, and then applies `max_turns` (`_base_group_chat_manager.py:L152-L161`, `L195-L228`) **[code]**.
+- **Available conditions** (`conditions/_terminations.py`) **[code]**:
   - `MaxMessageTermination` (`L62-L95`);
-  - `TextMentionTermination` (`L111-L145`), que aceita filtro `sources`;
+  - `TextMentionTermination` (`L111-L145`), which accepts a `sources` filter;
   - `TokenUsageTermination` (`L235-L292`);
   - `HandoffTermination` (`L313-L340`);
-  - `TimeoutTermination` (`L358-L390`): o relógio começa no `__init__` (`L370`), não no início da execução;
-  - `ExternalTermination`, acionada por `set()` (`L404-L450`);
+  - `TimeoutTermination` (`L358-L390`): the clock starts in `__init__` (`L370`), not at the start of execution;
+  - `ExternalTermination`, triggered by `set()` (`L404-L450`);
   - `SourceMatchTermination` (`L463-L495`);
   - `TextMessageTermination` (`L513-L545`);
   - `FunctionCallTermination` (`L565-L600`);
   - `StopMessageTermination` (`L24-L45`).
-- **Padrões de `max_turns`:**
-  - `None`, sem limite, em `RoundRobinGroupChat` (`_round_robin_group_chat.py:L249`), `SelectorGroupChat` (`_selector_group_chat.py:L605`) e `Swarm` (`_swarm_group_chat.py:L240`) **[código]**. Portanto, essas três equipes podem rodar sem limite por padrão.
-  - `20` em `MagenticOneGroupChat` (`_magentic_one_group_chat.py:L117`) **[código]**.
-- **No MagenticOne,** a parada ocorre por três vias:
-  - `is_request_satisfied` (um julgamento de LLM) (`_magentic_one_orchestrator.py:L388-L391`);
-  - `n_rounds > max_turns`, que leva a `_prepare_final_answer` (`L303-L305`). A comparação usa `>`, então cabem `max_turns+1` passos;
-  - a condição de término do usuário (`L203-L210`) **[código]**.
+- **`max_turns` defaults:**
+  - `None`, no limit, in `RoundRobinGroupChat` (`_round_robin_group_chat.py:L249`), `SelectorGroupChat` (`_selector_group_chat.py:L605`) and `Swarm` (`_swarm_group_chat.py:L240`) **[code]**. Therefore, these three teams can run without a limit by default.
+  - `20` in `MagenticOneGroupChat` (`_magentic_one_group_chat.py:L117`) **[code]**.
+- **In MagenticOne,** stopping occurs through three routes:
+  - `is_request_satisfied` (an LLM judgment) (`_magentic_one_orchestrator.py:L388-L391`);
+  - `n_rounds > max_turns`, which leads to `_prepare_final_answer` (`L303-L305`). The comparison uses `>`, so `max_turns+1` steps fit;
+  - the user's termination condition (`L203-L210`) **[code]**.
 
-**4. Verificação e aceite mecânico.**
-- **No núcleo das equipes, não há gate determinístico de aceite.** No MagenticOne, o fim da tarefa depende de um LLM avaliando `is_request_satisfied` (`_magentic_one_orchestrator.py:L388`). A validação de chaves JSON (`L346-L374`) verifica o formato do ledger, não a tarefa **[código]**.
-- **Componente opt-in.** O `CodeExecutorAgent` executa código e repete até `max_retries_on_error` (padrão `0`, `agents/_code_executor_agent.py:L436`) **[código]**.
-  - O laço para quando `exit_code == 0` ou na última tentativa (`L548`, `L627-L628`).
-  - Entre tentativas, um LLM decide se vale repetir (`L631-L640`).
-- **No benchmark há aceite mecânico.** **[exemplo]**
-  - O template HumanEval junta os testes ao código do coder. Só imprime `TERMINATE` se `check(candidate)` passar (`agbench/benchmarks/HumanEval/Templates/AgentChat/custom_code_executor.py:L35-L46`).
-  - A equipe termina por `TextMentionTermination("TERMINATE", sources=["executor"])` com `max_turns=12` (`.../scenario.py:L45-L48`).
-  - O placar procura a string de sucesso (`agbench/src/agbench/tabulate_cmd.py:L19-L20`, `L68`).
+**4. Verification and mechanical acceptance.**
+- **In the team core, there is no deterministic acceptance gate.** In MagenticOne, task completion depends on an LLM evaluating `is_request_satisfied` (`_magentic_one_orchestrator.py:L388`). The JSON key validation (`L346-L374`) checks the ledger's format, not the task **[code]**.
+- **Opt-in component.** The `CodeExecutorAgent` executes code and retries up to `max_retries_on_error` (default `0`, `agents/_code_executor_agent.py:L436`) **[code]**.
+  - The loop stops when `exit_code == 0` or on the last attempt (`L548`, `L627-L628`).
+  - Between attempts, an LLM decides whether retrying is worthwhile (`L631-L640`).
+- **In the benchmark there is mechanical acceptance.** **[example]**
+  - The HumanEval template appends the tests to the coder's code. It only prints `TERMINATE` if `check(candidate)` passes (`agbench/benchmarks/HumanEval/Templates/AgentChat/custom_code_executor.py:L35-L46`).
+  - The team terminates via `TextMentionTermination("TERMINATE", sources=["executor"])` with `max_turns=12` (`.../scenario.py:L45-L48`).
+  - The scorer searches for the success string (`agbench/src/agbench/tabulate_cmd.py:L19-L20`, `L68`).
 
-**5. Controle de custo e orçamento técnico.**
-- **`TokenUsageTermination` não é um limite rígido antes da chamada.** **[código]**
-  - Ela soma `models_usage` das mensagens do delta depois que cada turno termina (`conditions/_terminations.py:L275-L286`).
-  - Na prática, só interrompe entre turnos, depois que os tokens já foram gastos. Um turno longo, com muitas iterações de ferramenta, pode ultrapassar o teto.
-- **Gastos fora da contagem.** No trecho lido de `_select_speaker`, o uso de tokens da chamada do seletor não é anexado a nenhuma mensagem (`_selector_group_chat.py:L232-L300`). Inferência de leitura: o custo do seletor não entra na conta **[código]**. O mesmo vale para as chamadas de ledger do MagenticOne (`_magentic_one_orchestrator.py:L318-L332`).
-- **`TimeoutTermination` não interrompe um turno em andamento.** Ela também só é avaliada entre turnos (`_base_group_chat_manager.py:L159`) **[código]**.
-- **Outros limites rígidos de laço:**
+**5. Cost control and technical budget.**
+- **`TokenUsageTermination` is not a hard limit before the call.** **[code]**
+  - It sums `models_usage` from the delta's messages after each turn ends (`conditions/_terminations.py:L275-L286`).
+  - In practice, it only interrupts between turns, after the tokens have already been spent. A long turn, with many tool iterations, can exceed the ceiling.
+- **Spending outside the count.** In the read excerpt of `_select_speaker`, the token usage of the selector call is not attached to any message (`_selector_group_chat.py:L232-L300`). Reading inference: the selector's cost is not counted **[code]**. The same holds for MagenticOne's ledger calls (`_magentic_one_orchestrator.py:L318-L332`).
+- **`TimeoutTermination` does not interrupt a turn in progress.** It is also only evaluated between turns (`_base_group_chat_manager.py:L159`) **[code]**.
+- **Other hard loop limits:**
   - `max_selector_attempts`;
   - `_max_json_retries=10`;
-  - `max_tool_iterations` com padrão `1` (`agents/_assistant_agent.py:L739`, laço em `L1149`) **[código]**.
-- Não encontrei limite de custo em moeda (busca: `budget`, `max_cost`, `cost` em `autogen-agentchat/src`).
+  - `max_tool_iterations` with default `1` (`agents/_assistant_agent.py:L739`, loop at `L1149`) **[code]**.
+- I did not find a monetary cost limit (search: `budget`, `max_cost`, `cost` in `autogen-agentchat/src`).
 
-**6. Memória.**
-- **Padrão sem limite.**
-  - O `AssistantAgent` usa `UnboundedChatCompletionContext()` (`agents/_assistant_agent.py:L840`).
-  - O seletor também, quando não recebe contexto (`_selector_group_chat.py:L99-L102`).
-  - O `_message_thread` do gerente só cresce, via `extend` (`_base_group_chat_manager.py:L298-L303`) **[código]**.
-- **Contextos limitados, opt-in.**
-  - `BufferedChatCompletionContext(buffer_size)` devolve as últimas N mensagens (`autogen-core/.../model_context/_buffered_chat_completion_context.py:L28-L36`).
-  - `HeadAndTailChatCompletionContext` devolve cabeça e cauda e omite o meio (`_head_and_tail_chat_completion_context.py:L32-L60`).
-  - `TokenLimitedChatCompletionContext` remove mensagens do meio até caber em `token_limit` ou no `remaining_tokens` do modelo (`_token_limited_chat_completion_context.py:L57-L72`) **[código]**.
-  - Ressalva: esses contextos limitam a *visão* enviada ao LLM, mas o armazenamento continua crescendo, porque `add_message` só faz `append` (`_chat_completion_context.py:L49-L57`) **[código]**.
+**6. Memory.**
+- **Unbounded by default.**
+  - `AssistantAgent` uses `UnboundedChatCompletionContext()` (`agents/_assistant_agent.py:L840`).
+  - So does the selector, when it receives no context (`_selector_group_chat.py:L99-L102`).
+  - The manager's `_message_thread` only grows, via `extend` (`_base_group_chat_manager.py:L298-L303`) **[code]**.
+- **Bounded contexts, opt-in.**
+  - `BufferedChatCompletionContext(buffer_size)` returns the last N messages (`autogen-core/.../model_context/_buffered_chat_completion_context.py:L28-L36`).
+  - `HeadAndTailChatCompletionContext` returns head and tail and omits the middle (`_head_and_tail_chat_completion_context.py:L32-L60`).
+  - `TokenLimitedChatCompletionContext` removes messages from the middle until it fits within `token_limit` or the model's `remaining_tokens` (`_token_limited_chat_completion_context.py:L57-L72`) **[code]**.
+  - Caveat: these contexts limit the *view* sent to the LLM, but storage keeps growing, because `add_message` only does `append` (`_chat_completion_context.py:L49-L57`) **[code]**.
 
-**7. Falhas e retry.**
-- Uma exceção no gerente ou num participante encerra o grupo com `GroupChatTermination(error=...)` e propaga o erro (`_base_group_chat_manager.py:L165-L170`, `L250-L260` e `_chat_agent_container.py:L106-L115`) **[código]**.
-- Retries locais existem:
-  - no seletor (feedback ao LLM);
-  - no parsing do ledger do MagenticOne, com até 10 tentativas;
-  - no `CodeExecutorAgent` (`max_retries_on_error`) **[código]**.
-- **Replanejamento.** Cada passo sem progresso, ou em loop, soma 1 a `n_stalls`, e cada passo com progresso desconta 1 (`_magentic_one_orchestrator.py:L394-L399`). Ao atingir `max_stalls` (padrão `3`, `_magentic_one_group_chat.py:L119`), o orquestrador refaz fatos e plano (`_update_task_ledger`, `L451-L476`) e reentra no laço externo (`L402-L406`) **[código]**.
-- **Saída abrupta.** Se o ledger indicar um `next_speaker` inválido, o `break` em `L370-L374` mantém `key_error=True` e lança `ValueError` sem tentar de novo (`L383-L384`) **[código]**.
+**7. Failures and retry.**
+- An exception in the manager or in a participant ends the group with `GroupChatTermination(error=...)` and propagates the error (`_base_group_chat_manager.py:L165-L170`, `L250-L260` and `_chat_agent_container.py:L106-L115`) **[code]**.
+- Local retries exist:
+  - in the selector (feedback to the LLM);
+  - in MagenticOne's ledger parsing, with up to 10 attempts;
+  - in `CodeExecutorAgent` (`max_retries_on_error`) **[code]**.
+- **Replanning.** Each step without progress, or in a loop, adds 1 to `n_stalls`, and each step with progress subtracts 1 (`_magentic_one_orchestrator.py:L394-L399`). Upon reaching `max_stalls` (default `3`, `_magentic_one_group_chat.py:L119`), the orchestrator redoes facts and plan (`_update_task_ledger`, `L451-L476`) and re-enters the outer loop (`L402-L406`) **[code]**.
+- **Abrupt exit.** If the ledger indicates an invalid `next_speaker`, the `break` at `L370-L374` keeps `key_error=True` and raises `ValueError` without retrying (`L383-L384`) **[code]**.
 
-**8. Poda de comunicação.**
-- **Ao replanejar,** o MagenticOne envia `GroupChatReset` a todos os participantes e limpa o `_message_thread` do gerente antes de rebroadcastar o ledger (`_magentic_one_orchestrator.py:L262-L273`). Isso funciona como uma poda de histórico por episódio **[código]**.
-- **Tool calls fora do contexto do orquestrador.** `_thread_to_context` descarta eventos de tool call (`L514-L520`) **[código]**.
-- **Filtro de candidatos.** `candidate_func` e `allow_repeated_speaker` restringem quem pode falar, mas não podam mensagens **[código]**.
-- **Opt-in.** Os contextos limitados podam o que o LLM vê (item 6).
+**8. Communication pruning.**
+- **When replanning,** MagenticOne sends `GroupChatReset` to all participants and clears the manager's `_message_thread` before rebroadcasting the ledger (`_magentic_one_orchestrator.py:L262-L273`). This works as a per-episode history pruning **[code]**.
+- **Tool calls outside the orchestrator's context.** `_thread_to_context` discards tool call events (`L514-L520`) **[code]**.
+- **Candidate filter.** `candidate_func` and `allow_repeated_speaker` restrict who may speak, but do not prune messages **[code]**.
+- **Opt-in.** Bounded contexts prune what the LLM sees (item 6).
 
-**9. Elástico ou fixo.** Fixo.
-- Os participantes são definidos no construtor (`_base_group_chat.py:L81-L85`).
-- Não encontrei método para adicionar ou remover participantes em tempo de execução (busca: `def add_`, `def remove_`, `participants.append`) **[código]**.
+**9. Elastic or fixed.** Fixed.
+- Participants are defined in the constructor (`_base_group_chat.py:L81-L85`).
+- I did not find a method to add or remove participants at runtime (search: `def add_`, `def remove_`, `participants.append`) **[code]**.
 
-**10. Benchmark de custo vs qualidade.**
-- O `agbench` traz cenários de HumanEval e de GAIA, incluindo `MagenticOne`, `SelectorGroupChat` e `ParallelAgents` (`python/packages/agbench/benchmarks/`) **[código/exemplo]**.
-- **`ParallelAgents`:** é o mais próximo de "1 vs N" no repositório. **[exemplo]**
-  - Roda `num_teams=3` equipes MagenticOne em paralelo e espera `num_answers=3` respostas, cancelando as restantes (`.../GAIA/Templates/ParallelAgents/scenario.py:L298-L369`, `L376-L377`).
-  - Agrega as respostas com um LLM (`L154-L256`).
-  - Registra `prompt_tokens` e `completion_tokens` por chamada em JSONL (`L86-L96`).
-- O tabulador padrão só conta sucessos e falhas e não tem colunas de custo (`agbench/src/agbench/tabulate_cmd.py:L217-L261`; busca: `cost`, `token` sem resultado relevante) **[código]**.
-- O README não traz números de custo vs qualidade, apenas cita o AutoGen Bench (`README.md:L198`) **[README/docs]**.
+**10. Cost vs quality benchmark.**
+- `agbench` includes HumanEval and GAIA scenarios, including `MagenticOne`, `SelectorGroupChat` and `ParallelAgents` (`python/packages/agbench/benchmarks/`) **[code/example]**.
+- **`ParallelAgents`:** the closest thing to "1 vs N" in the repository. **[example]**
+  - Runs `num_teams=3` MagenticOne teams in parallel and waits for `num_answers=3` answers, cancelling the remaining ones (`.../GAIA/Templates/ParallelAgents/scenario.py:L298-L369`, `L376-L377`).
+  - Aggregates the answers with an LLM (`L154-L256`).
+  - Records `prompt_tokens` and `completion_tokens` per call in JSONL (`L86-L96`).
+- The default tabulator only counts successes and failures and has no cost columns (`agbench/src/agbench/tabulate_cmd.py:L217-L261`; search: `cost`, `token` with no relevant result) **[code]**.
+- The README provides no cost vs quality numbers, it only cites AutoGen Bench (`README.md:L198`) **[README/docs]**.
 
-## Evidência
+## Evidence
 
-Nenhum código foi executado; nenhum benchmark reproduzido. Tudo acima vem da leitura estática do commit `d07c667a`. O comportamento de tempo de execução, como a ordem de eventos no runtime assíncrono, foi inferido do código, não observado. Nenhum número de desempenho foi verificado.
+No code was executed; no benchmark was reproduced. Everything above comes from static reading of commit `d07c667a`. Runtime behavior, such as the order of events in the asynchronous runtime, was inferred from the code, not observed. No performance number was verified.
 
-## Análogo de engenharia
+## Engineering analogue
 
-**[hipótese]** Para o Swarm Efficiency Observatory, o AutoGen oferece as peças de um braço "N agentes" com controle fino:
-- **Término componível**, por exemplo `TextMentionTermination(sources=[executor]) | MaxMessageTermination | TokenUsageTermination`.
-- **Aceite mecânico** já demonstrado no template HumanEval: os testes são executados e só então aparece `TERMINATE`.
-- **Um harness de N equipes paralelas com log de tokens** (`ParallelAgents`).
+**[hypothesis]** For the Swarm Efficiency Observatory, AutoGen offers the pieces of an "N agents" arm with fine-grained control:
+- **Composable termination**, for example `TextMentionTermination(sources=[executor]) | MaxMessageTermination | TokenUsageTermination`.
+- **Mechanical acceptance** already demonstrated in the HumanEval template: the tests are executed and only then does `TERMINATE` appear.
+- **A harness of N parallel teams with token logging** (`ParallelAgents`).
 
-Lacunas para usar como observatório:
-- O orçamento de tokens não é rígido: a checagem é posterior ao turno e ignora o seletor e o ledger.
-- Faltaria um contador por chamada, registrado no cliente de modelo, para medir o custo por tarefa aceita.
-- Comparar `RoundRobin`, `Selector`, `Swarm` e `MagenticOne` contra um único `AssistantAgent` com o mesmo `CodeExecutorAgent` isolaria o custo da coordenação.
+Gaps for use as an observatory:
+- The token budget is not hard: the check is post-turn and ignores the selector and the ledger.
+- A per-call counter, recorded in the model client, would be needed to measure cost per accepted task.
+- Comparing `RoundRobin`, `Selector`, `Swarm` and `MagenticOne` against a single `AssistantAgent` with the same `CodeExecutorAgent` would isolate the cost of coordination.
 
-## Hipótese testável
+## Testable hypothesis
 
-1. **[hipótese]** Em tarefas HumanEval com o aceite mecânico do template, `MagenticOneGroupChat`, com seus 4 agentes e o overhead do ledger, terá um custo por tarefa aceita (tokens totais, contando seletor e ledger, divididos pelas tarefas que passam nos testes) ≥ 2× o do par coder + executor em `RoundRobinGroupChat`, sem ganho de taxa de aceite maior que 5 pontos percentuais. Ela é falsificada se o MagenticOne ficar abaixo de 2× ou ganhar mais de 5 p.p.
-2. **[hipótese]** Com `TokenUsageTermination(max_total_token=B)`, o consumo real, medido no cliente de modelo, vai exceder B em uma fração mensurável das execuções. Isso decorre da checagem pós-turno e da omissão do seletor. Métrica: a distribuição de (consumo real − B)/B. A hipótese é falsificada se o excesso for ≤ 0 em ≥ 95% das execuções.
+1. **[hypothesis]** On HumanEval tasks with the template's mechanical acceptance, `MagenticOneGroupChat`, with its 4 agents and the ledger overhead, will have a cost per accepted task (total tokens, counting selector and ledger, divided by the tasks that pass the tests) ≥ 2× that of the coder + executor pair in `RoundRobinGroupChat`, with no acceptance-rate gain greater than 5 percentage points. It is falsified if MagenticOne stays below 2× or gains more than 5 p.p.
+2. **[hypothesis]** With `TokenUsageTermination(max_total_token=B)`, actual consumption, measured at the model client, will exceed B in a measurable fraction of runs. This follows from the post-turn check and the omission of the selector. Metric: the distribution of (actual consumption − B)/B. The hypothesis is falsified if the excess is ≤ 0 in ≥ 95% of runs.
 
-## Limites/lacunas
+## Limits/gaps
 
-- O projeto está **arquivado** (`README.md:L14-L31`). O sucessor, o Microsoft Agent Framework, não foi inspecionado.
-- Não li `autogen-ext`, onde ficam os clientes de modelo e seus `max_retries` (só um grep). Não sei se `models_usage` é sempre preenchido por todos os clientes.
-- Li `GraphFlow` só na guarda de ciclos. A semântica de ativação e de arestas condicionais não foi verificada.
-- O custo do seletor e do ledger ficar fora da contagem de `TokenUsageTermination` é uma inferência a partir do código lido. Não testei.
-- Não li `dotnet/`.
-- `TRANSPARENCY_FAQS.md`, a documentação em `docs/` e os papers não foram lidos. O README não cita arXiv.
+- The project is **archived** (`README.md:L14-L31`). The successor, the Microsoft Agent Framework, was not inspected.
+- I did not read `autogen-ext`, where the model clients and their `max_retries` live (only a grep). I do not know whether `models_usage` is always populated by all clients.
+- I read `GraphFlow` only for the cycle guard. The activation semantics and conditional edges were not verified.
+- That the selector and ledger cost falls outside the `TokenUsageTermination` count is an inference from the code read. I did not test it.
+- I did not read `dotnet/`.
+- `TRANSPARENCY_FAQS.md`, the documentation in `docs/` and the papers were not read. The README does not cite arXiv.
 
-## Linha da matriz
+## Matrix row
 
-| Término explícito | Aceite verificável | Orçamento técnico (não só prompt) | Poda de comunicação | Elástico (tamanho adapta) | Memória limitada | Licença |
+| Explicit termination | Verifiable acceptance | Technical budget (not just prompt) | Communication pruning | Elastic (size adapts) | Bounded memory | License |
 |---|---|---|---|---|---|---|
-| ✓ condições de término componíveis `&`/`\|` e `max_turns` (`base/_termination.py:L79-L86`; `_base_group_chat_manager.py:L195-L228`). O padrão é `max_turns=None`, exceto no MagenticOne (20, `_magentic_one_group_chat.py:L117`) | — no núcleo, o fim é decidido pelo LLM (`is_request_satisfied`, `_magentic_one_orchestrator.py:L388`). Testes executados + `TERMINATE` aparecem só em [exemplo] (`agbench/.../HumanEval/Templates/AgentChat/custom_code_executor.py:L35-L46`) | ✓ (grosso, opt-in) `TokenUsageTermination` interrompe o time, mas checa pós-turno sobre `models_usage` (`conditions/_terminations.py:L275-L286`), sem bloquear chamadas e sem contar o seletor; overshoot esperado (critério harmonizado com `oss-metagpt` em `oss-matriz`). Há `max_turns` e `max_tool_iterations=1` (`_assistant_agent.py:L739`) | ✓ (parcial) o replanejamento do MagenticOne reseta os agentes e limpa a thread (`_magentic_one_orchestrator.py:L262-L273`). Contextos limitados são opt-in | — participantes fixos no construtor (`_base_group_chat.py:L81-L85`) | ✓ opt-in: `Buffered`, `HeadAndTail` e `TokenLimited` (`autogen-core/.../model_context/_token_limited_chat_completion_context.py:L57-L72`). O padrão é `Unbounded` (`_assistant_agent.py:L840`) | MIT para código (`LICENSE-CODE`) + CC-BY-4.0 para docs/conteúdo (`LICENSE`) |
+| ✓ composable termination conditions `&`/`\|` and `max_turns` (`base/_termination.py:L79-L86`; `_base_group_chat_manager.py:L195-L228`). The default is `max_turns=None`, except in MagenticOne (20, `_magentic_one_group_chat.py:L117`) | — in the core, completion is decided by the LLM (`is_request_satisfied`, `_magentic_one_orchestrator.py:L388`). Executed tests + `TERMINATE` appear only in [example] (`agbench/.../HumanEval/Templates/AgentChat/custom_code_executor.py:L35-L46`) | ✓ (coarse, opt-in) `TokenUsageTermination` stops the team, but checks post-turn against `models_usage` (`conditions/_terminations.py:L275-L286`), without blocking calls and without counting the selector; overshoot expected (criterion harmonized with `oss-metagpt` in `oss-matrix`). There are `max_turns` and `max_tool_iterations=1` (`_assistant_agent.py:L739`) | ✓ (partial) MagenticOne's replanning resets the agents and clears the thread (`_magentic_one_orchestrator.py:L262-L273`). Bounded contexts are opt-in | — participants fixed in the constructor (`_base_group_chat.py:L81-L85`) | ✓ opt-in: `Buffered`, `HeadAndTail` and `TokenLimited` (`autogen-core/.../model_context/_token_limited_chat_completion_context.py:L57-L72`). The default is `Unbounded` (`_assistant_agent.py:L840`) | MIT for code (`LICENSE-CODE`) + CC-BY-4.0 for docs/content (`LICENSE`) |

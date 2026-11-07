@@ -1,47 +1,47 @@
 ---
 id: lit-inverse-scaling-ttc
-title: 'Inverse Scaling in Test-Time Compute — quando pensar mais piora'
+title: 'Inverse Scaling in Test-Time Compute — when thinking more makes things worse'
 area: literature
-evidence: relato-autores
-tags: [reasoning-effort, overthinking, test-time-compute, falhas, seguranca]
+evidence: author-reported
+tags: [reasoning-effort, overthinking, test-time-compute, failures, safety]
 sources:
-  - "Gema, A. P., Hägele, A., Chen, R., Arditi, A., Goldman-Wetzler, J., Fraser-Taliente, K., Sleight, H., Petrini, L., Michael, J., Alex, B., Minervini, P., Chen, Y., Benton, J. & Perez, E. (2025). Inverse Scaling in Test-Time Compute. Transactions on Machine Learning Research (TMLR), 12/2025. arXiv:2507.14417v2 (15 dez. 2025). https://arxiv.org/abs/2507.14417v2 · doi:10.48550/arXiv.2507.14417"
+  - "Gema, A. P., Hägele, A., Chen, R., Arditi, A., Goldman-Wetzler, J., Fraser-Taliente, K., Sleight, H., Petrini, L., Michael, J., Alex, B., Minervini, P., Chen, Y., Benton, J. & Perez, E. (2025). Inverse Scaling in Test-Time Compute. Transactions on Machine Learning Research (TMLR), 12/2025. arXiv:2507.14417v2 (15 Dec 2025). https://arxiv.org/abs/2507.14417v2 · doi:10.48550/arXiv.2507.14417"
 related: [lit-overthinking, lit-s1-budget-forcing, lit-nothinking]
 updated: 2026-11-07
 primary_opened: true
-version: "v2 (15 dez. 2025); v1 19 jul. 2025"
-summary: Em tarefas construídas com distratores e correlações espúrias, dar mais orçamento de raciocínio a modelos de fronteira reduziu a acurácia — o retorno de reasoning effort pode ser negativo.
+version: "v2 (15 Dec 2025); v1 19 Jul 2025"
+summary: On tasks constructed with distractors and spurious correlations, giving frontier models a larger reasoning budget reduced accuracy — the return on reasoning effort can be negative.
 ---
 
-## Pergunta
-Existem tarefas em que aumentar o comprimento do raciocínio de Large Reasoning Models (LRMs) **diminui** a acurácia? Quais modos de falha explicam isso?
+## Question
+Are there tasks in which increasing the reasoning length of Large Reasoning Models (LRMs) **decreases** accuracy? Which failure modes explain this?
 
-## Método
-Tarefas em quatro categorias: contagem com distratores (Misleading Math/Python, paradoxos famosos), regressão com features espúrias (Grades Regression), dedução com rastreio de restrições (Zebra puzzles) e avaliações de risco de IA (Model-Written Evaluations, p. ex. Survival Instinct). Três regimes: controlled overthinking (orçamento pedido: 0, 1.024, 2.048, 4.096… tokens; "low/medium/high" para série o), natural overthinking (sem orçamento; comparação por comprimento natural) e cautioned (Apêndice D). Modelos (Tabela 1): Claude Sonnet 3.7, Sonnet 4, Opus 4, o3-mini, o4-mini, o3, Qwen3-32B, QwQ-32B, DeepSeek R1; foco em Opus 4, o3, R1.
+## Method
+Tasks in four categories: counting with distractors (Misleading Math/Python, famous paradoxes), regression with spurious features (Grades Regression), deduction with constraint tracking (Zebra puzzles) and AI risk evaluations (Model-Written Evaluations, e.g. Survival Instinct). Three regimes: controlled overthinking (requested budget: 0, 1,024, 2,048, 4,096… tokens; "low/medium/high" for the o series), natural overthinking (no budget; comparison by natural length) and cautioned (Appendix D). Models (Table 1): Claude Sonnet 3.7, Sonnet 4, Opus 4, o3-mini, o4-mini, o3, Qwen3-32B, QwQ-32B, DeepSeek R1; focus on Opus 4, o3, R1.
 
-## Resultado relatado
-- Misleading Math (Fig. 3): Opus 4 (controlled) cai de ~100% para ~85–90%; R1 (natural) cai de 70% para 30% com cinco distratores; o3 mais estável.
-- Misleading Python (Fig. 4): Opus 4 de quase perfeito para ~80%; o3 escala positivamente em controlled e em U invertido em natural.
-- Grades Regression (Figs. 6–7): Sonnet 3.7, Opus 4 e o3-mini com escala inversa em zero-shot; Qwen3-32B positiva; few-shot (8–16 exemplos) remove em grande parte a tendência inversa.
-- Zebra (Fig. 8): escala inversa mais forte em natural overthinking para os três modelos-foco.
-- Survival Instinct (Fig. 10): Sonnet 4 cai de 60% para 47% de respostas alinhadas com mais raciocínio; o3 sobe de 72% para 76%.
-- Benchmarks padrão (GSM8K, MultiArith etc.) não mostram escala inversa significativa.
-- Conclusão dos autores: "scaling test-time compute naively may amplify flaws in how LRMs approach problems."
-- Valores numéricos acima são leituras do texto que descreve as figuras; não houve acesso a tabelas numéricas por ponto.
+## Reported result
+- Misleading Math (Fig. 3): Opus 4 (controlled) drops from ~100% to ~85–90%; R1 (natural) drops from 70% to 30% with five distractors; o3 more stable.
+- Misleading Python (Fig. 4): Opus 4 from near-perfect to ~80%; o3 scales positively in controlled and as an inverted U in natural.
+- Grades Regression (Figs. 6–7): Sonnet 3.7, Opus 4 and o3-mini with inverse scaling in zero-shot; Qwen3-32B positive; few-shot (8–16 examples) largely removes the inverse trend.
+- Zebra (Fig. 8): stronger inverse scaling in natural overthinking for the three focus models.
+- Survival Instinct (Fig. 10): Sonnet 4 drops from 60% to 47% aligned answers with more reasoning; o3 rises from 72% to 76%.
+- Standard benchmarks (GSM8K, MultiArith etc.) show no significant inverse scaling.
+- Authors' conclusion: "scaling test-time compute naively may amplify flaws in how LRMs approach problems."
+- The numerical values above are readings from the text describing the figures; there was no access to per-point numerical tables.
 
-## Custo/compute considerado?
-Indiretamente: o eixo é o comprimento do raciocínio (tokens), mas o paper mede acurácia vs compute, não custo monetário.
+## Cost/compute considered?
+Indirectly: the axis is reasoning length (tokens), but the paper measures accuracy vs compute, not monetary cost.
 
-## Ameaças à validade
-"The majority of our tasks are synthetically generated" para isolar falhas, logo a prevalência em tarefas reais é desconhecida; tendências em MWE fracas/ruidosas; orçamentos pedidos por prompt não são limites técnicos exatos; 3–5 repetições por condição.
+## Threats to validity
+"The majority of our tasks are synthetically generated" to isolate failures, so the prevalence on real tasks is unknown; trends on MWE weak/noisy; budgets requested via prompt are not exact technical limits; 3–5 repetitions per condition.
 
-## Relevância para a pergunta central
-Contraria a premissa "mais reasoning ≥ menos reasoning". Para a Norevia, mostra que a curva qualidade×esforço individual pode ser **não monotônica** e dependente do modelo e da tarefa; um controlador que só "aumenta esforço quando incerto" pode piorar. Também sugere que diversidade de modelos (Claude vs o-series vs R1 têm falhas diferentes) é uma forma de descorrelacionar erros que mais reasoning do mesmo modelo não oferece.
+## Relevance to the central question
+Contradicts the premise "more reasoning ≥ less reasoning". For Norevia, it shows that the individual quality×effort curve can be **non-monotonic** and dependent on model and task; a controller that only "increases effort when uncertain" can make things worse. It also suggests that model diversity (Claude vs o-series vs R1 have different failures) is a way to decorrelate errors that more reasoning from the same model does not offer.
 
-## Hipóteses candidatas
-- candidata: existe um esforço ótimo interior por (modelo, tipo de tarefa); além dele, mais raciocínio individual reduz qualidade, e o recurso extra tem melhor uso em verificação externa ou em outro modelo.
-- candidata: em tarefas com distratores/espúrias, um micro-swarm heterogêneo (modelos com modos de falha diferentes) supera o aumento de esforço de um único modelo com custo igual.
-- candidata: exemplos (few-shot / memória de casos) podem substituir parte do esforço de raciocínio e remover a escala inversa — ligação com memória limitada do AgentNet.
+## Candidate hypotheses
+- candidate: there is an interior optimal effort per (model, task type); beyond it, more individual reasoning reduces quality, and the extra resource is better used on external verification or on another model.
+- candidate: on tasks with distractors/spurious features, a heterogeneous micro-swarm (models with different failure modes) outperforms increasing the effort of a single model at equal cost.
+- candidate: examples (few-shot / case memory) can substitute part of the reasoning effort and remove the inverse scaling — link to AgentNet's bounded memory.
 
-## Verificação
-Aberto em 2026-11-07: https://arxiv.org/abs/2507.14417 (metadados e journal ref TMLR 12/2025), https://arxiv.org/html/2507.14417v2 (texto até ~100 mil de 214 mil caracteres; apêndices não lidos). Lacuna: números por ponto vêm de descrições de figuras, não de tabelas; projeto em https://safety-research.github.io/inverse-scaling-ttc não aberto.
+## Verification
+Opened on 2026-11-07: https://arxiv.org/abs/2507.14417 (metadata and TMLR 12/2025 journal ref), https://arxiv.org/html/2507.14417v2 (text up to ~100k of 214k characters; appendices not read). Gap: per-point numbers come from figure descriptions, not tables; project at https://safety-research.github.io/inverse-scaling-ttc not opened.

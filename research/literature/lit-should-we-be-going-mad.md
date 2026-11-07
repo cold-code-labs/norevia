@@ -1,63 +1,63 @@
 ---
 id: lit-should-we-be-going-mad
-title: "Should we be going MAD? (Smit et al., ICML 2024) — debate vs. ensembles com custo"
+title: "Should we be going MAD? (Smit et al., ICML 2024) — debate vs. ensembles with cost"
 area: literature
-evidence: relato-autores
-tags: [debate, self-consistency, custo, hiperparametros, concordancia, medprompt]
+evidence: author-reported
+tags: [debate, self-consistency, cost, hyperparameters, agreement, medprompt]
 sources:
   - "Smit, A. P., Grinsztajn, N., Duckworth, P., Barrett, T. D. & Pretorius, A. (2024). Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs. Proceedings of the 41st International Conference on Machine Learning (ICML 2024), PMLR 235:45883–45905. https://proceedings.mlr.press/v235/smit24a.html"
-  - "arXiv:2311.17371v3 (18 jul 2024; v1 29 nov 2023, v2 14 mar 2024). https://arxiv.org/abs/2311.17371v3"
-  - "Código: https://github.com/instadeepai/DebateLLM (não inspecionado)"
+  - "arXiv:2311.17371v3 (18 Jul 2024; v1 29 Nov 2023, v2 14 Mar 2024). https://arxiv.org/abs/2311.17371v3"
+  - "Code: https://github.com/instadeepai/DebateLLM (not inspected)"
 related: [lit-multiagent-debate-du, lit-debate-or-vote, lit-stop-overvaluing-mad]
 updated: 2026-11-07
 primary_opened: true
 version: "arXiv v3 (2024-07-18); PMLR v235 (2024)"
-summary: Com GPT-3.5, protocolos de debate não superam de forma confiável self-consistency/Medprompt e custam mais por acerto; o grau de concordância entre agentes é um hiperparâmetro decisivo e dependente da tarefa.
+summary: With GPT-3.5, debate protocols do not reliably outperform self-consistency/Medprompt and cost more per correct answer; the degree of agreement between agents is a decisive, task-dependent hyperparameter.
 ---
 
-## Pergunta
-Os protocolos de multi-agent debate (MAD) superam estratégias de ensemble de um único modelo (self-consistency, Medprompt, Ensemble Refinement) quando se olha acurácia, custo e tempo juntos?
+## Question
+Do multi-agent debate (MAD) protocols outperform single-model ensemble strategies (self-consistency, Medprompt, Ensemble Refinement) when accuracy, cost and time are considered together?
 
-## Método
-- Modelo principal: GPT-3.5-turbo; GPT-4 e Mixtral 8x7B apenas em MedQA (Seção 3, Figs. 8–9).
-- Conjuntos (Seção 3): MedQA (1.273 questões USMLE, 4 opções), PubMedQA (500), MMLU tópicos clínicos (123), CosmosQA (500), CIAR (50), GPQA (448), Chess (BIG-bench).
-- MAD: Society of Mind (SoM, = Du et al.), Multi-Persona (anjo/diabo + juiz), ChatEval (3 modos). Baselines: Self-Consistency, Ensemble Refinement, Medprompt (sem kNN), agente único.
-- Varredura de hiperparâmetros (nº de agentes, rodadas, sumarização, prompts) e registro de custo em US$ por configuração (Apêndice A.2, Tabela 3).
+## Method
+- Main model: GPT-3.5-turbo; GPT-4 and Mixtral 8x7B only on MedQA (Section 3, Figs. 8–9).
+- Datasets (Section 3): MedQA (1,273 USMLE questions, 4 options), PubMedQA (500), MMLU clinical topics (123), CosmosQA (500), CIAR (50), GPQA (448), Chess (BIG-bench).
+- MAD: Society of Mind (SoM, = Du et al.), Multi-Persona (angel/devil + judge), ChatEval (3 modes). Baselines: Self-Consistency, Ensemble Refinement, Medprompt (without kNN), single agent.
+- Hyperparameter sweep (no. of agents, rounds, summarization, prompts) and recording of cost in US$ per configuration (Appendix A.2, Table 3).
 
-## Resultado relatado
-Tabela 2 (melhor configuração; mediana entre parênteses), seleção:
+## Reported result
+Table 2 (best configuration; median in parentheses), selection:
 
-| Sistema | MedQA | MMLU | CIAR | GPQA |
+| System | MedQA | MMLU | CIAR | GPQA |
 |---|---|---|---|---|
-| Medprompt | 0,65 (0,63) | 0,74 (0,73) | 0,54 (0,50) | 0,27 (0,25) |
-| Society of Mind | 0,64 (0,61) | 0,73 (0,70) | 0,56 (0,46) | 0,27 (0,25) |
-| Self-Consistency | 0,60 (0,60) | 0,78 (0,75) | 0,56 (0,52) | 0,24 (0,29) |
-| Single Agent | 0,60 (0,59) | 0,76 (0,72) | 0,50 (0,50) | 0,33 (0,28) |
-| Multi-Persona | 0,58 (0,57) | 0,72 (0,69) | 0,52 (0,50) | 0,29 (0,29) |
+| Medprompt | 0.65 (0.63) | 0.74 (0.73) | 0.54 (0.50) | 0.27 (0.25) |
+| Society of Mind | 0.64 (0.61) | 0.73 (0.70) | 0.56 (0.46) | 0.27 (0.25) |
+| Self-Consistency | 0.60 (0.60) | 0.78 (0.75) | 0.56 (0.52) | 0.24 (0.29) |
+| Single Agent | 0.60 (0.59) | 0.76 (0.72) | 0.50 (0.50) | 0.33 (0.28) |
+| Multi-Persona | 0.58 (0.57) | 0.72 (0.69) | 0.52 (0.50) | 0.29 (0.29) |
 
-- Conclusões (Seção 4): MAD "currently do not outperform other ensembling methods such as Medprompt and self-consistency" nas implementações originais; MAD exige mais chamadas de API e custo.
-- Fig. 3: em conjuntos médicos quase todos os sistemas superam o agente único; nos não médicos, o agente único supera todos exceto Multi-Persona e Self-Consistency.
-- Fig. 4: o debate melhora sobre a 1ª resposta em SoM, pouco em ChatEval e **piora** em Multi-Persona (o "diabo" é instruído a discordar mesmo de respostas certas).
-- Modulação de concordância ("you should agree with the other agents X% of the time"; Seção 3, Figs. 5–6): no subconjunto USMLE (376 questões), ganho de ≈15% para Multi-Persona e ≈5% para SoM; MedQA/PubMedQA preferem alta concordância, CIAR (contraintuitivo) o inverso. Multi-Persona a 90% de concordância é reportado como SOTA para GPT-3.5 em MedQA (valor exato só no gráfico).
-- Transferência: hiperparâmetros afinados no GPT-3.5 transferem para GPT-4, não para Mixtral 8x7B (Seção 3).
+- Conclusions (Section 4): MAD "currently do not outperform other ensembling methods such as Medprompt and self-consistency" in the original implementations; MAD requires more API calls and cost.
+- Fig. 3: on medical datasets almost all systems outperform the single agent; on non-medical ones, the single agent outperforms all except Multi-Persona and Self-Consistency.
+- Fig. 4: debate improves over the 1st answer in SoM, slightly in ChatEval, and **worsens** in Multi-Persona (the "devil" is instructed to disagree even with correct answers).
+- Agreement modulation ("you should agree with the other agents X% of the time"; Section 3, Figs. 5–6): on the USMLE subset (376 questions), a gain of ≈15% for Multi-Persona and ≈5% for SoM; MedQA/PubMedQA prefer high agreement, CIAR (counterintuitive) the opposite. Multi-Persona at 90% agreement is reported as SOTA for GPT-3.5 on MedQA (exact value only in the chart).
+- Transfer: hyperparameters tuned on GPT-3.5 transfer to GPT-4, not to Mixtral 8x7B (Section 3).
 
-## Custo/compute considerado?
-Sim — é um dos poucos trabalhos de 2023–24 que registram US$ por configuração. Na Tabela 3 (extração própria do PDF v3), na coluna mais cara (custos ~US$19–50, compatível com o maior conjunto, MedQA com 1.273 questões): Self-Consistency 0,63 a US$25,47; Medprompt 0,63–0,65 a US$19,10; SoM 4 agentes × 3 rodadas 0,64 a US$48,63; Ensemble Refinement (aggregation=9) 0,64 a US$50,30. Ou seja, a mesma acurácia custou ~2× mais com debate. **Ressalva:** os cabeçalhos da Tabela 3 se perdem na extração; a atribuição de colunas foi inferida pela proporção custo/tamanho do conjunto e pode estar errada — conferir no PDF renderizado.
+## Cost/compute considered?
+Yes — it is one of the few 2023–24 works that record US$ per configuration. In Table 3 (own extraction from the v3 PDF), in the most expensive column (costs ~US$19–50, consistent with the largest dataset, MedQA with 1,273 questions): Self-Consistency 0.63 at US$25.47; Medprompt 0.63–0.65 at US$19.10; SoM 4 agents × 3 rounds 0.64 at US$48.63; Ensemble Refinement (aggregation=9) 0.64 at US$50.30. That is, the same accuracy cost ~2× more with debate. **Caveat:** the Table 3 headers are lost in extraction; the column assignment was inferred from the cost/dataset-size ratio and may be wrong — check in the rendered PDF.
 
-## Ameaças à validade
-- Um modelo principal de 2023; foco médico (generalização questionada por lit-stop-overvaluing-mad).
-- Melhor-de-varredura vs. mediana: o "melhor" MAD depende de busca de hiperparâmetros cujo custo não é contabilizado.
-- Ganho de agreement modulation medido num subconjunto de 376 questões, apresentado em gráfico.
+## Threats to validity
+- A single main model from 2023; medical focus (generalization questioned by lit-stop-overvaluing-mad).
+- Best-of-sweep vs. median: the "best" MAD depends on a hyperparameter search whose cost is not accounted for.
+- Agreement-modulation gain measured on a subset of 376 questions, presented in a chart.
 
-## Relevância para a pergunta central
-Mostra que (1) "mais agentes conversando" não é dominante quando a baseline é um ensemble de 1 modelo com compute similar; (2) a **dinâmica de concordância** (conformidade vs. contestação) é um botão de controle com efeito de sinal trocado por tarefa — relevante para um controlador adaptativo que decida quanto dissenso injetar.
+## Relevance to the central question
+Shows that (1) "more agents talking" is not dominant when the baseline is a 1-model ensemble with similar compute; (2) **agreement dynamics** (conformity vs. contestation) is a control knob whose effect flips sign by task — relevant for an adaptive controller that decides how much dissent to inject.
 
-## Hipóteses candidatas
-- candidata: o valor do debate é dominado por um parâmetro de conformidade cujo ótimo depende do tipo de tarefa (intuitiva vs. contraintuitiva).
-- candidata: em custo por acerto, ensembles de 1 modelo dominam o debate na maioria das tarefas de múltipla escolha.
-- candidata: hiperparâmetros de coordenação não transferem entre famílias de modelos — um controlador precisa recalibrar por modelo.
+## Candidate hypotheses
+- candidate: the value of debate is dominated by a conformity parameter whose optimum depends on the task type (intuitive vs. counterintuitive).
+- candidate: in cost per correct answer, 1-model ensembles dominate debate on most multiple-choice tasks.
+- candidate: coordination hyperparameters do not transfer across model families — a controller needs to recalibrate per model.
 
-## Verificação
-- Abertos em 2026-11-07: https://arxiv.org/abs/2311.17371 (v3 é a mais recente); https://arxiv.org/html/2311.17371v3 (Tabela 2 e texto); PDF v3 extraído localmente para a Tabela 3; https://proceedings.mlr.press/v235/smit24a.html (venue, páginas).
-- arXiv não lista journal-ref; o venue ICML 2024 vem da página PMLR.
-- Lacuna: valor numérico exato do SOTA de Multi-Persona (só em figura); ordem das colunas da Tabela 3 não confirmada visualmente.
+## Verification
+- Opened on 2026-11-07: https://arxiv.org/abs/2311.17371 (v3 is the latest); https://arxiv.org/html/2311.17371v3 (Table 2 and text); v3 PDF extracted locally for Table 3; https://proceedings.mlr.press/v235/smit24a.html (venue, pages).
+- arXiv does not list a journal-ref; the ICML 2024 venue comes from the PMLR page.
+- Gap: exact numerical value of the Multi-Persona SOTA (only in a figure); column order of Table 3 not visually confirmed.

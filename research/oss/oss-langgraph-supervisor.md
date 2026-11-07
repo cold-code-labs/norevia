@@ -1,60 +1,60 @@
 ---
 id: oss-langgraph-supervisor
-title: LangGraph Supervisor — supervisor ReAct em estrela com output_mode last_message como poda padrão
+title: LangGraph Supervisor — star-topology ReAct supervisor with output_mode last_message as default pruning
 area: oss
-evidence: implementacao-observada
-tags: [supervisor, hierarquia, langgraph, handoff, poda-de-historico, output-mode, parallel-tool-calls, send]
+evidence: observed-implementation
+tags: [supervisor, hierarchy, langgraph, handoff, history-pruning, output-mode, parallel-tool-calls, send]
 sources:
-  - "https://github.com/langchain-ai/langgraph-supervisor-py/tree/88859b34017ac3569bbd4a3092c7e77593a0a960 (commit inspecionado, clone raso em 2026-11-07)"
-related: [oss-langgraph-swarm, oss-openai-agents-sdk, oss-openai-swarm, oss-crewai, oss-agentprune, oss-metagpt, oss-matriz, oss-padroes]
+  - "https://github.com/langchain-ai/langgraph-supervisor-py/tree/88859b34017ac3569bbd4a3092c7e77593a0a960 (inspected commit, shallow clone on 2026-11-07)"
+related: [oss-langgraph-swarm, oss-openai-agents-sdk, oss-openai-swarm, oss-crewai, oss-agentprune, oss-metagpt, oss-matrix, oss-patterns]
 updated: 2026-11-07
-summary: Biblioteca fina sobre LangGraph que monta um supervisor ReAct em topologia estrela (supervisor → worker → supervisor), com handoff por tools, fan-out paralelo opcional via Send e poda padrão das saídas dos workers para a última mensagem; término e limites dependem do núcleo LangGraph, não inspecionado.
+summary: Thin library over LangGraph that builds a ReAct supervisor in a star topology (supervisor → worker → supervisor), with handoff via tools, optional parallel fan-out via Send and default pruning of worker outputs to the last message; termination and limits depend on the LangGraph core, not inspected.
 ---
 
-## Identificação
+## Identification
 
 - URL: https://github.com/langchain-ai/langgraph-supervisor-py
-- SHA inspecionado: `88859b34017ac3569bbd4a3092c7e77593a0a960`
-- Data do commit: 2026-07-14T23:32:51-07:00
-- Licença: MIT ("MIT License / Copyright (c) 2025 LangChain, Inc."), lida em `LICENSE`.
-- Versão declarada: `0.0.31` (`pyproject.toml`) **[código]**.
-- Status: README recomenda usar o "supervisor pattern directly via tools" em vez desta biblioteca na maioria dos casos (`README.md:L3`) **[README/docs]**.
-- Escopo efetivamente lido: `langgraph_supervisor/supervisor.py` (inteiro, 469 linhas), `langgraph_supervisor/handoff.py` (L40-L213), `README.md` (Features, Message History Management, Multi-level Hierarchies, Message Forwarding), nomes de testes em `tests/`. Não lidos: `agent_name.py` (só via chamada), corpo dos testes. **Núcleo `langgraph` (incl. `create_react_agent`, `ToolNode`, `Send`, `recursion_limit`) não clonado → não inspecionado.**
+- Inspected SHA: `88859b34017ac3569bbd4a3092c7e77593a0a960`
+- Commit date: 2026-07-14T23:32:51-07:00
+- License: MIT ("MIT License / Copyright (c) 2025 LangChain, Inc."), read in `LICENSE`.
+- Declared version: `0.0.31` (`pyproject.toml`) **[code]**.
+- Status: the README recommends using the "supervisor pattern directly via tools" instead of this library in most cases (`README.md:L3`) **[README/docs]**.
+- Scope actually read: `langgraph_supervisor/supervisor.py` (in full, 469 lines), `langgraph_supervisor/handoff.py` (L40-L213), `README.md` (Features, Message History Management, Multi-level Hierarchies, Message Forwarding), test names in `tests/`. Not read: `agent_name.py` (only via call), body of the tests. **`langgraph` core (incl. `create_react_agent`, `ToolNode`, `Send`, `recursion_limit`) not cloned → not inspected.**
 
-## Mecanismo
+## Mechanism
 
-1. **Topologia de comunicação.** Estrela: `START → supervisor` (`langgraph_supervisor/supervisor.py:L456`), supervisor pode ir para qualquer worker ou `END` (`destinations=tuple(agent_names) + (END,)`, `L455`), e cada worker tem aresta fixa de volta ao supervisor (`L467`) **[código]**. Workers não falam entre si diretamente. Hierarquia multinível: um supervisor compilado é um `Pregel` e pode ser passado como "agente" de outro supervisor (`create_supervisor(agents: list[Pregel], ...)`, `L211-L212`; exemplo em `README.md`, seção "Multi-level Hierarchies") **[código]/[README/docs]**.
-2. **Quem decide quem age.** O LLM do supervisor (um agente ReAct criado com `create_react_agent`, `supervisor.py:L443-L452`) escolhendo tools `transfer_to_<agente>` geradas automaticamente para todos os workers (`supervisor.py:L175-L186`; `langgraph_supervisor/handoff.py:L82-L86`) **[código]**. A tool retorna `Command(goto=agent_name, graph=Command.PARENT, ...)` (`handoff.py:L122-L126`) **[código]**. **Paralelismo**: `parallel_tool_calls: bool = False` por default (`supervisor.py:L222`), aplicado via `bind_tools` quando o modelo suporta (`L432-L438`; exclusões `{"o3-mini", "o3", "o4-mini"}` em `L45`) **[código]**. Com handoffs paralelos, cada tool emite `Send(agent_name, ...)` para fan-out (`handoff.py:L100-L115`) **[código]**.
-3. **Critério de término.** Termina quando o supervisor encerra sem handoff (destino `END` declarado em `supervisor.py:L455`) **[código]**; o loop ReAct do supervisor e o limite de passos (`recursion_limit`) são do núcleo LangGraph — **não inspecionado**. Não há `max_*`, contador ou `recursion_limit` no repo (busca: `recursion_limit`, `retry`, `usage`, `max_` em `langgraph_supervisor/`) **[código]**. `create_forward_message_tool` retorna `Command(goto="__end__")`, com comentário "NOTE: this does nothing." (`handoff.py:L204-L211`) **[código]**.
-4. **Verificação/aceite mecânico.** Não há validação própria. `response_format` (schema Pydantic/JSON/TypedDict) é repassado a `create_react_agent` para gerar `structured_response` (`supervisor.py:L217-L219`, `L251-L272`, `L449`) — validação ocorre no núcleo, não inspecionada **[código]/[README/docs]**. `post_model_hook` é ponto de extensão "useful for implementing ... guardrails, validation" (`supervisor.py:L305-L309`, docstring) — sem implementação pronta **[código]**. Validações estruturais na construção: nomes únicos e definidos (`L409-L422`), handoffs customizados cobrindo todos os workers (`L164-L170`) **[código]**.
-5. **Controle de custo/orçamento.** Nenhum limite nem rastreamento de tokens no repo **[código]**. Mecanismos que reduzem tokens sem impor teto: `output_mode="last_message"` (item 8) e `create_forward_message_tool`, cuja docstring diz que "can save some tokens" (`handoff.py:L155-L160`) **[código]**.
-6. **Memória.** Estado do grafo (`messages` com reducer `add_messages`, `supervisor.py:L205-L208`) persistido por checkpointer/store do LangGraph (`README.md`, "Adding Memory") **[README/docs]**. Sem janela/eviction neste repo; `pre_model_hook` é o ponto documentado para trimming/sumarização (`supervisor.py:L273-L304`, docstring) **[código]**. Para workers `RemoteGraph`, um `thread_id` derivado por `uuid5(thread_id, agent.name)` isola o estado (`L102-L108`) **[código]**.
-7. **Falhas/retry.** Não encontrado no repo (busca: `retry`). O tratamento de erro de tools é herdado do `ToolNode` de entrada (`handle_tool_errors=input_tool_node._handle_tool_errors`, `supervisor.py:L192-L198`) — semântica no núcleo, não inspecionada **[código]**.
-8. **Poda de comunicação.** Mecanismo central: `output_mode: OutputMode = "last_message"` por default (`supervisor.py:L225`). Em `last_message` só a última mensagem do worker volta ao estado compartilhado (ou as 2 últimas se a última for `ToolMessage`); em `full_history` tudo volta (`supervisor.py:L77-L91`) **[código]**. `add_handoff_messages=False` remove do histórico o par AIMessage/ToolMessage do handoff (`handoff.py:L116-L121`) e, em handoff paralelo, `_remove_non_handoff_tool_calls` filtra tool calls não relacionadas (`handoff.py:L42-L51`, `L101-L109`) **[código]**. Atenção: o **input** do worker é o estado inteiro (`agent.invoke(state, ...)`, `supervisor.py:L103-L104`) — a poda padrão é só no retorno **[código]**.
-9. **Elástico vs fixo.** Conjunto de workers fixo na construção (`supervisor.py:L457-L467`) **[código]**. Fan-out paralelo via `Send` é dinâmico em número de chamadas por passo, mas limitado aos workers pré-declarados (`handoff.py:L110-L115`) **[código]**.
-10. **Benchmark custo vs qualidade.** Nenhum no repo; testes funcionais (`tests/test_supervisor.py:L165`, `L333`, `L428`) **[teste]** (não executados).
+1. **Communication topology.** Star: `START → supervisor` (`langgraph_supervisor/supervisor.py:L456`), the supervisor can go to any worker or `END` (`destinations=tuple(agent_names) + (END,)`, `L455`), and each worker has a fixed edge back to the supervisor (`L467`) **[code]**. Workers do not talk to each other directly. Multi-level hierarchy: a compiled supervisor is a `Pregel` and can be passed as an "agent" of another supervisor (`create_supervisor(agents: list[Pregel], ...)`, `L211-L212`; example in `README.md`, section "Multi-level Hierarchies") **[code]/[README/docs]**.
+2. **Who decides who acts.** The supervisor's LLM (a ReAct agent created with `create_react_agent`, `supervisor.py:L443-L452`) choosing `transfer_to_<agent>` tools generated automatically for all workers (`supervisor.py:L175-L186`; `langgraph_supervisor/handoff.py:L82-L86`) **[code]**. The tool returns `Command(goto=agent_name, graph=Command.PARENT, ...)` (`handoff.py:L122-L126`) **[code]**. **Parallelism**: `parallel_tool_calls: bool = False` by default (`supervisor.py:L222`), applied via `bind_tools` when the model supports it (`L432-L438`; exclusions `{"o3-mini", "o3", "o4-mini"}` in `L45`) **[code]**. With parallel handoffs, each tool emits `Send(agent_name, ...)` for fan-out (`handoff.py:L100-L115`) **[code]**.
+3. **Termination criterion.** Terminates when the supervisor finishes without a handoff (destination `END` declared in `supervisor.py:L455`) **[code]**; the supervisor's ReAct loop and the step limit (`recursion_limit`) belong to the LangGraph core — **not inspected**. There is no `max_*`, counter or `recursion_limit` in the repo (search: `recursion_limit`, `retry`, `usage`, `max_` in `langgraph_supervisor/`) **[code]**. `create_forward_message_tool` returns `Command(goto="__end__")`, with the comment "NOTE: this does nothing." (`handoff.py:L204-L211`) **[code]**.
+4. **Mechanical verification/acceptance.** There is no validation of its own. `response_format` (Pydantic/JSON/TypedDict schema) is passed to `create_react_agent` to generate `structured_response` (`supervisor.py:L217-L219`, `L251-L272`, `L449`) — validation happens in the core, not inspected **[code]/[README/docs]**. `post_model_hook` is an extension point "useful for implementing ... guardrails, validation" (`supervisor.py:L305-L309`, docstring) — with no ready-made implementation **[code]**. Structural validations at construction: unique and defined names (`L409-L422`), custom handoffs covering all workers (`L164-L170`) **[code]**.
+5. **Cost/budget control.** No limit or token tracking in the repo **[code]**. Mechanisms that reduce tokens without imposing a ceiling: `output_mode="last_message"` (item 8) and `create_forward_message_tool`, whose docstring says it "can save some tokens" (`handoff.py:L155-L160`) **[code]**.
+6. **Memory.** Graph state (`messages` with reducer `add_messages`, `supervisor.py:L205-L208`) persisted by LangGraph's checkpointer/store (`README.md`, "Adding Memory") **[README/docs]**. No window/eviction in this repo; `pre_model_hook` is the documented point for trimming/summarization (`supervisor.py:L273-L304`, docstring) **[code]**. For `RemoteGraph` workers, a `thread_id` derived by `uuid5(thread_id, agent.name)` isolates the state (`L102-L108`) **[code]**.
+7. **Failures/retry.** Not found in the repo (search: `retry`). Tool error handling is inherited from the input `ToolNode` (`handle_tool_errors=input_tool_node._handle_tool_errors`, `supervisor.py:L192-L198`) — semantics in the core, not inspected **[code]**.
+8. **Communication pruning.** Central mechanism: `output_mode: OutputMode = "last_message"` by default (`supervisor.py:L225`). In `last_message` only the worker's last message returns to the shared state (or the last 2 if the last one is a `ToolMessage`); in `full_history` everything returns (`supervisor.py:L77-L91`) **[code]**. `add_handoff_messages=False` removes the handoff's AIMessage/ToolMessage pair from the history (`handoff.py:L116-L121`) and, in a parallel handoff, `_remove_non_handoff_tool_calls` filters out unrelated tool calls (`handoff.py:L42-L51`, `L101-L109`) **[code]**. Caution: the worker's **input** is the entire state (`agent.invoke(state, ...)`, `supervisor.py:L103-L104`) — the default pruning applies only to the return **[code]**.
+9. **Elastic vs fixed.** Set of workers fixed at construction (`supervisor.py:L457-L467`) **[code]**. Parallel fan-out via `Send` is dynamic in the number of calls per step, but limited to the pre-declared workers (`handoff.py:L110-L115`) **[code]**.
+10. **Cost vs quality benchmark.** None in the repo; functional tests (`tests/test_supervisor.py:L165`, `L333`, `L428`) **[test]** (not executed).
 
-## Evidência
+## Evidence
 
-Nenhum código foi executado; nenhum benchmark reproduzido. Leitura estática no SHA indicado. A recomendação de preferir supervisor manual via tools é relato dos autores (`README.md:L3`).
+No code was executed; no benchmark reproduced. Static reading at the indicated SHA. The recommendation to prefer a manual supervisor via tools is an author report (`README.md:L3`).
 
-## Análogo de engenharia
+## Engineering analogue
 
-*Hipótese de engenharia.* É o braço "orquestrador central + N workers" do Swarm Efficiency Observatory, com uma alavanca de poda explícita (`output_mode`). Permite isolar o efeito de **poda de retorno** sobre custo por tarefa aceita mantendo topologia e modelos fixos. Como o worker recebe o estado inteiro, a economia de `last_message` é apenas sobre as chamadas subsequentes do supervisor; um verificador determinístico precisaria entrar como `post_model_hook` ou nó extra.
+*Engineering hypothesis.* This is the "central orchestrator + N workers" arm of the Swarm Efficiency Observatory, with an explicit pruning lever (`output_mode`). It makes it possible to isolate the effect of **return pruning** on cost per accepted task while keeping topology and models fixed. Since the worker receives the entire state, the savings from `last_message` apply only to the supervisor's subsequent calls; a deterministic verifier would need to come in as a `post_model_hook` or an extra node.
 
-## Hipótese testável
+## Testable hypothesis
 
-- H1: Em tarefas com testes automáticos e ≥ 3 delegações, `output_mode="last_message"` reduz tokens de entrada do supervisor por tarefa aceita em ≥ 30% vs `full_history`, com perda de aceite ≤ 3 p.p. Métrica: tokens de entrada (supervisor) / tarefa aceita.
-- H2: `parallel_tool_calls=True` reduz latência de wall-clock em tarefas decomponíveis, mas aumenta custo por tarefa aceita (≥ 10%) por delegações redundantes; medir nº de `Send` por tarefa e aceite.
+- H1: On tasks with automatic tests and ≥ 3 delegations, `output_mode="last_message"` reduces the supervisor's input tokens per accepted task by ≥ 30% vs `full_history`, with an acceptance loss ≤ 3 pp. Metric: input tokens (supervisor) / accepted task.
+- H2: `parallel_tool_calls=True` reduces wall-clock latency on decomposable tasks, but increases cost per accepted task (≥ 10%) through redundant delegations; measure number of `Send` per task and acceptance.
 
-## Limites/lacunas
+## Limits/gaps
 
-- `create_react_agent`, `ToolNode`, `Send`, `recursion_limit` e validação de `response_format` são do núcleo LangGraph, não inspecionado.
-- Semântica de merge dos `Send` paralelos e do reducer `add_messages` não verificada.
-- Não verificado se `full_history` duplica mensagens já presentes no estado (depende de deduplicação por id no reducer).
+- `create_react_agent`, `ToolNode`, `Send`, `recursion_limit` and `response_format` validation belong to the LangGraph core, not inspected.
+- Merge semantics of parallel `Send` and of the `add_messages` reducer not verified.
+- Not verified whether `full_history` duplicates messages already present in the state (depends on deduplication by id in the reducer).
 
-## Linha da matriz
+## Matrix row
 
-| Término explícito | Aceite verificável | Orçamento técnico (não só prompt) | Poda de comunicação | Elástico (tamanho adapta) | Memória limitada | Licença |
+| Explicit termination | Verifiable acceptance | Technical budget (not just prompt) | Communication pruning | Elastic (size adapts) | Bounded memory | License |
 |---|---|---|---|---|---|---|
-| ? supervisor declara destino `END` (`langgraph_supervisor/supervisor.py:L455`), mas limite de passos é do núcleo LangGraph (não inspecionado) | ? `response_format` repassado ao núcleo (`supervisor.py:L449`); `post_model_hook` só ponto de extensão | — nenhum limite/usage no repo | ✓ `output_mode="last_message"` default (`supervisor.py:L225`, `L77-L91`); `add_handoff_messages=False` (`handoff.py:L116-L121`) | — workers fixos; `Send` paralelo só entre pré-declarados (`handoff.py:L110-L115`) | ? delegado a checkpointer/`pre_model_hook` (`supervisor.py:L273-L304`), não implementado no repo | MIT (`LICENSE`) |
+| ? supervisor declares destination `END` (`langgraph_supervisor/supervisor.py:L455`), but the step limit belongs to the LangGraph core (not inspected) | ? `response_format` passed on to the core (`supervisor.py:L449`); `post_model_hook` only an extension point | — no limit/usage in the repo | ✓ `output_mode="last_message"` default (`supervisor.py:L225`, `L77-L91`); `add_handoff_messages=False` (`handoff.py:L116-L121`) | — fixed workers; parallel `Send` only among pre-declared ones (`handoff.py:L110-L115`) | ? delegated to checkpointer/`pre_model_hook` (`supervisor.py:L273-L304`), not implemented in the repo | MIT (`LICENSE`) |

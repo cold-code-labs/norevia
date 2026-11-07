@@ -1,62 +1,62 @@
 ---
 id: lit-debate-routing-matched-ceiling
-title: "Statistical Scouting Finds Debate-Safe but Not Debate-Useful Cases (Hu, Shen & Lakshmipathi, 2026) — roteamento por exemplo entre greedy, voto e debate"
+title: "Statistical Scouting Finds Debate-Safe but Not Debate-Useful Cases (Hu, Shen & Lakshmipathi, 2026) — per-example routing among greedy, voting and debate"
 area: literature
-evidence: relato-autores
-tags: [roteamento, ativacao-adaptativa, debate, voto, entropia, oraculo, custo]
+evidence: author-reported
+tags: [routing, adaptive-activation, debate, vote, entropy, oracle, cost]
 sources:
-  - "Hu, J., Shen, A. & Lakshmipathi, K. (2026). Statistical Scouting Finds Debate-Safe but Not Debate-Useful Cases: A Matched-Ceiling Study of Open-Weight LLM Reasoning Protocols. arXiv:2605.09618v1 (10 mai 2026), relatório técnico/preprint, Amazon Web Services. https://arxiv.org/abs/2605.09618v1"
+  - "Hu, J., Shen, A. & Lakshmipathi, K. (2026). Statistical Scouting Finds Debate-Safe but Not Debate-Useful Cases: A Matched-Ceiling Study of Open-Weight LLM Reasoning Protocols. arXiv:2605.09618v1 (10 May 2026), technical report/preprint, Amazon Web Services. https://arxiv.org/abs/2605.09618v1"
 related: [lit-debate-or-vote, lit-pareto-test-time-multiagent, lit-stop-overvaluing-mad]
 updated: 2026-11-07
 primary_opened: true
 version: "v1 (2026-05-10)"
-summary: Escolher o protocolo certo por exemplo daria +14 pp no MuSiQue, mas sinais baratos (entropia do voto) recuperam só 11–19% disso, porque 66% dos casos em que o debate ajuda têm voto unânime e errado.
+summary: Choosing the right protocol per example would yield +14 pp on MuSiQue, but cheap signals (vote entropy) recover only 11–19% of that, because 66% of the cases in which debate helps have a unanimous and wrong vote.
 ---
 
-## Pergunta
-Com um teto igual de tokens gerados, quanto ganho existe em escolher por exemplo entre responder direto, votar ou debater — e quanto dele se recupera com sinais baratos obtidos antes de deliberar?
+## Question
+Under an equal ceiling of generated tokens, how much gain is there in choosing per example between answering directly, voting or debating — and how much of it is recovered with cheap signals obtained before deliberating?
 
-## Método
-- Protocolos com teto de 960 tokens gerados por exemplo: greedy (1 chamada, T=0); vote3 (3 chamadas, T=0,7, 320 tokens cada); debate crítica-revisão com 2 agentes, 3 rodadas + moderador (7 chamadas).
-- Modelos: Llama 3.1 8B Instruct e Ministral 3 8B Instruct (Amazon Bedrock).
-- Dados: MuSiQue-Ans v1.0 (N=300; F1 de tokens ≥ 0,5 = correto), GSM8K (N=150).
-- Controladores: limiar de entropia do voto (H > 1,0 → escalar para debate), regressão logística e gradient-boosted trees sobre entropia, margem, tamanho de pergunta e de contexto; CV estratificada 5-fold; bootstrap pareado com 10.000 reamostragens.
+## Method
+- Protocols with a ceiling of 960 generated tokens per example: greedy (1 call, T=0); vote3 (3 calls, T=0.7, 320 tokens each); critique-revision debate with 2 agents, 3 rounds + moderator (7 calls).
+- Models: Llama 3.1 8B Instruct and Ministral 3 8B Instruct (Amazon Bedrock).
+- Data: MuSiQue-Ans v1.0 (N=300; token F1 ≥ 0.5 = correct), GSM8K (N=150).
+- Controllers: vote-entropy threshold (H > 1.0 → escalate to debate), logistic regression and gradient-boosted trees over entropy, margin, question length and context length; stratified 5-fold CV; paired bootstrap with 10,000 resamples.
 
-## Resultado relatado
-Tabela 1 (acurácia; oráculo = qualquer protocolo correto):
+## Reported result
+Table 1 (accuracy; oracle = any protocol correct):
 
-| Dados | Modelo | Greedy | Vote3 | Debate | Oráculo | Gap |
+| Data | Model | Greedy | Vote3 | Debate | Oracle | Gap |
 |---|---|---|---|---|---|---|
-| MuSiQue | Llama 8B | 39,7 | 40,3 | 43,7 | 57,7 | +14,0 |
-| MuSiQue | Ministral 8B | 48,3 | 49,0 | 47,0 | 62,7 | +13,7 |
-| GSM8K | Llama 8B | 81,3 | 83,3 | 60,7 | 90,7 | +7,3 |
-| GSM8K | Ministral 8B | 90,7 | 74,7 | 79,3 | 95,3 | +4,7 |
+| MuSiQue | Llama 8B | 39.7 | 40.3 | 43.7 | 57.7 | +14.0 |
+| MuSiQue | Ministral 8B | 48.3 | 49.0 | 47.0 | 62.7 | +13.7 |
+| GSM8K | Llama 8B | 81.3 | 83.3 | 60.7 | 90.7 | +7.3 |
+| GSM8K | Ministral 8B | 90.7 | 74.7 | 79.3 | 95.3 | +4.7 |
 
-- O melhor protocolo fixo muda em cada uma das 4 células; nenhum é default seguro.
-- Debate em Llama/MuSiQue: acerta sozinho em 13,7% e estraga resposta correta do voto em 12,3% — quase se cancelam (Seção 4.2). Em Ministral, estraga mais que ajuda (15,7% vs 7,0%). Em GSM8K, quase nenhuma vitória exclusiva.
-- 66,7% dos debates (Llama/MuSiQue) têm troca de posição; muitas trocas são certo→errado.
-- Estratos de entropia (Tabela 2, Llama): unânime (H=0) ajuda 13,4% / atrapalha 14,2%; dividido ajuda 14,1% / atrapalha 17,2%; 3-way (H>1) ajuda 21,6% / atrapalha 2,7% (net +14). Ministral: mesma direção, mais fraca (H>1: atrapalha 9,7%, net +5).
-- Controladores (Tabela 4, MuSiQue): limiar de entropia +1,3 pp (Llama) e +1,7 pp (Ministral) sobre o melhor fixo, recuperando 11% e 19% do gap de oráculo de 2 vias (+12,3 e +9,0 pp); ICs individuais incluem zero; meta-análise +1,6 pp (p=0,125). Controladores aprendidos não superam o limiar (GBT negativo no Llama, atribuído a overfitting).
-- 66% dos exemplos em que o debate ajuda ocorrem com **voto unânime e errado** — invisíveis a sinais de desacordo.
-- Sonda de autocrítica de 1 prompt no Llama troca a resposta em 127/127 casos unânimes (zero informação; pode ser artefato de formato do prompt, como os autores admitem).
-- Tokens: debates errados consomem mais tokens que os certos (mediana 547 vs 475).
+- The best fixed protocol changes in each of the 4 cells; none is a safe default.
+- Debate on Llama/MuSiQue: it alone is correct in 13.7% and spoils a correct vote answer in 12.3% — they almost cancel out (Section 4.2). On Ministral, it spoils more than it helps (15.7% vs 7.0%). On GSM8K, almost no exclusive wins.
+- 66.7% of debates (Llama/MuSiQue) have a position change; many changes are right→wrong.
+- Entropy strata (Table 2, Llama): unanimous (H=0) helps 13.4% / hurts 14.2%; split helps 14.1% / hurts 17.2%; 3-way (H>1) helps 21.6% / hurts 2.7% (net +14). Ministral: same direction, weaker (H>1: hurts 9.7%, net +5).
+- Controllers (Table 4, MuSiQue): entropy threshold +1.3 pp (Llama) and +1.7 pp (Ministral) over the best fixed protocol, recovering 11% and 19% of the 2-way oracle gap (+12.3 and +9.0 pp); individual CIs include zero; meta-analysis +1.6 pp (p=0.125). Learned controllers do not beat the threshold (GBT negative on Llama, attributed to overfitting).
+- 66% of the examples in which debate helps occur with a **unanimous and wrong vote** — invisible to disagreement signals.
+- A 1-prompt self-critique probe on Llama changes the answer in 127/127 unanimous cases (zero information; may be a prompt-format artifact, as the authors admit).
+- Tokens: wrong debates consume more tokens than correct ones (median 547 vs 475).
 
-## Custo/compute considerado?
-Sim, como teto de tokens gerados (prompt não conta). Os autores destacam que **o teto não é orçamento**: no MuSiQue o voto gasta mediana 26–117 tokens e o debate 422–518 — qualquer ganho do debate é confundido por usar mais tokens.
+## Cost/compute considered?
+Yes, as a ceiling on generated tokens (prompt does not count). The authors stress that **the ceiling is not a budget**: on MuSiQue voting spends a median of 26–117 tokens and debate 422–518 — any gain from debate is confounded by its using more tokens.
 
-## Ameaças à validade
-- Amostras pequenas (300/150), dois modelos 8B; o "colapso" de dano em H>1 no Llama se apoia em 2 casos.
-- Anomalia sinalizada pelos autores: vote3 do Ministral em GSM8K 16 pp abaixo do greedy (temperatura não recalibrada).
-- Relatório técnico/preprint (14 páginas), sem revisão por pares; autores de um provedor de nuvem (Bedrock), sem conflito declarado avaliado por nós.
+## Threats to validity
+- Small samples (300/150), two 8B models; the harm "collapse" at H>1 on Llama rests on 2 cases.
+- Anomaly flagged by the authors: Ministral's vote3 on GSM8K is 16 pp below greedy (temperature not recalibrated).
+- Technical report/preprint (14 pages), not peer-reviewed; authors from a cloud provider (Bedrock), no declared conflict assessed by us.
 
-## Relevância para a pergunta central
-Mede diretamente o problema de Norevia — **ativação adaptativa**: há muito ganho latente em escolher o protocolo por exemplo (+14 pp), mas os sinais baratos de incerteza só dizem quando a cooperação é **segura**, não quando é **necessária**. Erro correlacionado (todas as amostras concordam no erro) é exatamente o caso que a cooperação deveria resolver e que a entropia não enxerga. Isso aponta para a necessidade de sinais externos (verificador, teste, ferramenta) em vez de concordância interna.
+## Relevance to the central question
+Directly measures Norevia's problem — **adaptive activation**: there is a lot of latent gain in choosing the protocol per example (+14 pp), but cheap uncertainty signals only tell when cooperation is **safe**, not when it is **necessary**. Correlated error (all samples agree on the error) is exactly the case cooperation should solve and that entropy cannot see. This points to the need for external signals (verifier, test, tool) instead of internal agreement.
 
-## Hipóteses candidatas
-- candidata: desacordo entre amostras prevê baixo risco da cooperação, não alto benefício; o benefício se concentra em erros correlacionados (unânimes).
-- candidata: o teto de um roteador por exemplo é grande (≈+14 pp), mas recuperá-lo exige sinais de verificação, não de consenso.
-- candidata: mais tokens gastos num debate indicam maior chance de erro (sinal de parada/escalonamento).
+## Candidate hypotheses
+- candidate: disagreement between samples predicts low risk from cooperation, not high benefit; the benefit concentrates in correlated (unanimous) errors.
+- candidate: the ceiling of a per-example router is large (≈+14 pp), but recovering it requires verification signals, not consensus signals.
+- candidate: more tokens spent in a debate indicate a higher chance of error (stopping/escalation signal).
 
-## Verificação
-- Abertos em 2026-11-07: https://arxiv.org/abs/2605.09618 (v1 única; comentários; licença CC BY 4.0); PDF v1 baixado e extraído localmente (Seções 1–5, Tabelas 1–4).
-- Lacuna: Seções 6+ (discussão do confundimento de tokens, Apêndice B) não lidas por inteiro; trabalhos citados de "selective debate"/DOWN não verificados.
+## Verification
+- Opened on 2026-11-07: https://arxiv.org/abs/2605.09618 (only v1; comments; CC BY 4.0 license); v1 PDF downloaded and extracted locally (Sections 1–5, Tables 1–4).
+- Gap: Sections 6+ (discussion of token confounding, Appendix B) not read in full; cited works on "selective debate"/DOWN not verified.

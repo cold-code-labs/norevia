@@ -1,59 +1,59 @@
 ---
 id: lit-agentnet
-title: "AgentNet — coordenação evolutiva descentralizada para sistemas multiagente LLM"
+title: "AgentNet — decentralized evolutionary coordination for LLM multi-agent systems"
 area: literature
-evidence: relato-autores
-tags: [descentralizacao, especializacao, memoria-limitada, roteamento, escala-de-agentes]
+evidence: author-reported
+tags: [decentralization, specialization, bounded-memory, routing, agent-scale]
 sources:
-  - "Yang, Y.; Chai, H.; Shao, S.; Song, Y.; Qi, S.; Rui, R.; Zhang, W. (2025). AgentNet: Decentralized Evolutionary Coordination for LLM-based Multi-Agent Systems. NeurIPS 2025 (Main Conference Track). doi:10.52202/085713-3578. arXiv:2504.00587v2 (29 mai. 2025). https://arxiv.org/abs/2504.00587v2"
-  - "Registro NeurIPS: https://proceedings.neurips.cc/paper_files/paper/2025/hash/9a379c1b05793d1c42dc832269834515-Abstract-Conference.html"
+  - "Yang, Y.; Chai, H.; Shao, S.; Song, Y.; Qi, S.; Rui, R.; Zhang, W. (2025). AgentNet: Decentralized Evolutionary Coordination for LLM-based Multi-Agent Systems. NeurIPS 2025 (Main Conference Track). doi:10.52202/085713-3578. arXiv:2504.00587v2 (29 May 2025). https://arxiv.org/abs/2504.00587v2"
+  - "NeurIPS record: https://proceedings.neurips.cc/paper_files/paper/2025/hash/9a379c1b05793d1c42dc832269834515-Abstract-Conference.html"
 related: [lit-swarmsys, lit-gptswarm]
 updated: 2026-11-07
 primary_opened: true
-version: "v2 (2025-05-29); v1 de 2025-04-01"
-summary: "Com 3 agentes, AgentNet empata ou supera por pouco os baselines e às vezes perde para eles; o ganho com mais agentes é pequeno e decrescente, e nenhum custo em tokens é medido."
+version: "v2 (2025-05-29); v1 from 2025-04-01"
+summary: "With 3 agents, AgentNet ties or narrowly beats the baselines and sometimes loses to them; the gain from more agents is small and diminishing, and no token cost is measured."
 ---
 
-## Pergunta
-Um sistema multiagente sem orquestrador central, com grafo dinâmico (DAG) e memória de trajetórias por recuperação (RAG) de capacidade limitada, consegue especializar agentes e superar baselines de agente único e multiagente centralizados?
+## Question
+Can a multi-agent system without a central orchestrator, with a dynamic graph (DAG) and a capacity-limited retrieval-based (RAG) trajectory memory, specialize agents and beat centralized single-agent and multi-agent baselines?
 
-## Método
-- Cada agente roteia tarefas pelo DAG e especializa-se recuperando trajetórias bem-sucedidas de um pool com limite C_max. Trajetórias menos pertinentes são podadas.
-- Backbones: DeepSeek-V3, GPT-4o-mini e Qwen-turbo, com temperatura 0,0 e max tokens 2048.
-- Benchmarks com divisões próprias: MATH (700 de treino / 140 de teste), BBH (627/100) e API-Bank (100/100).
-- Baselines de agente único: Direct, ReAct, Synapse, Self-Consistency e Self-Refinement. Baselines multiagente: MorphAgent, MetaGPT, AFLOW e GPTSwarm. Todos os métodos multiagente usam 3 agentes.
+## Method
+- Each agent routes tasks through the DAG and specializes by retrieving successful trajectories from a pool with limit C_max. Less relevant trajectories are pruned.
+- Backbones: DeepSeek-V3, GPT-4o-mini and Qwen-turbo, with temperature 0.0 and max tokens 2048.
+- Benchmarks with custom splits: MATH (700 train / 140 test), BBH (627/100) and API-Bank (100/100).
+- Single-agent baselines: Direct, ReAct, Synapse, Self-Consistency and Self-Refinement. Multi-agent baselines: MorphAgent, MetaGPT, AFLOW and GPTSwarm. All multi-agent methods use 3 agents.
 
-## Resultado relatado
-Relato dos autores.
-- **Tabela 1 (acurácia em %):**
-  - Com DeepSeek-V3: AgentNet obteve 92,86 em MATH (MetaGPT 92,14), 94,00 em BBH (Synapse 92,00) e 30,00 em API-Bank (ReAct/SC 29,00).
-  - Com GPT-4o-mini: empate em MATH (85,00, igual a AFLOW/GPTSwarm) e em BBH (86,00, igual ao GPTSwarm). Em API-Bank, 29,00 contra 24,00 do ReAct.
-  - Com Qwen-turbo: **perde** em MATH (81,43 vs 82,14 do AFLOW). Vence em BBH (92,00 vs 75,00 do GPTSwarm) e em API-Bank (32,00 vs 30,00).
-- **Escala (Seção 5.1, Figura 8):** a acurácia de treino passa de 80,38 (3 agentes, 30 executores) para 81,18 (9 agentes, 40 executores). Os autores descrevem retornos decrescentes. O teste fica entre 80 e 86.
-- **Heterogeneidade (Tabela 2, BBH):** com 3 agentes, a configuração homogênea obteve 0,86, contra 0,81 da heterogênea em LLM. Com 5 agentes, a homogênea cai para 0,79, e a heterogênea em skill obtém 0,86.
-- **Ablação da evolução (Tabela 3, GPT-4o-mini):** sem evolução, os resultados foram 77,86 em MATH, 76,00 em BBH e 23,00 em API-Bank; com evolução, 85,00, 86,00 e 32,00.
+## Reported result
+Author-reported.
+- **Table 1 (accuracy in %):**
+  - With DeepSeek-V3: AgentNet scored 92.86 on MATH (MetaGPT 92.14), 94.00 on BBH (Synapse 92.00) and 30.00 on API-Bank (ReAct/SC 29.00).
+  - With GPT-4o-mini: tie on MATH (85.00, equal to AFLOW/GPTSwarm) and on BBH (86.00, equal to GPTSwarm). On API-Bank, 29.00 versus 24.00 for ReAct.
+  - With Qwen-turbo: **loses** on MATH (81.43 vs 82.14 for AFLOW). Wins on BBH (92.00 vs 75.00 for GPTSwarm) and on API-Bank (32.00 vs 30.00).
+- **Scale (Section 5.1, Figure 8):** training accuracy goes from 80.38 (3 agents, 30 executors) to 81.18 (9 agents, 40 executors). The authors describe diminishing returns. Test stays between 80 and 86.
+- **Heterogeneity (Table 2, BBH):** with 3 agents, the homogeneous configuration scored 0.86, versus 0.81 for the LLM-heterogeneous one. With 5 agents, the homogeneous one drops to 0.79, and the skill-heterogeneous one scores 0.86.
+- **Evolution ablation (Table 3, GPT-4o-mini):** without evolution, results were 77.86 on MATH, 76.00 on BBH and 23.00 on API-Bank; with evolution, 85.00, 86.00 and 32.00.
 
-## Custo/compute considerado?
-Não. Não há medição de tokens, custo ou latência. A frase do resumo sobre "melhorar eficiência" não vem com números no texto lido. Nenhum valor de C_max foi reportado e não há varredura do tamanho de memória.
+## Cost/compute considered?
+No. There is no measurement of tokens, cost or latency. The abstract's phrase about "improving efficiency" comes with no numbers in the text read. No C_max value was reported and there is no sweep over memory size.
 
-## Ameaças à validade
-- Conjuntos de teste pequenos: 100–140 itens, de modo que 1 ponto em BBH corresponde a 1 questão.
-- Divisões próprias dos benchmarks.
-- Margens de 0–2 pontos sem intervalos de confiança.
-- Há tarefas que exigem treino evolutivo prévio.
-- Os autores reconhecem que o router escolhe entre poucos candidatos predefinidos.
-- Nenhum repositório oficial validado.
+## Threats to validity
+- Small test sets: 100–140 items, so 1 point on BBH corresponds to 1 question.
+- Custom benchmark splits.
+- Margins of 0–2 points without confidence intervals.
+- Some tasks require prior evolutionary training.
+- The authors acknowledge that the router chooses among a few predefined candidates.
+- No validated official repository.
 
-## Relevância para a pergunta central
-Com orçamento não controlado, a vantagem multiagente sobre agente único bem configurado (Synapse, SC, ReAct) é pequena e inconsistente. Aumentar o número de agentes rende pouco (+0,8 pp no treino indo de 3 para 9 agentes). A especialização via memória (evolução) é o que mais pesa: +7 a +10 pp. Diversidade importa de forma não trivial: homogêneo é melhor com 3 agentes, heterogêneo com 5.
+## Relevance to the central question
+With an uncontrolled budget, the multi-agent advantage over a well-configured single agent (Synapse, SC, ReAct) is small and inconsistent. Increasing the number of agents yields little (+0.8 pp in training going from 3 to 9 agents). Specialization via memory (evolution) is what weighs most: +7 to +10 pp. Diversity matters in a non-trivial way: homogeneous is better with 3 agents, heterogeneous with 5.
 
-## Hipóteses candidatas (hipótese)
-- candidata: o valor de um micro-swarm vem mais da memória especializada acumulada do que da cooperação em tempo de inferência.
-- candidata: a diversidade de agentes só compensa acima de um tamanho mínimo de grupo; abaixo dele, adiciona ruído.
+## Candidate hypotheses (hypothesis)
+- candidate: the value of a micro-swarm comes more from accumulated specialized memory than from cooperation at inference time.
+- candidate: agent diversity only pays off above a minimum group size; below it, it adds noise.
 
-## Verificação
-- Aberto em 2026-11-07:
-  - https://arxiv.org/abs/2504.00587 (v1 de 2025-04-01 e v2 de 2025-05-29)
-  - https://arxiv.org/html/2504.00587v2 (Tabelas 1–3, Seção 5.1, Seção 6)
-  - Registro NeurIPS 2025, que confirma o Main Conference Track e o DOI 10.52202/085713-3578
-- Lacunas: o PDF da versão NeurIPS não foi comparado com a v2; não há código oficial; não há custo.
+## Verification
+- Opened on 2026-11-07:
+  - https://arxiv.org/abs/2504.00587 (v1 from 2025-04-01 and v2 from 2025-05-29)
+  - https://arxiv.org/html/2504.00587v2 (Tables 1–3, Section 5.1, Section 6)
+  - NeurIPS 2025 record, which confirms the Main Conference Track and the DOI 10.52202/085713-3578
+- Gaps: the PDF of the NeurIPS version was not compared with v2; there is no official code; there is no cost.

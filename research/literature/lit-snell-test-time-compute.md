@@ -1,48 +1,48 @@
 ---
 id: lit-snell-test-time-compute
-title: Snell et al. — alocação compute-optimal de test-time compute por dificuldade
+title: Snell et al. — compute-optimal allocation of test-time compute by difficulty
 area: literature
-evidence: relato-autores
-tags: [test-time-compute, compute-optimal, dificuldade, verificador, sequencial-vs-paralelo]
+evidence: author-reported
+tags: [test-time-compute, compute-optimal, difficulty, verifier, sequential-vs-parallel]
 sources:
   - "Snell, C., Lee, J., Xu, K. & Kumar, A. (2024). Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters. arXiv:2408.03314v1. https://arxiv.org/abs/2408.03314v1"
 related: [lit-large-language-monkeys, lit-self-consistency, lit-more-llm-calls]
 updated: 2026-11-07
 primary_opened: true
-version: "v1 (6 ago. 2024), única versão no arXiv"
-summary: A melhor forma de gastar compute de inferência depende da dificuldade de cada prompt; alocar por dificuldade iguala o best-of-N com até cerca de 4× menos compute, mas em problemas difíceis vale mais um modelo maior.
+version: "v1 (6 Aug 2024), only version on arXiv"
+summary: The best way to spend inference compute depends on the difficulty of each prompt; allocating by difficulty matches best-of-N with up to about 4× less compute, but on hard problems a larger model is worth more.
 ---
 
-## Pergunta
-Dado um orçamento de compute de inferência, como alocá-lo por prompt (busca com verificador ou revisões sequenciais)? Quando isso substitui um modelo maior?
+## Question
+Given an inference compute budget, how should it be allocated per prompt (search with a verifier or sequential revisions)? When does this substitute for a larger model?
 
-## Método
-Base: PaLM 2-S* no MATH (divisão 12k/500 de Lightman et al.). Dois mecanismos: (a) busca contra um PRM (best-of-N ponderado, beam search, lookahead); (b) modelo de revisão que refina respostas em sequência. A dificuldade é medida em 5 quantis de pass@1, com 2048 amostras por questão: "oracle" usa o gabarito, "predicted" usa o score médio do PRM (Sec. 3.2). Orçamentos de até 256 gerações. Comparação com FLOPs igualados contra um modelo cerca de 14× maior (Sec. 7).
+## Method
+Base: PaLM 2-S* on MATH (12k/500 split from Lightman et al.). Two mechanisms: (a) search against a PRM (weighted best-of-N, beam search, lookahead); (b) a revision model that refines answers sequentially. Difficulty is measured in 5 quantiles of pass@1, with 2048 samples per question: "oracle" uses the ground truth, "predicted" uses the mean PRM score (Sec. 3.2). Budgets of up to 256 generations. FLOPs-matched comparison against a model about 14× larger (Sec. 7).
 
-## Resultado relatado
-- Busca com PRM (Sec. 5.3, Fig. 3–4): com orçamento baixo, beam search supera best-of-N; com orçamento alto, a vantagem cai e muitas vezes inverte. Nos níveis fáceis (1–2), beam search piora com mais orçamento por sobre-otimização do verificador. Nos níveis 3–4, beam vence. No nível 5, nenhum método avança muito.
-- Estratégia compute-optimal com busca: quase iguala o best-of-N com PRM usando até 4× menos compute (ex.: 16 vs 64 gerações; Fig. 4).
-- Revisões (Sec. 6): revisões ingênuas transformam cerca de 38% das respostas corretas em incorretas. Revisões sequenciais superam por pouco a amostragem paralela. Fáceis rendem mais com compute todo sequencial; difíceis, com uma mistura (Fig. 7). A versão compute-optimal supera o best-of-N paralelo com até 4× menos compute (ex.: 64 vs 256; Fig. 8).
-- FLOPs iguais vs modelo cerca de 14× maior (Sec. 7, Fig. 9), com R = D_inferência / D_pré-treino em {0,16; 0,79; 22}: test-time compute vence em questões fáceis e médias e com R baixo. Pré-treinar o modelo maior é melhor em questões difíceis (bins 4–5) e com R alto.
-- O resumo diz "more than 4×"; pela leitura do HTML v1, o corpo fala em "up to 4×" e a discussão em 2–4×.
+## Reported result
+- Search with PRM (Sec. 5.3, Fig. 3–4): at low budget, beam search outperforms best-of-N; at high budget, the advantage shrinks and often reverses. On the easy levels (1–2), beam search gets worse with more budget due to verifier over-optimization. On levels 3–4, beam wins. On level 5, no method makes much progress.
+- Compute-optimal strategy with search: nearly matches best-of-N with PRM using up to 4× less compute (e.g., 16 vs 64 generations; Fig. 4).
+- Revisions (Sec. 6): naive revisions turn about 38% of correct answers into incorrect ones. Sequential revisions narrowly outperform parallel sampling. Easy questions do best with all compute sequential; hard ones, with a mixture (Fig. 7). The compute-optimal version outperforms parallel best-of-N with up to 4× less compute (e.g., 64 vs 256; Fig. 8).
+- Equal FLOPs vs a model about 14× larger (Sec. 7, Fig. 9), with R = D_inference / D_pretraining in {0.16, 0.79, 22}: test-time compute wins on easy and medium questions and with low R. Pretraining the larger model is better on hard questions (bins 4–5) and with high R.
+- The abstract says "more than 4×"; from reading the v1 HTML, the body speaks of "up to 4×" and the discussion of 2–4×.
 
-## Custo/compute considerado?
-Sim, centralmente: FLOPs aproximados (6·N·D no pré-treino e 2·N·D na inferência) e orçamento em número de gerações. Ressalva dos autores: a estimativa de dificuldade custa compute que não entra na contabilidade (Sec. 3.2, App. C).
+## Cost/compute considered?
+Yes, centrally: approximate FLOPs (6·N·D in pretraining and 2·N·D in inference) and budget in number of generations. Authors' caveat: difficulty estimation costs compute that is not included in the accounting (Sec. 3.2, App. C).
 
-## Ameaças à validade
-- Um modelo base (PaLM 2-S*) e um benchmark (MATH).
-- Verificador e modelo de revisão são fine-tunados; os autores notam que essas capacidades não existem prontas nos LLMs proprietários da época.
-- O custo da estimativa de dificuldade foi omitido, justamente a parte de "roteamento" que importa para a Norevia.
-- Modelos de 2024, antes dos modelos com reasoning nativo.
+## Threats to validity
+- One base model (PaLM 2-S*) and one benchmark (MATH).
+- Verifier and revision model are fine-tuned; the authors note that these capabilities did not exist off the shelf in the proprietary LLMs of the time.
+- The cost of difficulty estimation was omitted, precisely the "routing" part that matters for Norevia.
+- 2024 models, before models with native reasoning.
 
-## Relevância para a pergunta central
-É a referência mais próxima de uma "política de alocação de esforço" condicionada à dificuldade, mas dentro de um agente (paralelo vs sequencial, busca vs revisão), não entre agentes cooperativos. Mostra também que o roteador por dificuldade precisa ser barato para o ganho não sumir.
+## Relevance to the central question
+It is the closest reference to an "effort allocation policy" conditioned on difficulty, but within one agent (parallel vs sequential, search vs revision), not across cooperating agents. It also shows that the difficulty router must be cheap for the gain not to vanish.
 
-## Hipóteses candidatas
-- candidata: a configuração ótima (1 agente sequencial, N paralelos, verificador) muda com a dificuldade; uma política fixa é dominada por uma condicionada à dificuldade.
-- candidata: em tarefas fáceis, mais compute paralelo é desperdício e pode piorar por sobre-otimização do verificador.
-- candidata: acima de um limiar de dificuldade, nenhum arranjo de inferência compensa capacidade-base insuficiente; é preciso escalar o modelo.
-- candidata: o ganho líquido de uma política adaptativa é ganho bruto menos o custo de estimar dificuldade; se esse custo não for pequeno, a política perde.
+## Candidate hypotheses
+- candidate: the optimal configuration (1 sequential agent, N parallel, verifier) changes with difficulty; a fixed policy is dominated by one conditioned on difficulty.
+- candidate: on easy tasks, more parallel compute is wasteful and can worsen results due to verifier over-optimization.
+- candidate: above a difficulty threshold, no inference arrangement compensates for insufficient base capability; the model must be scaled.
+- candidate: the net gain of an adaptive policy is the gross gain minus the cost of estimating difficulty; if this cost is not small, the policy loses.
 
-## Verificação
-Abertos em 2026-11-07: https://arxiv.org/abs/2408.03314 (só v1; sem venue declarado no arXiv) e https://arxiv.org/html/2408.03314v1 (lidos cerca de 100k de 111k caracteres; o final, com apêndices, não foi lido). Números extraídos por leitor automático, sem conferência manual. Não verifiquei se houve publicação em conferência (lacuna).
+## Verification
+Opened on 2026-11-07: https://arxiv.org/abs/2408.03314 (v1 only; no venue declared on arXiv) and https://arxiv.org/html/2408.03314v1 (about 100k of 111k characters read; the end, with appendices, was not read). Numbers extracted by an automated reader, without manual checking. I did not verify whether it was published at a conference (gap).

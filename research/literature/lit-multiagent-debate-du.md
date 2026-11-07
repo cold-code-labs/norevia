@@ -1,64 +1,64 @@
 ---
 id: lit-multiagent-debate-du
-title: "Multiagent Debate (Du et al., ICML 2024) — debate entre instâncias do mesmo LLM"
+title: "Multiagent Debate (Du et al., ICML 2024) — debate among instances of the same LLM"
 area: literature
-evidence: relato-autores
-tags: [debate, multiagente, factualidade, raciocinio, baseline-fundador]
+evidence: author-reported
+tags: [debate, multi-agent, factuality, reasoning, founding-baseline]
 sources:
   - "Du, Y., Li, S., Torralba, A., Tenenbaum, J. B. & Mordatch, I. (2024). Improving Factuality and Reasoning in Language Models through Multiagent Debate. Proceedings of the 41st International Conference on Machine Learning (ICML 2024), PMLR 235:11733–11763. https://proceedings.mlr.press/v235/du24e.html"
-  - "arXiv:2305.14325v1 (23 maio 2023), versão única. https://arxiv.org/abs/2305.14325v1"
+  - "arXiv:2305.14325v1 (23 May 2023), only version. https://arxiv.org/abs/2305.14325v1"
 related: [lit-should-we-be-going-mad, lit-debate-or-vote, lit-stop-overvaluing-mad, lit-rethinking-bounds-discussion]
 updated: 2026-11-07
 primary_opened: true
 version: "arXiv v1 (2023-05-23); PMLR v235 (2024)"
-summary: Trabalho fundador do debate multiagente — 3 instâncias de gpt-3.5 debatendo 2 rodadas superam agente único e voto majoritário, mas sem igualar compute e com consenso às vezes errado.
+summary: Founding work on multi-agent debate — 3 gpt-3.5 instances debating for 2 rounds outperform a single agent and majority vote, but without matching compute and with a consensus that is sometimes wrong.
 ---
 
-## Pergunta
-Várias instâncias de um mesmo LLM (caixa-preta) que propõem respostas e as criticam mutuamente por rodadas melhoram raciocínio e factualidade em relação a um agente único?
+## Question
+Do several instances of the same (black-box) LLM that propose answers and critique each other over rounds improve reasoning and factuality relative to a single agent?
 
-## Método
-- N agentes (instâncias do mesmo modelo) respondem independentemente; depois recebem as respostas dos outros e atualizam a sua por rodadas; a resposta final é o consenso.
-- Modelo principal: `gpt-3.5-turbo-0301` (Apêndice A.2).
-- Configuração principal: **3 agentes, 2 rodadas de debate** (nota da Tabela 1).
-- Tarefas e tamanhos (Apêndice A.2): Arithmetic 100, GSM8K 100, Chess move optimality 300 jogos, Biografias 524 cientistas da computação, MMLU 100, Chess move validity 100.
-- Baselines: agente único, agente único com reflexão, "Multi-Agent (Majority)" (voto majoritário).
+## Method
+- N agents (instances of the same model) answer independently; they then receive the others' answers and update their own over rounds; the final answer is the consensus.
+- Main model: `gpt-3.5-turbo-0301` (Appendix A.2).
+- Main configuration: **3 agents, 2 debate rounds** (note to Table 1).
+- Tasks and sizes (Appendix A.2): Arithmetic 100, GSM8K 100, Chess move optimality 300 games, Biographies 524 computer scientists, MMLU 100, Chess move validity 100.
+- Baselines: single agent, single agent with reflection, "Multi-Agent (Majority)" (majority vote).
 
-## Resultado relatado
-Tabela 1 (raciocínio; média ± dispersão):
+## Reported result
+Table 1 (reasoning; mean ± spread):
 
-| Método | Arithmetic | GSM8K | Chess (ΔPS) |
+| Method | Arithmetic | GSM8K | Chess (ΔPS) |
 |---|---|---|---|
-| Single Agent | 67,0 ± 4,7 | 77,0 ± 4,2 | 91,4 ± 10,6 |
-| Single Agent (Reflection) | 72,1 ± 4,5 | 75,0 ± 4,3 | 102,1 ± 11,9 |
-| Multi-Agent (Majority) | 69,0 ± 4,6 | 81,0 ± 3,9 | 102,2 ± 6,2 |
-| Multi-Agent (Debate) | 81,8 ± 2,3 | 85,0 ± 3,5 | 122,9 ± 7,6 |
+| Single Agent | 67.0 ± 4.7 | 77.0 ± 4.2 | 91.4 ± 10.6 |
+| Single Agent (Reflection) | 72.1 ± 4.5 | 75.0 ± 4.3 | 102.1 ± 11.9 |
+| Multi-Agent (Majority) | 69.0 ± 4.6 | 81.0 ± 3.9 | 102.2 ± 6.2 |
+| Multi-Agent (Debate) | 81.8 ± 2.3 | 85.0 ± 3.5 | 122.9 ± 7.6 |
 
-Tabela 2 (factualidade): Biografias 66,0 → 73,8; MMLU 63,9 → 71,1; Chess validity 29,3 → 45,2 (agente único → debate). Reflexão piorou MMLU (57,7).
+Table 2 (factuality): Biographies 66.0 → 73.8; MMLU 63.9 → 71.1; Chess validity 29.3 → 45.2 (single agent → debate). Reflection worsened MMLU (57.7).
 
-- Seção 3.3 / Fig. 10: acurácia em Arithmetic sobe monotonicamente com o nº de agentes (rodadas fixas em 2) e com o nº de rodadas (3 agentes); acima de 4 rodadas o desempenho final é semelhante ao de 4 rodadas.
-- Modelos diferentes (Seção 3.3, Fig. 11): em 20 problemas do GSM8K, Bard resolveu 11, ChatGPT 14, debate conjunto 17.
-- Prompts mais "teimosos" alongam o debate; prompts mais longos convergem mais devagar porém para consenso final melhor (texto da Seção 3.3).
+- Section 3.3 / Fig. 10: Arithmetic accuracy rises monotonically with the number of agents (rounds fixed at 2) and with the number of rounds (3 agents); above 4 rounds the final performance is similar to that at 4 rounds.
+- Different models (Section 3.3, Fig. 11): on 20 GSM8K problems, Bard solved 11, ChatGPT 14, joint debate 17.
+- More "stubborn" prompts lengthen the debate; longer prompts converge more slowly but to a better final consensus (text of Section 3.3).
 
-## Custo/compute considerado?
-Parcialmente, só qualitativo. A Seção 5 (Limitações) admite que o debate é mais caro que outros métodos de prompting. **Não há igualação de compute** entre debate (3 agentes × várias gerações por rodada) e o baseline de voto; o número de amostras votadas no baseline "Majority" não é declarado explicitamente. Para muitos agentes, o contexto estoura e as respostas precisam ser resumidas (Fig. 13).
+## Cost/compute considered?
+Partially, only qualitatively. Section 5 (Limitations) admits that debate is more expensive than other prompting methods. **There is no compute matching** between debate (3 agents × several generations per round) and the voting baseline; the number of samples voted on in the "Majority" baseline is not stated explicitly. With many agents, the context overflows and the answers have to be summarized (Fig. 13).
 
-## Ameaças à validade
-- Amostras pequenas (100 problemas em várias tarefas); ICs largos (±3–5 pp).
-- Comparação com voto majoritário sem compute igualado; trabalhos posteriores (lit-debate-or-vote, lit-stop-overvaluing-mad) atribuem a maior parte do ganho ao voto/ensemble.
-- Um único modelo de 2023 (gpt-3.5-turbo-0301), sem reasoning models.
-- Seção 5 / Apêndice A.1: debates convergem para uma resposta que nem sempre é correta; agentes afirmam respostas erradas com confiança alegando consistência com os outros.
-- Inconsistência menor: a Seção 3.1 descreve aritmética com seis números de dois dígitos; o Apêndice A.2 fala em inteiros entre 0 e 30.
+## Threats to validity
+- Small samples (100 problems in several tasks); wide CIs (±3–5 pp).
+- Comparison with majority vote without matched compute; later works (lit-debate-or-vote, lit-stop-overvaluing-mad) attribute most of the gain to voting/ensembling.
+- A single 2023 model (gpt-3.5-turbo-0301), no reasoning models.
+- Section 5 / Appendix A.1: debates converge to an answer that is not always correct; agents confidently assert wrong answers, claiming consistency with the others.
+- Minor inconsistency: Section 3.1 describes arithmetic with six two-digit numbers; Appendix A.2 speaks of integers between 0 and 30.
 
-## Relevância para a pergunta central
-É o ponto de partida da tese "N agentes > 1 agente". Mas o desenho não responde "a que custo": falta curva acurácia × tokens contra self-consistency com o mesmo orçamento. Útil como referência histórica e como protocolo (`SoM`) reutilizado por vários benchmarks posteriores.
+## Relevance to the central question
+It is the starting point of the "N agents > 1 agent" thesis. But the design does not answer "at what cost": an accuracy × tokens curve against self-consistency with the same budget is missing. Useful as a historical reference and as a protocol (`SoM`) reused by several later benchmarks.
 
-## Hipóteses candidatas
-- candidata: o ganho do debate sobre o agente único é em boa parte ganho de ensemble (mais amostras), não de interação — testar com voto de mesmo nº de gerações.
-- candidata: diversidade de modelo (ChatGPT + Bard) adiciona valor além de reamostrar o mesmo modelo — mas o n=20 não sustenta conclusão.
-- candidata: rodadas têm retorno decrescente com platô (~4 rodadas aqui), enquanto o custo de contexto cresce a cada rodada.
+## Candidate hypotheses
+- candidate: the gain of debate over a single agent is largely an ensemble gain (more samples), not an interaction gain — test with a vote over the same number of generations.
+- candidate: model diversity (ChatGPT + Bard) adds value beyond resampling the same model — but n=20 does not support a conclusion.
+- candidate: rounds have diminishing returns with a plateau (~4 rounds here), while context cost grows with each round.
 
-## Verificação
-- Abertos em 2026-11-07: https://arxiv.org/abs/2305.14325 (v1 é a única versão); https://ar5iv.labs.arxiv.org/html/2305.14325 (texto completo renderizado da v1; tabelas lidas aí); https://proceedings.mlr.press/v235/du24e.html (venue e páginas).
-- A extração direta do PDF falhou; os números vêm do ar5iv (v1). Não conferi se a versão PMLR altera números.
-- Lacuna: definição exata do baseline "Majority" (quantas amostras) e contagem de rodadas (2 rodadas = inicial + 1 ou + 2) não estão explícitas no texto lido.
+## Verification
+- Opened on 2026-11-07: https://arxiv.org/abs/2305.14325 (v1 is the only version); https://ar5iv.labs.arxiv.org/html/2305.14325 (rendered full text of v1; tables read there); https://proceedings.mlr.press/v235/du24e.html (venue and pages).
+- Direct PDF extraction failed; the numbers come from ar5iv (v1). I did not check whether the PMLR version changes numbers.
+- Gap: the exact definition of the "Majority" baseline (how many samples) and the round count (2 rounds = initial + 1 or + 2) are not explicit in the text read.

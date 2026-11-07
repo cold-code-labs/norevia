@@ -1,45 +1,45 @@
 ---
 id: lit-overthinking
-title: 'Do NOT Think That Much for 2+3=? — overthinking em modelos de raciocínio longo'
+title: 'Do NOT Think That Much for 2+3=? — overthinking in long reasoning models'
 area: literature
-evidence: relato-autores
-tags: [reasoning-effort, overthinking, custo, dificuldade, eficiencia]
+evidence: author-reported
+tags: [reasoning-effort, overthinking, cost, difficulty, efficiency]
 sources:
   - "Chen, X., Xu, J., Liang, T., He, Z., Pang, J., Yu, D., Song, L., Liu, Q., Zhou, M., Zhang, Z., Wang, R., Tu, Z., Mi, H. & Yu, D. (2025). Do NOT Think That Much for 2+3=? On the Overthinking of Long Reasoning Models. Proceedings of the 42nd ICML, PMLR 267:9487–9499. https://proceedings.mlr.press/v267/chen25bx.html"
-  - "Preprint: arXiv:2412.21187v2 (1 fev. 2025), título 'On the Overthinking of o1-Like LLMs'. https://arxiv.org/abs/2412.21187v2 · doi:10.48550/arXiv.2412.21187"
+  - "Preprint: arXiv:2412.21187v2 (1 Feb 2025), title 'On the Overthinking of o1-Like LLMs'. https://arxiv.org/abs/2412.21187v2 · doi:10.48550/arXiv.2412.21187"
 related: [lit-s1-budget-forcing, lit-nothinking, lit-inverse-scaling-ttc]
 updated: 2026-11-07
 primary_opened: true
-version: "arXiv v2 (1 fev. 2025); v1 30 dez. 2024; versão ICML não aberta em PDF"
-summary: Modelos de raciocínio longo acertam na primeira solução em mais de 92% dos casos e gastam o resto em verificações redundantes; auto-treino cortou ~45% dos tokens em MATH500 com −0,2 ponto de acurácia.
+version: "arXiv v2 (1 Feb 2025); v1 30 Dec 2024; ICML version not opened as PDF"
+summary: Long reasoning models get it right in the first solution in more than 92% of cases and spend the rest on redundant checks; self-training cut ~45% of tokens on MATH500 at −0.2 points of accuracy.
 ---
 
-## Pergunta
-Modelos tipo o1 alocam compute demais a problemas simples? Como medir e reduzir esse desperdício sem perder acurácia?
+## Question
+Do o1-type models allocate too much compute to simple problems? How can this waste be measured and reduced without losing accuracy?
 
-## Método
-Análise das "rodadas de solução" dentro da cadeia de raciocínio de QwQ-32B-Preview e DeepSeek-R1 (baselines convencionais: Llama-3.3-70B-Instruct, Qwen2.5-Math-72B-Instruct) em ASDIV, GSM8K, MATH500, GPQA, AIME24 (Sec. 2). Duas métricas: eficiência de resultado ξO (tokens até a primeira resposta correta / tokens totais) e de processo ξP (tokens de soluções com estratégia distinta / total). Mitigação (Sec. 3): auto-treino em PRM12K com SFT/DPO/RPO/SimPO, usando respostas encurtadas (First-Correct Solution, FCS; FCS+Reflection; soluções gulosamente diversas).
+## Method
+Analysis of the "solution rounds" within the reasoning chain of QwQ-32B-Preview and DeepSeek-R1 (conventional baselines: Llama-3.3-70B-Instruct, Qwen2.5-Math-72B-Instruct) on ASDIV, GSM8K, MATH500, GPQA, AIME24 (Sec. 2). Two metrics: outcome efficiency ξO (tokens up to the first correct answer / total tokens) and process efficiency ξP (tokens of solutions with a distinct strategy / total). Mitigation (Sec. 3): self-training on PRM12K with SFT/DPO/RPO/SimPO, using shortened responses (First-Correct Solution, FCS; FCS+Reflection; greedily diverse solutions).
 
-## Resultado relatado
-- "2+3": QwQ gera 13 soluções, 901 tokens; a primeira (39 tokens) já está correta → ξO = 4,3% (Fig. 1–2). Em média, modelos o1-like usam "1,953% more tokens" que convencionais para a mesma resposta.
-- "In more than 92% of cases, the initial round of solutions produces the correct answer" (Sec. 2.2); a primeira rodada costuma ser <60% dos tokens.
-- Tabela 1, ξO/ξP: MATH500 QwQ 52,3%/71,2%, R1 51,0%/66,2%; GSM8K QwQ 50,7%/67,6%. Convencionais: ξO 75,4–96,3%.
-- Nível 1 do MATH500: ξO < 50% para ambos (Sec. 2.4) — o desperdício relativo é maior nos problemas mais fáceis.
-- Tabela 4 (QwQ, MATH500 base 93,0%, 2407,9 tokens): SimPO+FCS+Reflection 92,8%, 1330,7 tokens (≈−44,7%); SimPO+FCS 91,0%, 1016,0 (≈−57,8%). GSM8K 94,8→96,0%, 772,8→416,6 tokens; GPQA 59,6→59,1%, 3228→2086; AIME24 46,7→43,3%, 9481→5155.
-- Inconsistência: a introdução atribui −48,6% a MATH500, mas na Tabela 4 esse valor é de ASDIV.
+## Reported result
+- "2+3": QwQ generates 13 solutions, 901 tokens; the first one (39 tokens) is already correct → ξO = 4.3% (Fig. 1–2). On average, o1-like models use "1,953% more tokens" than conventional ones for the same answer.
+- "In more than 92% of cases, the initial round of solutions produces the correct answer" (Sec. 2.2); the first round is usually <60% of the tokens.
+- Table 1, ξO/ξP: MATH500 QwQ 52.3%/71.2%, R1 51.0%/66.2%; GSM8K QwQ 50.7%/67.6%. Conventional: ξO 75.4–96.3%.
+- MATH500 Level 1: ξO < 50% for both (Sec. 2.4) — the relative waste is greater on the easiest problems.
+- Table 4 (QwQ, MATH500 baseline 93.0%, 2407.9 tokens): SimPO+FCS+Reflection 92.8%, 1330.7 tokens (≈−44.7%); SimPO+FCS 91.0%, 1016.0 (≈−57.8%). GSM8K 94.8→96.0%, 772.8→416.6 tokens; GPQA 59.6→59.1%, 3228→2086; AIME24 46.7→43.3%, 9481→5155.
+- Inconsistency: the introduction attributes −48.6% to MATH500, but in Table 4 that value belongs to ASDIV.
 
-## Custo/compute considerado?
-Sim, em tokens gerados (proxy de compute/latência). Sem US$; custo do auto-treino não contabilizado contra a economia.
+## Cost/compute considered?
+Yes, in generated tokens (a proxy for compute/latency). No US$; the cost of self-training is not accounted against the savings.
 
-## Ameaças à validade
-Modelos de raciocínio de fim de 2024/início de 2025; benchmarks de matemática com resposta checável; métrica ξO depende de detectar a "primeira resposta correta" dentro do traço (anotação automática); a queda em AIME24 (−3,4 pontos) mostra que cortar tokens custa mais em problemas difíceis. Resumos externos citam ">85%" (slides ICML) vs ">92%" (arXiv v2) — usar o número da versão aberta.
+## Threats to validity
+Reasoning models from late 2024/early 2025; mathematics benchmarks with checkable answers; the ξO metric depends on detecting the "first correct answer" within the trace (automatic annotation); the drop on AIME24 (−3.4 points) shows that cutting tokens costs more on hard problems. External summaries cite ">85%" (ICML slides) vs ">92%" (arXiv v2) — use the number from the version opened.
 
-## Relevância para a pergunta central
-Evidência direta de que **mais raciocínio individual tem retorno marginal quase nulo em tarefas fáceis**: a maior parte dos tokens extras é autoverificação redundante. Reforça que um controlador deve cortar esforço em consultas simples ("um 'oi' não deve pagar orquestração"). Também sugere que reflexões sucessivas dentro de um mesmo modelo são verificações correlacionadas (o 2º–Nº "revisor" é o mesmo modelo).
+## Relevance to the central question
+Direct evidence that **more individual reasoning has near-zero marginal return on easy tasks**: most of the extra tokens are redundant self-verification. Reinforces that a controller should cut effort on simple queries ("a 'hi' should not pay for orchestration"). It also suggests that successive reflections within the same model are correlated checks (the 2nd–Nth "reviewer" is the same model).
 
-## Hipóteses candidatas
-- candidata: o retorno marginal de tokens de raciocínio cai após a primeira solução completa; a partir daí, uma verificação externa (outro agente ou teste) tem melhor valor esperado que mais reflexão do mesmo modelo.
-- candidata: o desperdício relativo (1−ξO) é máximo nas tarefas mais fáceis — o ganho de um roteador de esforço é maior em cargas dominadas por consultas simples.
+## Candidate hypotheses
+- candidate: the marginal return of reasoning tokens drops after the first complete solution; from then on, an external check (another agent or a test) has better expected value than more reflection by the same model.
+- candidate: the relative waste (1−ξO) is maximal on the easiest tasks — the gain of an effort router is greatest on workloads dominated by simple queries.
 
-## Verificação
-Aberto em 2026-11-07: https://arxiv.org/abs/2412.21187 (metadados), https://arxiv.org/html/2412.21187v2 (texto, Tabelas 1 e 4), https://proceedings.mlr.press/v267/chen25bx.html (venue). Lacuna: PDF da versão ICML não comparado com a v2.
+## Verification
+Opened on 2026-11-07: https://arxiv.org/abs/2412.21187 (metadata), https://arxiv.org/html/2412.21187v2 (text, Tables 1 and 4), https://proceedings.mlr.press/v267/chen25bx.html (venue). Gap: PDF of the ICML version not compared with v2.

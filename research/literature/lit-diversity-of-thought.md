@@ -2,49 +2,49 @@
 id: lit-diversity-of-thought
 title: "Diversity of Thought Improves Reasoning Abilities of LLMs — DIV-SE / IDIV-SE (Naik et al., 2023–2024)"
 area: literature
-evidence: relato-autores
-tags: [diversidade, self-consistency, prompting, ensemble, custo, pareto]
+evidence: author-reported
+tags: [diversity, self-consistency, prompting, ensemble, cost, pareto]
 sources:
-  - "Naik, R., Chandrasekaran, V., Yuksekgonul, M., Palangi, H. & Nushi, B. (2024). Diversity of Thought Improves Reasoning Abilities of LLMs. arXiv:2310.07088v2 (23 fev 2024; v1 11 out 2023). https://arxiv.org/abs/2310.07088v2 — HTML: https://arxiv.org/html/2310.07088v2"
-related: [lit-hong-page-diversity, lit-correlated-errors, lit-sintese]
+  - "Naik, R., Chandrasekaran, V., Yuksekgonul, M., Palangi, H. & Nushi, B. (2024). Diversity of Thought Improves Reasoning Abilities of LLMs. arXiv:2310.07088v2 (23 Feb 2024; v1 11 Oct 2023). https://arxiv.org/abs/2310.07088v2 — HTML: https://arxiv.org/html/2310.07088v2"
+related: [lit-hong-page-diversity, lit-correlated-errors, lit-synthesis]
 updated: 2026-11-07
 primary_opened: true
-version: "v2 (2024-02-23); preprint sem venue no abs"
-summary: Ensemblar abordagens de solução diferentes (diversidade no prompt) bate self-consistency com mais amostras em planejamento e matemática com GPT-4, sugerindo que diversidade de abordagem vale mais que repetição — com ressalvas de inconsistências numéricas no texto.
+version: "v2 (2024-02-23); preprint with no venue on abs"
+summary: Ensembling different solution approaches (diversity in the prompt) beats self-consistency with more samples on planning and math with GPT-4, suggesting that diversity of approach is worth more than repetition — with caveats about numerical inconsistencies in the text.
 ---
 
-## Pergunta
-Variar a **abordagem** de solução no prompt (em vez de só a temperatura de decodificação) gera diversidade de raciocínio que melhora o ensemble, com melhor relação acurácia-custo que self-consistency (SC)?
+## Question
+Does varying the solution **approach** in the prompt (instead of only the decoding temperature) generate reasoning diversity that improves the ensemble, with a better accuracy-cost trade-off than self-consistency (SC)?
 
-## Método
-- O próprio LLM propõe abordagens/personas adequadas ao problema; DIV-SE executa uma chamada por abordagem e vota; IDIV-SE coloca várias abordagens numa única chamada (Sec. 3).
-- Benchmarks: AQuA-RAT (254), GSM8K (1.319), MATH Counting & Probability (474), Blocksworld 3 (100), Blocksworld 4/5 (500), Graph Coloring (100), CommonsenseQA (1.221). Modelos: GPT-3.5 Turbo, GPT-4, LLaMA-2 70B (App. B).
-- Ensembles de 3 ou 5 abordagens; SC com temperatura 0,7 até 10 amostras.
+## Method
+- The LLM itself proposes approaches/personas suited to the problem; DIV-SE runs one call per approach and votes; IDIV-SE places several approaches in a single call (Sec. 3).
+- Benchmarks: AQuA-RAT (254), GSM8K (1,319), MATH Counting & Probability (474), Blocksworld 3 (100), Blocksworld 4/5 (500), Graph Coloring (100), CommonsenseQA (1,221). Models: GPT-3.5 Turbo, GPT-4, LLaMA-2 70B (App. B).
+- Ensembles of 3 or 5 approaches; SC with temperature 0.7 up to 10 samples.
 
-## Resultado relatado
-- GPT-4 zero-shot (Tabela 1): Graph Coloring — CoT 15,0; SC-10 23,0; IDIV-SE 74,0; DIV-SE 97,0. Blocksworld 3 — CoT 70; SC-10 73; DIV-SE 94. Blocksworld 4/5 — CoT 40,0; SC-10 41,2; DIV-SE 69,6.
-- Tabela 2 (AQuA-RAT): GPT-4 ZS CoT 70,47 → DIV-SE 80,31; GPT-4 FS 71,90 → 84,25; GPT-3.5 ZS 59,00 → 72,83 (SC-5 63,37). CommonsenseQA: ganhos pequenos (GPT-4 ZS 81,60 → 81,70).
-- GSM8K (App. C.2): GPT-4 94–95% → 96,3% com DIV-SE (ganho pequeno); IDIV-SE sem ganho significativo.
-- GPT-3.5 em Blocksworld (baselines 6% e 0,6%): nenhum método ajudou (Sec. 4.1.3) — diversidade não cria capacidade ausente.
-- LLaMA-2 70B AQuA-RAT ZS: CoT 31,32; DIV-SE 32,00 (ganho desprezível).
-- Inconsistências entre texto e tabelas (Sec. 4.1.1; ex.: ganhos de AQuA-RAT no texto ≠ diferenças das Tabelas) foram apontadas pela extração; os números acima são os das tabelas.
+## Reported result
+- GPT-4 zero-shot (Table 1): Graph Coloring — CoT 15.0; SC-10 23.0; IDIV-SE 74.0; DIV-SE 97.0. Blocksworld 3 — CoT 70; SC-10 73; DIV-SE 94. Blocksworld 4/5 — CoT 40.0; SC-10 41.2; DIV-SE 69.6.
+- Table 2 (AQuA-RAT): GPT-4 ZS CoT 70.47 → DIV-SE 80.31; GPT-4 FS 71.90 → 84.25; GPT-3.5 ZS 59.00 → 72.83 (SC-5 63.37). CommonsenseQA: small gains (GPT-4 ZS 81.60 → 81.70).
+- GSM8K (App. C.2): GPT-4 94–95% → 96.3% with DIV-SE (small gain); IDIV-SE with no significant gain.
+- GPT-3.5 on Blocksworld (baselines 6% and 0.6%): no method helped (Sec. 4.1.3) — diversity does not create absent capability.
+- LLaMA-2 70B AQuA-RAT ZS: CoT 31.32; DIV-SE 32.00 (negligible gain).
+- Inconsistencies between text and tables (Sec. 4.1.1; e.g., AQuA-RAT gains in the text ≠ the differences in the Tables) were flagged by the extraction; the numbers above are those of the tables.
 
-## Custo/compute considerado?
-Sim, parcialmente. Custos estimados por preço de tokens (GPT-4 US$0,03/1k entrada, US$0,06/1k saída; GPT-3.5 US$0,003/US$0,004) e curvas de fronteira de Pareto (Figs. 1, 3). Os autores afirmam que DIV-SE/IDIV-SE são Pareto-ótimos e que, em Blocksworld 3 com GPT-4, a abordagem ZS supera SC-10 (FS) a custo 4× menor (Sec. 3). Contagens exatas de tokens só nas figuras (não extraídas).
+## Cost/compute considered?
+Yes, partially. Costs estimated from token prices (GPT-4 US$0.03/1k input, US$0.06/1k output; GPT-3.5 US$0.003/US$0.004) and Pareto-frontier curves (Figs. 1, 3). The authors claim that DIV-SE/IDIV-SE are Pareto-optimal and that, on Blocksworld 3 with GPT-4, the ZS approach beats SC-10 (FS) at 4× lower cost (Sec. 3). Exact token counts only in the figures (not extracted).
 
-## Ameaças à validade
-- Ganhos grandes concentrados em planejamento/grafo, onde Graph Coloring usa verificador externo sólido para escolher a solução — parte do ganho pode vir da verificação, não só da diversidade.
-- Inconsistências numéricas texto × tabela; avaliação open-source mínima.
-- Abordagens geradas pelo próprio modelo; a “diversidade” continua dentro de um único modelo.
-- Preprint sem venue confirmado.
+## Threats to validity
+- Large gains concentrated in planning/graph tasks, where Graph Coloring uses a solid external verifier to choose the solution — part of the gain may come from verification, not only from diversity.
+- Numerical inconsistencies text × table; minimal open-source evaluation.
+- Approaches generated by the model itself; the “diversity” remains within a single model.
+- Preprint with no confirmed venue.
 
-## Relevância para a pergunta central
-Mostra que, **com o mesmo modelo**, diversificar o método de solução rende mais por chamada do que repetir amostras (SC) — então “mais agentes” idênticos é um baseline fraco, e a unidade de valor é a diversidade de abordagem. Também indica limites: sem capacidade de base (GPT-3.5 em Blocksworld), N abordagens não ajudam; e ganhos somem em tarefas saturadas (GSM8K com GPT-4).
+## Relevance to the central question
+Shows that, **with the same model**, diversifying the solution method yields more per call than repeating samples (SC) — so identical “more agents” is a weak baseline, and the unit of value is diversity of approach. It also indicates limits: without base capability (GPT-3.5 on Blocksworld), N approaches do not help; and gains vanish on saturated tasks (GSM8K with GPT-4).
 
-## Hipóteses candidatas
-- candidata: para orçamento fixo de chamadas, k abordagens distintas > k amostras da mesma abordagem quando a tarefa admite estratégias de solução diferentes e há verificador; a vantagem desaparece em tarefas saturadas.
-- candidata: diversidade não compensa falta de capacidade — abaixo de uma acurácia individual mínima, nenhum tamanho de ensemble ajuda (limiar a estimar).
+## Candidate hypotheses
+- candidate: for a fixed call budget, k distinct approaches > k samples of the same approach when the task admits different solution strategies and there is a verifier; the advantage disappears on saturated tasks.
+- candidate: diversity does not compensate for lack of capability — below a minimum individual accuracy, no ensemble size helps (threshold to be estimated).
 
-## Verificação
-- Abertos em 2026-11-07: https://arxiv.org/abs/2310.07088 (v2, 23 fev 2024; sem venue/comments) e https://arxiv.org/html/2310.07088v2 (tabelas e seções).
-- Lacunas: custos exatos (só nas Figs. 1 e 3, não lidos numericamente); verificação manual das inconsistências apontadas não foi feita linha a linha.
+## Verification
+- Opened on 2026-11-07: https://arxiv.org/abs/2310.07088 (v2, 23 Feb 2024; no venue/comments) and https://arxiv.org/html/2310.07088v2 (tables and sections).
+- Gaps: exact costs (only in Figs. 1 and 3, not read numerically); manual line-by-line verification of the flagged inconsistencies was not done.

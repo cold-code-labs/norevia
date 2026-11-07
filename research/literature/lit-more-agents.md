@@ -2,49 +2,49 @@
 id: lit-more-agents
 title: 'More Agents Is All You Need — sampling-and-voting (Agent Forest)'
 area: literature
-evidence: relato-autores
-tags: [escalonamento-de-agentes, sampling-and-voting, dificuldade, ensemble]
+evidence: author-reported
+tags: [agent-scaling, sampling-and-voting, difficulty, ensemble]
 sources:
   - "Li, J., Zhang, Q., Yu, Y., Fu, Q. & Ye, D. (2024). More Agents Is All You Need. Transactions on Machine Learning Research (TMLR). arXiv:2402.05120v2. https://arxiv.org/abs/2402.05120v2"
-  - "Código: https://github.com/MoreAgentsIsAllYouNeed/AgentForest (não inspecionado)"
+  - "Code: https://github.com/MoreAgentsIsAllYouNeed/AgentForest (not inspected)"
 related: [lit-self-consistency, lit-more-llm-calls, lit-large-language-monkeys, lit-macnet]
 updated: 2026-11-07
 primary_opened: true
-version: "v2 (11 out. 2024); v1 3 fev. 2024"
-summary: Amostrar o mesmo LLM várias vezes e votar melhora o resultado com o número de "agentes", com ganho maior em tarefas mais difíceis e modelos mais fracos, mas sem análise de custo igualado.
+version: "v2 (11 Oct 2024); v1 3 Feb 2024"
+summary: Sampling the same LLM several times and voting improves the result with the number of "agents", with larger gains on harder tasks and weaker models, but without a matched-cost analysis.
 ---
 
-## Pergunta
-O desempenho de um LLM escala só com o número de instâncias ("agentes") que amostram respostas independentes e votam, sem colaboração estruturada?
+## Question
+Does an LLM's performance scale merely with the number of instances ("agents") that sample independent answers and vote, without structured collaboration?
 
-## Método
-"Agent Forest": N amostras independentes do mesmo modelo e prompt; voto majoritário por frequência (múltipla escolha) ou por similaridade BLEU (código) (Sec. 3, App. A.4). Ensemble de até 40 nos experimentos principais (Sec. 4). Modelos: Llama2-13B, Llama2-70B, GPT-3.5-Turbo; GPT-4 só como referência de agente único. Tarefas: GSM8K, MATH, Chess, MMLU, HumanEval. Também combinado com CoT, Zero-shot CoT, SPP, Debate e Reflection (Tabela 3). Análise de dificuldade numa tarefa sintética com GPT-3.5 (Sec. 6).
+## Method
+"Agent Forest": N independent samples from the same model and prompt; majority vote by frequency (multiple choice) or by BLEU similarity (code) (Sec. 3, App. A.4). Ensemble of up to 40 in the main experiments (Sec. 4). Models: Llama2-13B, Llama2-70B, GPT-3.5-Turbo; GPT-4 only as a single-agent reference. Tasks: GSM8K, MATH, Chess, MMLU, HumanEval. Also combined with CoT, Zero-shot CoT, SPP, Debate and Reflection (Table 3). Difficulty analysis on a synthetic task with GPT-3.5 (Sec. 6).
 
-## Resultado relatado
-- Tabela 2 (agente único → ensemble de 40): GSM8K Llama2-13B 0,35→0,59; Llama2-70B 0,54→0,74; GPT-3.5 0,73→0,85. MATH GPT-3.5 0,29→0,39. HumanEval GPT-3.5 0,67→0,73. Chess Llama2-70B 0,12→0,13. GPT-4 agente único: GSM8K 0,88, MATH 0,40.
-- Faixas de ganho absoluto (Sec. 5.1): GSM8K 12–24 pontos; MATH 6–10; Chess 1–4; MMLU 5–11; HumanEval 4–9.
-- Modelo menor com mais amostras supera o maior com uma só: Llama2-13B com ensemble (0,59) > Llama2-70B com uma amostra (0,54) no GSM8K. Segundo a legenda da Fig. 1, isso já ocorre com cerca de 15 amostras.
-- Ganho relativo maior em modelo mais fraco (Tabela 6): GSM8K +69% / +37% / +16% e MATH +200% / +120% / +34% para Llama2-13B / 70B / GPT-3.5.
-- Dificuldade (Sec. 6, Fig. 6): o ganho sobe e depois cai com a dificuldade intrínseca I. O pico fica em I=100–200; em I=400 o ganho diminui. O ganho cresce com o número de passos S (1→8) e com prior menor (1/4→1/32).
-- Hierárquico heterogêneo (GPT-3.5 filtra, GPT-4 decide): na tarefa sintética, a acurácia do GPT-4 com K=32 sobe de 35% para 47% (Fig. 7, à direita).
-- Debate combinado com o ensemble chega a 0 no HumanEval com Llama2-13B/70B. Os autores atribuem o resultado ao ruído de referenciar respostas de outros agentes (Sec. 5.2).
+## Reported result
+- Table 2 (single agent → ensemble of 40): GSM8K Llama2-13B 0.35→0.59; Llama2-70B 0.54→0.74; GPT-3.5 0.73→0.85. MATH GPT-3.5 0.29→0.39. HumanEval GPT-3.5 0.67→0.73. Chess Llama2-70B 0.12→0.13. GPT-4 single agent: GSM8K 0.88, MATH 0.40.
+- Absolute gain ranges (Sec. 5.1): GSM8K 12–24 points; MATH 6–10; Chess 1–4; MMLU 5–11; HumanEval 4–9.
+- A smaller model with more samples beats the larger one with a single sample: Llama2-13B with ensemble (0.59) > Llama2-70B with one sample (0.54) on GSM8K. According to the caption of Fig. 1, this already happens at about 15 samples.
+- Larger relative gain for the weaker model (Table 6): GSM8K +69% / +37% / +16% and MATH +200% / +120% / +34% for Llama2-13B / 70B / GPT-3.5.
+- Difficulty (Sec. 6, Fig. 6): the gain rises and then falls with intrinsic difficulty I. The peak is at I=100–200; at I=400 the gain decreases. The gain grows with the number of steps S (1→8) and with a smaller prior (1/4→1/32).
+- Heterogeneous hierarchical (GPT-3.5 filters, GPT-4 decides): on the synthetic task, GPT-4 accuracy with K=32 rises from 35% to 47% (Fig. 7, right).
+- Debate combined with the ensemble reaches 0 on HumanEval with Llama2-13B/70B. The authors attribute the result to the noise of referencing other agents' answers (Sec. 5.2).
 
-## Custo/compute considerado?
-Pouco. A Tabela 5 dá tokens por agente com GPT-3.5 (ex.: GSM8K 235±54; MATH 326±131; HumanEval 495±120); o custo cresce linearmente com N. O Debate foi limitado a 10 agentes por "overhead computacional significativo" (Sec. 4). Não há comparação com orçamento igualado entre "modelo maior" e "N amostras do menor" além da acurácia; a Sec. 7 só aponta o custo como limitação.
+## Cost/compute considered?
+Little. Table 5 gives tokens per agent with GPT-3.5 (e.g., GSM8K 235±54; MATH 326±131; HumanEval 495±120); cost grows linearly with N. Debate was limited to 10 agents due to "significant computational overhead" (Sec. 4). There is no matched-budget comparison between "larger model" and "N samples of the smaller one" beyond accuracy; Sec. 7 only points to cost as a limitation.
 
-## Ameaças à validade
-- A saturação em função de N não é quantificada. A ANOVA (Tabela 7) mostra que existem diferenças entre N ∈ {1,10,20,30,40}, não onde o ganho satura.
-- Número de execuções inconsistente: 10 na Sec. 4, 20 na Sec. 5.4.
-- A tarefa sintética de dificuldade é artificial, e a curva só foi medida com GPT-3.5.
-- Modelos de 2023, sem raciocínio estendido. Não se sabe se o ganho persiste com modelos de reasoning.
+## Threats to validity
+- Saturation as a function of N is not quantified. The ANOVA (Table 7) shows that differences exist among N ∈ {1,10,20,30,40}, not where the gain saturates.
+- Inconsistent number of runs: 10 in Sec. 4, 20 in Sec. 5.4.
+- The synthetic difficulty task is artificial, and the curve was measured only with GPT-3.5.
+- 2023 models, without extended reasoning. It is unknown whether the gain persists with reasoning models.
 
-## Relevância para a pergunta central
-É a linha de base mais simples de "N agentes": cooperação sem comunicação. Mostra que parte do ganho atribuído a swarms pode vir só de amostragem e voto. Também indica que o ganho depende da dificuldade de forma não monotônica, o que pede uma política adaptativa e não um N fixo.
+## Relevance to the central question
+It is the simplest "N agents" baseline: cooperation without communication. It shows that part of the gain attributed to swarms may come from sampling and voting alone. It also indicates that the gain depends on difficulty non-monotonically, which calls for an adaptive policy rather than a fixed N.
 
-## Hipóteses candidatas
-- candidata: o ganho de amostragem e voto é maior quando a capacidade individual está numa faixa intermediária; com tarefa trivial ou impossível para o modelo, o ganho some.
-- candidata: N amostras de um modelo menor substituem um modelo maior só abaixo de um limiar de dificuldade; acima dele, o modelo maior domina com custo igualado.
-- candidata: qualquer comparação de swarm deve incluir "Agent Forest com o mesmo número de chamadas" como controle mínimo.
+## Candidate hypotheses
+- candidate: the sampling-and-voting gain is largest when individual capability is in an intermediate range; with a task that is trivial or impossible for the model, the gain vanishes.
+- candidate: N samples of a smaller model substitute for a larger model only below a difficulty threshold; above it, the larger model dominates at matched cost.
+- candidate: any swarm comparison should include "Agent Forest with the same number of calls" as a minimum control.
 
-## Verificação
-Abertos em 2026-11-07: https://arxiv.org/abs/2402.05120 (página abs; v2 confirmada) e https://arxiv.org/html/2402.05120v2 (texto completo). Os números foram extraídos do HTML v2 com leitor automático (WebFetch); não houve conferência manual célula a célula no PDF. O PDF não pôde ser lido como texto. Código não inspecionado. Não identifiquei DOI de TMLR (lacuna).
+## Verification
+Opened on 2026-11-07: https://arxiv.org/abs/2402.05120 (abs page; v2 confirmed) and https://arxiv.org/html/2402.05120v2 (full text). The numbers were extracted from the v2 HTML with an automated reader (WebFetch); there was no manual cell-by-cell check against the PDF. The PDF could not be read as text. Code not inspected. I did not identify a TMLR DOI (gap).

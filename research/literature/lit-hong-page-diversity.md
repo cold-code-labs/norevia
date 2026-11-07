@@ -1,54 +1,54 @@
 ---
 id: lit-hong-page-diversity
-title: "Diversidade vs habilidade: grupos diversos superam grupos dos melhores (Hong & Page, PNAS 2004)"
+title: "Diversity vs ability: diverse groups outperform groups of the best (Hong & Page, PNAS 2004)"
 area: literature
-evidence: relato-autores
-tags: [diversidade, inteligencia-coletiva, busca-heuristica, composicao-de-grupo, classico]
+evidence: author-reported
+tags: [diversity, collective-intelligence, heuristic-search, group-composition, classic]
 sources:
   - "Hong, L. & Page, S. E. (2004). Groups of diverse problem solvers can outperform groups of high-ability problem solvers. Proc. Natl. Acad. Sci. USA 101(46):16385–16389. doi:10.1073/pnas.0403723101 — PMC528939: https://pmc.ncbi.nlm.nih.gov/articles/PMC528939/"
-related: [lit-correlated-errors, lit-great-models-think-alike, lit-diversity-of-thought, lit-diverse-debate-hegazy, lit-sintese]
+related: [lit-correlated-errors, lit-great-models-think-alike, lit-diversity-of-thought, lit-diverse-debate-hegazy, lit-synthesis]
 updated: 2026-11-07
 primary_opened: true
-version: "PNAS 101(46), 2004 (lido via PMC528939; página PNAS retornou 403)"
-summary: Em simulação de busca, 10 agentes aleatórios superaram os 10 melhores agentes (94,53 vs 92,56) porque os melhores convergem para heurísticas parecidas — resultado clássico, de modelo idealizado e contestado, não sobre LLMs.
+version: "PNAS 101(46), 2004 (read via PMC528939; PNAS page returned 403)"
+summary: In a search simulation, 10 random agents outperformed the 10 best agents (94.53 vs 92.56) because the best ones converge on similar heuristics — a classic result, from an idealized and contested model, not about LLMs.
 ---
 
-## Pergunta
-Um grupo de solucionadores escolhidos ao acaso (diversos) pode superar um grupo formado pelos individualmente melhores?
+## Question
+Can a group of solvers chosen at random (diverse) outperform a group formed by the individually best ones?
 
-## Método
-- Modelo: cada agente = perspectiva + heurística. Função-valor aleatória em n = 2.000 pontos num anel (valores uniformes em [0,100]); n variado de 200 a 10.000.
-- Heurística: checar k posições até l pontos à direita (1 ≤ k < l); principal k = 3, l = 12 ou 20 (variações l 6–20, k 2–7). Todos compartilham a mesma perspectiva; diferem só na heurística.
-- Grupo busca sequencialmente; para quando nenhum agente melhora a solução.
-- Compara os 10 ou 20 melhores contra 10 ou 20 aleatórios; 50 tentativas (Tabela 1).
-- Teorema 1: com condições de dificuldade, diversidade (para todo x não ótimo algum agente o melhora), unicidade do melhor agente e suporte pleno, existem N > N1 tais que, com probabilidade 1, N1 agentes aleatórios superam os N1 melhores de um pool de N. É resultado de existência; não dá tamanhos.
+## Method
+- Model: each agent = perspective + heuristic. Random value function on n = 2,000 points on a ring (values uniform in [0,100]); n varied from 200 to 10,000.
+- Heuristic: check k positions up to l points to the right (1 ≤ k < l); main setting k = 3, l = 12 or 20 (variations l 6–20, k 2–7). All share the same perspective; they differ only in heuristic.
+- The group searches sequentially; it stops when no agent improves the solution.
+- Compares the 10 or 20 best against 10 or 20 random; 50 trials (Table 1).
+- Theorem 1: under conditions of difficulty, diversity (for every non-optimal x some agent improves it), uniqueness of the best agent and full support, there exist N > N1 such that, with probability 1, N1 random agents outperform the N1 best from a pool of N. It is an existence result; it does not give sizes.
 
-## Resultado relatado (Tabela 1; desempenho = valor esperado do ponto de parada; diversidade em %)
-| Composição | Melhores: desempenho | Melhores: diversidade | Aleatórios: desempenho | Aleatórios: diversidade |
+## Reported result (Table 1; performance = expected value of the stopping point; diversity in %)
+| Composition | Best: performance | Best: diversity | Random: performance | Random: diversity |
 |---|---|---|---|---|
-| 10 agentes, l=12 | 92,56 (0,020) | 70,98 | 94,53 (0,007) | 90,99 |
-| 20 agentes, l=12 | 93,78 (0,015) | 74,95 | 94,72 (0,005) | 91,46 |
-| 10 agentes, l=20 | 93,52 (0,026) | 73,69 | 96,08 (0,006) | 94,31 |
+| 10 agents, l=12 | 92.56 (0.020) | 70.98 | 94.53 (0.007) | 90.99 |
+| 20 agents, l=12 | 93.78 (0.015) | 74.95 | 94.72 (0.005) | 91.46 |
+| 10 agents, l=20 | 93.52 (0.026) | 73.69 | 96.08 (0.006) | 94.31 |
 
-- Rodada ilustrativa (l=12, 10 agentes): melhor indivíduo 87,3; pior 84,3; grupo dos melhores 93,2 (diversidade 0,72); grupo aleatório 94,7 (0,92).
-- A vantagem do grupo aleatório **diminui de 10 para 20 agentes** (gap 1,97 → 0,94).
+- Illustrative run (l=12, 10 agents): best individual 87.3; worst 84.3; group of the best 93.2 (diversity 0.72); random group 94.7 (0.92).
+- The advantage of the random group **shrinks from 10 to 20 agents** (gap 1.97 → 0.94).
 
-## Custo/compute considerado?
-Não. Não há custo por agente nem por passo de busca; grupos têm o mesmo tamanho.
+## Cost/compute considered?
+No. There is no cost per agent or per search step; groups have the same size.
 
-## Ameaças à validade
-- Modelo abstrato de busca em anel; agentes compartilham a perspectiva; não há comunicação ruidosa nem erro de agregação.
-- Críticas publicadas existem (Thompson 2014, Notices of the AMS, questionando a força do teorema; e trabalho de replicação em eScholarship/CogSci sobre modelos de cadeias binárias), mas **não foram lidas nesta revisão** (PDFs não extraíveis/403) — registradas como lacuna, sem atribuir conteúdo.
-- Resultado é sobre composição com tamanho fixo, não sobre “mais agentes vs agente melhor”.
+## Threats to validity
+- Abstract model of search on a ring; agents share the perspective; there is no noisy communication or aggregation error.
+- Published critiques exist (Thompson 2014, Notices of the AMS, questioning the strength of the theorem; and replication work in eScholarship/CogSci on binary-string models), but **they were not read in this review** (PDFs not extractable/403) — recorded as a gap, without attributing content.
+- The result is about composition at fixed size, not about “more agents vs a better agent”.
 
-## Relevância para a pergunta central
-Fundamento teórico clássico para “diversidade importa mais que habilidade individual” — mas o mecanismo é específico: os melhores ficam parecidos, logo redundantes. Para LLMs, lit-correlated-errors e lit-great-models-think-alike mostram exatamente esse padrão (modelos melhores erram de forma parecida), o que torna o argumento plausível por analogia, **sem demonstrar** que se transfere: aqui agentes melhoram uma solução compartilhada sequencialmente (não votam), e a diversidade é de heurística de busca, não de dados de treino.
+## Relevance to the central question
+Classic theoretical foundation for “diversity matters more than individual ability” — but the mechanism is specific: the best ones become similar, hence redundant. For LLMs, lit-correlated-errors and lit-great-models-think-alike show exactly this pattern (better models err in similar ways), which makes the argument plausible by analogy, **without demonstrating** that it transfers: here agents sequentially improve a shared solution (they do not vote), and the diversity is in search heuristic, not in training data.
 
-## Hipóteses candidatas
-- candidata: em busca/melhoria iterativa compartilhada (ex.: depuração com testes), um micro-swarm de estratégias distintas supera N cópias do melhor agente, e o ganho decresce com N.
-- candidata: o benefício da diversidade cai quando o pool de estratégias é pequeno ou o grupo cresce (todos os grupos acabam cobrindo o espaço).
+## Candidate hypotheses
+- candidate: in shared iterative search/improvement (e.g., debugging with tests), a micro-swarm of distinct strategies outperforms N copies of the best agent, and the gain decreases with N.
+- candidate: the benefit of diversity falls when the pool of strategies is small or the group grows (all groups end up covering the space).
 
-## Verificação
-- Abertos em 2026-11-07: https://pmc.ncbi.nlm.nih.gov/articles/PMC528939/ (texto integral, Tabela 1, Teorema 1). https://doi.org/10.1073/pnas.0403723101 redireciona para pnas.org, que retornou HTTP 403.
-- Contagem do pool de heurísticas para l=12 (1.320) é cálculo pela fórmula, não texto do paper; para l=20 o paper declara 6.840.
-- Lacuna: críticas (Thompson 2014; replicação CogSci) não abertas com sucesso.
+## Verification
+- Opened on 2026-11-07: https://pmc.ncbi.nlm.nih.gov/articles/PMC528939/ (full text, Table 1, Theorem 1). https://doi.org/10.1073/pnas.0403723101 redirects to pnas.org, which returned HTTP 403.
+- The count of the heuristic pool for l=12 (1,320) is a calculation from the formula, not text from the paper; for l=20 the paper states 6,840.
+- Gap: critiques (Thompson 2014; CogSci replication) not successfully opened.

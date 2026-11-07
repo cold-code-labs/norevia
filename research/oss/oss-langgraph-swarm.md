@@ -1,59 +1,59 @@
 ---
 id: oss-langgraph-swarm
-title: LangGraph Swarm — handoff por Command(goto) e roteador de active_agent sobre StateGraph
+title: LangGraph Swarm — handoff via Command(goto) and active_agent router over StateGraph
 area: oss
-evidence: implementacao-observada
-tags: [handoff, langgraph, command-goto, active-agent, roteamento, historico-compartilhado, biblioteca-fina]
+evidence: observed-implementation
+tags: [handoff, langgraph, command-goto, active-agent, routing, shared-history, thin-library]
 sources:
-  - "https://github.com/langchain-ai/langgraph-swarm-py/tree/8956b138bbb475b00c98d040176dbb8da667c612 (commit inspecionado, clone raso em 2026-11-07)"
-related: [oss-langgraph-supervisor, oss-openai-swarm, oss-openai-agents-sdk, oss-crewai, oss-matriz, oss-padroes]
+  - "https://github.com/langchain-ai/langgraph-swarm-py/tree/8956b138bbb475b00c98d040176dbb8da667c612 (inspected commit, shallow clone on 2026-11-07)"
+related: [oss-langgraph-supervisor, oss-openai-swarm, oss-openai-agents-sdk, oss-crewai, oss-matrix, oss-patterns]
 updated: 2026-11-07
-summary: Camada fina (~400 linhas) sobre LangGraph em que cada agente é um nó, handoffs são tools que retornam Command(goto=agente, graph=PARENT) e um roteador em START retoma o último active_agent; término, limites e memória ficam inteiramente no núcleo do LangGraph, não inspecionado aqui.
+summary: Thin layer (~400 lines) over LangGraph in which each agent is a node, handoffs are tools that return Command(goto=agent, graph=PARENT) and a router at START resumes the last active_agent; termination, limits and memory live entirely in the LangGraph core, not inspected here.
 ---
 
-## Identificação
+## Identification
 
 - URL: https://github.com/langchain-ai/langgraph-swarm-py
-- SHA inspecionado: `8956b138bbb475b00c98d040176dbb8da667c612`
-- Data do commit: 2026-10-29T02:30:06+09:00
-- Licença: MIT ("MIT License / Copyright (c) 2025 LangChain, Inc."), lida em `LICENSE`.
-- Dependências declaradas: `langchain>=1,<2`, `langchain-core>=1,<2`, `langgraph>=1,<2` (`pyproject.toml`, bloco `[project]`) **[código]**.
-- Escopo efetivamente lido: `langgraph_swarm/swarm.py` (inteiro, 289 linhas), `langgraph_swarm/handoff.py` (inteiro, 117 linhas), `README.md` (introdução, Memory, How to customize), `tests/test_swarm.py` (nomes de testes). Não lidos: `examples/`. **O núcleo `langgraph` não está clonado: todo comportamento de execução (ciclo Pregel, `recursion_limit`, checkpointers, reducers) é marcado como não inspecionado.**
+- Inspected SHA: `8956b138bbb475b00c98d040176dbb8da667c612`
+- Commit date: 2026-10-29T02:30:06+09:00
+- License: MIT ("MIT License / Copyright (c) 2025 LangChain, Inc."), read in `LICENSE`.
+- Declared dependencies: `langchain>=1,<2`, `langchain-core>=1,<2`, `langgraph>=1,<2` (`pyproject.toml`, `[project]` block) **[code]**.
+- Scope actually read: `langgraph_swarm/swarm.py` (in full, 289 lines), `langgraph_swarm/handoff.py` (in full, 117 lines), `README.md` (introduction, Memory, How to customize), `tests/test_swarm.py` (test names). Not read: `examples/`. **The `langgraph` core is not cloned: all execution behavior (Pregel cycle, `recursion_limit`, checkpointers, reducers) is marked as not inspected.**
 
-## Mecanismo
+## Mechanism
 
-1. **Topologia de comunicação.** Grafo `StateGraph` com um nó por agente (`langgraph_swarm/swarm.py:L277-L287`); arestas de handoff declaradas a partir das tools de handoff de cada agente (`destinations=get_handoff_destinations(agent)`, `swarm.py:L283-L286`; extração por metadata em `langgraph_swarm/handoff.py:L99-L117`) **[código]**. Todos os agentes compartilham a mesma chave `messages` de `SwarmState(MessagesState)` (`swarm.py:L13-L19`); o README confirma que mensagens de **todos** os agentes são combinadas numa lista única (`README.md`, seção "Customizing agent implementation") **[código]/[README/docs]**.
-2. **Quem decide quem age.** O LLM do agente ativo, chamando `transfer_to_<agente>`; a tool devolve `Command(goto=agent_name, graph=Command.PARENT, update={"messages": [...], "active_agent": agent_name})` (`langgraph_swarm/handoff.py:L73-L93`) **[código]**. No início de cada invocação, um roteador condicional em `START` lê `state["active_agent"]` (default `default_active_agent`) (`swarm.py:L163-L166`) **[código]** — isso permite retomar o último agente entre turnos de conversa, desde que haja checkpointer (`README.md:L119`) **[README/docs]**. `active_agent` é restringido a `Literal[nomes]` (`swarm.py:L60-L67`) **[código]**.
-3. **Critério de término.** Nada no repositório: não há aresta para `END`, contador de passos, `recursion_limit` nem `max_*` — não encontrado (busca: `recursion_limit`, `END`, `max_`, `retry` em `*.py`) **[código]**. Presume-se que a execução termina quando o nó do agente retorna sem `Command` de handoff e que o limite de passos é o `recursion_limit` do LangGraph — **não inspecionado aqui** (núcleo ausente).
-4. **Verificação/aceite mecânico.** Nenhum: não há validação de saída, schema, guardrail ou teste no loop — não encontrado (busca: `guardrail`, `structured`, `response_format`). A única validação é estrutural na construção do grafo (nomes de agentes, `default_active_agent` existente, lista não vazia: `swarm.py:L255-L268`) **[código]**.
-5. **Controle de custo/orçamento.** Nenhum limite nem rastreamento de tokens no repositório (busca: `usage`, `token`, `max_`) **[código]**. Qualquer controle depende do núcleo LangGraph/LangChain (não inspecionado).
-6. **Memória.** Memória = estado do grafo (`messages` + `active_agent`) persistido por checkpointer/store passados em `.compile()` (`README.md:L89-L119`) **[README/docs]**; capacidade, janela ou eviction não são tratados neste repositório **[código]**.
-7. **Falhas/retry.** Não encontrado (busca: `retry`, `except`). `_get_field` levanta `TypeError` para estado de tipo não suportado (`handoff.py:L26-L31`) **[código]**.
-8. **Poda de comunicação.** Por default **nenhuma**: o handoff envia `[*state["messages"], tool_message]` — histórico completo do agente que transfere (`handoff.py:L90`); README: "by default `create_handoff_tool` passes **full** message history" **[código]/[README/docs]**. Poda é possível apenas por customização manual (handoff próprio, chaves de mensagens privadas por agente com wrapper de transformação) (`README.md`, seções "Customizing handoff tools" e "Customizing agent implementation") **[README/docs]**.
-9. **Elástico vs fixo.** Fixo: a lista de agentes é dada a `create_swarm` e compilada em nós (`swarm.py:L264-L287`) **[código]**.
-10. **Benchmark custo vs qualidade.** Nenhum; os testes (`test_basic_swarm`, `test_basic_swarm_pydantic`, `tests/test_swarm.py:L48`, `L151`) são funcionais **[teste]** (não executados).
+1. **Communication topology.** `StateGraph` graph with one node per agent (`langgraph_swarm/swarm.py:L277-L287`); handoff edges declared from each agent's handoff tools (`destinations=get_handoff_destinations(agent)`, `swarm.py:L283-L286`; extraction via metadata in `langgraph_swarm/handoff.py:L99-L117`) **[code]**. All agents share the same `messages` key of `SwarmState(MessagesState)` (`swarm.py:L13-L19`); the README confirms that messages from **all** agents are combined into a single list (`README.md`, section "Customizing agent implementation") **[code]/[README/docs]**.
+2. **Who decides who acts.** The LLM of the active agent, calling `transfer_to_<agent>`; the tool returns `Command(goto=agent_name, graph=Command.PARENT, update={"messages": [...], "active_agent": agent_name})` (`langgraph_swarm/handoff.py:L73-L93`) **[code]**. At the start of each invocation, a conditional router at `START` reads `state["active_agent"]` (default `default_active_agent`) (`swarm.py:L163-L166`) **[code]** — this makes it possible to resume the last agent across conversation turns, provided there is a checkpointer (`README.md:L119`) **[README/docs]**. `active_agent` is restricted to `Literal[names]` (`swarm.py:L60-L67`) **[code]**.
+3. **Termination criterion.** Nothing in the repository: there is no edge to `END`, step counter, `recursion_limit` or `max_*` — not found (search: `recursion_limit`, `END`, `max_`, `retry` in `*.py`) **[code]**. It is presumed that execution ends when the agent's node returns without a handoff `Command` and that the step limit is LangGraph's `recursion_limit` — **not inspected here** (core absent).
+4. **Mechanical verification/acceptance.** None: there is no output validation, schema, guardrail or test in the loop — not found (search: `guardrail`, `structured`, `response_format`). The only validation is structural, at graph construction (agent names, existing `default_active_agent`, non-empty list: `swarm.py:L255-L268`) **[code]**.
+5. **Cost/budget control.** No limit or token tracking in the repository (search: `usage`, `token`, `max_`) **[code]**. Any control depends on the LangGraph/LangChain core (not inspected).
+6. **Memory.** Memory = graph state (`messages` + `active_agent`) persisted by the checkpointer/store passed to `.compile()` (`README.md:L89-L119`) **[README/docs]**; capacity, window or eviction are not handled in this repository **[code]**.
+7. **Failures/retry.** Not found (search: `retry`, `except`). `_get_field` raises `TypeError` for an unsupported state type (`handoff.py:L26-L31`) **[code]**.
+8. **Communication pruning.** By default **none**: the handoff sends `[*state["messages"], tool_message]` — full history of the transferring agent (`handoff.py:L90`); README: "by default `create_handoff_tool` passes **full** message history" **[code]/[README/docs]**. Pruning is possible only through manual customization (own handoff, private per-agent message keys with a transformation wrapper) (`README.md`, sections "Customizing handoff tools" and "Customizing agent implementation") **[README/docs]**.
+9. **Elastic vs fixed.** Fixed: the list of agents is given to `create_swarm` and compiled into nodes (`swarm.py:L264-L287`) **[code]**.
+10. **Cost vs quality benchmark.** None; the tests (`test_basic_swarm`, `test_basic_swarm_pydantic`, `tests/test_swarm.py:L48`, `L151`) are functional **[test]** (not executed).
 
-## Evidência
+## Evidence
 
-Nenhum código foi executado; nenhum benchmark reproduzido. Leitura estática do SHA indicado. O comportamento de runtime depende do LangGraph, cuja implementação não foi inspecionada.
+No code was executed; no benchmark reproduced. Static reading of the indicated SHA. Runtime behavior depends on LangGraph, whose implementation was not inspected.
 
-## Análogo de engenharia
+## Engineering analogue
 
-*Hipótese de engenharia.* Representa o braço "N agentes em malha com estado compartilhado" do Swarm Efficiency Observatory com o mínimo de lógica própria: o custo marginal de cada handoff é reenviar todo o histórico combinado. Para medir custo por tarefa aceita, o aceite e o orçamento precisariam ser adicionados como nós extras do grafo (p.ex. nó verificador com testes antes de `END`) — nada disso vem pronto.
+*Engineering hypothesis.* Represents the "N agents in a mesh with shared state" arm of the Swarm Efficiency Observatory with the minimum of its own logic: the marginal cost of each handoff is resending the entire combined history. To measure cost per accepted task, acceptance and budget would have to be added as extra graph nodes (e.g. a verifier node with tests before `END`) — none of this comes ready-made.
 
-## Hipótese testável
+## Testable hypothesis
 
-- H1: Num swarm de 3 agentes com histórico compartilhado (default), tokens de entrada por tarefa aceita crescem superlinearmente com o nº de handoffs (expoente ≥ 1,5 num ajuste log-log), enquanto com histórico privado por agente (wrapper do README) crescem ~linearmente; taxa de aceite não difere em mais de 3 p.p.
-- H2: Sem `recursion_limit` explícito do chamador, pares de agentes com descrições sobrepostas produzem ciclos de handoff A↔B em ≥ 5% das tarefas ambíguas; medir via contagem de `active_agent` alternando ≥ 4 vezes.
+- H1: In a 3-agent swarm with shared history (default), input tokens per accepted task grow superlinearly with the number of handoffs (exponent ≥ 1.5 in a log-log fit), whereas with private per-agent history (README wrapper) they grow ~linearly; acceptance rate does not differ by more than 3 pp.
+- H2: Without an explicit `recursion_limit` from the caller, agent pairs with overlapping descriptions produce A↔B handoff cycles in ≥ 5% of ambiguous tasks; measure via count of `active_agent` alternating ≥ 4 times.
 
-## Limites/lacunas
+## Limits/gaps
 
-- Núcleo LangGraph não clonado: término, `recursion_limit`, semântica de reducers (`add_messages`, deduplicação por id) e persistência não verificados.
-- `examples/` não lidos.
-- Não verificado o comportamento quando um agente emite múltiplos handoffs paralelos no mesmo passo.
+- LangGraph core not cloned: termination, `recursion_limit`, reducer semantics (`add_messages`, deduplication by id) and persistence not verified.
+- `examples/` not read.
+- Behavior when an agent emits multiple parallel handoffs in the same step not verified.
 
-## Linha da matriz
+## Matrix row
 
-| Término explícito | Aceite verificável | Orçamento técnico (não só prompt) | Poda de comunicação | Elástico (tamanho adapta) | Memória limitada | Licença |
+| Explicit termination | Verifiable acceptance | Technical budget (not just prompt) | Communication pruning | Elastic (size adapts) | Bounded memory | License |
 |---|---|---|---|---|---|---|
-| ? nada no repo (busca `recursion_limit`/`END`/`max_`); depende do núcleo LangGraph, não inspecionado | — sem validação/guardrail (`langgraph_swarm/swarm.py`, `handoff.py`) | — nenhum limite/usage no repo | — default envia histórico completo (`langgraph_swarm/handoff.py:L90`); poda só por customização manual | — agentes fixos na construção (`langgraph_swarm/swarm.py:L277-L287`) | ? delegado a checkpointer/store do LangGraph (`README.md:L89-L119`), não inspecionado | MIT (`LICENSE`) |
+| ? nothing in the repo (search `recursion_limit`/`END`/`max_`); depends on the LangGraph core, not inspected | — no validation/guardrail (`langgraph_swarm/swarm.py`, `handoff.py`) | — no limit/usage in the repo | — default sends full history (`langgraph_swarm/handoff.py:L90`); pruning only via manual customization | — agents fixed at construction (`langgraph_swarm/swarm.py:L277-L287`) | ? delegated to LangGraph checkpointer/store (`README.md:L89-L119`), not inspected | MIT (`LICENSE`) |

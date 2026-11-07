@@ -1,60 +1,60 @@
 ---
 id: oss-openai-swarm
-title: OpenAI Swarm — handoff como função que retorna Agent num loop único de chat completions
+title: OpenAI Swarm — handoff as a function that returns Agent in a single chat-completions loop
 area: oss
-evidence: implementacao-observada
-tags: [handoff, orquestracao-leve, loop-de-agente, context-variables, educacional, sem-orcamento]
+evidence: observed-implementation
+tags: [handoff, lightweight-orchestration, agent-loop, context-variables, educational, no-budget]
 sources:
-  - "https://github.com/openai/swarm/tree/6af0b4caf37dca4526dfd98e9fbd8ce36e7eeb22 (commit inspecionado, clone raso em 2026-11-07)"
-related: [oss-openai-agents-sdk, oss-langgraph-swarm, oss-langgraph-supervisor, oss-crewai, oss-autogen, oss-matriz, oss-padroes]
+  - "https://github.com/openai/swarm/tree/6af0b4caf37dca4526dfd98e9fbd8ce36e7eeb22 (inspected commit, shallow clone on 2026-11-07)"
+related: [oss-openai-agents-sdk, oss-langgraph-swarm, oss-langgraph-supervisor, oss-crewai, oss-autogen, oss-matrix, oss-patterns]
 updated: 2026-11-07
-summary: Biblioteca educacional mínima (~420 linhas) em que um único loop alterna o agente ativo quando uma tool retorna outro Agent, encerrando quando não há tool calls; não há orçamento, retry, validação de saída nem poda de histórico.
+summary: Minimal educational library (~420 lines) in which a single loop switches the active agent when a tool returns another Agent, ending when there are no tool calls; there is no budget, retry, output validation or history pruning.
 ---
 
-## Identificação
+## Identification
 
 - URL: https://github.com/openai/swarm
-- SHA inspecionado: `6af0b4caf37dca4526dfd98e9fbd8ce36e7eeb22`
-- Data do commit (`git log -1 --format=%cI`): 2026-04-15T13:10:28-04:00
-- Licença: MIT ("MIT License / Copyright (c) 2024 OpenAI"), lida em `LICENSE`.
-- Status declarado: `README.md:L3` "Swarm (experimental, educational)"; `README.md:L6-L8` afirma que foi substituído pelo OpenAI Agents SDK e recomenda migrar para uso em produção **[README/docs]**.
-- Escopo efetivamente lido: `swarm/core.py` (inteiro, 292 linhas), `swarm/types.py` (inteiro), `swarm/util.py` (inteiro), `README.md` (trechos via busca), `tests/test_core.py` (nomes de testes), `examples/triage_agent/evals.py` e `evals_util.py` (início). Não lidos: `swarm/repl/`, demais exemplos.
+- Inspected SHA: `6af0b4caf37dca4526dfd98e9fbd8ce36e7eeb22`
+- Commit date (`git log -1 --format=%cI`): 2026-04-15T13:10:28-04:00
+- License: MIT ("MIT License / Copyright (c) 2024 OpenAI"), read in `LICENSE`.
+- Declared status: `README.md:L3` "Swarm (experimental, educational)"; `README.md:L6-L8` states that it has been replaced by the OpenAI Agents SDK and recommends migrating for production use **[README/docs]**.
+- Scope actually read: `swarm/core.py` (in full, 292 lines), `swarm/types.py` (in full), `swarm/util.py` (in full), `README.md` (excerpts via search), `tests/test_core.py` (test names), `examples/triage_agent/evals.py` and `evals_util.py` (beginning). Not read: `swarm/repl/`, other examples.
 
-## Mecanismo
+## Mechanism
 
-1. **Topologia de comunicação.** Um único histórico linear compartilhado; em cada iteração apenas o `active_agent` é chamado com `system = instructions` + histórico inteiro (`swarm/core.py:L41-L47`) **[código]**. O grafo de handoffs é implícito: qualquer função de um agente pode devolver outro `Agent` (`swarm/core.py:L76-L80`) **[código]**. Não há broadcast nem paralelismo entre agentes; só tool calls paralelas dentro de um turno (`parallel_tool_calls: bool = True`, `swarm/types.py:L20`; repassado em `swarm/core.py:L66-L67`) **[código]**.
-2. **Quem decide quem age.** O LLM do agente ativo, ao escolher chamar uma função que retorna `Agent`/`Result(agent=...)`; o loop troca `active_agent` (`swarm/core.py:L134-L135`, `L285-L286`) **[código]**. Se várias tool calls do mesmo turno retornarem agentes, prevalece o último processado (sobrescrita em `L134-L135`) **[código]**.
-3. **Critério de término.** (a) mensagem do modelo sem tool calls ou `execute_tools=False` → `break` (`swarm/core.py:L275-L277`; streaming `L198-L200`) **[código]**; (b) `max_turns`, cujo default é infinito: `max_turns: int = float("inf")` (`swarm/core.py:L239`, também `L146`) **[código]**. Observação: a condição `len(history) - init_len < max_turns` (`swarm/core.py:L257`) conta **mensagens** acrescentadas (assistente + mensagens de tool), não turnos, embora o README descreva "conversational turns" (`README.md:L133`) **[código]/[README/docs]**.
-4. **Verificação/aceite mecânico.** Não há validação de saída final, schema de output nem guardrails no núcleo — não encontrado no código inspecionado (busca: `guardrail`, `validate`, `output_type`, `schema` em `swarm/`). A única checagem é estrutural: tool inexistente vira mensagem `"Error: Tool {name} not found."` (`swarm/core.py:L103-L113`) **[código]**. Os evals de exemplo usam LLM-judge (`gpt-4o` via `instructor`, `examples/triage_agent/evals_util.py:L14-L23`) e asserts determinísticos sobre o nome da tool chamada (`examples/triage_agent/evals.py:L44-L48`) **[exemplo]**.
-5. **Controle de custo/orçamento.** Nenhum limite de tokens/custo/chamadas; nenhum rastreamento de usage — não encontrado (busca: `usage`, `token`, `cost`, `budget`). Único freio é `max_turns` (default ∞) **[código]**.
-6. **Memória.** `context_variables` (dict) copiado por `deepcopy` no início (`swarm/core.py:L253`) e atualizado por `Result.context_variables` (`swarm/core.py:L133`, `L284`) **[código]**; o histórico cresce sem limite e é reenviado inteiro a cada chamada (`swarm/core.py:L47`, `L271-L273`, `L283`) **[código]**. README: "stateless between calls" (`README.md:L81`) **[README/docs]**. Sem janela, sumarização ou eviction.
-7. **Falhas/retry.** Sem retry: a chamada `self.client.chat.completions.create(**create_params)` (`swarm/core.py:L69`) não tem tratamento; `json.loads` dos argumentos (`L114`) e a execução da função (`L122`) não estão em `try`, logo exceções propagam e abortam o run **[código]**. Só a conversão do resultado para `str` tem `try` e relança `TypeError` (`swarm/core.py:L82-L87`) **[código]**.
-8. **Poda de comunicação.** Nenhuma; o histórico completo é sempre enviado ao próximo agente (`swarm/core.py:L47`). `context_variables` são ocultados do schema das tools (`swarm/core.py:L51-L56`) — isso é ocultação de parâmetro, não poda de histórico **[código]**.
-9. **Elástico vs fixo.** Conjunto de agentes definido pelo usuário em Python; um agente pode retornar um `Agent` construído dinamicamente, mas não há mecanismo de dimensionamento por demanda nem execução simultânea de N agentes **[código]** (inferência a partir de `swarm/core.py:L76-L80`).
-10. **Benchmark custo vs qualidade.** Nenhum. Há evals de exemplo (LLM-judge + asserts de roteamento) e pasta `logs/` com sessões JSON de 2024 não analisadas **[exemplo]**.
+1. **Communication topology.** A single shared linear history; in each iteration only the `active_agent` is called with `system = instructions` + the entire history (`swarm/core.py:L41-L47`) **[code]**. The handoff graph is implicit: any function of an agent can return another `Agent` (`swarm/core.py:L76-L80`) **[code]**. There is no broadcast and no parallelism between agents; only parallel tool calls within a turn (`parallel_tool_calls: bool = True`, `swarm/types.py:L20`; passed on in `swarm/core.py:L66-L67`) **[code]**.
+2. **Who decides who acts.** The LLM of the active agent, when it chooses to call a function that returns `Agent`/`Result(agent=...)`; the loop switches `active_agent` (`swarm/core.py:L134-L135`, `L285-L286`) **[code]**. If several tool calls in the same turn return agents, the last one processed prevails (overwrite in `L134-L135`) **[code]**.
+3. **Termination criterion.** (a) model message without tool calls or `execute_tools=False` → `break` (`swarm/core.py:L275-L277`; streaming `L198-L200`) **[code]**; (b) `max_turns`, whose default is infinite: `max_turns: int = float("inf")` (`swarm/core.py:L239`, also `L146`) **[code]**. Note: the condition `len(history) - init_len < max_turns` (`swarm/core.py:L257`) counts appended **messages** (assistant + tool messages), not turns, although the README describes "conversational turns" (`README.md:L133`) **[code]/[README/docs]**.
+4. **Mechanical verification/acceptance.** There is no final-output validation, output schema or guardrails in the core — not found in the inspected code (search: `guardrail`, `validate`, `output_type`, `schema` in `swarm/`). The only check is structural: a nonexistent tool becomes the message `"Error: Tool {name} not found."` (`swarm/core.py:L103-L113`) **[code]**. The example evals use an LLM-judge (`gpt-4o` via `instructor`, `examples/triage_agent/evals_util.py:L14-L23`) and deterministic asserts on the name of the called tool (`examples/triage_agent/evals.py:L44-L48`) **[example]**.
+5. **Cost/budget control.** No token/cost/call limit; no usage tracking — not found (search: `usage`, `token`, `cost`, `budget`). The only brake is `max_turns` (default ∞) **[code]**.
+6. **Memory.** `context_variables` (dict) copied by `deepcopy` at the start (`swarm/core.py:L253`) and updated by `Result.context_variables` (`swarm/core.py:L133`, `L284`) **[code]**; the history grows without limit and is resent in full on every call (`swarm/core.py:L47`, `L271-L273`, `L283`) **[code]**. README: "stateless between calls" (`README.md:L81`) **[README/docs]**. No window, summarization or eviction.
+7. **Failures/retry.** No retry: the call `self.client.chat.completions.create(**create_params)` (`swarm/core.py:L69`) has no handling; the `json.loads` of the arguments (`L114`) and the function execution (`L122`) are not in a `try`, so exceptions propagate and abort the run **[code]**. Only the conversion of the result to `str` has a `try` and re-raises `TypeError` (`swarm/core.py:L82-L87`) **[code]**.
+8. **Communication pruning.** None; the full history is always sent to the next agent (`swarm/core.py:L47`). `context_variables` are hidden from the tools' schema (`swarm/core.py:L51-L56`) — this is parameter hiding, not history pruning **[code]**.
+9. **Elastic vs fixed.** Set of agents defined by the user in Python; an agent can return a dynamically constructed `Agent`, but there is no demand-based sizing mechanism or simultaneous execution of N agents **[code]** (inference from `swarm/core.py:L76-L80`).
+10. **Cost vs quality benchmark.** None. There are example evals (LLM-judge + routing asserts) and a `logs/` folder with JSON sessions from 2024, not analyzed **[example]**.
 
-## Evidência
+## Evidence
 
-Nenhum código foi executado; nenhum benchmark reproduzido. Todas as afirmações vêm de leitura estática no SHA indicado; números e status vêm do README (relato dos autores).
+No code was executed; no benchmark reproduced. All statements come from static reading at the indicated SHA; numbers and status come from the README (author report).
 
-## Análogo de engenharia
+## Engineering analogue
 
-*Hipótese de engenharia.* No Swarm Efficiency Observatory, o Swarm serve como **linha de base mínima de "N agentes por handoff"**: mesmo modelo, mesmo histórico, troca de prompt/tools. Como o histórico inteiro é reenviado a cada chamada e não há poda, o custo por tarefa aceita deve crescer aproximadamente com (nº de chamadas × tamanho do histórico), sem ganho de paralelismo. Útil como controle contra "1 agente forte com todas as tools", isolando o efeito puro da especialização de instruções.
+*Engineering hypothesis.* In the Swarm Efficiency Observatory, Swarm serves as a **minimal baseline of "N agents via handoff"**: same model, same history, swap of prompt/tools. Since the entire history is resent on every call and there is no pruning, the cost per accepted task should grow roughly with (number of calls × history size), with no parallelism gain. Useful as a control against "1 strong agent with all the tools", isolating the pure effect of instruction specialization.
 
-## Hipótese testável
+## Testable hypothesis
 
-- H1: Em tarefas verificáveis (ex.: roteamento + resposta com testes), um arranjo Swarm com triagem + 2 especialistas consome ≥ 20% mais tokens de entrada por tarefa aceita que um agente único com as mesmas tools, sem aumento estatisticamente significativo da taxa de aceite. Métrica: tokens de entrada/tarefa aceita, taxa de aceite (teste automático), n ≥ 100 tarefas.
-- H2: Com `max_turns` infinito (default), uma fração não-nula de execuções com tools defeituosas não termina dentro de um limite externo de wall-clock; impor `max_turns` finito reduz o custo de cauda (p95 de tokens) sem reduzir o aceite.
+- H1: On verifiable tasks (e.g. routing + answer with tests), a Swarm arrangement with triage + 2 specialists consumes ≥ 20% more input tokens per accepted task than a single agent with the same tools, with no statistically significant increase in acceptance rate. Metric: input tokens/accepted task, acceptance rate (automatic test), n ≥ 100 tasks.
+- H2: With infinite `max_turns` (default), a non-zero fraction of runs with faulty tools does not terminate within an external wall-clock limit; imposing a finite `max_turns` reduces tail cost (p95 of tokens) without reducing acceptance.
 
-## Limites/lacunas
+## Limits/gaps
 
-- `swarm/repl/repl.py` e exemplos complexos (airline, support_bot) não lidos.
-- Comportamento real do loop com modelos atuais não verificado (nada executado).
-- Ambiguidade documentação×código em `max_turns` (mensagens vs turnos) identificada apenas por leitura.
-- Projeto declarado como substituído (`README.md:L6`); não representa prática de produção.
+- `swarm/repl/repl.py` and complex examples (airline, support_bot) not read.
+- Actual behavior of the loop with current models not verified (nothing executed).
+- Documentation×code ambiguity in `max_turns` (messages vs turns) identified only by reading.
+- Project declared as replaced (`README.md:L6`); does not represent production practice.
 
-## Linha da matriz
+## Matrix row
 
-| Término explícito | Aceite verificável | Orçamento técnico (não só prompt) | Poda de comunicação | Elástico (tamanho adapta) | Memória limitada | Licença |
+| Explicit termination | Verifiable acceptance | Technical budget (not just prompt) | Communication pruning | Elastic (size adapts) | Bounded memory | License |
 |---|---|---|---|---|---|---|
-| ✓ (só como config) — `max_turns` é parâmetro de `run` mas default `float("inf")` (`swarm/core.py:L239`); parada natural depende do LLM não emitir tool calls (`L275-L277`) | — sem validação de saída; evals só em exemplos (LLM-judge) | — nenhum limite/usage; só `max_turns` (∞) | — histórico completo sempre reenviado (`L47`) | — agentes fixos definidos em código | — histórico sem limite; `context_variables` dict livre | MIT (`LICENSE`) |
+| ✓ (config only) — `max_turns` is a parameter of `run` but default `float("inf")` (`swarm/core.py:L239`); natural stop depends on the LLM not emitting tool calls (`L275-L277`) | — no output validation; evals only in examples (LLM-judge) | — no limit/usage; only `max_turns` (∞) | — full history always resent (`L47`) | — fixed agents defined in code | — unbounded history; free-form `context_variables` dict | MIT (`LICENSE`) |
