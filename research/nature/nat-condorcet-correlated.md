@@ -1,39 +1,39 @@
 ---
 id: nat-condorcet-correlated
-title: Condorcet com votos correlacionados — teto de acurácia e "n efetivo"
+title: Condorcet with correlated votes — accuracy ceiling and "effective n"
 area: nature
-evidence: validacao-local
-tags: [teoria-coletiva, correlacao, teto, quando-parar-de-expandir, diversidade]
+evidence: local-validation
+tags: [collective-theory, correlation, ceiling, when-to-stop-expanding, diversity]
 sources:
   - "Ladha, K. K. (1992). The Condorcet jury theorem, free speech, and correlated votes. American Journal of Political Science 36(3):617ff. doi:10.2307/2111584"
   - "Boland, P. J. (1989). Majority systems and the Condorcet jury theorem. The Statistician 38(3):181ff. doi:10.2307/2348873"
-  - "Cálculo local: research/nature/calc/teoria-coletiva.js → calc/saida-teoria-coletiva.txt (beta-binomial exata + integração numérica)"
-related: [nat-condorcet-jury, nat-small-groups-correlated-cues, nat-scale-free-correlation, lit-correlated-errors, lit-great-models-think-alike, sim-voto-correlacionado, nat-candidatas]
+  - "Local calculation: research/nature/calc/collective-theory.js → calc/collective-theory-output.txt (exact beta-binomial + numerical integration)"
+related: [nat-condorcet-jury, nat-small-groups-correlated-cues, nat-scale-free-correlation, lit-correlated-errors, lit-great-models-think-alike, sim-correlated-vote, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumos de Ladha 1992 e Boland 1989 lidos (OpenAlex; o de Ladha truncado). Números abaixo recalculados localmente com um modelo de correlação escolhido por nós (beta-binomial), não o de Ladha."
-summary: Com votos positivamente correlacionados, a maioria não converge para 1: com p = 0,6 e correlação 0,1, nem infinitos votantes passam de ~74% — e a variância da média se comporta como se houvesse no máximo 1/ρ votantes.
+verification: "Abstracts of Ladha 1992 and Boland 1989 read (OpenAlex; Ladha's truncated). Numbers below recalculated locally with a correlation model chosen by us (beta-binomial), not Ladha's."
+summary: With positively correlated votes, the majority does not converge to 1: with p = 0.6 and correlation 0.1, not even infinitely many voters exceed ~74% — and the variance of the mean behaves as if there were at most 1/ρ voters.
 ---
 
-## Mecanismo
-- **Ladha (1992, resumo):** o teorema assume votos **independentes** e objetivo comum; Ladha generaliza para **votos correlacionados**: para grupos grandes, o resultado de Condorcet vale sob condições bastante gerais; **para grupos pequenos, as condições são severas** (resumo truncado; condições exatas não conferidas).
-- **Cálculo local (modelo beta-binomial, p = 0,6, correlação intra-classe ρ):**
-  - ρ = 0,05: n = 5: 0,667; 21: 0,745; 101: 0,795; **limite n → ∞: 0,814**.
-  - ρ = 0,1: n = 5: 0,655; 21: 0,704; 101: 0,728; **limite: 0,736**.
-  - ρ = 0,3: n = 5: 0,626; 21: 0,638; 101: 0,642; **limite: 0,643**.
-  - Ou seja, há um **teto** < 1 que depende de ρ; com ρ = 0,3, 100 votantes ganham só ~4 p.p. sobre 1.
-- **"n efetivo" (identidade estatística da variância da média de variáveis equicorrelacionadas; derivação, não citação):** n_ef = n / (1 + (n − 1)ρ), com teto **1/ρ**. Ex.: ρ = 0,1 → n = 10 vale 5,3; n = 1000 vale 9,9. ρ = 0,3 → teto 3,3.
+## Mechanism
+- **Ladha (1992, abstract):** the theorem assumes **independent** votes and a common objective; Ladha generalizes to **correlated votes**: for large groups, Condorcet's result holds under fairly general conditions; **for small groups, the conditions are severe** (abstract truncated; exact conditions not checked).
+- **Local calculation (beta-binomial model, p = 0.6, intra-class correlation ρ):**
+  - ρ = 0.05: n = 5: 0.667; 21: 0.745; 101: 0.795; **limit n → ∞: 0.814**.
+  - ρ = 0.1: n = 5: 0.655; 21: 0.704; 101: 0.728; **limit: 0.736**.
+  - ρ = 0.3: n = 5: 0.626; 21: 0.638; 101: 0.642; **limit: 0.643**.
+  - That is, there is a **ceiling** < 1 that depends on ρ; with ρ = 0.3, 100 voters gain only ~4 pp over 1.
+- **"Effective n" (statistical identity for the variance of the mean of equicorrelated variables; a derivation, not a citation):** n_eff = n / (1 + (n − 1)ρ), with ceiling **1/ρ**. E.g.: ρ = 0.1 → n = 10 is worth 5.3; n = 1000 is worth 9.9. ρ = 0.3 → ceiling 3.3.
 
-## Evidência
-`validacao-local` da matemática (modelo de correlação escolhido por nós). O teorema de Ladha é `relato-autores`. Não é evidência empírica sobre LLMs — para isso, ver `lit-correlated-errors`.
+## Evidence
+`local-validation` of the mathematics (correlation model chosen by us) — analytical, not empirical. Ladha's theorem is `author-reported`. It is not empirical evidence about LLMs — for that, see `lit-correlated-errors`.
 
-## Análogo de engenharia
-Para N cópias do mesmo modelo, ρ entre erros é provavelmente alto (cópias "pensam igual"). O teto e o n efetivo dão uma **regra de parada de expansão**: se ρ estimado ≈ 0,3, não há razão para mais que ~3 votantes; aumentar diversidade real (modelos/evidências diferentes) para reduzir ρ vale mais que aumentar N. Complementa `sim-voto-correlacionado` (cópula gaussiana) com outro modelo de correlação — se as conclusões coincidirem, ganham robustez a escolha de modelo.
+## Engineering analogue
+For N copies of the same model, ρ between errors is probably high (copies "think alike"). The ceiling and the effective n give an **expansion stopping rule**: if estimated ρ ≈ 0.3, there is no reason for more than ~3 voters; increasing real diversity (different models/evidence) to reduce ρ is worth more than increasing N. Complements `sim-correlated-vote` (Gaussian copula) with another correlation model — if the conclusions coincide, they gain robustness to the choice of model.
 
-## Hipótese testável
-- **Variável:** N ∈ {1, 3, 5, 9, 15} cópias do mesmo modelo vs N agentes heterogêneos (modelos/prompts/evidências distintos); ρ medido entre pares de erros em conjunto de calibração.
-- **Métrica:** acurácia do voto; ρ estimado; ajuste da curva a um modelo beta-binomial com (p, ρ) estimados.
-- **Previsão:** (a) o ganho do voto satura perto de N ≈ 1/ρ̂ (± 50%); (b) a curva prevista por (p̂, ρ̂) acerta a acurácia observada em ± 3 p.p. para N ≤ 15; (c) heterogêneos têm ρ̂ menor e teto maior.
-- **Refutação:** se a acurácia continuar subindo bem além de N ≈ 1/ρ̂, ou se o modelo de 2 parâmetros errar > 5 p.p. (correlação de LLMs não é bem descrita por ρ único — p.ex. depende da dificuldade).
+## Testable hypothesis
+- **Variable:** N ∈ {1, 3, 5, 9, 15} copies of the same model vs N heterogeneous agents (distinct models/prompts/evidence); ρ measured between pairs of errors on a calibration set.
+- **Metric:** voting accuracy; estimated ρ; fit of the curve to a beta-binomial model with estimated (p, ρ).
+- **Prediction:** (a) the voting gain saturates near N ≈ 1/ρ̂ (± 50%); (b) the curve predicted by (p̂, ρ̂) matches the observed accuracy within ± 3 pp for N ≤ 15; (c) heterogeneous agents have lower ρ̂ and a higher ceiling.
+- **Refutation:** if accuracy keeps rising well beyond N ≈ 1/ρ̂, or if the 2-parameter model is off by > 5 pp (LLM correlation is not well described by a single ρ — e.g. it depends on difficulty).
 
-## Limites da transferência
-A correlação real varia com a tarefa (erros concentrados em itens difíceis); ρ único é simplificação. Beta-binomial é uma escolha de modelo entre várias (cópula gaussiana, mistura por dificuldade); os números são ilustrativos da forma, não estimativas de LLMs.
+## Limits of transfer
+Real correlation varies with the task (errors concentrated on hard items); a single ρ is a simplification. Beta-binomial is one model choice among several (Gaussian copula, mixture by difficulty); the numbers illustrate the shape, they are not estimates for LLMs.

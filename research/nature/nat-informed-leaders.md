@@ -1,35 +1,35 @@
 ---
 id: nat-informed-leaders
-title: Poucos informados guiam grupos grandes; desinformados devolvem o controle à maioria
+title: A few informed individuals guide large groups; uninformed ones return control to the majority
 area: nature
-evidence: relato-autores
-tags: [lideranca, informacao-assimetrica, verificador, minoria-opinativa, quanto-cooperar]
+evidence: author-reported
+tags: [leadership, asymmetric-information, verifier, opinionated-minority, how-much-to-cooperate]
 sources:
   - "Couzin, I. D., Krause, J., Franks, N. R. & Levin, S. A. (2005). Effective leadership and decision-making in animal groups on the move. Nature 433:513–516. doi:10.1038/nature03236"
   - "Couzin, I. D., Ioannou, C. C., Demirel, G., Gross, T., Torney, C. J., Hartnett, A., Conradt, L., Levin, S. A. & Leonard, N. E. (2011). Uninformed individuals promote democratic consensus in animal groups. Science 334(6062):1578–1580. doi:10.1126/science.1210280"
-related: [nat-small-groups-correlated-cues, nat-quorum-nest-bees, lit-debate-or-vote, lit-multiagent-debate-du, nat-candidatas, sim-verificador]
+related: [nat-small-groups-correlated-cues, nat-quorum-nest-bees, lit-debate-or-vote, lit-multiagent-debate-du, nat-candidates, sim-verifier]
 updated: 2026-11-07
-verificacao: "Couzin 2005: texto integral extraído de PDF (arquivo de curso Princeton cs/COS597C). Couzin 2011: resumo lido (OpenAlex). Números de figuras (ex.: % de informados por N) não extraídos → lacuna."
-summary: Sem sinalização e sem saber quem sabe, grupos em movimento seguem uma pequena minoria informada — tanto menor (em proporção) quanto maior o grupo; e indivíduos sem opinião protegem a maioria contra uma minoria radical.
+verification: "Couzin 2005: full text extracted from PDF (Princeton course archive cs/COS597C). Couzin 2011: abstract read (OpenAlex). Figure values (e.g. % informed by N) not extracted → gap."
+summary: Without signalling and without knowing who knows, moving groups follow a small informed minority — one that is proportionally smaller the larger the group; and individuals without an opinion protect the majority against an extreme minority.
 ---
 
-## Mecanismo
-- **Couzin et al. 2005 (modelo):** indivíduos com regras de repulsão/alinhamento/atração; uma proporção p recebe uma direção preferida g, com peso ω. Resultado (texto): para um dado tamanho, a acurácia cresce com p; **quanto maior o grupo, menor a proporção de informados necessária** para uma dada acurácia; para grupos suficientemente grandes, **uma proporção muito pequena** basta para acurácia próxima do máximo. Há **trade-off** entre acurácia do movimento e probabilidade de **fragmentação** do grupo ao aumentar ω.
-- Com dois subconjuntos informados de preferências diferentes: se as preferências diferem pouco, o grupo segue a média; se diferem muito, escolhe uma delas; se um subconjunto é maior, o grupo segue a **maioria, mesmo pequena**. Uma realimentação em ω (reforço quando o indivíduo se move na direção preferida, dentro de 20°) permite consenso em vez de média.
-- **Couzin et al. 2011 (teoria + experimento, resumo):** uma minoria fortemente opinativa pode ditar a escolha do grupo, mas a presença de **indivíduos desinformados inibe espontaneamente** esse efeito e **devolve o controle à maioria numérica**.
-- Percentuais exatos (ex.: proporção de informados para N = 200) estão em figuras → `lacuna`.
+## Mechanism
+- **Couzin et al. 2005 (model):** individuals follow repulsion/alignment/attraction rules; a proportion p receives a preferred direction g, with weight ω. Result (text): for a given group size, accuracy increases with p; **the larger the group, the smaller the proportion of informed individuals required** for a given accuracy; for sufficiently large groups, **a very small proportion** suffices for near-maximal accuracy. There is a **trade-off** between movement accuracy and the probability of group **fragmentation** as ω increases.
+- With two informed subsets holding different preferences: if the preferences differ little, the group follows their average; if they differ greatly, it selects one of them; if one subset is larger, the group follows the **majority, even a small one**. Feedback on ω (reinforcement when the individual moves in its preferred direction, within 20°) allows consensus instead of averaging.
+- **Couzin et al. 2011 (theory + experiment, abstract):** a strongly opinionated minority can dictate the group's choice, but the presence of **uninformed individuals spontaneously inhibits** this effect and **returns control to the numerical majority**.
+- Exact percentages (e.g. the proportion of informed individuals for N = 200) are in figures → `gap`.
 
-## Evidência
-`relato-autores` (modelo 2005; teoria + experimento 2011 — o experimento não foi conferido).
+## Evidence
+`author-reported` (2005 model; 2011 theory + experiment — the experiment was not checked).
 
-## Análogo de engenharia
-"Informado" = agente com **evidência verificável** (rodou o teste, leu o log, tem a ferramenta); "desinformado" = agente que só agrega. (i) Num swarm grande, poucos agentes com acesso a ferramentas/verificador podem guiar a decisão sem que os demais saibam quem são — basta que a evidência pese. (ii) Agentes neutros/agregadores podem diluir um agente excessivamente confiante e errado.
+## Engineering analogue
+"Informed" = an agent with **verifiable evidence** (ran the test, read the log, has the tool); "uninformed" = an agent that only aggregates. (i) In a large swarm, a few agents with access to tools/a verifier can steer the decision without the others knowing who they are — it suffices that evidence carries weight. (ii) Neutral/aggregating agents can dilute an overconfident, wrong agent.
 
-## Hipótese testável
-- **Variável:** fração f ∈ {0, 1/12, 2/12, 4/12, 1} de agentes com acesso a ferramenta de verificação num swarm de N = 12; presença de 1 agente "teimoso" errado com confiança alta; com/sem 4 agentes neutros sem opinião inicial.
-- **Métrica:** acurácia da decisão do grupo; custo (ferramentas são caras).
-- **Previsão:** acurácia satura em f ≤ 2/12 (≥ 90% do ganho de f = 1 com ≤ 17% do custo de ferramenta); com o teimoso, agentes neutros reduzem a taxa de captura pelo teimoso ≥ 30%.
-- **Refutação:** se a acurácia crescer linearmente até f = 1 (sem saturação) ou se agentes neutros **aumentarem** a captura (LLMs neutros tendem a seguir o mais confiante — risco real de sicofancia).
+## Testable hypothesis
+- **Variable:** fraction f ∈ {0, 1/12, 2/12, 4/12, 1} of agents with access to a verification tool in a swarm of N = 12; presence of 1 wrong, highly confident "stubborn" agent; with/without 4 neutral agents holding no initial opinion.
+- **Metric:** accuracy of the group decision; cost (tools are expensive).
+- **Prediction:** accuracy saturates at f ≤ 2/12 (≥ 90% of the gain of f = 1 at ≤ 17% of the tool cost); with the stubborn agent present, neutral agents reduce the rate of capture by the stubborn agent by ≥ 30%.
+- **Refutation:** if accuracy grows linearly up to f = 1 (no saturation), or if neutral agents **increase** capture (neutral LLMs tend to follow the most confident one — a real risk of sycophancy).
 
-## Limites da transferência
-No modelo, informação é uma direção contínua e a influência é geométrica; em LLMs, persuasão depende de retórica e confiança declarada, não da qualidade da evidência — a menos que o protocolo force evidência verificável. O efeito de 2011 depende de os desinformados não terem viés; LLMs têm vieses compartilhados.
+## Limits of transfer
+In the model, information is a continuous direction and influence is geometric; in LLMs, persuasion depends on rhetoric and stated confidence, not on the quality of the evidence — unless the protocol enforces verifiable evidence. The 2011 effect depends on the uninformed being unbiased; LLMs have shared biases.

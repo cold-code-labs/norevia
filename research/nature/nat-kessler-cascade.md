@@ -1,34 +1,34 @@
 ---
 id: nat-kessler-cascade
-title: Síndrome de Kessler — densidade crítica em que detritos geram mais detritos (analogia)
+title: Kessler syndrome — the critical density at which debris generates more debris (analogy)
 area: nature
-evidence: fenomeno-natural
-tags: [celeste-analogia, trabalho-orfao, cascata, densidade-critica, limpeza]
+evidence: natural-phenomenon
+tags: [celestial-analogy, orphaned-work, cascade, critical-density, cleanup]
 sources:
   - "Kessler, D. J. & Cour-Palais, B. G. (1978). Collision frequency of artificial satellites: the creation of a debris belt. J. Geophys. Res. 83(A6):2637–2646. doi:10.1029/JA083iA06p02637"
   - "Liou, J.-C. & Johnson, N. L. (2006). Risks in space from orbiting debris. Science 311(5759):340–341. doi:10.1126/science.1121337"
-  - "ESA — Space Environment Report 2026 (citado no estudo anterior, seção 18; não reaberto)"
-related: [nat-wound-healing-resolution, nat-stellar-thermostat, lit-mast, nat-candidatas]
+  - "ESA — Space Environment Report 2026 (cited in the earlier study, section 18; not reopened)"
+related: [nat-wound-healing-resolution, nat-stellar-thermostat, lit-mast, nat-candidates]
 updated: 2026-11-07
-verificacao: "Kessler 1978: resumo (OpenAlex). Liou & Johnson 2006: texto lido de cópia PDF hospedada em vesta.astro.amu.edu.pl (não é o site da editora), extraído localmente."
-summary: Acima de uma densidade espacial crítica, colisões produzem fragmentos mais rápido do que o arrasto os remove; o modelo da NASA de 2006 projetou crescimento da população em LEO após ~2055 mesmo sem novos lançamentos.
+verification: "Kessler 1978: abstract (OpenAlex). Liou & Johnson 2006: text read from a PDF copy hosted at vesta.astro.amu.edu.pl (not the publisher's site), extracted locally."
+summary: Above a critical spatial density, collisions produce fragments faster than atmospheric drag removes them; NASA's 2006 model projected growth of the LEO population after ~2055 even with no new launches.
 ---
 
-## Mecanismo
-- **Kessler & Cour-Palais 1978 (resumo):** à medida que o número de satélites cresce, cresce a probabilidade de colisões; cada colisão produz fragmentos que **aumentam a probabilidade de novas colisões**, levando à formação de um cinturão de detritos. Implementação precoce de restrições de lançamento e procedimentos operacionais poderia **atrasar significativamente** a formação.
-- **Liou & Johnson 2006 (texto):** em algumas altitudes de LEO, onde a densidade de objetos está **acima de uma densidade espacial crítica**, a taxa de produção de novos detritos por colisões **excede a perda** por decaimento orbital. Na projeção LEGEND (Monte Carlo, 200 anos, objetos ≥ 10 cm, LEO 200–2.000 km), com **cenário sem novos lançamentos**, fragmentos de colisão substituem os detritos que decaem **até ~2055**, mantendo a população aproximadamente constante; **depois de 2055**, a criação de fragmentos supera o decaimento e a população cresce. Colisão catastrófica: razão energia de impacto/massa do alvo > **40 J/g**.
+## Mechanism
+- **Kessler & Cour-Palais 1978 (abstract):** as the number of satellites grows, the probability of collisions grows; each collision produces fragments that **increase the probability of further collisions**, leading to the formation of a debris belt. Early implementation of launch restrictions and operational procedures could **significantly delay** its formation.
+- **Liou & Johnson 2006 (text):** at some LEO altitudes, where the density of objects is **above a critical spatial density**, the rate of production of new debris by collisions **exceeds the loss** by orbital decay. In the LEGEND projection (Monte Carlo, 200 years, objects ≥ 10 cm, LEO 200–2,000 km), under a **no-new-launches scenario**, collision fragments replace the decaying debris **until ~2055**, keeping the population approximately constant; **after 2055**, fragment creation outpaces decay and the population grows. Catastrophic collision: ratio of impact energy to target mass > **40 J/g**.
 
-## Evidência
-`fenomeno-natural` (modelagem de engenharia espacial) — a projeção é modelo, não observação; transposição **estritamente analógica**.
+## Evidence
+`natural-phenomenon` (space-engineering modeling) — the projection is a model, not an observation; the transposition is **strictly analogical**.
 
-## Análogo de engenharia
-Trabalho órfão (rotinas, callbacks, delegações sem dono) pode gerar mais trabalho órfão: um diagnóstico dispara outro, mensagens de progresso viram novas demandas. Existe uma **razão crítica R = taxa de geração de trabalho derivado / taxa de limpeza (conclusão + cancelamento)**; com R > 1 o estoque cresce sozinho mesmo sem novos pedidos do usuário. Medidas: deduplicação por ocorrência, limite de profundidade, dono obrigatório, cancelamento transitivo.
+## Engineering analogue
+Orphaned work (routines, callbacks, delegations without an owner) can generate more orphaned work: one diagnosis triggers another, progress messages turn into new demands. There is a **critical ratio R = rate of generation of derived work / rate of cleanup (completion + cancellation)**; with R > 1 the stock grows on its own even without new user requests. Measures: per-occurrence deduplication, depth limit, mandatory owner, transitive cancellation.
 
-## Hipótese testável
-- **Variável:** (i) probabilidade p de um job gerar um job filho sem dedup; (ii) política de contenção — nenhuma vs dedup + limite de profundidade + dono obrigatório.
-- **Métrica:** estoque de jobs ativos ao longo do tempo após cessar a entrada de novos pedidos; jobs órfãos; ações por incidente.
-- **Previsão:** sem contenção, existe p_c (≈ ponto em que o nº médio de filhos por job ≥ 1, como num processo de ramificação) acima do qual o estoque cresce após cessar a entrada; com contenção, o estoque decai a zero para todo p testado.
-- **Refutação:** se não houver comportamento de limiar (crescimento gradual em p) ou se a contenção não evitar crescimento acima de p_c.
+## Testable hypothesis
+- **Variable:** (i) probability p of a job spawning a child job without dedup; (ii) containment policy — none vs dedup + depth limit + mandatory owner.
+- **Metric:** stock of active jobs over time after the input of new requests stops; orphaned jobs; actions per incident.
+- **Prediction:** without containment, there is a p_c (≈ the point at which the mean number of children per job ≥ 1, as in a branching process) above which the stock grows after input stops; with containment, the stock decays to zero for every p tested.
+- **Refutation:** if there is no threshold behavior (gradual growth in p) or if containment does not prevent growth above p_c.
 
-## Limites da transferência
-Detritos obedecem física orbital; jobs obedecem regras que nós escrevemos e podemos mudar. A analogia não autoriza apagar registros/obrigações de terceiros (ver estudo anterior, seção 18).
+## Limits of transfer
+Debris obeys orbital physics; jobs obey rules that we write and can change. The analogy does not authorize deleting third parties' records/obligations (see earlier study, section 18).

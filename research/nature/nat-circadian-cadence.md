@@ -1,33 +1,33 @@
 ---
 id: nat-circadian-cadence
-title: Relógios circadianos — hierarquia de osciladores e "horários de pico"
+title: Circadian clocks — a hierarchy of oscillators and "rush hours"
 area: nature
-evidence: fenomeno-natural
-tags: [cadencia, multiplas-escalas-de-tempo, manutencao, agendamento]
+evidence: natural-phenomenon
+tags: [cadence, multiple-timescales, maintenance, scheduling]
 sources:
   - "Mohawk, J. A., Green, C. B. & Takahashi, J. S. (2012). Central and peripheral circadian clocks in mammals. Annu. Rev. Neurosci. 35:445–462. doi:10.1146/annurev-neuro-060909-153128"
   - "Zhang, R., Lahens, N. F., Ballance, H. I., Hughes, M. E. & Hogenesch, J. B. (2014). A circadian gene expression atlas in mammals: implications for biology and medicine. PNAS 111(45):16219–16224. doi:10.1073/pnas.1408886111"
-related: [nat-orbital-resonance, nat-homeostasis-allostasis, nat-candidatas]
+related: [nat-orbital-resonance, nat-homeostasis-allostasis, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumos lidos (OpenAlex)."
-summary: Em 12 órgãos de camundongo, 43% dos genes codificadores de proteína oscilam em algum lugar do corpo, de forma específica por órgão e concentrada em "horários de pico" antes do amanhecer e do anoitecer.
+verification: "Abstracts read (OpenAlex)."
+summary: Across 12 mouse organs, 43% of protein-coding genes oscillate somewhere in the body, in an organ-specific way and concentrated in "rush hours" before dawn and dusk.
 ---
 
-## Mecanismo
-- **Hierarquia (Mohawk et al. 2012):** osciladores nos níveis celular, tecidual e sistêmico com o **mesmo mecanismo molecular** autônomo; no núcleo supraquiasmático (SCN), uma população **acoplada** de osciladores neuronais atua como **marca-passo mestre**; o acoplamento dá robustez ao SCN, que dá estabilidade à arquitetura temporal do organismo. Na maioria das células, os relógios estão entrelaçados com vias metabólicas.
-- **Atlas (Zhang et al. 2014):** transcriptomas de **12 órgãos** ao longo do tempo; **43%** dos genes codificadores de proteína mostraram ritmo circadiano de transcrição **em algum lugar** do corpo, em grande parte **específico do órgão**. Na maioria dos órgãos, picos concentrados em **"rush hours" antes do amanhecer e do anoitecer**. Mais de 1.000 ncRNAs oscilantes.
+## Mechanism
+- **Hierarchy (Mohawk et al. 2012):** oscillators at the cellular, tissue and systemic levels share the **same autonomous molecular mechanism**; in the suprachiasmatic nucleus (SCN), a **coupled** population of neuronal oscillators acts as the **master pacemaker**; coupling confers robustness on the SCN, which in turn stabilises the temporal architecture of the organism. In most cells, the clocks are intertwined with metabolic pathways.
+- **Atlas (Zhang et al. 2014):** transcriptomes of **12 organs** over time; **43%** of protein-coding genes showed circadian rhythms in transcription **somewhere** in the body, largely **organ-specific**. In most organs, peaks cluster in **"rush hours" before dawn and dusk**. More than 1,000 oscillating ncRNAs.
 
-## Evidência
-`fenomeno-natural`.
+## Evidence
+`natural-phenomenon`.
 
-## Análogo de engenharia
-Escalas de tempo distintas por função (evento, diário, semanal), com **um relógio de referência** e execução **local** (cada componente decide o que fazer na sua janela). Os "horários de pico" sugerem **agrupar** atividades de manutenção em janelas antecipatórias, em vez de distribuí-las uniformemente ou fazer polling contínuo. Só uma fração das funções precisa de ritmo; o resto é dirigido por evento.
+## Engineering analogue
+Distinct timescales per function (event-driven, daily, weekly), with **one reference clock** and **local** execution (each component decides what to do within its own window). The "rush hours" suggest **batching** maintenance activities into anticipatory windows rather than spreading them uniformly or polling continuously. Only a fraction of functions need a rhythm; the rest are event-driven.
 
-## Hipótese testável
-- **Variável:** manutenção — (A) polling contínuo de verificação de estado; (B) janelas agrupadas (batch) com gatilho por evento para urgências.
-- **Métrica:** custo de manutenção por problema útil encontrado; latência de detecção de problemas urgentes; interferência com trabalho de usuário (contenção).
-- **Previsão:** B reduz custo por problema útil ≥ 60% com latência de urgências igual (porque urgências são por evento) e menor contenção.
-- **Refutação:** se problemas relevantes surgirem só detectáveis por polling (latência de B pior > 2× para não urgentes críticos) ou se as janelas concentrarem contenção.
+## Testable hypothesis
+- **Variable:** maintenance — (A) continuous polling of state checks; (B) batched windows with an event trigger for urgent cases.
+- **Metric:** maintenance cost per useful problem found; detection latency for urgent problems; interference with user work (contention).
+- **Prediction:** B reduces cost per useful problem by ≥ 60% with equal latency for urgent cases (because urgent cases are event-driven) and less contention.
+- **Refutation:** if relevant problems arise that are detectable only by polling (B's latency worse by > 2× for critical non-urgent cases), or if the windows concentrate contention.
 
-## Limites da transferência
-Ritmos biológicos seguem o ciclo dia/noite imposto pelo ambiente; carga de agentes segue usuários e fusos. Não implica que LLMs "dormem". Ver ressalvas do estudo anterior, seção 14.
+## Limits of transfer
+Biological rhythms follow the day/night cycle imposed by the environment; agent load follows users and time zones. This does not imply that LLMs "sleep". See the caveats in the earlier study, section 14.

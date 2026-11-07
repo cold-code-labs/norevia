@@ -1,34 +1,34 @@
 ---
 id: nat-recruitment-benefit-conditions
-title: Quando comunicar compensa — benefício do recrutamento depende da ecologia
+title: When communicating pays off — the benefit of recruitment depends on ecology
 area: nature
-evidence: relato-autores
-tags: [quando-cooperar, comunicacao, custo-de-coordenacao, distribuicao-de-recursos]
+evidence: author-reported
+tags: [when-to-cooperate, communication, coordination-cost, resource-distribution]
 sources:
   - "Dornhaus, A., Klügl, F., Oechslein, C., Puppe, F. & Chittka, L. (2006). Benefits of recruitment in honey bees: effects of ecology and colony size in an individual-based model. Behavioral Ecology 17(3):336–344. doi:10.1093/beheco/arj036"
-related: [nat-waggle-dance-recruitment, nat-stigmergy, nat-colony-size-scaling, lit-sas-vs-mas-hybrid, lit-scaling-agent-systems, nat-candidatas]
+related: [nat-waggle-dance-recruitment, nat-stigmergy, nat-colony-size-scaling, lit-sas-vs-mas-hybrid, lit-scaling-agent-systems, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumo lido (OpenAlex). Valores de parâmetros e curvas não conferidos."
-summary: Num modelo de forrageio de abelhas, comunicar locais de comida ajuda quando as fontes são poucas, pobres e variáveis — e pode até atrapalhar quando a comida é abundante; tamanho de colônia não teve efeito.
+verification: "Abstract read (OpenAlex). Parameter values and curves not checked."
+summary: In a model of honey bee foraging, communicating food locations helps when sources are few, poor and variable — and can even hinder when food is abundant; colony size had no effect.
 ---
 
-## Mecanismo
-- Modelo baseado em indivíduos do forrageio de abelhas, variando distribuição espacial de manchas não esgotáveis e tamanho da colônia (resumo).
-- O benefício do recrutamento dependeu fortemente de **qualidade, densidade e variabilidade** das manchas: comunicação foi especialmente benéfica quando as manchas eram **pobres, poucas e variáveis**.
-- Análise de sensibilidade: com **alta densidade de recursos**, o recrutamento podia se tornar **prejudicial**, sobretudo se a duração do forrageio era curta, a tendência a explorar era alta ou os recrutas demoravam a achar o local comunicado.
-- **Tamanho da colônia não teve efeito significativo** sobre o benefício do recrutamento.
+## Mechanism
+- Individual-based model of honey bee foraging, varying the spatial distribution of non-depleting patches and colony size (abstract).
+- The benefit of recruitment depended strongly on the **quality, density and variability** of the patches: communication was especially beneficial when patches were **poor, few and variable**.
+- Sensitivity analysis: with **high resource density**, recruitment could become **detrimental**, especially if foraging duration was short, the tendency to explore was high, or recruits were slow to find the communicated site.
+- **Colony size had no significant effect** on the benefit of recruitment.
 
-## Evidência
-`relato-autores` (modelo; os autores ligam a resultados experimentais sazonais, não conferidos aqui).
+## Evidence
+`author-reported` (model; the authors link it to seasonal experimental results, not checked here).
 
-## Análogo de engenharia
-"Recrutar" = um agente compartilhar sua pista (hipótese de causa, arquivo suspeito) e redirecionar os outros. Previsão do modelo traduzida: **compartilhar ajuda quando soluções são raras e heterogêneas** (bug difícil com uma única causa escondida) e **atrapalha quando soluções são abundantes** (tarefa fácil, qualquer caminho serve) — porque o custo de transmitir/seguir a pista supera o ganho. O custo de "achar o local comunicado" ≈ custo de contexto para o receptor reconstruir a pista.
+## Engineering analogue
+"Recruiting" = an agent sharing its lead (hypothesized cause, suspicious file) and redirecting the others. The model's prediction, translated: **sharing helps when solutions are rare and heterogeneous** (a hard bug with a single hidden cause) and **hinders when solutions are abundant** (an easy task, any path works) — because the cost of transmitting/following the lead exceeds the gain. The cost of "finding the communicated site" ≈ the context cost for the receiver to reconstruct the lead.
 
-## Hipótese testável
-- **Variável:** (i) compartilhamento de achados intermediários entre K agentes paralelos (on/off); (ii) densidade de soluções da tarefa (fração de caminhos que levam a solução aceita, estimada por amostragem prévia).
-- **Métrica:** custo por tarefa aceita; tempo até aceite.
-- **Previsão:** interação significativa: compartilhar reduz custo ≥ 20% em tarefas de baixa densidade de solução e aumenta custo (≥ 5%) em tarefas de alta densidade. O efeito de K (tamanho) sobre o benefício é pequeno comparado ao efeito da densidade.
-- **Refutação:** se o benefício do compartilhamento não variar com a densidade de soluções, ou se for dominado por K.
+## Testable hypothesis
+- **Variable:** (i) sharing of intermediate findings among K parallel agents (on/off); (ii) solution density of the task (fraction of paths leading to an accepted solution, estimated by prior sampling).
+- **Metric:** cost per accepted task; time to acceptance.
+- **Prediction:** significant interaction: sharing reduces cost by ≥ 20% on tasks with low solution density and increases cost (≥ 5%) on tasks with high density. The effect of K (size) on the benefit is small compared with the effect of density.
+- **Refutation:** if the benefit of sharing does not vary with solution density, or if it is dominated by K.
 
-## Limites da transferência
-É um modelo, não um experimento; a "densidade de recursos" de uma tarefa de software não é observável diretamente e precisa de proxy. Recursos do modelo são não esgotáveis; em software, dois agentes seguindo a mesma pista podem duplicar trabalho.
+## Limits of transfer
+It is a model, not an experiment; the "resource density" of a software task is not directly observable and needs a proxy. The model's resources are non-depleting; in software, two agents following the same lead can duplicate work.

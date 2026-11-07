@@ -1,34 +1,34 @@
 ---
 id: nat-renal-filtration
-title: Filtração renal maciça com reabsorção seletiva
+title: Massive renal filtration with selective reabsorption
 area: nature
-evidence: fenomeno-natural
-tags: [memoria-limitada, compactacao-de-contexto, retencao-seletiva, custo]
+evidence: natural-phenomenon
+tags: [bounded-memory, context-compaction, selective-retention, cost]
 sources:
-  - "Betts, J. G. et al. (2022). Anatomy and Physiology 2e, seção 25.5 'Physiology of Urine Formation'. OpenStax (Rice University). https://openstax.org/books/anatomy-and-physiology-2e/pages/25-5-physiology-of-urine-formation"
-  - "NIDDK — Your Kidneys & How They Work. https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work (citado no estudo anterior, seção 13; não reaberto)"
-related: [nat-brain-energy-sparse, lit-agentnet, nat-candidatas]
+  - "Betts, J. G. et al. (2022). Anatomy and Physiology 2e, section 25.5 'Physiology of Urine Formation'. OpenStax (Rice University). https://openstax.org/books/anatomy-and-physiology-2e/pages/25-5-physiology-of-urine-formation"
+  - "NIDDK — Your Kidneys & How They Work. https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work (cited in the earlier study, section 13; not reopened)"
+related: [nat-brain-energy-sparse, lit-agentnet, nat-candidates]
 updated: 2026-11-07
-verificacao: "Página OpenStax lida (números abaixo). Livro-texto aberto, não paper primário — lacuna de fonte primária para os valores."
-summary: Os rins filtram ~180 L de plasma por dia e devolvem ~99% à circulação, eliminando só 1–2 L — filtrar tudo e reabsorver o que importa, em vez de escolher o que filtrar.
+verification: "OpenStax page read (numbers below). Open textbook, not a primary paper — primary-source gap for the values."
+summary: The kidneys filter ~180 L of plasma per day and return ~99% to the circulation, excreting only 1–2 L — filter everything and reabsorb what matters, instead of choosing what to filter.
 ---
 
-## Mecanismo
-- Taxa de filtração glomerular média de **~125 mL/min** (homens), equivalente a **~180 L/dia em homens e ~150 L/dia em mulheres** (OpenStax 25.5).
-- **"Noventa e nove por cento** deste filtrado retorna à circulação por reabsorção", de modo que **só cerca de 1–2 L** de urina são produzidos por dia.
-- A estratégia é **filtrar de forma não seletiva** (por tamanho/pressão) e então **reabsorver seletivamente** água e solutos necessários ao longo dos túbulos; resíduos e excessos seguem para eliminação.
+## Mechanism
+- Mean glomerular filtration rate of **~125 mL/min** (men), equivalent to **~180 L/day in men and ~150 L/day in women** (OpenStax 25.5).
+- "**Ninety-nine percent** of this filtrate is returned to the circulation by reabsorption", so that **only about 1–2 L** of urine are produced per day.
+- The strategy is to **filter non-selectively** (by size/pressure) and then **selectively reabsorb** the water and solutes needed along the tubules; wastes and excesses go on to excretion.
 
-## Evidência
-`fenomeno-natural`, com fonte de livro-texto aberto (fonte primária experimental → `lacuna`).
+## Evidence
+`natural-phenomenon`, with an open-textbook source (primary experimental source → `gap`).
 
-## Análogo de engenharia
-Compactação de memória/contexto em duas etapas: (1) **descartar por padrão** tudo que é transitório (logs, tentativas, mensagens de progresso); (2) **reabsorver explicitamente** o que tem função: compromissos abertos, decisões com origem, preferências do usuário, evidência de aceite. É o inverso de "resumir tudo um pouco": é filtrar quase tudo e reter, por regra, um conjunto pequeno e tipado.
+## Engineering analogue
+Two-stage memory/context compaction: (1) **discard by default** everything that is transient (logs, attempts, progress messages); (2) **explicitly reabsorb** what has a function: open commitments, decisions with their provenance, user preferences, evidence of acceptance. It is the opposite of "summarize everything a little": it is filtering almost everything and retaining, by rule, a small, typed set.
 
-## Hipótese testável
-- **Variável:** estratégia de compactação — (A) resumo livre por LLM; (B) filtrar-e-reabsorver: descarte por padrão + retenção tipada (compromissos, decisões, preferências, evidências) por regra/esquema.
-- **Métrica:** razão de compressão; recall de compromissos abertos e de fatos necessários em perguntas de sonda posteriores; perda indevida de informação.
-- **Previsão:** B atinge compressão ≥ 90% com recall de compromissos ≥ 98%, enquanto A, na mesma compressão, perde ≥ 10% dos compromissos.
-- **Refutação:** se A igualar B em recall na mesma compressão, ou se B exigir esquema tão grande que a compressão caia abaixo de 70%.
+## Testable hypothesis
+- **Variable:** compaction strategy — (A) free-form summary by an LLM; (B) filter-and-reabsorb: discard by default + typed retention (commitments, decisions, preferences, evidence) by rule/schema.
+- **Metric:** compression ratio; recall of open commitments and of needed facts in later probe questions; undue loss of information.
+- **Prediction:** B reaches compression ≥ 90% with commitment recall ≥ 98%, whereas A, at the same compression, loses ≥ 10% of commitments.
+- **Refutation:** if A matches B in recall at the same compression, or if B requires a schema so large that compression drops below 70%.
 
-## Limites da transferência
-O rim conhece de antemão o que reabsorver (glicose, sódio, água) por transportadores evoluídos; num sistema de agentes, o "esquema de reabsorção" precisa ser definido e pode omitir algo importante. Não autoriza exclusão de memórias de terceiros (ver estudo anterior).
+## Limits of transfer
+The kidney knows in advance what to reabsorb (glucose, sodium, water) through evolved transporters; in an agent system, the "reabsorption schema" has to be defined and may omit something important. It does not authorize deleting third parties' memories (see earlier study).

@@ -1,35 +1,35 @@
 ---
 id: nat-response-threshold
-title: Limiar de resposta e divisão de trabalho em insetos sociais
+title: Response thresholds and division of labor in social insects
 area: nature
-evidence: relato-autores
-tags: [divisao-de-trabalho, elastic-swarm, ativacao-adaptativa, quando-cooperar]
+evidence: author-reported
+tags: [division-of-labor, elastic-swarm, adaptive-activation, when-to-cooperate]
 sources:
   - "Bonabeau, E., Theraulaz, G. & Deneubourg, J.-L. (1996). Quantitative study of the fixed threshold model for the regulation of division of labour in insect societies. Proc. R. Soc. Lond. B 263(1376):1565–1569. doi:10.1098/rspb.1996.0229"
   - "Theraulaz, G., Bonabeau, E. & Deneubourg, J.-L. (1998). Response threshold reinforcements and division of labour in insect societies. Proc. R. Soc. Lond. B 265:327–332. doi:10.1098/rspb.1998.0299 (PMC1688885)"
-  - "Fonte secundária para a forma funcional: UiO TEK5010 (2024), aula 6 'Task allocation' — https://www.uio.no/studier/emner/matnat/its/TEK5010/h24/forelesningspresentasjoner/tek5010_mas_2024_lecture_6_taskallocation.pdf (não aberta; conteúdo via resultado de busca)"
-related: [nat-inactive-reserve, nat-colony-size-scaling, nat-bacterial-quorum-sensing, lit-swarmsys, nat-mapa, nat-candidatas, sim-limiar-resposta]
+  - "Secondary source for the functional form: UiO TEK5010 (2024), lecture 6 'Task allocation' — https://www.uio.no/studier/emner/matnat/its/TEK5010/h24/forelesningspresentasjoner/tek5010_mas_2024_lecture_6_taskallocation.pdf (not opened; content via search result)"
+related: [nat-inactive-reserve, nat-colony-size-scaling, nat-bacterial-quorum-sensing, lit-swarmsys, nat-map, nat-candidates, sim-response-threshold]
 updated: 2026-11-07
-verificacao: "DOIs conferidos via Crossref (2026-11-07). Resumo de 1998 lido (OpenAlex). Texto integral de 1996 NÃO aberto (Royal Society bloqueou); forma s^n/(s^n+θ^n) com n=2 conferida só em fonte secundária."
-summary: Cada indivíduo só entra numa tarefa quando o estímulo dela supera seu limiar pessoal; limiares heterogêneos produzem recrutamento gradual e proporcional à demanda, sem coordenador.
+verification: "DOIs checked via Crossref (2026-11-07). Abstract of 1998 read (OpenAlex). Full text of 1996 NOT opened (Royal Society blocked access); the form s^n/(s^n+θ^n) with n=2 checked only in a secondary source."
+summary: Each individual takes up a task only when the task's stimulus exceeds its personal threshold; heterogeneous thresholds produce gradual recruitment proportional to demand, without a coordinator.
 ---
 
-## Mecanismo
-- **Modelo de limiar fixo (1996):** a probabilidade de um indivíduo com limiar θ executar uma tarefa cujo estímulo vale s é uma função sigmoide T_θ(s) = sⁿ/(sⁿ + θⁿ). A forma com n = 2 é a usualmente atribuída ao paper; **conferida apenas em fonte secundária** (slides UiO), não no texto original. Segundo o resumo indexado, castas com limiares distintos e fixos na escala experimental explicam observações em formigas *Pheidole* (Wilson 1984).
-- **Reforço de limiar (1998, resumo lido):** executar a tarefa *reduz* o limiar do indivíduo; não executar o *aumenta*. Dessa realimentação emergem especialistas a partir de indivíduos inicialmente idênticos. Previsão dos autores: após remover especialistas e reintroduzi-los, a colônia não volta ao estado anterior, e a diferença cresce com o tempo de separação (histerese).
-- Consequência funcional: quando a demanda (estímulo) sobe, entram primeiro os de limiar baixo; só demanda alta recruta os de limiar alto. O tamanho da força de trabalho ativa acompanha a demanda **sem contagem central**.
+## Mechanism
+- **Fixed-threshold model (1996):** the probability that an individual with threshold θ performs a task whose stimulus has value s is a sigmoid function T_θ(s) = sⁿ/(sⁿ + θⁿ). The form with n = 2 is the one usually attributed to the paper; **checked only in a secondary source** (UiO slides), not in the original text. According to the indexed abstract, castes with distinct thresholds, fixed on the experimental timescale, explain observations in *Pheidole* ants (Wilson 1984).
+- **Threshold reinforcement (1998, abstract read):** performing the task *lowers* the individual's threshold; not performing it *raises* it. From this feedback, specialists emerge from initially identical individuals. The authors' prediction: after specialists are removed and reintroduced, the colony does not return to its previous state, and the difference grows with the time of separation (hysteresis).
+- Functional consequence: when demand (stimulus) rises, low-threshold individuals engage first; only high demand recruits high-threshold ones. The size of the active workforce tracks demand **without central counting**.
 
-## Evidência
-`relato-autores` (modelo matemático ajustado a dados de campo de terceiros); o fenômeno de divisão de trabalho é `fenomeno-natural`. Números do ajuste (ex.: θ por casta) não conferidos no original → `lacuna`.
+## Evidence
+`author-reported` (mathematical model fitted to third-party field data); the phenomenon of division of labor is `natural-phenomenon`. Fitted numbers (e.g. θ per caste) not checked in the original → `gap`.
 
-## Análogo de engenharia (swarms de LLM)
-Cada agente/papel potencial tem um limiar θᵢ sobre um **estímulo de tarefa** mensurável e barato: critérios de aceite em aberto, testes falhando, incerteza estimada (ex.: discordância entre 2 amostras), backlog. Um verificador entra só se s > θ_verif; um segundo executor só se s > θ_exec2, etc. O reforço (θ cai com uso bem-sucedido) dá especialização emergente; o aumento de θ sem uso dá "esquecimento" e contração.
+## Engineering analogue (LLM swarms)
+Each potential agent/role has a threshold θᵢ on a measurable, cheap **task stimulus**: open acceptance criteria, failing tests, estimated uncertainty (e.g. disagreement between 2 samples), backlog. A verifier engages only if s > θ_verif; a second executor only if s > θ_exec2, etc. Reinforcement (θ falls with successful use) gives emergent specialization; the rise in θ without use gives "forgetting" and contraction.
 
-## Hipótese testável
-- **Variável manipulada:** política de ativação — (A) N fixo; (B) limiares fixos heterogêneos sobre o estímulo s; (C) limiares com reforço.
-- **Métrica:** custo (tokens) por tarefa aceita; taxa de aceite verificável; nº médio de agentes ativos por faixa de dificuldade.
-- **Previsão:** B e C atingem taxa de aceite ≥ A − 2 p.p. com custo por tarefa aceita ≥ 25% menor em mistura de tarefas com dificuldade heterogênea; o nº de agentes ativos cresce monotonicamente com a dificuldade medida a posteriori.
-- **Refutação:** se o estímulo s não correlacionar com a dificuldade real (Spearman < 0,3) ou se B/C não reduzirem custo sem perda de aceite, a hipótese cai — o limiar só funciona se o estímulo for informativo e barato.
+## Testable hypothesis
+- **Manipulated variable:** activation policy — (A) fixed N; (B) heterogeneous fixed thresholds on stimulus s; (C) thresholds with reinforcement.
+- **Metric:** cost (tokens) per accepted task; verifiable acceptance rate; mean no. of active agents per difficulty band.
+- **Prediction:** B and C reach an acceptance rate ≥ A − 2 pp with cost per accepted task ≥ 25% lower on a mix of tasks of heterogeneous difficulty; the no. of active agents grows monotonically with difficulty measured a posteriori.
+- **Refutation:** if the stimulus s does not correlate with real difficulty (Spearman < 0.3) or if B/C do not reduce cost without loss of acceptance, the hypothesis falls — the threshold only works if the stimulus is informative and cheap.
 
-## Limites da transferência
-Insetos pagam pouco por "olhar" o estímulo; LLMs pagam por estimar dificuldade (o próprio estímulo pode custar uma chamada). Limiar não garante qualidade do trabalho, só alocação. A histerese prevista em 1998 pode virar rigidez indesejada (especialista que não deveria mais ser chamado).
+## Limits of transfer
+Insects pay little to "look at" the stimulus; LLMs pay to estimate difficulty (the stimulus itself may cost a call). A threshold does not guarantee quality of work, only allocation. The hysteresis predicted in 1998 can turn into undesired rigidity (a specialist that should no longer be called).

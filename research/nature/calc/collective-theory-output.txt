@@ -1,0 +1,18 @@
+== Condorcet: P(majority correct), p=0.6 ==
+rho=0: n=1:0.600  n=3:0.648  n=5:0.683  n=7:0.710  n=11:0.753  n=21:0.826  n=51:0.926  n=101:0.979  | limit n→∞: 1.000
+rho=0.05: n=1:0.600  n=3:0.641  n=5:0.667  n=7:0.686  n=11:0.711  n=21:0.745  n=51:0.779  n=101:0.795  | limit n→∞: 0.814
+rho=0.1: n=1:0.600  n=3:0.635  n=5:0.655  n=7:0.669  n=11:0.685  n=21:0.704  n=51:0.721  n=101:0.728  | limit n→∞: 0.736
+rho=0.3: n=1:0.600  n=3:0.618  n=5:0.626  n=7:0.630  n=11:0.634  n=21:0.638  n=51:0.641  n=101:0.642  | limit n→∞: 0.643
+
+== effective n (Kish design effect, variance of the mean): n/(1+(n-1)rho) ==
+rho=0.05: n=3->2.73  n=5->4.17  n=10->6.90  n=50->14.49  n=1000->19.63  | ceiling 1/rho=20.0
+rho=0.1: n=3->2.50  n=5->3.57  n=10->5.26  n=50->8.47  n=1000->9.91  | ceiling 1/rho=10.0
+rho=0.3: n=3->1.88  n=5->2.27  n=10->2.70  n=50->3.18  n=1000->3.33  | ceiling 1/rho=3.3
+
+== Diversity prediction theorem (identity): collective error = average error - diversity ==
+trial 0: collective=203.9067  average-diversity=203.9067  (average=284.71, diversity=80.81)
+trial 1: collective=101.2281  average-diversity=101.2281  (average=219.91, diversity=118.68)
+trial 2: collective=197.3614  average-diversity=197.3614  (average=357.18, diversity=159.81)
+
+== Gascheau/Routh: mu_c = (1 - sqrt(23/27))/2 ==
+0.038521  check 27*mu*(1-mu)= 1.000000

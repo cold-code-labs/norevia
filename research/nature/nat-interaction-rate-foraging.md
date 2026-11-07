@@ -1,36 +1,36 @@
 ---
 id: nat-interaction-rate-foraging
-title: Taxa de interação regula o forrageio em formigas colhedoras
+title: Interaction rate regulates foraging in harvester ants
 area: nature
-evidence: fenomeno-natural
-tags: [recrutamento, controle-por-retorno, elastic-swarm, contracao, memoria-limitada]
+evidence: natural-phenomenon
+tags: [recruitment, feedback-control, elastic-swarm, contraction, bounded-memory]
 sources:
   - "Gordon, D. M., Holmes, S. & Nacu, S. (2008; online 2007). The short-term regulation of foraging in harvester ants. Behavioral Ecology 19(1):217–222. doi:10.1093/beheco/arm125"
   - "Prabhakar, B., Dektar, K. N. & Gordon, D. M. (2012). The regulation of ant colony foraging activity without spatial information. PLoS Comput. Biol. 8(8):e1002670. doi:10.1371/journal.pcbi.1002670"
-  - "Gordon, D. M. (1996). The organization of work in social insect colonies. Nature 380:121–124. doi:10.1038/380121a0 (apenas bibliografia conferida)"
-  - "Gordon, D. M. & Mehdiabadi, N. J. (1999). Encounter rate and task allocation in harvester ants. Behav. Ecol. Sociobiol. 45:370–377. doi:10.1007/s002650050573 (apenas bibliografia conferida)"
-related: [nat-response-threshold, nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions, nat-candidatas, sim-elastico]
+  - "Gordon, D. M. (1996). The organization of work in social insect colonies. Nature 380:121–124. doi:10.1038/380121a0 (bibliographic record only checked)"
+  - "Gordon, D. M. & Mehdiabadi, N. J. (1999). Encounter rate and task allocation in harvester ants. Behav. Ecol. Sociobiol. 45:370–377. doi:10.1007/s002650050573 (bibliographic record only checked)"
+related: [nat-response-threshold, nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions, nat-candidates, sim-elastic]
 updated: 2026-11-07
-verificacao: "Resumos de 2008 e 2012 lidos (OpenAlex). 1996 e 1999: só metadados Crossref."
-summary: Formigas colhedoras decidem sair para forragear pela taxa recente de colegas que voltam com comida; a colônia acelera ou freia em minutos sem ninguém saber quanto alimento existe.
+verification: "Abstracts of 2008 and 2012 read (OpenAlex). 1996 and 1999: Crossref metadata only."
+summary: Harvester ants decide to leave the nest to forage based on the recent rate of nestmates returning with food; the colony speeds up or slows down within minutes without anyone knowing how much food exists.
 ---
 
-## Mecanismo
-- Em *Pogonomyrmex barbatus*, o retorno de forrageiras **bem-sucedidas** estimula forrageiras inativas a sair. A taxa de retorno depende da disponibilidade de alimento (mais comida → retornos mais rápidos).
-- Experimento de campo (2008): reduzir a taxa de retorno por **3–5 min** fez a atividade de forrageio cair em **2–3 min** e se recuperar em **até 5 min**. Os autores inferem que a decisão de sair depende da experiência *muito recente* de encontros — uma memória curta que torna a colônia avessa a risco.
-- Modelo (2012): os intervalos entre retornos seguem um **processo de Poisson**; um algoritmo de realimentação com um parâmetro ajustado (efeito de cada retorno sobre a taxa de saída) reproduz as correlações observadas. Não há informação espacial (sem trilhas): a regulação é puramente pela taxa de contatos antenais no ninho.
+## Mechanism
+- In *Pogonomyrmex barbatus*, the return of **successful** foragers stimulates inactive foragers to leave the nest. The rate of return depends on food availability (more food → faster returns).
+- Field experiment (2008): reducing the rate of return for **3–5 min** caused foraging activity to drop within **2–3 min** and to recover within **up to 5 min**. The authors infer that the decision to leave depends on *very recent* experience of encounters — a short memory that makes the colony risk-averse.
+- Model (2012): the intervals between returns follow a **Poisson process**; a feedback algorithm with one fitted parameter (effect of each return on the departure rate) reproduces the observed correlations. There is no spatial information (no trails): regulation is purely by the rate of antennal contacts in the nest.
 
-## Evidência
-`fenomeno-natural` (experimento de campo) + `relato-autores` (modelo ajustado).
+## Evidence
+`natural-phenomenon` (field experiment) + `author-reported` (fitted model).
 
-## Análogo de engenharia
-**Recrutamento acoplado a aceite:** a taxa de lançamento de novas tentativas/agentes paralelos é função da taxa recente de *resultados aceitos* (testes que passam, subtarefas verificadas), com janela curta. Se nada aceito retorna, o swarm contrai sozinho; se retornos aceitos aceleram, expande. É análogo a controle de congestionamento (AIMD), mas o sinal é **sucesso verificado**, não ausência de erro.
+## Engineering analogue
+**Recruitment coupled to acceptance:** the launch rate of new attempts/parallel agents is a function of the recent rate of *accepted results* (passing tests, verified subtasks), with a short window. If nothing accepted comes back, the swarm contracts on its own; if accepted returns speed up, it expands. This is analogous to congestion control (AIMD), but the signal is **verified success**, not absence of error.
 
-## Hipótese testável
-- **Variável:** política de spawn — (A) N fixo de tentativas paralelas; (B) spawn proporcional à taxa de aceites na janela W (W ∈ {1, 3, 10} eventos).
-- **Métrica:** chamadas desperdiçadas em tarefas inviáveis (sem solução aceitável); tempo até 1º aceite em tarefas viáveis; custo por aceite.
-- **Previsão:** B reduz ≥ 50% as chamadas em tarefas inviáveis, com aumento ≤ 20% no tempo até o 1º aceite em tarefas viáveis; W pequeno reage mais rápido, W grande é mais estável.
-- **Refutação:** se em tarefas inviáveis B não contrair (porque falsos aceites alimentam o laço) ou se o atraso em tarefas viáveis passar de 20%, a hipótese cai. Falsos aceites são o ponto crítico: medir taxa de falso sucesso.
+## Testable hypothesis
+- **Variable:** spawn policy — (A) fixed N of parallel attempts; (B) spawn proportional to the acceptance rate in window W (W ∈ {1, 3, 10} events).
+- **Metric:** wasted calls on infeasible tasks (no acceptable solution); time to 1st acceptance on feasible tasks; cost per acceptance.
+- **Prediction:** B reduces calls on infeasible tasks by ≥ 50%, with an increase of ≤ 20% in time to 1st acceptance on feasible tasks; small W reacts faster, large W is more stable.
+- **Refutation:** if on infeasible tasks B does not contract (because false acceptances feed the loop) or if the delay on feasible tasks exceeds 20%, the hypothesis falls. False acceptances are the critical point: measure the false-success rate.
 
-## Limites da transferência
-Formigas não pagam custo fixo alto por "ligar" uma forrageira; agentes LLM têm latência de partida. O sinal biológico é físico e confiável (semente trazida); o sinal LLM ("aceito") só vale se o aceite for mecânico/verificável. Sem verificador, o laço amplifica falso sucesso.
+## Limits of transfer
+Ants do not pay a high fixed cost to "switch on" a forager; LLM agents have start-up latency. The biological signal is physical and reliable (a seed brought back); the LLM signal ("accepted") is only valid if acceptance is mechanical/verifiable. Without a verifier, the loop amplifies false success.

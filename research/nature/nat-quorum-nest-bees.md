@@ -1,35 +1,35 @@
 ---
 id: nat-quorum-nest-bees
-title: Quórum, não consenso — como o enxame de abelhas decide que decidiu
+title: Quorum, not consensus — how a honey bee swarm decides that it has decided
 area: nature
-evidence: fenomeno-natural
-tags: [quorum, criterio-de-parada, verificacao, quando-encerrar, velocidade-acuracia]
+evidence: natural-phenomenon
+tags: [quorum, stopping-criterion, verification, when-to-stop, speed-accuracy]
 sources:
   - "Seeley, T. D. & Visscher, P. K. (2003). Choosing a home: how the scouts in a honey bee swarm perceive the completion of their group decision making. Behav. Ecol. Sociobiol. 54:511–520. doi:10.1007/s00265-003-0664-6"
   - "Seeley, T. D. & Visscher, P. K. (2004). Quorum sensing during nest-site selection by honeybee swarms. Behav. Ecol. Sociobiol. 56:594–601. doi:10.1007/s00265-004-0814-5"
-related: [nat-speed-accuracy-quorum, nat-stop-signal-cross-inhibition, nat-waggle-dance-recruitment, lit-early-stopping-sc, lit-adaptive-consistency, nat-candidatas, sim-quorum]
+related: [nat-speed-accuracy-quorum, nat-stop-signal-cross-inhibition, nat-waggle-dance-recruitment, lit-early-stopping-sc, lit-adaptive-consistency, nat-candidates, sim-quorum]
 updated: 2026-11-07
-verificacao: "Texto integral de 2003 lido (PDF hospedado em bees.ucr.edu, extraído localmente). 2004: só metadados Crossref + desenho experimental descrito em índice secundário (não aberto o texto)."
-summary: As batedoras começam a preparar a mudança quando ~10–15 abelhas estão juntas num mesmo local candidato, mesmo com danças ainda ativas para outros — quórum local substitui consenso global.
+verification: "Full text of 2003 read (PDF hosted at bees.ucr.edu, extracted locally). 2004: Crossref metadata only + experimental design described in a secondary index (text not opened)."
+summary: Scouts begin preparing for departure when ~10–15 bees are together at the same candidate site, even while dances for other sites are still active — a local quorum replaces global consensus.
 ---
 
-## Mecanismo
-- Duas hipóteses testadas em 4 enxames escolhendo entre 2 caixas-ninho (2003): **consenso** (as batedoras notam quando todas as danças anunciam um só local) vs **quórum** (notam quando um local recebe batedoras suficientes).
-- Resultado (texto integral): o consenso entre dançarinas **não foi necessário nem suficiente** para iniciar o *worker piping* (sinal de preparação para o voo). Um acúmulo de **10–15 ou mais abelhas** numa caixa esteve consistentemente associado ao início do piping. Num enxame, o piping começou logo após ~**15** batedoras no local escolhido (≈12 dentro, 3 fora), com no máximo 2 no outro. O piping começa **cerca de uma hora** antes da decolagem.
-- O quórum é medido **no local candidato** (sinal local, barato), não no enxame inteiro. Os autores sugerem que quórum dá melhor equilíbrio velocidade–acurácia do que consenso.
-- 2004 (desenho conforme índice secundário, não conferido no texto): dividir as batedoras de um mesmo local entre 5 caixas atrasou piping e decolagem em relação a 1 caixa — consistente com contagem por densidade local.
+## Mechanism
+- Two hypotheses tested in 4 swarms choosing between 2 nest boxes (2003): **consensus** (scouts notice when all dances advertise a single site) vs **quorum** (they notice when a site receives enough scouts).
+- Result (full text): consensus among dancers was **neither necessary nor sufficient** to initiate *worker piping* (the signal preparing for flight). An accumulation of **10–15 or more bees** at a box was consistently associated with the onset of piping. In one swarm, piping began shortly after ~**15** scouts were at the chosen site (≈12 inside, 3 outside), with at most 2 at the other. Piping begins **about one hour** before liftoff.
+- The quorum is sensed **at the candidate site** (a local, cheap signal), not across the whole swarm. The authors suggest that a quorum gives a better speed–accuracy balance than consensus.
+- 2004 (design as per a secondary index, not checked in the text): splitting the scouts from a single site among 5 boxes delayed piping and liftoff relative to 1 box — consistent with counting by local density.
 
-## Evidência
-`fenomeno-natural` (experimento de campo, n = 4 enxames em 2003 — amostra pequena).
+## Evidence
+`natural-phenomenon` (field experiment, n = 4 swarms in 2003 — small sample).
 
-## Análogo de engenharia
-**Critério de parada por quórum:** amostrar soluções/verificações independentes em sequência e parar quando k concordam sobre uma resposta *verificada*, sem esperar unanimidade nem rodadas fixas de debate. O "local" é a resposta candidata; o quórum é contado ali (ex.: k execuções que passam no mesmo teste/produzem a mesma saída canônica).
+## Engineering analogue
+**Quorum stopping criterion:** sample independent solutions/verifications sequentially and stop when k agree on a *verified* answer, without waiting for unanimity or fixed rounds of debate. The "site" is the candidate answer; the quorum is counted there (e.g. k runs that pass the same test/produce the same canonical output).
 
-## Hipótese testável
-- **Variável:** regra de parada — (A) N fixo + maioria; (B) consenso (todos concordam ou R rodadas); (C) quórum k ∈ {2, 3, 4} sobre respostas canônicas, amostragem sequencial.
-- **Métrica:** acurácia verificável; nº médio de chamadas por tarefa; latência.
-- **Previsão:** C com k = 3 atinge acurácia ≥ A − 1 p.p. com ≥ 40% menos chamadas que A (N = 9) e ≥ 30% menos que B; ganho maior em tarefas fáceis (onde o quórum se forma cedo).
-- **Refutação:** se erros correlacionados formarem quórum errado com frequência (acurácia de C < A − 3 p.p.), o quórum precisa de diversidade ou verificador — e o mecanismo puro é refutado para LLMs homogêneos.
+## Testable hypothesis
+- **Variable:** stopping rule — (A) fixed N + majority; (B) consensus (all agree or R rounds); (C) quorum k ∈ {2, 3, 4} over canonical answers, sequential sampling.
+- **Metric:** verifiable accuracy; mean no. of calls per task; latency.
+- **Prediction:** C with k = 3 reaches accuracy ≥ A − 1 pp with ≥ 40% fewer calls than A (N = 9) and ≥ 30% fewer than B; larger gain on easy tasks (where the quorum forms early).
+- **Refutation:** if correlated errors frequently form a wrong quorum (accuracy of C < A − 3 pp), the quorum needs diversity or a verifier — and the pure mechanism is refuted for homogeneous LLMs.
 
-## Limites da transferência
-Abelhas avaliam o local de forma **independente** (cada batedora inspeciona a cavidade); amostras de um mesmo LLM não são independentes (ver `nat-condorcet-correlated`). O quórum natural está acoplado a recrutamento proporcional à qualidade, que filtra opções ruins antes; sem esse filtro, quórum precoce pode cristalizar erro.
+## Limits of transfer
+Bees assess the site **independently** (each scout inspects the cavity); samples from the same LLM are not independent (see `nat-condorcet-correlated`). The natural quorum is coupled to quality-proportional recruitment, which filters out poor options beforehand; without that filter, a premature quorum can crystallize an error.

@@ -1,33 +1,33 @@
 ---
 id: nat-scale-free-correlation
-title: Correlações livres de escala em revoadas de estorninhos
+title: Scale-free correlations in starling flocks
 area: nature
-evidence: fenomeno-natural
-tags: [propagacao-de-informacao, criticalidade, correlacao, cascata-de-erro]
+evidence: natural-phenomenon
+tags: [information-propagation, criticality, correlation, error-cascade]
 sources:
   - "Cavagna, A., Cimarelli, A., Giardina, I., Parisi, G., Santagati, R., Stefanini, F. & Viale, M. (2010). Scale-free correlations in starling flocks. PNAS 107(26):11865–11870. doi:10.1073/pnas.1005766107 (PMC2900681)"
-related: [nat-topological-neighbors, nat-vicsek-phase-transition, nat-condorcet-correlated, lit-correlated-errors, nat-candidatas]
+related: [nat-topological-neighbors, nat-vicsek-phase-transition, nat-condorcet-correlated, lit-correlated-errors, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumo + números via página PMC (WebFetch)."
-summary: Em revoadas de 122 a 4.268 estorninhos, o alcance da correlação entre flutuações de velocidade cresce proporcional ao tamanho do bando (ξ ≈ 0,35 L) — a perturbação de um pássaro alcança o grupo todo.
+verification: "Abstract + numbers via PMC page (WebFetch)."
+summary: In flocks of 122 to 4,268 starlings, the range of correlation between velocity fluctuations grows in proportion to the size of the flock (ξ ≈ 0.35 L) — the perturbation of one bird reaches the whole group.
 ---
 
-## Mecanismo
-- Reconstrução 3D de **24 eventos** de revoada, com **122 a 4.268** indivíduos e tamanho linear de 9,1 a 85,7 m; polarização média Φ = 0,96 ± 0,03.
-- O comprimento de correlação das flutuações de orientação escala **linearmente com o tamanho do bando**: ξ = a·L, **a = 0,35** (n = 24, r = 0,98); para flutuações de velocidade escalar, **a = 0,36** (r = 0,97). Ou seja, correlações **livres de escala**: a mudança de estado de um animal afeta e é afetada por todos, por maior que seja o grupo.
-- Isso dá a cada ave um alcance efetivo de percepção muito maior que seu alcance de interação direta. Os autores **sugerem** que bandos estão perto de um ponto crítico (hipótese deles, não resultado estabelecido).
+## Mechanism
+- 3D reconstruction of **24 flocking events**, with **122 to 4,268** individuals and linear size from 9.1 to 85.7 m; mean polarization Φ = 0.96 ± 0.03.
+- The correlation length of orientation fluctuations scales **linearly with flock size**: ξ = a·L, **a = 0.35** (n = 24, r = 0.98); for speed fluctuations, **a = 0.36** (r = 0.97). That is, **scale-free** correlations: the change of state of one animal affects and is affected by all the others, however large the group.
+- This gives each bird an effective perception range much larger than its range of direct interaction. The authors **suggest** that flocks are close to a critical point (their hypothesis, not an established result).
 
-## Evidência
-`fenomeno-natural` (medição) + `relato-autores` (interpretação de criticalidade).
+## Evidence
+`natural-phenomenon` (measurement) + `author-reported` (criticality interpretation).
 
-## Análogo de engenharia
-Num swarm de LLM, correlação longa é faca de dois gumes: propaga rápido um achado correto (um agente encontra a causa e todos ajustam) **e** propaga rápido um erro (cascata de conformidade em debate). O parâmetro análogo é o quanto cada agente se ajusta ao estado dos vizinhos. Medir "comprimento de correlação" = quantos agentes mudam de resposta depois que um muda.
+## Engineering analogue
+In an LLM swarm, long-range correlation is a double-edged sword: it quickly propagates a correct finding (one agent finds the cause and all adjust) **and** quickly propagates an error (conformity cascade in debate). The analogous parameter is how much each agent adjusts to the state of its neighbors. Measuring "correlation length" = how many agents change their answer after one changes.
 
-## Hipótese testável
-- **Variável:** força de acoplamento social (agente vê respostas dos pares: nunca / após resposta independente / antes de responder) × injeção controlada de um agente "semente" certo ou errado.
-- **Métrica:** fração do swarm que adota a resposta da semente (alcance da cascata) quando ela está certa vs errada; acurácia final.
-- **Previsão:** maior acoplamento aumenta o alcance da cascata **simetricamente** para sementes certas e erradas (razão alcance_certo/alcance_errado < 1,5) — ou seja, acoplamento sem verificação não discrimina verdade.
-- **Refutação:** se o alcance para sementes certas for ≥ 2× o de erradas sem verificador, LLMs discriminam por conteúdo e o risco de cascata é menor do que a analogia sugere.
+## Testable hypothesis
+- **Variable:** strength of social coupling (agent sees peers' answers: never / after an independent answer / before answering) × controlled injection of a correct or wrong "seed" agent.
+- **Metric:** fraction of the swarm that adopts the seed's answer (cascade reach) when it is correct vs wrong; final accuracy.
+- **Prediction:** stronger coupling increases cascade reach **symmetrically** for correct and wrong seeds (ratio reach_correct/reach_wrong < 1.5) — that is, coupling without verification does not discriminate truth.
+- **Refutation:** if the reach for correct seeds is ≥ 2× that for wrong ones without a verifier, LLMs discriminate by content and the cascade risk is lower than the analogy suggests.
 
-## Limites da transferência
-Velocidade de voo é um vetor contínuo de baixa dimensão; respostas de LLM são discretas e semânticas. Correlação útil para fugir de predador não é a mesma coisa que correlação útil para acertar uma resposta — no segundo caso, independência é valiosa (ver `nat-condorcet-correlated`).
+## Limits of transfer
+Flight velocity is a continuous, low-dimensional vector; LLM answers are discrete and semantic. Correlation that is useful for escaping a predator is not the same as correlation that is useful for getting an answer right — in the latter case, independence is valuable (see `nat-condorcet-correlated`).

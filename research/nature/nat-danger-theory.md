@@ -1,34 +1,34 @@
 ---
 id: nat-danger-theory
-title: Teoria do perigo — responder a dano, não a novidade
+title: Danger theory — responding to damage, not to novelty
 area: nature
-evidence: hipotese
-tags: [deteccao-de-anomalia, gatilho-de-escalonamento, alarme-falso, imunidade]
+evidence: hypothesis
+tags: [anomaly-detection, escalation-trigger, false-alarm, immunity]
 sources:
   - "Matzinger, P. (1994). Tolerance, danger, and the extended family. Annu. Rev. Immunol. 12:991–1045. doi:10.1146/annurev.iy.12.040194.005015"
   - "Matzinger, P. (2002). The danger model: a renewed sense of self. Science 296(5566):301–305. doi:10.1126/science.1071059"
-related: [nat-bacterial-quorum-sensing, nat-clonal-expansion-contraction, nat-wound-healing-resolution, lit-bio-autonomic, nat-candidatas]
+related: [nat-bacterial-quorum-sensing, nat-clonal-expansion-contraction, nat-wound-healing-resolution, lit-bio-autonomic, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumos das duas publicações lidos (OpenAlex). O status de consenso da teoria na imunologia atual não foi avaliado."
-summary: Matzinger propôs que o sistema imune é guiado mais por sinais de dano vindos dos tecidos do que pela distinção próprio/não-próprio — um modelo influente, mas proposto como ponto de vista, não como fato estabelecido.
+verification: "Abstracts of both publications read (OpenAlex). The theory's consensus status in current immunology was not assessed."
+summary: Matzinger proposed that the immune system is driven more by damage signals from tissues than by the self/non-self distinction — an influential model, but proposed as a viewpoint, not as established fact.
 ---
 
-## Mecanismo
-- **1994 (resumo):** propõe que o sistema imune "não se importa" com próprio vs não-próprio; sua força motriz principal é **detectar e proteger contra perigo**, e ele **não age sozinho**: recebe comunicações positivas e negativas de uma rede estendida de outros tecidos.
-- **2002 (Viewpoint, resumo):** modelo em que o sistema imune está mais preocupado com **entidades que causam dano** do que com as estrangeiras.
-- É uma **proposta teórica** (essay/viewpoint); o grau de suporte experimental atual não foi avaliado aqui.
+## Mechanism
+- **1994 (abstract):** proposes that the immune system "does not care" about self vs non-self; its primary driving force is **to detect and protect against danger**, and it **does not act alone**: it receives positive and negative communications from an extended network of other tissues.
+- **2002 (Viewpoint, abstract):** a model in which the immune system is more concerned with **entities that do damage** than with those that are foreign.
+- It is a **theoretical proposal** (essay/viewpoint); its current degree of experimental support was not assessed here.
 
-## Evidência
-`hipotese` (no campo de origem: modelo teórico proposto pela autora). Por isso o cartão não é `fenomeno-natural`.
+## Evidence
+`hypothesis` (in its field of origin: a theoretical model proposed by the author). This is why the card is not `natural-phenomenon`.
 
-## Análogo de engenharia
-Escalonar/abrir incidente com base em **sinais de dano** confirmados (teste que passava agora falha, regressão observada, erro visível ao usuário, critério de aceite violado) e **não** com base em novidade/estranheza (log nunca visto, saída de formato incomum, agente desconhecido). Os "tecidos" são os componentes que reportam dano; o detector central não decide sozinho.
+## Engineering analogue
+Escalate/open an incident on the basis of confirmed **damage signals** (a test that used to pass now fails, an observed regression, a user-visible error, a violated acceptance criterion) and **not** on the basis of novelty/strangeness (a never-seen log line, output in an unusual format, an unknown agent). The "tissues" are the components that report damage; the central detector does not decide alone.
 
-## Hipótese testável
-- **Variável:** gatilho de escalonamento — (A) anomalia/novidade (desvio estatístico do comportamento usual); (B) dano (violação de critério verificável); (C) A ∧ B.
-- **Métrica:** alarmes falsos por semana; problemas reais detectados; tempo até detecção (em ambiente com falhas injetadas e mudanças benignas injetadas).
-- **Previsão:** B reduz alarmes falsos ≥ 70% vs A, detectando ≥ 90% das falhas com dano; A detecta antes algumas falhas silenciosas (sem dano ainda observável).
-- **Refutação:** se B perder > 20% das falhas reais (dano não observável a tempo), o gatilho por dano é insuficiente e precisa de A como sinal secundário.
+## Testable hypothesis
+- **Variable:** escalation trigger — (A) anomaly/novelty (statistical deviation from usual behaviour); (B) damage (violation of a verifiable criterion); (C) A ∧ B.
+- **Metric:** false alarms per week; real problems detected; time to detection (in an environment with injected faults and injected benign changes).
+- **Prediction:** B reduces false alarms by ≥ 70% vs A while detecting ≥ 90% of faults that cause damage; A detects some silent faults earlier (with no damage observable yet).
+- **Refutation:** if B misses > 20% of real faults (damage not observable in time), the damage trigger is insufficient and needs A as a secondary signal.
 
-## Limites da transferência
-A teoria é contestável no próprio campo; usá-la só como gerador de hipótese. Em software, muitos danos são silenciosos (corrupção de dados) — esperar o dano pode ser tarde.
+## Limits of transfer
+The theory is contested within its own field; use it only as a hypothesis generator. In software, much damage is silent (data corruption) — waiting for damage may be too late.

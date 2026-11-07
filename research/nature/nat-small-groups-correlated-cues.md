@@ -1,34 +1,34 @@
 ---
 id: nat-small-groups-correlated-cues
-title: Com pistas correlacionadas, a acurácia coletiva é máxima em grupos pequenos
+title: With correlated cues, collective accuracy is maximized in small groups
 area: nature
-evidence: relato-autores
-tags: [tamanho-otimo, correlacao, wisdom-of-crowds, quando-parar-de-expandir, micro-swarm]
+evidence: author-reported
+tags: [optimal-size, correlation, wisdom-of-crowds, when-to-stop-expanding, micro-swarm]
 sources:
   - "Kao, A. B. & Couzin, I. D. (2014). Decision accuracy in complex environments is often maximized by small group sizes. Proc. R. Soc. B 281:20133305. doi:10.1098/rspb.2013.3305 (PMC4043084)"
-related: [nat-condorcet-correlated, nat-informed-leaders, lit-correlated-errors, lit-great-models-think-alike, lit-more-agents, sim-voto-correlacionado, nat-candidatas]
+related: [nat-condorcet-correlated, nat-informed-leaders, lit-correlated-errors, lit-great-models-think-alike, lit-more-agents, sim-correlated-vote, nat-candidates]
 updated: 2026-11-07
-verificacao: "Texto integral extraído de PDF (cópia em blogs.umb.edu/collectivelab). A faixa '5 a 20' aparece só em material de imprensa e NÃO foi usada."
-summary: Quando parte da informação é compartilhada por todos (correlacionada), o "wisdom of crowds" só aparece numa minoria de ambientes; em geral existe um tamanho de grupo finito e pequeno (> 1) que maximiza a acurácia.
+verification: "Full text extracted from PDF (copy at blogs.umb.edu/collectivelab). The '5 to 20' range appears only in press material and was NOT used."
+summary: When part of the information is shared by all (correlated), the "wisdom of crowds" appears only in a minority of environments; in general there is a finite, small group size (> 1) that maximizes accuracy.
 ---
 
-## Mecanismo
-- **Modelo de duas pistas:** uma pista de **baixa correlação** (amostrada independentemente, confiabilidade r_L) e outra de **alta correlação** (vista por todos, confiabilidade r_H). Cada indivíduo usa a pista de baixa correlação com probabilidade p e vota segundo a pista usada.
-- **Condição para wisdom of crowds:** a fração esperada do grupo que recebe informação correta e de baixa correlação precisa exceder 1/2, isto é, **p·r_L > 1/2 ⇔ p > 1/(2r_L)**. Fora disso, a decisão do grupo grande é **ditada pela pista correlacionada** — mesmo que só uma minoria a use.
-- **Resultado central (texto):** no regime p < 1/(2r_L) existe um **tamanho de grupo ótimo finito**, que **tende a ser moderadamente pequeno, mas maior que 1**. É o **ruído inerente a grupos pequenos** que permite escapar da informação altamente correlacionada mantendo parte do benefício da agregação. O wisdom of crowds clássico (acurácia crescendo monotonicamente com N) aparece **só numa minoria** dos ambientes.
-- Os autores também consideram ambientes com correlação espacial/temporal na mesma pista, com conclusão qualitativa semelhante (detalhes não extraídos).
+## Mechanism
+- **Two-cue model:** one **low-correlation** cue (sampled independently, reliability r_L) and one **high-correlation** cue (seen by all, reliability r_H). Each individual uses the low-correlation cue with probability p and votes according to the cue used.
+- **Condition for the wisdom of crowds:** the expected fraction of the group that receives correct, low-correlation information must exceed 1/2, that is, **p·r_L > 1/2 ⇔ p > 1/(2r_L)**. Otherwise, the decision of a large group is **dictated by the correlated cue** — even if only a minority uses it.
+- **Central result (text):** in the regime p < 1/(2r_L) there is a **finite optimal group size**, which **tends to be moderately small, but greater than 1**. It is the **noise inherent in small groups** that allows escaping highly correlated information while retaining part of the benefit of aggregation. The classical wisdom of crowds (accuracy increasing monotonically with N) appears **only in a minority** of environments.
+- The authors also consider environments with spatial/temporal correlation in the same cue, with a qualitatively similar conclusion (details not extracted).
 
-## Evidência
-`relato-autores` (modelos teóricos; não é experimento com animais).
+## Evidence
+`author-reported` (theoretical models; not an experiment with animals).
 
-## Análogo de engenharia
-Para swarms de LLM, a "pista de alta correlação" é o conhecimento/viés compartilhado do mesmo modelo-base (ou de modelos treinados em dados parecidos); a de "baixa correlação" é a evidência que cada agente coleta independentemente (ferramenta, arquivo, teste diferente). Tradução direta da condição: **expandir só ajuda se a fração de agentes que trazem evidência independente e correta for > 1/2**; caso contrário, há um N* pequeno e parar de expandir é o certo. Isto é uma candidata forte para explicar a transição micro → macro-swarm.
+## Engineering analogue
+For LLM swarms, the "high-correlation cue" is the shared knowledge/bias of the same base model (or of models trained on similar data); the "low-correlation" cue is the evidence each agent collects independently (a different tool, file, test). Direct translation of the condition: **expanding only helps if the fraction of agents that bring independent, correct evidence is > 1/2**; otherwise, there is a small N* and stopping expansion is the right move. This is a strong candidate to explain the micro → macro-swarm transition.
 
-## Hipótese testável
-- **Variável:** N ∈ {1, 2, 3, 5, 7, 11, 21} × fração de agentes com acesso a evidência independente (q ∈ {0, 0,25, 0,5, 0,75}) em tarefas com resposta verificável.
-- **Métrica:** acurácia do voto majoritário; argmax_N da acurácia (N*); custo.
-- **Previsão:** com q·acc_evid < 1/2, a curva acurácia(N) tem máximo interior em N* ∈ [3, 7] e cai depois; com q·acc_evid > 1/2, cresce monotonicamente até saturar. A fronteira observada fica a ± 0,1 do previsto por 1/(2r_L).
-- **Refutação:** se a acurácia for monotônica em N em todas as condições, ou se N* não se mover com q.
+## Testable hypothesis
+- **Variable:** N ∈ {1, 2, 3, 5, 7, 11, 21} × fraction of agents with access to independent evidence (q ∈ {0, 0.25, 0.5, 0.75}) on tasks with a verifiable answer.
+- **Metric:** majority-vote accuracy; argmax_N of accuracy (N*); cost.
+- **Prediction:** with q·acc_evid < 1/2, the accuracy(N) curve has an interior maximum at N* ∈ [3, 7] and falls thereafter; with q·acc_evid > 1/2, it grows monotonically until it saturates. The observed boundary lies within ± 0.1 of that predicted by 1/(2r_L).
+- **Refutation:** if accuracy is monotonic in N under all conditions, or if N* does not move with q.
 
-## Limites da transferência
-O modelo assume votos binários e pistas com confiabilidade fixa conhecida; em LLMs, "pista correlacionada" e "independente" se misturam dentro de cada agente. O ótimo pequeno vem do **ruído** — em LLMs a temperatura dá ruído, mas não necessariamente independência útil.
+## Limits of transfer
+The model assumes binary votes and cues with fixed, known reliability; in LLMs, "correlated" and "independent" cues are mixed within each agent. The small optimum comes from **noise** — in LLMs temperature provides noise, but not necessarily useful independence.

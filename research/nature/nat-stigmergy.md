@@ -1,34 +1,34 @@
 ---
 id: nat-stigmergy
-title: Estigmergia — coordenação pelo estado do trabalho, não por mensagens
+title: Stigmergy — coordination through the state of the work, not through messages
 area: nature
-evidence: fenomeno-natural
-tags: [estigmergia, comunicacao-indireta, estado-compartilhado, poda-de-comunicacao]
+evidence: natural-phenomenon
+tags: [stigmergy, indirect-communication, shared-state, communication-pruning]
 sources:
-  - "Grassé, P.-P. (1959). La reconstruction du nid et les coordinations interindividuelles chez Bellicositermes natalensis et Cubitermes sp. La théorie de la stigmergie. Insectes Sociaux 6:41–80. doi:10.1007/BF02223791 (apenas bibliografia conferida)"
+  - "Grassé, P.-P. (1959). La reconstruction du nid et les coordinations interindividuelles chez Bellicositermes natalensis et Cubitermes sp. La théorie de la stigmergie. Insectes Sociaux 6:41–80. doi:10.1007/BF02223791 (bibliographic record only checked)"
   - "Theraulaz, G. & Bonabeau, E. (1999). A brief history of stigmergy. Artificial Life 5(2):97–116. doi:10.1162/106454699568700"
-related: [nat-pheromone-evaporation-aco, oss-stigmergic, lit-agentprune, nat-physarum-network, nat-candidatas, sim-estigmergia]
+related: [nat-pheromone-evaporation-aco, oss-stigmergic, lit-agentprune, nat-physarum-network, nat-candidates, sim-stigmergy]
 updated: 2026-11-07
-verificacao: "Resumo de Theraulaz & Bonabeau 1999 lido (OpenAlex). Grassé 1959: só metadados (texto em francês, não aberto)."
-summary: Cupins e formigas coordenam construções complexas reagindo ao estado da obra deixado pelos outros; o próprio artefato carrega a comunicação.
+verification: "Abstract of Theraulaz & Bonabeau 1999 read (OpenAlex). Grassé 1959: metadata only (text in French, not opened)."
+summary: Termites and ants coordinate complex constructions by reacting to the state of the work left by others; the artifact itself carries the communication.
 ---
 
-## Mecanismo
-- Introduzida por Grassé (1959) para explicar o "paradoxo" de que, numa sociedade de insetos, **indivíduos trabalham como se estivessem sozinhos**, mas a atividade coletiva parece coordenada (resumo de 1999).
-- Theraulaz & Bonabeau distinguem duas classes: **estigmergia quantitativa** (a intensidade do estímulo — ex.: quantidade de feromônio/material — modula a probabilidade de resposta) e **qualitativa** (configurações distintas do artefato disparam ações distintas).
-- A comunicação é indireta, mediada pelo ambiente, assíncrona e persistente: o custo de coordenação não cresce com o nº de pares de indivíduos.
+## Mechanism
+- Introduced by Grassé (1959) to explain the "paradox" that, in an insect society, **individuals work as if they were alone**, yet the collective activity appears coordinated (1999 abstract).
+- Theraulaz & Bonabeau distinguish two classes: **quantitative stigmergy** (the intensity of the stimulus — e.g. amount of pheromone/material — modulates the probability of response) and **qualitative stigmergy** (distinct configurations of the artifact trigger distinct actions).
+- Communication is indirect, mediated by the environment, asynchronous and persistent: the cost of coordination does not grow with the no. of pairs of individuals.
 
-## Evidência
-`fenomeno-natural` (descrição etológica) + `relato-autores` (síntese histórica). Sem números nas fontes abertas.
+## Evidence
+`natural-phenomenon` (ethological description) + `author-reported` (historical synthesis). No numbers in the open sources.
 
-## Análogo de engenharia
-O **artefato verificável** (repositório, saída de testes, checklist de aceite, quadro de tarefas) é o meio de coordenação. Agentes leem o estado e agem; não trocam mensagens par-a-par. Estigmergia qualitativa = "teste X falhando dispara o especialista de X"; quantitativa = "quanto mais testes falham num módulo, maior a chance de alocar mais um agente ali".
+## Engineering analogue
+The **verifiable artifact** (repository, test output, acceptance checklist, task board) is the medium of coordination. Agents read the state and act; they do not exchange peer-to-peer messages. Qualitative stigmergy = "test X failing triggers the X specialist"; quantitative = "the more tests fail in a module, the greater the chance of allocating one more agent there".
 
-## Hipótese testável
-- **Variável:** canal de coordenação — (A) mensagens livres entre agentes (chat/debate); (B) apenas estado compartilhado estruturado (artefato + resultados de teste), sem mensagens.
-- **Métrica:** tokens de coordenação por tarefa aceita; taxa de aceite; trabalho duplicado (dois agentes editando o mesmo alvo).
-- **Previsão:** em tarefas decomponíveis (bugs independentes), B reduz tokens de coordenação ≥ 40% com aceite ≥ A − 2 p.p.; em tarefas fortemente acopladas (bugs interdependentes), B perde aceite (o artefato não carrega a intenção).
-- **Refutação:** se B não reduzir tokens ou perder aceite também em tarefas decomponíveis, ou se ganhar em tarefas acopladas (contrariando a previsão de fronteira), revisar.
+## Testable hypothesis
+- **Variable:** coordination channel — (A) free messages between agents (chat/debate); (B) only structured shared state (artifact + test results), without messages.
+- **Metric:** coordination tokens per accepted task; acceptance rate; duplicated work (two agents editing the same target).
+- **Prediction:** on decomposable tasks (independent bugs), B reduces coordination tokens by ≥ 40% with acceptance ≥ A − 2 pp; on strongly coupled tasks (interdependent bugs), B loses acceptance (the artifact does not carry intention).
+- **Refutation:** if B does not reduce tokens or also loses acceptance on decomposable tasks, or if it wins on coupled tasks (contradicting the boundary prediction), revise.
 
-## Limites da transferência
-Insetos respondem a estímulos simples e locais; o "estado" de uma tarefa de software é semântico e pode ser lido de forma divergente por LLMs. Estigmergia sem controle de concorrência gera conflitos de escrita — exige locks/leases que a natureza não precisa explicitar.
+## Limits of transfer
+Insects respond to simple, local stimuli; the "state" of a software task is semantic and may be read divergently by LLMs. Stigmergy without concurrency control generates write conflicts — it requires locks/leases that nature does not need to make explicit.

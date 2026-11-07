@@ -1,33 +1,33 @@
 ---
 id: nat-vicsek-phase-transition
-title: Modelo de Vicsek — transição de fase entre desordem e movimento coletivo
+title: Vicsek model — phase transition between disorder and collective motion
 area: nature
-evidence: relato-autores
-tags: [transicao-de-fase, ruido, consenso, diversidade, temperatura]
+evidence: author-reported
+tags: [phase-transition, noise, consensus, diversity, temperature]
 sources:
   - "Vicsek, T., Czirók, A., Ben-Jacob, E., Cohen, I. & Shochet, O. (1995). Novel type of phase transition in a system of self-driven particles. Phys. Rev. Lett. 75(6):1226–1229. doi:10.1103/PhysRevLett.75.1226 (arXiv cond-mat/0611743)"
-related: [nat-scale-free-correlation, nat-small-groups-correlated-cues, lit-diverse-debate-hegazy, nat-candidatas]
+related: [nat-scale-free-correlation, nat-small-groups-correlated-cues, lit-diverse-debate-hegazy, nat-candidates]
 updated: 2026-11-07
-verificacao: "Resumo lido (OpenAlex)."
-summary: Partículas que copiam a direção média dos vizinhos com ruído η passam de desordem a movimento coletivo quando o ruído cai abaixo de um valor crítico — uma transição contínua com expoente β ≈ 0,45.
+verification: "Abstract read (OpenAlex)."
+summary: Particles that copy the mean direction of their neighbors with noise η pass from disorder to collective motion when the noise falls below a critical value — a continuous transition with exponent β ≈ 0.45.
 ---
 
-## Mecanismo
-- Partículas com velocidade escalar constante; a cada passo, cada uma adota a **direção média dos vizinhos** num raio, mais uma perturbação aleatória η.
-- Evidência numérica de **transição de fase cinética**: de transporte nulo (velocidade média |v_a| = 0) a transporte líquido finito, por quebra espontânea de simetria rotacional.
-- A transição é **contínua**: |v_a| ∝ (η_c − η)^β com **β ≃ 0,45** (resumo). A posição de η_c depende da densidade (detalhe não conferido no texto integral).
+## Mechanism
+- Particles with constant absolute velocity; at each step, each adopts the **mean direction of its neighbors** within a radius, plus a random perturbation η.
+- Numerical evidence of a **kinetic phase transition**: from no transport (mean velocity |v_a| = 0) to finite net transport, through spontaneous breaking of rotational symmetry.
+- The transition is **continuous**: |v_a| ∝ (η_c − η)^β with **β ≃ 0.45** (abstract). The position of η_c depends on density (detail not checked in the full text).
 
-## Evidência
-`relato-autores` (modelo numérico de física estatística; não é medição em animais).
+## Evidence
+`author-reported` (numerical model from statistical physics; not a measurement in animals).
 
-## Análogo de engenharia
-"Ruído" = diversidade/temperatura de amostragem/independência dos agentes; "alinhar com vizinhos" = ajustar resposta às dos pares. Previsão qualitativa: existe um regime de ruído abaixo do qual o swarm **sempre** converge (consenso, inclusive prematuro) e acima do qual não converge — e a passagem pode ser abrupta, não gradual. Projetar o swarm perto, mas do lado certo, da transição.
+## Engineering analogue
+"Noise" = diversity/sampling temperature/independence of the agents; "aligning with neighbors" = adjusting one's answer to those of peers. Qualitative prediction: there is a noise regime below which the swarm **always** converges (consensus, including premature consensus) and above which it does not converge — and the passage can be abrupt, not gradual. Design the swarm close to the transition, but on the right side of it.
 
-## Hipótese testável
-- **Variável:** temperatura de amostragem / grau de diversidade de prompts (η) × densidade de interação (k vizinhos lidos).
-- **Métrica:** parâmetro de ordem = fração de agentes na resposta modal após R rodadas; acurácia da resposta modal.
-- **Previsão:** o parâmetro de ordem cai de forma não linear (sigmoide íngreme) num η_c que diminui quando k diminui; a acurácia da resposta modal é máxima ligeiramente abaixo de η_c (consenso ainda forma-se, mas com mais exploração).
-- **Refutação:** se o parâmetro de ordem cair linearmente com η (sem transição) ou se a acurácia for monotônica em η (sem ótimo intermediário).
+## Testable hypothesis
+- **Variable:** sampling temperature / degree of prompt diversity (η) × interaction density (k neighbors read).
+- **Metric:** order parameter = fraction of agents on the modal answer after R rounds; accuracy of the modal answer.
+- **Prediction:** the order parameter drops nonlinearly (steep sigmoid) at an η_c that decreases when k decreases; the accuracy of the modal answer is maximal slightly below η_c (consensus still forms, but with more exploration).
+- **Refutation:** if the order parameter falls linearly with η (no transition) or if accuracy is monotonic in η (no intermediate optimum).
 
-## Limites da transferência
-Partículas de Vicsek não têm "resposta certa": ordem não é acurácia. Respostas de LLM são discretas e multimodais; transições podem ser de primeira ordem ou inexistentes. Uso estritamente heurístico para desenhar varreduras de parâmetro.
+## Limits of transfer
+Vicsek particles have no "right answer": order is not accuracy. LLM answers are discrete and multimodal; transitions may be first-order or nonexistent. Strictly heuristic use for designing parameter sweeps.

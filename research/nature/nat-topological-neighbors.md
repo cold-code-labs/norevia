@@ -1,33 +1,33 @@
 ---
 id: nat-topological-neighbors
-title: Interação topológica com ~6–7 vizinhos em estorninhos
+title: Topological interaction with ~6–7 neighbors in starlings
 area: nature
-evidence: fenomeno-natural
-tags: [topologia, k-vizinhos, custo-de-comunicacao, robustez, macro-swarm]
+evidence: natural-phenomenon
+tags: [topology, k-nearest-neighbors, communication-cost, robustness, macro-swarm]
 sources:
   - "Ballerini, M., Cabibbo, N., Candelier, R., Cavagna, A., Cisbani, E., Giardina, I., Lecomte, V., Orlandi, A., Parisi, G., Procaccini, A., Viale, M. & Zdravkovic, V. (2008). Interaction ruling animal collective behavior depends on topological rather than metric distance: evidence from a field study. PNAS 105(4):1232–1237. doi:10.1073/pnas.0711437105 (PMC2234121)"
   - "Young, G. F., Scardovi, L., Cavagna, A., Giardina, I. & Leonard, N. E. (2013). Starling flock networks manage uncertainty in consensus at low cost. PLoS Comput. Biol. 9(1):e1002894. doi:10.1371/journal.pcbi.1002894"
-related: [nat-scale-free-correlation, nat-physarum-network, lit-agentprune, lit-mixture-of-agents, nat-candidatas]
+related: [nat-scale-free-correlation, nat-physarum-network, lit-agentprune, lit-mixture-of-agents, nat-candidates]
 updated: 2026-11-07
-verificacao: "Ballerini 2008: números via página PMC. Young 2013: resumo lido (OpenAlex)."
-summary: Cada estorninho segue um número fixo de vizinhos (6,5 ± 0,9), não todos dentro de um raio; isso mantém a coesão sob ataque e, segundo modelo posterior, otimiza robustez por esforço individual.
+verification: "Ballerini 2008: numbers via PMC page. Young 2013: abstract read (OpenAlex)."
+summary: Each starling follows a fixed number of neighbors (6.5 ± 0.9), not all those within a radius; this maintains cohesion under attack and, according to a later model, optimizes robustness per individual effort.
 ---
 
-## Mecanismo
-- **Ballerini et al. 2008:** em **10** eventos reconstruídos (bandos com > 400 aves, até ~2.600), cada ave interage em média com um **número fixo de vizinhos, n_c = 6,5 ± 0,9 (EP)** — interação **topológica**, não métrica. Simulações de ataque de predador: com interação métrica, "desgarrados" foram **43%** dos componentes conectados; com topológica, **5%**. A interação topológica mantém a coesão sob grandes variações de densidade.
-- **Young et al. 2013 (resumo):** com medida de robustez de consenso sob ruído, redes com **6 ou 7 vizinhos otimizam o trade-off entre coesão do grupo e esforço individual**; o nº ótimo **não depende do nº de aves**, mas da forma (espessura) do bando.
+## Mechanism
+- **Ballerini et al. 2008:** in **10** reconstructed events (flocks of > 400 birds, up to ~2,600), each bird interacts on average with a **fixed number of neighbors, n_c = 6.5 ± 0.9 (SE)** — a **topological**, not metric, interaction. Simulations of predator attack: with metric interaction, "stragglers" were **43%** of the connected components; with topological interaction, **5%**. Topological interaction maintains cohesion under large variations in density.
+- **Young et al. 2013 (abstract):** using a measure of consensus robustness under noise, networks with **6 or 7 neighbors optimize the trade-off between group cohesion and individual effort**; the optimal number **does not depend on the number of birds**, but on the shape (thickness) of the flock.
 
-## Evidência
-`fenomeno-natural` (medição) + `relato-autores` (modelo de otimalidade).
+## Evidence
+`natural-phenomenon` (measurement) + `author-reported` (optimality model).
 
-## Análogo de engenharia
-Cada agente lê as saídas de **k pares fixos** (ex.: k vizinhos num anel/grafo esparso), não de todos os N: custo de comunicação O(N·k) em vez de O(N²); coesão preservada mesmo quando agentes entram/saem (densidade variável ≈ swarm elástico). O ótimo não depende de N, mas da "espessura" da tarefa (quantas dimensões/subproblemas independentes).
+## Engineering analogue
+Each agent reads the outputs of **k fixed peers** (e.g. k neighbors on a ring/sparse graph), not of all N: communication cost O(N·k) instead of O(N²); cohesion is preserved even when agents join/leave (variable density ≈ elastic swarm). The optimum does not depend on N, but on the "thickness" of the task (how many independent dimensions/subproblems).
 
-## Hipótese testável
-- **Variável:** k ∈ {1, 2, 3, 4, 6, N−1} em debate/agregação com N ∈ {6, 12, 24}.
-- **Métrica:** acurácia final; tokens de contexto lidos por agente; variância da resposta final entre réplicas (coesão).
-- **Previsão:** acurácia satura num k* pequeno (k* ≤ 4) **independente de N**; k = N−1 custa O(N²) sem ganho > 1 p.p. sobre k*.
-- **Refutação:** se k* crescer com N (dependência de escala) ou se k = N−1 superar k* por > 3 p.p.
+## Testable hypothesis
+- **Variable:** k ∈ {1, 2, 3, 4, 6, N−1} in debate/aggregation with N ∈ {6, 12, 24}.
+- **Metric:** final accuracy; context tokens read per agent; variance of the final answer across replicates (cohesion).
+- **Prediction:** accuracy saturates at a small k* (k* ≤ 4) **independent of N**; k = N−1 costs O(N²) with no gain > 1 pp over k*.
+- **Refutation:** if k* grows with N (scale dependence) or if k = N−1 outperforms k* by > 3 pp.
 
-## Limites da transferência
-6–7 é específico de estorninhos em voo 3D e de uma medida de robustez particular; não é "número mágico" para LLMs. Agentes LLM leem textos longos — o custo por vizinho é muito maior que o de uma ave olhar outra, o que tende a puxar k* para baixo.
+## Limits of transfer
+6–7 is specific to starlings in 3D flight and to one particular robustness measure; it is not a "magic number" for LLMs. LLM agents read long texts — the cost per neighbor is much higher than that of one bird looking at another, which tends to pull k* down.

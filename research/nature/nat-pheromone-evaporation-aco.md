@@ -1,36 +1,36 @@
 ---
 id: nat-pheromone-evaporation-aco
-title: Feromônio com evaporação — pontes duplas e Ant Colony Optimization
+title: Pheromone with evaporation — double bridges and Ant Colony Optimization
 area: nature
-evidence: relato-autores
-tags: [reforco-com-decaimento, roteamento, exploracao-explotacao, lock-in, memoria-limitada]
+evidence: author-reported
+tags: [reinforcement-with-decay, routing, exploration-exploitation, lock-in, bounded-memory]
 sources:
   - "Goss, S., Aron, S., Deneubourg, J.-L. & Pasteels, J. M. (1989). Self-organized shortcuts in the Argentine ant. Naturwissenschaften 76:579–581. doi:10.1007/BF00462870"
   - "Deneubourg, J.-L., Aron, S., Goss, S. & Pasteels, J. M. (1990). The self-organizing exploratory pattern of the Argentine ant. Journal of Insect Behavior 3:159–168. doi:10.1007/BF01417909"
   - "Dorigo, M., Maniezzo, V. & Colorni, A. (1996). Ant system: optimization by a colony of cooperating agents. IEEE Trans. SMC-B 26(1):29–41. doi:10.1109/3477.484436"
   - "Dorigo, M. & Gambardella, L. M. (1997). Ant colony system: a cooperative learning approach to the traveling salesman problem. IEEE Trans. Evol. Comput. 1(1):53–66. doi:10.1109/4235.585892"
-related: [nat-stigmergy, nat-physarum-network, lit-routellm, lit-gptswarm, nat-candidatas, sim-estigmergia]
+related: [nat-stigmergy, nat-physarum-network, lit-routellm, lit-gptswarm, nat-candidates, sim-stigmergy]
 updated: 2026-11-07
-verificacao: "DOIs conferidos (Crossref). Resumos Dorigo 1996/1997 lidos. PDF de Goss 1989 obtido (repositório ULB) mas é digitalização sem texto extraível — números do experimento NÃO conferidos. Deneubourg 1990: só metadados."
-summary: Trilhas de feromônio reforçadas pelo uso e apagadas pela evaporação deixam a colônia convergir para caminhos curtos sem ficar presa para sempre ao primeiro achado.
+verification: "DOIs checked (Crossref). Abstracts of Dorigo 1996/1997 read. PDF of Goss 1989 obtained (ULB repository) but it is a scan without extractable text — the experiment's numbers NOT checked. Deneubourg 1990: metadata only."
+summary: Pheromone trails reinforced by use and erased by evaporation let the colony converge on short paths without becoming stuck forever on the first find.
 ---
 
-## Mecanismo
-- **Pontes duplas (Goss et al. 1989; Deneubourg et al. 1990):** formigas argentinas entre ninho e alimento com dois ramos tendem a concentrar o tráfego num ramo por realimentação positiva (quem passa deposita feromônio; mais feromônio atrai mais formigas). O ramo mais curto é reforçado mais cedo porque as idas e voltas por ele se completam antes. **Números (proporções, comprimentos, função de escolha) não conferidos no original** — PDF digitalizado sem texto. Fontes secundárias relatam ainda um efeito de **lock-in**: se o ramo curto é oferecido depois da trilha longa estabelecida, a maioria continua no longo (`lacuna` — não conferido no original).
-- **Ant System (1996, resumo):** realimentação positiva para descobrir boas soluções rápido; computação distribuída para **evitar convergência prematura**; heurística gulosa construtiva. **ACS (1997, resumo):** comunicação indireta via feromônio depositado nas arestas do grafo do TSP.
-- O papel da **evaporação** (decaimento do feromônio) é esquecer escolhas antigas, limitando o lock-in. (Mecanismo central do ACO; o coeficiente específico usado pelos autores não foi conferido.)
+## Mechanism
+- **Double bridges (Goss et al. 1989; Deneubourg et al. 1990):** Argentine ants between nest and food with two branches tend to concentrate traffic on one branch through positive feedback (ants that pass deposit pheromone; more pheromone attracts more ants). The shorter branch is reinforced earlier because round trips along it are completed sooner. **Numbers (proportions, lengths, choice function) not checked in the original** — scanned PDF without text. Secondary sources also report a **lock-in** effect: if the short branch is offered after the long trail has been established, the majority stays on the long one (`gap` — not checked in the original).
+- **Ant System (1996, abstract):** positive feedback to discover good solutions quickly; distributed computation to **avoid premature convergence**; constructive greedy heuristic. **ACS (1997, abstract):** indirect communication via pheromone deposited on the edges of the TSP graph.
+- The role of **evaporation** (pheromone decay) is to forget old choices, limiting lock-in. (Central mechanism of ACO; the specific coefficient used by the authors was not checked.)
 
-## Evidência
-`fenomeno-natural` (pontes duplas, sem números conferidos) + `relato-autores` (ACO em TSP, sem reprodução local).
+## Evidence
+`natural-phenomenon` (double bridges, no numbers checked) + `author-reported` (ACO on TSP, no local reproduction).
 
-## Análogo de engenharia
-Um **roteador** que escolhe estratégia/modelo/configuração (1 agente high-effort vs micro-swarm, qual especialista) com pesos reforçados por **resultados aceitos** e com **decaimento exponencial** (meia-vida h). Memória limitada por construção: o peso antigo some.
+## Engineering analogue
+A **router** that chooses a strategy/model/configuration (1 high-effort agent vs micro-swarm, which specialist) with weights reinforced by **accepted results** and with **exponential decay** (half-life h). Memory is bounded by construction: the old weight fades away.
 
-## Hipótese testável
-- **Variável:** meia-vida h do reforço do roteador (∞ = sem evaporação; 50; 200 tarefas) e mudança abrupta na distribuição de tarefas no meio do fluxo.
-- **Métrica:** custo por tarefa aceita antes e depois da mudança; nº de tarefas até recuperar 90% do desempenho pós-mudança (tempo de readaptação).
-- **Previsão:** h = ∞ sofre lock-in (readaptação > 3× mais lenta que h = 50); h finito perde ≤ 5% no regime estacionário. Existe h intermediário que domina ambos os extremos.
-- **Refutação:** se h = ∞ readaptar tão rápido quanto h finito (sem lock-in), ou se qualquer evaporação custar > 5% no estacionário, a analogia não ajuda.
+## Testable hypothesis
+- **Variable:** half-life h of the router's reinforcement (∞ = no evaporation; 50; 200 tasks) and an abrupt shift in the task distribution midway through the stream.
+- **Metric:** cost per accepted task before and after the shift; no. of tasks until 90% of post-shift performance is recovered (readaptation time).
+- **Prediction:** h = ∞ suffers lock-in (readaptation > 3× slower than h = 50); finite h loses ≤ 5% at steady state. There is an intermediate h that dominates both extremes.
+- **Refutation:** if h = ∞ readapts as fast as finite h (no lock-in), or if any evaporation costs > 5% at steady state, the analogy does not help.
 
-## Limites da transferência
-Formigas reforçam pelo *tempo de percurso*, um sinal físico gratuito; no LLM o reforço depende de aceite confiável. Reforço por "mensagens"/popularidade (não por aceite) reproduz o risco apontado no estudo anterior para SYMBIONT. ACO é heurística para otimização combinatória, não prova sobre roteamento de agentes.
+## Limits of transfer
+Ants reinforce by *travel time*, a free physical signal; in an LLM, reinforcement depends on reliable acceptance. Reinforcement by "messages"/popularity (not by acceptance) reproduces the risk pointed out in the earlier study for SYMBIONT. ACO is a heuristic for combinatorial optimization, not a proof about agent routing.

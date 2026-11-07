@@ -1,35 +1,35 @@
 ---
 id: nat-galton-vox-populi
-title: Galton, "Vox populi" — mediana de 787 palpites e o efeito da influência social
+title: Galton, "Vox populi" — the median of 787 guesses and the effect of social influence
 area: nature
-evidence: relato-autores
-tags: [teoria-coletiva, wisdom-of-crowds, independencia, influencia-social, agregacao]
+evidence: author-reported
+tags: [collective-theory, wisdom-of-crowds, independence, social-influence, aggregation]
 sources:
-  - "Galton, F. (1907). Vox populi. Nature 75:450–451. doi:10.1038/075450a0 (texto via galton.org)"
+  - "Galton, F. (1907). Vox populi. Nature 75:450–451. doi:10.1038/075450a0 (text via galton.org)"
   - "Wallis, K. F. (2014). Revisiting Francis Galton's forecasting competition. Statistical Science 29(3):420–424. doi:10.1214/14-STS468"
   - "Lorenz, J., Rauhut, H., Schweitzer, F. & Helbing, D. (2011). How social influence can undermine the wisdom of crowd effect. PNAS 108(22):9020–9025. doi:10.1073/pnas.1008636108"
-related: [nat-diversity-prediction, nat-condorcet-correlated, nat-scale-free-correlation, lit-multiagent-debate-du, lit-silicon-crowd, nat-candidatas]
+related: [nat-diversity-prediction, nat-condorcet-correlated, nat-scale-free-correlation, lit-multiagent-debate-du, lit-silicon-crowd, nat-candidates]
 updated: 2026-11-07
-verificacao: "Galton: página galton.org com o texto de 1907 lida. Wallis 2014 e Lorenz 2011: resumos (OpenAlex). Divergências de transcrição (1197/1198/1208 lb) vistas só em resultado de busca, não conferidas."
-summary: Numa feira de 1906, a mediana de 787 palpites sobre o peso do boi abatido errou por 9 lb em 1.198 (~0,8%); um século depois, um experimento mostrou que até influência social leve destrói esse efeito.
+verification: "Galton: galton.org page with the 1907 text read. Wallis 2014 and Lorenz 2011: abstracts (OpenAlex). Transcription discrepancies (1197/1198/1208 lb) seen only in search results, not checked."
+summary: At a 1906 fair, the median of 787 guesses of the dressed weight of an ox was off by 9 lb out of 1,198 (~0.8%); a century later, an experiment showed that even mild social influence destroys this effect.
 ---
 
-## Mecanismo
-- **Galton (1907, texto):** de 800 cartões, 13 defeituosos/ilegíveis foram excluídos, restando **787**; a estimativa **mediana ("middlemost") foi 1.207 lb**; o peso do boi abatido foi **1.198 lb**; erro de **9 lb** (~0,75–0,8%).
-- **Wallis (2014, resumo):** após corrigir erros nos dados, a **média** dos palpites coincidiu **exatamente** com o resultado; o caso antecipa combinação de previsões e distribuições assimétricas (two-piece).
-- **Lorenz et al. (2011, resumo; N = 144):** quando os participantes recebiam a média ou todas as respostas dos outros e podiam revisar ao longo de 5 rodadas, a diversidade de opiniões estreitou-se a ponto de minar o efeito por três vias: **influência social** (menos diversidade sem reduzir o erro coletivo), **redução de amplitude** (a verdade passa para a periferia da distribuição) e **efeito de confiança** (mais confiança sem mais acurácia).
+## Mechanism
+- **Galton (1907, text):** of 800 tickets, 13 defective/illegible ones were excluded, leaving **787**; the **median ("middlemost") estimate was 1,207 lb**; the dressed weight of the ox was **1,198 lb**; an error of **9 lb** (~0.75–0.8%).
+- **Wallis (2014, abstract):** after correcting errors in the data, the **mean** of the guesses coincided **exactly** with the outcome; the case anticipates forecast combination and asymmetric (two-piece) distributions.
+- **Lorenz et al. (2011, abstract; N = 144):** when participants were shown the average or all of the others' answers and could revise them over 5 rounds, the diversity of opinions narrowed enough to undermine the effect through three channels: the **social influence effect** (less diversity without a reduction in collective error), the **range reduction effect** (the truth moves to the periphery of the distribution) and the **confidence effect** (more confidence without more accuracy).
 
-## Evidência
-`relato-autores` (observação histórica e experimento com humanos).
+## Evidence
+`author-reported` (historical observation and an experiment with humans).
 
-## Análogo de engenharia
-Para agregação em swarms: **coletar respostas independentes antes de qualquer exposição** às respostas dos pares; agregar por mediana/média (robusta) e só então, se necessário, debater. Debate multirodada com visibilidade total é o desenho de Lorenz — prever convergência + confiança sem ganho de acurácia.
+## Engineering analogue
+For aggregation in swarms: **collect independent answers before any exposure** to peers' answers; aggregate by (robust) median/mean and only then, if necessary, debate. Multi-round debate with full visibility is Lorenz's design — predict convergence + confidence without an accuracy gain.
 
-## Hipótese testável
-- **Variável:** protocolo — (A) N = 7 estimativas independentes agregadas por mediana; (B) mesmas estimativas + 3 rodadas de revisão vendo as respostas dos outros; (C) B, mas agregando a mediana da rodada 0.
-- **Métrica:** erro da mediana; dispersão; confiança declarada; posição da verdade na distribuição.
-- **Previsão:** B reduz a dispersão ≥ 50% e aumenta a confiança, sem reduzir o erro da mediana vs A (≤ 1% de melhora) e com mais casos em que a verdade fica fora do intervalo interquartil.
-- **Refutação:** se B reduzir o erro da mediana de forma consistente (> 5% relativo) em tarefas com verdade numérica, o debate traz informação nova e não apenas conformidade.
+## Testable hypothesis
+- **Variable:** protocol — (A) N = 7 independent estimates aggregated by the median; (B) the same estimates + 3 revision rounds seeing the others' answers; (C) B, but aggregating the round-0 median.
+- **Metric:** error of the median; dispersion; stated confidence; position of the truth within the distribution.
+- **Prediction:** B reduces dispersion by ≥ 50% and increases confidence, without reducing the error of the median vs A (≤ 1% improvement) and with more cases in which the truth falls outside the interquartile range.
+- **Refutation:** if B consistently reduces the error of the median (> 5% relative) on tasks with a numerical ground truth, debate brings new information and not merely conformity.
 
-## Limites da transferência
-Palpiteiros de 1906 tinham informação independente e heterogênea (açougueiros, fazendeiros); amostras de LLMs compartilham treino. Galton e Wallis divergem sobre mediana vs média e sobre os números exatos — o caso é ilustrativo, não base estatística.
+## Limits of transfer
+The 1906 guessers had independent and heterogeneous information (butchers, farmers); LLM samples share training data. Galton and Wallis disagree on median vs mean and on the exact numbers — the case is illustrative, not a statistical basis.
