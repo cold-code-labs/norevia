@@ -424,6 +424,96 @@ export function fitCoverage(points) {
 }
 
 // ---------------------------------------------------------------------------
+// §11 Formalização das candidatas da natureza (nat-candidatas C01–C10 + extras)
+// ---------------------------------------------------------------------------
+/** C01: N efetivo (efeito de desenho de Kish) n/(1+(n−1)ρ) → 1/ρ; fração do ganho possível do voto obtida com N. */
+export const nEffective = (N, rho) => N / (1 + (N - 1) * rho);
+export function voteGainFraction(N, p, rho) {
+  const a1 = majorityAccuracy(1, p, rho), ainf = voteCeiling(p, rho);
+  return (majorityAccuracy(N, p, rho) - a1) / (ainf - a1);
+}
+/** Menor N ímpar que obtém ≥ frac do ganho possível do voto. */
+export function nForGainFraction(p, rho, frac = 0.9, Nmax = 4001) {
+  for (let N = 1; N <= Nmax; N += 2) if (voteGainFraction(N, p, rho) >= frac) return N;
+  return Infinity;
+}
+/** C07: cada agente lê k pares (vizinhança topológica fixa) e decide pela maioria de k+1 (k par).
+ *  k* = menor k com A_{k+1} ≥ A_∞ − δ — não depende de N; custo de leitura N·k (vs N(N−1) todos-com-todos). */
+export function kStarNeighbors(p, rho, delta = 0.03, kMax = 2000, N = null) {
+  // alvo: teto N→∞ (N = null) ou leitura completa de um grupo finito (maioria de N, N ímpar)
+  const target = (N ? majorityAccuracy(N, p, rho) : voteCeiling(p, rho)) - delta;
+  for (let k = 0; k <= kMax; k += 2) if (majorityAccuracy(k + 1, p, rho) >= target) return k;
+  return Infinity;
+}
+/** C08: ativação esparsa. Só m de N agentes são competentes na tarefa (acerto pc; demais ≈ 0).
+ *  Denso: N candidatos + verificador perfeito ⇒ 1 − (1−pc)^m, custo N.
+ *  Esparso: roteador põe j competentes entre os k ativos com prob. hipergeométrica "enviesada" — aqui,
+ *  cada um dos k slots acerta um competente com prob. r (qualidade do roteador), sem repetição. */
+export function sparseVsDense({ N = 12, m = 3, pc = 0.6, k = 3, r = 0.7 } = {}) {
+  const dense = 1 - Math.pow(1 - pc, m);
+  // nº de competentes ativados J ~ Binomial(k, r) truncado em m
+  let sparse = 0;
+  for (let j = 0; j <= k; j++) {
+    const w = Math.exp(lchoose(k, j)) * Math.pow(r, j) * Math.pow(1 - r, k - j);
+    sparse += w * (1 - Math.pow(1 - pc, Math.min(j, m)));
+  }
+  return { dense, sparse, costRatio: k / N, gap: dense - sparse };
+}
+/** C06/C09: processo de ramificação (Galton–Watson; Harris 1963). Cada job gera em média m filhos;
+ *  limpeza/deduplicação/cancelamento remove fração d ⇒ m_ef = m(1−d). Progênie total esperada por raiz
+ *  = 1/(1−m_ef) se m_ef < 1; diverge se m_ef ≥ 1. Limpeza crítica d* = 1 − 1/m. */
+export function branching(m, d = 0) {
+  const mEff = m * (1 - d);
+  return { mEff, totalProgenyPerRoot: mEff < 1 ? 1 / (1 - mEff) : Infinity, dCritical: m > 1 ? 1 - 1 / m : 0, supercritical: mEff >= 1 };
+}
+/** C06: lançamentos acoplados a aceites — x_{t+1} = ε + g·a·x_t (a = prob. de aceite por tentativa:
+ *  p·s + (1−p)·f). Ponto fixo x* = ε/(1 − g·a) se g·a < 1 (contrai); se g·a ≥ 1 cresce até o teto.
+ *  Em tarefa inviável (p = 0) a = f ⇒ desperdício estacionário ε/(1 − g·f) chamadas/rodada. */
+export function acceptanceCoupledLaunch({ eps = 0.2, g = 2, p = 0, s = 0.9, f = 0.05, cap = 16, rounds = 200 } = {}) {
+  const a = p * s + (1 - p) * f;
+  let x = 1, total = 0;
+  for (let t = 0; t < rounds; t++) { total += x; x = Math.min(cap, eps + g * a * x); }
+  return { a, gain: g * a, fixedPoint: g * a < 1 ? eps / (1 - g * a) : cap, meanCallsPerRound: total / rounds };
+}
+/** C10: readaptação após mudança abrupta. EWMA com taxa λ: peso do passado após t passos = (1−λ)^t
+ *  ⇒ t_frac = ln(1−frac)/ln(1−λ). Média acumulada sem decaimento com histórico T0: peso T0/(T0+t)
+ *  ⇒ t_frac = T0·frac/(1−frac) (cresce com o histórico: lock-in). */
+export function readaptation(lambda, T0, frac = 0.9) {
+  const tEwma = lambda > 0 ? Math.log(1 - frac) / Math.log(1 - lambda) : Infinity;
+  const tCum = T0 * frac / (1 - frac);
+  return { tEwma, tCumulative: tCum, ratio: tCum / tEwma, steadyNoiseFactor: ewmaVarianceFactor(lambda) };
+}
+/** Reserva inativa (nat-inactive-reserve): fila M/M/c (Erlang C; Kleinrock 1975). a = λ/μ (carga em agentes).
+ *  P(esperar) = C(c, a); espera média W_q = C/(cμ − λ). Instável se a ≥ c. */
+export function erlangC(c, a) {
+  if (a >= c) return 1;
+  let sum = 0, term = 1;
+  for (let k = 0; k < c; k++) { if (k > 0) term *= a / k; sum += term; }
+  const last = term * a / c * (c / (c - a)); // a^c/c! · c/(c−a)
+  // term agora = a^{c−1}/(c−1)!; a^c/c! = term·a/c
+  return last / (sum + last);
+}
+export function mmcWait(c, lambda, mu = 1) {
+  const a = lambda / mu;
+  if (a >= c) return { stable: false, pWait: 1, Wq: Infinity };
+  const C = erlangC(c, a);
+  return { stable: true, pWait: C, Wq: C / (c * mu - lambda), utilization: a / c };
+}
+/** Impasse entre duas opções igualmente apoiadas (nat-stop-signal-cross-inhibition): passeio simétrico de
+ *  margem ±1 até |margem| = m leva E[T] = m² rodadas (ruína do jogador). Com inibição cruzada verificável
+ *  (a cada rodada, com prob. v, um contraexemplo verificado elimina a opção errada), E[T] = E[min(T_passeio, Geom(v))].
+ *  Cálculo exato por iteração de valor na cadeia de margem. */
+export function impasseTime(m, v = 0) {
+  const n = 2 * m + 1; let T = new Array(n).fill(0);
+  for (let it = 0; it < 200000; it++) {
+    const nt = T.slice(); let diff = 0;
+    for (let i = 1; i < n - 1; i++) { nt[i] = 1 + (1 - v) * 0.5 * (T[i - 1] + T[i + 1]); diff = Math.max(diff, Math.abs(nt[i] - T[i])); }
+    T = nt; if (diff < 1e-10) break;
+  }
+  return T[m];
+}
+
+// ---------------------------------------------------------------------------
 // §9 Mapas de transição (1 agente → micro → macro)
 // ---------------------------------------------------------------------------
 /** Joelho de esforço da curva de Hill (pLo = 0): elasticidade ε(e) = d ln p/d ln e = β/(1+(e/h)^β) < 1
@@ -575,6 +665,23 @@ export const CURVES = {
       kEff, capacidade: { segundoAgenteVerificado: gain, votoUmParaTres: voteGain }, unanimeErrado: unanimous, turnos: turns,
     };
   },
+  candidatas_natureza() {
+    const c01 = [];
+    for (const p of [0.6, 0.7, 0.8]) for (const rho of [0.05, 0.1, 0.2, 0.3, 0.5]) c01.push({ p, rho, nCeil1overRho: 2 * Math.floor(Math.ceil(1 / rho) / 2) + 1, fracAtCeil1overRho: voteGainFraction(2 * Math.floor(Math.ceil(1 / rho) / 2) + 1, p, rho), nFor90: nForGainFraction(p, rho, 0.9), nEff10: nEffective(10, rho), nEffMax: 1 / rho });
+    const c07 = [];
+    for (const p of [0.6, 0.7, 0.8]) for (const rho of [0, 0.1, 0.3]) c07.push({ p, rho, kStar_3pp_inf: kStarNeighbors(p, rho, 0.03), kStarVsFullRead_3pp: Object.fromEntries([7, 13, 25, 51].map((N) => [N, kStarNeighbors(p, rho, 0.03, 2000, N)])), readsPerRound: Object.fromEntries([7, 13, 25].map((N) => [N, { topologico: N * kStarNeighbors(p, rho, 0.03, 2000, N), completo: N * (N - 1) }])) });
+    const c08 = [];
+    for (const r of [0.5, 0.7, 0.9]) for (const k of [1, 2, 3, 4, 6]) c08.push({ r, k, ...sparseVsDense({ N: 12, m: 3, pc: 0.6, k, r }) });
+    const c09 = [0.5, 0.9, 1.0, 1.2, 1.5, 2].map((m) => ({ m, ...branching(m, 0), withCleanup30: branching(m, 0.3) }));
+    const c06 = [];
+    for (const p of [0, 0.3, 0.7]) for (const g of [1, 2, 4]) c06.push({ p, g, ...acceptanceCoupledLaunch({ p, g }) });
+    const c10 = [0.01, 0.05, 0.1, 0.2].map((lambda) => ({ lambda, ...readaptation(lambda, 500) }));
+    const reserve = [];
+    for (const [c, lam] of [[4, 3], [4, 3.6], [5, 3.6], [6, 3.6], [4, 4.5], [5, 4.5], [6, 4.5]]) reserve.push({ c, lambda: lam, ...mmcWait(c, lam, 1) });
+    const impasse = [];
+    for (const m of [2, 3, 5]) impasse.push({ m, semInibicao: impasseTime(m, 0), v005: impasseTime(m, 0.05), v02: impasseTime(m, 0.2) });
+    return { description: 'Formalização das candidatas da natureza (§11): C01 regra N≈1/ρ, C07 vizinhança k*, C08 ativação esparsa, C06/C09 ramificação, C10 readaptação, reserva (Erlang C), impasse vs inibição cruzada.', c01, c07, c08, c06, c09, c10, reserve, impasse };
+  },
   transitions() {
     const map = [];
     for (const beta of [0.7, 1, 2, 3]) for (const h of [0.5, 2, 5, 12]) for (const f of [0.01, 0.05, 0.2]) for (const rho of [0, 0.3]) {
@@ -641,6 +748,21 @@ function summary(all) {
   for (const g of cal.capacidade.segundoAgenteVerificado) L.push(`  ρ=${g.rho} s=${g.s} f=${g.f}: p*=${g.peakIid} | ${g.argmaxGrid}`);
   L.push('§10 Fração unânime-e-errada (N=3): p → ρ=0 | 0,3 | 0,7');
   for (const u of cal.unanimeErrado.filter((u) => u.N === 3)) L.push(`  p=${u.p}: ${u.byRho[0]} | ${u.byRho[0.3]} | ${u.byRho[0.7]}`);
+  const nc = all.candidatas_natureza;
+  L.push('§11 C01: p,ρ → N=⌈1/ρ⌉ ímpar | fração do ganho | N p/ 90%');
+  for (const r of nc.c01) L.push(`  p=${r.p} ρ=${r.rho}: N=${r.nCeil1overRho} | ${r.fracAtCeil1overRho} | ${r.nFor90}`);
+  L.push('§11 C07: p,ρ → k* (3 p.p. da leitura completa) para N=7,13,25,51 | k* vs teto ∞');
+  for (const r of nc.c07) L.push(`  p=${r.p} ρ=${r.rho}: ${Object.values(r.kStarVsFullRead_3pp).join(', ')} | ${r.kStar_3pp_inf}`);
+  L.push('§11 C08 (N=12, m=3, pc=0,6): r,k → esparso | denso | custo');
+  for (const r of nc.c08) L.push(`  r=${r.r} k=${r.k}: ${r.sparse} | ${r.dense} | ${r.costRatio}`);
+  L.push('§11 C06: p,g → ganho g·a | chamadas/rodada');
+  for (const r of nc.c06) L.push(`  p=${r.p} g=${r.g}: ${r.gain} | ${r.meanCallsPerRound}`);
+  L.push('§11 C10 (T0=500): λ → t90 EWMA | t90 acumulado | razão');
+  for (const r of nc.c10) L.push(`  λ=${r.lambda}: ${r.tEwma} | ${r.tCumulative} | ${r.ratio}`);
+  L.push('§11 Reserva M/M/c: c,λ → P(esperar) | Wq');
+  for (const r of nc.reserve) L.push(`  c=${r.c} λ=${r.lambda}: ${r.pWait} | ${r.Wq}`);
+  L.push('§11 Impasse: m → E[T] sem inibição | v=0,05 | v=0,2');
+  for (const r of nc.impasse) L.push(`  m=${r.m}: ${r.semInibicao} | ${r.v005} | ${r.v02}`);
   L.push(`§9 Concordância do critério do joelho de esforço (orçamento igual): ${all.transitions.kneeAgreement}`);
   for (const r of all.transitions.kneeCheck.filter((r) => r.predictedSplit !== r.actualSplit)) L.push(`  discordância: β=${r.beta} h=${r.h} N=${r.N} e=${r.eEach} knee=${r.eKnee}`);
   return L.join('\n');

@@ -4,20 +4,20 @@ title: "Alocar tentativas proporcionalmente à qualidade parcial verificada venc
 area: hypothesis
 evidence: hipotese
 status: aberta
-origin: "natureza (nat-waggle-dance-recruitment; nat-recruitment-benefit-conditions) + teoria (th-modelo §3: P varia por tarefa)"
+origin: "natureza (nat-candidatas C05b; nat-waggle-dance-recruitment; nat-recruitment-benefit-conditions) + teoria (th-modelo §3: P varia por tarefa)"
 experiment: "observatory: best-of-N uniforme vs refinamento dos candidatos com maior fração de testes visíveis passando (piso de exploração)"
 tags: [recrutamento, best-of-n, alocacao-de-orcamento]
 sources:
   - "Passino, K. M. & Seeley, T. D. (2006). Modeling and analysis of nest-site selection by honeybee swarms: the speed and accuracy trade-off. Behav. Ecol. Sociobiol. 59(3):427–442. doi:10.1007/s00265-005-0067-y"
   - "research/theory/MODELO.md (th-modelo) e research/theory/model.mjs"
-related: [th-modelo, nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions, lit-snell-test-time-compute, lit-large-language-monkeys, H-02, H-05]
+related: [th-modelo, nat-candidatas, nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions, lit-snell-test-time-compute, lit-large-language-monkeys, H-02, H-05]
 updated: 2026-11-07
 summary: "Como abelhas que dançam mais para fontes melhores, gastar mais tentativas nos candidatos que já passam em mais testes deve resolver mais tarefas com o mesmo orçamento — mas só quando há sinal parcial confiável."
 ---
 
 # H-20 — Alocar tentativas proporcionalmente à qualidade parcial verificada vence amostragem uniforme
 
-**Status:** `aberta` · **Nível de evidência do cartão:** `hipotese` · **Origem:** natureza (nat-waggle-dance-recruitment; nat-recruitment-benefit-conditions) + teoria (th-modelo §3: P varia por tarefa)
+**Status:** `aberta` · **Nível de evidência do cartão:** `hipotese` · **Origem:** natureza (nat-candidatas C05b; nat-waggle-dance-recruitment; nat-recruitment-benefit-conditions) + teoria (th-modelo §3: P varia por tarefa)
 
 ## Enunciado
 Quando existe sinal parcial (fração de testes visíveis passando) correlacionado com a correção final, alocar o orçamento de tentativas proporcionalmente a esse sinal (com piso mínimo de exploração) aumenta pass@orçamento em relação a N amostras uniformes; sem sinal parcial confiável, a vantagem desaparece.

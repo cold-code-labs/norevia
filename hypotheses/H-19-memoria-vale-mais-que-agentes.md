@@ -9,7 +9,7 @@ experiment: "observatory: A-low com memória de soluções aceitas (tarefas de d
 tags: [memoria-limitada, especializacao, custo-por-acerto]
 sources:
   - "research/theory/MODELO.md (th-modelo) e research/theory/model.mjs"
-related: [th-modelo, lit-agentnet, lit-sintese, H-01, H-15]
+related: [th-modelo, lit-agentnet, lit-sintese, sim-clonal, nat-clonal-expansion-contraction, H-01, H-15]
 updated: 2026-11-07
 summary: "Guardar e reutilizar soluções que passaram na verificação aumenta o acerto de cada agente, o que vale mais do que adicionar agentes quando os erros são correlacionados."
 ---
@@ -37,7 +37,7 @@ Memória sem ganho de p̂ em tarefas reservadas, ou B-vote5 com custo por aceite
 Observatório: separar tarefas de dev (formam memória) e reservadas (avaliação); medir p̂ e custo por aceite.
 
 ## Evidência atual
-Relato-autores: em AgentNet, memória acumulada rende 7–10 pontos, enquanto passar de 3 para 9 agentes rende 0,8 (lit-agentnet). Somente modelo do lado Norevia.
+Relato-autores: em AgentNet, memória acumulada rende 7–10 pontos, enquanto passar de 3 para 9 agentes rende 0,8 (`lit-agentnet`). Simulação `sim-clonal` (validacao-local no modelo; outro desenho — incidentes recorrentes): memória por tipo corta a recuperação de 11,8 para 9,8 passos com +3% de custo (P4 suportada) — apoio indireto.
 
 ## Limites
 Memória não validada pode reforçar erros (ver ressalvas de memória limitada no estudo canônico); custo de curadoria não modelado.

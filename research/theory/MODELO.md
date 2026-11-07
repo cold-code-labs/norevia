@@ -29,14 +29,18 @@ sources:
   - "Stroebl, B., Kapoor, S. & Narayanan, A. (2024/2026). The Limits of Inference Scaling Through Resampling. arXiv:2411.17501v3"
   - "Kim, E., Garg, A., Peng, K. & Garg, N. (2025). Correlated Errors in Large Language Models. arXiv:2506.07962v1"
   - "Kim, Y. et al. (2025). Towards a Science of Scaling Agent Systems. arXiv:2512.08296v3"
-related: [H-index, sim-voto-correlacionado, sim-verificador, lit-sintese, lit-debate-routing-matched-ceiling, lit-more-llm-calls, lit-correlated-errors, lit-large-language-monkeys, lit-scaling-agent-systems, lit-sas-equal-thinking-budget, lit-adaptive-consistency, lit-early-stopping-sc]
+  - "Kao, A. B. & Couzin, I. D. (2014). Decision accuracy in complex environments is often maximized by small group sizes. Proc. R. Soc. B 281(1784):20133305. doi:10.1098/rspb.2013.3305"
+  - "Seeley, T. D. et al. (2012). Stop Signals Provide Cross Inhibition in Collective Decision-Making by Honeybee Swarms. Science 335(6064):108–111. doi:10.1126/science.1210361"
+  - "Harris, T. E. (1963). The Theory of Branching Processes. Springer. doi:10.1007/978-3-642-51866-9"
+  - "Kleinrock, L. (1975). Queueing Systems, Volume 1: Theory. New York: Wiley (metadados conferidos por resenhas indexadas na Crossref)"
+related: [H-index, nat-candidatas, sim-voto-correlacionado, sim-verificador, lit-sintese, lit-debate-routing-matched-ceiling, lit-more-llm-calls, lit-correlated-errors, lit-large-language-monkeys, lit-scaling-agent-systems, lit-sas-equal-thinking-budget, lit-adaptive-consistency, lit-early-stopping-sc]
 updated: 2026-11-07
 summary: Modelo matemático que prevê quando 1 agente com esforço alto vence N agentes, quando um micro-swarm compensa e onde a expansão desperdiça, em função de capacidade, correlação de erros, verificador, custo de coordenação e acoplamento da tarefa.
 ---
 
 # Modelo formal da lei da eficiência coletiva (candidata)
 
-**Status de evidência:** `hipotese`. Este documento é um modelo matemático. As derivações clássicas citadas são resultados de terceiros (verificados quanto à existência e aos metadados — ver §13). As fórmulas próprias foram **conferidas numericamente** (`model.test.mjs`, 22/22 testes, Monte Carlo e enumeração exata). Essa conferência é **validação local da matemática**, não da aplicabilidade a LLMs. Nenhum parâmetro (p, ρ, s, f, β, κ, ι, μ) foi medido em LLM real pela Norevia; os valores numéricos são ilustrativos, exceto na §10, onde números relatados por autores (`lit-*`, nível `relato-autores`) são usados para calibrar e confrontar o modelo.
+**Status de evidência:** `hipotese`. Este documento é um modelo matemático. As derivações clássicas citadas são resultados de terceiros (verificados quanto à existência e aos metadados — ver §14). As fórmulas próprias foram **conferidas numericamente** (`model.test.mjs`, 29/29 testes, Monte Carlo e enumeração exata). Essa conferência é **validação local da matemática**, não da aplicabilidade a LLMs. Nenhum parâmetro (p, ρ, s, f, β, κ, ι, μ) foi medido em LLM real pela Norevia; os valores numéricos são ilustrativos, exceto na §10, onde números relatados por autores (`lit-*`, nível `relato-autores`) são usados para calibrar e confrontar o modelo.
 
 **Linha de base a superar (não reivindicamos novidade sobre ela):** Kim et al. (2025, arXiv:2512.08296v3, `lit-scaling-agent-systems`) já propõem uma lei preditiva de escala de sistemas de agentes (260 configurações; retornos decrescentes/negativos quando o agente único passa de ~45% de acerto, interação β = −0,236; +80,8% em tarefa decomponível vs −70% em planejamento sequencial; R² fora da amostra 0,37–0,41, segundo os autores). Leis de nº ótimo de chamadas (`lit-more-llm-calls`), alocação por dificuldade (`lit-snell-test-time-compute`), roteadores/cascatas e parada adaptativa também já existem (ver `lit-sintese` §3). O que este modelo tenta acrescentar é **mecanístico e conjunto**: derivar *de onde* vêm os limiares (capacidade, ρ, verificador, acoplamento, coordenação) e uma política conjunta esforço × nº de agentes × topologia × verificação, contando o custo do controlador e otimizando custo por resultado **aceito**. Isso é oportunidade de pesquisa, não originalidade demonstrada.
 
@@ -280,7 +284,26 @@ Kim et al. relatam turnos T = 2,72·(n + 0,5)^1,724 (R² = 0,974) e sucessos por
 
 ---
 
-## §11 Previsões mais arriscadas (falsificáveis)
+## §11 Formalização das candidatas da natureza (`nat-candidatas` C01–C10 e extras)
+
+Curva: `curvas/candidatas_natureza.json`. As candidatas vêm de `research/nature/CANDIDATAS.md`; os limiares numéricos delas são critérios de refutação propostos pelo agente de natureza. Aqui conferimos o que o modelo diz sobre cada um. **Em três casos o modelo discorda da forma quantitativa da candidata**, e isso vira previsão concorrente a testar.
+
+- **C01 (N ≈ 1/ρ):** o N *efetivo* da média (Kish) satura em 1/ρ, mas a **acurácia** do voto não: no modelo beta, N = ⌈1/ρ⌉ entrega só 50–79% do ganho possível (p = 0,7, ρ = 0,1: N = 11 → 69%; 90% exige N = 43). Exceção: p = 0,8, ρ = 0,05 (92%). Previsões concorrentes registradas em H-01.
+- **C02 (Kao & Couzin 2014):** máximo interior em N quando a evidência compartilhada leva a maioria ao erro; no modelo, é o mecanismo da §2.4 (itens com p < ½). Fica em H-10.
+- **C03:** quórum ajustado à urgência → H-08 (corrida até Q, §7.3).
+- **C04:** ativação por limiar → H-06; a condição de AUC do estímulo se liga a H-18 (consenso não detecta necessidade).
+- **C05:** independência antes, compartilhar depois → H-15 (compartilhar cedo aumenta ρ) e H-20 (compartilhar compensa quando soluções são raras).
+- **C06 (lançamento acoplado a aceites):** dinâmica média x_{t+1} = ε + g·a·x_t, com a = ps + (1−p)f. O swarm **contrai** sse g·a < 1, com ponto fixo ε/(1 − g·a). Para expandir em tarefas viáveis e contrair nas inviáveis (a = f), o ganho precisa estar na **janela 1/(p·s) < g < 1/f** — com f = 0,05, g < 20; um falso aceite alto fecha a janela. → H-21.
+- **C07 (k vizinhos fixos):** com cada agente lendo k pares, o k* para ficar a 3 p.p. da leitura completa **satura em N só quando há correlação**: ρ = 0,3 → k* = 2–4 para N = 7…51; ρ = 0 → k* cresce com N (p = 0,6: 4, 10, 20, 38). Previsão: a vizinhança topológica fixa funciona *porque* os erros são correlacionados. → H-22.
+- **C08 (ativação esparsa):** com 12 agentes, 3 competentes (pc = 0,6) e roteador que acerta cada vaga com prob. r: k = 3 fica a 3,3 p.p. do denso com r = 0,9, a 13 p.p. com r = 0,7. O critério "≥ denso − 2 p.p. com ≤ 25% do custo" exige **r ≳ 0,9** (ou k = 4 com r = 0,9: 0,6 p.p.). → H-23.
+- **C09 (Kessler):** processo de ramificação (Galton–Watson; Harris 1963): com média de m jobs-filho por job, a progênie esperada por job raiz é 1/(1−m) se m < 1 e diverge se m ≥ 1. Limpeza/deduplicação/cancelamento de fração d dá m_ef = m(1−d), com **limpeza crítica d* = 1 − 1/m** (m = 1,5 → 33%; m = 2 → 50%). → H-24.
+- **C10 (evaporação no roteador):** depois de uma mudança abrupta, a média acumulada sem decaimento com histórico T0 precisa de 9·T0 tarefas para o passado pesar menos de 10%. Uma EWMA com taxa λ precisa de ln 0,1/ln(1−λ) (λ = 0,1 → 22). A razão cresce com T0 (lock-in): com T0 = 500, fica entre 20× e 436×. O preço é o ruído estacionário λ/(2−λ). → H-25.
+- **Reserva inativa (`nat-inactive-reserve`):** fila M/M/c (Erlang C; Kleinrock 1975). Perto da saturação a espera é muito não linear: c = 4 com carga 3,6 dá W_q ≈ 1,97; com 1 agente de reserva (c = 5), 0,29. Uma rajada de carga 4,5 deixa c = 4 instável, e c = 6 (+50% de reserva) dá W_q ≈ 0,28. → H-26.
+- **Inibição cruzada (`nat-stop-signal-cross-inhibition`, Seeley et al. 2012):** duas opções igualmente apoiadas levam E[T] = m² rodadas para atingir margem m (ruína do jogador; conferido por MC). Um contraexemplo verificável que elimina a opção errada com prob. v por rodada reduz isso: m = 5 cai de 25 para 12,3 (v = 0,05) e 4,7 (v = 0,2). → H-27.
+
+---
+
+## §12 Previsões mais arriscadas (falsificáveis)
 
 1. **Teto do voto previsto por ρ medido.** Medindo p e ρ em pares de execuções (mesmo modelo, mesma tarefa), a acurácia do voto com N = 15–31 deve ficar dentro de ±3 p.p. de 1 − I_{1/2}(a,b) (ou do teto probit) e não acima dele. Se o voto em LLMs ultrapassar o teto previsto de forma sistemática, o modelo de correlação está errado (ex.: erros dispersos em muitas respostas, onde a pluralidade é mais forte — não modelado). → H-01.
 2. **Precisão dos aceitos não sobe com N.** Em best-of-N com verificador fixo, a fração de aceitos que passa nos testes ocultos deve ser constante ou **cair** com N (cair se ρ > 0), nunca subir; P_false deve crescer monotonamente com N. Uma subida significativa da precisão com N refuta o §3. → H-02, H-13.
@@ -293,7 +316,7 @@ Outras previsões quantitativas: limiar V/c solo → micro (H-01/H-05), χ* ∝ 
 
 ---
 
-## §12 Limites e lacunas
+## §13 Limites e lacunas
 
 - **Binário.** Os modelos de voto da §2 supõem 2 respostas (pior caso). A §10.2 acrescenta pluralidade com K_eff alternativas **equiprováveis**; distribuições de erro não uniformes não estão modeladas.
 - **ρ único por tarefa.** Correlação real varia por tipo de tarefa e entre gerador e verificador (o verificador pode compartilhar o ponto cego do gerador — f efetivo maior nas tarefas onde p é baixo; não modelado além do efeito via Beta).
@@ -304,9 +327,10 @@ Outras previsões quantitativas: limiar V/c solo → micro (H-01/H-05), χ* ∝ 
 - **Fontes:** o texto integral de Gunther (1993) não foi aberto (`lacuna`); a fórmula e o pico foram conferidos na página do autor (perfdynamics.com/Manifesto/USLscalability.html) e em arXiv:0808.1431v2. Para Ladha (1992) e Berg (1993) a Crossref não informa página final; cita-se a inicial/DOI. Condorcet (1785) citado pela edição original (sem DOI).
 - Nada aqui autoriza implantação: as regras de expansão/parada são propostas de pesquisa.
 
-## §13 Verificação das fontes (2026-11-07)
+## §14 Verificação das fontes (2026-11-07)
 
 - DOIs conferidos via API Crossref (título, autores, volume, páginas): Ladha 1992; Berg 1993; Kaniovski 2010; Wald 1945; Wald & Wolfowitz 1948; Chow & Robbins 1963; Ferguson 1989; Amdahl 1967; Bonabeau et al. 1996; Theraulaz & Bonabeau 1999; Dorigo et al. 1996; Pratt et al. 2002; Franks et al. 2003; Passino & Seeley 2006 (Crossref: publicado online 2005, vol. 59(3) 2006); Seeley & Visscher 2004.
 - arXiv conferidos via API do arXiv (título, autores, versão): 2403.02419v2, 2407.21787v3, 2411.17501v3 (título atual "The Limits of Inference Scaling Through Resampling"), 2506.07962v1, 2512.08296v3, 0808.1431v2.
+- Conferidos depois via Crossref: Kao & Couzin 2014; Seeley et al. 2012; Harris 1963 (capítulos do livro, Springer); Kleinrock 1975 (por resenhas indexadas).
 - Gunther (1993) e a forma da USL: página do autor; Condorcet (1785): catálogo/reedição Cambridge (2014) — metadados, não leitura do texto.
 - Os resultados empíricos de LLM citados vêm dos cartões `lit-*` (nível `relato-autores`) e não foram reproduzidos aqui.

@@ -11,7 +11,7 @@ sources:
   - "Ladha, K. K. (1992). The Condorcet Jury Theorem, Free Speech, and Correlated Votes. Am. J. Polit. Sci. 36(3):617ss. doi:10.2307/2111584"
   - "Kim, E., Garg, A., Peng, K. & Garg, N. (2025). Correlated Errors in Large Language Models. arXiv:2506.07962v1"
   - "research/theory/MODELO.md (th-modelo) e research/theory/model.mjs"
-related: [th-modelo, lit-correlated-errors, lit-great-models-think-alike, lit-diversity-of-thought, lit-self-moa, lit-hong-page-diversity, lit-diverse-debate-hegazy, H-01]
+related: [th-modelo, lit-correlated-errors, lit-great-models-think-alike, lit-diversity-of-thought, lit-self-moa, lit-hong-page-diversity, lit-diverse-debate-hegazy, nat-candidatas, H-01, H-20]
 updated: 2026-11-07
 summary: "Cinco agentes que erram de jeitos diferentes valem mais que vinte que erram igual — desde que a diversidade não venha à custa de agentes muito piores."
 ---
@@ -29,6 +29,7 @@ p_i (por membro), ρ (homogêneo vs heterogêneo), N.
 ## Previsão (quantitativa/direcional)
 - Painel heterogêneo de 5 com p̂ médio ≥ p̂_homogêneo − 3 p.p. supera homogêneo de 15–21.
 - Se p̂ cair mais que isso, o homogêneo vence (consistente com `lit-self-moa`).
+- nat-C05(a) (efeito Lorenz): expor agentes às respostas dos pares **antes** de responderem aumenta ρ̂ e reduz a dispersão sem reduzir o erro — no modelo, isso só pode baixar o teto do voto.
 
 Números do modelo: `research/theory/model.mjs` → `research/theory/curvas/*.json` (parâmetros ilustrativos, não medidos em LLM).
 

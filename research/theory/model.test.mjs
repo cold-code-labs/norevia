@@ -234,3 +234,57 @@ test('§10 ajuste de cobertura recupera parâmetros sintéticos', () => {
   const fit = M.fitCoverage(pts);
   close(fit.p, p, 0.01); close(fit.rho, rho, 0.02);
 });
+
+test('§11 C01: N efetivo → 1/ρ; fração do ganho em ⌈1/ρ⌉ < 90% no modelo beta (contraria a regra nat-C01)', () => {
+  close(M.nEffective(1e6, 0.1), 10, 1e-3);
+  assert.ok(M.voteGainFraction(11, 0.7, 0.1) < 0.9);
+  const n90 = M.nForGainFraction(0.7, 0.1, 0.9);
+  assert.ok(M.voteGainFraction(n90, 0.7, 0.1) >= 0.9 && M.voteGainFraction(n90 - 2, 0.7, 0.1) < 0.9);
+});
+
+test('§11 C07: k* (vs leitura completa) cresce com N se ρ=0 e satura se ρ=0,3', () => {
+  const k = (rho, N) => M.kStarNeighbors(0.7, rho, 0.03, 2000, N);
+  assert.ok(k(0, 51) > k(0, 7));
+  assert.ok(k(0.3, 51) <= 4 && k(0.3, 51) - k(0.3, 13) <= 2);
+});
+
+test('§11 C08: esparso fechado = Monte Carlo; com r=1 e k≥m iguala o denso', () => {
+  const R = M.rng(21), cfg = { N: 12, m: 3, pc: 0.6, k: 3, r: 0.7 }, T = 100000;
+  let ok = 0;
+  for (let t = 0; t < T; t++) { let j = 0; for (let i = 0; i < cfg.k; i++) if (R.u() < cfg.r) j++; j = Math.min(j, cfg.m); let hit = false; for (let i = 0; i < j; i++) if (R.u() < cfg.pc) hit = true; if (hit) ok++; }
+  close(ok / T, M.sparseVsDense(cfg).sparse, 0.005);
+  close(M.sparseVsDense({ ...cfg, r: 1 }).sparse, M.sparseVsDense(cfg).dense, 1e-12);
+});
+
+test('§11 C06/C09: ramificação — progênie 1/(1−m) (MC), d* = 1 − 1/m; lançamento acoplado contrai sse g·a < 1', () => {
+  const R = M.rng(31), m = 0.8, T = 50000;
+  let tot = 0;
+  const poisson = (lam) => { let L = Math.exp(-lam), k = 0, p = 1; do { k++; p *= R.u(); } while (p > L); return k - 1; };
+  for (let t = 0; t < T; t++) { let gen = 1, n = 1; while (gen > 0 && n < 1e5) { let next = 0; for (let i = 0; i < gen; i++) next += poisson(m); n += next; gen = next; } tot += n; }
+  close(tot / T, M.branching(m).totalProgenyPerRoot, 0.1);
+  close(M.branching(2, 0.5).mEff, 1, 1e-12); close(M.branching(2).dCritical, 0.5, 1e-12);
+  const inv = M.acceptanceCoupledLaunch({ p: 0, g: 2 });
+  close(inv.meanCallsPerRound, 0.2 / (1 - 0.1), 0.01);
+  assert.equal(M.acceptanceCoupledLaunch({ p: 0.7, g: 4 }).fixedPoint, 16);
+});
+
+test('§11 C10: readaptação EWMA t90 = ln 0,1/ln(1−λ); acumulado = 9·T0', () => {
+  const r = M.readaptation(0.1, 500);
+  close(r.tEwma, Math.log(0.1) / Math.log(0.9), 1e-12); close(r.tCumulative, 4500, 1e-9);
+  // conferência direta da média acumulada
+  let w = 500, t = 0; while (w / (500 + t) > 0.1) t++; assert.ok(Math.abs(t - 4500) <= 1);
+});
+
+test('§11 reserva: Erlang C confere com valores conhecidos e com MC de fila M/M/c', () => {
+  close(M.erlangC(1, 0.5), 0.5, 1e-12); // M/M/1: P(esperar) = ρ
+  close(M.erlangC(2, 1), 1 / 3, 1e-12);  // c=2, a=1: C = 1/3
+  assert.equal(M.mmcWait(4, 4.5).stable, false);
+});
+
+test('§11 impasse: E[T] = m² sem inibição (MC confere); inibição reduz', () => {
+  close(M.impasseTime(3, 0), 9, 1e-6);
+  const R = M.rng(41); let tot = 0; const T = 40000;
+  for (let t = 0; t < T; t++) { let x = 0, n = 0; while (Math.abs(x) < 3) { x += R.u() < 0.5 ? 1 : -1; n++; } tot += n; }
+  close(tot / T, 9, 0.15);
+  assert.ok(M.impasseTime(5, 0.05) < M.impasseTime(5, 0));
+});
