@@ -1,49 +1,49 @@
 ---
 id: H-08
-title: "Quórum troca velocidade por acurácia, com teto imposto pela correlação"
+title: "Quorum trades speed for accuracy, with a ceiling imposed by correlation"
 area: hypothesis
-evidence: hipotese
-status: em-teste
-origin: "natureza (nat-candidatas C03; nat-quorum-nest-bees, nat-speed-accuracy-quorum; quórum em Temnothorax/Leptothorax e abelhas) + teoria (th-modelo §7.3)"
-experiment: "sims/sim-quorum (proposta) + observatory com parada por quórum Q ∈ {1,2,3,5}"
-tags: [quorum, speed-accuracy, parada-otima]
+evidence: hypothesis
+status: testing
+origin: "nature (nat-candidates C03; nat-quorum-nest-bees, nat-speed-accuracy-quorum; quorum in Temnothorax/Leptothorax and honeybees) + theory (th-model §7.3)"
+experiment: "sims/sim-quorum (proposed) + observatory with quorum stopping Q ∈ {1,2,3,5}"
+tags: [quorum, speed-accuracy, optimal-stopping]
 sources:
   - "Pratt, S. C. et al. (2002). Quorum sensing, recruitment, and collective decision-making during colony emigration by the ant Leptothorax albipennis. Behav. Ecol. Sociobiol. 52(2):117–127. doi:10.1007/s00265-002-0487-x"
   - "Franks, N. R. et al. (2003). Speed versus accuracy in collective decision making. Proc. R. Soc. B 270(1532):2457–2463. doi:10.1098/rspb.2003.2527"
   - "Passino, K. M. & Seeley, T. D. (2006). Modeling and analysis of nest-site selection by honeybee swarms: the speed and accuracy trade-off. Behav. Ecol. Sociobiol. 59(3):427–442. doi:10.1007/s00265-005-0067-y"
   - "Seeley, T. D. & Visscher, P. K. (2004). Quorum sensing during nest-site selection by honeybee swarms. Behav. Ecol. Sociobiol. 56(6):594–601. doi:10.1007/s00265-004-0814-5"
-  - "research/theory/MODELO.md (th-modelo) e research/theory/model.mjs"
-related: [th-modelo, nat-candidatas, nat-quorum-nest-bees, nat-speed-accuracy-quorum, nat-stop-signal-cross-inhibition, sim-quorum, H-27, H-01, H-12, lit-adaptive-consistency]
+  - "research/theory/MODEL.md (th-model) and research/theory/model.mjs"
+related: [th-model, nat-candidates, nat-quorum-nest-bees, nat-speed-accuracy-quorum, nat-stop-signal-cross-inhibition, sim-quorum, H-27, H-01, H-12, lit-adaptive-consistency]
 updated: 2026-11-07
-summary: "Decidir quando Q agentes concordam funciona como em formigas e abelhas: Q maior é mais lento e mais certo, mas com erros correlacionados aumentar Q para de ajudar cedo."
+summary: "Deciding when Q agents agree works as in ants and honeybees: larger Q is slower and more accurate, but with correlated errors increasing Q stops helping early."
 ---
 
-# H-08 — Quórum troca velocidade por acurácia, com teto imposto pela correlação
+# H-08 — Quorum trades speed for accuracy, with a ceiling imposed by correlation
 
-**Status:** `em-teste` · **Nível de evidência do cartão:** `hipotese` · **Origem:** natureza (nat-candidatas C03; nat-quorum-nest-bees, nat-speed-accuracy-quorum; quórum em Temnothorax/Leptothorax e abelhas) + teoria (th-modelo §7.3)
+**Status:** `testing` · **Card evidence level:** `hypothesis` · **Origin:** nature (nat-candidates C03; nat-quorum-nest-bees, nat-speed-accuracy-quorum; quorum in Temnothorax/Leptothorax and honeybees) + theory (th-model §7.3)
 
-## Enunciado
-Na regra "decide a primeira resposta com Q votos", acurácia e nº esperado de votos crescem com Q; sob correlação ρ, a acurácia satura no teto do voto (H-01) e o Q ótimo (com custo de tempo) é pequeno.
+## Statement
+Under the rule "the first answer to get Q votes decides", accuracy and the expected no. of votes grow with Q; under correlation ρ, accuracy saturates at the vote ceiling (H-01) and the optimal Q (with a time cost) is small.
 
-## Variáveis
-Q, p, ρ, custo por voto, custo de latência.
+## Variables
+Q, p, ρ, cost per vote, latency cost.
 
-## Previsão (quantitativa/direcional)
-- p = 0,65: Q = 1/3/5/12 → acurácia 0,65/0,76/0,83/0,93 com 1/4,0/7,1/18,2 votos (ρ = 0).
-- Com ρ = 0,2: Q = 12 → 0,74 (vs 0,93) com 16,6 votos — ganho de Q = 5 → 12 < 2 p.p.
-- Com custo de tempo, Q* ∈ {2, 3, 4} para p ∈ [0,6; 0,8] e ρ ≥ 0,1.
-- Como as formigas que baixam o quórum sob urgência (`nat-speed-accuracy-quorum`), Q* deve cair quando a razão custo-do-erro/custo-do-tempo cai.
+## Prediction (quantitative/directional)
+- p = 0.65: Q = 1/3/5/12 → accuracy 0.65/0.76/0.83/0.93 with 1/4.0/7.1/18.2 votes (ρ = 0).
+- With ρ = 0.2: Q = 12 → 0.74 (vs 0.93) with 16.6 votes — gain from Q = 5 → 12 < 2 pp.
+- With a time cost, Q* ∈ {2, 3, 4} for p ∈ [0.6; 0.8] and ρ ≥ 0.1.
+- Like the ants that lower the quorum under urgency (`nat-speed-accuracy-quorum`), Q* should fall when the ratio cost-of-error/cost-of-time falls.
 
-Números do modelo: `research/theory/model.mjs` → `research/theory/curvas/*.json` (parâmetros ilustrativos, não medidos em LLM).
+Model numbers: `research/theory/model.mjs` → `research/theory/curves/*.json` (illustrative parameters, not measured on an LLM).
 
-## Condições de refutação
-Acurácia não crescente em Q, ou acurácia com Q alto acima do teto previsto pelo ρ medido.
+## Refutation conditions
+Accuracy not increasing in Q, or accuracy at high Q above the ceiling predicted by the measured ρ.
 
-## Experimento proposto
-Simulação da corrida até Q (com recrutamento opcional, como em Pratt et al.); observatório com parada por quórum sobre amostras de A-low.
+## Proposed experiment
+Simulation of the race to Q (with optional recruitment, as in Pratt et al.); observatory with quorum stopping over A-low samples.
 
-## Evidência atual
-Modelo da corrida (fórmula exata conferida por Monte Carlo). Simulação `sim-quorum` (validacao-local num modelo **diferente**, de descoberta + recrutamento, com emendas pós-hoc declaradas pelo agente de simulação): o trade-off velocidade–acurácia aparece em escala grande (Q = 1 → 50: ~18% → 96–100%), mas 4/4 previsões detalhadas não foram suportadas — com descoberta sequencial, quóruns minúsculos são "loteria de descoberta" (acurácia não monotônica em Q ≤ 3) e o ganho é convexo, não côncavo; o viés compartilhado reduz a acurácia (95,9% → 66,4% numa célula), mas sem o platô previsto até Q = 50. Leitura: as previsões desta hipótese valem para a corrida entre candidatos **já amostrados** (votos de amostras independentes), não para busca com descoberta; o escopo foi restrito e o status passa a `em-teste`, sem refutação no escopo da corrida. O compromisso velocidade–acurácia é relatado em colônias (Franks et al. 2003; Passino & Seeley 2006) — fenômeno natural, não prova em LLMs.
+## Current evidence
+Race model (exact formula checked by Monte Carlo). Simulation `sim-quorum` (local-validation in a **different** model, of discovery + recruitment, with post-hoc amendments declared by the simulation agent): the speed–accuracy trade-off appears at a large scale (Q = 1 → 50: ~18% → 96–100%), but 4/4 detailed predictions were not supported — with sequential discovery, tiny quorums are a "discovery lottery" (accuracy non-monotonic in Q ≤ 3) and the gain is convex, not concave; shared bias reduces accuracy (95.9% → 66.4% in one cell), but without the predicted plateau up to Q = 50. Reading: the predictions of this hypothesis hold for the race between candidates **already sampled** (votes from independent samples), not for search with discovery; the scope was narrowed and the status becomes `testing`, with no refutation within the scope of the race. The speed–accuracy trade-off is reported in colonies (Franks et al. 2003; Passino & Seeley 2006) — a natural phenomenon, not proof for LLMs.
 
-## Limites
-A corrida não modela descoberta sequencial, recrutamento positivo, qualidade contínua de opções nem desistência — exatamente o que sim-quorum mostra que muda a forma da curva.
+## Limits
+The race does not model sequential discovery, positive recruitment, continuous option quality or giving up — exactly what sim-quorum shows changes the shape of the curve.

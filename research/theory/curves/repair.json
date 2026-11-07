@@ -1,0 +1,134 @@
+{
+  "id": "th-curve-repair",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hypothesis",
+  "description": "Bounded repair: R* attempts by the one-step rule (V=10, c=1, Lreg=10) (§7.4).",
+  "rows": [
+    {
+      "q1": 0.3,
+      "delta": 0.4,
+      "g": 0,
+      "Rstar": 2,
+      "pFix": 0.384
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.4,
+      "g": 0.05,
+      "Rstar": 1,
+      "pFix": 0.3
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.4,
+      "g": 0.15,
+      "Rstar": 1,
+      "pFix": 0.3
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.7,
+      "g": 0,
+      "Rstar": 4,
+      "pFix": 0.5768
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.7,
+      "g": 0.05,
+      "Rstar": 2,
+      "pFix": 0.447
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.7,
+      "g": 0.15,
+      "Rstar": 1,
+      "pFix": 0.3
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.9,
+      "g": 0,
+      "Rstar": 11,
+      "pFix": 0.9009
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.9,
+      "g": 0.05,
+      "Rstar": 7,
+      "pFix": 0.8321
+    },
+    {
+      "q1": 0.3,
+      "delta": 0.9,
+      "g": 0.15,
+      "Rstar": 2,
+      "pFix": 0.489
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.4,
+      "g": 0,
+      "Rstar": 2,
+      "pFix": 0.696
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.4,
+      "g": 0.05,
+      "Rstar": 2,
+      "pFix": 0.696
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.4,
+      "g": 0.15,
+      "Rstar": 1,
+      "pFix": 0.6
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.7,
+      "g": 0,
+      "Rstar": 6,
+      "pFix": 0.8999
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.7,
+      "g": 0.05,
+      "Rstar": 4,
+      "pFix": 0.8699
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.7,
+      "g": 0.15,
+      "Rstar": 3,
+      "pFix": 0.8362
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.9,
+      "g": 0,
+      "Rstar": 18,
+      "pFix": 0.9984
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.9,
+      "g": 0.05,
+      "Rstar": 14,
+      "pFix": 0.9974
+    },
+    {
+      "q1": 0.6,
+      "delta": 0.9,
+      "g": 0.15,
+      "Rstar": 9,
+      "pFix": 0.9925
+    }
+  ]
+}

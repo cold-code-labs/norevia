@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: lgamma/ibeta: known values
+ok 1 - lgamma/ibeta: known values
+  ---
+  duration_ms: 1.359042
+  type: 'test'
+  ...
+# Subtest: §2 independent vote = direct enumeration and Condorcet (monotonic → 1 if p>1/2)
+ok 2 - §2 independent vote = direct enumeration and Condorcet (monotonic → 1 if p>1/2)
+  ---
+  duration_ms: 5.084371
+  type: 'test'
+  ...
+# Subtest: §2 beta-binomial: ρ→0 recovers the binomial; Monte Carlo agrees; pairwise correlation = ρ
+ok 3 - §2 beta-binomial: ρ→0 recovers the binomial; Monte Carlo agrees; pairwise correlation = ρ
+  ---
+  duration_ms: 73.342249
+  type: 'test'
+  ...
+# Subtest: §2 ceiling: A_N → 1 − I_{1/2}(a,b) (beta) and ρp+(1−ρ) (common shock)
+ok 4 - §2 ceiling: A_N → 1 − I_{1/2}(a,b) (beta) and ρp+(1−ρ) (common shock)
+  ---
+  duration_ms: 8.98242
+  type: 'test'
+  ...
+# Subtest: §2 closed-form marginal gain = difference A_{2m+3} − A_{2m+1} (independent and beta)
+ok 5 - §2 closed-form marginal gain = difference A_{2m+3} − A_{2m+1} (independent and beta)
+  ---
+  duration_ms: 2.464213
+  type: 'test'
+  ...
+# Subtest: §2 N*: myopic marginal rule coincides with the global optimum (diminishing gains)
+ok 6 - §2 N*: myopic marginal rule coincides with the global optimum (diminishing gains)
+  ---
+  duration_ms: 26.420935
+  type: 'test'
+  ...
+# Subtest: §2.4 a mixture of difficulties can have an interior maximum in N
+ok 7 - §2.4 a mixture of difficulties can have an interior maximum in N
+  ---
+  duration_ms: 0.202156
+  type: 'test'
+  ...
+# Subtest: §3 best-of-N: closed form = Monte Carlo (with correlation) and precision invariant in N (iid)
+ok 8 - §3 best-of-N: closed form = Monte Carlo (with correlation) and precision invariant in N (iid)
+  ---
+  duration_ms: 117.776696
+  type: 'test'
+  ...
+# Subtest: §3 under correlation, precision of accepted < π_iid and P_false grows with N
+ok 9 - §3 under correlation, precision of accepted < π_iid and P_false grows with N
+  ---
+  duration_ms: 3.903778
+  type: 'test'
+  ...
+# Subtest: §4 equal budget: β<1 favors splitting; β>1 below the knee favors concentrating
+ok 10 - §4 equal budget: β<1 favors splitting; β>1 below the knee favors concentrating
+  ---
+  duration_ms: 0.51625
+  type: 'test'
+  ...
+# Subtest: §5 USL: analytical N_max = numerical argmax; σ=κ=0 → linear
+ok 11 - §5 USL: analytical N_max = numerical argmax; σ=κ=0 → linear
+  ---
+  duration_ms: 12.205419
+  type: 'test'
+  ...
+# Subtest: §6 decomposition: sign changes at χ*; χ* ≈ 2ι/(kμ)
+ok 12 - §6 decomposition: sign changes at χ*; χ* ≈ 2ι/(kμ)
+  ---
+  duration_ms: 0.409348
+  type: 'test'
+  ...
+# Subtest: §7.1 SPRT: exact error (gambler's ruin) agrees with MC; under correlation realized error > nominal α
+ok 13 - §7.1 SPRT: exact error (gambler's ruin) agrees with MC; under correlation realized error > nominal α
+  ---
+  duration_ms: 31.12513
+  type: 'test'
+  ...
+# Subtest: §7.2 quorum: Q=1 → p; accuracy ↑ and time ↑ with Q; MC agrees
+ok 14 - §7.2 quorum: Q=1 → p; accuracy ↑ and time ↑ with Q; MC agrees
+  ---
+  duration_ms: 33.289151
+  type: 'test'
+  ...
+# Subtest: §7.3 elastic (sequential) dominates fixed (parallel) in cost per success, same P_true
+ok 15 - §7.3 elastic (sequential) dominates fixed (parallel) in cost per success, same P_true
+  ---
+  duration_ms: 0.621149
+  type: 'test'
+  ...
+# Subtest: §7.4 bounded repair: R* by the one-step rule = argmax of the expected value
+ok 16 - §7.4 bounded repair: R* by the one-step rule = argmax of the expected value
+  ---
+  duration_ms: 1.27771
+  type: 'test'
+  ...
+# Subtest: §8 stigmergy: stale weight h/(h+λ) agrees with discrete simulation; board O(N) vs direct O(N²)
+ok 17 - §8 stigmergy: stale weight h/(h+λ) agrees with discrete simulation; board O(N) vs direct O(N²)
+  ---
+  duration_ms: 6.95109
+  type: 'test'
+  ...
+# Subtest: §9 effort-knee criterion agrees with the actual winner on ≥ 90% of the grid
+ok 18 - §9 effort-knee criterion agrees with the actual winner on ≥ 90% of the grid
+  ---
+  duration_ms: 420.451829
+  type: 'test'
+  ...
+# Subtest: §10 plurality: K=1 recovers the binary case; MC with large N converges to the ceiling 1 − I_{1/(1+K)}(a,b)
+ok 19 - §10 plurality: K=1 recovers the binary case; MC with large N converges to the ceiling 1 − I_{1/(1+K)}(a,b)
+  ---
+  duration_ms: 295.633466
+  type: 'test'
+  ...
+# Subtest: §10 gain of the 2nd verified agent: closed form = difference P_true(2) − P_true(1); peak p* = (1−f)/(2(s−f))
+ok 20 - §10 gain of the 2nd verified agent: closed form = difference P_true(2) − P_true(1); peak p* = (1−f)/(2(s−f))
+  ---
+  duration_ms: 0.863564
+  type: 'test'
+  ...
+# Subtest: §10 unanimous-and-wrong fraction grows with ρ and is (1−p)^N/(1−A_N) in the independent case
+ok 21 - §10 unanimous-and-wrong fraction grows with ρ and is (1−p)^N/(1−A_N) in the independent case
+  ---
+  duration_ms: 0.157688
+  type: 'test'
+  ...
+# Subtest: §10 coverage fit recovers synthetic parameters
+ok 22 - §10 coverage fit recovers synthetic parameters
+  ---
+  duration_ms: 110.284848
+  type: 'test'
+  ...
+# Subtest: §11 C01: effective N → 1/ρ; gain fraction at ⌈1/ρ⌉ < 90% in the beta model (contradicts the nat-C01 rule)
+ok 23 - §11 C01: effective N → 1/ρ; gain fraction at ⌈1/ρ⌉ < 90% in the beta model (contradicts the nat-C01 rule)
+  ---
+  duration_ms: 0.435108
+  type: 'test'
+  ...
+# Subtest: §11 C07: k* (vs full read) grows with N if ρ=0 and saturates if ρ=0.3
+ok 24 - §11 C07: k* (vs full read) grows with N if ρ=0 and saturates if ρ=0.3
+  ---
+  duration_ms: 0.142406
+  type: 'test'
+  ...
+# Subtest: §11 C08: closed-form sparse = Monte Carlo; with r=1 and k≥m it equals dense
+ok 25 - §11 C08: closed-form sparse = Monte Carlo; with r=1 and k≥m it equals dense
+  ---
+  duration_ms: 11.609147
+  type: 'test'
+  ...
+# Subtest: §11 C06/C09: branching — progeny 1/(1−m) (MC), d* = 1 − 1/m; coupled launch contracts iff g·a < 1
+ok 26 - §11 C06/C09: branching — progeny 1/(1−m) (MC), d* = 1 − 1/m; coupled launch contracts iff g·a < 1
+  ---
+  duration_ms: 11.180651
+  type: 'test'
+  ...
+# Subtest: §11 C10: readaptation EWMA t90 = ln 0.1/ln(1−λ); cumulative = 9·T0
+ok 27 - §11 C10: readaptation EWMA t90 = ln 0.1/ln(1−λ); cumulative = 9·T0
+  ---
+  duration_ms: 0.351981
+  type: 'test'
+  ...
+# Subtest: §11 reserve: Erlang C agrees with known values and with an M/M/c queue MC
+ok 28 - §11 reserve: Erlang C agrees with known values and with an M/M/c queue MC
+  ---
+  duration_ms: 0.161803
+  type: 'test'
+  ...
+# Subtest: §11 impasse: E[T] = m² without inhibition (MC agrees); inhibition reduces it
+ok 29 - §11 impasse: E[T] = m² without inhibition (MC agrees); inhibition reduces it
+  ---
+  duration_ms: 9.747886
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1299.8346

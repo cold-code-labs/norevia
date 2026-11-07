@@ -1,0 +1,944 @@
+{
+  "id": "th-curve-equal-budget",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hypothesis",
+  "description": "Equal budget: 1 agent with effort E=8 vs N agents with effort (E/N − overhead). Hill capability (h=half-saturation, β=convexity). ρ=0.1 (§4).",
+  "rows": [
+    {
+      "beta": 0.5,
+      "h": 1,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.7019,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.6307,
+          "pSwarm": 0.8403,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.5834,
+          "pSwarm": 0.8966,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.5475,
+          "pSwarm": 0.9253,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.4522,
+          "pSwarm": 0.9642,
+          "swarmWins": true
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.3406,
+          "pSwarm": 0.9747,
+          "swarmWins": true
+        }
+      }
+    },
+    {
+      "beta": 0.5,
+      "h": 1,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.7019,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.6307,
+          "pSwarm": 0.6307,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.5834,
+          "pSwarm": 0.6133,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.5475,
+          "pSwarm": 0.5648,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.4522,
+          "pSwarm": 0.4179,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.3406,
+          "pSwarm": 0.206,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 0.5,
+      "h": 4,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.5565,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.472,
+          "pSwarm": 0.6963,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.421,
+          "pSwarm": 0.7642,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.3845,
+          "pSwarm": 0.8037,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.2967,
+          "pSwarm": 0.8664,
+          "swarmWins": true
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.2075,
+          "pSwarm": 0.8806,
+          "swarmWins": true
+        }
+      }
+    },
+    {
+      "beta": 0.5,
+      "h": 4,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.5565,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.472,
+          "pSwarm": 0.472,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.421,
+          "pSwarm": 0.3926,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.3845,
+          "pSwarm": 0.3443,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.2967,
+          "pSwarm": 0.1819,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.2075,
+          "pSwarm": 0.0581,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 0.5,
+      "h": 16,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.3935,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.314,
+          "pSwarm": 0.5079,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.2704,
+          "pSwarm": 0.5701,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.2411,
+          "pSwarm": 0.6092,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.1758,
+          "pSwarm": 0.6762,
+          "swarmWins": true
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.1165,
+          "pSwarm": 0.6846,
+          "swarmWins": true
+        }
+      }
+    },
+    {
+      "beta": 0.5,
+      "h": 16,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.3935,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.314,
+          "pSwarm": 0.314,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.2704,
+          "pSwarm": 0.2037,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.2411,
+          "pSwarm": 0.1713,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.1758,
+          "pSwarm": 0.0622,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.1165,
+          "pSwarm": 0.0146,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 1,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.8444,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.7561,
+          "pSwarm": 0.9221,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.6811,
+          "pSwarm": 0.9454,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.6167,
+          "pSwarm": 0.9546,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.4295,
+          "pSwarm": 0.9559,
+          "swarmWins": true
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.2262,
+          "pSwarm": 0.903,
+          "swarmWins": true
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 1,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.8444,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.7561,
+          "pSwarm": 0.7561,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.6811,
+          "pSwarm": 0.7391,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.6167,
+          "pSwarm": 0.6573,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.4295,
+          "pSwarm": 0.3797,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.2262,
+          "pSwarm": 0.0723,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 4,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.6333,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.469,
+          "pSwarm": 0.6931,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.3684,
+          "pSwarm": 0.705,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.3004,
+          "pSwarm": 0.7018,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.1624,
+          "pSwarm": 0.645,
+          "swarmWins": true
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0688,
+          "pSwarm": 0.4887,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 4,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.6333,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.469,
+          "pSwarm": 0.469,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.3684,
+          "pSwarm": 0.3233,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.3004,
+          "pSwarm": 0.2387,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.1624,
+          "pSwarm": 0.0531,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0688,
+          "pSwarm": 0.0049,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 16,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.3167,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.1862,
+          "pSwarm": 0.3225,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.1299,
+          "pSwarm": 0.3132,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0985,
+          "pSwarm": 0.3003,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0466,
+          "pSwarm": 0.2465,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0182,
+          "pSwarm": 0.16,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 1,
+      "h": 16,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.3167,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.1862,
+          "pSwarm": 0.1862,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.1299,
+          "pSwarm": 0.0683,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0985,
+          "pSwarm": 0.046,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0466,
+          "pSwarm": 0.006,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0182,
+          "pSwarm": 0.0006,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 1,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.9354,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.8914,
+          "pSwarm": 0.9785,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.8219,
+          "pSwarm": 0.9848,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.7352,
+          "pSwarm": 0.984,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.3847,
+          "pSwarm": 0.9347,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0845,
+          "pSwarm": 0.5631,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 1,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.9354,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.8914,
+          "pSwarm": 0.8914,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.8219,
+          "pSwarm": 0.8913,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.7352,
+          "pSwarm": 0.8026,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.3847,
+          "pSwarm": 0.3073,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0845,
+          "pSwarm": 0.0074,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 4,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.76,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.463,
+          "pSwarm": 0.6867,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.272,
+          "pSwarm": 0.5725,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.1674,
+          "pSwarm": 0.4663,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0388,
+          "pSwarm": 0.2093,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0058,
+          "pSwarm": 0.0535,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 4,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.76,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.463,
+          "pSwarm": 0.463,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.272,
+          "pSwarm": 0.2055,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.1674,
+          "pSwarm": 0.0991,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0388,
+          "pSwarm": 0.0046,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0058,
+          "pSwarm": 0.0002,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 16,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.19,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.0533,
+          "pSwarm": 0.0987,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.0232,
+          "pSwarm": 0.0618,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0125,
+          "pSwarm": 0.0428,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0025,
+          "pSwarm": 0.0149,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0004,
+          "pSwarm": 0.0034,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 2,
+      "h": 16,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.19,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.0533,
+          "pSwarm": 0.0533,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.0232,
+          "pSwarm": 0.0073,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0125,
+          "pSwarm": 0.0036,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0025,
+          "pSwarm": 0.0002,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0004,
+          "pSwarm": 0,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 1,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.9481,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.9343,
+          "pSwarm": 0.9895,
+          "swarmWins": true
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.895,
+          "pSwarm": 0.9945,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.8204,
+          "pSwarm": 0.9941,
+          "swarmWins": true
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.3416,
+          "pSwarm": 0.9065,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0281,
+          "pSwarm": 0.2369,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 1,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.9481,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.9343,
+          "pSwarm": 0.9343,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.895,
+          "pSwarm": 0.9496,
+          "swarmWins": true
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.8204,
+          "pSwarm": 0.8899,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.3416,
+          "pSwarm": 0.2425,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0281,
+          "pSwarm": 0.0011,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 4,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.8444,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.457,
+          "pSwarm": 0.6803,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.1924,
+          "pSwarm": 0.4374,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0855,
+          "pSwarm": 0.2653,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0083,
+          "pSwarm": 0.0482,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0005,
+          "pSwarm": 0.0043,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 4,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.8444,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.457,
+          "pSwarm": 0.457,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.1924,
+          "pSwarm": 0.1221,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0855,
+          "pSwarm": 0.0378,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0083,
+          "pSwarm": 0.0007,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0.0005,
+          "pSwarm": 0,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 16,
+      "E": 8,
+      "mode": "bestof-perfect",
+      "solo": 0.1056,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.0136,
+          "pSwarm": 0.0256,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.0038,
+          "pSwarm": 0.0102,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0015,
+          "pSwarm": 0.0051,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0001,
+          "pSwarm": 0.0008,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0,
+          "pSwarm": 0.0001,
+          "swarmWins": false
+        }
+      }
+    },
+    {
+      "beta": 3,
+      "h": 16,
+      "E": 8,
+      "mode": "vote",
+      "solo": 0.1056,
+      "byN": {
+        "2": {
+          "eEach": 3.9,
+          "pEach": 0.0136,
+          "pSwarm": 0.0136,
+          "swarmWins": false
+        },
+        "3": {
+          "eEach": 2.5333,
+          "pEach": 0.0038,
+          "pSwarm": 0.001,
+          "swarmWins": false
+        },
+        "4": {
+          "eEach": 1.85,
+          "pEach": 0.0015,
+          "pSwarm": 0.0004,
+          "swarmWins": false
+        },
+        "8": {
+          "eEach": 0.825,
+          "pEach": 0.0001,
+          "pSwarm": 0,
+          "swarmWins": false
+        },
+        "16": {
+          "eEach": 0.3125,
+          "pEach": 0,
+          "pSwarm": 0,
+          "swarmWins": false
+        }
+      }
+    }
+  ]
+}

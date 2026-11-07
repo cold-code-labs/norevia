@@ -1,77 +1,77 @@
 ---
 id: H-index
-title: Registro oficial de hipóteses Norevia
+title: Official Norevia hypothesis registry
 area: hypothesis
-evidence: hipotese
-tags: [registro, hipoteses, lei-da-eficiencia-coletiva]
+evidence: hypothesis
+tags: [registry, hypotheses, collective-efficiency-law]
 sources:
-  - "research/theory/MODELO.md (th-modelo)"
-related: [th-modelo, H-01, H-02, H-03, H-04, H-05, H-06, H-07, H-08, H-09, H-10, H-11, H-12, H-13, H-14, H-15, H-16, H-17, H-18, H-19, H-20, H-21, H-22, H-23, H-24, H-25, H-26, H-27]
+  - "research/theory/MODEL.md (th-model)"
+related: [th-model, H-01, H-02, H-03, H-04, H-05, H-06, H-07, H-08, H-09, H-10, H-11, H-12, H-13, H-14, H-15, H-16, H-17, H-18, H-19, H-20, H-21, H-22, H-23, H-24, H-25, H-26, H-27]
 updated: 2026-11-07
-summary: Registro oficial das hipóteses falsificáveis da Norevia sobre quando 1 agente, um micro-swarm ou um macro-swarm é a escolha mais eficiente.
+summary: Official registry of Norevia's falsifiable hypotheses about when 1 agent, a micro-swarm or a macro-swarm is the most efficient choice.
 ---
 
-# Registro oficial de hipóteses (H-index)
+# Official hypothesis registry (H-index)
 
-Mantido pelo agente de teoria. Cada cartão traz enunciado, variáveis, previsão, condições de refutação, experimento proposto, status e origem.
-Modelo de referência: [`research/theory/MODELO.md`](../research/theory/MODELO.md) (`th-modelo`).
+Maintained by the theory agent. Each card contains a statement, variables, prediction, refutation conditions, proposed experiment, status and origin.
+Reference model: [`research/theory/MODEL.md`](../research/theory/MODEL.md) (`th-model`).
 
-**Status possíveis:** `aberta` (sem teste), `em-teste` (experimento em andamento), `suportada-preliminar` / `refutada-preliminar` (resultado inicial, escopo declarado no cartão).
-**Cautela:** "suportada-preliminar" aqui significa apoio **dentro de modelo simulado** (`sims/`, nível `validacao-local` no modelo) e/ou relato de autores — **nenhuma hipótese foi testada em LLM real com dados conclusivos** até 2026-11-07. O observatório concluiu smoke e piloto (sem dados conclusivos).
+**Possible statuses:** `open` (no test), `testing` (experiment in progress), `preliminary-support` / `preliminary-refuted` (initial result, scope declared in the card).
+**Caution:** "preliminary-support" here means support **within a simulated model** (`sims/`, level `local-validation` in the model) and/or author reports — **no hypothesis has been tested on a real LLM with conclusive data** as of 2026-11-07. The observatory has completed smoke and pilot runs (no conclusive data).
 
-Contagem: suportada-preliminar: 4 · em-teste: 6 · aberta: 17 · total: 27.
+Count: preliminary-support: 4 · testing: 6 · open: 17 · total: 27.
 
-| id | enunciado curto | status | experimento |
+| id | short statement | status | experiment |
 |---|---|---|---|
-| [H-01](H-01-correlacao-limita-voto.md) | Correlação ρ limita o voto: acurácia satura em 1−I½(a,b) < 1 | `suportada-preliminar` | sims/sim-voto-correlacionado (feito, no modelo) + observatory B-vote3/B-vote5 com repetições de A-low por tarefa para estimar ρ |
-| [H-02](H-02-verificador-fator-dominante.md) | Especificidade do verificador (f) pesa mais que N; teto = precisão π | `suportada-preliminar` | sims/sim-verificador (feito, no modelo) + observatory A-low-loop/C-elastic com verificador = testes visíveis, aceite = testes ocultos |
-| [H-03](H-03-esforco-alto-vence-acopladas.md) | Acoplamento χ > χ* ≈ 2ι/(kμ): A-high vence C-decompose | `em-teste` | observatory A-high vs C-decompose em tarefas b* com bugs acoplados (variar χ) |
-| [H-04](H-04-micro-swarm-decomponiveis.md) | k = 2–3, χ ≈ 0: micro-swarm ≥ A-high em aceite com custo ≤; macro não acrescenta | `em-teste` | observatory C-decompose (N = k) e B-pipeline (executor + verificador) vs A-high e vs N > k em tarefas b* independentes |
-| [H-05](H-05-elasticidade-ganho-marginal.md) | Elástico (parar no 1º aceite / ganho marginal < custo) < fixo em custo por acerto | `em-teste` | observatory C-elastic vs B-vote5 / best-of-N fixo; sims de mistura de dificuldade |
-| [H-06](H-06-limiar-resposta-ativacao.md) | Ativar agentes por T_θ(s) = s²/(s²+θ²) sobre a incerteza reduz agentes/tarefa ≥ 40% vs N fixo | `em-teste` | sims/sim-limiar-resposta (proposta) + variante do observatory C-elastic com estímulo = falha de teste visível e/ou discordância das 2 primeiras amostras (ver H-18) |
-| [H-07](H-07-estigmergia-evaporacao.md) | Quadro compartilhado com decaimento λ: mensagens O(N) vs O(N²); peso obsoleto h/(h+λ) | `suportada-preliminar` | sims/sim-estigmergia (proposta: ambiente que muda a taxa h) + observatory com quadro de estado vs mensagens diretas |
-| [H-08](H-08-quorum-speed-accuracy.md) | Quórum Q: acurácia ↑ e votos ↑ com Q; sob ρ o ganho satura no teto do voto | `em-teste` | sims/sim-quorum (proposta) + observatory com parada por quórum Q ∈ {1,2,3,5} |
-| [H-09](H-09-joelho-de-esforco.md) | Dividir E em N vence ⇔ E/N acima de e_knee = h(β−1)^{1/β} | `aberta` | observatory A-low/A-mid/A-high por classe de tarefa (ajustar p(e)) + comparação 1×E vs N×E/N |
-| [H-10](H-10-voto-nao-monotono-dificuldade.md) | Itens com p < ½ pioram com N; acurácia agregada tem máximo interior | `aberta` | observatory B-vote com N ∈ {1,3,5,9,15} em conjunto com tarefas fáceis e difíceis; sims |
-| [H-11](H-11-usl-coordenacao.md) | Produção útil × N segue USL (σ, κ > 0); topologia completa tem κ maior | `aberta` | observatory: varrer N ∈ {1,2,3,5,8} em tarefa decomponível com topologias estrela / quadro / todos-com-todos; ajustar USL |
-| [H-12](H-12-parada-sequencial-descalibrada.md) | SPRT/early-stop i.i.d.: erro realizado ≫ α nominal quando ρ > 0 | `aberta` | sims (já reproduzível em model.mjs: sprt_correlation) + observatory com parada por margem de votos |
-| [H-13](H-13-falso-sucesso-cresce-com-N.md) | P_false ↑ com N; precisão dos aceitos constante (iid) ou ↓ (ρ > 0) | `suportada-preliminar` | observatory best-of-N com testes visíveis como verificador e testes ocultos como aceite; sims/sim-verificador (feito) |
-| [H-14](H-14-reparo-limitado.md) | q_j decai (δ < 1): parar em R* = 1 + ⌊ln((c+gL)/(V q1))/ln δ⌋ | `aberta` | observatory A-low-loop com teto variável R ∈ {1,2,4,8}; medir q_j por tentativa |
-| [H-15](H-15-diversidade-vale-mais-que-N.md) | Δρ 0,3 → 0,1 em N = 5 > aumentar N de 5 → 21 em ρ = 0,3 | `aberta` | observatory B-vote5 homogêneo vs heterogêneo (prompts/abordagens/modelos diferentes) vs B-vote com N maior |
-| [H-16](H-16-triagem-nao-paga-orquestracao.md) | "Oi" não paga orquestração: controlador vale se c_ctrl < Σ w_j·(custo evitado_j) | `em-teste` | observatory: controlador adaptativo vs A-low e vs C-elastic em mistura com fração variável de tarefas triviais |
-| [H-17](H-17-limiar-capacidade-por-mecanismo.md) | Pico do ganho de cooperar: p* = (1−f)/(2(s−f)) ≈ 0,5 (seleção verificada) vs ≈ 0,79 (voto) | `aberta` | observatory: estratificar tarefas por p̂ do agente único; medir ganho de A-low-loop/C-elastic (seleção por testes) e de B-vote3 vs p̂ |
-| [H-18](H-18-consenso-mede-seguranca-nao-necessidade.md) | Fração de erros unânimes E[(1−P)^N]/(1−A_N) cresce com ρ: discordância não detecta necessidade | `aberta` | observatory: comparar controladores com estímulo = discordância vs estímulo = falha de teste visível/verificador; medir fração de erros unânimes |
-| [H-19](H-19-memoria-vale-mais-que-agentes.md) | Aumentar p via memória validada > aumentar N (sob ρ > 0) | `aberta` | observatory: A-low com memória de soluções aceitas (tarefas de dev) vs B-vote5 sem memória, em tarefas reservadas |
-| [H-20](H-20-alocacao-proporcional-a-qualidade.md) | Recrutamento tipo dança das abelhas: mais orçamento para candidatos com mais testes passando | `aberta` | observatory: best-of-N uniforme vs refinamento dos candidatos com maior fração de testes visíveis passando (piso de exploração) |
-| [H-21](H-21-lancamento-acoplado-a-aceites.md) | x_{t+1} = ε + g·a·x_t: contrai sse g·a < 1; janela 1/(ps) < g < 1/f | `aberta` | sims (fluxo de subtarefas viáveis/inviáveis, regra x_{t+1} = ε + g·aceites) + observatory em fluxo de tarefas com parte inviável |
-| [H-22](H-22-vizinhanca-topologica-fixa.md) | k* (3 p.p. da leitura completa) satura em N só se ρ > 0: ρ = 0,3 → k* = 2–4 | `aberta` | observatory: agregação com N ∈ {6, 12, 24} e leitura de k ∈ {2, 4, 6, N−1} pares; sims com ρ controlado |
-| [H-23](H-23-ativacao-esparsa.md) | k = 3 de 12 a ≤ 2–3 p.p. do denso exige roteador com acerto por vaga r ≳ 0,9 | `aberta` | observatory: 12 especialistas (prompts/ferramentas distintos) com roteador barato vs ativação densa, mesmo verificador |
-| [H-24](H-24-razao-critica-geracao-limpeza.md) | Ramificação: m_ef = m(1−d) ≥ 1 ⇒ estoque diverge; limpeza crítica d* = 1 − 1/m | `aberta` | sims (jobs que geram filhos com média m; com/sem cancelamento transitivo e deduplicação) + auditoria de traços do observatório (filhos por job) |
-| [H-25](H-25-evaporacao-no-roteador.md) | t90 sem decaimento = 9·T0 vs ln 0,1/ln(1−λ) com EWMA (λ = 0,1 → 22) | `aberta` | sims (roteador entre configurações com mudança abrupta de distribuição) + observatory com troca de mistura de tarefas no meio do fluxo |
-| [H-26](H-26-reserva-inativa.md) | M/M/c: carga 3,6 com c = 4 → W_q ≈ 1,97; +1 de reserva → 0,29; rajada 4,5 exige reserva | `aberta` | sims de fila com rajadas e falhas injetadas; observatory apenas em ambiente isolado (sem produção) |
-| [H-27](H-27-inibicao-cruzada-verificavel.md) | Impasse simétrico leva m² rodadas; contraexemplo com prob. v/rodada: m = 5 → 25 → 12,3 (v = 0,05) | `aberta` | observatory: agregação por rodadas de apoio vs apoio + eliminação por contraexemplo executável (teste que falha) |
+| [H-01](H-01-correlation-caps-voting.md) | Correlation ρ caps the vote: accuracy saturates at 1−I½(a,b) < 1 | `preliminary-support` | sims/sim-correlated-vote (done, in the model) + observatory B-vote3/B-vote5 with repetitions of A-low per task to estimate ρ |
+| [H-02](H-02-verifier-dominant-factor.md) | Verifier specificity (f) weighs more than N; ceiling = precision π | `preliminary-support` | sims/sim-verifier (done, in the model) + observatory A-low-loop/C-elastic with verifier = visible tests, acceptance = hidden tests |
+| [H-03](H-03-high-effort-beats-coupled.md) | Coupling χ > χ* ≈ 2ι/(kμ): A-high beats C-decompose | `testing` | observatory A-high vs C-decompose on b* tasks with coupled bugs (vary χ) |
+| [H-04](H-04-micro-swarm-decomposable.md) | k = 2–3, χ ≈ 0: micro-swarm ≥ A-high in acceptance at ≤ cost; macro adds nothing | `testing` | observatory C-decompose (N = k) and B-pipeline (executor + verifier) vs A-high and vs N > k on independent b* tasks |
+| [H-05](H-05-elasticity-marginal-gain.md) | Elastic (stop at the 1st acceptance / marginal gain < cost) < fixed in cost per success | `testing` | observatory C-elastic vs B-vote5 / fixed best-of-N; difficulty-mixture sims |
+| [H-06](H-06-response-threshold-activation.md) | Activating agents by T_θ(s) = s²/(s²+θ²) over uncertainty reduces agents/task by ≥ 40% vs fixed N | `testing` | sims/sim-response-threshold (proposed) + variant of observatory C-elastic with stimulus = visible-test failure and/or disagreement between the first 2 samples (see H-18) |
+| [H-07](H-07-stigmergy-evaporation.md) | Shared board with decay λ: messages O(N) vs O(N²); stale weight h/(h+λ) | `preliminary-support` | sims/sim-stigmergy (proposed: environment that changes at rate h) + observatory with a state board vs direct messages |
+| [H-08](H-08-quorum-speed-accuracy.md) | Quorum Q: accuracy ↑ and votes ↑ with Q; under ρ the gain saturates at the vote ceiling | `testing` | sims/sim-quorum (proposed) + observatory with quorum stopping Q ∈ {1,2,3,5} |
+| [H-09](H-09-effort-knee.md) | Splitting E into N wins ⇔ E/N above e_knee = h(β−1)^{1/β} | `open` | observatory A-low/A-mid/A-high per task class (fit p(e)) + comparison 1×E vs N×E/N |
+| [H-10](H-10-vote-non-monotone-difficulty.md) | Items with p < ½ get worse with N; aggregate accuracy has an interior maximum | `open` | observatory B-vote with N ∈ {1,3,5,9,15} on a set with easy and hard tasks; sims |
+| [H-11](H-11-usl-coordination.md) | Useful output × N follows the USL (σ, κ > 0); the full topology has a larger κ | `open` | observatory: sweep N ∈ {1,2,3,5,8} on a decomposable task with star / board / all-to-all topologies; fit USL |
+| [H-12](H-12-miscalibrated-sequential-stopping.md) | i.i.d. SPRT/early stop: realized error ≫ nominal α when ρ > 0 | `open` | sims (already reproducible in model.mjs: sprt_correlation) + observatory with stopping by vote margin |
+| [H-13](H-13-false-success-grows-with-N.md) | P_false ↑ with N; precision of the accepted constant (iid) or ↓ (ρ > 0) | `preliminary-support` | observatory best-of-N with visible tests as verifier and hidden tests as acceptance; sims/sim-verifier (done) |
+| [H-14](H-14-bounded-repair.md) | q_j decays (δ < 1): stop at R* = 1 + ⌊ln((c+gL)/(V q1))/ln δ⌋ | `open` | observatory A-low-loop with variable cap R ∈ {1,2,4,8}; measure q_j per attempt |
+| [H-15](H-15-diversity-beats-N.md) | Δρ 0.3 → 0.1 at N = 5 > increasing N from 5 → 21 at ρ = 0.3 | `open` | observatory homogeneous vs heterogeneous B-vote5 (different prompts/approaches/models) vs B-vote with larger N |
+| [H-16](H-16-triage-does-not-pay-for-orchestration.md) | "Oi" [Hi] does not pay for orchestration: a controller is worth it if c_ctrl < Σ w_j·(avoided cost_j) | `testing` | observatory: adaptive controller vs A-low and vs C-elastic on a mixture with a variable fraction of trivial tasks |
+| [H-17](H-17-capability-threshold-by-mechanism.md) | Peak of the cooperation gain: p* = (1−f)/(2(s−f)) ≈ 0.5 (verified selection) vs ≈ 0.79 (vote) | `open` | observatory: stratify tasks by the single agent's p̂; measure the gain of A-low-loop/C-elastic (selection by tests) and of B-vote3 vs p̂ |
+| [H-18](H-18-consensus-measures-safety-not-need.md) | Fraction of unanimous errors E[(1−P)^N]/(1−A_N) grows with ρ: disagreement does not detect need | `open` | observatory: compare controllers with stimulus = disagreement vs stimulus = visible-test/verifier failure; measure the fraction of unanimous errors |
+| [H-19](H-19-memory-beats-agents.md) | Raising p via validated memory > increasing N (under ρ > 0) | `open` | observatory: A-low with memory of accepted solutions (dev tasks) vs B-vote5 without memory, on held-out tasks |
+| [H-20](H-20-quality-proportional-allocation.md) | Honeybee-dance-style recruitment: more budget for candidates with more tests passing | `open` | observatory: uniform best-of-N vs refinement of the candidates with the largest fraction of visible tests passing (exploration floor) |
+| [H-21](H-21-acceptance-coupled-launch.md) | x_{t+1} = ε + g·a·x_t: contracts iff g·a < 1; window 1/(ps) < g < 1/f | `open` | sims (flow of feasible/infeasible subtasks, rule x_{t+1} = ε + g·acceptances) + observatory on a task flow with an infeasible part |
+| [H-22](H-22-fixed-topological-neighborhood.md) | k* (3 pp from the full read) saturates in N only if ρ > 0: ρ = 0.3 → k* = 2–4 | `open` | observatory: aggregation with N ∈ {6, 12, 24} and reading k ∈ {2, 4, 6, N−1} peers; sims with controlled ρ |
+| [H-23](H-23-sparse-activation.md) | k = 3 of 12 within ≤ 2–3 pp of dense requires a router with per-slot accuracy r ≳ 0.9 | `open` | observatory: 12 specialists (distinct prompts/tools) with a cheap router vs dense activation, same verifier |
+| [H-24](H-24-critical-generation-cleanup-ratio.md) | Branching: m_ef = m(1−d) ≥ 1 ⇒ backlog diverges; critical cleanup d* = 1 − 1/m | `open` | sims (jobs that spawn children with mean m; with/without transitive cancellation and deduplication) + audit of observatory traces (children per job) |
+| [H-25](H-25-router-evaporation.md) | t90 without decay = 9·T0 vs ln 0.1/ln(1−λ) with EWMA (λ = 0.1 → 22) | `open` | sims (router across configurations with an abrupt distribution change) + observatory switching the task mixture mid-flow |
+| [H-26](H-26-idle-reserve.md) | M/M/c: load 3.6 with c = 4 → W_q ≈ 1.97; +1 reserve → 0.29; a 4.5 burst requires a reserve | `open` | queue sims with bursts and injected failures; observatory only in an isolated environment (no production) |
+| [H-27](H-27-verifiable-cross-inhibition.md) | Symmetric impasse takes m² rounds; counterexample with prob. v/round: m = 5 → 25 → 12.3 (v = 0.05) | `open` | observatory: aggregation by rounds of support vs support + elimination by an executable counterexample (a failing test) |
 
-## Hipóteses obrigatórias do briefing → cartões
-- Correlação limitando ganho de voto → H-01 (e H-10, H-15)
-- Verificador como fator dominante → H-02 (e H-13)
-- Esforço alto de 1 agente vence em tarefas acopladas → H-03 (e H-09)
-- Micro-swarm (2–3) vence em tarefas decomponíveis → H-04
-- Elasticidade por ganho marginal vence tamanho fixo → H-05 (e H-12, H-14)
-- Limiar de resposta (insetos) para ativação adaptativa → H-06 (e H-16)
-- Estigmergia/evaporação reduz comunicação → H-07 (e H-11)
-- Quórum (speed-accuracy) → H-08
+## Mandatory hypotheses from the briefing → cards
+- Correlation limiting the vote gain → H-01 (and H-10, H-15)
+- Verifier as the dominant factor → H-02 (and H-13)
+- High effort of 1 agent wins on coupled tasks → H-03 (and H-09)
+- Micro-swarm (2–3) wins on decomposable tasks → H-04
+- Elasticity by marginal gain beats fixed size → H-05 (and H-12, H-14)
+- Response threshold (insects) for adaptive activation → H-06 (and H-16)
+- Stigmergy/evaporation reduces communication → H-07 (and H-11)
+- Quorum (speed-accuracy) → H-08
 
-## Candidatas integradas de outras áreas
-- `lit-sintese` §5: candidata 1 → H-01, H-17; candidata 2 → H-02, H-09; candidata 3 → H-03, H-04; candidata 4 → H-18; candidata 5 (cascata) → H-05, H-16; candidata 6 (memória) → H-19.
+## Candidates integrated from other areas
+- `lit-synthesis` §5: candidate 1 → H-01, H-17; candidate 2 → H-02, H-09; candidate 3 → H-03, H-04; candidate 4 → H-18; candidate 5 (cascade) → H-05, H-16; candidate 6 (memory) → H-19.
 - `nat-*`: nat-response-threshold → H-06; nat-stigmergy, nat-pheromone-evaporation-aco → H-07; nat-quorum-nest-bees, nat-speed-accuracy-quorum, nat-stop-signal-cross-inhibition → H-08; nat-colony-size-scaling → H-11; nat-interaction-rate-foraging → H-05; nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions → H-20.
-- `nat-candidatas` (research/nature/CANDIDATAS.md) → registro: C01 → H-01 (com previsão concorrente: o modelo discorda de "≥ 90% do ganho com N ≤ 1/ρ"); C02 → H-10; C03 → H-08; C04 → H-06 (condição de AUC; ver H-18); C05 → H-15 (a) e H-20 (b); C06 → **H-21**; C07 → **H-22** (o modelo prevê k* independente de N só com ρ > 0); C08 → **H-23** (exige roteador com r ≳ 0,94); C09 → **H-24**; C10 → **H-25**. Extras: nat-inactive-reserve → **H-26**; nat-stop-signal-cross-inhibition → **H-27** (e H-08).
-- Formalização das candidatas: th-modelo §11 e `research/theory/curvas/candidatas_natureza.json`.
+- `nat-candidates` (research/nature/CANDIDATES.md) → registry: C01 → H-01 (with a competing prediction: the model disagrees with "≥ 90% of the gain with N ≤ 1/ρ"); C02 → H-10; C03 → H-08; C04 → H-06 (AUC condition; see H-18); C05 → H-15 (a) and H-20 (b); C06 → **H-21**; C07 → **H-22** (the model predicts k* independent of N only with ρ > 0); C08 → **H-23** (requires a router with r ≳ 0.94); C09 → **H-24**; C10 → **H-25**. Extras: nat-inactive-reserve → **H-26**; nat-stop-signal-cross-inhibition → **H-27** (and H-08).
+- Formalization of the candidates: th-model §11 and `research/theory/curves/nature_candidates.json`.
 - `nat-small-groups-correlated-cues` (Kao & Couzin 2014) → H-04, H-10; nat-clonal-expansion-contraction → H-05; nat-wound-healing-resolution → H-14; nat-reflex-vs-cortex → H-16.
-- Resultados de simulação usados: `sim-voto-correlacionado` (H-01, H-09), `sim-verificador` (H-02, H-13). Simulações posteriores: `sim-estigmergia` (H-07 → suportada-preliminar no modelo), `sim-limiar-resposta` (H-06 → em-teste: mecanismo apoiado em modelo de fila), `sim-elastico` (H-05 → em-teste: utilidade sim, custo por aceite não), `sim-quorum` (H-08 → em-teste: escopo restrito à corrida entre candidatos já amostrados), `sim-clonal` (apoio indireto a H-19). Observatório: smoke + piloto (45 execuções, aceite 100% em todas as arquiteturas — efeito teto; só H-16 passa a `em-teste`). **Recomendação ao observatório:** pelo modelo, só tarefas com p̂(A-low) entre ~0,2 e ~0,8 discriminam arquiteturas (H-17).
+- Simulation results used: `sim-correlated-vote` (H-01, H-09), `sim-verifier` (H-02, H-13). Later simulations: `sim-stigmergy` (H-07 → preliminary-support in the model), `sim-response-threshold` (H-06 → testing: mechanism supported in a queue model), `sim-elastic` (H-05 → testing: utility yes, cost per acceptance no), `sim-quorum` (H-08 → testing: scope restricted to the race between candidates already sampled), `sim-clonal` (indirect support for H-19). Observatory: smoke + pilot (45 runs, 100% acceptance in all architectures — ceiling effect; only H-16 moves to `testing`). **Recommendation to the observatory:** according to the model, only tasks with p̂(A-low) between ~0.2 and ~0.8 discriminate between architectures (H-17).
 
-**Linha de base:** Kim et al. (arXiv:2512.08296v3, `lit-scaling-agent-systems`) já propõem lei preditiva de escala de sistemas de agentes; as hipóteses daqui buscam refiná-la por mecanismo (H-17, H-18, H-03/H-04), não reivindicam novidade sobre ela.
+**Baseline:** Kim et al. (arXiv:2512.08296v3, `lit-scaling-agent-systems`) already propose a predictive scaling law for agent systems; the hypotheses here seek to refine it by mechanism (H-17, H-18, H-03/H-04) and claim no novelty over it.
 
-## Regras de atualização
-- Mudança de status exige artefato (arquivo em `results/`) e escopo (modelo simulado vs LLM real).
-- Resultados de autores (`lit-*`) não mudam status sozinhos.
-- Hipóteses novas recebem o próximo número livre; hipóteses refutadas permanecem no registro.
+## Update rules
+- A status change requires an artifact (a file in `results/`) and a scope (simulated model vs real LLM).
+- Author results (`lit-*`) do not change status on their own.
+- New hypotheses get the next free number; refuted hypotheses remain in the registry.
