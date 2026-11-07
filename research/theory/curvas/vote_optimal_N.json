@@ -1,0 +1,458 @@
+{
+  "id": "th-curva-vote-optimal-N",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hipotese",
+  "description": "N* (ímpar) que maximiza V·A_N − custo, regra marginal míope e N que maximiza acurácia/custo (§2). c=1 por agente, κ=0.05 por aresta (estrela).",
+  "rows": [
+    {
+      "p": 0.55,
+      "rho": 0,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.55,
+      "rho": 0,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.55,
+      "rho": 0,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.5747,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.55,
+      "rho": 0.1,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6235
+    },
+    {
+      "p": 0.55,
+      "rho": 0.1,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6235
+    },
+    {
+      "p": 0.55,
+      "rho": 0.1,
+      "V": 100,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6235
+    },
+    {
+      "p": 0.55,
+      "rho": 0.3,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.5725
+    },
+    {
+      "p": 0.55,
+      "rho": 0.3,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.5725
+    },
+    {
+      "p": 0.55,
+      "rho": 0.3,
+      "V": 100,
+      "N_util": 1,
+      "A_util": 0.55,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.5725
+    },
+    {
+      "p": 0.6,
+      "rho": 0,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.6,
+      "rho": 0,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.6,
+      "rho": 0,
+      "V": 100,
+      "N_util": 9,
+      "A_util": 0.7334,
+      "N_marginalRule": 9,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.6,
+      "rho": 0.1,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.7361
+    },
+    {
+      "p": 0.6,
+      "rho": 0.1,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.7361
+    },
+    {
+      "p": 0.6,
+      "rho": 0.1,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.6353,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 0.7361
+    },
+    {
+      "p": 0.6,
+      "rho": 0.3,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6433
+    },
+    {
+      "p": 0.6,
+      "rho": 0.3,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6433
+    },
+    {
+      "p": 0.6,
+      "rho": 0.3,
+      "V": 100,
+      "N_util": 1,
+      "A_util": 0.6,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.6433
+    },
+    {
+      "p": 0.7,
+      "rho": 0,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.7,
+      "rho": 0,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.7,
+      "rho": 0,
+      "V": 100,
+      "N_util": 9,
+      "A_util": 0.9012,
+      "N_marginalRule": 9,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.7,
+      "rho": 0.1,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.8996
+    },
+    {
+      "p": 0.7,
+      "rho": 0.1,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.8996
+    },
+    {
+      "p": 0.7,
+      "rho": 0.1,
+      "V": 100,
+      "N_util": 5,
+      "A_util": 0.794,
+      "N_marginalRule": 5,
+      "N_accPerCost": 1,
+      "ceiling": 0.8996
+    },
+    {
+      "p": 0.7,
+      "rho": 0.3,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.7731
+    },
+    {
+      "p": 0.7,
+      "rho": 0.3,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.7,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.7731
+    },
+    {
+      "p": 0.7,
+      "rho": 0.3,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.7317,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 0.7731
+    },
+    {
+      "p": 0.8,
+      "rho": 0,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.8,
+      "rho": 0,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.8,
+      "rho": 0,
+      "V": 100,
+      "N_util": 7,
+      "A_util": 0.9667,
+      "N_marginalRule": 7,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.8,
+      "rho": 0.1,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9755
+    },
+    {
+      "p": 0.8,
+      "rho": 0.1,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9755
+    },
+    {
+      "p": 0.8,
+      "rho": 0.1,
+      "V": 100,
+      "N_util": 5,
+      "A_util": 0.9019,
+      "N_marginalRule": 5,
+      "N_accPerCost": 1,
+      "ceiling": 0.9755
+    },
+    {
+      "p": 0.8,
+      "rho": 0.3,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.8789
+    },
+    {
+      "p": 0.8,
+      "rho": 0.3,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.8,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.8789
+    },
+    {
+      "p": 0.8,
+      "rho": 0.3,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.8362,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 0.8789
+    },
+    {
+      "p": 0.9,
+      "rho": 0,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.9,
+      "rho": 0,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.9,
+      "rho": 0,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.972,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 1
+    },
+    {
+      "p": 0.9,
+      "rho": 0.1,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9971
+    },
+    {
+      "p": 0.9,
+      "rho": 0.1,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9971
+    },
+    {
+      "p": 0.9,
+      "rho": 0.1,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.953,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 0.9971
+    },
+    {
+      "p": 0.9,
+      "rho": 0.3,
+      "V": 5,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9546
+    },
+    {
+      "p": 0.9,
+      "rho": 0.3,
+      "V": 20,
+      "N_util": 1,
+      "A_util": 0.9,
+      "N_marginalRule": 1,
+      "N_accPerCost": 1,
+      "ceiling": 0.9546
+    },
+    {
+      "p": 0.9,
+      "rho": 0.3,
+      "V": 100,
+      "N_util": 3,
+      "A_util": 0.9271,
+      "N_marginalRule": 3,
+      "N_accPerCost": 1,
+      "ceiling": 0.9546
+    }
+  ]
+}

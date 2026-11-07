@@ -1,0 +1,121 @@
+{
+  "id": "th-curva-nature-mechanisms",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hipotese",
+  "description": "Limiar de resposta (ativação), estigmergia com evaporação (peso obsoleto h/(h+λ)) e mensagens direto vs quadro (§8).",
+  "thresholds": [
+    0.1,
+    0.2,
+    0.35,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "activation": [
+    {
+      "stimulus": 0,
+      "expectedActive": 0
+    },
+    {
+      "stimulus": 0.05,
+      "expectedActive": 0.2969
+    },
+    {
+      "stimulus": 0.1,
+      "expectedActive": 0.8461
+    },
+    {
+      "stimulus": 0.2,
+      "expectedActive": 1.8066
+    },
+    {
+      "stimulus": 0.3,
+      "expectedActive": 2.5357
+    },
+    {
+      "stimulus": 0.5,
+      "expectedActive": 3.5684
+    },
+    {
+      "stimulus": 0.7,
+      "expectedActive": 4.2436
+    },
+    {
+      "stimulus": 0.9,
+      "expectedActive": 4.6966
+    }
+  ],
+  "stigmergy": [
+    {
+      "changeRate": 0.01,
+      "optimal": {
+        "lambda": 0.239,
+        "mse": 0.0741
+      },
+      "staleAt": {
+        "0.01": 0.5,
+        "0.05": 0.1667,
+        "0.1": 0.0909,
+        "0.3": 0.0323
+      }
+    },
+    {
+      "changeRate": 0.05,
+      "optimal": {
+        "lambda": 0.443,
+        "mse": 0.1726
+      },
+      "staleAt": {
+        "0.01": 0.8333,
+        "0.05": 0.5,
+        "0.1": 0.3333,
+        "0.3": 0.1429
+      }
+    },
+    {
+      "changeRate": 0.2,
+      "optimal": {
+        "lambda": 0.652,
+        "mse": 0.3557
+      },
+      "staleAt": {
+        "0.01": 0.9524,
+        "0.05": 0.8,
+        "0.1": 0.6667,
+        "0.3": 0.4
+      }
+    }
+  ],
+  "messages": [
+    {
+      "N": 2,
+      "direct": 2,
+      "board": 4
+    },
+    {
+      "N": 3,
+      "direct": 6,
+      "board": 6
+    },
+    {
+      "N": 5,
+      "direct": 20,
+      "board": 10
+    },
+    {
+      "N": 8,
+      "direct": 56,
+      "board": 16
+    },
+    {
+      "N": 16,
+      "direct": 240,
+      "board": 32
+    },
+    {
+      "N": 32,
+      "direct": 992,
+      "board": 64
+    }
+  ]
+}

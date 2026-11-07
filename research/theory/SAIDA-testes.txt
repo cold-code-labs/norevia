@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: lgamma/ibeta: valores conhecidos
+ok 1 - lgamma/ibeta: valores conhecidos
+  ---
+  duration_ms: 0.989718
+  type: 'test'
+  ...
+# Subtest: §2 voto independente = enumeração direta e Condorcet (monotônico → 1 se p>1/2)
+ok 2 - §2 voto independente = enumeração direta e Condorcet (monotônico → 1 se p>1/2)
+  ---
+  duration_ms: 3.548818
+  type: 'test'
+  ...
+# Subtest: §2 beta-binomial: ρ→0 recupera binomial; Monte Carlo confere; correlação de pares = ρ
+ok 3 - §2 beta-binomial: ρ→0 recupera binomial; Monte Carlo confere; correlação de pares = ρ
+  ---
+  duration_ms: 61.63914
+  type: 'test'
+  ...
+# Subtest: §2 teto: A_N → 1 − I_{1/2}(a,b) (beta) e ρp+(1−ρ) (choque comum)
+ok 4 - §2 teto: A_N → 1 − I_{1/2}(a,b) (beta) e ρp+(1−ρ) (choque comum)
+  ---
+  duration_ms: 5.719252
+  type: 'test'
+  ...
+# Subtest: §2 ganho marginal fechado = diferença A_{2m+3} − A_{2m+1} (independente e beta)
+ok 5 - §2 ganho marginal fechado = diferença A_{2m+3} − A_{2m+1} (independente e beta)
+  ---
+  duration_ms: 0.845088
+  type: 'test'
+  ...
+# Subtest: §2 N*: regra marginal míope coincide com o ótimo global (ganhos decrescentes)
+ok 6 - §2 N*: regra marginal míope coincide com o ótimo global (ganhos decrescentes)
+  ---
+  duration_ms: 22.810699
+  type: 'test'
+  ...
+# Subtest: §2.4 mistura de dificuldades pode ter máximo interior em N
+ok 7 - §2.4 mistura de dificuldades pode ter máximo interior em N
+  ---
+  duration_ms: 0.18503
+  type: 'test'
+  ...
+# Subtest: §3 best-of-N: fechado = Monte Carlo (com correlação) e precisão invariante em N (iid)
+ok 8 - §3 best-of-N: fechado = Monte Carlo (com correlação) e precisão invariante em N (iid)
+  ---
+  duration_ms: 122.51039
+  type: 'test'
+  ...
+# Subtest: §3 sob correlação, precisão dos aceitos < π_iid e P_false cresce com N
+ok 9 - §3 sob correlação, precisão dos aceitos < π_iid e P_false cresce com N
+  ---
+  duration_ms: 3.130306
+  type: 'test'
+  ...
+# Subtest: §4 orçamento igual: β<1 favorece dividir; β>1 abaixo do joelho favorece concentrar
+ok 10 - §4 orçamento igual: β<1 favorece dividir; β>1 abaixo do joelho favorece concentrar
+  ---
+  duration_ms: 0.589702
+  type: 'test'
+  ...
+# Subtest: §5 USL: N_max analítico = argmax numérico; σ=κ=0 → linear
+ok 11 - §5 USL: N_max analítico = argmax numérico; σ=κ=0 → linear
+  ---
+  duration_ms: 13.99996
+  type: 'test'
+  ...
+# Subtest: §6 decomposição: sinal muda em χ*; χ* ≈ 2ι/(kμ)
+ok 12 - §6 decomposição: sinal muda em χ*; χ* ≈ 2ι/(kμ)
+  ---
+  duration_ms: 0.644524
+  type: 'test'
+  ...
+# Subtest: §7.1 SPRT: erro exato (ruína do jogador) confere com MC; sob correlação erro realizado > α nominal
+ok 13 - §7.1 SPRT: erro exato (ruína do jogador) confere com MC; sob correlação erro realizado > α nominal
+  ---
+  duration_ms: 31.966579
+  type: 'test'
+  ...
+# Subtest: §7.2 quórum: Q=1 → p; acurácia ↑ e tempo ↑ com Q; MC confere
+ok 14 - §7.2 quórum: Q=1 → p; acurácia ↑ e tempo ↑ com Q; MC confere
+  ---
+  duration_ms: 32.097469
+  type: 'test'
+  ...
+# Subtest: §7.3 elástico (sequencial) domina fixo (paralelo) em custo por acerto, mesma P_true
+ok 15 - §7.3 elástico (sequencial) domina fixo (paralelo) em custo por acerto, mesma P_true
+  ---
+  duration_ms: 0.500087
+  type: 'test'
+  ...
+# Subtest: §7.4 reparo limitado: R* pela regra de 1 passo = argmax do valor esperado
+ok 16 - §7.4 reparo limitado: R* pela regra de 1 passo = argmax do valor esperado
+  ---
+  duration_ms: 0.791407
+  type: 'test'
+  ...
+# Subtest: §8 estigmergia: peso obsoleto h/(h+λ) confere com simulação discreta; quadro O(N) vs direto O(N²)
+ok 17 - §8 estigmergia: peso obsoleto h/(h+λ) confere com simulação discreta; quadro O(N) vs direto O(N²)
+  ---
+  duration_ms: 7.196227
+  type: 'test'
+  ...
+# Subtest: §9 critério do joelho de esforço concorda com o vencedor real em ≥ 90% da grade
+ok 18 - §9 critério do joelho de esforço concorda com o vencedor real em ≥ 90% da grade
+  ---
+  duration_ms: 435.668521
+  type: 'test'
+  ...
+# Subtest: §10 pluralidade: K=1 recupera o binário; MC com N grande converge ao teto 1 − I_{1/(1+K)}(a,b)
+ok 19 - §10 pluralidade: K=1 recupera o binário; MC com N grande converge ao teto 1 − I_{1/(1+K)}(a,b)
+  ---
+  duration_ms: 298.111177
+  type: 'test'
+  ...
+# Subtest: §10 ganho do 2º agente verificado: fórmula fechada = diferença P_true(2) − P_true(1); pico p* = (1−f)/(2(s−f))
+ok 20 - §10 ganho do 2º agente verificado: fórmula fechada = diferença P_true(2) − P_true(1); pico p* = (1−f)/(2(s−f))
+  ---
+  duration_ms: 1.086033
+  type: 'test'
+  ...
+# Subtest: §10 fração unânime-e-errada cresce com ρ e é (1−p)^N/(1−A_N) no caso independente
+ok 21 - §10 fração unânime-e-errada cresce com ρ e é (1−p)^N/(1−A_N) no caso independente
+  ---
+  duration_ms: 0.160543
+  type: 'test'
+  ...
+# Subtest: §10 ajuste de cobertura recupera parâmetros sintéticos
+ok 22 - §10 ajuste de cobertura recupera parâmetros sintéticos
+  ---
+  duration_ms: 83.401695
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1190.055916

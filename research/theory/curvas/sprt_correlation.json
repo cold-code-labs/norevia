@@ -1,0 +1,63 @@
+{
+  "id": "th-curva-sprt-correlation",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hipotese",
+  "description": "SPRT calibrado para independência (p0=0.7, α=0.05) aplicado sob correlação: erro realizado vs nominal (§7.1).",
+  "rows": [
+    {
+      "p": 0.7,
+      "rho": 0,
+      "m": 4,
+      "nominalAlpha": 0.05,
+      "realizedError": 0.0315,
+      "meanVotes": 9.3166,
+      "cappedFrac": 0.0003,
+      "exactErrorNoCap": 0.0326,
+      "fixedN_sameMeanVotes": 0.9012
+    },
+    {
+      "p": 0.7,
+      "rho": 0.05,
+      "m": 4,
+      "nominalAlpha": 0.05,
+      "realizedError": 0.0946,
+      "meanVotes": 9.6505,
+      "cappedFrac": 0.0037,
+      "exactErrorNoCap": 0.0908,
+      "fixedN_sameMeanVotes": 0.859
+    },
+    {
+      "p": 0.7,
+      "rho": 0.1,
+      "m": 4,
+      "nominalAlpha": 0.05,
+      "realizedError": 0.1394,
+      "meanVotes": 9.5388,
+      "cappedFrac": 0.004,
+      "exactErrorNoCap": 0.1384,
+      "fixedN_sameMeanVotes": 0.8274
+    },
+    {
+      "p": 0.7,
+      "rho": 0.2,
+      "m": 4,
+      "nominalAlpha": 0.05,
+      "realizedError": 0.2002,
+      "meanVotes": 8.8483,
+      "cappedFrac": 0.0042,
+      "exactErrorNoCap": 0.1994,
+      "fixedN_sameMeanVotes": 0.7837
+    },
+    {
+      "p": 0.7,
+      "rho": 0.3,
+      "m": 4,
+      "nominalAlpha": 0.05,
+      "realizedError": 0.2385,
+      "meanVotes": 8.0722,
+      "cappedFrac": 0.0034,
+      "exactErrorNoCap": 0.2357,
+      "fixedN_sameMeanVotes": 0.7552
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "id": "th-curva-decomposition",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hipotese",
+  "description": "Tarefa com k subproblemas, acoplamento χ; ι=0.08 interferência de contexto, μ=0.15 perda por interface (§6).",
+  "rows": [
+    {
+      "k": 1,
+      "chi": 0,
+      "pSolo": 0.8954,
+      "pSplit": 0.8954,
+      "splitWins": false,
+      "chiStar": 0
+    },
+    {
+      "k": 1,
+      "chi": 0.1,
+      "pSolo": 0.8954,
+      "pSplit": 0.8954,
+      "splitWins": false,
+      "chiStar": 0
+    },
+    {
+      "k": 1,
+      "chi": 0.25,
+      "pSolo": 0.8954,
+      "pSplit": 0.8954,
+      "splitWins": false,
+      "chiStar": 0
+    },
+    {
+      "k": 1,
+      "chi": 0.5,
+      "pSolo": 0.8954,
+      "pSplit": 0.8954,
+      "splitWins": false,
+      "chiStar": 0
+    },
+    {
+      "k": 1,
+      "chi": 1,
+      "pSolo": 0.8954,
+      "pSplit": 0.8954,
+      "splitWins": false,
+      "chiStar": 0
+    },
+    {
+      "k": 2,
+      "chi": 0,
+      "pSolo": 0.636,
+      "pSplit": 0.6845,
+      "splitWins": true,
+      "chiStar": 0.4526
+    },
+    {
+      "k": 2,
+      "chi": 0.1,
+      "pSolo": 0.636,
+      "pSplit": 0.6735,
+      "splitWins": true,
+      "chiStar": 0.4526
+    },
+    {
+      "k": 2,
+      "chi": 0.25,
+      "pSolo": 0.636,
+      "pSplit": 0.6573,
+      "splitWins": true,
+      "chiStar": 0.4526
+    },
+    {
+      "k": 2,
+      "chi": 0.5,
+      "pSolo": 0.636,
+      "pSplit": 0.6311,
+      "splitWins": false,
+      "chiStar": 0.4526
+    },
+    {
+      "k": 2,
+      "chi": 1,
+      "pSolo": 0.636,
+      "pSplit": 0.5818,
+      "splitWins": false,
+      "chiStar": 0.4526
+    },
+    {
+      "k": 3,
+      "chi": 0,
+      "pSolo": 0.3955,
+      "pSplit": 0.4478,
+      "splitWins": true,
+      "chiStar": 0.2548
+    },
+    {
+      "k": 3,
+      "chi": 0.1,
+      "pSolo": 0.3955,
+      "pSplit": 0.4265,
+      "splitWins": true,
+      "chiStar": 0.2548
+    },
+    {
+      "k": 3,
+      "chi": 0.25,
+      "pSolo": 0.3955,
+      "pSplit": 0.3964,
+      "splitWins": true,
+      "chiStar": 0.2548
+    },
+    {
+      "k": 3,
+      "chi": 0.5,
+      "pSolo": 0.3955,
+      "pSplit": 0.3509,
+      "splitWins": false,
+      "chiStar": 0.2548
+    },
+    {
+      "k": 3,
+      "chi": 1,
+      "pSolo": 0.3955,
+      "pSplit": 0.275,
+      "splitWins": false,
+      "chiStar": 0.2548
+    },
+    {
+      "k": 4,
+      "chi": 0,
+      "pSolo": 0.2181,
+      "pSplit": 0.251,
+      "splitWins": true,
+      "chiStar": 0.1441
+    },
+    {
+      "k": 4,
+      "chi": 0.1,
+      "pSolo": 0.2181,
+      "pSplit": 0.2277,
+      "splitWins": true,
+      "chiStar": 0.1441
+    },
+    {
+      "k": 4,
+      "chi": 0.25,
+      "pSolo": 0.2181,
+      "pSplit": 0.1967,
+      "splitWins": false,
+      "chiStar": 0.1441
+    },
+    {
+      "k": 4,
+      "chi": 0.5,
+      "pSolo": 0.2181,
+      "pSplit": 0.1542,
+      "splitWins": false,
+      "chiStar": 0.1441
+    },
+    {
+      "k": 4,
+      "chi": 1,
+      "pSolo": 0.2181,
+      "pSplit": 0.0947,
+      "splitWins": false,
+      "chiStar": 0.1441
+    },
+    {
+      "k": 6,
+      "chi": 0,
+      "pSolo": 0.0482,
+      "pSplit": 0.0496,
+      "splitWins": true,
+      "chiStar": 0.0122
+    },
+    {
+      "k": 6,
+      "chi": 0.1,
+      "pSolo": 0.0482,
+      "pSplit": 0.0389,
+      "splitWins": false,
+      "chiStar": 0.0122
+    },
+    {
+      "k": 6,
+      "chi": 0.25,
+      "pSolo": 0.0482,
+      "pSplit": 0.027,
+      "splitWins": false,
+      "chiStar": 0.0122
+    },
+    {
+      "k": 6,
+      "chi": 0.5,
+      "pSolo": 0.0482,
+      "pSplit": 0.0147,
+      "splitWins": false,
+      "chiStar": 0.0122
+    },
+    {
+      "k": 6,
+      "chi": 1,
+      "pSolo": 0.0482,
+      "pSplit": 0.0043,
+      "splitWins": false,
+      "chiStar": 0.0122
+    }
+  ],
+  "chiStarApprox": [
+    {
+      "k": 2,
+      "chiStarExactEqualQ": 0.5131,
+      "approx": 0.5333
+    },
+    {
+      "k": 3,
+      "chiStarExactEqualQ": 0.342,
+      "approx": 0.3556
+    },
+    {
+      "k": 4,
+      "chiStarExactEqualQ": 0.2565,
+      "approx": 0.2667
+    },
+    {
+      "k": 6,
+      "chiStarExactEqualQ": 0.171,
+      "approx": 0.1778
+    },
+    {
+      "k": 10,
+      "chiStarExactEqualQ": 0.1026,
+      "approx": 0.1067
+    }
+  ]
+}

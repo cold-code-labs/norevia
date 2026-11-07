@@ -1,0 +1,127 @@
+{
+  "id": "th-curva-elastic-vs-fixed",
+  "generatedBy": "research/theory/model.mjs",
+  "evidence": "hipotese",
+  "description": "Mistura 50% fácil (p=.9), 30% média (.5), 20% difícil (.15); verificador s=.9, f=.05; fixo paralelo vs elástico sequencial (§7.3).",
+  "mix": [
+    {
+      "w": 0.5,
+      "p": 0.9
+    },
+    {
+      "w": 0.3,
+      "p": 0.5
+    },
+    {
+      "w": 0.2,
+      "p": 0.15
+    }
+  ],
+  "rows": [
+    {
+      "Nmax": 1,
+      "fixed": {
+        "pTrue": 0.567,
+        "pFalse": 0.0185,
+        "cost": 1.3,
+        "costPerTrueSuccess": 2.2928
+      },
+      "elastic": {
+        "pTrue": 0.567,
+        "pFalse": 0.0185,
+        "cost": 1.3,
+        "costPerTrueSuccess": 2.2928
+      }
+    },
+    {
+      "Nmax": 2,
+      "fixed": {
+        "pTrue": 0.735,
+        "pFalse": 0.0299,
+        "cost": 2.6,
+        "costPerTrueSuccess": 3.5374
+      },
+      "elastic": {
+        "pTrue": 0.735,
+        "pFalse": 0.0299,
+        "cost": 1.8389,
+        "costPerTrueSuccess": 2.5018
+      }
+    },
+    {
+      "Nmax": 3,
+      "fixed": {
+        "pTrue": 0.8043,
+        "pFalse": 0.0378,
+        "cost": 3.9,
+        "costPerTrueSuccess": 4.8487
+      },
+      "elastic": {
+        "pTrue": 0.8043,
+        "pFalse": 0.0378,
+        "cost": 2.1445,
+        "costPerTrueSuccess": 2.6661
+      }
+    },
+    {
+      "Nmax": 4,
+      "fixed": {
+        "pTrue": 0.8415,
+        "pFalse": 0.0436,
+        "cost": 5.2,
+        "costPerTrueSuccess": 6.1797
+      },
+      "elastic": {
+        "pTrue": 0.8415,
+        "pFalse": 0.0436,
+        "cost": 2.3497,
+        "costPerTrueSuccess": 2.7924
+      }
+    },
+    {
+      "Nmax": 6,
+      "fixed": {
+        "pTrue": 0.8802,
+        "pFalse": 0.0516,
+        "cost": 7.8,
+        "costPerTrueSuccess": 8.8617
+      },
+      "elastic": {
+        "pTrue": 0.8802,
+        "pFalse": 0.0516,
+        "cost": 2.6126,
+        "costPerTrueSuccess": 2.9683
+      }
+    },
+    {
+      "Nmax": 8,
+      "fixed": {
+        "pTrue": 0.8998,
+        "pFalse": 0.0566,
+        "cost": 10.4,
+        "costPerTrueSuccess": 11.5587
+      },
+      "elastic": {
+        "pTrue": 0.8998,
+        "pFalse": 0.0566,
+        "cost": 2.7718,
+        "costPerTrueSuccess": 3.0807
+      }
+    },
+    {
+      "Nmax": 12,
+      "fixed": {
+        "pTrue": 0.9185,
+        "pFalse": 0.0621,
+        "cost": 15.6,
+        "costPerTrueSuccess": 16.9833
+      },
+      "elastic": {
+        "pTrue": 0.9185,
+        "pFalse": 0.0621,
+        "cost": 2.9426,
+        "costPerTrueSuccess": 3.2035
+      }
+    }
+  ]
+}
