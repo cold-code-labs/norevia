@@ -1,0 +1,1077 @@
+{
+ "id": "sim-estigmergia",
+ "version": "1.0.0",
+ "title": "Estigmergia com evaporação vs mensagens todos-com-todos vs sem coordenação",
+ "seed": 20261107,
+ "hypothesis": {
+  "statement": "Um rastro compartilhado (\"já explorei aqui\") reduz trabalho duplicado e tempo até a solução sem mensagens; como os agentes não sabem quando um episódio termina, o rastro velho vira ruído, e a evaporação funciona como esquecimento: existe uma taxa intermediária ótima, e o rastro sem evaporação cresce sem limite.",
+  "predictions": [
+   {
+    "id": "P1",
+    "text": "Para K=4 e K=16, estigmergia com evaporação baixa (epsilon=0,01) tem tempo médio até a solução e fração de visitas duplicadas menores que sem-coordenação (IC95% disjuntos)."
+   },
+   {
+    "id": "P2",
+    "text": "O tempo até a solução é em forma de U em epsilon: existe epsilon intermediário (0<epsilon<1) com tempo significativamente menor (IC95% disjuntos) que epsilon=0 e que epsilon=1, para K=4 e K=16."
+   },
+   {
+    "id": "P3",
+    "text": "Mensagens todos-com-todos (informação perfeita e zerada a cada episódio) têm o menor tempo, ao custo de K(K-1) mensagens por passo; o melhor epsilon de estigmergia fica a no máximo 15% do tempo das mensagens, com zero mensagens."
+   },
+   {
+    "id": "P4",
+    "text": "Com epsilon=0, a massa de rastro cresce ~linearmente com o tempo (memória ilimitada) e o 10º episódio é mais lento que o 1º; com o melhor epsilon a massa se estabiliza (razão massa ep.10/ep.5 < 1,2)."
+   }
+  ]
+ },
+ "params": {
+  "seed": 20261107,
+  "grid": 24,
+  "neighborhood": 4,
+  "Ks": [
+   4,
+   16
+  ],
+  "episodes": 10,
+  "runs": 500,
+  "max_steps_episode": 20000,
+  "epsilons": [
+   0,
+   0.001,
+   0.003,
+   0.01,
+   0.03,
+   0.1,
+   0.3,
+   1
+  ],
+  "deposit": 1,
+  "strategies": {
+   "sem-coordenacao": "passeio aleatório sem retorno imediato",
+   "estigmergia": "move para o vizinho com menor rastro (decaído por (1-epsilon)^dt), empates aleatórios; deposita +1 ao chegar; NÃO sabe quando o episódio termina",
+   "mensagens-todos": "cada agente transmite sua posição a todos a cada passo (K(K-1) msgs/passo) + aviso de alvo encontrado (K-1); escolhe o vizinho menos visitado no episódio atual"
+  },
+  "duplicated_work": "fração de movimentos que chegam a um nó já visitado (por qualquer agente) no episódio atual",
+  "episode": "alvo uniforme na grade; episódio termina quando um agente pisa no alvo; novo alvo surge e os agentes continuam de onde estão"
+ },
+ "results": {
+  "configs": [
+   {
+    "K": 4,
+    "strategy": "sem-coordenacao",
+    "epsilon": null,
+    "label": "sem-coordenacao",
+    "time_to_solution": {
+     "mean": 239.8528,
+     "lo": 232.5298,
+     "hi": 247.1758,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.5012,
+     "lo": 0.495,
+     "hi": 0.5074,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     266.968,
+     224.396,
+     219.658,
+     254.33,
+     224.882,
+     213.67,
+     241.522,
+     251.068,
+     259.988,
+     242.046
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "mensagens-todos",
+    "epsilon": null,
+    "label": "mensagens-todos",
+    "time_to_solution": {
+     "mean": 96.8268,
+     "lo": 94.7847,
+     "hi": 98.8689,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1613,
+     "lo": 0.1573,
+     "hi": 0.1653,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 1164.9216,
+     "lo": 1140.4169,
+     "hi": 1189.4263,
+     "n": 500
+    },
+    "time_by_episode": [
+     90.724,
+     93.842,
+     98.118,
+     95.672,
+     103.316,
+     94.55,
+     96.834,
+     93.568,
+     96.946,
+     104.698
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0,
+    "label": "estigmergia-e0",
+    "time_to_solution": {
+     "mean": 121.9764,
+     "lo": 119.3503,
+     "hi": 124.6025,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.2887,
+     "lo": 0.2842,
+     "hi": 0.2932,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     101.968,
+     116.492,
+     119.714,
+     122.494,
+     125.59,
+     123.89,
+     130.968,
+     126.836,
+     119.632,
+     132.18
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     406.36,
+     870.856,
+     1348.188,
+     1836.706,
+     2337.492,
+     2831.638,
+     3354.136,
+     3860.006,
+     4337.104
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.001,
+    "label": "estigmergia-e0.001",
+    "time_to_solution": {
+     "mean": 101.6944,
+     "lo": 99.5409,
+     "hi": 103.8479,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1727,
+     "lo": 0.1684,
+     "hi": 0.177,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     102.374,
+     97.684,
+     105.862,
+     98.164,
+     101.678,
+     104.112,
+     102.54,
+     98.928,
+     102.538,
+     103.064
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     377.1976,
+     704.4899,
+     1024.6722,
+     1295.2356,
+     1548.9996,
+     1782.1018,
+     1991.7588,
+     2173.7168,
+     2343.8875
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.003,
+    "label": "estigmergia-e0.003",
+    "time_to_solution": {
+     "mean": 97.09,
+     "lo": 95.1026,
+     "hi": 99.0774,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1591,
+     "lo": 0.1552,
+     "hi": 0.163,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     96.594,
+     96.556,
+     94.102,
+     92.358,
+     98.386,
+     91.18,
+     100.974,
+     101.66,
+     99.78,
+     99.31
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     312.206,
+     553.0003,
+     732.574,
+     867.5861,
+     977.2331,
+     1055.644,
+     1121.3839,
+     1170.9914,
+     1208.2578
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.01,
+    "label": "estigmergia-e0.01",
+    "time_to_solution": {
+     "mean": 96.8054,
+     "lo": 94.8172,
+     "hi": 98.7936,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1504,
+     "lo": 0.1466,
+     "hi": 0.1542,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     104.746,
+     96.328,
+     89.226,
+     95.128,
+     93.092,
+     99.318,
+     98.356,
+     95.176,
+     94.138,
+     102.546
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     215.8208,
+     312.0161,
+     356.1334,
+     377.6696,
+     388.3167,
+     393.1889,
+     395.3026,
+     396.4223,
+     396.9575
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.03,
+    "label": "estigmergia-e0.03",
+    "time_to_solution": {
+     "mean": 95.2244,
+     "lo": 93.2123,
+     "hi": 97.2365,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1402,
+     "lo": 0.1364,
+     "hi": 0.144,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     92.882,
+     95.01,
+     97.55,
+     98.47,
+     96.036,
+     95.722,
+     92.178,
+     96.224,
+     92.224,
+     95.948
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     101.994,
+     125.6204,
+     130.4325,
+     131.2602,
+     131.3952,
+     131.3511,
+     131.4428,
+     131.4996,
+     131.4912
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.1,
+    "label": "estigmergia-e0.1",
+    "time_to_solution": {
+     "mean": 94.9558,
+     "lo": 92.9068,
+     "hi": 97.0048,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1394,
+     "lo": 0.1356,
+     "hi": 0.1433,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     102.266,
+     90.928,
+     98.176,
+     93.84,
+     97.338,
+     94.816,
+     96.446,
+     91.09,
+     90.59,
+     94.068
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     36.4145,
+     38.2336,
+     38.3715,
+     38.33,
+     38.3882,
+     38.4697,
+     38.4742,
+     38.4402,
+     38.3949
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 0.3,
+    "label": "estigmergia-e0.3",
+    "time_to_solution": {
+     "mean": 115.819,
+     "lo": 112.6751,
+     "hi": 118.9629,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1914,
+     "lo": 0.186,
+     "hi": 0.1969,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     116.936,
+     114.304,
+     112.35,
+     115.906,
+     114.428,
+     113.484,
+     119.026,
+     117.89,
+     119.47,
+     114.396
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     11.5831,
+     11.898,
+     11.8514,
+     11.738,
+     11.8533,
+     11.8272,
+     11.9345,
+     11.8575,
+     11.8523
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 4,
+    "strategy": "estigmergia",
+    "epsilon": 1,
+    "label": "estigmergia-e1",
+    "time_to_solution": {
+     "mean": 422.7288,
+     "lo": 408.5786,
+     "hi": 436.879,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.6833,
+     "lo": 0.6786,
+     "hi": 0.6881,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     437.752,
+     450.436,
+     422.436,
+     423.028,
+     417.42,
+     374.864,
+     421.746,
+     439.472,
+     420.534,
+     419.6
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     2.5,
+     2.522,
+     2.36,
+     2.472,
+     2.596,
+     2.488,
+     2.544,
+     2.504,
+     2.488
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "sem-coordenacao",
+    "epsilon": null,
+    "label": "sem-coordenacao",
+    "time_to_solution": {
+     "mean": 55.5364,
+     "lo": 53.8721,
+     "hi": 57.2007,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.4597,
+     "lo": 0.4535,
+     "hi": 0.466,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     73.476,
+     54.698,
+     56.01,
+     53.906,
+     51,
+     53.504,
+     52.9,
+     49.5,
+     55.59,
+     54.78
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "mensagens-todos",
+    "epsilon": null,
+    "label": "mensagens-todos",
+    "time_to_solution": {
+     "mean": 24.013,
+     "lo": 23.5084,
+     "hi": 24.5176,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.148,
+     "lo": 0.1442,
+     "hi": 0.1518,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 5778.12,
+     "lo": 5657.0173,
+     "hi": 5899.2227,
+     "n": 500
+    },
+    "time_by_episode": [
+     25.946,
+     23.22,
+     24.27,
+     24.984,
+     24.31,
+     25.512,
+     22.936,
+     22.974,
+     22.216,
+     23.762
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0,
+    "label": "estigmergia-e0",
+    "time_to_solution": {
+     "mean": 29.5478,
+     "lo": 28.8718,
+     "hi": 30.2238,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.2699,
+     "lo": 0.2652,
+     "hi": 0.2746,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     26.406,
+     30.722,
+     29.252,
+     28.454,
+     31.552,
+     31.524,
+     27.534,
+     28.698,
+     31.158,
+     30.178
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     414.794,
+     898.96,
+     1360.002,
+     1807.444,
+     2304.766,
+     2801.546,
+     3234.802,
+     3686.626,
+     4177.33
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.001,
+    "label": "estigmergia-e0.001",
+    "time_to_solution": {
+     "mean": 24.0216,
+     "lo": 23.5042,
+     "hi": 24.539,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.159,
+     "lo": 0.155,
+     "hi": 0.1631,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     27.326,
+     23.92,
+     23.44,
+     23.056,
+     23.402,
+     22.612,
+     24.34,
+     23.93,
+     23.678,
+     24.512
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     420.9791,
+     779.6988,
+     1123.0751,
+     1452.4157,
+     1779.2696,
+     2087.1885,
+     2411.1824,
+     2722.61,
+     3023.3009
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.003,
+    "label": "estigmergia-e0.003",
+    "time_to_solution": {
+     "mean": 23.6352,
+     "lo": 23.1468,
+     "hi": 24.1236,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1547,
+     "lo": 0.1508,
+     "hi": 0.1586,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     27.318,
+     23.188,
+     23.24,
+     21.716,
+     23.044,
+     22.744,
+     23.97,
+     22.552,
+     23.848,
+     24.732
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     404.4695,
+     722.7817,
+     1020.6687,
+     1279.0287,
+     1538.8278,
+     1777.4941,
+     2011.1731,
+     2216.5073,
+     2420.144
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.01,
+    "label": "estigmergia-e0.01",
+    "time_to_solution": {
+     "mean": 24.0162,
+     "lo": 23.521,
+     "hi": 24.5114,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1542,
+     "lo": 0.1505,
+     "hi": 0.1579,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     28.578,
+     21.706,
+     23.808,
+     24.91,
+     24.196,
+     22.432,
+     23.61,
+     24.218,
+     23.616,
+     23.088
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     367.8652,
+     590.4948,
+     783.7031,
+     944.2406,
+     1070.282,
+     1161.7928,
+     1242.8799,
+     1309.8114,
+     1361.7412
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.03,
+    "label": "estigmergia-e0.03",
+    "time_to_solution": {
+     "mean": 22.7986,
+     "lo": 22.3339,
+     "hi": 23.2633,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1317,
+     "lo": 0.1281,
+     "hi": 0.1352,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     28.602,
+     22.8,
+     21.826,
+     22.604,
+     22.538,
+     22.264,
+     21.048,
+     22.834,
+     21.076,
+     22.394
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     268.5145,
+     379.9734,
+     437.5803,
+     472.1178,
+     491.4029,
+     502.5453,
+     507.6355,
+     511.4852,
+     513.5099
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.1,
+    "label": "estigmergia-e0.1",
+    "time_to_solution": {
+     "mean": 22.4948,
+     "lo": 22.0601,
+     "hi": 22.9295,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.122,
+     "lo": 0.1189,
+     "hi": 0.1251,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     29.34,
+     22.148,
+     21.842,
+     22.042,
+     22.092,
+     22,
+     21.444,
+     21.666,
+     21.768,
+     20.606
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     123.9095,
+     144.3511,
+     148.3838,
+     149.1601,
+     150.0684,
+     150.0947,
+     150.034,
+     149.473,
+     149.6799
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 0.3,
+    "label": "estigmergia-e0.3",
+    "time_to_solution": {
+     "mean": 22.7,
+     "lo": 22.2306,
+     "hi": 23.1694,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.1233,
+     "lo": 0.1199,
+     "hi": 0.1267,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     29.748,
+     22.964,
+     21.828,
+     22.44,
+     21.136,
+     22.344,
+     22.616,
+     22.672,
+     20.778,
+     20.474
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     43.1608,
+     44.7332,
+     45.0703,
+     45.1395,
+     45.2966,
+     45.019,
+     45.4292,
+     45.5458,
+     45.1677
+    ],
+    "censored_episodes": 0
+   },
+   {
+    "K": 16,
+    "strategy": "estigmergia",
+    "epsilon": 1,
+    "label": "estigmergia-e1",
+    "time_to_solution": {
+     "mean": 86.6242,
+     "lo": 83.5072,
+     "hi": 89.7412,
+     "n": 500
+    },
+    "duplicated_fraction": {
+     "mean": 0.6107,
+     "lo": 0.6047,
+     "hi": 0.6168,
+     "n": 500
+    },
+    "messages_per_episode": {
+     "mean": 0,
+     "lo": 0,
+     "hi": 0,
+     "n": 500
+    },
+    "time_by_episode": [
+     106.564,
+     96.862,
+     79.988,
+     83.06,
+     83.902,
+     84.576,
+     79.03,
+     86.198,
+     82.35,
+     83.712
+    ],
+    "trail_mass_at_episode_start": [
+     0,
+     8.76,
+     8.678,
+     8.552,
+     8.37,
+     9.016,
+     8.728,
+     8.632,
+     8.284,
+     8.46
+    ],
+    "censored_episodes": 0
+   }
+  ],
+  "best_epsilon": {
+   "4": 0.1,
+   "16": 0.1
+  }
+ },
+ "tests": [
+  {
+   "id": "P1",
+   "verdict": "suporta",
+   "detail": "K=4: tempo 96,8 vs 239,9; duplicação 15,0% vs 50,1%; K=16: tempo 24,0 vs 55,5; duplicação 15,4% vs 46,0%"
+  },
+  {
+   "id": "P2",
+   "verdict": "suporta",
+   "detail": "K=4: melhor epsilon=0.1 (t=95,0) vs epsilon=0 (122,0) e epsilon=1 (422,7); significativo=true; K=16: melhor epsilon=0.1 (t=22,5) vs epsilon=0 (29,5) e epsilon=1 (86,6); significativo=true"
+  },
+  {
+   "id": "P3",
+   "verdict": "nao-suporta",
+   "detail": "K=4: mensagens com menor tempo=false; melhor estigmergia/mensagens=0,981; mensagens/episódio=1165; K=16: mensagens com menor tempo=false; melhor estigmergia/mensagens=0,937; mensagens/episódio=5778"
+  },
+  {
+   "id": "P4",
+   "verdict": "suporta",
+   "detail": "K=4: eps=0 ep10 mais lento que ep1=true; massa ep10/ep5 eps=0: 2,36; melhor eps: 1,00; K=16: eps=0 ep10 mais lento que ep1=true; massa ep10/ep5 eps=0: 2,31; melhor eps: 1,00"
+  }
+ ],
+ "headline": [
+  "sem-coordenacao (K=4): tempo 239,9 [IC95% 232,5–247,2], duplicação 50,1%, msgs/episódio 0",
+  "mensagens-todos (K=4): tempo 96,8 [IC95% 94,8–98,9], duplicação 16,1%, msgs/episódio 1165",
+  "estigmergia-e0 (K=4): tempo 122,0 [IC95% 119,4–124,6], duplicação 28,9%, msgs/episódio 0",
+  "estigmergia-e0.1 (K=4): tempo 95,0 [IC95% 92,9–97,0], duplicação 13,9%, msgs/episódio 0",
+  "sem-coordenacao (K=16): tempo 55,5 [IC95% 53,9–57,2], duplicação 46,0%, msgs/episódio 0",
+  "mensagens-todos (K=16): tempo 24,0 [IC95% 23,5–24,5], duplicação 14,8%, msgs/episódio 5778",
+  "estigmergia-e0 (K=16): tempo 29,5 [IC95% 28,9–30,2], duplicação 27,0%, msgs/episódio 0",
+  "estigmergia-e0.1 (K=16): tempo 22,5 [IC95% 22,1–22,9], duplicação 12,2%, msgs/episódio 0"
+ ]
+}
