@@ -1,4 +1,4 @@
-// Norevia Labs — interações leves (progressive enhancement; o site funciona sem JS).
+// Norevia — a Cold Code Labs research project. Progressive enhancement; the site works without JavaScript.
 (() => {
   'use strict';
 

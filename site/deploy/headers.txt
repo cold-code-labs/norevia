@@ -5,6 +5,6 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
   Strict-Transport-Security: max-age=31536000
-  X-Norevia-Build: 2026-11-07T23:14:09.423Z e740ab901041
+  X-Norevia-Build: 2026-11-08T14:41:14.018Z 17da7a210f3e
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

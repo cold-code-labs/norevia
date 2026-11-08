@@ -1,6 +1,6 @@
-// Utilitários de texto, frontmatter (subconjunto de YAML) e Markdown — sem dependências.
-// Todo conteúdo dos cartões é tratado como não confiável: HTML bruto é escapado,
-// links só aceitam http(s)/mailto ou caminhos que resolvem para cartões do acervo.
+// Text, frontmatter (YAML subset) and Markdown utilities — no dependencies.
+// All card content is treated as untrusted: raw HTML is escaped,
+// links only accept http(s)/mailto or paths that resolve to archive cards.
 
 export function esc(s) {
   return String(s ?? '')
@@ -43,7 +43,7 @@ function stripComment(v) {
   const t = v.trim();
   if (t.startsWith('"') || t.startsWith("'")) {
     const q = t[0];
-    if (t.length > 1 && t.endsWith(q)) return t; // tolerante a aspas internas não escapadas
+    if (t.length > 1 && t.endsWith(q)) return t; // tolerant of unescaped inner quotes
     for (let i = 1; i < t.length; i++) {
       if (q === '"' && t[i] === '\\') { i++; continue; }
       if (t[i] === q) {
@@ -54,7 +54,7 @@ function stripComment(v) {
     return t;
   }
   if (t.startsWith('[') || t.startsWith('{')) {
-    // remove comentário após o fechamento
+    // strip a comment after the closing quote
     const close = t.startsWith('[') ? ']' : '}';
     const idx = t.lastIndexOf(close);
     if (idx >= 0 && /^\s*(#.*)?$/.test(t.slice(idx + 1))) return t.slice(0, idx + 1);
@@ -128,7 +128,7 @@ function parseMap(lines, start, end, baseIndent) {
     const key = String(scalar(m[1]));
     const rest = stripComment(m[2] ?? '');
     i++;
-    // bloco filho
+    // child block
     let j = i;
     while (j < end && (!lines[j].trim() || indentOf(lines[j]) > ind || (/^\s*-(\s|$)/.test(lines[j]) && indentOf(lines[j]) === ind && rest === ''))) j++;
     if (rest === '') {
@@ -143,7 +143,7 @@ function parseMap(lines, start, end, baseIndent) {
         : parts.join('\n').replace(/([^\n])\n(?=[^\n])/g, '$1 ').trim();
       i = j;
     } else {
-      // valor com continuação (texto multilinha simples)
+      // value with continuation (simple multi-line text)
       let val = rest;
       const cont = lines.slice(i, j).filter((l) => l.trim());
       if (cont.length && !/^["'[{]/.test(val)) val += ' ' + cont.map((l) => l.trim()).join(' ');
@@ -192,7 +192,7 @@ function parseBlock(lines, start, end, parentIndent) {
 const SAFE_PROTO = /^(https?:|mailto:)/i;
 
 export function linkifyRef(s) {
-  // Para fontes: transforma URLs, DOIs e IDs arXiv em links.
+  // For sources: turns URLs, DOIs and arXiv ids into links.
   return inline(String(s ?? ''), {});
 }
 
@@ -202,13 +202,13 @@ export function inline(text, ctx = {}) {
   let s = String(text ?? '');
   // code spans
   s = s.replace(/(`+)([\s\S]*?[^`])\1(?!`)/g, (_, __, c) => put(`<code>${esc(c.trim())}</code>`));
-  // wikilinks [[id]] / [[id|texto]]
+  // wikilinks [[id]] / [[id|label]]
   s = s.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (m, id, label) => {
     const card = ctx.resolveId?.(id.trim());
     if (card) return put(`<a class="ref" href="${esc(card.url)}">${esc(label || card.id)}</a>`);
-    return put(`<span class="ref-missing" title="cartão ainda não existe">${esc(label || id)}</span>`);
+    return put(`<span class="ref-missing" title="card does not exist yet">${esc(label || id)}</span>`);
   });
-  // links markdown (inclusive imagens: viram links — não carregamos mídia externa)
+  // markdown links (images too: they become links — no external media is loaded)
   s = s.replace(/!?\[((?:[^\[\]]|\[[^\]]*\])*)\]\(\s*<?([^)\s>]+)>?(?:\s+["'][^"']*["'])?\s*\)/g, (m, label, href) => {
     const inner = emph(esc(label));
     const target = resolveHref(href, ctx);
@@ -218,13 +218,13 @@ export function inline(text, ctx = {}) {
   });
   // autolinks <http://...>
   s = s.replace(/<(https?:\/\/[^\s>]+)>/g, (m, u) => put(extLink(u)));
-  // a partir daqui, texto escapado
+  // from here on, the text is escaped
   s = s.split(/(\u0000\d+\u0000)/).map((part) => (/^\u0000\d+\u0000$/.test(part) ? part : esc(part))).join('');
-  // URLs soltas
+  // bare URLs
   s = s.replace(/\bhttps?:\/\/[^\s<\u0000]+/g, (u) => {
     const m = u.match(/^(.*?)([).,;:!?\]]*)$/);
     let url = m[1], trail = m[2];
-    // mantém parêntese balanceado
+    // keep balanced parentheses
     if (trail.startsWith(')') && (url.match(/\(/g) || []).length > (url.match(/\)/g) || []).length) { url += ')'; trail = trail.slice(1); }
     return put(extLink(unesc(url))) + trail;
   });
@@ -234,7 +234,7 @@ export function inline(text, ctx = {}) {
   // arXiv
   s = s.replace(/\barXiv:\s*(\d{4}\.\d{4,5}(?:v\d+)?)/gi, (m, a) =>
     put(`<a href="https://arxiv.org/abs/${a}" rel="noopener noreferrer">arXiv:${a}</a>`));
-  // IDs de cartões conhecidos
+  // known card ids
   if (ctx.idRegex) {
     s = s.replace(ctx.idRegex, (m, pre, id) => {
       const card = ctx.resolveId(id);
@@ -244,7 +244,7 @@ export function inline(text, ctx = {}) {
   }
   s = emph(s);
   s = s.replace(/ {2,}\n/g, '<br>\n');
-  // desfaz stash (pode ser aninhado)
+  // unstash (may be nested)
   for (let k = 0; k < 4 && s.includes('\u0000'); k++) s = s.replace(/\u0000(\d+)\u0000/g, (_, n) => stash[+n]);
   return s;
 }
@@ -328,7 +328,7 @@ function blocks(lines, ctx) {
       continue;
     }
     if ((m = l.match(RE_HEAD))) {
-      const level = Math.min(6, m[1].length + 1); // h1 da página é o título do cartão
+      const level = Math.min(6, m[1].length + 1); // the page h1 is the card title
       const text = m[2];
       let id = slug(text.replace(/[`*_]/g, '')) || 'secao';
       while (ctx.usedIds.has(id)) id += '-x';
@@ -368,7 +368,7 @@ function blocks(lines, ctx) {
       );
       continue;
     }
-    // parágrafo
+    // paragraph
     const para = [];
     while (i < lines.length && lines[i].trim() && !(para.length && isBlockStart(lines[i])) && !(para.length === 0 && false)) {
       if (para.length && lines[i].includes('|') && RE_TABLE_SEP.test(lines[i + 1] || '')) break;
@@ -398,7 +398,7 @@ function parseList(lines, start, ctx) {
     while (i < lines.length) {
       const l = lines[i];
       if (!l.trim()) {
-        // linha em branco: continua só se a próxima estiver indentada
+        // blank line: continue only if the next one is indented
         const next = lines.slice(i + 1).find((x) => x.trim());
         if (next !== undefined && indentOf(next) >= contentIndent) { body.push(''); sawBlank = true; i++; continue; }
         break;
@@ -411,12 +411,12 @@ function parseList(lines, start, ctx) {
       }
       if (ind <= base && (RE_LIST.test(l) || isBlockStart(l))) break;
       if (sawBlank) break;
-      body.push(l.trim()); // continuação preguiçosa
+      body.push(l.trim()); // lazy continuation
       i++;
     }
     if (sawBlank) loose = true;
     items.push(body);
-    // linhas em branco entre itens
+    // blank lines between items
     let k = i;
     while (k < lines.length && !lines[k].trim()) k++;
     if (k > i && k < lines.length) {

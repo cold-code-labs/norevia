@@ -1,6 +1,5 @@
-// Norevia Labs — Worker companheiro dos Static Assets.
-// Assets casados são servidos direto pela plataforma (sem invocar este código).
-// Este Worker só roda quando nenhum asset casa: normaliza caixa e devolve a página 404.
+// Norevia — a Cold Code Labs research project. Companion Worker for Static Assets.
+// Matching assets are served directly by the platform. This Worker only normalises paths and returns 404s.
 const SECURITY = {
   'x-content-type-options': 'nosniff',
   'referrer-policy': 'strict-origin-when-cross-origin',

@@ -1,11 +1,12 @@
-// Extração heurística de séries a partir de JSON/CSV de resultados e renderização em SVG inline.
-// Regras visuais (skill dataviz): um eixo só, linhas 2px, marcadores r=4 com anel da superfície,
-// barras <= 24px com topo arredondado 4px, grade hairline, legenda para >= 2 séries,
-// tabela de dados sempre disponível, tooltip por marca (data-tip + <title>).
+// Heuristic extraction of series from result JSON/CSV files and inline SVG rendering.
+// Visual rules (dataviz skill): a single y-axis, 2px lines, r=4 markers with a surface ring,
+// bars <= 24px with 4px rounded tops, hairline grid, legend for >= 2 series,
+// data table always available, per-mark tooltip (data-tip + <title>).
 import { esc } from './text.mjs';
 
-// Paleta categórica (modo escuro) — ordem fixa, validada com validate_palette.js contra a superfície #111a17.
-export const SERIES = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+// Categorical palette (light mode) — fixed order, validated with validate_palette.js (--mode light) against the #fbfaf6 chart surface.
+// Three slots sit below 3:1 contrast: charts always ship a legend and a data table (relief rule).
+export const SERIES = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300', '#6250d6', '#e34948'];
 
 const X_NAMES = ['x', 'n_agents', 'num_agents', 'agents', 'agentes', 'n_agentes', 'swarm_size', 'size', 'tamanho', 'k', 'budget', 'orcamento', 'effort', 'reasoning', 'reasoning_effort', 'difficulty', 'dificuldade', 'step', 'steps', 'tick', 't', 'time', 'tempo', 'round', 'rodada', 'iteration', 'iter', 'epoch', 'threshold', 'p', 'rate', 'taxa', 'noise', 'ruido'];
 const GROUP_NAMES = ['arch', 'architecture', 'arquitetura', 'config', 'configuration', 'condition', 'condicao', 'strategy', 'estrategia', 'policy', 'politica', 'method', 'metodo', 'variant', 'variante', 'mode', 'modo', 'model', 'modelo', 'series', 'serie', 'group', 'grupo', 'name', 'nome', 'label', 'task', 'tarefa', 'scenario', 'cenario'];
@@ -51,7 +52,7 @@ function coerce(v) {
   return v;
 }
 
-// Encontra tabelas (arrays de objetos) e colunas numéricas paralelas dentro do JSON.
+// Finds tables (arrays of objects) and parallel numeric columns inside the JSON.
 const SKIP_PATH = /(^|\.)(params|parametros|parameters|configs?|settings|hypothesis|hipotese|tests|headline|meta|predictions)(\.|\[|$)/i;
 function rowOf(r) {
   const f = flatten(r);
@@ -77,17 +78,17 @@ function findTables(data, path = '', depth = 0, out = []) {
   }
   if (typeof data === 'object') {
     const entries = Object.entries(data);
-    // colunas paralelas: { x: [..], acc: [..] }
+    // parallel columns: { x: [..], acc: [..] }
     const arrs = entries.filter(([, v]) => Array.isArray(v) && v.length >= 2 && v.every((x) => isNum(x) || typeof x === 'string'));
     const lens = new Set(arrs.map(([, v]) => v.length));
     if (arrs.length >= 2 && lens.size === 1) {
       const n = arrs[0][1].length;
       out.push({ path, rows: Array.from({ length: n }, (_, r) => Object.fromEntries(arrs.map(([k, v]) => [k, v[r]]))) });
     }
-    // mapa de objetos homogêneos: { arch_a: {acc:..}, arch_b: {acc:..} }
+    // map of homogeneous objects: { arch_a: {acc:..}, arch_b: {acc:..} }
     const objVals = entries.filter(([, v]) => v && typeof v === 'object' && !Array.isArray(v));
     if (objVals.length >= 2 && objVals.length === entries.length) {
-      const rows = objVals.map(([k, v]) => ({ 'configuração': k, ...flatten(v) }));
+      const rows = objVals.map(([k, v]) => ({ configuration: k, ...flatten(v) }));
       const numericKeys = Object.keys(rows[0]).filter((k) => rows.every((r) => isNum(r[k])));
       if (numericKeys.length) out.push({ path, rows });
     }
@@ -119,7 +120,7 @@ function flatten(o, prefix = '', out = {}) {
     else if (k === 'ci95' && Array.isArray(v) && v.length === 2 && v.every(isNum)) { out['\u0001ci95'] = v; }
     else if (!Array.isArray(v)) out[key] = v;
   }
-  // ci95 ao lado de uma taxa (ex.: acceptRate + ci95)
+  // ci95 next to a rate (e.g. acceptRate + ci95)
   if (out['\u0001ci95']) {
     const rateKey = Object.keys(out).find((k) => /rate$|^p$|acc/i.test(k) && isNum(out[k]) && out[k] >= out['\u0001ci95'][0] - 1e-9 && out[k] <= out['\u0001ci95'][1] + 1e-9);
     if (rateKey) { out[rateKey + '\u0001lo'] = out['\u0001ci95'][0]; out[rateKey + '\u0001hi'] = out['\u0001ci95'][1]; }
@@ -134,8 +135,8 @@ export function scalarMetrics(data) {
   return Object.entries(flat).filter(([k, v]) => !k.includes('\u0001') && (isNum(v) || typeof v === 'string' || typeof v === 'boolean')).slice(0, 24);
 }
 
-// Curvas: arrays alinhados a um eixo x declarado (ex.: { N:[..], rhos:[..], acc_vote:[[..]..] } ou
-// { Ns:[..], cells:[{ rho, strategies:{ a:{ acc:[{p,lo,hi}..] } } }] }).
+// Curves: arrays aligned to a declared x axis (e.g. { N:[..], rhos:[..], acc_vote:[[..]..] } ou
+// or { Ns:[..], cells:[{ rho, strategies:{ a:{ acc:[{p,lo,hi}..] } } }] }).
 const isXName = (k) => X_NAMES.includes(lc(k)) || /^(n|ns|xs|ks|sizes|budgets|steps|rhos?|ps|thresholds)$/i.test(k);
 function findCurves(data, xs = [], ctx = '', depth = 0, out = []) {
   if (depth > 6 || out.length >= 6 || !data || typeof data !== 'object') return out;
@@ -153,7 +154,7 @@ function findCurves(data, xs = [], ctx = '', depth = 0, out = []) {
   const xFor = (n, not) => X.find((c) => c.arr.length === n && c.name !== not);
   for (const [k, v] of entries) {
     if (out.length >= 6) break;
-    // matriz m×n (pares *_lo / *_hi viram IC do principal)
+    // m×n matrix (*_lo / *_hi pairs become the CI of the main series)
     if (/(_lo|_hi|Lo|Hi)$/.test(k) && entries.some(([kk]) => kk === k.replace(/(_lo|_hi|Lo|Hi)$/, ''))) continue;
     if (Array.isArray(v) && v.length >= 2 && v.every((r) => Array.isArray(r) && r.length >= 2 && r.every((c) => ciOf(c)))) {
       const n = v[0].length, m = v.length;
@@ -164,11 +165,11 @@ function findCurves(data, xs = [], ctx = '', depth = 0, out = []) {
         const rows = [];
         const LO = data[k + '_lo'] || data[k + 'Lo'], HI = data[k + '_hi'] || data[k + 'Hi'];
         for (const i of idx) v[i].forEach((c, j) => { const ci = ciOf(c); rows.push({ x: xa.arr[j], s: la ? `${la[0]}=${la[1][i]}` : `#${i + 1}`, y: ci.v, lo: ci.lo ?? LO?.[i]?.[j], hi: ci.hi ?? HI?.[i]?.[j] }); });
-        out.push({ path: k, title: `${k} × ${xa.name}${ctx ? ` (${ctx})` : ''}`, x: xa.name, y: k, group: la ? la[0] : 'série', rows, note: idx.length < m ? `${idx.length} de ${m} séries exibidas (valores igualmente espaçados)` : '' });
+        out.push({ path: k, title: `${k} × ${xa.name}${ctx ? ` (${ctx})` : ''}`, x: xa.name, y: k, group: la ? la[0] : 'series', rows, note: idx.length < m ? `${idx.length} of ${m} series shown (evenly spaced values)` : '' });
       }
       continue;
     }
-    // mapa de estratégias: { a: { acc:[..n] }, b: { acc:[..n] } }
+    // strategy map: { a: { acc:[..n] }, b: { acc:[..n] } }
     if (v && typeof v === 'object' && !Array.isArray(v)) {
       const subs = Object.entries(v).filter(([, sv]) => sv && typeof sv === 'object' && !Array.isArray(sv));
       if (subs.length >= 2) {
@@ -180,7 +181,7 @@ function findCurves(data, xs = [], ctx = '', depth = 0, out = []) {
           if (!xa) continue;
           const rows = [];
           for (const [sn, sv] of subs.slice(0, 8)) sv[mk].forEach((c, j) => { const ci = ciOf(c); rows.push({ x: xa.arr[j], s: sn, y: ci.v, lo: ci.lo, hi: ci.hi }); });
-          out.push({ path: `${k}.*.${mk}`, title: `${mk} × ${xa.name}${ctx ? ` (${ctx})` : ''}`, x: xa.name, y: mk, group: k, rows, note: subs.length > 8 ? `8 de ${subs.length} séries exibidas` : '' });
+          out.push({ path: `${k}.*.${mk}`, title: `${mk} × ${xa.name}${ctx ? ` (${ctx})` : ''}`, x: xa.name, y: mk, group: k, rows, note: subs.length > 8 ? `8 of ${subs.length} series shown` : '' });
           done = true;
           if (out.length >= 6) break;
         }
@@ -223,10 +224,10 @@ function toSpec(rows, x, y, group, opts) {
   let folded = 0;
   if (list.length > 8) { folded = list.length - 8; list = list.slice(0, 8); }
   const type = opts.type || (xNumeric && list.every((s) => s.pts.length >= 2) ? 'line' : 'bar');
-  return { title: opts.title || `${y} × ${x}`, x, y, group, type, series: list, folded, source: opts.source || '(raiz)', aggregated: [...agg.values()].some((a) => a.n > 1), note: opts.note || '', ci: [...agg.values()].some((a) => isNum(a.lo) && isNum(a.hi)) };
+  return { title: opts.title || `${y} × ${x}`, x, y, group, type, series: list, folded, source: opts.source || '(root)', aggregated: [...agg.values()].some((a) => a.n > 1), note: opts.note || '', ci: [...agg.values()].some((a) => isNum(a.lo) && isNum(a.hi)) };
 }
 
-// Gera especificações de gráficos. hint (frontmatter `chart`) pode fixar x, y, group, type, title.
+// Builds chart specs. hint (frontmatter `chart`) may pin x, y, group, type, title.
 export function chartSpecs(data, hint = {}) {
   const specs = [];
   const hy = hint.y ? (Array.isArray(hint.y) ? hint.y : [hint.y]) : null;
@@ -260,7 +261,7 @@ export function chartSpecs(data, hint = {}) {
     if (!hy) ys.sort((a, b) => (Y_PRIORITY.test(b) - Y_PRIORITY.test(a)) || (Y_DEMOTE.test(a.split('.').pop()) - Y_DEMOTE.test(b.split('.').pop())));
     ys = ys.slice(0, hy ? 6 : 4);
     for (const y of ys) {
-      const sp = toSpec(rows, x, y, group, { title: hint.title && ys.length === 1 ? hint.title : null, source: t.path || '(raiz)', type: hint.type });
+      const sp = toSpec(rows, x, y, group, { title: hint.title && ys.length === 1 ? hint.title : null, source: t.path || '(root)', type: hint.type });
       if (sp) specs.push(sp);
       if (specs.length >= 6) return specs;
     }
@@ -268,7 +269,7 @@ export function chartSpecs(data, hint = {}) {
   return specs;
 }
 
-// Resumo textual padronizado de arquivos de resultado: headline[] e tests[{id, verdict, detail}]
+// Standard text summary of result files: headline[] e tests[{id, verdict, detail}]
 export function resultSummary(data) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
   const headline = Array.isArray(data.headline) ? data.headline.filter((h) => typeof h === 'string') : typeof data.headline === 'string' ? [data.headline] : [];
@@ -300,15 +301,15 @@ function niceTicks(min, max, count = 5) {
 export function fmt(v) {
   if (!isNum(v)) return String(v);
   const a = Math.abs(v);
-  if (a >= 1e6) return (v / 1e6).toFixed(a >= 1e7 ? 0 : 1).replace('.', ',') + ' mi';
-  if (a >= 1e4) return Math.round(v / 1e3).toLocaleString('pt-BR') + ' mil';
-  if (a >= 100) return Math.round(v).toLocaleString('pt-BR');
-  if (a >= 1) return (+v.toFixed(2)).toLocaleString('pt-BR');
+  if (a >= 1e6) return (v / 1e6).toFixed(a >= 1e7 ? 0 : 1) + 'M';
+  if (a >= 1e4) return Math.round(v / 1e3).toLocaleString('en-US') + 'k';
+  if (a >= 100) return Math.round(v).toLocaleString('en-US');
+  if (a >= 1) return (+v.toFixed(2)).toLocaleString('en-US');
   if (a === 0) return '0';
-  return (+v.toPrecision(3)).toLocaleString('pt-BR');
+  return (+v.toPrecision(3)).toLocaleString('en-US');
 }
 
-const ciTxt = (p) => (isNum(p.lo) && isNum(p.hi) ? ` [IC95% ${fmt(p.lo)}–${fmt(p.hi)}]` : '') + (p.n > 1 ? ` (média de ${p.n}; ${fmt(p.min)}–${fmt(p.max)})` : '');
+const ciTxt = (p) => (isNum(p.lo) && isNum(p.hi) ? ` [95% CI ${fmt(p.lo)}–${fmt(p.hi)}]` : '') + (p.n > 1 ? ` (mean of ${p.n}; ${fmt(p.min)}–${fmt(p.max)})` : '');
 let uid = 0;
 export function renderChart(spec) {
   const id = `ch${++uid}`;
@@ -323,7 +324,7 @@ export function renderChart(spec) {
   const Y = (v) => m.t + ih - ((v - yt[0]) / (yt[yt.length - 1] - yt[0])) * ih;
   const parts = [];
   const multi = spec.series.length >= 2;
-  // grade
+  // grid
   for (const t of yt) parts.push(`<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${Y(t).toFixed(1)}" y2="${Y(t).toFixed(1)}"/><text class="tick" x="${m.l - 8}" y="${(Y(t) + 4).toFixed(1)}" text-anchor="end">${esc(fmt(t))}</text>`);
   if (spec.type === 'line') {
     const xs = spec.series.flatMap((s) => s.pts.map((p) => p.x));
@@ -350,7 +351,7 @@ export function renderChart(spec) {
       const last = s.pts[s.pts.length - 1];
       if (last) ends.push({ y: Y(last.y), x: X(last.x), name: s.name, v: last.y, c });
     });
-    // rótulos diretos no fim da linha (somente se não colidirem)
+    // direct labels at line ends (only when they do not collide)
     if (spec.series.length <= 4) {
       const sorted = [...ends].sort((p, q) => p.y - q.y);
       const ok = sorted.every((e, k) => k === 0 || e.y - sorted[k - 1].y >= 14);
@@ -386,15 +387,15 @@ export function renderChart(spec) {
   }
   parts.push(`<text class="axlabel" x="${m.l + iw / 2}" y="${H - 6}" text-anchor="middle">${esc(spec.x)}</text>`);
   const legend = multi
-    ? `<ul class="legend" aria-label="Legenda">${spec.series.map((s, k) => `<li><span class="key ${spec.type}" data-c="${k}" aria-hidden="true"><svg width="18" height="10"><${spec.type === 'line' ? `line x1="0" x2="18" y1="5" y2="5" stroke="${SERIES[k]}" stroke-width="2"` : `rect width="10" height="10" rx="2" fill="${SERIES[k]}"`}/></svg></span>${esc(s.name)}</li>`).join('')}${spec.folded ? `<li class="muted">+${spec.folded} séries omitidas (veja a tabela/arquivo)</li>` : ''}</ul>`
+    ? `<ul class="legend" aria-label="Legend">${spec.series.map((s, k) => `<li><span class="key ${spec.type}" data-c="${k}" aria-hidden="true"><svg width="18" height="10"><${spec.type === 'line' ? `line x1="0" x2="18" y1="5" y2="5" stroke="${SERIES[k]}" stroke-width="2"` : `rect width="10" height="10" rx="2" fill="${SERIES[k]}"`}/></svg></span>${esc(s.name)}</li>`).join('')}${spec.folded ? `<li class="muted">+${spec.folded} series omitted (see the table/file)</li>` : ''}</ul>`
     : '';
   const tableRows = spec.series.flatMap((s) => s.pts.map((p) => `<tr>${multi ? `<td>${esc(s.name)}</td>` : ''}<td>${esc(fmt(p.x))}</td><td class="num">${esc(fmt(p.y))}</td>${spec.ci ? `<td class="num">${isNum(p.lo) ? esc(fmt(p.lo)) + '–' + esc(fmt(p.hi)) : ''}</td>` : ''}<td class="num">${p.n}</td></tr>`));
-  const desc = `${spec.type === 'line' ? 'Gráfico de linhas' : 'Gráfico de barras'}: ${spec.y} em função de ${spec.x}${spec.group ? `, por ${spec.group}` : ''}. ${spec.series.length} série(s).`;
+  const desc = `${spec.type === 'line' ? 'Line chart' : 'Bar chart'}: ${spec.y} as a function of ${spec.x}${spec.group ? `, by ${spec.group}` : ''}. ${spec.series.length} series.`;
   return `<figure class="chart" aria-labelledby="${id}-t">
-<figcaption id="${id}-t"><strong>${esc(spec.title)}</strong><span class="muted"> · eixo vertical: ${esc(spec.y)}${spec.aggregated ? ' (média por ponto)' : ''}${spec.ci ? ' · barras verticais: IC95% informado no arquivo' : ''}${spec.note ? ' · ' + esc(spec.note) : ''}</span></figcaption>
+<figcaption id="${id}-t"><strong>${esc(spec.title)}</strong><span class="muted"> · vertical axis: ${esc(spec.y)}${spec.aggregated ? ' (mean per point)' : ''}${spec.ci ? ' · vertical bars: 95% CI reported in the file' : ''}${spec.note ? ' · ' + esc(spec.note) : ''}</span></figcaption>
 ${legend}
 <div class="chart-box"><svg viewBox="0 0 ${W} ${H}" role="group" aria-label="${esc(desc)}" preserveAspectRatio="xMidYMid meet">${parts.join('')}</svg><div class="tip" hidden></div></div>
-<details class="datatable"><summary>Ver dados (${tableRows.length} pontos · origem <code>${esc(spec.source)}</code>)</summary><div class="table-wrap" tabindex="0"><table><thead><tr>${multi ? `<th scope="col">${esc(spec.group || 'série')}</th>` : ''}<th scope="col">${esc(spec.x)}</th><th scope="col" class="num">${esc(spec.y)}</th>${spec.ci ? '<th scope="col" class="num">IC95%</th>' : ''}<th scope="col" class="num">pontos agregados</th></tr></thead><tbody>${tableRows.join('')}</tbody></table></div></details>
+<details class="datatable"><summary>View data (${tableRows.length} points · source <code>${esc(spec.source)}</code>)</summary><div class="table-wrap" tabindex="0"><table><thead><tr>${multi ? `<th scope="col">${esc(spec.group || 'series')}</th>` : ''}<th scope="col">${esc(spec.x)}</th><th scope="col" class="num">${esc(spec.y)}</th>${spec.ci ? '<th scope="col" class="num">95% CI</th>' : ''}<th scope="col" class="num">aggregated points</th></tr></thead><tbody>${tableRows.join('')}</tbody></table></div></details>
 </figure>`;
 }
 
