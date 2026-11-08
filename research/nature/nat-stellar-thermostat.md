@@ -2,6 +2,7 @@
 id: nat-stellar-thermostat
 title: Stellar hydrostatic equilibrium and negative specific heat (physical analogy)
 area: nature
+realm: beyond
 evidence: natural-phenomenon
 tags: [celestial-analogy, admission-control, capacity, negative-feedback, instability]
 sources:

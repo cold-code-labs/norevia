@@ -2,6 +2,7 @@
 id: nat-kessler-cascade
 title: Kessler syndrome — the critical density at which debris generates more debris (analogy)
 area: nature
+realm: beyond
 evidence: natural-phenomenon
 tags: [celestial-analogy, orphaned-work, cascade, critical-density, cleanup]
 sources:

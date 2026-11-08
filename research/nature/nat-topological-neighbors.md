@@ -2,6 +2,7 @@
 id: nat-topological-neighbors
 title: Topological interaction with ~6–7 neighbors in starlings
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [topology, k-nearest-neighbors, communication-cost, robustness, macro-swarm]
 sources:

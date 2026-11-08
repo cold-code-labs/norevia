@@ -2,6 +2,7 @@
 id: nat-response-threshold
 title: Response thresholds and division of labor in social insects
 area: nature
+realm: seen
 evidence: author-reported
 tags: [division-of-labor, elastic-swarm, adaptive-activation, when-to-cooperate]
 sources:

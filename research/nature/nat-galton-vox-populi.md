@@ -2,6 +2,7 @@
 id: nat-galton-vox-populi
 title: Galton, "Vox populi" — the median of 787 guesses and the effect of social influence
 area: nature
+realm: seen
 evidence: author-reported
 tags: [collective-theory, wisdom-of-crowds, independence, social-influence, aggregation]
 sources:

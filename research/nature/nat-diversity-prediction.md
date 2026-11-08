@@ -2,6 +2,7 @@
 id: nat-diversity-prediction
 title: Diversity prediction theorem — collective error = average error − diversity
 area: nature
+realm: seen
 evidence: local-validation
 tags: [collective-theory, diversity, aggregation, estimation, ensemble]
 sources:

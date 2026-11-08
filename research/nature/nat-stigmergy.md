@@ -2,6 +2,7 @@
 id: nat-stigmergy
 title: Stigmergy — coordination through the state of the work, not through messages
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [stigmergy, indirect-communication, shared-state, communication-pruning]
 sources:

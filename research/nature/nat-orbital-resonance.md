@@ -2,6 +2,7 @@
 id: nat-orbital-resonance
 title: Orbital resonances — stable chains and instability gaps (analogy)
 area: nature
+realm: beyond
 evidence: natural-phenomenon
 tags: [celestial-analogy, cadence, dependencies, contention, scheduling]
 sources:

@@ -2,6 +2,7 @@
 id: nat-informed-leaders
 title: A few informed individuals guide large groups; uninformed ones return control to the majority
 area: nature
+realm: seen
 evidence: author-reported
 tags: [leadership, asymmetric-information, verifier, opinionated-minority, how-much-to-cooperate]
 sources:

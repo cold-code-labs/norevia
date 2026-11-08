@@ -2,6 +2,7 @@
 id: nat-condorcet-jury
 title: Condorcet's jury theorem — when a majority of mediocre jurors wins
 area: nature
+realm: seen
 evidence: local-validation
 tags: [collective-theory, voting, aggregation, when-to-cooperate, 1-vs-n]
 sources:

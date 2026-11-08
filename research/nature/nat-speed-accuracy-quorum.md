@@ -2,6 +2,7 @@
 id: nat-speed-accuracy-quorum
 title: Speed–accuracy trade-off with a tunable quorum threshold (Temnothorax ants)
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [quorum, speed-accuracy, tunable-parameter, urgency, how-much-to-cooperate]
 sources:

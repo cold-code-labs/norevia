@@ -2,6 +2,7 @@
 id: nat-condorcet-correlated
 title: Condorcet with correlated votes — accuracy ceiling and "effective n"
 area: nature
+realm: seen
 evidence: local-validation
 tags: [collective-theory, correlation, ceiling, when-to-stop-expanding, diversity]
 sources:

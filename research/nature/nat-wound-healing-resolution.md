@@ -2,6 +2,7 @@
 id: nat-wound-healing-resolution
 title: Phased wound healing with active termination (resolution of inflammation)
 area: nature
+realm: unseen
 evidence: natural-phenomenon
 tags: [bounded-healing, termination, bounded-repair, return-to-baseline]
 sources:

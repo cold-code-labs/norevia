@@ -2,6 +2,7 @@
 id: nat-recruitment-benefit-conditions
 title: When communicating pays off — the benefit of recruitment depends on ecology
 area: nature
+realm: seen
 evidence: author-reported
 tags: [when-to-cooperate, communication, coordination-cost, resource-distribution]
 sources:

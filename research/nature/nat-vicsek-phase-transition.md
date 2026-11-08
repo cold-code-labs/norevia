@@ -2,6 +2,7 @@
 id: nat-vicsek-phase-transition
 title: Vicsek model — phase transition between disorder and collective motion
 area: nature
+realm: seen
 evidence: author-reported
 tags: [phase-transition, noise, consensus, diversity, temperature]
 sources:

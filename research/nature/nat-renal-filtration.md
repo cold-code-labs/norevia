@@ -2,6 +2,7 @@
 id: nat-renal-filtration
 title: Massive renal filtration with selective reabsorption
 area: nature
+realm: unseen
 evidence: natural-phenomenon
 tags: [bounded-memory, context-compaction, selective-retention, cost]
 sources:

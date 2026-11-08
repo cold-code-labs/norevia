@@ -2,6 +2,7 @@
 id: nat-physarum-network
 title: Physarum — a network that thickens with flow and shrinks without use
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [topology, communication-pruning, reinforcement-with-decay, cost-robustness]
 sources:

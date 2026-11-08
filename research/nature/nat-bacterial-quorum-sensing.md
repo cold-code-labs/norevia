@@ -2,6 +2,7 @@
 id: nat-bacterial-quorum-sensing
 title: Bacterial quorum sensing — acting jointly only above a density threshold
 area: nature
+realm: unseen
 evidence: natural-phenomenon
 tags: [quorum, density-threshold, when-to-cooperate, diffuse-signal, adaptive-activation]
 sources:

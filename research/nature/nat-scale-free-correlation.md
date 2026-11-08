@@ -2,6 +2,7 @@
 id: nat-scale-free-correlation
 title: Scale-free correlations in starling flocks
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [information-propagation, criticality, correlation, error-cascade]
 sources:

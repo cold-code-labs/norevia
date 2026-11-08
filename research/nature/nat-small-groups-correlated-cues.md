@@ -2,6 +2,7 @@
 id: nat-small-groups-correlated-cues
 title: With correlated cues, collective accuracy is maximized in small groups
 area: nature
+realm: seen
 evidence: author-reported
 tags: [optimal-size, correlation, wisdom-of-crowds, when-to-stop-expanding, micro-swarm]
 sources:

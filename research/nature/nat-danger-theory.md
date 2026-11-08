@@ -2,6 +2,7 @@
 id: nat-danger-theory
 title: Danger theory — responding to damage, not to novelty
 area: nature
+realm: unseen
 evidence: hypothesis
 tags: [anomaly-detection, escalation-trigger, false-alarm, immunity]
 sources:

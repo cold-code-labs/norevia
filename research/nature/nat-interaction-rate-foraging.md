@@ -2,6 +2,7 @@
 id: nat-interaction-rate-foraging
 title: Interaction rate regulates foraging in harvester ants
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [recruitment, feedback-control, elastic-swarm, contraction, bounded-memory]
 sources:

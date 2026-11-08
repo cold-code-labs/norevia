@@ -2,6 +2,7 @@
 id: nat-quorum-nest-bees
 title: Quorum, not consensus — how a honey bee swarm decides that it has decided
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [quorum, stopping-criterion, verification, when-to-stop, speed-accuracy]
 sources:

@@ -2,6 +2,7 @@
 id: nat-reflex-vs-cortex
 title: Spinal reflex, transcortical reflex and voluntary response — latency tiers
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [tiered-routing, latency, reflex, effort, adaptive-activation]
 sources:

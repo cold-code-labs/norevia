@@ -2,6 +2,7 @@
 id: nat-lagrange-points
 title: Lagrange points — stability conditioned on the mass ratio (analogy)
 area: nature
+realm: beyond
 evidence: natural-phenomenon
 tags: [celestial-analogy, contracts, boundaries, station-keeping, asymmetry]
 sources:

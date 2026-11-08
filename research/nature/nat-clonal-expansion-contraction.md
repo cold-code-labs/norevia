@@ -2,6 +2,7 @@
 id: nat-clonal-expansion-contraction
 title: Clonal selection — massive expansion, 90–95% contraction and a small memory pool
 area: nature
+realm: unseen
 evidence: natural-phenomenon
 tags: [elastic-swarm, expansion-contraction, bounded-memory, return-to-baseline]
 sources:

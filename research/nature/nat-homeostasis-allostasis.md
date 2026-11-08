@@ -2,6 +2,7 @@
 id: nat-homeostasis-allostasis
 title: Homeostasis vs allostasis — correcting error vs anticipating need
 area: nature
+realm: seen
 evidence: author-reported
 tags: [predictive-control, budget, effort, adaptive-activation, reserve]
 sources:

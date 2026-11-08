@@ -2,6 +2,7 @@
 id: nat-hong-page-critique
 title: "Does diversity trump ability?" — Hong & Page (2004) and its critiques
 area: nature
+realm: seen
 evidence: author-reported
 tags: [collective-theory, diversity, group-composition, identical-copies, critique]
 sources:

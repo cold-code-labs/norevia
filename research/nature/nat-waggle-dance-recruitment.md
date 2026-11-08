@@ -2,6 +2,7 @@
 id: nat-waggle-dance-recruitment
 title: Waggle dance — recruitment proportional to quality
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [recruitment, proportional-allocation, best-of-n, how-much-to-cooperate]
 sources:

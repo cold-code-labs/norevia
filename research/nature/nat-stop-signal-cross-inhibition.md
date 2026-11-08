@@ -2,6 +2,7 @@
 id: nat-stop-signal-cross-inhibition
 title: Stop signals and cross-inhibition prevent deadlock in the swarm
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [cross-inhibition, impasse, debate, stopping-criterion]
 sources:

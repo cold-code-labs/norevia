@@ -2,6 +2,7 @@
 id: nat-colony-size-scaling
 title: Colony size, per-capita efficiency and specialization
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [scaling, group-size, specialization, per-capita-efficiency, macro-swarm]
 sources:

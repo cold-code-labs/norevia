@@ -2,6 +2,7 @@
 id: nat-inactive-reserve
 title: Inactive workers as a capacity reserve
 area: nature
+realm: seen
 evidence: natural-phenomenon
 tags: [reserve, idle-capacity, resilience, elastic-swarm, cost]
 sources:

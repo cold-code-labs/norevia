@@ -2,6 +2,7 @@
 id: nat-brain-energy-sparse
 title: The brain's energy budget and sparse coding
 area: nature
+realm: unseen
 evidence: natural-phenomenon
 tags: [sparsity, budget, sparse-activation, unit-cost, macro-swarm]
 sources:

@@ -2,6 +2,7 @@
 id: nat-pheromone-evaporation-aco
 title: Pheromone with evaporation — double bridges and Ant Colony Optimization
 area: nature
+realm: seen
 evidence: author-reported
 tags: [reinforcement-with-decay, routing, exploration-exploitation, lock-in, bounded-memory]
 sources:
