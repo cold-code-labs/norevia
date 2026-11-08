@@ -2,29 +2,7 @@
 const RMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 const root = document.documentElement;
 
-// Mark elements already on screen as revealed BEFORE enabling the .js class (no flash of hidden content).
-const revealables = [...document.querySelectorAll('.rv')];
-for (const el of revealables) { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('in'); }
-root.classList.remove('no-js');
-root.classList.add('js');
-if ('IntersectionObserver' in window && !RMQ.matches) {
-  const io = new IntersectionObserver((es) => {
-    es.forEach((e, i) => { if (e.isIntersecting) { e.target.style.transitionDelay = Math.min(i * 60, 300) + 'ms'; e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -8% 0px' });
-  revealables.filter((el) => !el.classList.contains('in')).forEach((el) => io.observe(el));
-} else revealables.forEach((el) => el.classList.add('in'));
-
-// ---------------------------------------------------------------- mobile nav
-const toggle = document.querySelector('.nav-toggle');
-const nav = document.getElementById('site-nav');
-if (toggle && nav) {
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open));
-    nav.classList.toggle('open', open);
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); } });
-}
+// .js class, .rv/.u unfold, [data-words] titles and the mobile menu: src/js/unfold.js (prepended at build time).
 
 // ---------------------------------------------------------------- "/" focuses the page search
 document.addEventListener('keydown', (e) => {

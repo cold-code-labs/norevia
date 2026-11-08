@@ -3,10 +3,9 @@
 // sequence and the closing "Soon" word. Everything is a generative illustration, not a result.
 (() => {
   'use strict';
+  // html.js / html.rm, [data-words], .u and the menu come from src/js/unfold.js (prepended at build time)
   const doc = document.documentElement;
-  doc.classList.remove('no-js');
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (RM) doc.classList.add('rm');
   const TAU = Math.PI * 2;
   const rand = (a = 0, b = 1) => a + Math.random() * (b - a);
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -219,17 +218,6 @@
     S.kick();
   }
 
-  // ------------------------------------------------------------ unfold on enter (words + blocks)
-  for (const el of document.querySelectorAll('[data-words]')) {
-    const words = el.textContent.trim().split(/\s+/);
-    const emph = new Set((el.dataset.em || '').split('|').filter(Boolean));
-    el.setAttribute('aria-label', el.textContent.trim());
-    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true"><span style="--i:${i}"${emph.has(w) ? ' class="it"' : ''}>${w}</span></span>`).join(' ');
-    el.classList.add('words');
-  }
-  const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.u, .words').forEach((el) => io.observe(el));
-
   // manifesto: words light up with scroll position
   const man = document.querySelector('[data-scrub]');
   if (man) {
@@ -255,11 +243,10 @@
     b.addEventListener('click', () => { const open = !card.hasAttribute('data-open'); card.toggleAttribute('data-open', open); b.setAttribute('aria-expanded', String(open)); });
   }
 
-  // top bar turns solid after the hero
+  // top bar switches to its dark variant over the pinned stages (solid-on-scroll lives in unfold.js)
   const bar = document.querySelector('.bar');
   const darkSec = document.querySelector('[data-stages]');
   const onScroll = () => {
-    bar.classList.toggle('solid', scrollY > 40);
     if (darkSec) { const r = darkSec.getBoundingClientRect(); bar.classList.toggle('dark', r.top <= 34 && r.bottom >= 34); }
   };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();

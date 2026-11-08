@@ -3,9 +3,7 @@
 // Positioning: Bioinspired Agentic Swarms, first release "Soon". Copy is research positioning,
 // never a claim of results: the archive (/explore/, /method/) carries the evidence levels.
 import { esc } from './text.mjs';
-
-const LOGO = `<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.3" opacity=".55"><circle cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="8.6"/></g><circle cx="20" cy="20" r="3.2" fill="#0e7a62"/><g fill="currentColor"><circle cx="35" cy="20" r="2"/><circle cx="9.4" cy="9.4" r="1.7"/><circle cx="25" cy="34.2" r="1.5"/><circle cx="28.6" cy="20" r="1.2"/></g></svg>`;
-const ARR = '<span class="arr" aria-hidden="true">→</span>';
+import { ARR, topBar, footer } from './chrome.mjs';
 
 const STAGES = [
   ['Sense', 'One agent takes the task. Most work never needs more than that — and a swarm that knows it stays quiet.', 'A forager scouting before the colony moves'],
@@ -66,18 +64,13 @@ export function pageLanding({ LAB, assets, build }) {
 <meta property="og:url" content="${S.url}/">
 <link rel="canonical" href="${S.url}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="${assets.base}">
 <link rel="stylesheet" href="${assets.css}">
 <script src="${assets.js}" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="bar">
-<div class="wrap bar-in">
-<a class="brand" href="/" aria-label="Norevia — home">${LOGO}<span>Norevia</span></a>
-<nav aria-label="Main"><ul><li><a href="#unfold">How it unfolds</a></li><li><a href="#nature">Nature</a></li><li><a href="#principles">Principles</a></li><li><a href="/explore/">Research</a></li></ul></nav>
-<a class="pill" href="#soon"><span class="pulse" aria-hidden="true"></span>Release <b>Soon</b></a>
-</div>
-</header>
+${topBar({ nav: [['#unfold', 'How it unfolds'], ['#nature', 'Nature'], ['#principles', 'Principles'], ['/explore/', 'Research']] })}
 
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="hero-title">
@@ -155,13 +148,7 @@ ${PRINCIPLES.map(([h, p, g], i) => `<li class="u" style="--d:${i * 110}ms">${gly
 </section>
 </main>
 
-<footer class="foot">
-<div class="wrap foot-in">
-<span><strong style="color:var(--ink)">Norevia</strong> — a <a href="${S.companyUrl}" rel="noopener noreferrer">Cold Code Labs</a> research project</span>
-<ul><li><a href="/explore/">Research archive</a></li><li><a href="/method/">Method</a></li><li><a href="/about/">About</a></li><li><a href="${S.repo}" rel="noopener noreferrer">GitHub</a></li></ul>
-<span>No trackers, cookies or external fonts.${build.commit ? ` · <code>${esc(build.commit)}</code>` : ''}</span>
-</div>
-</footer>
+${footer({ site: S, links: [['/explore/', 'Research archive'], ['/method/', 'Method'], ['/about/', 'About'], [S.repo, 'GitHub']] })}
 </body>
 </html>
 `;

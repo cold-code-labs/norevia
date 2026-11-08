@@ -16,6 +16,7 @@ import { parseDataFile, chartSpecs, renderChart, scalarMetrics, resultSummary, f
 import { ID_MAP, mapId, EVIDENCE_ALIASES, STATUS_ALIASES, VERDICT_ALIASES, AREA_ALIASES, PATH_REDIRECTS } from './lib/compat.mjs';
 import * as LAB from './lab.config.mjs';
 import { pageLanding } from './lib/home.mjs';
+import { topBar, footer } from './lib/chrome.mjs';
 import * as MODELS from './src/js/models.js';
 
 const SITE_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -277,7 +278,7 @@ const statusChip = (s) => (s ? `<span class="status st-${s.key}">${stIcon(s.key)
 const statusChipKey = (k, label) => `<span class="status st-${k}">${stIcon(k)}${esc(label || STATUS[k]?.label || k)}</span>`;
 const ARROW = '<span class="arr" aria-hidden="true">→</span>';
 
-const LOGO = `<svg class="logo" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="ring" cx="20" cy="20" r="16"/><circle class="ring" cx="20" cy="20" r="9.5"/><circle class="core" cx="20" cy="20" r="3.4"/><g class="ag"><circle cx="36" cy="20" r="2"/><circle cx="9.5" cy="9" r="1.7"/><circle cx="26" cy="35" r="1.5"/><circle cx="29.5" cy="20" r="1.3"/><circle cx="15" cy="27.5" r="1.2"/></g></svg>`;
+
 
 const NAV = [
   ['/', 'Home'],
@@ -290,7 +291,7 @@ const NAV = [
   ['/about/', 'About'],
 ];
 
-let ASSETS = { css: '', js: {} };
+let ASSETS = { base: '', css: '', js: {} };
 let BUILD = {};
 
 function layout({ title, desc, path: p, body, cls = '', scripts = [] }) {
@@ -312,35 +313,18 @@ function layout({ title, desc, path: p, body, cls = '', scripts = [] }) {
 <meta property="og:url" content="${LAB.SITE.url}${p}">
 <link rel="canonical" href="${LAB.SITE.url}${p}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="${ASSETS.base}">
 <link rel="stylesheet" href="${ASSETS.css}">
 <script src="${ASSETS.js.core}" defer></script>
 ${scripts.map((s) => `<script src="${ASSETS.js[s]}" defer></script>`).join('\n')}
 </head>
-<body class="${cls}">
+<body class="has-main-offset${cls ? ` ${cls}` : ''}">
 <a class="skip" href="#main">Skip to content</a>
-<header class="top">
-<div class="wrap top-in">
-<a class="brand" href="/" aria-label="${esc(LAB.SITE.full)} — home">${LOGO}<span class="wm">Norevia</span></a>
-<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-<nav class="nav" id="site-nav" aria-label="Main"><ul>${NAV.slice(1).map(([href, label]) => `<li><a href="${href}"${href === section ? ' aria-current="page"' : ''}>${label}</a></li>`).join('')}</ul></nav>
-<a class="pill" href="/#soon"><span class="dotlive" aria-hidden="true"></span><span class="pl">Release</span> <b>Soon</b></a>
-</div>
-</header>
+${topBar({ nav: NAV.slice(1), current: section, solid: true })}
 <main id="main" tabindex="-1">
 ${body}
 </main>
-<footer class="foot">
-<div class="wrap foot-in">
-<div><p class="foot-brand">${LOGO}<span><strong>Norevia</strong> — a <a href="/about/#cold-code-labs">Cold Code Labs</a> research project</span></p>
-<p class="muted">${esc(LAB.SITE.tagline)}</p>
-<nav aria-label="Footer"><ul>${NAV.slice(1).map(([href, label]) => `<li><a href="${href}">${label}</a></li>`).join('')}<li><a href="${LAB.SITE.repo}" rel="noopener noreferrer">GitHub</a></li></ul></nav></div>
-<div class="foot-meta">
-<p>Archive generated from the <code>norevia/</code> repository on ${esc(BUILD.dateHuman)}${BUILD.commit ? ` · commit <code>${esc(BUILD.commit)}</code>` : ''} · ${BUILD.cards} cards.</p>
-<p>Research content CC BY 4.0 · code MIT · no trackers, cookies or external fonts.</p>
-<p><a href="/archive.json">Open data (archive.json)</a> · <a href="/method/">Evidence discipline</a></p>
-</div>
-</div>
-</footer>
+${footer({ site: LAB.SITE, links: [...NAV.slice(1).filter(([h]) => ['/explore/', '/method/', '/about/'].includes(h)), ['/archive.json', 'Open data'], [LAB.SITE.repo, 'GitHub']], meta: `Archive generated from the <code>norevia/</code> repository on ${esc(BUILD.dateHuman)}${BUILD.commit ? ` · commit <code>${esc(BUILD.commit)}</code>` : ''} · ${BUILD.cards} cards · research content CC BY 4.0 · code MIT.` })}
 </body>
 </html>
 `;
@@ -364,7 +348,7 @@ function cardList(list, opts = {}) {
 }
 
 function pageHead({ eyebrow, title, lead, extra = '', seed = 7 }) {
-  return `<section class="phead"><div class="wrap">${motifSvg(seed)}<p class="eyebrow">${eyebrow}</p><h1>${title}</h1>${lead ? `<p class="lead">${lead}</p>` : ''}${extra}</div></section>`;
+  return `<section class="phead">${formationSvg(seed)}<div class="wrap"><p class="eyebrow u">${eyebrow}</p><h1${/</.test(title) ? '' : ' data-words'}>${title}</h1>${lead ? `<p class="lead u" style="--d:350ms">${lead}</p>` : ''}${extra ? `<div class="phead-extra u" style="--d:500ms">${extra}</div>` : ''}</div></section>`;
 }
 
 function rng(seed) {
@@ -372,21 +356,22 @@ function rng(seed) {
   return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
 }
 // Deterministic "swarm cluster" motif for page heads: a few agents with nearest-neighbour links.
-function motifSvg(seed = 7) {
-  const r = rng(seed * 7919 + 13);
-  const pts = [];
-  const centers = [[380, 120], [470, 190], [300, 210]];
-  for (let k = 0; k < 42; k++) {
-    const c = centers[k % 3];
-    const a = r() * Math.PI * 2, d = Math.pow(r(), 0.7) * 95;
-    pts.push([c[0] + Math.cos(a) * d * 1.3, c[1] + Math.sin(a) * d * 0.8]);
-  }
-  const edges = [];
-  pts.forEach((p, i) => {
-    const near = pts.map((q, j) => [j, Math.hypot(q[0] - p[0], q[1] - p[1])]).filter(([j]) => j !== i).sort((x, y) => x[1] - y[1]).slice(0, 2);
-    for (const [j, d] of near) if (d < 70 && i < j) edges.push(`<line class="e" x1="${p[0].toFixed(1)}" y1="${p[1].toFixed(1)}" x2="${pts[j][0].toFixed(1)}" y2="${pts[j][1].toFixed(1)}"/>`);
-  });
-  return `<svg class="motif" viewBox="0 0 600 320" aria-hidden="true" focusable="false"><g>${edges.join('')}</g><g>${pts.map((p, k) => `<circle class="n${k % 11 === 0 ? ' k' : ''}" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${(1.4 + r() * 2.4).toFixed(1)}"/>`).join('')}</g></svg>`;
+// Page-head mark: the landing-page hero formation in miniature — two rings of agents, an accent core and
+// three satellite clusters. Six deterministic variants are written once as cached SVG files; the rings turn
+// slowly inside the file (static under reduced motion). Pages only reference them.
+const FORMATIONS = 6;
+function formationFile(seed) {
+  const r = rng(seed * 7919 + 13), C = 200, TAU = Math.PI * 2;
+  const dot = (x, y, sz, cls = '') => `<rect${cls ? ` class="${cls}"` : ''} x="${(x - sz / 2).toFixed(1)}" y="${(y - sz / 2).toFixed(1)}" width="${sz.toFixed(1)}" height="${sz.toFixed(1)}" opacity="${(0.35 + r() * 0.6).toFixed(2)}"/>`;
+  const ring = (R, n, jit) => Array.from({ length: n }, () => { const t = r() * TAU, d = R + (r() - 0.5) * jit; return dot(C + Math.cos(t) * d, C + Math.sin(t) * d, 1.6 + r() * 1.4); }).join('');
+  const blob = (x, y, rad, n, cls) => Array.from({ length: n }, () => { const t = r() * TAU, d = Math.sqrt(r()) * rad; return dot(x + Math.cos(t) * d, y + Math.sin(t) * d, 2 + r() * 1.6, cls); }).join('');
+  const a0 = r() * TAU;
+  const sats = [0, 1, 2].map((k) => { const t = a0 + k * 2.1 + r() * 0.5, d = 150 * (1.2 + r() * 0.15); return blob(C + Math.cos(t) * d, C + Math.sin(t) * d, 9, 10, k === 0 ? 'a' : ''); }).join('');
+  const css = 'rect{fill:#101312}.a{fill:#0e7a62}g{transform-box:view-box;transform-origin:50% 50%}@media (prefers-reduced-motion:no-preference){.r1{animation:s 140s linear infinite}.r2{animation:s 90s linear infinite reverse}.st{animation:s 220s linear infinite}}@keyframes s{to{transform:rotate(360deg)}}';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><style>${css}</style><g class="r1">${ring(150, 150, 12)}</g><g class="r2">${ring(88, 90, 8)}</g><g>${blob(C, C, 20, 34, 'a')}</g><g class="st">${sats}</g></svg>`;
+}
+function formationSvg(seed = 7) {
+  return `<img class="formation" src="/assets/formation-${Math.abs(Math.round(seed)) % FORMATIONS}.svg" alt="" aria-hidden="true" width="400" height="400" decoding="async">`;
 }
 
 function graphLayout(cards) {
@@ -953,12 +938,11 @@ function pageCard(c, cards, ctx) {
   const exps = c.area === 'hypothesis' ? expsFor(c, cards) : [];
   const body = `
 <article class="cardpage ev-${c.evidence}">
-<header class="phead card-head"><div class="wrap">
-${motifSvg(c.id.length * 13 + c.id.charCodeAt(c.id.length - 1))}
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${areaHref(c.area)}">${esc(AREAS[c.area].plural)}</a> / <span>${esc(c.id)}</span></nav>
-<p class="card-top">${seal(c.evidence, ' seal-lg')}${areaChip(c.area)}${statusChip(c.status)}</p>
-<h1>${esc(c.title)}</h1>
-<p class="lead">${inline(c.summary, { ...ctx, selfId: c.id })}</p>
+<header class="phead card-head">${formationSvg(c.id.length * 13 + c.id.charCodeAt(c.id.length - 1))}<div class="wrap">
+<nav class="crumbs u" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${areaHref(c.area)}">${esc(AREAS[c.area].plural)}</a> / <span>${esc(c.id)}</span></nav>
+<p class="card-top u" style="--d:120ms">${seal(c.evidence, ' seal-lg')}${areaChip(c.area)}${statusChip(c.status)}</p>
+<h1 data-words>${esc(c.title)}</h1>
+<p class="lead u" style="--d:350ms">${inline(c.summary, { ...ctx, selfId: c.id })}</p>
 ${pl.length ? `<p>${pl.map((p) => `<a class="btn small" href="/playgrounds/${p.slug}/">▶ Interactive: ${esc(p.title)}</a>`).join(' ')}</p>` : ''}
 </div></header>
 <div class="wrap card-grid">
@@ -1004,7 +988,8 @@ function bundle(entry, { withModels = false } = {}) {
   const src = fs.readFileSync(fs.existsSync(entryPath) ? entryPath : path.join(SITE_DIR, 'src/js/playground.js'), 'utf8');
   const shared = fs.readFileSync(path.join(SITE_DIR, 'src/js/ui.js'), 'utf8').replace(/^export /gm, '');
   const models = withModels ? fs.readFileSync(path.join(SITE_DIR, 'src/js/models.js'), 'utf8').replace(/^export /gm, '') : '';
-  return `/* Norevia — ${entry}.js (built ${BUILD.date}). Source: site/src/js/. */\n(() => {\n'use strict';\n${models}\n${entry === 'core' ? '' : shared}\n${src}\n})();\n`;
+  const unfold = entry === 'core' ? fs.readFileSync(path.join(SITE_DIR, 'src/js/unfold.js'), 'utf8') + '\n' : '';
+  return `/* Norevia — ${entry}.js (built ${BUILD.date}). Source: site/src/js/. */\n${unfold}(() => {\n'use strict';\n${models}\n${entry === 'core' ? '' : shared}\n${src}\n})();\n`;
 }
 
 // Stigmergy U-curve for the playground, read from the simulation's own results file (English or legacy name).
@@ -1068,7 +1053,8 @@ function main() {
   const css = fs.readFileSync(path.join(SITE_DIR, 'src/style.css'), 'utf8');
   const entries = { core: {}, graph: {}, board: {}, card: {}, 'play-vote': { withModels: true }, 'play-verifier': { withModels: true }, 'play-elastic': { withModels: true }, 'play-stigmergy': { withModels: true }, 'play-threshold': { withModels: true } };
   const jsBodies = {};
-  ASSETS = { css: `/assets/site.${h(css)}.css`, js: {} };
+  const baseCss = fs.readFileSync(path.join(SITE_DIR, 'src/base.css'), 'utf8');
+  ASSETS = { base: `/assets/base.${h(baseCss)}.css`, css: `/assets/site.${h(css)}.css`, js: {} };
   for (const [name, opt] of Object.entries(entries)) {
     const body = bundle(name, opt);
     jsBodies[name] = body;
@@ -1077,14 +1063,16 @@ function main() {
 
   const files = new Map();
   const put = (p, body, type = 'text/html; charset=utf-8') => files.set(p, { type, body });
+  put(ASSETS.base, baseCss, 'text/css; charset=utf-8');
   put(ASSETS.css, css, 'text/css; charset=utf-8');
   // landing page: standalone stylesheet + script (lib/home.mjs)
   const homeCss = fs.readFileSync(path.join(SITE_DIR, 'src/home.css'), 'utf8');
-  const homeJs = `/* Norevia — home.js (built ${BUILD.date}). Source: site/src/js/home.js. */\n` + fs.readFileSync(path.join(SITE_DIR, 'src/js/home.js'), 'utf8');
-  const HOME = { css: `/assets/home.${h(homeCss)}.css`, js: `/assets/home.${h(homeJs)}.js` };
+  const homeJs = `/* Norevia — home.js (built ${BUILD.date}). Source: site/src/js/unfold.js + home.js. */\n` + fs.readFileSync(path.join(SITE_DIR, 'src/js/unfold.js'), 'utf8') + '\n' + fs.readFileSync(path.join(SITE_DIR, 'src/js/home.js'), 'utf8');
+  const HOME = { base: ASSETS.base, css: `/assets/home.${h(homeCss)}.css`, js: `/assets/home.${h(homeJs)}.js` };
   put(HOME.css, homeCss, 'text/css; charset=utf-8');
   put(HOME.js, homeJs, 'text/javascript; charset=utf-8');
   for (const name of Object.keys(entries)) put(ASSETS.js[name], jsBodies[name], 'text/javascript; charset=utf-8');
+  for (let k = 0; k < FORMATIONS; k++) put(`/assets/formation-${k}.svg`, formationFile(k + 1), 'image/svg+xml');
   put('/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#101312"/><g fill="none" stroke="#f4f3ee" stroke-width="1.4" opacity=".6"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="8"/></g><circle cx="20" cy="20" r="3.4" fill="#7fdcc2"/><g fill="#f4f3ee"><circle cx="34" cy="20" r="2.2"/><circle cx="10" cy="10" r="1.8"/><circle cx="26" cy="33" r="1.6"/></g></svg>`, 'image/svg+xml');
   put('/', pageLanding({ LAB, assets: HOME, build: BUILD }));
   put('/explore/', pageExplore(cards, G));
