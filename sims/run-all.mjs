@@ -1,13 +1,16 @@
-// Reexecuta todas as simulações, grava os JSON e confere:
-//  (1) determinismo: o JSON novo é byte a byte igual ao anterior (se existia);
-//  (2) consistência com os cartões: cada manchete e cada veredicto do JSON aparecem literalmente no .md;
-//  (3) frontmatter obrigatório do cartão (id, title, area=simulation, evidence=validacao-local, summary preenchido).
-// Uso: node sims/run-all.mjs [id ...]      Código de saída 1 se alguma checagem falhar.
+// Reruns every simulation, writes the JSON files and checks:
+//  (1) determinism: the new JSON is byte-for-byte identical to the previous one (if it existed);
+//  (2) consistency with the cards: every headline and every verdict in the JSON appears literally in the .md card;
+//  (3) required card frontmatter (id, title, area=simulation, evidence=local-validation, non-empty summary);
+//  (4) REPORT.md: per-simulation verdict lines and the total count.
+// Usage: node sims/run-all.mjs [id ...]      Exit code 1 if any check fails.
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { RESULTS_DIR, writeResult } from './lib.mjs';
 
-export const SIMS = ['sim-voto-correlacionado', 'sim-verificador', 'sim-limiar-resposta', 'sim-estigmergia', 'sim-quorum', 'sim-elastico', 'sim-clonal'];
+export const SIMS = ['sim-correlated-vote', 'sim-verifier', 'sim-response-threshold', 'sim-stigmergy', 'sim-quorum', 'sim-elastic', 'sim-clonal'];
+export const VERDICTS = ['supported', 'partially supported', 'not supported', 'inconclusive'];
+export const verdictLine = (tests) => tests.map((t) => `${t.id}: ${t.verdict}`).join('; ');
 
 const only = process.argv.slice(2);
 let failures = 0;
@@ -19,43 +22,44 @@ for (const id of SIMS.filter((s) => only.length === 0 || only.includes(s))) {
   const secs = ((Date.now() - t0) / 1000).toFixed(1);
   const w = writeResult(id, out);
   const problems = [];
-  if (w.changed) problems.push('JSON diferente do anterior (não determinístico ou código alterado)');
+  if (w.changed) problems.push('JSON differs from the previous one (non-deterministic or code changed)');
+  for (const t of out.tests) if (!VERDICTS.includes(t.verdict)) problems.push(`unknown verdict ${t.id}=${t.verdict}`);
   const mdPath = join(RESULTS_DIR, `${id}.md`);
-  if (!existsSync(mdPath)) problems.push('cartão .md ausente');
+  if (!existsSync(mdPath)) problems.push('.md card missing');
   else {
     const md = readFileSync(mdPath, 'utf8');
     const fm = md.match(/^---\n([\s\S]*?)\n---/);
-    const need = { id: new RegExp(`^id: ${id}$`, 'm'), title: /^title: .+$/m, area: /^area: simulation$/m, evidence: /^evidence: validacao-local$/m, summary: /^summary: .+$/m };
-    if (!fm) problems.push('frontmatter ausente');
-    else for (const [k, re] of Object.entries(need)) if (!re.test(fm[1])) problems.push(`frontmatter: campo ${k} ausente/inválido`);
-    if (/PENDENTE/.test(md)) problems.push('cartão ainda contém PENDENTE');
-    if (!md.includes(`v${out.version}`)) problems.push(`cartão não cita a versão v${out.version}`);
-    for (const h of out.headline) if (!md.includes(h)) problems.push(`manchete ausente no cartão: "${h.slice(0, 90)}…"`);
-    for (const t of out.tests) if (!md.includes(`| ${t.id} | **${t.verdict}** |`)) problems.push(`veredicto ${t.id}=${t.verdict} não encontrado no cartão`);
+    const need = { id: new RegExp(`^id: ${id}$`, 'm'), title: /^title: .+$/m, area: /^area: simulation$/m, evidence: /^evidence: local-validation$/m, summary: /^summary: .+$/m };
+    if (!fm) problems.push('frontmatter missing');
+    else for (const [k, re] of Object.entries(need)) if (!re.test(fm[1])) problems.push(`frontmatter: field ${k} missing/invalid`);
+    if (/PENDING/.test(md)) problems.push('card still contains PENDING');
+    if (!md.includes(`v${out.version}`)) problems.push(`card does not cite version v${out.version}`);
+    for (const h of out.headline) if (!md.includes(h)) problems.push(`headline missing from card: "${h.slice(0, 90)}…"`);
+    for (const t of out.tests) if (!md.includes(`| ${t.id} | **${t.verdict}** |`)) problems.push(`verdict ${t.id}=${t.verdict} not found in card`);
   }
   failures += problems.length;
-  report.push({ id, version: out.version, secs, sha256: w.sha256, isNew: w.isNew, verdicts: out.tests.map((t) => `${t.id}:${t.verdict}`).join(' '), problems });
+  report.push({ id, version: out.version, secs, sha256: w.sha256, isNew: w.isNew, verdicts: verdictLine(out.tests), all: out.tests.map((t) => t.verdict), problems });
 }
-// (4) relatório final: linha de veredictos por simulação e contagem total
-const relPath = join(RESULTS_DIR, 'RELATORIO.md');
+// (4) final report: verdict line per simulation and total count
+const relPath = join(RESULTS_DIR, 'REPORT.md');
 if (only.length === 0) {
-  if (!existsSync(relPath)) { failures++; console.log('FALHA RELATORIO.md ausente'); }
+  if (!existsSync(relPath)) { failures++; console.log('FAIL REPORT.md missing'); }
   else {
     const rel = readFileSync(relPath, 'utf8'); const relProblems = [];
-    for (const r of report) if (!rel.includes(`- ${r.id}: ${r.verdicts}`)) relProblems.push(`linha de veredictos de ${r.id} não bate`);
-    const all = report.flatMap((r) => r.verdicts.split(' ').map((v) => v.split(':')[1]));
+    for (const r of report) if (!rel.includes(`- ${r.id} — ${r.verdicts}`)) relProblems.push(`verdict line for ${r.id} does not match`);
+    const all = report.flatMap((r) => r.all);
     const cnt = (v) => all.filter((x) => x === v).length;
-    const countLine = `${all.length} → ${cnt('suporta')} \`suporta\`, ${cnt('suporta-parcialmente')} \`suporta-parcialmente\`, ${cnt('nao-suporta')} \`nao-suporta\``;
-    if (!rel.includes(countLine)) relProblems.push(`contagem esperada ausente: "${countLine}"`);
-    if (!/^id: sim-relatorio$/m.test(rel)) relProblems.push('frontmatter id sim-relatorio ausente');
+    const countLine = `${all.length} → ${cnt('supported')} \`supported\`, ${cnt('partially supported')} \`partially supported\`, ${cnt('not supported')} \`not supported\``;
+    if (!rel.includes(countLine)) relProblems.push(`expected count missing: "${countLine}"`);
+    if (!/^id: sim-report$/m.test(rel)) relProblems.push('frontmatter id sim-report missing');
     failures += relProblems.length;
-    console.log(`${relProblems.length ? 'FALHA' : 'OK   '} RELATORIO.md (${countLine})`); for (const p of relProblems) console.log('      - ' + p);
+    console.log(`${relProblems.length ? 'FAIL ' : 'OK   '} REPORT.md (${countLine})`); for (const p of relProblems) console.log('      - ' + p);
   }
 }
 for (const r of report) {
-  console.log(`${r.problems.length ? 'FALHA' : 'OK   '} ${r.id} v${r.version} (${r.secs}s) sha256=${r.sha256.slice(0, 16)}${r.isNew ? ' [novo]' : ' [idêntico ao anterior]'}`);
+  console.log(`${r.problems.length ? 'FAIL ' : 'OK   '} ${r.id} v${r.version} (${r.secs}s) sha256=${r.sha256.slice(0, 16)}${r.isNew ? ' [new]' : ' [identical to previous]'}`);
   console.log(`      ${r.verdicts}`);
   for (const p of r.problems) console.log(`      - ${p}`);
 }
-console.log(failures ? `\n${failures} problema(s).` : '\nTodas as simulações reproduzidas; números e veredictos batem com os cartões.');
+console.log(failures ? `\n${failures} problem(s).` : '\nAll simulations reproduced; numbers and verdicts match the cards.');
 process.exit(failures ? 1 : 0);

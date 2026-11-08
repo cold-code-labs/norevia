@@ -1,6 +1,6 @@
 # Norevia — content conventions (English, v2 · 2026-11-07)
 
-Norevia is a **research project by Cold Code Labs**. Never write "Norevia Labs" or "NOREVIA LABS". Preferred forms: "Norevia", "Norevia — a Cold Code Labs research project".
+Norevia is a **research project by Cold Code Labs**. Never write "Norevia Labs" or "NOREVIA LABS". Preferred forms: "Norevia", "Norevia — a Cold Code Labs research project". Project title: **"Bioinspired Agentic Swarms"**, subtitle **"Toward a General Theory of AI Swarm Efficiency"** (adopted 2026-11-08; replaces "Bioinspired Artificial Swarms"). First experimental object: LLM-based software agents. Do not call any multi-agent system a swarm: swarm behaviour requires observable local autonomy, adaptive interactions and distributed decisions. Always present the theory as a research goal, never as an established law.
 
 All research content, code comments, user-facing strings and filenames are in **English**. Translations may come later; English is canonical.
 

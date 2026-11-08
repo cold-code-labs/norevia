@@ -1,33 +1,33 @@
 {
  "id": "sim-quorum",
  "version": "1.2.0",
- "title": "Quórum: velocidade vs acurácia em decisão coletiva",
+ "title": "Quorum: speed vs accuracy in collective decision-making",
  "seed": 20261107,
  "hypothesis": {
-  "statement": "Exigir um quórum maior antes de decidir troca velocidade por acurácia com retornos decrescentes; quando a avaliação dos agentes compartilha um viés (erro correlacionado), aumentar o quórum não corrige o erro e a acurácia satura abaixo do caso independente.",
+  "statement": "Requiring a larger quorum before deciding trades speed for accuracy with diminishing returns; when the agents' evaluations share a bias (correlated error), increasing the quorum does not correct the error and accuracy saturates below the independent case.",
   "predictions": [
    {
     "id": "P1",
-    "text": "Em todas as células, a acurácia é não decrescente em Q (tolerância 1 p.p.) e o tempo médio até a decisão é estritamente crescente em Q."
+    "text": "In every cell, accuracy is non-decreasing in Q (tolerance 1 p.p.) and mean time to decision is strictly increasing in Q."
    },
    {
     "id": "P2",
-    "text": "Retornos decrescentes: nas células em que o ganho de acurácia de Q=1 para Q=50 é > 5 p.p., pelo menos 50% desse ganho já é obtido com Q <= 10."
+    "text": "Diminishing returns: in the cells where the accuracy gain from Q=1 to Q=50 is > 5 p.p., at least 50% of that gain is already obtained with Q <= 10."
    },
    {
     "id": "P3",
-    "text": "Com viés compartilhado (rho=0,5), a acurácia em Q=50 é menor que com rho=0 (mesmos sigma, Delta; IC95% disjuntos) e o ganho de Q=20 para Q=50 é < 2 p.p. (platô)."
+    "text": "With shared bias (rho=0.5), accuracy at Q=50 is lower than with rho=0 (same sigma, Delta; disjoint 95% CIs) and the gain from Q=20 to Q=50 is < 2 p.p. (plateau)."
    },
    {
     "id": "P4",
-    "text": "Discriminação mais difícil (Delta=0,1) tem acurácia menor que Delta=0,25 em todo Q, para cada (sigma, rho)."
+    "text": "Harder discrimination (Delta=0.1) has lower accuracy than Delta=0.25 at every Q, for each (sigma, rho)."
    }
   ]
  },
  "params": {
   "seed": 20261107,
   "scouts": 100,
-  "qualities_template": "[1, 1-Delta, 0.5] (sítio 0 é o melhor)",
+  "qualities_template": "[1, 1-Delta, 0.5] (site 0 is the best)",
   "discovery_weights": [
    1,
    3,
@@ -35,24 +35,24 @@
   ],
   "accept_threshold": 0.5,
   "regimes": {
-   "recrutamento-forte": {
+   "strong-recruitment": {
     "discovery_total": 0.01,
     "recruit_rate": 0.5,
     "dance": "q_hat",
     "abandon_base": 0.01,
     "abandon_slope": 0.1,
-    "status": "v1.0.0 pré-registrado; dinâmica degenerada (ver cartão)"
+    "status": "v1.0.0 preregistered; degenerate dynamics (see card)"
    },
-   "recrutamento-por-qualidade": {
+   "quality-weighted-recruitment": {
     "discovery_total": 0.02,
     "recruit_rate": 0.15,
     "dance": "max(0, q_hat - 0.6) / 0.4",
     "abandon_base": 0.02,
     "abandon_slope": 0.2,
-    "status": "v1.1.0 emenda pós-hoc; regime principal dos testes"
+    "status": "v1.1.0 post-hoc amendment; main regime of the tests"
    }
   },
-  "main_regime": "recrutamento-por-qualidade",
+  "main_regime": "quality-weighted-recruitment",
   "sigmas": [
    0.1,
    0.3
@@ -82,8 +82,8 @@
   ],
   "T_max": 3000,
   "runs": 2000,
-  "perception": "q_hat = q_j + sigma*(sqrt(rho)*B_j + sqrt(1-rho)*e_i), B_j ~ N(0,1) por sítio e por execução (viés compartilhado)",
-  "quorum_note": "decisão = primeiro sítio cujo nº de comprometidos atinge Q; a dinâmica não muda com Q (quórum observado), logo todos os Q usam a mesma execução"
+  "perception": "q_hat = q_j + sigma*(sqrt(rho)*B_j + sqrt(1-rho)*e_i), B_j ~ N(0,1) per site and per run (shared bias)",
+  "quorum_note": "decision = first site whose number of committed agents reaches Q; the dynamics do not change with Q (observed quorum), so all Q values use the same run"
  },
  "results": {
   "Qs": [
@@ -101,9 +101,9 @@
    40,
    50
   ],
-  "main_regime": "recrutamento-por-qualidade",
+  "main_regime": "quality-weighted-recruitment",
   "regimes": {
-   "recrutamento-forte": [
+   "strong-recruitment": [
     {
      "sigma": 0.1,
      "rho": 0,
@@ -1593,7 +1593,7 @@
      "approx_ceiling_shared_bias": 0.79767
     }
    ],
-   "recrutamento-por-qualidade": [
+   "quality-weighted-recruitment": [
     {
      "sigma": 0.1,
      "rho": 0,
@@ -3085,48 +3085,48 @@
    ]
   },
   "tests_by_regime": {
-   "recrutamento-forte": [
+   "strong-recruitment": [
     {
      "id": "P1",
-     "verdict": "nao-suporta",
-     "detail": "1 violações: acc σ=0.1,ρ=0.5,Δ=0.1,Q=2"
+     "verdict": "not supported",
+     "detail": "1 violation: acc σ=0.1,ρ=0.5,Δ=0.1,Q=2"
     },
     {
      "id": "P2",
-     "verdict": "nao-suporta",
-     "detail": "σ=0.1,ρ=0,Δ=0.1: ganho 9,1 p.p., fração até Q=10 49%; σ=0.1,ρ=0,Δ=0.25: ganho 24,5 p.p., fração até Q=10 40%; σ=0.1,ρ=0.5,Δ=0.1: ganho 9,0 p.p., fração até Q=10 27%; σ=0.1,ρ=0.5,Δ=0.25: ganho 25,1 p.p., fração até Q=10 33%; σ=0.3,ρ=0,Δ=0.1: ganho 11,0 p.p., fração até Q=10 42%; σ=0.3,ρ=0,Δ=0.25: ganho 30,6 p.p., fração até Q=10 44%; σ=0.3,ρ=0.5,Δ=0.1: ganho 12,2 p.p., fração até Q=10 33%; σ=0.3,ρ=0.5,Δ=0.25: ganho 22,8 p.p., fração até Q=10 46%"
+     "verdict": "not supported",
+     "detail": "σ=0.1,ρ=0,Δ=0.1: gain 9.1 p.p., fraction by Q=10 49%; σ=0.1,ρ=0,Δ=0.25: gain 24.5 p.p., fraction by Q=10 40%; σ=0.1,ρ=0.5,Δ=0.1: gain 9.0 p.p., fraction by Q=10 27%; σ=0.1,ρ=0.5,Δ=0.25: gain 25.1 p.p., fraction by Q=10 33%; σ=0.3,ρ=0,Δ=0.1: gain 11.0 p.p., fraction by Q=10 42%; σ=0.3,ρ=0,Δ=0.25: gain 30.6 p.p., fraction by Q=10 44%; σ=0.3,ρ=0.5,Δ=0.1: gain 12.2 p.p., fraction by Q=10 33%; σ=0.3,ρ=0.5,Δ=0.25: gain 22.8 p.p., fraction by Q=10 46%"
     },
     {
      "id": "P3",
-     "verdict": "nao-suporta",
-     "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 26,7% vs ρ=0,5 27,8%; ganho Q20→50 (ρ=0,5) 4,8 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 41,9% vs ρ=0,5 43,5%; ganho Q20→50 (ρ=0,5) 13,1 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 28,4% vs ρ=0,5 31,0%; ganho Q20→50 (ρ=0,5) 5,6 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 50,0% vs ρ=0,5 43,4%; ganho Q20→50 (ρ=0,5) 8,6 p.p."
+     "verdict": "not supported",
+     "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 26.7% vs ρ=0.5 27.8%; gain Q20→50 (ρ=0.5) 4.8 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 41.9% vs ρ=0.5 43.5%; gain Q20→50 (ρ=0.5) 13.1 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 28.4% vs ρ=0.5 31.0%; gain Q20→50 (ρ=0.5) 5.6 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 50.0% vs ρ=0.5 43.4%; gain Q20→50 (ρ=0.5) 8.6 p.p."
     },
     {
      "id": "P4",
-     "verdict": "nao-suporta",
-     "detail": "exceções: σ=0.1,ρ=0,Q=1; σ=0.1,ρ=0,Q=2; σ=0.1,ρ=0.5,Q=1"
+     "verdict": "not supported",
+     "detail": "exceptions: σ=0.1,ρ=0,Q=1; σ=0.1,ρ=0,Q=2; σ=0.1,ρ=0.5,Q=1"
     }
    ],
-   "recrutamento-por-qualidade": [
+   "quality-weighted-recruitment": [
     {
      "id": "P1",
-     "verdict": "nao-suporta",
-     "detail": "11 violações: acc σ=0.1,ρ=0,Δ=0.1,Q=2; acc σ=0.1,ρ=0,Δ=0.1,Q=3; acc σ=0.1,ρ=0,Δ=0.25,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=3; acc σ=0.1,ρ=0.5,Δ=0.25,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=3"
+     "verdict": "not supported",
+     "detail": "11 violations: acc σ=0.1,ρ=0,Δ=0.1,Q=2; acc σ=0.1,ρ=0,Δ=0.1,Q=3; acc σ=0.1,ρ=0,Δ=0.25,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=3; acc σ=0.1,ρ=0.5,Δ=0.25,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=3"
     },
     {
      "id": "P2",
-     "verdict": "nao-suporta",
-     "detail": "σ=0.1,ρ=0,Δ=0.1: ganho 45,3 p.p., fração até Q=10 -7%; σ=0.1,ρ=0,Δ=0.25: ganho 82,2 p.p., fração até Q=10 20%; σ=0.1,ρ=0.5,Δ=0.1: ganho 38,4 p.p., fração até Q=10 -7%; σ=0.1,ρ=0.5,Δ=0.25: ganho 79,4 p.p., fração até Q=10 23%; σ=0.3,ρ=0,Δ=0.1: ganho 25,4 p.p., fração até Q=10 -4%; σ=0.3,ρ=0,Δ=0.25: ganho 76,9 p.p., fração até Q=10 17%; σ=0.3,ρ=0.5,Δ=0.1: ganho 28,5 p.p., fração até Q=10 7%; σ=0.3,ρ=0.5,Δ=0.25: ganho 46,7 p.p., fração até Q=10 32%"
+     "verdict": "not supported",
+     "detail": "σ=0.1,ρ=0,Δ=0.1: gain 45.3 p.p., fraction by Q=10 -7%; σ=0.1,ρ=0,Δ=0.25: gain 82.2 p.p., fraction by Q=10 20%; σ=0.1,ρ=0.5,Δ=0.1: gain 38.4 p.p., fraction by Q=10 -7%; σ=0.1,ρ=0.5,Δ=0.25: gain 79.4 p.p., fraction by Q=10 23%; σ=0.3,ρ=0,Δ=0.1: gain 25.4 p.p., fraction by Q=10 -4%; σ=0.3,ρ=0,Δ=0.25: gain 76.9 p.p., fraction by Q=10 17%; σ=0.3,ρ=0.5,Δ=0.1: gain 28.5 p.p., fraction by Q=10 7%; σ=0.3,ρ=0.5,Δ=0.25: gain 46.7 p.p., fraction by Q=10 32%"
     },
     {
      "id": "P3",
-     "verdict": "nao-suporta",
-     "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 62,9% vs ρ=0,5 57,4%; ganho Q20→50 (ρ=0,5) 31,5 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 100,0% vs ρ=0,5 96,7%; ganho Q20→50 (ρ=0,5) 25,6 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 42,4% vs ρ=0,5 47,8%; ganho Q20→50 (ρ=0,5) 16,8 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 95,9% vs ρ=0,5 66,4%; ganho Q20→50 (ρ=0,5) 16,4 p.p."
+     "verdict": "not supported",
+     "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 62.9% vs ρ=0.5 57.4%; gain Q20→50 (ρ=0.5) 31.5 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 100.0% vs ρ=0.5 96.7%; gain Q20→50 (ρ=0.5) 25.6 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 42.4% vs ρ=0.5 47.8%; gain Q20→50 (ρ=0.5) 16.8 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 95.9% vs ρ=0.5 66.4%; gain Q20→50 (ρ=0.5) 16.4 p.p."
     },
     {
      "id": "P4",
-     "verdict": "nao-suporta",
-     "detail": "exceções: σ=0.1,ρ=0.5,Q=1; σ=0.3,ρ=0,Q=2"
+     "verdict": "not supported",
+     "detail": "exceptions: σ=0.1,ρ=0.5,Q=1; σ=0.3,ρ=0,Q=2"
     }
    ]
   }
@@ -3134,34 +3134,34 @@
  "tests": [
   {
    "id": "P1",
-   "verdict": "nao-suporta",
-   "detail": "11 violações: acc σ=0.1,ρ=0,Δ=0.1,Q=2; acc σ=0.1,ρ=0,Δ=0.1,Q=3; acc σ=0.1,ρ=0,Δ=0.25,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=3; acc σ=0.1,ρ=0.5,Δ=0.25,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=3"
+   "verdict": "not supported",
+   "detail": "11 violations: acc σ=0.1,ρ=0,Δ=0.1,Q=2; acc σ=0.1,ρ=0,Δ=0.1,Q=3; acc σ=0.1,ρ=0,Δ=0.25,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=2; acc σ=0.1,ρ=0.5,Δ=0.1,Q=3; acc σ=0.1,ρ=0.5,Δ=0.25,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=2; acc σ=0.3,ρ=0,Δ=0.1,Q=3"
   },
   {
    "id": "P2",
-   "verdict": "nao-suporta",
-   "detail": "σ=0.1,ρ=0,Δ=0.1: ganho 45,3 p.p., fração até Q=10 -7%; σ=0.1,ρ=0,Δ=0.25: ganho 82,2 p.p., fração até Q=10 20%; σ=0.1,ρ=0.5,Δ=0.1: ganho 38,4 p.p., fração até Q=10 -7%; σ=0.1,ρ=0.5,Δ=0.25: ganho 79,4 p.p., fração até Q=10 23%; σ=0.3,ρ=0,Δ=0.1: ganho 25,4 p.p., fração até Q=10 -4%; σ=0.3,ρ=0,Δ=0.25: ganho 76,9 p.p., fração até Q=10 17%; σ=0.3,ρ=0.5,Δ=0.1: ganho 28,5 p.p., fração até Q=10 7%; σ=0.3,ρ=0.5,Δ=0.25: ganho 46,7 p.p., fração até Q=10 32%"
+   "verdict": "not supported",
+   "detail": "σ=0.1,ρ=0,Δ=0.1: gain 45.3 p.p., fraction by Q=10 -7%; σ=0.1,ρ=0,Δ=0.25: gain 82.2 p.p., fraction by Q=10 20%; σ=0.1,ρ=0.5,Δ=0.1: gain 38.4 p.p., fraction by Q=10 -7%; σ=0.1,ρ=0.5,Δ=0.25: gain 79.4 p.p., fraction by Q=10 23%; σ=0.3,ρ=0,Δ=0.1: gain 25.4 p.p., fraction by Q=10 -4%; σ=0.3,ρ=0,Δ=0.25: gain 76.9 p.p., fraction by Q=10 17%; σ=0.3,ρ=0.5,Δ=0.1: gain 28.5 p.p., fraction by Q=10 7%; σ=0.3,ρ=0.5,Δ=0.25: gain 46.7 p.p., fraction by Q=10 32%"
   },
   {
    "id": "P3",
-   "verdict": "nao-suporta",
-   "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 62,9% vs ρ=0,5 57,4%; ganho Q20→50 (ρ=0,5) 31,5 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 100,0% vs ρ=0,5 96,7%; ganho Q20→50 (ρ=0,5) 25,6 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 42,4% vs ρ=0,5 47,8%; ganho Q20→50 (ρ=0,5) 16,8 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 95,9% vs ρ=0,5 66,4%; ganho Q20→50 (ρ=0,5) 16,4 p.p."
+   "verdict": "not supported",
+   "detail": "σ=0.1,Δ=0.1: Q=50 ρ=0 62.9% vs ρ=0.5 57.4%; gain Q20→50 (ρ=0.5) 31.5 p.p.; σ=0.1,Δ=0.25: Q=50 ρ=0 100.0% vs ρ=0.5 96.7%; gain Q20→50 (ρ=0.5) 25.6 p.p.; σ=0.3,Δ=0.1: Q=50 ρ=0 42.4% vs ρ=0.5 47.8%; gain Q20→50 (ρ=0.5) 16.8 p.p.; σ=0.3,Δ=0.25: Q=50 ρ=0 95.9% vs ρ=0.5 66.4%; gain Q20→50 (ρ=0.5) 16.4 p.p."
   },
   {
    "id": "P4",
-   "verdict": "nao-suporta",
-   "detail": "exceções: σ=0.1,ρ=0.5,Q=1; σ=0.3,ρ=0,Q=2"
+   "verdict": "not supported",
+   "detail": "exceptions: σ=0.1,ρ=0.5,Q=1; σ=0.3,ρ=0,Q=2"
   }
  ],
  "headline": [
-  "σ=0,3, ρ=0,0, Δ=0,10, Q=1: acurácia 17,0% [IC95% 15,4%–18,7%], tempo 1 [IC95% 1–1] passos",
-  "σ=0,3, ρ=0,0, Δ=0,10, Q=10: acurácia 15,8% [IC95% 14,3%–17,5%], tempo 11 [IC95% 10–11] passos",
-  "σ=0,3, ρ=0,0, Δ=0,10, Q=50: acurácia 42,4% [IC95% 40,2%–44,5%], tempo 55 [IC95% 54–56] passos",
-  "σ=0,3, ρ=0,5, Δ=0,10, Q=10: acurácia 21,4% [IC95% 19,7%–23,3%], tempo 11 [IC95% 11–11] passos",
-  "σ=0,3, ρ=0,5, Δ=0,10, Q=50: acurácia 47,8% [IC95% 45,6%–50,0%], tempo 62 [IC95% 55–68] passos",
-  "σ=0,3, ρ=0,0, Δ=0,25, Q=1: acurácia 18,9% [IC95% 17,3%–20,7%], tempo 1 [IC95% 1–1] passos",
-  "σ=0,3, ρ=0,0, Δ=0,25, Q=50: acurácia 95,9% [IC95% 94,9%–96,6%], tempo 58 [IC95% 57–59] passos",
-  "Teto aproximado com viés compartilhado (σ=0,3, ρ=0,5, Δ=0,1): 63,1%",
-  "Regime recrutamento-forte (v1.0.0), σ=0,3, ρ=0, Δ=0,25: Q=1 19,4% [IC95% 17,8%–21,2%]; Q=50 50,0% [IC95% 47,8%–52,2%] em 20 [IC95% 19–20] passos"
+  "σ=0.3, ρ=0.0, Δ=0.10, Q=1: accuracy 17.0% [95% CI 15.4%–18.7%], time 1 [95% CI 1–1] steps",
+  "σ=0.3, ρ=0.0, Δ=0.10, Q=10: accuracy 15.8% [95% CI 14.3%–17.5%], time 11 [95% CI 10–11] steps",
+  "σ=0.3, ρ=0.0, Δ=0.10, Q=50: accuracy 42.4% [95% CI 40.2%–44.5%], time 55 [95% CI 54–56] steps",
+  "σ=0.3, ρ=0.5, Δ=0.10, Q=10: accuracy 21.4% [95% CI 19.7%–23.3%], time 11 [95% CI 11–11] steps",
+  "σ=0.3, ρ=0.5, Δ=0.10, Q=50: accuracy 47.8% [95% CI 45.6%–50.0%], time 62 [95% CI 55–68] steps",
+  "σ=0.3, ρ=0.0, Δ=0.25, Q=1: accuracy 18.9% [95% CI 17.3%–20.7%], time 1 [95% CI 1–1] steps",
+  "σ=0.3, ρ=0.0, Δ=0.25, Q=50: accuracy 95.9% [95% CI 94.9%–96.6%], time 58 [95% CI 57–59] steps",
+  "Approximate ceiling with shared bias (σ=0.3, ρ=0.5, Δ=0.1): 63.1%",
+  "Strong-recruitment regime (v1.0.0), σ=0.3, ρ=0, Δ=0.25: Q=1 19.4% [95% CI 17.8%–21.2%]; Q=50 50.0% [95% CI 47.8%–52.2%] in 20 [95% CI 19–20] steps"
  ]
 }

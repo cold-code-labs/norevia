@@ -33,7 +33,7 @@ sources:
   - "Seeley, T. D. et al. (2012). Stop Signals Provide Cross Inhibition in Collective Decision-Making by Honeybee Swarms. Science 335(6064):108–111. doi:10.1126/science.1210361"
   - "Harris, T. E. (1963). The Theory of Branching Processes. Springer. doi:10.1007/978-3-642-51866-9"
   - "Kleinrock, L. (1975). Queueing Systems, Volume 1: Theory. New York: Wiley (metadata checked via reviews indexed in Crossref)"
-related: [H-index, nat-candidates, sim-correlated-vote, sim-verifier, lit-synthesis, lit-debate-routing-matched-ceiling, lit-more-llm-calls, lit-correlated-errors, lit-large-language-monkeys, lit-scaling-agent-systems, lit-sas-equal-thinking-budget, lit-adaptive-consistency, lit-early-stopping-sc]
+related: [nat-candidates, sim-correlated-vote, sim-verifier, lit-synthesis, lit-debate-routing-matched-ceiling, lit-more-llm-calls, lit-correlated-errors, lit-large-language-monkeys, lit-scaling-agent-systems, lit-sas-equal-thinking-budget, lit-adaptive-consistency, lit-early-stopping-sc]
 updated: 2026-11-07
 summary: Mathematical model that predicts when 1 high-effort agent beats N agents, when a micro-swarm pays off and where expansion is wasteful, as a function of capability, error correlation, verifier, coordination cost and task coupling.
 ---

@@ -1,30 +1,30 @@
 {
- "id": "sim-limiar-resposta",
+ "id": "sim-response-threshold",
  "version": "1.0.0",
- "title": "Limiares de resposta vs papéis fixos vs despachante central",
+ "title": "Response thresholds vs fixed roles vs central dispatcher",
  "seed": 20261107,
  "hypothesis": {
-  "statement": "Limiares de resposta heterogêneos, lendo apenas o estímulo local (backlog), alocam agentes de forma adaptativa sem mensagens: melhor latência que papéis fixos dimensionados pela média, menos agentes ativos que papéis fixos dimensionados pelo pico, e custo total menor que um despachante central quando mensagens têm custo ou quando a informação do despachante chega atrasada.",
+  "statement": "Heterogeneous response thresholds, reading only the local stimulus (backlog), allocate agents adaptively without messages: better latency than fixed roles sized for the mean, fewer active agents than fixed roles sized for the peak, and lower total cost than a central dispatcher when messages have a cost or when the dispatcher's information arrives late.",
   "predictions": [
    {
     "id": "P1",
-    "text": "Limiar (theta~U[5,50], n=2, p_saida=0,1) tem latência média menor que fixo-media (3+3 agentes), diferença pareada com IC95% excluindo 0, usando zero mensagens."
+    "text": "Threshold (theta~U[5,50], n=2, p_quit=0.1) has lower mean latency than fixed-mean (3+3 agents), paired difference with 95% CI excluding 0, using zero messages."
    },
    {
     "id": "P2",
-    "text": "Limiar usa menos agentes ativos em média que fixo-pico (8+8) e tem latência média <= 2x a do fixo-pico."
+    "text": "Threshold uses fewer active agents on average than fixed-peak (8+8) and has mean latency <= 2x that of fixed-peak."
    },
    {
     "id": "P3",
-    "text": "Despachante com atraso L=0 domina o limiar em (agentes ativos, latência) quando mensagens são gratuitas: menos ativos E latência <= limiar."
+    "text": "A dispatcher with delay L=0 dominates the threshold rule in (active agents, latency) when messages are free: fewer active agents AND latency <= threshold."
    },
    {
     "id": "P4",
-    "text": "Latência média e pico de backlog do despachante crescem com o atraso L (0<2<5<10); para L>=5 o pico de backlog do despachante excede o do limiar."
+    "text": "Mean latency and peak backlog of the dispatcher grow with the delay L (0<2<5<10); for L>=5 the dispatcher's peak backlog exceeds that of the threshold rule."
    },
    {
     "id": "P5",
-    "text": "Com custo de 0,2 por mensagem (relativo a 1 agente-passo), o custo total por passo do limiar é menor que o de qualquer despachante (L=0..10)."
+    "text": "With a cost of 0.2 per message (relative to 1 agent-step), the total cost per step of the threshold rule is lower than that of any dispatcher (L=0..10)."
    }
   ]
  },
@@ -60,77 +60,77 @@
    0.2
   ],
   "strategies": {
-   "limiar-5-50": {
+   "threshold-5-50": {
     "kind": "threshold",
     "thMin": 5,
     "thMax": 50,
     "n": 2,
     "pQuit": 0.1,
-    "desc": "Bonabeau 1996: theta_ij~U[5,50], P(engajar)=s^2/(s^2+theta^2), sair com prob. 0,1/passo; s = backlog do tipo"
+    "desc": "Bonabeau 1996: theta_ij~U[5,50], P(engage)=s^2/(s^2+theta^2), quit with prob. 0.1/step; s = backlog of the type"
    },
-   "limiar-2-20": {
+   "threshold-2-20": {
     "kind": "threshold",
     "thMin": 2,
     "thMax": 20,
     "n": 2,
     "pQuit": 0.1,
-    "desc": "limiares mais baixos (mais sensível)"
+    "desc": "lower thresholds (more sensitive)"
    },
-   "limiar-10-100": {
+   "threshold-10-100": {
     "kind": "threshold",
     "thMin": 10,
     "thMax": 100,
     "n": 2,
     "pQuit": 0.1,
-    "desc": "limiares mais altos (menos sensível)"
+    "desc": "higher thresholds (less sensitive)"
    },
-   "limiar-homog-20": {
+   "threshold-homog-20": {
     "kind": "threshold",
     "thMin": 20,
     "thMax": 20,
     "n": 2,
     "pQuit": 0.1,
-    "desc": "limiar homogêneo theta=20"
+    "desc": "homogeneous threshold theta=20"
    },
-   "limiar-saida-ociosa": {
+   "threshold-idle-quit": {
     "kind": "threshold",
     "thMin": 5,
     "thMax": 50,
     "n": 2,
     "pQuit": 0.02,
     "pIdleQuit": 0.3,
-    "desc": "variante de engenharia: sai com 0,02/passo, ou 0,3 se a fila do seu tipo está vazia"
+    "desc": "engineering variant: quits with 0.02/step, or 0.3 if the queue of its type is empty"
    },
-   "fixo-media": {
+   "fixed-mean": {
     "kind": "fixed",
     "perType": 3,
-    "desc": "3+3 agentes sempre ativos (dimensionado ~1,5x a demanda base)"
+    "desc": "3+3 agents always active (sized ~1.5x the base demand)"
    },
-   "fixo-pico": {
+   "fixed-peak": {
     "kind": "fixed",
     "perType": 8,
-    "desc": "8+8 agentes sempre ativos (dimensionado para o pico)"
+    "desc": "8+8 agents always active (sized for the peak)"
    },
-   "despachante-L0": {
+   "dispatcher-L0": {
     "kind": "dispatcher",
     "lag": 0,
     "H": 5,
     "ewma": 0.2,
-    "desc": "central: alvo_j=ceil((lambda_hat_j + fila_j/H)/mu); 1 msg de status por ativo/passo + 1 msg por comando"
+    "desc": "central: target_j=ceil((lambda_hat_j + queue_j/H)/mu); 1 status msg per active agent/step + 1 msg per command"
    },
-   "despachante-L2": {
+   "dispatcher-L2": {
     "kind": "dispatcher",
     "lag": 2,
     "H": 5,
     "ewma": 0.2
    },
-   "despachante-L5": {
+   "dispatcher-L5": {
     "kind": "dispatcher",
     "lag": 5,
     "H": 5,
     "ewma": 0.2
    },
-   "despachante-L10": {
+   "dispatcher-L10": {
     "kind": "dispatcher",
     "lag": 10,
     "H": 5,
@@ -140,7 +140,7 @@
  },
  "results": {
   "summary": {
-   "limiar-5-50": {
+   "threshold-5-50": {
     "meanActive": {
      "mean": 8.8433,
      "lo": 8.8139,
@@ -213,7 +213,7 @@
      }
     ]
    },
-   "limiar-2-20": {
+   "threshold-2-20": {
     "meanActive": {
      "mean": 16.2126,
      "lo": 16.1512,
@@ -286,7 +286,7 @@
      }
     ]
    },
-   "limiar-10-100": {
+   "threshold-10-100": {
     "meanActive": {
      "mean": 6.6231,
      "lo": 6.6074,
@@ -359,7 +359,7 @@
      }
     ]
    },
-   "limiar-homog-20": {
+   "threshold-homog-20": {
     "meanActive": {
      "mean": 8.8058,
      "lo": 8.7898,
@@ -432,7 +432,7 @@
      }
     ]
    },
-   "limiar-saida-ociosa": {
+   "threshold-idle-quit": {
     "meanActive": {
      "mean": 9.7035,
      "lo": 9.6738,
@@ -505,7 +505,7 @@
      }
     ]
    },
-   "fixo-media": {
+   "fixed-mean": {
     "meanActive": {
      "mean": 6,
      "lo": 6,
@@ -578,7 +578,7 @@
      }
     ]
    },
-   "fixo-pico": {
+   "fixed-peak": {
     "meanActive": {
      "mean": 16,
      "lo": 16,
@@ -651,7 +651,7 @@
      }
     ]
    },
-   "despachante-L0": {
+   "dispatcher-L0": {
     "meanActive": {
      "mean": 7.2187,
      "lo": 7.211,
@@ -724,7 +724,7 @@
      }
     ]
    },
-   "despachante-L2": {
+   "dispatcher-L2": {
     "meanActive": {
      "mean": 7.5455,
      "lo": 7.5375,
@@ -797,7 +797,7 @@
      }
     ]
    },
-   "despachante-L5": {
+   "dispatcher-L5": {
     "meanActive": {
      "mean": 7.789,
      "lo": 7.7804,
@@ -870,7 +870,7 @@
      }
     ]
    },
-   "despachante-L10": {
+   "dispatcher-L10": {
     "meanActive": {
      "mean": 8.1247,
      "lo": 8.1147,
@@ -945,121 +945,121 @@
    }
   },
   "paired_differences": {
-   "lat:limiar-5-50 - fixo-media": {
+   "lat:threshold-5-50 - fixed-mean": {
     "mean": -24.355,
     "lo": -24.5719,
     "hi": -24.1382,
     "n": 1000
    },
-   "active:limiar-5-50 - fixo-pico": {
+   "active:threshold-5-50 - fixed-peak": {
     "mean": -7.1567,
     "lo": -7.1861,
     "hi": -7.1272,
     "n": 1000
    },
-   "active:despachante-L0 - limiar-5-50": {
+   "active:dispatcher-L0 - threshold-5-50": {
     "mean": -1.6246,
     "lo": -1.653,
     "hi": -1.5962,
     "n": 1000
    },
-   "lat:despachante-L0 - limiar-5-50": {
+   "lat:dispatcher-L0 - threshold-5-50": {
     "mean": -0.1156,
     "lo": -0.1208,
     "hi": -0.1105,
     "n": 1000
    },
-   "peak:despachante-L0 - limiar-5-50": {
+   "peak:dispatcher-L0 - threshold-5-50": {
     "mean": -0.9373,
     "lo": -1.0281,
     "hi": -0.8465,
     "n": 1000
    },
-   "peak:despachante-L2 - limiar-5-50": {
+   "peak:dispatcher-L2 - threshold-5-50": {
     "mean": 4.4647,
     "lo": 4.3474,
     "hi": 4.5819,
     "n": 1000
    },
-   "peak:despachante-L5 - limiar-5-50": {
+   "peak:dispatcher-L5 - threshold-5-50": {
     "mean": 11.409,
     "lo": 11.2217,
     "hi": 11.5963,
     "n": 1000
    },
-   "peak:despachante-L10 - limiar-5-50": {
+   "peak:dispatcher-L10 - threshold-5-50": {
     "mean": 23.1093,
     "lo": 22.8255,
     "hi": 23.3931,
     "n": 1000
    },
-   "cost0:limiar-5-50 - despachante-L0": {
+   "cost0:threshold-5-50 - dispatcher-L0": {
     "mean": 1.6246,
     "lo": 1.5962,
     "hi": 1.653,
     "n": 1000
    },
-   "cost0:limiar-5-50 - despachante-L2": {
+   "cost0:threshold-5-50 - dispatcher-L2": {
     "mean": 1.2978,
     "lo": 1.2695,
     "hi": 1.3262,
     "n": 1000
    },
-   "cost0:limiar-5-50 - despachante-L5": {
+   "cost0:threshold-5-50 - dispatcher-L5": {
     "mean": 1.0543,
     "lo": 1.0259,
     "hi": 1.0828,
     "n": 1000
    },
-   "cost0:limiar-5-50 - despachante-L10": {
+   "cost0:threshold-5-50 - dispatcher-L10": {
     "mean": 0.7187,
     "lo": 0.6901,
     "hi": 0.7472,
     "n": 1000
    },
-   "cost0.05:limiar-5-50 - despachante-L0": {
+   "cost0.05:threshold-5-50 - dispatcher-L0": {
     "mean": 1.1836,
     "lo": 1.1552,
     "hi": 1.212,
     "n": 1000
    },
-   "cost0.05:limiar-5-50 - despachante-L2": {
+   "cost0.05:threshold-5-50 - dispatcher-L2": {
     "mean": 0.8416,
     "lo": 0.8132,
     "hi": 0.8699,
     "n": 1000
    },
-   "cost0.05:limiar-5-50 - despachante-L5": {
+   "cost0.05:threshold-5-50 - dispatcher-L5": {
     "mean": 0.5863,
     "lo": 0.5579,
     "hi": 0.6148,
     "n": 1000
    },
-   "cost0.05:limiar-5-50 - despachante-L10": {
+   "cost0.05:threshold-5-50 - dispatcher-L10": {
     "mean": 0.2342,
     "lo": 0.2056,
     "hi": 0.2628,
     "n": 1000
    },
-   "cost0.2:limiar-5-50 - despachante-L0": {
+   "cost0.2:threshold-5-50 - dispatcher-L0": {
     "mean": -0.1394,
     "lo": -0.1679,
     "hi": -0.111,
     "n": 1000
    },
-   "cost0.2:limiar-5-50 - despachante-L2": {
+   "cost0.2:threshold-5-50 - dispatcher-L2": {
     "mean": -0.5272,
     "lo": -0.5556,
     "hi": -0.4988,
     "n": 1000
    },
-   "cost0.2:limiar-5-50 - despachante-L5": {
+   "cost0.2:threshold-5-50 - dispatcher-L5": {
     "mean": -0.8176,
     "lo": -0.8462,
     "hi": -0.7891,
     "n": 1000
    },
-   "cost0.2:limiar-5-50 - despachante-L10": {
+   "cost0.2:threshold-5-50 - dispatcher-L10": {
     "mean": -1.2193,
     "lo": -1.2481,
     "hi": -1.1905,
@@ -1270,7 +1270,7 @@
     995
    ],
    "mean_backlog": {
-    "limiar-5-50": [
+    "threshold-5-50": [
      1.705,
      2.158,
      1.151,
@@ -1472,7 +1472,7 @@
      1.087,
      1.037
     ],
-    "limiar-2-20": [
+    "threshold-2-20": [
      0.835,
      0.24,
      0.142,
@@ -1674,7 +1674,7 @@
      0.117,
      0.115
     ],
-    "limiar-10-100": [
+    "threshold-10-100": [
      1.94,
      6.649,
      4.314,
@@ -1876,7 +1876,7 @@
      3.109,
      2.989
     ],
-    "limiar-homog-20": [
+    "threshold-homog-20": [
      1.821,
      2.763,
      1.249,
@@ -2078,7 +2078,7 @@
      1.235,
      1.213
     ],
-    "limiar-saida-ociosa": [
+    "threshold-idle-quit": [
      1.73,
      1.86,
      0.888,
@@ -2280,7 +2280,7 @@
      0.996,
      0.971
     ],
-    "fixo-media": [
+    "fixed-mean": [
      0.622,
      1.652,
      1.946,
@@ -2482,7 +2482,7 @@
      15.633,
      14.149
     ],
-    "fixo-pico": [
+    "fixed-peak": [
      0.065,
      0.09,
      0.081,
@@ -2684,7 +2684,7 @@
      0.082,
      0.081
     ],
-    "despachante-L0": [
+    "dispatcher-L0": [
      0.436,
      0.75,
      0.767,
@@ -2886,7 +2886,7 @@
      0.757,
      0.82
     ],
-    "despachante-L2": [
+    "dispatcher-L2": [
      0.944,
      1.461,
      1.498,
@@ -3088,7 +3088,7 @@
      1.537,
      1.497
     ],
-    "despachante-L5": [
+    "dispatcher-L5": [
      0.886,
      2.747,
      1.864,
@@ -3290,7 +3290,7 @@
      2.019,
      1.719
     ],
-    "despachante-L10": [
+    "dispatcher-L10": [
      0.922,
      3.439,
      4.422,
@@ -3498,36 +3498,36 @@
  "tests": [
   {
    "id": "P1",
-   "verdict": "suporta",
-   "detail": "Δlatência limiar−fixo-media = -24,36 [IC95% -24,57–-24,14] passos; mensagens do limiar = 0"
+   "verdict": "supported",
+   "detail": "Δlatency threshold−fixed-mean = -24.36 [95% CI -24.57–-24.14] steps; threshold messages = 0"
   },
   {
    "id": "P2",
-   "verdict": "suporta",
-   "detail": "Δativos limiar−fixo-pico = -7,16 [IC95% -7,19–-7,13]; latência limiar 1,46 vs fixo-pico 1,58"
+   "verdict": "supported",
+   "detail": "Δactive threshold−fixed-peak = -7.16 [95% CI -7.19–-7.13]; threshold latency 1.46 vs fixed-peak 1.58"
   },
   {
    "id": "P3",
-   "verdict": "suporta",
-   "detail": "Δativos desp.L0−limiar = -1,62 [IC95% -1,65–-1,60]; Δlatência = -0,12 [IC95% -0,12–-0,11]"
+   "verdict": "supported",
+   "detail": "Δactive disp.L0−threshold = -1.62 [95% CI -1.65–-1.60]; Δlatency = -0.12 [95% CI -0.12–-0.11]"
   },
   {
    "id": "P4",
-   "verdict": "suporta",
-   "detail": "latência cresce com L=true; pico cresce com L=true; pico desp.(L=5,10) > limiar=true (Δpico L5 11,41 [IC95% 11,22–11,60], L10 23,11 [IC95% 22,83–23,39])"
+   "verdict": "supported",
+   "detail": "latency grows with L=true; peak grows with L=true; disp. peak (L=5,10) > threshold=true (Δpeak L5 11.41 [95% CI 11.22–11.60], L10 23.11 [95% CI 22.83–23.39])"
   },
   {
    "id": "P5",
-   "verdict": "suporta",
-   "detail": "L0: Δcusto -0,14 [IC95% -0,17–-0,11]; L2: Δcusto -0,53 [IC95% -0,56–-0,50]; L5: Δcusto -0,82 [IC95% -0,85–-0,79]; L10: Δcusto -1,22 [IC95% -1,25–-1,19]"
+   "verdict": "supported",
+   "detail": "L0: Δcost -0.14 [95% CI -0.17–-0.11]; L2: Δcost -0.53 [95% CI -0.56–-0.50]; L5: Δcost -0.82 [95% CI -0.85–-0.79]; L10: Δcost -1.22 [95% CI -1.25–-1.19]"
   }
  ],
  "headline": [
-  "limiar-5-50: ativos 8,84 [IC95% 8,81–8,87], latência 1,46 [IC95% 1,45–1,46], pico 7,3 [IC95% 7,2–7,4], msgs/passo 0,0",
-  "fixo-media: ativos 6,00 [IC95% 6,00–6,00], latência 25,81 [IC95% 25,60–26,03], pico 136,9 [IC95% 136,0–137,7], msgs/passo 0,0",
-  "fixo-pico: ativos 16,00 [IC95% 16,00–16,00], latência 1,58 [IC95% 1,56–1,59], pico 19,5 [IC95% 19,1–19,8], msgs/passo 0,0",
-  "despachante-L0: ativos 7,22 [IC95% 7,21–7,23], latência 1,34 [IC95% 1,34–1,34], pico 6,4 [IC95% 6,3–6,4], msgs/passo 8,8",
-  "despachante-L10: ativos 8,12 [IC95% 8,11–8,13], latência 2,30 [IC95% 2,29–2,30], pico 30,4 [IC95% 30,1–30,7], msgs/passo 9,7",
-  "Custo total/passo com 0,2 por mensagem: limiar 8,84 [IC95% 8,81–8,87] vs despachante-L0 8,98 [IC95% 8,97–8,99]"
+  "threshold-5-50: active 8.84 [95% CI 8.81–8.87], latency 1.46 [95% CI 1.45–1.46], peak 7.3 [95% CI 7.2–7.4], msgs/step 0.0",
+  "fixed-mean: active 6.00 [95% CI 6.00–6.00], latency 25.81 [95% CI 25.60–26.03], peak 136.9 [95% CI 136.0–137.7], msgs/step 0.0",
+  "fixed-peak: active 16.00 [95% CI 16.00–16.00], latency 1.58 [95% CI 1.56–1.59], peak 19.5 [95% CI 19.1–19.8], msgs/step 0.0",
+  "dispatcher-L0: active 7.22 [95% CI 7.21–7.23], latency 1.34 [95% CI 1.34–1.34], peak 6.4 [95% CI 6.3–6.4], msgs/step 8.8",
+  "dispatcher-L10: active 8.12 [95% CI 8.11–8.13], latency 2.30 [95% CI 2.29–2.30], peak 30.4 [95% CI 30.1–30.7], msgs/step 9.7",
+  "Total cost/step at 0.2 per message: threshold 8.84 [95% CI 8.81–8.87] vs dispatcher-L0 8.98 [95% CI 8.97–8.99]"
  ]
 }

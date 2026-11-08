@@ -1,26 +1,26 @@
 {
- "id": "sim-estigmergia",
+ "id": "sim-stigmergy",
  "version": "1.0.0",
- "title": "Estigmergia com evaporação vs mensagens todos-com-todos vs sem coordenação",
+ "title": "Stigmergy with evaporation vs all-to-all messages vs no coordination",
  "seed": 20261107,
  "hypothesis": {
-  "statement": "Um rastro compartilhado (\"já explorei aqui\") reduz trabalho duplicado e tempo até a solução sem mensagens; como os agentes não sabem quando um episódio termina, o rastro velho vira ruído, e a evaporação funciona como esquecimento: existe uma taxa intermediária ótima, e o rastro sem evaporação cresce sem limite.",
+  "statement": "A shared trail (\"I have already explored here\") reduces duplicated work and time to solution without messages; since agents do not know when an episode ends, old trail becomes noise, and evaporation works as forgetting: there is an optimal intermediate rate, and a trail without evaporation grows without bound.",
   "predictions": [
    {
     "id": "P1",
-    "text": "Para K=4 e K=16, estigmergia com evaporação baixa (epsilon=0,01) tem tempo médio até a solução e fração de visitas duplicadas menores que sem-coordenação (IC95% disjuntos)."
+    "text": "For K=4 and K=16, stigmergy with low evaporation (epsilon=0.01) has lower mean time to solution and lower fraction of duplicated visits than no-coordination (disjoint 95% CIs)."
    },
    {
     "id": "P2",
-    "text": "O tempo até a solução é em forma de U em epsilon: existe epsilon intermediário (0<epsilon<1) com tempo significativamente menor (IC95% disjuntos) que epsilon=0 e que epsilon=1, para K=4 e K=16."
+    "text": "Time to solution is U-shaped in epsilon: there is an intermediate epsilon (0<epsilon<1) with significantly lower time (disjoint 95% CIs) than epsilon=0 and than epsilon=1, for K=4 and K=16."
    },
    {
     "id": "P3",
-    "text": "Mensagens todos-com-todos (informação perfeita e zerada a cada episódio) têm o menor tempo, ao custo de K(K-1) mensagens por passo; o melhor epsilon de estigmergia fica a no máximo 15% do tempo das mensagens, com zero mensagens."
+    "text": "All-to-all messages (perfect information, reset every episode) have the lowest time, at the cost of K(K-1) messages per step; the best stigmergy epsilon is within at most 15% of the time of messages, with zero messages."
    },
    {
     "id": "P4",
-    "text": "Com epsilon=0, a massa de rastro cresce ~linearmente com o tempo (memória ilimitada) e o 10º episódio é mais lento que o 1º; com o melhor epsilon a massa se estabiliza (razão massa ep.10/ep.5 < 1,2)."
+    "text": "With epsilon=0, trail mass grows ~linearly with time (unbounded memory) and the 10th episode is slower than the 1st; with the best epsilon the mass stabilises (mass ratio ep.10/ep.5 < 1.2)."
    }
   ]
  },
@@ -47,20 +47,20 @@
   ],
   "deposit": 1,
   "strategies": {
-   "sem-coordenacao": "passeio aleatório sem retorno imediato",
-   "estigmergia": "move para o vizinho com menor rastro (decaído por (1-epsilon)^dt), empates aleatórios; deposita +1 ao chegar; NÃO sabe quando o episódio termina",
-   "mensagens-todos": "cada agente transmite sua posição a todos a cada passo (K(K-1) msgs/passo) + aviso de alvo encontrado (K-1); escolhe o vizinho menos visitado no episódio atual"
+   "no-coordination": "random walk without immediate return",
+   "stigmergy": "moves to the neighbour with the least trail (decayed by (1-epsilon)^dt), ties at random; deposits +1 on arrival; does NOT know when the episode ends",
+   "all-to-all-messages": "each agent broadcasts its position to all others every step (K(K-1) msgs/step) + target-found notice (K-1); picks the least-visited neighbour in the current episode"
   },
-  "duplicated_work": "fração de movimentos que chegam a um nó já visitado (por qualquer agente) no episódio atual",
-  "episode": "alvo uniforme na grade; episódio termina quando um agente pisa no alvo; novo alvo surge e os agentes continuam de onde estão"
+  "duplicated_work": "fraction of moves that reach a node already visited (by any agent) in the current episode",
+  "episode": "target uniform on the grid; the episode ends when an agent steps on the target; a new target appears and agents continue from where they are"
  },
  "results": {
   "configs": [
    {
     "K": 4,
-    "strategy": "sem-coordenacao",
+    "strategy": "no-coordination",
     "epsilon": null,
-    "label": "sem-coordenacao",
+    "label": "no-coordination",
     "time_to_solution": {
      "mean": 239.8528,
      "lo": 232.5298,
@@ -107,9 +107,9 @@
    },
    {
     "K": 4,
-    "strategy": "mensagens-todos",
+    "strategy": "all-to-all-messages",
     "epsilon": null,
-    "label": "mensagens-todos",
+    "label": "all-to-all-messages",
     "time_to_solution": {
      "mean": 96.8268,
      "lo": 94.7847,
@@ -156,9 +156,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0,
-    "label": "estigmergia-e0",
+    "label": "stigmergy-e0",
     "time_to_solution": {
      "mean": 121.9764,
      "lo": 119.3503,
@@ -205,9 +205,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.001,
-    "label": "estigmergia-e0.001",
+    "label": "stigmergy-e0.001",
     "time_to_solution": {
      "mean": 101.6944,
      "lo": 99.5409,
@@ -254,9 +254,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.003,
-    "label": "estigmergia-e0.003",
+    "label": "stigmergy-e0.003",
     "time_to_solution": {
      "mean": 97.09,
      "lo": 95.1026,
@@ -303,9 +303,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.01,
-    "label": "estigmergia-e0.01",
+    "label": "stigmergy-e0.01",
     "time_to_solution": {
      "mean": 96.8054,
      "lo": 94.8172,
@@ -352,9 +352,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.03,
-    "label": "estigmergia-e0.03",
+    "label": "stigmergy-e0.03",
     "time_to_solution": {
      "mean": 95.2244,
      "lo": 93.2123,
@@ -401,9 +401,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.1,
-    "label": "estigmergia-e0.1",
+    "label": "stigmergy-e0.1",
     "time_to_solution": {
      "mean": 94.9558,
      "lo": 92.9068,
@@ -450,9 +450,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.3,
-    "label": "estigmergia-e0.3",
+    "label": "stigmergy-e0.3",
     "time_to_solution": {
      "mean": 115.819,
      "lo": 112.6751,
@@ -499,9 +499,9 @@
    },
    {
     "K": 4,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 1,
-    "label": "estigmergia-e1",
+    "label": "stigmergy-e1",
     "time_to_solution": {
      "mean": 422.7288,
      "lo": 408.5786,
@@ -548,9 +548,9 @@
    },
    {
     "K": 16,
-    "strategy": "sem-coordenacao",
+    "strategy": "no-coordination",
     "epsilon": null,
-    "label": "sem-coordenacao",
+    "label": "no-coordination",
     "time_to_solution": {
      "mean": 55.5364,
      "lo": 53.8721,
@@ -597,9 +597,9 @@
    },
    {
     "K": 16,
-    "strategy": "mensagens-todos",
+    "strategy": "all-to-all-messages",
     "epsilon": null,
-    "label": "mensagens-todos",
+    "label": "all-to-all-messages",
     "time_to_solution": {
      "mean": 24.013,
      "lo": 23.5084,
@@ -646,9 +646,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0,
-    "label": "estigmergia-e0",
+    "label": "stigmergy-e0",
     "time_to_solution": {
      "mean": 29.5478,
      "lo": 28.8718,
@@ -695,9 +695,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.001,
-    "label": "estigmergia-e0.001",
+    "label": "stigmergy-e0.001",
     "time_to_solution": {
      "mean": 24.0216,
      "lo": 23.5042,
@@ -744,9 +744,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.003,
-    "label": "estigmergia-e0.003",
+    "label": "stigmergy-e0.003",
     "time_to_solution": {
      "mean": 23.6352,
      "lo": 23.1468,
@@ -793,9 +793,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.01,
-    "label": "estigmergia-e0.01",
+    "label": "stigmergy-e0.01",
     "time_to_solution": {
      "mean": 24.0162,
      "lo": 23.521,
@@ -842,9 +842,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.03,
-    "label": "estigmergia-e0.03",
+    "label": "stigmergy-e0.03",
     "time_to_solution": {
      "mean": 22.7986,
      "lo": 22.3339,
@@ -891,9 +891,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.1,
-    "label": "estigmergia-e0.1",
+    "label": "stigmergy-e0.1",
     "time_to_solution": {
      "mean": 22.4948,
      "lo": 22.0601,
@@ -940,9 +940,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 0.3,
-    "label": "estigmergia-e0.3",
+    "label": "stigmergy-e0.3",
     "time_to_solution": {
      "mean": 22.7,
      "lo": 22.2306,
@@ -989,9 +989,9 @@
    },
    {
     "K": 16,
-    "strategy": "estigmergia",
+    "strategy": "stigmergy",
     "epsilon": 1,
-    "label": "estigmergia-e1",
+    "label": "stigmergy-e1",
     "time_to_solution": {
      "mean": 86.6242,
      "lo": 83.5072,
@@ -1045,33 +1045,33 @@
  "tests": [
   {
    "id": "P1",
-   "verdict": "suporta",
-   "detail": "K=4: tempo 96,8 vs 239,9; duplicação 15,0% vs 50,1%; K=16: tempo 24,0 vs 55,5; duplicação 15,4% vs 46,0%"
+   "verdict": "supported",
+   "detail": "K=4: time 96.8 vs 239.9; duplication 15.0% vs 50.1%; K=16: time 24.0 vs 55.5; duplication 15.4% vs 46.0%"
   },
   {
    "id": "P2",
-   "verdict": "suporta",
-   "detail": "K=4: melhor epsilon=0.1 (t=95,0) vs epsilon=0 (122,0) e epsilon=1 (422,7); significativo=true; K=16: melhor epsilon=0.1 (t=22,5) vs epsilon=0 (29,5) e epsilon=1 (86,6); significativo=true"
+   "verdict": "supported",
+   "detail": "K=4: best epsilon=0.1 (t=95.0) vs epsilon=0 (122.0) and epsilon=1 (422.7); significant=true; K=16: best epsilon=0.1 (t=22.5) vs epsilon=0 (29.5) and epsilon=1 (86.6); significant=true"
   },
   {
    "id": "P3",
-   "verdict": "nao-suporta",
-   "detail": "K=4: mensagens com menor tempo=false; melhor estigmergia/mensagens=0,981; mensagens/episódio=1165; K=16: mensagens com menor tempo=false; melhor estigmergia/mensagens=0,937; mensagens/episódio=5778"
+   "verdict": "not supported",
+   "detail": "K=4: messages with lowest time=false; best stigmergy/messages=0.981; messages/episode=1165; K=16: messages with lowest time=false; best stigmergy/messages=0.937; messages/episode=5778"
   },
   {
    "id": "P4",
-   "verdict": "suporta",
-   "detail": "K=4: eps=0 ep10 mais lento que ep1=true; massa ep10/ep5 eps=0: 2,36; melhor eps: 1,00; K=16: eps=0 ep10 mais lento que ep1=true; massa ep10/ep5 eps=0: 2,31; melhor eps: 1,00"
+   "verdict": "supported",
+   "detail": "K=4: eps=0 ep10 slower than ep1=true; mass ep10/ep5 eps=0: 2.36; best eps: 1.00; K=16: eps=0 ep10 slower than ep1=true; mass ep10/ep5 eps=0: 2.31; best eps: 1.00"
   }
  ],
  "headline": [
-  "sem-coordenacao (K=4): tempo 239,9 [IC95% 232,5–247,2], duplicação 50,1%, msgs/episódio 0",
-  "mensagens-todos (K=4): tempo 96,8 [IC95% 94,8–98,9], duplicação 16,1%, msgs/episódio 1165",
-  "estigmergia-e0 (K=4): tempo 122,0 [IC95% 119,4–124,6], duplicação 28,9%, msgs/episódio 0",
-  "estigmergia-e0.1 (K=4): tempo 95,0 [IC95% 92,9–97,0], duplicação 13,9%, msgs/episódio 0",
-  "sem-coordenacao (K=16): tempo 55,5 [IC95% 53,9–57,2], duplicação 46,0%, msgs/episódio 0",
-  "mensagens-todos (K=16): tempo 24,0 [IC95% 23,5–24,5], duplicação 14,8%, msgs/episódio 5778",
-  "estigmergia-e0 (K=16): tempo 29,5 [IC95% 28,9–30,2], duplicação 27,0%, msgs/episódio 0",
-  "estigmergia-e0.1 (K=16): tempo 22,5 [IC95% 22,1–22,9], duplicação 12,2%, msgs/episódio 0"
+  "no-coordination (K=4): time 239.9 [95% CI 232.5–247.2], duplication 50.1%, msgs/episode 0",
+  "all-to-all-messages (K=4): time 96.8 [95% CI 94.8–98.9], duplication 16.1%, msgs/episode 1165",
+  "stigmergy-e0 (K=4): time 122.0 [95% CI 119.4–124.6], duplication 28.9%, msgs/episode 0",
+  "stigmergy-e0.1 (K=4): time 95.0 [95% CI 92.9–97.0], duplication 13.9%, msgs/episode 0",
+  "no-coordination (K=16): time 55.5 [95% CI 53.9–57.2], duplication 46.0%, msgs/episode 0",
+  "all-to-all-messages (K=16): time 24.0 [95% CI 23.5–24.5], duplication 14.8%, msgs/episode 5778",
+  "stigmergy-e0 (K=16): time 29.5 [95% CI 28.9–30.2], duplication 27.0%, msgs/episode 0",
+  "stigmergy-e0.1 (K=16): time 22.5 [95% CI 22.1–22.9], duplication 12.2%, msgs/episode 0"
  ]
 }

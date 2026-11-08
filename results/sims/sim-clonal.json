@@ -1,30 +1,30 @@
 {
  "id": "sim-clonal",
  "version": "1.0.0",
- "title": "Expansão/contração clonal vs N fixo",
+ "title": "Clonal expansion/contraction vs fixed N",
  "seed": 20261107,
  "hypothesis": {
-  "statement": "Escalar multiplicativamente enquanto um sinal de erro persiste e contrair após a resolução dá recuperação comparável a um pool grande fixo com custo ocioso próximo ao de um pool mínimo; um filtro de persistência contém o custo de alarmes falsos, e memória por tipo de incidente acelera respostas secundárias.",
+  "statement": "Scaling multiplicatively while an error signal persists and contracting after resolution gives recovery comparable to a large fixed pool with idle cost close to that of a minimal pool; a persistence filter contains the cost of false alarms, and per-incident-type memory speeds up secondary responses.",
   "predictions": [
    {
     "id": "P1",
-    "text": "No cenário principal (alarme falso f=0,01), clonal-g2-h1 não é dominado por nenhum N fixo (1,2,4,8,16) em (custo ocioso, tempo médio de recuperação): para cada N fixo, o clonal é significativamente melhor em pelo menos uma das duas métricas."
+    "text": "In the main scenario (false alarm f=0.01), clonal-g2-h1 is not dominated by any fixed N (1,2,4,8,16) in (idle cost, mean recovery time): for each fixed N, clonal is significantly better in at least one of the two metrics."
    },
    {
     "id": "P2",
-    "text": "No cenário principal, clonal-g2-h1 tem custo ocioso <= 2x o do fixo-1 e tempo médio de recuperação <= o do fixo-4."
+    "text": "In the main scenario, clonal-g2-h1 has idle cost <= 2x that of fixed-1 and mean recovery time <= that of fixed-4."
    },
    {
     "id": "P3",
-    "text": "No cenário ruidoso (f=0,05), persistência h=3 reduz o custo ocioso em >= 30% vs h=1, com aumento do tempo de recuperação <= 20%."
+    "text": "In the noisy scenario (f=0.05), persistence h=3 reduces idle cost by >= 30% vs h=1, with an increase in recovery time <= 20%."
    },
    {
     "id": "P4",
-    "text": "Memória por tipo reduz o tempo médio de recuperação vs sem memória (IC95% disjuntos) com aumento de custo total <= 10%, no cenário principal."
+    "text": "Per-type memory reduces mean recovery time vs no memory (disjoint 95% CIs) with an increase in total cost <= 10%, in the main scenario."
    },
    {
     "id": "P5",
-    "text": "Contração lenta (c=0,8) aumenta o custo ocioso vs c=0,5 sem reduzir o tempo de recuperação em mais de 5%, no cenário principal."
+    "text": "Slow contraction (c=0.8) increases idle cost vs c=0.5 without reducing recovery time by more than 5%, in the main scenario."
    }
   ]
  },
@@ -54,33 +54,33 @@
   "alpha": 0.8,
   "detection_delay": 2,
   "scenarios": {
-   "principal": {
+   "main": {
     "false_alarm": 0.01
    },
-   "ruidoso": {
+   "noisy": {
     "false_alarm": 0.05
    }
   },
   "n_min": 1,
   "n_max": 32,
   "policies": {
-   "fixo-1": {
+   "fixed-1": {
     "kind": "fixed",
     "N": 1
    },
-   "fixo-2": {
+   "fixed-2": {
     "kind": "fixed",
     "N": 2
    },
-   "fixo-4": {
+   "fixed-4": {
     "kind": "fixed",
     "N": 4
    },
-   "fixo-8": {
+   "fixed-8": {
     "kind": "fixed",
     "N": 8
    },
-   "fixo-16": {
+   "fixed-16": {
     "kind": "fixed",
     "N": 16
    },
@@ -120,13 +120,13 @@
     "memory": false
    }
   },
-  "rules": "clonal: se o sinal está ligado há >= h passos, n <- min(n_max, ceil(n*g)); se desligado, n <- max(n_min, floor(n*c)). Memória: ao detectar um tipo já visto, n <- max(n, n_pico_anterior_do_tipo). Trabalho FIFO: a vazão n^alpha vai ao incidente mais antigo; sobra passa ao seguinte.",
-  "idle_cost": "soma de n(t) nos passos sem incidente aberto (agente-passos ociosos)"
+  "rules": "clonal: if the signal has been on for >= h steps, n <- min(n_max, ceil(n*g)); if off, n <- max(n_min, floor(n*c)). Memory: on detecting an already-seen type, n <- max(n, previous_peak_n_of_the_type). FIFO work: throughput n^alpha goes to the oldest incident; any remainder passes to the next one.",
+  "idle_cost": "sum of n(t) over steps with no open incident (idle agent-steps)"
  },
  "results": {
-  "principal": {
+  "main": {
    "summary": {
-    "fixo-1": {
+    "fixed-1": {
      "idle": {
       "mean": 792.672,
       "lo": 764.4799,
@@ -166,7 +166,7 @@
      "idle_per_step": 0.2642,
      "total_per_step": 1
     },
-    "fixo-2": {
+    "fixed-2": {
      "idle": {
       "mean": 3137.398,
       "lo": 3088.6513,
@@ -206,7 +206,7 @@
      "idle_per_step": 1.0458,
      "total_per_step": 2
     },
-    "fixo-4": {
+    "fixed-4": {
      "idle": {
       "mean": 8618.58,
       "lo": 8559.5508,
@@ -246,7 +246,7 @@
      "idle_per_step": 2.8729,
      "total_per_step": 4
     },
-    "fixo-8": {
+    "fixed-8": {
      "idle": {
       "mean": 20045.352,
       "lo": 19976.476,
@@ -286,7 +286,7 @@
      "idle_per_step": 6.6818,
      "total_per_step": 8
     },
-    "fixo-16": {
+    "fixed-16": {
      "idle": {
       "mean": 43358.4,
       "lo": 43278.1112,
@@ -564,61 +564,61 @@
      "hi": -0.1239,
      "n": 1000
     },
-    "idle:clonal-fixo1": {
+    "idle:clonal-fixed1": {
      "mean": 2511.743,
      "lo": 2481.9942,
      "hi": 2541.4918,
      "n": 1000
     },
-    "rec:clonal-fixo1": {
+    "rec:clonal-fixed1": {
      "mean": -279.5552,
      "lo": -290.9741,
      "hi": -268.1364,
      "n": 1000
     },
-    "idle:clonal-fixo2": {
+    "idle:clonal-fixed2": {
      "mean": 167.017,
      "lo": 117.1082,
      "hi": 216.9258,
      "n": 1000
     },
-    "rec:clonal-fixo2": {
+    "rec:clonal-fixed2": {
      "mean": -93.3701,
      "lo": -96.6624,
      "hi": -90.0778,
      "n": 1000
     },
-    "idle:clonal-fixo4": {
+    "idle:clonal-fixed4": {
      "mean": -5314.165,
      "lo": -5374.2838,
      "hi": -5254.0462,
      "n": 1000
     },
-    "rec:clonal-fixo4": {
+    "rec:clonal-fixed4": {
      "mean": -34.2821,
      "lo": -35.1543,
      "hi": -33.4099,
      "n": 1000
     },
-    "idle:clonal-fixo8": {
+    "idle:clonal-fixed8": {
      "mean": -16740.937,
      "lo": -16810.8699,
      "hi": -16671.0041,
      "n": 1000
     },
-    "rec:clonal-fixo8": {
+    "rec:clonal-fixed8": {
      "mean": -11.6933,
      "lo": -11.9866,
      "hi": -11.3999,
      "n": 1000
     },
-    "idle:clonal-fixo16": {
+    "idle:clonal-fixed16": {
      "mean": -40053.985,
      "lo": -40135.3256,
      "hi": -39972.6444,
      "n": 1000
     },
-    "rec:clonal-fixo16": {
+    "rec:clonal-fixed16": {
      "mean": -1.0207,
      "lo": -1.112,
      "hi": -0.9294,
@@ -627,31 +627,31 @@
    },
    "pareto": [
     {
-     "policy": "fixo-1",
+     "policy": "fixed-1",
      "idle_cost": 792.672,
      "mean_recovery": 291.398,
      "total_cost": 3000
     },
     {
-     "policy": "fixo-2",
+     "policy": "fixed-2",
      "idle_cost": 3137.398,
      "mean_recovery": 105.2129,
      "total_cost": 6000
     },
     {
-     "policy": "fixo-4",
+     "policy": "fixed-4",
      "idle_cost": 8618.58,
      "mean_recovery": 46.1249,
      "total_cost": 12000
     },
     {
-     "policy": "fixo-8",
+     "policy": "fixed-8",
      "idle_cost": 20045.352,
      "mean_recovery": 23.5361,
      "total_cost": 24000
     },
     {
-     "policy": "fixo-16",
+     "policy": "fixed-16",
      "idle_cost": 43358.4,
      "mean_recovery": 12.8635,
      "total_cost": 48000
@@ -688,9 +688,9 @@
     }
    ]
   },
-  "ruidoso": {
+  "noisy": {
    "summary": {
-    "fixo-1": {
+    "fixed-1": {
      "idle": {
       "mean": 792.672,
       "lo": 764.4799,
@@ -730,7 +730,7 @@
      "idle_per_step": 0.2642,
      "total_per_step": 1
     },
-    "fixo-2": {
+    "fixed-2": {
      "idle": {
       "mean": 3137.398,
       "lo": 3088.6513,
@@ -770,7 +770,7 @@
      "idle_per_step": 1.0458,
      "total_per_step": 2
     },
-    "fixo-4": {
+    "fixed-4": {
      "idle": {
       "mean": 8618.58,
       "lo": 8559.5508,
@@ -810,7 +810,7 @@
      "idle_per_step": 2.8729,
      "total_per_step": 4
     },
-    "fixo-8": {
+    "fixed-8": {
      "idle": {
       "mean": 20045.352,
       "lo": 19976.476,
@@ -850,7 +850,7 @@
      "idle_per_step": 6.6818,
      "total_per_step": 8
     },
-    "fixo-16": {
+    "fixed-16": {
      "idle": {
       "mean": 43358.4,
       "lo": 43278.1112,
@@ -1128,61 +1128,61 @@
      "hi": -0.1487,
      "n": 1000
     },
-    "idle:clonal-fixo1": {
+    "idle:clonal-fixed1": {
      "mean": 2745.931,
      "lo": 2714.8242,
      "hi": 2777.0378,
      "n": 1000
     },
-    "rec:clonal-fixo1": {
+    "rec:clonal-fixed1": {
      "mean": -279.608,
      "lo": -291.0268,
      "hi": -268.1893,
      "n": 1000
     },
-    "idle:clonal-fixo2": {
+    "idle:clonal-fixed2": {
      "mean": 401.205,
      "lo": 349.9454,
      "hi": 452.4646,
      "n": 1000
     },
-    "rec:clonal-fixo2": {
+    "rec:clonal-fixed2": {
      "mean": -93.4229,
      "lo": -96.7152,
      "hi": -90.1307,
      "n": 1000
     },
-    "idle:clonal-fixo4": {
+    "idle:clonal-fixed4": {
      "mean": -5079.977,
      "lo": -5141.3967,
      "hi": -5018.5573,
      "n": 1000
     },
-    "rec:clonal-fixo4": {
+    "rec:clonal-fixed4": {
      "mean": -34.3349,
      "lo": -35.207,
      "hi": -33.4628,
      "n": 1000
     },
-    "idle:clonal-fixo8": {
+    "idle:clonal-fixed8": {
      "mean": -16506.749,
      "lo": -16577.9464,
      "hi": -16435.5516,
      "n": 1000
     },
-    "rec:clonal-fixo8": {
+    "rec:clonal-fixed8": {
      "mean": -11.7461,
      "lo": -12.0393,
      "hi": -11.4528,
      "n": 1000
     },
-    "idle:clonal-fixo16": {
+    "idle:clonal-fixed16": {
      "mean": -39819.797,
      "lo": -39902.387,
      "hi": -39737.207,
      "n": 1000
     },
-    "rec:clonal-fixo16": {
+    "rec:clonal-fixed16": {
      "mean": -1.0735,
      "lo": -1.1647,
      "hi": -0.9823,
@@ -1191,31 +1191,31 @@
    },
    "pareto": [
     {
-     "policy": "fixo-1",
+     "policy": "fixed-1",
      "idle_cost": 792.672,
      "mean_recovery": 291.398,
      "total_cost": 3000
     },
     {
-     "policy": "fixo-2",
+     "policy": "fixed-2",
      "idle_cost": 3137.398,
      "mean_recovery": 105.2129,
      "total_cost": 6000
     },
     {
-     "policy": "fixo-4",
+     "policy": "fixed-4",
      "idle_cost": 8618.58,
      "mean_recovery": 46.1249,
      "total_cost": 12000
     },
     {
-     "policy": "fixo-8",
+     "policy": "fixed-8",
      "idle_cost": 20045.352,
      "mean_recovery": 23.5361,
      "total_cost": 24000
     },
     {
-     "policy": "fixo-16",
+     "policy": "fixed-16",
      "idle_cost": 43358.4,
      "mean_recovery": 12.8635,
      "total_cost": 48000
@@ -1256,37 +1256,37 @@
  "tests": [
   {
    "id": "P1",
-   "verdict": "suporta",
-   "detail": "vs fixo-1: Δocioso 2512 [IC95% 2482–2541], Δrecuperação -279,6 [IC95% -291,0–-268,1]; vs fixo-2: Δocioso 167 [IC95% 117–217], Δrecuperação -93,4 [IC95% -96,7–-90,1]; vs fixo-4: Δocioso -5314 [IC95% -5374–-5254], Δrecuperação -34,3 [IC95% -35,2–-33,4]; vs fixo-8: Δocioso -16741 [IC95% -16811–-16671], Δrecuperação -11,7 [IC95% -12,0–-11,4]; vs fixo-16: Δocioso -40054 [IC95% -40135–-39973], Δrecuperação -1,0 [IC95% -1,1–-0,9]"
+   "verdict": "supported",
+   "detail": "vs fixed-1: Δidle 2512 [95% CI 2482–2541], Δrecovery -279.6 [95% CI -291.0–-268.1]; vs fixed-2: Δidle 167 [95% CI 117–217], Δrecovery -93.4 [95% CI -96.7–-90.1]; vs fixed-4: Δidle -5314 [95% CI -5374–-5254], Δrecovery -34.3 [95% CI -35.2–-33.4]; vs fixed-8: Δidle -16741 [95% CI -16811–-16671], Δrecovery -11.7 [95% CI -12.0–-11.4]; vs fixed-16: Δidle -40054 [95% CI -40135–-39973], Δrecovery -1.0 [95% CI -1.1–-0.9]"
   },
   {
    "id": "P2",
-   "verdict": "nao-suporta",
-   "detail": "ocioso clonal 3304 vs 2×fixo-1 1585; recuperação clonal 11,8 vs fixo-4 46,1"
+   "verdict": "not supported",
+   "detail": "clonal idle 3304 vs 2×fixed-1 1585; clonal recovery 11.8 vs fixed-4 46.1"
   },
   {
    "id": "P3",
-   "verdict": "nao-suporta",
-   "detail": "ruidoso: redução do ocioso com h=3 7,8%; aumento da recuperação 15,2%"
+   "verdict": "not supported",
+   "detail": "noisy: idle reduction with h=3 7.8%; recovery increase 15.2%"
   },
   {
    "id": "P4",
-   "verdict": "suporta",
-   "detail": "Δrecuperação memória -2,09 [IC95% -2,10–-2,08]; aumento do custo total 3,1%"
+   "verdict": "supported",
+   "detail": "Δrecovery with memory -2.09 [95% CI -2.10–-2.08]; total cost increase 3.1%"
   },
   {
    "id": "P5",
-   "verdict": "suporta",
-   "detail": "Δocioso c=0,8 1397 [IC95% 1380–1415]; redução da recuperação 1,1%"
+   "verdict": "supported",
+   "detail": "Δidle c=0.8 1397 [95% CI 1380–1415]; recovery reduction 1.1%"
   }
  ],
  "headline": [
-  "principal fixo-1: ocioso 793 [IC95% 764–821] agente-passos, recuperação 291,4 [IC95% 279,9–302,9] passos, custo total/passo 1,00",
-  "principal fixo-4: ocioso 8619 [IC95% 8560–8678] agente-passos, recuperação 46,1 [IC95% 45,2–47,1] passos, custo total/passo 4,00",
-  "principal fixo-16: ocioso 43358 [IC95% 43278–43439] agente-passos, recuperação 12,9 [IC95% 12,7–13,0] passos, custo total/passo 16,00",
-  "principal clonal-g2-h1: ocioso 3304 [IC95% 3300–3309] agente-passos, recuperação 11,8 [IC95% 11,7–11,9] passos, custo total/passo 2,85",
-  "principal clonal-g2-h1-mem: ocioso 3401 [IC95% 3395–3406] agente-passos, recuperação 9,8 [IC95% 9,7–9,8] passos, custo total/passo 2,93",
-  "ruidoso clonal-g2-h1: ocioso 3539 [IC95% 3532–3545] agente-passos, recuperação 11,8 [IC95% 11,7–11,9] passos, custo total/passo 2,93",
-  "ruidoso clonal-g2-h3: ocioso 3262 [IC95% 3257–3267] agente-passos, recuperação 13,6 [IC95% 13,5–13,7] passos, custo total/passo 2,82"
+  "main fixed-1: idle 793 [95% CI 764–821] agent-steps, recovery 291.4 [95% CI 279.9–302.9] steps, total cost/step 1.00",
+  "main fixed-4: idle 8619 [95% CI 8560–8678] agent-steps, recovery 46.1 [95% CI 45.2–47.1] steps, total cost/step 4.00",
+  "main fixed-16: idle 43358 [95% CI 43278–43439] agent-steps, recovery 12.9 [95% CI 12.7–13.0] steps, total cost/step 16.00",
+  "main clonal-g2-h1: idle 3304 [95% CI 3300–3309] agent-steps, recovery 11.8 [95% CI 11.7–11.9] steps, total cost/step 2.85",
+  "main clonal-g2-h1-mem: idle 3401 [95% CI 3395–3406] agent-steps, recovery 9.8 [95% CI 9.7–9.8] steps, total cost/step 2.93",
+  "noisy clonal-g2-h1: idle 3539 [95% CI 3532–3545] agent-steps, recovery 11.8 [95% CI 11.7–11.9] steps, total cost/step 2.93",
+  "noisy clonal-g2-h3: idle 3262 [95% CI 3257–3267] agent-steps, recovery 13.6 [95% CI 13.5–13.7] steps, total cost/step 2.82"
  ]
 }

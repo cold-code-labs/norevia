@@ -1,34 +1,34 @@
 {
- "id": "sim-elastico",
+ "id": "sim-elastic",
  "version": "1.0.0",
- "title": "Swarm elástico por ganho marginal vs N fixo",
+ "title": "Elastic swarm by marginal gain vs fixed N",
  "seed": 20261107,
  "hypothesis": {
-  "statement": "Uma regra elástica que adiciona agentes enquanto o ganho marginal esperado (ΔP·V) supera o custo marginal, com ΔP estimado por um modelo bayesiano da dificuldade, entrega custo por tarefa aceita menor que qualquer N fixo, mantendo a taxa de aceite; o tamanho ótimo transita de 1 → micro → macro conforme a dificuldade e o valor da tarefa, e a regra só funciona bem se o modelo de ΔP considerar a correlação de erros.",
+  "statement": "An elastic rule that adds agents while the expected marginal gain (ΔP·V) exceeds the marginal cost, with ΔP estimated by a Bayesian model of difficulty, delivers lower cost per accepted task than any fixed N while maintaining the acceptance rate; the optimal size moves from 1 → micro → macro with task difficulty and value, and the rule only works well if the ΔP model accounts for error correlation.",
   "predictions": [
    {
     "id": "P1",
-    "text": "Para V em {10, 20}, elastico-seq tem custo por tarefa aceita menor que todo fixo-N (N=1,3,5,9; IC95% disjuntos) e taxa de aceite >= a do fixo-3 menos 1 p.p."
+    "text": "For V in {10, 20}, elastic-seq has lower cost per accepted task than every fixed-N (N=1,3,5,9; disjoint 95% CIs) and an acceptance rate >= that of fixed-3 minus 1 p.p."
    },
    {
     "id": "P2",
-    "text": "Para todo V em {2,5,10,20,50,100}, a utilidade líquida média de elastico-seq não é significativamente menor que a do melhor fixo-N (IC95% da diferença pareada não fica inteiro abaixo de 0)."
+    "text": "For every V in {2,5,10,20,50,100}, the mean net utility of elastic-seq is not significantly lower than that of the best fixed-N (the 95% CI of the paired difference does not lie entirely below 0)."
    },
    {
     "id": "P3",
-    "text": "Transições do N fixo ótimo por classe: fácil -> 1 para todo V>=5; média -> micro (2..5) para V em [10,50]; acoplada -> 0 (não tentar) para V<=5 e macro (>=6) para V>=50."
+    "text": "Transitions of the optimal fixed N by class: easy -> 1 for every V>=5; medium -> micro (2..5) for V in [10,50]; coupled -> 0 (do not attempt) for V<=5 and macro (>=6) for V>=50."
    },
    {
     "id": "P4",
-    "text": "Controlador mal especificado (supõe rho=0) tem custo por tarefa aceita maior que o calibrado para V>=20 (IC95% disjuntos)."
+    "text": "A misspecified controller (assumes rho=0) has higher cost per accepted task than the calibrated one for V>=20 (disjoint 95% CIs)."
    },
    {
     "id": "P5",
-    "text": "Uma sonda barata de dificuldade (custo 0,05, acerta a classe 80%) aumenta a utilidade líquida em relação a elastico-seq para V>=10 (IC95% pareado > 0)."
+    "text": "A cheap difficulty probe (cost 0.05, identifies the class correctly 80% of the time) increases net utility relative to elastic-seq for V>=10 (paired 95% CI > 0)."
    },
    {
     "id": "P6",
-    "text": "elastico-dobra (lotes 1,2,4,8,16) usa menos rodadas médias que elastico-seq, com custo por tarefa aceita no máximo 20% maior, para V>=10."
+    "text": "elastic-doubling (batches 1,2,4,8,16) uses fewer mean rounds than elastic-seq, with cost per accepted task at most 20% higher, for V>=10."
    }
   ]
  },
@@ -36,25 +36,25 @@
   "seed": 20261107,
   "classes": [
    {
-    "name": "facil",
+    "name": "easy",
     "share": 0.5,
     "p": 0.9,
     "rho": 0.2
    },
    {
-    "name": "media",
+    "name": "medium",
     "share": 0.35,
     "p": 0.5,
     "rho": 0.3
    },
    {
-    "name": "acoplada",
+    "name": "coupled",
     "share": 0.15,
     "p": 0.15,
     "rho": 0.5
    }
   ],
-  "coupling_note": "\"acoplada\" = baixa chance por tentativa e alta correlação entre tentativas (bugs interdependentes); decomposição/especialização NÃO modelada",
+  "coupling_note": "\"coupled\" = low per-attempt success chance and high correlation between attempts (interdependent bugs); decomposition/specialisation NOT modelled",
   "test": {
    "sens": 1,
    "spec": 0.98,
@@ -88,14 +88,14 @@
    16
   ],
   "tasks": 40000,
-  "utility": "U = V*[aceita e correta] - custo - V*[aceita e errada]  (falso aceite custa tanto quanto o valor)",
+  "utility": "U = V*[accepted and correct] - cost - V*[accepted and wrong]  (a false accept costs as much as the value)",
   "policies": {
-   "fixo-N": "N tentativas em paralelo, todas testadas; entrega a 1ª que passa; 1 rodada",
-   "elastico-seq": "tenta 1 por vez; antes de cada tentativa calcula P(próxima correta | k falhas) pelo posterior bayesiano (classe, fator latente) e continua se P*V >= custo da tentativa+teste",
-   "elastico-dobra": "como elastico-seq, mas em lotes 1,2,4,8,16: expande se P(>=1 correta no lote)*V >= custo do lote",
-   "elastico-mis": "elastico-seq com modelo mal especificado (supõe rho=0 em todas as classes)",
-   "elastico-sonda": "paga sonda de classe (custo 0,05, acerto 80%) e usa o posterior condicionado à sonda",
-   "oraculo-classe": "elastico-seq conhecendo a classe verdadeira (referência)"
+   "fixed-N": "N attempts in parallel, all tested; delivers the 1st that passes; 1 round",
+   "elastic-seq": "one attempt at a time; before each attempt computes P(next correct | k failures) from the Bayesian posterior (class, latent factor) and continues if P*V >= cost of attempt+test",
+   "elastic-doubling": "like elastic-seq, but in batches 1,2,4,8,16: expands if P(>=1 correct in the batch)*V >= cost of the batch",
+   "elastic-mis": "elastic-seq with a misspecified model (assumes rho=0 in every class)",
+   "elastic-probe": "pays for a class probe (cost 0.05, 80% correct) and uses the posterior conditioned on the probe",
+   "class-oracle": "elastic-seq knowing the true class (reference)"
   }
  },
  "results": {
@@ -103,22 +103,22 @@
    {
     "V": 2,
     "stop_k": {
-     "elastico-seq": 1,
-     "elastico-mis": 1,
-     "oraculo-classe": {
-      "facil": 6,
-      "media": 0,
-      "acoplada": 0
+     "elastic-seq": 1,
+     "elastic-mis": 1,
+     "class-oracle": {
+      "easy": 6,
+      "medium": 0,
+      "coupled": 0
      },
-     "elastico-sonda": {
-      "sonda=facil": 2,
-      "sonda=media": 0,
-      "sonda=acoplada": 0
+     "elastic-probe": {
+      "probe=easy": 2,
+      "probe=medium": 0,
+      "probe=coupled": 0
      }
     },
-    "best_fixed": "fixo-1",
+    "best_fixed": "fixed-1",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.653,
        "lo": 0.6483,
@@ -175,23 +175,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9001,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5115,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1678,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.8319,
        "lo": 0.8282,
@@ -248,23 +248,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9959,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8125,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3414,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8836,
        "lo": 0.8804,
@@ -321,23 +321,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9997,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9059,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4549,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.9253,
        "lo": 0.9227,
@@ -394,23 +394,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9642,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5941,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.653,
        "lo": 0.6483,
@@ -467,23 +467,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9001,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5115,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1678,
         "cost_per_task": 1.1
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.653,
        "lo": 0.6483,
@@ -540,23 +540,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9001,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5115,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1678,
         "cost_per_task": 1.1
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.653,
        "lo": 0.6483,
@@ -613,23 +613,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9001,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5115,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1678,
         "cost_per_task": 1.1
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.4218,
        "lo": 0.417,
@@ -686,23 +686,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.7847,
         "cost_per_task": 1.0159
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.0723,
         "cost_per_task": 0.2134
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.0295,
         "cost_per_task": 0.2576
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.4998,
        "lo": 0.4949,
@@ -759,17 +759,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9999,
         "cost_per_task": 1.2356
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0,
         "cost_per_task": 0
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0,
         "cost_per_task": 0
        }
@@ -777,13 +777,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 0,
       "lo": 0,
       "hi": 0,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": 0.0381,
       "lo": 0.0301,
       "hi": 0.0462,
@@ -794,22 +794,22 @@
    {
     "V": 5,
     "stop_k": {
-     "elastico-seq": 3,
-     "elastico-mis": 5,
-     "oraculo-classe": {
-      "facil": 24,
-      "media": 6,
-      "acoplada": 0
+     "elastic-seq": 3,
+     "elastic-mis": 5,
+     "class-oracle": {
+      "easy": 24,
+      "medium": 6,
+      "coupled": 0
      },
-     "elastico-sonda": {
-      "sonda=facil": 3,
-      "sonda=media": 4,
-      "sonda=acoplada": 1
+     "elastic-probe": {
+      "probe=easy": 3,
+      "probe=medium": 4,
+      "probe=coupled": 1
      }
     },
-    "best_fixed": "fixo-1",
+    "best_fixed": "fixed-1",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.6552,
        "lo": 0.6505,
@@ -866,23 +866,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9026,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5115,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1672,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.8365,
        "lo": 0.8329,
@@ -939,23 +939,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9966,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8174,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3475,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8853,
        "lo": 0.8822,
@@ -1012,23 +1012,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9997,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9075,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4515,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.9254,
        "lo": 0.9227,
@@ -1085,23 +1085,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.964,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5854,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.8365,
        "lo": 0.8329,
@@ -1158,23 +1158,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9966,
         "cost_per_task": 1.2252
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8174,
         "cost_per_task": 1.9486
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3475,
         "cost_per_task": 2.8206
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.8365,
        "lo": 0.8329,
@@ -1231,23 +1231,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9966,
         "cost_per_task": 1.3142
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8174,
         "cost_per_task": 2.1747
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3475,
         "cost_per_task": 2.9322
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.8853,
        "lo": 0.8822,
@@ -1304,23 +1304,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9997,
         "cost_per_task": 1.2301
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9075,
         "cost_per_task": 2.2903
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4515,
         "cost_per_task": 4.1907
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.8151,
        "lo": 0.8112,
@@ -1377,23 +1377,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9871,
         "cost_per_task": 1.2632
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8283,
         "cost_per_task": 2.0707
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.21,
         "cost_per_task": 1.5593
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.8255,
        "lo": 0.8217,
@@ -1450,17 +1450,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2305
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.929,
         "cost_per_task": 2.392
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0,
         "cost_per_task": 0
        }
@@ -1468,13 +1468,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 0.2108,
       "lo": 0.1929,
       "hi": 0.2288,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": 0.0478,
       "lo": 0.0367,
       "hi": 0.059,
@@ -1485,22 +1485,22 @@
    {
     "V": 10,
     "stop_k": {
-     "elastico-seq": 5,
-     "elastico-mis": 32,
-     "oraculo-classe": {
-      "facil": 32,
-      "media": 15,
-      "acoplada": 1
+     "elastic-seq": 5,
+     "elastic-mis": 32,
+     "class-oracle": {
+      "easy": 32,
+      "medium": 15,
+      "coupled": 1
      },
-     "elastico-sonda": {
-      "sonda=facil": 6,
-      "sonda=media": 10,
-      "sonda=acoplada": 3
+     "elastic-probe": {
+      "probe=easy": 6,
+      "probe=medium": 10,
+      "probe=coupled": 3
      }
     },
-    "best_fixed": "fixo-1",
+    "best_fixed": "fixed-1",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.6577,
        "lo": 0.653,
@@ -1557,23 +1557,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9047,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5084,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1681,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.835,
        "lo": 0.8313,
@@ -1630,23 +1630,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9967,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8107,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3418,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8854,
        "lo": 0.8823,
@@ -1703,23 +1703,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9995,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9036,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4549,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.9267,
        "lo": 0.9241,
@@ -1776,23 +1776,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9654,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5863,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.8854,
        "lo": 0.8823,
@@ -1849,23 +1849,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9995,
         "cost_per_task": 1.2273
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9036,
         "cost_per_task": 2.3128
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4549,
         "cost_per_task": 4.2056
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.835,
        "lo": 0.8313,
@@ -1922,23 +1922,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9967,
         "cost_per_task": 1.3097
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8107,
         "cost_per_task": 2.1814
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3418,
         "cost_per_task": 2.9302
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.976,
        "lo": 0.9744,
@@ -1995,23 +1995,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2285
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9979,
         "cost_per_task": 2.8664
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8427,
         "cost_per_task": 13.0205
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.892,
        "lo": 0.8889,
@@ -2068,23 +2068,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9995,
         "cost_per_task": 1.2773
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9529,
         "cost_per_task": 2.6079
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3833,
         "cost_per_task": 3.4709
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.8724,
        "lo": 0.8691,
@@ -2141,17 +2141,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2285
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9875,
         "cost_per_task": 2.7534
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1681,
         "cost_per_task": 1.1
        }
@@ -2159,13 +2159,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 1.0826,
       "lo": 1.0417,
       "hi": 1.1234,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": 0.0717,
       "lo": 0.0527,
       "hi": 0.0906,
@@ -2176,22 +2176,22 @@
    {
     "V": 20,
     "stop_k": {
-     "elastico-seq": 10,
-     "elastico-mis": 32,
-     "oraculo-classe": {
-      "facil": 32,
-      "media": 32,
-      "acoplada": 5
+     "elastic-seq": 10,
+     "elastic-mis": 32,
+     "class-oracle": {
+      "easy": 32,
+      "medium": 32,
+      "coupled": 5
      },
-     "elastico-sonda": {
-      "sonda=facil": 10,
-      "sonda=media": 17,
-      "sonda=acoplada": 7
+     "elastic-probe": {
+      "probe=easy": 10,
+      "probe=medium": 17,
+      "probe=coupled": 7
      }
     },
-    "best_fixed": "fixo-3",
+    "best_fixed": "fixed-3",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.6576,
        "lo": 0.6529,
@@ -2248,23 +2248,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.8994,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5186,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1687,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.8367,
        "lo": 0.833,
@@ -2321,23 +2321,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.996,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8161,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3453,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8854,
        "lo": 0.8822,
@@ -2394,23 +2394,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9997,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9069,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4462,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.925,
        "lo": 0.9224,
@@ -2467,23 +2467,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.965,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5752,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.9309,
        "lo": 0.9284,
@@ -2540,23 +2540,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2346
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9719,
         "cost_per_task": 2.6036
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5986,
         "cost_per_task": 6.8545
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.9106,
        "lo": 0.9078,
@@ -2613,23 +2613,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9999,
         "cost_per_task": 1.3392
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9452,
         "cost_per_task": 2.9681
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.525,
         "cost_per_task": 5.8095
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.9762,
        "lo": 0.9747,
@@ -2686,23 +2686,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2346
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9982,
         "cost_per_task": 2.8268
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8432,
         "cost_per_task": 13.0725
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.9287,
        "lo": 0.9261,
@@ -2759,23 +2759,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2846
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9842,
         "cost_per_task": 2.7556
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5543,
         "cost_per_task": 5.9668
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.9177,
        "lo": 0.9149,
@@ -2832,17 +2832,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2346
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9982,
         "cost_per_task": 2.8268
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4462,
         "cost_per_task": 4.1971
        }
@@ -2850,13 +2850,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 2.1327,
       "lo": 2.0757,
       "hi": 2.1897,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": 0.0634,
       "lo": 0.0381,
       "hi": 0.0886,
@@ -2867,22 +2867,22 @@
    {
     "V": 50,
     "stop_k": {
-     "elastico-seq": 23,
-     "elastico-mis": 32,
-     "oraculo-classe": {
-      "facil": 32,
-      "media": 32,
-      "acoplada": 19
+     "elastic-seq": 23,
+     "elastic-mis": 32,
+     "class-oracle": {
+      "easy": 32,
+      "medium": 32,
+      "coupled": 19
      },
-     "elastico-sonda": {
-      "sonda=facil": 23,
-      "sonda=media": 32,
-      "sonda=acoplada": 20
+     "elastic-probe": {
+      "probe=easy": 23,
+      "probe=medium": 32,
+      "probe=coupled": 20
      }
     },
-    "best_fixed": "fixo-3",
+    "best_fixed": "fixed-3",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.6529,
        "lo": 0.6482,
@@ -2939,23 +2939,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9073,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5011,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1628,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.8335,
        "lo": 0.8298,
@@ -3012,23 +3012,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9959,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.8101,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3483,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8827,
        "lo": 0.8795,
@@ -3085,23 +3085,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9995,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9022,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4486,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.9239,
        "lo": 0.9213,
@@ -3158,23 +3158,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9655,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5737,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.9648,
        "lo": 0.963,
@@ -3231,23 +3231,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2274
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9949,
         "cost_per_task": 2.8652
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.7774,
         "cost_per_task": 11.2445
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.9484,
        "lo": 0.9462,
@@ -3304,23 +3304,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.3226
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9871,
         "cost_per_task": 3.5221
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.6864,
         "cost_per_task": 10.018
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.9755,
        "lo": 0.9739,
@@ -3377,23 +3377,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2274
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9978,
         "cost_per_task": 2.9025
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8417,
         "cost_per_task": 13.1349
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.9628,
        "lo": 0.9609,
@@ -3450,23 +3450,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2774
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9967,
         "cost_per_task": 2.941
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.7597,
         "cost_per_task": 10.8577
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.9594,
        "lo": 0.9574,
@@ -3523,17 +3523,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2274
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9978,
         "cost_per_task": 2.9025
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.7344,
         "cost_per_task": 10.1581
        }
@@ -3541,13 +3541,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 3.9418,
       "lo": 3.7691,
       "hi": 4.1145,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": 0.029,
       "lo": -0.0081,
       "hi": 0.0661,
@@ -3558,22 +3558,22 @@
    {
     "V": 100,
     "stop_k": {
-     "elastico-seq": 32,
-     "elastico-mis": 32,
-     "oraculo-classe": {
-      "facil": 32,
-      "media": 32,
-      "acoplada": 32
+     "elastic-seq": 32,
+     "elastic-mis": 32,
+     "class-oracle": {
+      "easy": 32,
+      "medium": 32,
+      "coupled": 32
      },
-     "elastico-sonda": {
-      "sonda=facil": 32,
-      "sonda=media": 32,
-      "sonda=acoplada": 32
+     "elastic-probe": {
+      "probe=easy": 32,
+      "probe=medium": 32,
+      "probe=coupled": 32
      }
     },
-    "best_fixed": "fixo-5",
+    "best_fixed": "fixed-5",
     "summary": {
-     "fixo-1": {
+     "fixed-1": {
       "accept_rate": {
        "p": 0.6541,
        "lo": 0.6494,
@@ -3630,23 +3630,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.905,
         "cost_per_task": 1.1
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.5073,
         "cost_per_task": 1.1
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.1693,
         "cost_per_task": 1.1
        }
       ]
      },
-     "fixo-3": {
+     "fixed-3": {
       "accept_rate": {
        "p": 0.8345,
        "lo": 0.8308,
@@ -3703,23 +3703,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.996,
         "cost_per_task": 3.3
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.814,
         "cost_per_task": 3.3
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.3492,
         "cost_per_task": 3.3
        }
       ]
      },
-     "fixo-5": {
+     "fixed-5": {
       "accept_rate": {
        "p": 0.8845,
        "lo": 0.8814,
@@ -3776,23 +3776,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 0.9996,
         "cost_per_task": 5.5
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.906,
         "cost_per_task": 5.5
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.4545,
         "cost_per_task": 5.5
        }
       ]
      },
-     "fixo-9": {
+     "fixed-9": {
       "accept_rate": {
        "p": 0.9241,
        "lo": 0.9215,
@@ -3849,23 +3849,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 9.9
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9646,
         "cost_per_task": 9.9
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.5792,
         "cost_per_task": 9.9
        }
       ]
      },
-     "elastico-seq": {
+     "elastic-seq": {
       "accept_rate": {
        "p": 0.9747,
        "lo": 0.9731,
@@ -3922,23 +3922,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2289
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9974,
         "cost_per_task": 2.8821
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8379,
         "cost_per_task": 13.0565
        }
       ]
      },
-     "elastico-dobra": {
+     "elastic-doubling": {
       "accept_rate": {
        "p": 0.9739,
        "lo": 0.9723,
@@ -3995,23 +3995,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.3272
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9973,
         "cost_per_task": 3.7417
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8331,
         "cost_per_task": 15.4267
        }
       ]
      },
-     "elastico-mis": {
+     "elastic-mis": {
       "accept_rate": {
        "p": 0.9747,
        "lo": 0.9731,
@@ -4068,23 +4068,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2289
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9974,
         "cost_per_task": 2.8821
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8379,
         "cost_per_task": 13.0565
        }
       ]
      },
-     "elastico-sonda": {
+     "elastic-probe": {
       "accept_rate": {
        "p": 0.9747,
        "lo": 0.9731,
@@ -4141,23 +4141,23 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2789
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9974,
         "cost_per_task": 2.9321
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8379,
         "cost_per_task": 13.1065
        }
       ]
      },
-     "oraculo-classe": {
+     "class-oracle": {
       "accept_rate": {
        "p": 0.9747,
        "lo": 0.9731,
@@ -4214,17 +4214,17 @@
       },
       "by_class": [
        {
-        "class": "facil",
+        "class": "easy",
         "accept_rate": 1,
         "cost_per_task": 1.2289
        },
        {
-        "class": "media",
+        "class": "medium",
         "accept_rate": 0.9974,
         "cost_per_task": 2.8821
        },
        {
-        "class": "acoplada",
+        "class": "coupled",
         "accept_rate": 0.8379,
         "cost_per_task": 13.0565
        }
@@ -4232,13 +4232,13 @@
      }
     },
     "paired": {
-     "U:elastico-seq - melhor-fixo": {
+     "U:elastic-seq - best-fixed": {
       "mean": 5.937,
       "lo": 5.6471,
       "hi": 6.2268,
       "n": 40000
      },
-     "U:elastico-sonda - elastico-seq": {
+     "U:elastic-probe - elastic-seq": {
       "mean": -0.05,
       "lo": -0.05,
       "hi": -0.05,
@@ -4249,7 +4249,7 @@
   ],
   "transitions": [
    {
-    "class": "facil",
+    "class": "easy",
     "p": 0.9,
     "rho": 0.2,
     "V": [
@@ -4289,14 +4289,14 @@
      3
     ],
     "size": [
-     "nao-tentar",
-     "unico",
-     "unico",
-     "unico",
-     "unico",
-     "unico",
-     "unico",
-     "unico",
+     "do-not-attempt",
+     "single",
+     "single",
+     "single",
+     "single",
+     "single",
+     "single",
+     "single",
      "micro",
      "micro",
      "micro",
@@ -4326,7 +4326,7 @@
     ]
    },
    {
-    "class": "media",
+    "class": "medium",
     "p": 0.5,
     "rho": 0.3,
     "V": [
@@ -4366,12 +4366,12 @@
      9
     ],
     "size": [
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "unico",
-     "unico",
-     "unico",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "single",
+     "single",
+     "single",
      "micro",
      "micro",
      "micro",
@@ -4403,7 +4403,7 @@
     ]
    },
    {
-    "class": "acoplada",
+    "class": "coupled",
     "p": 0.15,
     "rho": 0.5,
     "V": [
@@ -4443,14 +4443,14 @@
      11
     ],
     "size": [
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "nao-tentar",
-     "unico",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "do-not-attempt",
+     "single",
      "micro",
      "micro",
      "micro",
@@ -4482,7 +4482,7 @@
   ],
   "sensitivity": {
    "reference_threshold_kim_2025": 0.45,
-   "note": "N fixo ótimo (exato) para uma classe isolada com acerto individual p; \"valor marginal do 2º agente\" = U(N=2)-U(N=1)",
+   "note": "optimal fixed N (exact) for a single isolated class with individual success probability p; \"marginal value of the 2nd agent\" = U(N=2)-U(N=1)",
    "ps": [
     0.05,
     0.1,
@@ -4975,42 +4975,42 @@
  "tests": [
   {
    "id": "P1",
-   "verdict": "nao-suporta",
-   "detail": "V=10: custo/aceita elástico 2,31 vs fixos 1,67/3,95/6,21/10,68 (mais barato que todos=false); aceite 88,5% vs fixo-3 83,5%; V=20: custo/aceita elástico 2,73 vs fixos 1,67/3,94/6,21/10,70 (mais barato que todos=false); aceite 93,1% vs fixo-3 83,7%"
+   "verdict": "not supported",
+   "detail": "V=10: cost/accepted elastic 2.31 vs fixed 1.67/3.95/6.21/10.68 (cheaper than all=false); acceptance 88.5% vs fixed-3 83.5%; V=20: cost/accepted elastic 2.73 vs fixed 1.67/3.94/6.21/10.70 (cheaper than all=false); acceptance 93.1% vs fixed-3 83.7%"
   },
   {
    "id": "P2",
-   "verdict": "suporta",
-   "detail": "V=2: ΔU vs fixo-1 0,00 [IC95% 0,00–0,00]; V=5: ΔU vs fixo-1 0,21 [IC95% 0,19–0,23]; V=10: ΔU vs fixo-1 1,08 [IC95% 1,04–1,12]; V=20: ΔU vs fixo-3 2,13 [IC95% 2,08–2,19]; V=50: ΔU vs fixo-3 3,94 [IC95% 3,77–4,11]; V=100: ΔU vs fixo-5 5,94 [IC95% 5,65–6,23]"
+   "verdict": "supported",
+   "detail": "V=2: ΔU vs fixed-1 0.00 [95% CI 0.00–0.00]; V=5: ΔU vs fixed-1 0.21 [95% CI 0.19–0.23]; V=10: ΔU vs fixed-1 1.08 [95% CI 1.04–1.12]; V=20: ΔU vs fixed-3 2.13 [95% CI 2.08–2.19]; V=50: ΔU vs fixed-3 3.94 [95% CI 3.77–4.11]; V=100: ΔU vs fixed-5 5.94 [95% CI 5.65–6.23]"
   },
   {
    "id": "P3",
-   "verdict": "suporta-parcialmente",
-   "detail": "fácil→1 (V>=5)=false; média→micro (V 10–50)=true; acoplada→0 (V<=5) e macro (V>=50)=false. N ótimo por V [1,1.5,2,3,4,5,7,10,15,20,30,50,70,100,150,200]: facil [0,1,1,1,1,1,1,1,2,2,2,2,2,3,3,3]; media [0,0,0,1,1,1,2,2,3,3,4,5,6,7,8,9]; acoplada [0,0,0,0,0,0,0,1,2,2,3,5,6,8,10,11]"
+   "verdict": "partially supported",
+   "detail": "easy→1 (V>=5)=false; medium→micro (V 10–50)=true; coupled→0 (V<=5) and macro (V>=50)=false. Optimal N by V [1,1.5,2,3,4,5,7,10,15,20,30,50,70,100,150,200]: easy [0,1,1,1,1,1,1,1,2,2,2,2,2,3,3,3]; medium [0,0,0,1,1,1,2,2,3,3,4,5,6,7,8,9]; coupled [0,0,0,0,0,0,0,1,2,2,3,5,6,8,10,11]"
   },
   {
    "id": "P4",
-   "verdict": "nao-suporta",
-   "detail": "V=20: mal especificado 3,63 [IC95% 3,56–3,70] vs calibrado 2,73 [IC95% 2,70–2,77]; V=50: mal especificado 3,69 [IC95% 3,62–3,76] vs calibrado 3,43 [IC95% 3,37–3,49]; V=100: mal especificado 3,69 [IC95% 3,61–3,76] vs calibrado 3,69 [IC95% 3,61–3,76]"
+   "verdict": "not supported",
+   "detail": "V=20: misspecified 3.63 [95% CI 3.56–3.70] vs calibrated 2.73 [95% CI 2.70–2.77]; V=50: misspecified 3.69 [95% CI 3.62–3.76] vs calibrated 3.43 [95% CI 3.37–3.49]; V=100: misspecified 3.69 [95% CI 3.61–3.76] vs calibrated 3.69 [95% CI 3.61–3.76]"
   },
   {
    "id": "P5",
-   "verdict": "nao-suporta",
-   "detail": "V=10: ΔU sonda−seq 0,072 [IC95% 0,053–0,091]; V=20: ΔU sonda−seq 0,063 [IC95% 0,038–0,089]; V=50: ΔU sonda−seq 0,029 [IC95% -0,008–0,066]; V=100: ΔU sonda−seq -0,050 [IC95% -0,050–-0,050]"
+   "verdict": "not supported",
+   "detail": "V=10: ΔU probe−seq 0.072 [95% CI 0.053–0.091]; V=20: ΔU probe−seq 0.063 [95% CI 0.038–0.089]; V=50: ΔU probe−seq 0.029 [95% CI -0.008–0.066]; V=100: ΔU probe−seq -0.050 [95% CI -0.050–-0.050]"
   },
   {
    "id": "P6",
-   "verdict": "suporta",
-   "detail": "V=10: rodadas 1,34 vs 1,86; custo/aceita 2,22 vs 2,31; V=20: rodadas 1,51 vs 2,31; custo/aceita 2,82 vs 2,73; V=50: rodadas 1,60 vs 3,01; custo/aceita 3,58 vs 3,43; V=100: rodadas 1,65 vs 3,27; custo/aceita 4,42 vs 3,69"
+   "verdict": "supported",
+   "detail": "V=10: rounds 1.34 vs 1.86; cost/accepted 2.22 vs 2.31; V=20: rounds 1.51 vs 2.31; cost/accepted 2.82 vs 2.73; V=50: rounds 1.60 vs 3.01; cost/accepted 3.58 vs 3.43; V=100: rounds 1.65 vs 3.27; cost/accepted 4.42 vs 3.69"
   }
  ],
  "headline": [
-  "V=20 fixo-1: aceite 65,8% [IC95% 65,3%–66,2%], custo/aceita 1,67 [IC95% 1,66–1,68], utilidade 11,78 [IC95% 11,69–11,88], agentes 1,00",
-  "V=20 fixo-3: aceite 83,7% [IC95% 83,3%–84,0%], custo/aceita 3,94 [IC95% 3,93–3,96], utilidade 12,81 [IC95% 12,72–12,89], agentes 3,00",
-  "V=20 fixo-9: aceite 92,5% [IC95% 92,2%–92,8%], custo/aceita 10,70 [IC95% 10,67–10,73], utilidade 7,53 [IC95% 7,45–7,61], agentes 9,00",
-  "V=20 elastico-seq: aceite 93,1% [IC95% 92,8%–93,3%], custo/aceita 2,73 [IC95% 2,70–2,77], utilidade 14,94 [IC95% 14,84–15,04], agentes 2,31",
-  "V=20 elastico-sonda: aceite 92,9% [IC95% 92,6%–93,1%], custo/aceita 2,68 [IC95% 2,65–2,72], utilidade 15,00 [IC95% 14,91–15,10], agentes 2,22",
-  "V=20 oraculo-classe: aceite 91,8% [IC95% 91,5%–92,0%], custo/aceita 2,43 [IC95% 2,40–2,46], utilidade 15,18 [IC95% 15,09–15,27], agentes 2,03",
-  "Transições (N fixo ótimo): fácil 0,1,1,1,1,1,1,1,2,2,2,2,2,3,3,3; média 0,0,0,1,1,1,2,2,3,3,4,5,6,7,8,9; acoplada 0,0,0,0,0,0,0,1,2,2,3,5,6,8,10,11 para V=1,1.5,2,3,4,5,7,10,15,20,30,50,70,100,150,200"
+  "V=20 fixed-1: acceptance 65.8% [95% CI 65.3%–66.2%], cost/accepted 1.67 [95% CI 1.66–1.68], utility 11.78 [95% CI 11.69–11.88], agents 1.00",
+  "V=20 fixed-3: acceptance 83.7% [95% CI 83.3%–84.0%], cost/accepted 3.94 [95% CI 3.93–3.96], utility 12.81 [95% CI 12.72–12.89], agents 3.00",
+  "V=20 fixed-9: acceptance 92.5% [95% CI 92.2%–92.8%], cost/accepted 10.70 [95% CI 10.67–10.73], utility 7.53 [95% CI 7.45–7.61], agents 9.00",
+  "V=20 elastic-seq: acceptance 93.1% [95% CI 92.8%–93.3%], cost/accepted 2.73 [95% CI 2.70–2.77], utility 14.94 [95% CI 14.84–15.04], agents 2.31",
+  "V=20 elastic-probe: acceptance 92.9% [95% CI 92.6%–93.1%], cost/accepted 2.68 [95% CI 2.65–2.72], utility 15.00 [95% CI 14.91–15.10], agents 2.22",
+  "V=20 class-oracle: acceptance 91.8% [95% CI 91.5%–92.0%], cost/accepted 2.43 [95% CI 2.40–2.46], utility 15.18 [95% CI 15.09–15.27], agents 2.03",
+  "Transitions (optimal fixed N): easy 0,1,1,1,1,1,1,1,2,2,2,2,2,3,3,3; medium 0,0,0,1,1,1,2,2,3,3,4,5,6,7,8,9; coupled 0,0,0,0,0,0,0,1,2,2,3,5,6,8,10,11 for V=1,1.5,2,3,4,5,7,10,15,20,30,50,70,100,150,200"
  ]
 }

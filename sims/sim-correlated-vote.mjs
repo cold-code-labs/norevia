@@ -1,43 +1,44 @@
-// sim-voto-correlacionado — 1 agente de esforço alto vs voto majoritário de N agentes de esforço baixo
-// com erros correlacionados por um fator latente compartilhado (cópula gaussiana).
-// Uso: node sims/sim-voto-correlacionado.mjs   (determinístico; grava results/sims/sim-voto-correlacionado.json)
-import { Rng, hashSeed, BASE_SEED, normInv, normCdf, latentGrid, condP, prop, wilson, Z95, roundDeep, pct, ciPct, num, mainIfDirect } from './lib.mjs';
+// sim-correlated-vote — 1 high-effort agent vs majority vote of N low-effort agents
+// with errors correlated through a shared latent factor (Gaussian copula).
+// Usage: node sims/sim-correlated-vote.mjs   (deterministic; writes results/sims/sim-correlated-vote.json)
+import { Rng, hashSeed, seedKey, BASE_SEED, normInv, normCdf, latentGrid, condP, prop, wilson, Z95, roundDeep, pct, ciPct, num, mainIfDirect } from './lib.mjs';
 
-export const ID = 'sim-voto-correlacionado';
+export const ID = 'sim-correlated-vote';
 export const VERSION = '1.2.0';
+const SEED_ID = seedKey(ID); // frozen seed key (see FROZEN_SEED_KEYS in lib.mjs)
 
-// Hipótese registrada ANTES da primeira execução (ver results/sims/PREREGISTRO.jsonl).
+// Hypothesis registered BEFORE the first run (see results/sims/PREREGISTRATION.jsonl).
 export const HYPOTHESIS = {
-  statement: 'Erros correlacionados impõem um teto à acurácia do voto majoritário; acima de uma correlação crítica, 1 agente de esforço alto vence qualquer N de agentes de esforço baixo em acurácia, e o custo para atingir um alvo de acurácia favorece o agente único quando o retorno ao esforço não é muito decrescente.',
+  statement: 'Correlated errors impose a ceiling on majority-vote accuracy; above a critical correlation, 1 high-effort agent beats any N of low-effort agents in accuracy, and the cost of reaching an accuracy target favours the single agent when returns to effort are not strongly diminishing.',
   predictions: [
-    { id: 'P1', text: 'Com p_L=0,6 e p_H=0,8 (k=4, beta=0,5), o teto teórico do voto é Phi(z_L/sqrt(rho)); a correlação crítica prevista é rho_c=(z_L/z_H)^2 ~= 0,091. Para todo rho >= 0,1, o agente único tem acurácia maior que o voto para TODO N em 1..64 (IC95% pareado exclui 0).' },
-    { id: 'P2', text: 'Com rho=0 existe N <= 25 em que o voto supera p_H=0,8 com IC95% pareado excluindo 0.' },
-    { id: 'P3', text: 'A orçamento igual (N=k agentes baixos vs 1 agente com esforço k), a região em que o voto vence encolhe quando rho cresce e quando beta (retorno ao esforço) cresce; com beta=1 o agente único vence para todo k>=3 e todo rho.' },
-    { id: 'P4', text: 'Custo mínimo para atingir alvos de acurácia 0,7/0,8/0,9: com beta>=0,5 o agente único é mais barato para todo rho; com beta=0,25 o voto só é mais barato para alvos altos (>=0,9) e rho baixo (<=0,1).' },
+    { id: 'P1', text: 'With p_L=0.6 and p_H=0.8 (k=4, beta=0.5), the theoretical vote ceiling is Phi(z_L/sqrt(rho)); the predicted critical correlation is rho_c=(z_L/z_H)^2 ~= 0.091. For every rho >= 0.1, the single agent has higher accuracy than the vote for EVERY N in 1..64 (paired 95% CI excludes 0).' },
+    { id: 'P2', text: 'With rho=0 there is an N <= 25 at which the vote beats p_H=0.8 with a paired 95% CI excluding 0.' },
+    { id: 'P3', text: 'At equal budget (N=k low-effort agents vs 1 agent with effort k), the region where the vote wins shrinks as rho grows and as beta (return to effort) grows; with beta=1 the single agent wins for every k>=3 and every rho.' },
+    { id: 'P4', text: 'Minimum cost to reach accuracy targets 0.7/0.8/0.9: with beta>=0.5 the single agent is cheaper for every rho; with beta=0.25 the vote is cheaper only for high targets (>=0.9) and low rho (<=0.1).' },
   ],
 };
 
 export const PARAMS = {
   seed: BASE_SEED,
-  err1: 0.4,                 // erro com esforço 1 (p_L = 0,6)
+  err1: 0.4,                 // error at effort 1 (p_L = 0.6)
   effort_model: 'p(e) = 1 - err1 * e^(-beta)',
   betas: [0.25, 0.5, 1.0],
-  rhos: [0, 0.025, 0.05, 0.075, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8], // v1.1: 0,025–0,075 adicionados após a 1ª execução (exploratório, refinar a fronteira)
+  rhos: [0, 0.025, 0.05, 0.075, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8], // v1.1: 0.025–0.075 added after the 1st run (exploratory, to refine the boundary)
   Nmax: 64,
-  replicas_per_rho: 20000,   // tarefas simuladas por valor de rho (números aleatórios comuns entre N, k, beta)
-  ref: { k: 4, beta: 0.5 },  // agente de esforço alto de referência: custo 4, p_H = 0,8
+  replicas_per_rho: 20000,   // simulated tasks per rho value (common random numbers across N, k, beta)
+  ref: { k: 4, beta: 0.5 },  // reference high-effort agent: cost 4, p_H = 0.8
   targets: [0.7, 0.8, 0.9],
-  answer_space: 'binário (pior caso para voto: todos os erros coincidem); empates decididos por moeda',
-  cost_model: 'custo = soma dos esforços (agente baixo = 1; agente alto = k); sem custo de agregação',
+  answer_space: 'binary (worst case for voting: all errors coincide); ties broken by a coin flip',
+  cost_model: 'cost = sum of efforts (low-effort agent = 1; high-effort agent = k); no aggregation cost',
 };
 
-// ---- v1.2.0: ANÁLISE DE SENSIBILIDADE (pedido da coordenação; não altera P1–P4) ----
-// Varre a acurácia individual p e o espaço de respostas. Para K=4, quando erra, o agente escolhe a resposta-atratora
-// da tarefa com prob. a (senão uniforme entre as 3 erradas). a=0,63 dá concordância ~0,6 entre dois agentes que erram,
-// calibração vinda de lit-correlated-errors (relato dos autores, ~0,6 vs 1/3 ao acaso). Compara-se com o limiar de ~45%
-// relatado por Kim et al. (arXiv:2512.08296v3, lit-scaling-agent-systems) — outro cenário (benchmarks agênticos, arquiteturas MAS).
+// ---- v1.2.0: SENSITIVITY ANALYSIS (requested by coordination; does not change P1–P4) ----
+// Sweeps individual accuracy p and the answer space. For K=4, when wrong, an agent picks the task's attractor answer
+// with prob. a (otherwise uniform over the 3 wrong answers). a=0.63 gives ~0.6 agreement between two agents that are both wrong,
+// calibrated from lit-correlated-errors (author-reported, ~0.6 vs 1/3 by chance). Compared with the ~45% threshold
+// reported by Kim et al. (arXiv:2512.08296v3, lit-scaling-agent-systems) — a different setting (agentic benchmarks, MAS architectures).
 export const SENSITIVITY = {
-  expectation: 'Expectativa declarada antes de rodar (não é previsão formal): no voto binário o ganho do voto sobre 1 agente de mesma p some em p=0,5 por construção; com K=4 e erros atraídos o limiar cai abaixo de 0,5; a orçamento igual (vs 1 agente com esforço N) o ganho some para p bem menores ou nunca existe com rho alto.',
+  expectation: 'Expectation stated before running (not a formal prediction): in the binary vote the gain of the vote over 1 agent with the same p vanishes at p=0.5 by construction; with K=4 and attracted errors the threshold falls below 0.5; at equal budget (vs 1 agent with effort N) the gain vanishes at much lower p, or never exists with high rho.',
   ps: [0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9],
   rhos: [0, 0.2, 0.4, 0.55, 0.7],
   answer_spaces: [{ K: 2, attractor: 1 }, { K: 4, attractor: 0.63 }],
@@ -49,7 +50,7 @@ function runSensitivity() {
   for (const as of S.answer_spaces) for (const rho of S.rhos) {
     const rows = { K: as.K, attractor: as.attractor, rho, Ns: S.Ns, ps: S.ps, gain_same_p: S.Ns.map(() => []), gain_same_p_lo: S.Ns.map(() => []), gain_same_p_hi: S.Ns.map(() => []), gain_equal_budget: S.Ns.map(() => []), gain_equal_budget_lo: S.Ns.map(() => []), gain_equal_budget_hi: S.Ns.map(() => []) };
     for (const p of S.ps) {
-      const rng = new Rng(hashSeed(BASE_SEED, ID, 'sens', as.K, rho, p));
+      const rng = new Rng(hashSeed(BASE_SEED, SEED_ID, 'sens', as.K, rho, p));
       const zp = normInv(p), sr = Math.sqrt(rho), se = Math.sqrt(1 - rho);
       const zH = S.Ns.map((N) => normInv(1 - (1 - p) * Math.pow(N, -S.beta_equal_budget)));
       const acc = S.Ns.map(() => ({ s1: 0, q1: 0, s2: 0, q2: 0 }));
@@ -75,7 +76,7 @@ function runSensitivity() {
         rows.gain_equal_budget[j].push(w2.diff); rows.gain_equal_budget_lo[j].push(w2.lo); rows.gain_equal_budget_hi[j].push(w2.hi);
       });
     }
-    // limiar: menor p da grade a partir do qual o ganho é significativamente > 0 em todos os p maiores (null = nunca)
+    // threshold: smallest p on the grid from which the gain is significantly > 0 for every larger p (null = never)
     const thr = (lo) => { let th = null; for (let i = S.ps.length - 1; i >= 0; i--) { if (lo[i] > 0) th = S.ps[i]; else break; } return th; };
     rows.min_p_vote_beats_same_p = S.Ns.map((_, j) => thr(rows.gain_same_p_lo[j]));
     rows.p_range_vote_beats_equal_budget = S.Ns.map((_, j) => S.ps.filter((_, i) => rows.gain_equal_budget_lo[j][i] > 0));
@@ -86,7 +87,7 @@ function runSensitivity() {
 
 const pOf = (e, beta) => 1 - PARAMS.err1 * Math.pow(e, -beta);
 
-// ---- analítico: acurácia do voto integrando o fator latente ----
+// ---- analytical: vote accuracy integrating over the latent factor ----
 const LOGF = (() => { const a = new Float64Array(200); for (let i = 1; i < 200; i++) a[i] = a[i - 1] + Math.log(i); return a; })();
 function voteGivenQ(N, q) {
   if (q <= 0) return 0; if (q >= 1) return 1;
@@ -104,9 +105,9 @@ export function analyticVote(N, p, rho) {
   return s;
 }
 
-function winner(sum, sumsq, n) { // diferença pareada (voto - único)
+function winner(sum, sumsq, n) { // paired difference (vote - single)
   const m = sum / n, v = (sumsq / n - m * m) * n / (n - 1), hw = Z95 * Math.sqrt(v / n);
-  return { diff: m, lo: m - hw, hi: m + hw, winner: m - hw > 0 ? 'voto' : (m + hw < 0 ? 'unico' : 'empate') };
+  return { diff: m, lo: m - hw, hi: m + hw, winner: m - hw > 0 ? 'vote' : (m + hw < 0 ? 'single' : 'tie') };
 }
 
 export function run() {
@@ -122,7 +123,7 @@ export function run() {
   let covered = 0, cells = 0, maxAbs = 0;
 
   for (const rho of rhos) {
-    const rng = new Rng(hashSeed(BASE_SEED, ID, 'rho', rho));
+    const rng = new Rng(hashSeed(BASE_SEED, SEED_ID, 'rho', rho));
     const sr = Math.sqrt(rho), se = Math.sqrt(1 - rho);
     const corr = new Float64Array(Nmax + 1);
     const dRefS = new Float64Array(Nmax + 1), dRefQ = new Float64Array(Nmax + 1);
@@ -140,7 +141,7 @@ export function run() {
         if (2 * c > i) v = 1; else if (2 * c === i) v = rng.uniform() < 0.5 ? 1 : 0; else v = 0;
         voteOK[i] = v; corr[i] += v;
       }
-      const zh = sr * S + se * rng.normal(); // latente do agente de esforço alto (mesma tarefa)
+      const zh = sr * S + se * rng.normal(); // latent of the high-effort agent (same task)
       const refOK = zh < zRef ? 1 : 0; refCorrect += refOK;
       for (let N = 1; N <= Nmax; N++) { const d = voteOK[N] - refOK; dRefS[N] += d; dRefQ[N] += d * d; }
       for (let b = 0; b < betas.length; b++) for (let k = 1; k <= Nmax; k++) {
@@ -159,7 +160,7 @@ export function run() {
     cpcVote.push(cp); cpcVoteLo.push(cplo); cpcVoteHi.push(cphi); phaseAcc.push(ph); phaseAccDiff.push(phd);
     const sp = prop(refCorrect, R);
     singleRef.push({ rho, acc: sp.p, lo: sp.lo, hi: sp.hi, cost_per_correct: PARAMS.ref.k / sp.p, cpc_lo: PARAMS.ref.k / sp.hi, cpc_hi: PARAMS.ref.k / sp.lo });
-    // correlação phi entre erros de dois agentes baixos (mapeia rho latente -> correlação de erros observável)
+    // phi correlation between the errors of two low-effort agents (maps latent rho -> observable error correlation)
     const pw1 = w1 / R, pw2 = w2 / R, pw12 = w12 / R;
     errCorr.push((pw12 - pw1 * pw2) / Math.sqrt(pw1 * (1 - pw1) * pw2 * (1 - pw2)));
     for (let b = 0; b < betas.length; b++) {
@@ -169,7 +170,7 @@ export function run() {
     }
   }
 
-  // ---- custo mínimo para atingir alvos (analítico, esforço contínuo para o agente único) ----
+  // ---- minimum cost to reach targets (analytical, continuous effort for the single agent) ----
   const targetCost = [];
   for (const A of PARAMS.targets) for (const beta of betas) {
     const eStar = Math.pow(err1 / (1 - A), 1 / beta);
@@ -177,7 +178,7 @@ export function run() {
     for (const rho of rhos) {
       let nStar = null; for (let N = 1; N <= Nmax; N++) if (analyticVote(N, pL, rho) >= A) { nStar = N; break; }
       row.vote_min_N.push(nStar);
-      row.cheaper.push(nStar === null ? 'unico' : (nStar < eStar ? 'voto' : (nStar > eStar ? 'unico' : 'empate')));
+      row.cheaper.push(nStar === null ? 'single' : (nStar < eStar ? 'vote' : (nStar > eStar ? 'single' : 'tie')));
     }
     targetCost.push(row);
   }
@@ -194,49 +195,49 @@ export function run() {
     target_cost: targetCost };
   out.validation = { analytic_inside_mc_ci_fraction: covered / cells, cells, max_abs_diff_mc_vs_analytic: maxAbs, rho_critical_analytic: rhoC };
 
-  // ---- avaliação das previsões ----
+  // ---- evaluation of the predictions ----
   const iR = (rho) => PARAMS.rhos.indexOf(rho);
-  const p1ok = PARAMS.rhos.filter((x) => x >= 0.1).every((rho) => phaseAcc[iR(rho)].every((w) => w === 'unico'));
-  const p1fail = PARAMS.rhos.filter((x) => x >= 0.1).flatMap((rho) => phaseAcc[iR(rho)].map((w, j) => (w !== 'unico' ? `rho=${rho},N=${j + 1}:${w}` : null)).filter(Boolean));
-  const firstWin0 = phaseAcc[0].findIndex((w) => w === 'voto') + 1;
+  const p1ok = PARAMS.rhos.filter((x) => x >= 0.1).every((rho) => phaseAcc[iR(rho)].every((w) => w === 'single'));
+  const p1fail = PARAMS.rhos.filter((x) => x >= 0.1).flatMap((rho) => phaseAcc[iR(rho)].map((w, j) => (w !== 'single' ? `rho=${rho},N=${j + 1}:${w}` : null)).filter(Boolean));
+  const firstWin0 = phaseAcc[0].findIndex((w) => w === 'vote') + 1;
   const p2ok = firstWin0 > 0 && firstWin0 <= 25;
-  // P3: contagem de células com vitória do voto por beta e por rho
-  const eqVoteCells = betas.map((b, i) => PARAMS.rhos.map((rho, j) => phaseEq[i][j].filter((w) => w === 'voto').length));
+  // P3: number of cells where the vote wins, by beta and by rho
+  const eqVoteCells = betas.map((b, i) => PARAMS.rhos.map((rho, j) => phaseEq[i][j].filter((w) => w === 'vote').length));
   const monoRho = eqVoteCells.every((arr) => arr.every((v, j) => j === 0 || v <= arr[j - 1]));
   const monoBeta = PARAMS.rhos.every((_, j) => eqVoteCells.every((arr, i) => i === 0 || arr[j] <= eqVoteCells[i - 1][j]));
   const b1 = betas.indexOf(1.0);
-  const beta1All = phaseEq[b1].every((row) => row.slice(2).every((w) => w === 'unico'));
+  const beta1All = phaseEq[b1].every((row) => row.slice(2).every((w) => w === 'single'));
   const p3ok = monoRho && monoBeta && beta1All;
   // P4
   const p4rows = targetCost.filter((t) => t.beta >= 0.5);
-  const p4a = p4rows.every((t) => t.cheaper.every((c) => c === 'unico'));
+  const p4a = p4rows.every((t) => t.cheaper.every((c) => c === 'single'));
   const b025 = targetCost.filter((t) => t.beta === 0.25);
-  const p4b = b025.every((t) => t.cheaper.every((c, j) => c !== 'voto' || (t.target >= 0.9 && PARAMS.rhos[j] <= 0.1)));
+  const p4b = b025.every((t) => t.cheaper.every((c, j) => c !== 'vote' || (t.target >= 0.9 && PARAMS.rhos[j] <= 0.1)));
   const p4ok = p4a && p4b;
 
   const tests = [
-    { id: 'P1', verdict: p1ok ? 'suporta' : 'nao-suporta', detail: p1ok ? `rho_c analítico = ${num(rhoC, 3)}; para todo rho>=0,1 e N=1..64 o único vence com IC95% pareado` : `exceções: ${p1fail.slice(0, 12).join('; ')}${p1fail.length > 12 ? ' …' : ''}` },
-    { id: 'P2', verdict: p2ok ? 'suporta' : 'nao-suporta', detail: `com rho=0 o voto supera p_H=0,8 (IC pareado) a partir de N=${firstWin0 || 'nunca'}` },
-    { id: 'P3', verdict: p3ok ? 'suporta' : 'nao-suporta', detail: `nº de k (1..64) com vitória do voto por beta (linhas) e rho (colunas): ${JSON.stringify(eqVoteCells)}; monótono em rho=${monoRho}, em beta=${monoBeta}; beta=1 único vence k>=3 em todo rho=${beta1All}` },
-    { id: 'P4', verdict: p4ok ? 'suporta' : 'nao-suporta', detail: `beta>=0,5 único sempre mais barato=${p4a}; beta=0,25 voto mais barato só em alvo>=0,9 e rho<=0,1=${p4b}` },
+    { id: 'P1', verdict: p1ok ? 'supported' : 'not supported', detail: p1ok ? `analytical rho_c = ${num(rhoC, 3)}; for every rho>=0.1 and N=1..64 the single agent wins with paired 95% CI` : `exceptions: ${p1fail.slice(0, 12).join('; ')}${p1fail.length > 12 ? ' …' : ''}` },
+    { id: 'P2', verdict: p2ok ? 'supported' : 'not supported', detail: `with rho=0 the vote beats p_H=0.8 (paired CI) from N=${firstWin0 || 'never'}` },
+    { id: 'P3', verdict: p3ok ? 'supported' : 'not supported', detail: `number of k (1..64) where the vote wins, by beta (rows) and rho (columns): ${JSON.stringify(eqVoteCells)}; monotone in rho=${monoRho}, in beta=${monoBeta}; beta=1 single agent wins k>=3 for every rho=${beta1All}` },
+    { id: 'P4', verdict: p4ok ? 'supported' : 'not supported', detail: `beta>=0.5 single agent always cheaper=${p4a}; beta=0.25 vote cheaper only at target>=0.9 and rho<=0.1=${p4b}` },
   ];
 
   const j0 = 0, j3 = iR(0.3), j6 = iR(0.6);
   const n64 = (j) => ({ p: accVote[j][63], lo: accVoteLo[j][63], hi: accVoteHi[j][63] });
   const headline = [
-    `Teto teórico do voto (N→∞) com p_L=0,6: ${pct(ceiling[j3])} em rho=0,3 e ${pct(ceiling[j6])} em rho=0,6; rho crítico vs p_H=0,8: ${num(rhoC, 3)}`,
-    `Voto N=64: ${ciPct(n64(j0))} (rho=0); ${ciPct(n64(j3))} (rho=0,3); ${ciPct(n64(j6))} (rho=0,6)`,
-    `Agente único (k=4, p=0,8) em rho=0,3: ${ciPct({ p: singleRef[j3].acc, lo: singleRef[j3].lo, hi: singleRef[j3].hi })}`,
-    `Com rho=0 o voto supera o agente único (k=4) a partir de N=${firstWin0}`,
-    `Validação MC×analítico: ${pct(covered / cells)} das ${cells} células com valor analítico dentro do IC95%; erro máx. ${num(maxAbs * 100, 2)} p.p.`,
+    `Theoretical vote ceiling (N→∞) with p_L=0.6: ${pct(ceiling[j3])} at rho=0.3 and ${pct(ceiling[j6])} at rho=0.6; critical rho vs p_H=0.8: ${num(rhoC, 3)}`,
+    `Vote N=64: ${ciPct(n64(j0))} (rho=0); ${ciPct(n64(j3))} (rho=0.3); ${ciPct(n64(j6))} (rho=0.6)`,
+    `Single agent (k=4, p=0.8) at rho=0.3: ${ciPct({ p: singleRef[j3].acc, lo: singleRef[j3].lo, hi: singleRef[j3].hi })}`,
+    `With rho=0 the vote beats the single agent (k=4) from N=${firstWin0}`,
+    `MC vs analytical validation: ${pct(covered / cells)} of the ${cells} cells with the analytical value inside the 95% CI; max. error ${num(maxAbs * 100, 2)} p.p.`,
   ];
 
   out.sensitivity = { design: SENSITIVITY, cells: runSensitivity() };
   const sc = (K, rho) => out.sensitivity.cells.find((c) => c.K === K && c.rho === rho);
-  const fmtP = (x) => (x === null ? 'nunca' : num(x, 2));
-  headline.push(`Sensibilidade (K=4, concordância de erros ~0,6): voto N=5 supera 1 agente de mesma p a partir de p=${fmtP(sc(4, 0).min_p_vote_beats_same_p[1])} (rho=0), ${fmtP(sc(4, 0.4).min_p_vote_beats_same_p[1])} (rho=0,4), ${fmtP(sc(4, 0.7).min_p_vote_beats_same_p[1])} (rho=0,7)`);
-  headline.push(`Sensibilidade a orçamento igual (N=5 vs 1 agente com esforço 5, beta=0,5): faixas de p em que o voto vence — K=2 rho=0: [${sc(2, 0).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]; K=4 rho=0: [${sc(4, 0).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]; K=4 rho=0,4: [${sc(4, 0.4).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]`);
-  return roundDeep({ id: ID, version: VERSION, title: 'Voto correlacionado: 1 agente de esforço alto vs N agentes de esforço baixo', seed: BASE_SEED,
+  const fmtP = (x) => (x === null ? 'never' : num(x, 2));
+  headline.push(`Sensitivity (K=4, error agreement ~0.6): vote N=5 beats 1 agent with the same p from p=${fmtP(sc(4, 0).min_p_vote_beats_same_p[1])} (rho=0), ${fmtP(sc(4, 0.4).min_p_vote_beats_same_p[1])} (rho=0.4), ${fmtP(sc(4, 0.7).min_p_vote_beats_same_p[1])} (rho=0.7)`);
+  headline.push(`Sensitivity at equal budget (N=5 vs 1 agent with effort 5, beta=0.5): p ranges where the vote wins — K=2 rho=0: [${sc(2, 0).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]; K=4 rho=0: [${sc(4, 0).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]; K=4 rho=0.4: [${sc(4, 0.4).p_range_vote_beats_equal_budget[1].map((x) => num(x, 2)).join(' ')}]`);
+  return roundDeep({ id: ID, version: VERSION, title: 'Correlated vote: 1 high-effort agent vs N low-effort agents', seed: BASE_SEED,
     hypothesis: HYPOTHESIS, params: PARAMS, results: out, tests, headline }, 5);
 }
 
