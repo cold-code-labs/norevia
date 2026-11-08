@@ -348,7 +348,7 @@
 
   // top bar switches to its dark variant over the pinned stages (solid-on-scroll lives in unfold.js)
   const bar = document.querySelector('.bar');
-  const darkSec = document.querySelector('[data-stages]');
-  const onScroll = () => { if (darkSec) { const r = darkSec.getBoundingClientRect(); bar.classList.toggle('dark', r.top <= 34 && r.bottom >= 34); } };
+  const darkSecs = [...document.querySelectorAll('[data-stages], .realm-beyond')];
+  const onScroll = () => bar.classList.toggle('dark', darkSecs.some((d) => { const r = d.getBoundingClientRect(); return r.top <= 34 && r.bottom >= 34; }));
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 })();

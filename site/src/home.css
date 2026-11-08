@@ -205,3 +205,89 @@ section { position: relative; }
 .slime-foot a { color: var(--ink2); text-decoration: none; border-bottom: 1px solid var(--line2); }
 .slime-foot a:hover { color: var(--ink); border-color: var(--ink); }
 @media (max-width: 860px) { .slime-head { grid-template-columns: 1fr; } }
+
+/* ---------------------------------------------------------------- Unseen · Seen · Beyond */
+.realms { padding-bottom: 0; }
+.realms-head { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 4rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.realms-head { grid-template-columns: 1.15fr 1fr; }
+.realms-head h2 { margin: 0; font-size: clamp(2.4rem, 4.2vw, 3.8rem); }
+@media (min-width: 981px) { .realms-head h2 { white-space: nowrap; } }
+.realm-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
+.realm-tabs a { display: inline-flex; align-items: center; gap: .55rem; padding: .45rem .85rem; border: 1px solid var(--line2); border-radius: 999px; text-decoration: none; font: 500 .9rem/1 var(--sans); color: var(--ink); transition: border-color .25s, background .25s; }
+.realm-tabs a:hover { border-color: var(--ink); background: var(--card); }
+.realm-tabs span, .realm-tabs b { font: 500 .68rem/1 var(--mono); letter-spacing: .08em; color: var(--muted); }
+.realm-tabs b { padding: .2rem .4rem; border-radius: 999px; background: var(--paper2); }
+.realm { padding: clamp(4rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--line); }
+.realm-in { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.realm-side { position: sticky; top: calc(var(--bar-h) + 2rem); }
+.realm-n { font: 500 .72rem/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; }
+.realm-name { font-size: clamp(3.2rem, 7vw, 6rem); line-height: .9; letter-spacing: -0.03em; margin: 0 0 1.2rem; font-weight: 520; font-style: italic; }
+.realm-lead { color: var(--ink2); margin: 0 0 2rem; max-width: 26em; }
+.plate { width: min(100%, 340px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; position: relative; }
+.plate svg { width: 100%; height: 100%; }
+.plate-seen { border-radius: var(--r); aspect-ratio: 16 / 10; background: var(--paper2); width: min(100%, 380px); }
+.realm-flag { display: inline-block; margin: 1.4rem 0 0; font: 500 .68rem/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(244, 243, 238, .7); border: 1px dashed rgba(244, 243, 238, .35); padding: .4rem .7rem; border-radius: 999px; }
+.specs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.spec { background: var(--paper); box-shadow: 0 0 0 .5px var(--line); padding: 1.4rem 1.5rem 1.3rem; display: flex; flex-direction: column; gap: .5rem; transition: background .3s; }
+.spec:hover { background: var(--card); }
+.spec h4 { font-family: var(--display); font-variation-settings: var(--display-axes); font-weight: 580; font-size: 1.28rem; letter-spacing: -0.01em; margin: 0; }
+.spec p { margin: 0; color: var(--ink2); font-size: .95rem; line-height: 1.5; }
+.spec .for { color: var(--ink); font-size: .92rem; }
+.spec .for span { color: var(--accent); font-family: var(--mono); }
+.sp-tag { margin-top: auto; padding-top: .5rem; font: 500 .66rem/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--muted); }
+a.sp-tag.arc { color: var(--accent); }
+a.sp-tag.pub { color: var(--honey); }
+a.sp-tag:hover { text-decoration: underline; }
+.spec.teams { grid-column: 1 / -1; flex-direction: row; gap: 1.4rem; align-items: center; background: var(--card); }
+.spec.teams > div { display: flex; flex-direction: column; gap: .5rem; }
+.pack { width: 84px; height: 84px; flex: none; }
+.pack .ring { fill: none; stroke: var(--ink); stroke-opacity: .2; stroke-dasharray: 2 4; }
+.pack .circle circle { fill: var(--ink); }
+.pack .circle { transform-origin: 60px 60px; animation: spin 14s linear infinite; }
+.pack .prey { fill: var(--honey); }
+/* plates */
+.plate-unseen .lens-bg { fill: #eef0e8; }
+.plate-unseen .lens-rim { fill: none; stroke: var(--ink); stroke-opacity: .5; stroke-width: 2; }
+.plate-unseen .tick { stroke: var(--ink); stroke-opacity: .4; }
+.plate-unseen .bug rect { fill: var(--accent); fill-opacity: .75; }
+.plate-unseen .bug { animation: drift 7s ease-in-out infinite alternate; animation-delay: var(--t); }
+@keyframes drift { to { transform: translate(var(--dx), var(--dy)); } }
+.plate-unseen .cell .mem { fill: rgba(201, 138, 0, .12); stroke: var(--honey); stroke-opacity: .6; }
+.plate-unseen .cell .nuc { fill: var(--honey); fill-opacity: .45; }
+.plate-unseen .cell { transform-box: fill-box; transform-origin: center; animation: breathe 5s var(--ease) infinite; animation-delay: var(--t); }
+/* Beyond: a night band */
+.realm-beyond { background: var(--ink); color: var(--paper); border-top: 0; }
+.realm-beyond .realm-lead { color: rgba(244, 243, 238, .72); }
+.realm-beyond .realm-n { color: var(--accent-on-dark); }
+.realm-beyond .specs { border-color: rgba(244, 243, 238, .12); }
+.realm-beyond .spec { background: var(--ink); box-shadow: 0 0 0 .5px rgba(244, 243, 238, .12); }
+.realm-beyond .spec:hover { background: #171b1a; }
+.realm-beyond .spec p { color: rgba(244, 243, 238, .7); }
+.realm-beyond .spec .for { color: var(--paper); }
+.realm-beyond .spec .for span, .realm-beyond a.sp-tag.arc { color: var(--accent-on-dark); }
+.realm-beyond .sp-tag { color: rgba(244, 243, 238, .45); }
+.plate-beyond { background: radial-gradient(circle at 50% 45%, #1b2422, #0b0e0d 70%); box-shadow: inset 0 0 0 1px rgba(244, 243, 238, .12); }
+.plate-beyond .st { fill: #f4f3ee; animation: twinkle 3.6s ease-in-out infinite; animation-delay: var(--t); }
+@keyframes twinkle { 50% { opacity: .2; } }
+.plate-beyond .fil { fill: none; stroke: var(--accent-on-dark); stroke-opacity: .35; stroke-width: 1.4; }
+.plate-beyond .gal { fill: #f4f3ee; fill-opacity: .9; }
+.plate-beyond .gal.hot { fill: #e7c46a; }
+/* crossings */
+.crossings { padding-top: clamp(4rem, 8vw, 6.5rem); padding-bottom: clamp(5rem, 10vw, 8rem); }
+.cross-h { font-size: clamp(1.8rem, 3.6vw, 2.8rem); margin: 0 0 2rem; letter-spacing: -0.015em; }
+.cross-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.cross-list li { display: grid; grid-template-columns: minmax(0, 3fr) repeat(3, minmax(0, 3fr)); gap: 1rem 2rem; padding: 1.3rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.cross-rule { font-family: var(--display); font-variation-settings: var(--display-axes); font-size: 1.2rem; font-weight: 560; }
+.cross-cell { color: var(--ink2); font-size: .95rem; }
+.cross-cell i { display: block; font: normal 500 .64rem/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .25rem; }
+.cross-cell.c-beyond i { color: var(--ink); }
+.cross-note { margin: 1.4rem 0 0; font: .78rem/1.6 var(--mono); color: var(--muted); max-width: 70em; }
+@media (max-width: 980px) {
+  .realms-head, .realm-in { grid-template-columns: 1fr; }
+  .realm-side { position: static; }
+  .plate { width: 220px; }
+  .plate-seen { width: min(100%, 340px); }
+  .cross-list li { grid-template-columns: 1fr 1fr; }
+  .cross-rule { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) { .specs { grid-template-columns: 1fr; } .cross-list li { grid-template-columns: 1fr; } .spec.teams { flex-direction: column; align-items: flex-start; } }

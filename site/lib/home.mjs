@@ -4,6 +4,7 @@
 // never a claim of results: the archive (/explore/, /method/) carries the evidence levels.
 import { esc } from './text.mjs';
 import { ARR, topBar, footer } from './chrome.mjs';
+import { REALMS, CROSSINGS } from './realms.mjs';
 
 const STAGES = [
   ['Sense', 'One agent takes the task. Most work never needs more than that — and a swarm that knows it stays quiet.', 'A forager scouting before the colony moves'],
@@ -50,12 +51,33 @@ const ART = {
   },
 };
 
-const NATURE = [
-  { key: 'colonies', name: 'Colonies', sub: 'Ants and bees coordinate thousands of workers without a manager.', rows: [['Principle', 'Stigmergy, specialisation, recruitment and quorum.'], ['For agents', '<strong>Coordination with less communication</strong> — agents leave traces in shared work instead of talking to everyone.']] },
-  { key: 'bodies', name: 'Bodies', sub: 'Reflexes, immunity and homeostasis keep an organism stable.', rows: [['Principle', 'Fast local reaction, selective memory, regulation around a set point.'], ['For agents', '<strong>Bounded recovery</strong> — detect failure, repair it, and know when to stop trying.']] },
-  { key: 'flocks', name: 'Flocks', sub: 'Each starling follows six or seven neighbours — not the whole flock.', rows: [['Principle', 'Topological neighbourhoods; a disturbance still crosses the whole flock.'], ['For agents', '<strong>Bounded attention</strong> — each agent reads a few peers, and the group still moves as one.']] },
-  { key: 'skies', name: 'Skies', sub: 'Orbits, resonance and cascades govern stable systems at scale.', rows: [['Principle', 'Equilibrium, dependencies and cascade containment.'], ['For agents', '<strong>Capacity and stability</strong> — keep the swarm in balance and stop one failure from becoming many.']] },
-];
+// Realm plates. Unseen: a microscope field with drifting bacteria and cells. Beyond: a night sky whose
+// galaxies are joined into filaments (the cosmic web). Seen reuses the colony/flock art above.
+const PLATES = {
+  unseen: () => {
+    const rnd = prng(11), bugs = [];
+    for (let i = 0; i < 26; i++) {
+      const x = 30 + rnd() * 340, y = 30 + rnd() * 340, a = Math.round(rnd() * 180), L = 9 + rnd() * 9;
+      if (Math.hypot(x - 200, y - 200) > 160) continue;
+      bugs.push('<g class="bug" style="--t:' + (-rnd() * 8).toFixed(1) + 's;--dx:' + r1((rnd() - 0.5) * 30) + 'px;--dy:' + r1((rnd() - 0.5) * 30) + 'px"><rect x="' + r1(x - L / 2) + '" y="' + r1(y - 3) + '" width="' + r1(L) + '" height="6" rx="3" transform="rotate(' + a + ' ' + r1(x) + ' ' + r1(y) + ')"/></g>');
+    }
+    const cells = [[140, 150, 30], [262, 236, 24], [196, 300, 18]].map(([x, y, r], i) => '<g class="cell" style="--t:' + -i * 1.4 + 's"><circle class="mem" cx="' + x + '" cy="' + y + '" r="' + r + '"/><circle class="nuc" cx="' + (x + 4) + '" cy="' + (y - 3) + '" r="' + r1(r * 0.38) + '"/></g>').join('');
+    return '<svg viewBox="0 0 400 400" aria-hidden="true"><defs><clipPath id="lens"><circle cx="200" cy="200" r="170"/></clipPath><radialGradient id="vig"><stop offset="70%" stop-color="#101312" stop-opacity="0"/><stop offset="100%" stop-color="#101312" stop-opacity=".22"/></radialGradient></defs><circle cx="200" cy="200" r="170" class="lens-bg"/><g clip-path="url(#lens)">' + cells + bugs.join('') + '</g><circle cx="200" cy="200" r="170" fill="url(#vig)"/><circle cx="200" cy="200" r="170" class="lens-rim"/><path class="tick" d="M200 22v14M200 364v14M22 200h14M364 200h14"/></svg>';
+  },
+  seen: () => ART.colonies().replace('viewBox="0 0 400 190"', 'viewBox="40 0 320 190"'),
+  beyond: () => {
+    const rnd = prng(29), pts = [];
+    for (let i = 0; i < 70; i++) { const c = [[110, 120], [290, 110], [200, 250], [320, 300], [80, 300]][i % 5]; pts.push([c[0] + (rnd() - 0.5) * 150, c[1] + (rnd() - 0.5) * 110]); }
+    const edges = [];
+    pts.forEach((p, i) => pts.map((q, j) => [j, Math.hypot(q[0] - p[0], q[1] - p[1])]).filter(([j]) => j > i).sort((a, b) => a[1] - b[1]).slice(0, 2).forEach(([j, d]) => { if (d < 80) edges.push('<path class="fil" d="M' + r1(p[0]) + ' ' + r1(p[1]) + 'Q' + r1((p[0] + pts[j][0]) / 2 + (rnd() - 0.5) * 20) + ' ' + r1((p[1] + pts[j][1]) / 2 + (rnd() - 0.5) * 20) + ' ' + r1(pts[j][0]) + ' ' + r1(pts[j][1]) + '"/>'); }));
+    const stars = Array.from({ length: 90 }, () => '<circle class="st" cx="' + r1(rnd() * 400) + '" cy="' + r1(rnd() * 400) + '" r="' + r1(0.4 + rnd() * 0.9) + '" style="--t:' + (-rnd() * 5).toFixed(1) + 's"/>').join('');
+    const gal = pts.map(([x, y], i) => '<circle class="gal' + (i % 9 === 0 ? ' hot' : '') + '" cx="' + r1(x) + '" cy="' + r1(y) + '" r="' + r1(1.2 + rnd() * 2.2) + '"/>').join('');
+    return '<svg viewBox="0 0 400 400" aria-hidden="true">' + stars + edges.join('') + gal + '</svg>';
+  },
+};
+// a small hunting pack: five predators encircling one prey
+const PACK = '<svg viewBox="0 0 120 120" aria-hidden="true" class="pack"><circle cx="60" cy="60" r="40" class="ring"/><g class="circle">' + [0, 1, 2, 3, 4].map((i) => { const t = (i / 5) * Math.PI * 2; return '<circle cx="' + r1(60 + Math.cos(t) * 40) + '" cy="' + r1(60 + Math.sin(t) * 40) + '" r="5"/>'; }).join('') + '</g><circle cx="60" cy="60" r="6" class="prey"/></svg>';
+
 
 // Principle pictograms: an ant, a dividing cell, comb cells with a check, a healing leaf.
 const PRINCIPLES = [
@@ -94,7 +116,7 @@ ${assets.preload || ''}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-${topBar({ nav: [['#slime', 'Living models'], ['#unfold', 'How it unfolds'], ['#nature', 'Nature'], ['/explore/', 'Research']] })}
+${topBar({ nav: [['#slime', 'Living models'], ['#unfold', 'How it unfolds'], ['#nature', 'Unseen · Seen · Beyond'], ['/explore/', 'Research']] })}
 
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="hero-title">
@@ -140,15 +162,39 @@ ${STAGES.map(([h, p, bio], i) => `<li class="stage${i === 0 ? ' on' : ''}"><span
 </div>
 </section>
 
-<section class="sec nature" id="nature" aria-labelledby="nature-title">
+<section class="sec realms" id="nature" aria-labelledby="nature-title">
 <div class="wrap">
-<div class="nature-head">
-<div><p class="kicker">Sources of design</p><h2 id="nature-title" data-words data-em="nature,">Borrowed from nature, held to evidence</h2></div>
-<p class="lead u">Colonies, bodies, flocks and skies give us the mechanisms. Experiments decide which ones earn a place in the swarm.</p>
+<div class="realms-head">
+<div><p class="kicker">From cell to cosmos</p><h2 id="nature-title" data-words data-em="Seen">Unseen · Seen · Beyond</h2></div>
+<div><p class="lead u">We look for organising principles at every scale — below the naked eye, within its reach, and beyond the planet. Biology gives mechanisms; physics gives analogies; experiments decide which ones earn a place in the swarm.</p>
+<nav class="realm-tabs u" aria-label="Realms">${REALMS.map((r) => `<a href="#realm-${r.key}"><span>${r.n}</span>${esc(r.name)}<b>${r.items.length}</b></a>`).join('')}</nav></div>
 </div>
-<ul class="nature-grid">
-${NATURE.map((n, i) => `<li class="ncard u" style="--d:${i * 120}ms"><button type="button" aria-expanded="false" aria-controls="fold-${n.key}"><div class="art">${ART[n.key]()}</div><h3>${esc(n.name)}<span class="plus" aria-hidden="true"></span></h3><p class="sub">${esc(n.sub)}</p></button><div class="fold" id="fold-${n.key}"><div><dl>${n.rows.map(([k, v], j) => `<div style="--i:${j}"><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl></div></div></li>`).join('\n')}
+</div>
+${REALMS.map((r) => `<div class="realm realm-${r.key}" id="realm-${r.key}">
+<div class="wrap realm-in">
+<div class="realm-side">
+<p class="realm-n">${r.n} · ${esc(r.scale)}</p>
+<h3 class="realm-name">${esc(r.name)}</h3>
+<p class="realm-lead">${esc(r.lead)}</p>
+<div class="plate art plate-${r.key}">${PLATES[r.key]()}</div>
+${r.key === 'beyond' ? '<p class="realm-flag">Physical analogy · no agents, no intent</p>' : ''}
+</div>
+<ul class="specs">
+${r.items.map(([name, does, agents, st], i) => {
+  const tag = typeof st === 'string' ? `<a class="sp-tag arc" href="/c/${st}/">Archive card ${ARR}</a>` : st ? `<a class="sp-tag pub" href="${esc(st.url)}" rel="noopener noreferrer">${esc(st.pub)} ${ARR}</a>` : '<span class="sp-tag cand">Candidate · sources in progress</span>';
+  return `<li class="spec u" style="--d:${(i % 2) * 90}ms"><h4>${esc(name)}</h4><p>${esc(does)}</p><p class="for"><span aria-hidden="true">→</span> ${esc(agents)}</p>${tag}</li>`;
+}).join('\n')}
+${r.teams ? `<li class="spec teams u">${PACK}<div><h4>${esc(r.teams.title)}</h4><p>${esc(r.teams.text)}</p><span class="sp-tag cand">Counter-model · micro-swarm of 2–5</span></div></li>` : ''}
 </ul>
+</div>
+</div>`).join('\n')}
+<div class="wrap crossings">
+<p class="kicker">Rules that cross realms</p>
+<h3 class="cross-h">The same mechanism, three scales apart.</h3>
+<ol class="cross-list">
+${CROSSINGS.map(([rule, ...cells]) => `<li class="u"><span class="cross-rule">${esc(rule)}</span>${cells.map(([t, k]) => `<span class="cross-cell c-${k}"><i>${k === 'unseen' ? 'Unseen' : k === 'seen' ? 'Seen' : 'Beyond'}</i>${esc(t)}</span>`).join('')}</li>`).join('\n')}
+</ol>
+<p class="cross-note">Candidates are listed so the map is complete; each one enters the archive only with a primary source and an evidence level. Beyond is analogy by definition.</p>
 </div>
 </section>
 
