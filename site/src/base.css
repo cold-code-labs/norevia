@@ -20,6 +20,8 @@
   --accent-soft: rgba(14, 122, 98, 0.1);
   --accent-on-dark: #7fdcc2;
   --signal: #e2572b;
+  --honey: #c98a00;
+  --honey-soft: rgba(201, 138, 0, 0.16);
   /* type */
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "URW Palladio L", P052, Georgia, serif;
