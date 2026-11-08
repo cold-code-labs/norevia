@@ -291,7 +291,7 @@ const NAV = [
   ['/about/', 'About'],
 ];
 
-let ASSETS = { base: '', css: '', js: {} };
+let ASSETS = { base: '', css: '', js: {}, preload: '' };
 let BUILD = {};
 
 function layout({ title, desc, path: p, body, cls = '', scripts = [] }) {
@@ -313,6 +313,7 @@ function layout({ title, desc, path: p, body, cls = '', scripts = [] }) {
 <meta property="og:url" content="${LAB.SITE.url}${p}">
 <link rel="canonical" href="${LAB.SITE.url}${p}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+${ASSETS.preload}
 <link rel="stylesheet" href="${ASSETS.base}">
 <link rel="stylesheet" href="${ASSETS.css}">
 <script src="${ASSETS.js.core}" defer></script>
@@ -1061,8 +1062,15 @@ function main() {
   const css = fs.readFileSync(path.join(SITE_DIR, 'src/style.css'), 'utf8');
   const entries = { core: {}, graph: {}, board: {}, card: {}, 'play-vote': { withModels: true }, 'play-verifier': { withModels: true }, 'play-elastic': { withModels: true }, 'play-stigmergy': { withModels: true }, 'play-threshold': { withModels: true } };
   const jsBodies = {};
-  const baseCss = fs.readFileSync(path.join(SITE_DIR, 'src/base.css'), 'utf8');
-  ASSETS = { base: `/assets/base.${h(baseCss)}.css`, css: `/assets/site.${h(css)}.css`, js: {} };
+  // self-hosted typefaces: hashed file names (immutable cache), referenced from base.css placeholders
+  const FONTS = {};
+  for (const name of fs.readdirSync(path.join(SITE_DIR, 'src/fonts')).filter((n) => n.endsWith('.woff2'))) {
+    const buf = fs.readFileSync(path.join(SITE_DIR, 'src/fonts', name));
+    FONTS[name] = { url: `/assets/fonts/${name.replace(/\.woff2$/, '')}.${crypto.createHash('sha256').update(buf).digest('hex').slice(0, 10)}.woff2`, buf };
+  }
+  const baseCss = fs.readFileSync(path.join(SITE_DIR, 'src/base.css'), 'utf8').replace(/__FONT:([\w.-]+)__/g, (m, n) => { if (!FONTS[n]) throw new Error('font missing: ' + n); return FONTS[n].url; });
+  const preload = ['Fraunces-normal-latin.woff2', 'HankenGrotesk-normal-latin.woff2'].map((n) => `<link rel="preload" href="${FONTS[n].url}" as="font" type="font/woff2" crossorigin>`).join('\n');
+  ASSETS = { base: `/assets/base.${h(baseCss)}.css`, css: `/assets/site.${h(css)}.css`, js: {}, preload };
   for (const [name, opt] of Object.entries(entries)) {
     const body = bundle(name, opt);
     jsBodies[name] = body;
@@ -1072,11 +1080,12 @@ function main() {
   const files = new Map();
   const put = (p, body, type = 'text/html; charset=utf-8') => files.set(p, { type, body });
   put(ASSETS.base, baseCss, 'text/css; charset=utf-8');
+  for (const { url, buf } of Object.values(FONTS)) put(url, buf, 'font/woff2');
   put(ASSETS.css, css, 'text/css; charset=utf-8');
   // landing page: standalone stylesheet + script (lib/home.mjs)
   const homeCss = fs.readFileSync(path.join(SITE_DIR, 'src/home.css'), 'utf8');
   const homeJs = `/* Norevia — home.js (built ${BUILD.date}). Source: site/src/js/unfold.js + home.js. */\n` + fs.readFileSync(path.join(SITE_DIR, 'src/js/unfold.js'), 'utf8') + '\n' + fs.readFileSync(path.join(SITE_DIR, 'src/js/home.js'), 'utf8');
-  const HOME = { base: ASSETS.base, css: `/assets/home.${h(homeCss)}.css`, js: `/assets/home.${h(homeJs)}.js` };
+  const HOME = { base: ASSETS.base, preload, css: `/assets/home.${h(homeCss)}.css`, js: `/assets/home.${h(homeJs)}.js` };
   put(HOME.css, homeCss, 'text/css; charset=utf-8');
   put(HOME.js, homeJs, 'text/javascript; charset=utf-8');
   for (const name of Object.keys(entries)) put(ASSETS.js[name], jsBodies[name], 'text/javascript; charset=utf-8');

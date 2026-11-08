@@ -16,7 +16,7 @@ const DEPLOY = path.join(SITE_DIR, 'deploy');
 const ACCOUNT = '0322dfe28640d56dbda3929744a51fc4';
 const MIME = {
   html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', json: 'application/json; charset=utf-8',
-  svg: 'image/svg+xml', xml: 'application/xml; charset=utf-8', txt: 'text/plain; charset=utf-8', png: 'image/png', jpg: 'image/jpeg', webp: 'image/webp', ico: 'image/x-icon',
+  svg: 'image/svg+xml', xml: 'application/xml; charset=utf-8', txt: 'text/plain; charset=utf-8', png: 'image/png', jpg: 'image/jpeg', webp: 'image/webp', ico: 'image/x-icon', woff2: 'font/woff2',
 };
 
 const cmd = process.argv[2];

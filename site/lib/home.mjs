@@ -87,6 +87,7 @@ export function pageLanding({ LAB, assets, build }) {
 <meta property="og:url" content="${S.url}/">
 <link rel="canonical" href="${S.url}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+${assets.preload || ''}
 <link rel="stylesheet" href="${assets.base}">
 <link rel="stylesheet" href="${assets.css}">
 <script src="${assets.js}" defer></script>

@@ -295,7 +295,7 @@
     const sample = () => {
       const w = S.w, h = S.h, o = document.createElement('canvas'); o.width = Math.round(w); o.height = Math.round(h);
       const g = o.getContext('2d'), fs = Math.min(w * 0.3, h * 0.5);
-      g.font = `600 ${fs}px ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif`;
+      g.font = `italic 500 ${fs}px Fraunces, Georgia, serif`;
       g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('Soon', w / 2, h * (small() ? 0.36 : 0.4));
       const data = g.getImageData(0, 0, o.width, o.height).data, st = Math.max(6, Math.round(fs / 30));
       const pts = [];
@@ -313,6 +313,8 @@
     };
     sample();
     S.p.forEach((p) => { p.x = rand(0, S.w); p.y = rand(0, S.h); p.a = 0; });
+    // re-sample once the display face is ready (the first pass may have used the fallback)
+    if (document.fonts) document.fonts.load('italic 500 100px Fraunces').then(() => { sample(); S.p.forEach((p) => { if (!p.x) { p.x = rand(0, S.w); p.y = rand(0, S.h); } }); S.kick(); }).catch(() => {});
     new IntersectionObserver(([en]) => { if (en.isIntersecting && !formed) { formed = true; S.kick(); } }, { threshold: 0.35 }).observe(soonC);
     soonC.addEventListener('pointerdown', (e) => { const r = soonC.getBoundingClientRect(); S.burst(e.clientX - r.left, e.clientY - r.top, 12); });
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { S.resize(); sample(); S.kick(); }, 150); });
