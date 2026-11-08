@@ -6,6 +6,7 @@
 //   'nat-…'            an archive card (linked; its evidence level lives on the card)
 //   { pub, url }       a published result checked when this was written, not yet an archive card
 //   null               candidate — sources being added to the archive (Norevia Library)
+// Reviewed against the cards by Norevia Library (2026-11-08): every entry now has a card.
 // Copy stays at the level of well-established mechanism; numbers and claims beyond that belong on the cards.
 
 export const REALMS = [
@@ -18,11 +19,11 @@ export const REALMS = [
       ['Inflammation that resolves', 'Healing ends through an active stop programme, not by simply fading out.', 'Repair with a built-in stopping point.', 'nat-wound-healing-resolution'],
       ['Danger signals', 'A proposed model of immunity driven by signals of damage rather than by novelty.', 'React to harm, not to every change.', 'nat-danger-theory'],
       ['Sparse neurons', 'Every spike is costly, so only a small fraction of neurons can be highly active at once.', 'Keep most agents quiet; activity is the expensive part.', 'nat-brain-energy-sparse'],
-      ['Neutrophil swarming', 'Immune cells relay a chemical signal from cell to cell and converge on a wound.', 'Recruit by relay, not by broadcast.', null],
-      ['Social amoebae', 'Starving Dictyostelium cells aggregate through waves of cAMP into a single body — and have to contain cheaters.', 'Temporary collectives need cheater control.', null],
-      ['Hunting bacteria', 'Myxococcus xanthus moves and preys in groups — the "wolf pack" of microbes.', 'Many small agents for a task no single one can finish.', null],
-      ['Run and tumble', 'E. coli swims straight while conditions improve and tumbles to a new direction when they do not, with a memory of seconds.', 'Search with a tiny memory and a local gradient.', null],
-      ['Dynamic instability', 'Microtubules constantly grow and collapse, keeping the cell’s skeleton provisional.', 'Capacity that is cheap to build and cheap to drop.', null],
+      ['Neutrophil swarming', 'Immune cells amplify a damage signal by releasing it themselves, widening the recruitment zone — then desensitise and stop.', 'Recruit by relay, not by broadcast — and build in the stop.', 'nat-neutrophil-swarming'],
+      ['Social amoebae', 'Starving Dictyostelium cells signal with pulses of cAMP and aggregate into a single body — which can harbour cheaters.', 'Temporary collectives need cheater control.', 'nat-dictyostelium-aggregation'],
+      ['Hunting bacteria', 'Myxococcus xanthus feeds and preys in groups, on resources no single cell can break down alone.', 'Many small agents for a task no single one can finish.', 'nat-myxococcus-group-predation'],
+      ['Run and tumble', 'E. coli keeps swimming while the attractant rises and tumbles otherwise, comparing only the last few seconds.', 'Search with a tiny memory and a local gradient.', 'nat-ecoli-run-and-tumble'],
+      ['Dynamic instability', 'Microtubules coexist as growing and shrinking populations that occasionally switch, keeping the cell’s skeleton provisional.', 'Capacity that is cheap to build and cheap to drop.', 'nat-microtubule-dynamic-instability'],
     ],
   },
   {
@@ -40,15 +41,15 @@ export const REALMS = [
       ['The informed few', 'Moving groups follow a small informed minority without anyone knowing who knows.', 'A few informed agents can steer many.', 'nat-informed-leaders'],
       ['Physarum networks', 'A slime mould links food sources with tubes that thicken with flow and shrink without it.', 'Reinforce what carries flow; prune what does not.', 'nat-physarum-network'],
       ['Reflex tiers', 'The arm corrects perturbations in three tiers — spinal, transcortical, voluntary.', 'Answer fast and cheap first; escalate only when needed.', 'nat-reflex-vs-cortex'],
-      ['Living bridges', 'Army ants build bridges out of their own bodies and shift them when they cost more workers than they save.', 'Build structure only while it pays.', { pub: 'Reid et al., PNAS 2015', url: 'https://www.princeton.edu/news/2015/11/30/ants-build-living-bridges-their-bodies-speak-volumes-about-group-intelligence' }],
-      ['Marching locusts', 'Above a critical density, scattered locust nymphs suddenly march in order.', 'Watch for density-driven phase changes.', { pub: 'Buhl et al., Science 2006', url: 'https://doi.org/10.1126/science.1125142' }],
-      ['Firefly synchrony', 'Some fireflies flash in unison with no conductor.', 'A shared rhythm without a central clock.', null],
-      ['V formation', 'Migrating birds share the cost of flight and take turns at the front.', 'Rotate the expensive role.', null],
-      ['Penguin huddles', 'Emperor penguins keep shifting, so no one stays on the cold edge for long.', 'Rotate exposure to load.', null],
-      ['Root foraging', 'Roots proliferate where they find nutrients and stop growing where they do not.', 'Invest where the signal is.', null],
-      ['Predator–prey cycles', 'Coupled populations rise and fall in cycles with no regulator.', 'Elastic capacity driven by feedback.', null],
+      ['Living bridges', 'Army ants build bridges out of their own bodies and shift them when they cost more workers than they save.', 'Build structure only while it pays.', 'nat-army-ant-living-bridges'],
+      ['Marching locusts', 'Over a narrow range of density, scattered locust nymphs switch to aligned marching.', 'Watch for density-driven phase changes.', 'nat-locust-marching-transition'],
+      ['Firefly synchrony', 'Some fireflies flash in unison with no leader — and synchrony makes the signal easier to read.', 'A shared rhythm without a central clock.', 'nat-firefly-synchrony'],
+      ['V formation', 'Birds in V formation save energy and share the costly leading position, matching time in front with time behind.', 'Rotate the expensive role.', 'nat-v-formation-flight'],
+      ['Penguin huddles', 'Emperor penguins move in small waves through the huddle, so each bird spends time inside, not only on the cold edge.', 'Rotate exposure to load.', 'nat-penguin-huddle'],
+      ['Root foraging', 'Roots that meet a nutrient-rich patch often proliferate inside it.', 'Invest where the signal is.', 'nat-root-foraging'],
+      ['Predator–prey cycles', 'Coupled populations rise and fall in cycles that emerge from the coupling itself.', 'Elastic capacity driven by feedback.', 'nat-predator-prey-cycles'],
     ],
-    teams: { title: 'Teams, not swarms', text: 'Wolf packs, lion prides and dolphin pods hunt with few members, roles and individual recognition. They are not swarms — they are our counter-model for when a small team with roles beats a crowd.' },
+    teams: { title: 'Teams, not swarms', text: 'Wolves and dolphins hunt in small groups. Some dolphin groups keep stable roles; wolf hunting success levels off beyond about four hunters. Not swarms — our counter-model for when a small team beats a crowd.', card: 'nat-teams-not-swarms' },
   },
   {
     key: 'beyond', n: '03', name: 'Beyond', scale: 'Off-planet and out of sight',
@@ -58,11 +59,11 @@ export const REALMS = [
       ['Lagrange points', 'Some equilibria hold only under strict asymmetry; others need constant correction.', 'Know which balances need maintenance.', 'nat-lagrange-points'],
       ['Stellar thermostat', 'Self-gravitating systems heat up as they lose energy — stabilising in a star, runaway in dense clusters.', 'The feedback that saves one system can wreck another.', 'nat-stellar-thermostat'],
       ['Kessler cascade', 'Above a critical density in orbit, collisions create debris faster than it clears.', 'Cap density before failures feed themselves.', 'nat-kessler-cascade'],
-      ['The cosmic web', 'A Physarum-inspired algorithm traced filaments between ~37,000 galaxies; Hubble data then found gas where it predicted.', 'One network logic, from a slime mould to the cosmos.', { pub: 'Burchett et al., ApJL 2020', url: 'https://esahubble.org/news/heic2003/' }],
-      ['Shepherd moons', 'Small moons confine planetary rings into narrow bands.', 'A few light agents can keep a crowd in shape.', null],
-      ['Accretion discs', 'Dust and gas clump into planets through countless local collisions.', 'Large structure from local aggregation.', null],
-      ['Dissolving clusters', 'Open star clusters drift apart over time.', 'Even structures in the sky have a Dissolve stage.', null],
-      ['Satellite constellations', 'Large constellations manoeuvre to avoid collisions — the only real swarm in the sky, and we built it.', 'Engineered autonomy at planetary scale.', null],
+      ['The cosmic web', 'A Physarum-inspired algorithm reconstructed the filaments between ~37,000 galaxies; hydrogen absorption seen by Hubble rises with the density it reconstructed.', 'One network logic, from a slime mould to the cosmos.', 'nat-cosmic-web-physarum'],
+      ['Shepherd moons', 'Small moons confine planetary rings into narrow bands against their natural spreading.', 'A few light agents can keep a crowd in shape.', 'nat-shepherd-moons'],
+      ['Protoplanetary discs', 'Dust grows by local collisions; the jump to planetesimals needs dense clumps that collapse under their own gravity.', 'Local aggregation, then a collective step change.', 'nat-accretion-planetesimals'],
+      ['Dissolving clusters', 'Star clusters dissolve over time — faster in denser regions of their galaxy.', 'Even structures in the sky have a Dissolve stage.', 'nat-open-cluster-dissolution'],
+      ['Satellite constellations', 'A large constellation reports tens of thousands of onboard collision-avoidance manoeuvres — engineered, not natural.', 'Autonomous avoidance at planetary scale.', 'nat-satellite-constellation-avoidance'],
     ],
   },
 ];

@@ -184,7 +184,7 @@ ${r.items.map(([name, does, agents, st], i) => {
   const tag = typeof st === 'string' ? `<a class="sp-tag arc" href="/c/${st}/">Archive card ${ARR}</a>` : st ? `<a class="sp-tag pub" href="${esc(st.url)}" rel="noopener noreferrer">${esc(st.pub)} ${ARR}</a>` : '<span class="sp-tag cand">Candidate · sources in progress</span>';
   return `<li class="spec u" style="--d:${(i % 2) * 90}ms"><h4>${esc(name)}</h4><p>${esc(does)}</p><p class="for"><span aria-hidden="true">→</span> ${esc(agents)}</p>${tag}</li>`;
 }).join('\n')}
-${r.teams ? `<li class="spec teams u">${PACK}<div><h4>${esc(r.teams.title)}</h4><p>${esc(r.teams.text)}</p><span class="sp-tag cand">Counter-model · micro-swarm of 2–5</span></div></li>` : ''}
+${r.teams ? `<li class="spec teams u">${PACK}<div><h4>${esc(r.teams.title)}</h4><p>${esc(r.teams.text)}</p><a class="sp-tag arc" href="/c/${r.teams.card}/">Counter-model · archive card ${ARR}</a></div></li>` : ''}
 </ul>
 </div>
 </div>`).join('\n')}
@@ -194,7 +194,7 @@ ${r.teams ? `<li class="spec teams u">${PACK}<div><h4>${esc(r.teams.title)}</h4>
 <ol class="cross-list">
 ${CROSSINGS.map(([rule, ...cells]) => `<li class="u"><span class="cross-rule">${esc(rule)}</span>${cells.map(([t, k]) => `<span class="cross-cell c-${k}"><i>${k === 'unseen' ? 'Unseen' : k === 'seen' ? 'Seen' : 'Beyond'}</i>${esc(t)}</span>`).join('')}</li>`).join('\n')}
 </ol>
-<p class="cross-note">Candidates are listed so the map is complete; each one enters the archive only with a primary source and an evidence level. Beyond is analogy by definition.</p>
+<p class="cross-note">Every entry links to an archive card with its primary sources and evidence level. Beyond is analogy by definition.</p>
 </div>
 </section>
 
