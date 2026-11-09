@@ -5,7 +5,7 @@
 // prefers reduced motion, and for the Open Graph images). Deterministic: same input, same bytes.
 import { rng } from './formation.mjs';
 
-export const PAL = { paper: '#f4f3ee', paper2: '#ecebe4', ink: '#101312', sage: '#0e7a62', mint: '#7fdcc2', ochre: '#c98a00', clay: '#c4552d', moss: '#5b7f3a', spruce: '#2f4a46' };
+export const PAL = { plum: '#7b4b6a', teal: '#0b6b73', paper: '#f4f3ee', paper2: '#ecebe4', ink: '#101312', sage: '#0e7a62', mint: '#7fdcc2', ochre: '#c98a00', clay: '#c4552d', moss: '#5b7f3a', spruce: '#2f4a46' };
 const PS = 0.8; // phase of the static frame
 const W = 640, H = 400;
 const f1 = (v) => Math.round(v * 10) / 10;
@@ -256,6 +256,90 @@ function lab004sim(animated) {
   return svgWrap(out.join(''), defs);
 }
 
+
+// ------------------------------------------------------------------ LAB-005: five bio mechanisms, each mirrored by a plain engineering twin, converging on the same outcome
+function lab005(animated) {
+  const { el } = maker(animated, 10, 60);
+  const r = rng(505), out = [];
+  const CX = 320, ys = [52, 128, 204, 280, 354].map((y) => y - 8);
+  out.push(line('M320 18V374', PAL.ink, 1.1, 0.16, ' stroke-dasharray="3 6"'));
+  ys.forEach((y, i) => {
+    const t0 = 0.04 + i * 0.06, amp = 20 + r() * 18, sgn = i % 2 ? -1 : 1;
+    const A = [56, y], B = [CX - 26, y], M = [(A[0] + B[0]) / 2, y + sgn * amp * 2.2];
+    const C = [584, y], D = [CX + 26, y];
+    // bio twin: curved, organic trail (width varies with the mechanism); engineering twin: straight, uniform
+    out.push(line(`M${A[0]} ${A[1]}Q${f1(M[0])} ${f1(M[1])} ${B[0]} ${B[1]}`, PAL.plum, 3 + (i % 3) * 1.6, 0.22));
+    out.push(line(`M${C[0]} ${C[1]}H${D[0]}`, PAL.ink, 1.8, 0.3));
+    for (let q = 0; q < 6; q++) { const u = r() * TAU2, d = 4 + r() * 10; out.push(`<ellipse cx="${f1(A[0] - 14 + Math.cos(u) * d)}" cy="${f1(A[1] + Math.sin(u) * d)}" rx="3" ry="2" fill="${PAL.ochre}" transform="rotate(${Math.round(u * 57)} ${f1(A[0] - 14 + Math.cos(u) * d)} ${f1(A[1] + Math.sin(u) * d)})"/>`); }
+    out.push(`<circle cx="${A[0]}" cy="${A[1]}" r="8" fill="${PAL.plum}" opacity=".85"/><rect x="${C[0] - 8}" y="${C[1] - 8}" width="16" height="16" rx="2.5" fill="${PAL.ink}"/>`);
+    const u = (p) => ease((p - t0) / 0.42);
+    const vis = (p) => (p < t0 ? 0 : p > 0.9 ? clamp((0.97 - p) / 0.07) : 1);
+    out.push(el('circle', { r: 4.2, fill: PAL.plum }, { cx: (p) => bz2(A, M, B, u(p))[0], cy: (p) => bz2(A, M, B, u(p))[1], opacity: vis }));
+    out.push(el('rect', { y: C[1] - 3.5, width: 7, height: 7, fill: PAL.ink }, { x: (p) => lerp(C[0], D[0], u(p)) - 3.5, opacity: vis }));
+    // the shared outcome: both twins arrive, an equality mark appears
+    out.push(`<circle cx="${CX}" cy="${y}" r="15" fill="${PAL.paper}" stroke="${PAL.ink}" stroke-opacity=".4" stroke-width="1.4"/>`);
+    out.push(el('g', {}, { opacity: (p) => (p < t0 + 0.42 ? 0.18 : p > 0.9 ? clamp((0.97 - p) / 0.07) * 1 : 1) }, `<path d="M${CX - 6} ${y - 3}h12M${CX - 6} ${y + 3}h12" stroke="${PAL.ink}" stroke-width="2" stroke-linecap="round"/>`));
+    out.push(el('circle', { cx: CX, cy: y, fill: 'none', stroke: PAL.plum, 'stroke-width': 1.6 }, { r: (p) => 15 + 16 * clamp((p - t0 - 0.42) / 0.12), opacity: (p) => (p < t0 + 0.42 || p > t0 + 0.54 ? 0 : 0.7 * (1 - (p - t0 - 0.42) / 0.12)) }));
+  });
+  return svgWrap(out.join(''));
+}
+const TAU2 = Math.PI * 2;
+
+// ------------------------------------------------------------------ LAB-006: the Allocator as a decision tree that splits only when it pays, plus the cost-per-accepted frontier
+function lab006(animated) {
+  const { el } = maker(animated, 11, 88);
+  const out = [], T = PAL.teal;
+  const pts = (P, Q, R, S, n = 14) => Array.from({ length: n + 1 }, (_, i) => bz3(P, Q, R, S, i / n));
+  const R0 = [40, 200], D1 = [112, 200];
+  const up = pts([128, 200], [168, 200], [168, 96], [212, 96]), dn = pts([128, 200], [168, 200], [168, 300], [212, 300]);
+  const SOLO = [236, 96], OWN = [232, 300], REP = [304, 300], STOP = [364, 300];
+  // panel for the frontier
+  out.push(`<rect x="396" y="30" width="232" height="340" rx="18" fill="#fbfaf6" stroke="${PAL.ink}" stroke-opacity=".12"/>`);
+  // tree: edges
+  const edge = (d, o = 0.3, w = 2.2) => line(d, T, w, o);
+  out.push(edge('M47 200H96'), edge('M128 200C168 200 168 96 212 96'), edge('M128 200C168 200 168 300 212 300'), edge('M252 96H318'), edge('M256 300H287'), edge('M321 300H348'));
+  // budget ceiling bracket above the team path, and the gate before the end
+  out.push(line('M196 258V250H384V258', T, 1.5, 0.55, ' stroke-dasharray="4 5"'));
+  // decision diamond: parts < 3 ?
+  out.push(`<path d="M${D1[0]} ${D1[1] - 17}L${D1[0] + 17} ${D1[1]}L${D1[0]} ${D1[1] + 17}L${D1[0] - 17} ${D1[1]}Z" fill="${PAL.paper}" stroke="${PAL.ink}" stroke-width="1.8"/><circle cx="${D1[0]}" cy="${D1[1]}" r="3.4" fill="${PAL.ink}"/>`);
+  out.push(`<circle cx="${R0[0]}" cy="${R0[1]}" r="7" fill="${PAL.ink}"/>`);
+  // solo leaf: one agent
+  out.push(`<circle cx="${SOLO[0]}" cy="${SOLO[1]}" r="20" fill="${PAL.paper}" stroke="${T}" stroke-width="2"/><circle cx="${SOLO[0]}" cy="${SOLO[1]}" r="6" fill="${T}"/>`);
+  // owners: one per part, in parallel
+  const own = [[-9, 8], [9, 8], [0, -10]].map(([dx, dy]) => [OWN[0] + dx, OWN[1] + dy]);
+  out.push(`<circle cx="${OWN[0]}" cy="${OWN[1]}" r="24" fill="${PAL.paper}" stroke="${T}" stroke-width="2"/>`);
+  own.forEach(([x, y], i) => out.push(el('circle', { cx: x, cy: y, r: 5.4, fill: T }, { 'fill-opacity': (p) => 0.25 + 0.75 * clamp((p - 0.34 - i * 0.015) / 0.04) * (p > 0.92 ? clamp((0.99 - p) / 0.07) : 1) })));
+  // repair loop: a spinning arc that ends in a check
+  out.push(`<circle cx="${REP[0]}" cy="${REP[1]}" r="19" fill="${PAL.paper}" stroke="${T}" stroke-opacity=".45" stroke-width="1.6"/>`);
+  out.push(el('g', {}, { transform: (p) => `rotate(${f1(900 * clamp((p - 0.44) / 0.22))} ${REP[0]} ${REP[1]})`, opacity: (p) => (p > 0.66 && p < 0.9 ? 0.12 : 1) }, `<path d="M${REP[0] + 12} ${REP[1]}A12 12 0 1 1 ${REP[0]} ${REP[1] - 12}" fill="none" stroke="${T}" stroke-width="2.4" stroke-linecap="round"/><path d="M${REP[0] - 3} ${REP[1] - 16}l5 4-5 4" fill="none" stroke="${T}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`));
+  out.push(el('path', { d: `M${REP[0] - 6} ${REP[1] + 0.5}l4.4 4.6 8-9.4`, fill: 'none', stroke: PAL.moss, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, { opacity: (p) => (p < 0.66 ? 0 : p > 0.92 ? clamp((0.99 - p) / 0.07) : 1) }));
+  // active stop
+  out.push(el('circle', { cx: STOP[0], cy: STOP[1], fill: 'none', stroke: T, 'stroke-width': 1.8 }, { r: (p) => 16 + 18 * clamp((p - 0.74) / 0.14), opacity: (p) => (p < 0.74 || p > 0.88 ? 0 : 0.7 * (1 - (p - 0.74) / 0.14)) }));
+  out.push(`<path d="M${STOP[0] - 7} ${STOP[1] - 17}h14l10 10v14l-10 10h-14l-10-10v-14z" fill="${T}"/><rect x="${STOP[0] - 6}" y="${STOP[1] - 6}" width="12" height="12" rx="1.5" fill="${PAL.paper}"/>`);
+  // solo done
+  out.push(el('g', { transform: 'translate(334 96)' }, { opacity: (p) => (p < 0.46 ? 0 : p > 0.92 ? clamp((0.99 - p) / 0.07) : 1) }, `<circle r="9" fill="${PAL.paper}" stroke="${PAL.moss}" stroke-width="2"/><path d="M-4 .4l2.8 3 5.6-6.4" fill="none" stroke="${PAL.moss}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`));
+  // tokens: a small task (solo path) and a large task (team path)
+  const poly = [[R0[0], 200], [128, 200], ...dn.slice(1), [256, 300], [321, 300], [STOP[0] - 14, 300]];
+  const polyS = [[R0[0], 200], [128, 200], ...up.slice(1), [252, 96], [318, 96]];
+  const vis = (a, b) => (p) => (p < a ? 0 : p > 0.9 ? clamp((0.97 - p) / 0.07) : p > b ? 0 : 1);
+  out.push(el('circle', { r: 4, fill: PAL.ink }, { cx: (p) => polyAt(polyS, ease((p - 0.04) / 0.4))[0], cy: (p) => polyAt(polyS, ease((p - 0.04) / 0.4))[1], opacity: vis(0.04, 0.45) }));
+  out.push(el('rect', { width: 11, height: 11, rx: 2.5, fill: PAL.ochre }, { x: (p) => polyAt(poly, ease((p - 0.1) / 0.66))[0] - 5.5, y: (p) => polyAt(poly, ease((p - 0.1) / 0.66))[1] - 5.5, opacity: vis(0.1, 0.78) }));
+  // frontier: cost per accepted (left = cheaper) against acceptance (up = better)
+  const gx = 412, gy = 330;
+  [90, 170, 250].forEach((y) => out.push(line(`M${gx} ${y}H612`, PAL.ink, 1, 0.08)));
+  out.push(line(`M${gx} 56V${gy}H612`, PAL.ink, 1.4, 0.35));
+  out.push(`<path d="M${gx - 4} 64l4-8 4 8M604 ${gy - 4}l8 4-8 4" fill="none" stroke="${PAL.ink}" stroke-width="1.4" opacity=".35"/>`);
+  const P = { team: [577, 257], solo: [494, 282], orch: [453, 70], alloc: [440, 132], split: [446, 128] };
+  const show = (t) => (p) => (p < t ? 0 : p > 0.94 ? clamp((1.0 - p) / 0.06) : 1);
+  out.push(el('path', { d: `M${gx + 2} 330V132H440V70H453`, fill: 'none', stroke: T, 'stroke-width': 2, 'stroke-dasharray': '3 5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, { opacity: (p) => 0.7 * show(0.62)(p) }));
+  out.push(el('circle', { cx: P.team[0], cy: P.team[1], r: 6.5, fill: PAL.paper, stroke: PAL.ink, 'stroke-width': 2 }, { opacity: show(0.5) }));
+  out.push(el('circle', { cx: P.solo[0], cy: P.solo[1], r: 6.5, fill: PAL.paper, stroke: PAL.ink, 'stroke-width': 2 }, { opacity: show(0.54) }));
+  out.push(el('circle', { cx: P.orch[0], cy: P.orch[1], r: 6.5, fill: PAL.paper, stroke: PAL.ink, 'stroke-width': 2 }, { opacity: show(0.58) }));
+  out.push(el('circle', { cx: P.split[0], cy: P.split[1], r: 3.4, fill: PAL.ink, 'fill-opacity': 0.5 }, { opacity: show(0.62) }));
+  out.push(el('g', {}, { opacity: show(0.66) }, `<circle cx="${P.alloc[0]}" cy="${P.alloc[1]}" r="14" fill="${T}" opacity=".18"/><circle cx="${P.alloc[0]}" cy="${P.alloc[1]}" r="8" fill="${T}"/>`));
+  return svgWrap(out.join(''));
+}
+
 export const RUN_ART = {
   lab001: {
     accent: PAL.ochre, build: lab001,
@@ -268,6 +352,14 @@ export const RUN_ART = {
   lab003: {
     accent: PAL.clay, build: lab003,
     alt: 'One agent against package owners for k = 1, 3, 8 and 15 packages. The single agent reaches only the first few packages with dashed lines while a separate owner takes each package, so every package is filled as k grows.',
+  },
+  lab005: {
+    accent: PAL.plum, build: lab005,
+    alt: 'Five mirrored pairs. In each row a curved, organic bio-inspired trail on the left and a straight engineering control on the right converge on the same outcome in the middle, marked by an equality sign.',
+  },
+  lab006: {
+    accent: PAL.teal, build: lab006,
+    alt: 'The Norevia Allocator as a decision tree: a task reaches a decision diamond; a small task goes solo, a large task is split into one owner per part, repaired while checks fail and stopped as soon as everything passes, under a budget ceiling. On the right, a cost-per-accepted and acceptance frontier with the Allocator at its cheap end.',
   },
   lab004: {
     accent: PAL.moss, build: lab004,

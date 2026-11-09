@@ -8,6 +8,42 @@
 
 export const RUNS = [
   {
+    key: 'lab006', id: 'obs-lab006-allocator-v0', code: 'LAB-006', num: 'LAB-006',
+    short: 'Norevia Allocator v0 and its evaluation',
+    report: 'results/lab006/REPORT.md', checkAgainst: ['results/lab006/REPORT.md'],
+    prereg: ['obs-lab006-prereg'], companion: 'obs-lab003-split-retry-memory',
+    dek: 'A reusable allocation policy (solo below 3 parts, owners per part above, repair only failing parts, stop when resolved) evaluated against four baselines. It is the cheapest per accepted task on repository work from 3 parts, but not the most accurate.',
+    finding: 'On repository work from 3 packages the Allocator is the cheapest per accepted task and fast, but not the most accurate.',
+    tldr: [
+      'Pooled over the 15 repository tasks (60 runs per arm): cost per accepted task US$ 0.029 (Allocator) vs 0.034 (central orchestrator ORCH), 0.055 (SOLO), 0.150 (TEAM-TODAY); acceptance 57/60 vs ORCH 60/60, SOLO 50/60 and TEAM-TODAY 51/60.',
+      'It beats SOLO where LAB-003 said it would: at k = 15 acceptance 8/8 vs SOLO 2/8, cost per accepted US$ 0.085 vs 0.54; at k = 1 it is identical to SOLO, because the policy stays solo.',
+      'It loses on tiny parts: on micro-function bundles ORCH accepted 78/96 (0.81) vs 66/96 (0.69) for the Allocator. The "split at ≥ 3 parts" rule comes from repository tasks where splitting shrinks a very large context.',
+    ],
+    tested: 'The Allocator is a policy: decide solo if the task has < 3 independent parts, team otherwise; one owner per part, repair only failing parts, stop as soon as every part passes, with a verification gate and a per-task budget ceiling. It was compared with SOLO, ALWAYS-SPLIT, ORCH and TEAM-TODAY on repository repair and micro-function bundles.',
+    sections: { tested: ['The Allocator'], results: ['Answer in brief', 'Results', 'Position on the frontier'], means: ['What I would change in v1'], limits: ['Limits and incidents'] },
+    means: [],
+    limits: [],
+    files: ['results/lab006/summary.json', 'results/lab006/runs-main.jsonl', 'results/lab006/decisions-main.jsonl', 'results/lab006/ledger.jsonl'],
+  },
+  {
+    key: 'lab005', id: 'obs-lab005-flags-batch2', code: 'LAB-005', num: 'LAB-005',
+    short: 'Flag batch 2: looking for a bio-specific effect',
+    report: 'results/lab005/REPORT.md', checkAgainst: ['results/lab005/REPORT.md'],
+    prereg: ['obs-lab005-prereg'], companion: 'obs-lab004-massive-swarm',
+    dek: 'Five more bio-inspired flags, each against its closest engineering control, on 630 micro-tasks with real Haiku 5.5 agents. None beat its plain base or its controls.',
+    finding: 'No bio-specific effect in any of the five flags.',
+    tldr: [
+      'No bio-specific effect in any of the five flags: under the pre-registered rule every flag is null, none was BETTER than its plain base, and in the unsaturated regime four of five were worse than the base or than a control.',
+      'What a good allocator does here is not duplicate: at N = 100 the central dispatcher with global state covers 0.38 against 0.32 for the board and 0.26–0.28 for proportional/escalating policies.',
+      'Population control: acceptance_coupled_launch and predator_prey_damping cut calls by about 30% against keeping every agent on, at the price of waiting 0.2–0.5 more rounds; the damped controller does not leave the cost–wait curve of simple engineering controls.',
+    ],
+    tested: 'Five flags, one at a time, each against its closest engineering control and its plain base: proportional allocation, quorum-sensing activation, correlation stop, acceptance-coupled launch and predator-prey damping. The same 630-task micro pool as LAB-004, with an uncapped central dispatcher as the reference baseline.',
+    sections: { tested: ['Setup'], results: ['Answer in brief', 'Verdict per flag', 'Tables'], means: ['Reading'], limits: ['Limits and incidents'] },
+    means: [],
+    limits: [],
+    files: ['results/lab005/summary-N100.json', 'results/lab005/summary-N300.json', 'results/lab005/summary-N1000.json', 'results/lab005/runs-main.jsonl', 'results/lab005/ledger.jsonl'],
+  },
+  {
     key: 'lab004-sim', id: 'obs-lab004-simulation', code: 'LAB-004 · Simulation', num: 'LAB-004',
     short: 'A calibrated simulation to 100,000 agents',
     report: 'results/lab004/SIMULATION.md', checkAgainst: ['results/lab004/SIMULATION.md'],
@@ -119,4 +155,6 @@ export const CARD_ART = {
   'obs-lab002-prereg': 'lab002',
   'obs-lab003-prereg-step0': 'lab003', 'obs-lab003-prereg-main': 'lab003', 'obs-lab003-calibration': 'lab003',
   'obs-lab004-prereg': 'lab004',
+  'obs-lab005-prereg': 'lab005',
+  'obs-lab006-prereg': 'lab006',
 };

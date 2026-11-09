@@ -23,7 +23,8 @@ function splitReport(body) {
 
 // numbers in text, ignoring numbers glued to words (lab001, H-06, k2) and HTML entities
 const NUM = /(?<![\w.\-–−])\d+(?:[,.]\d+)*/g;
-function numbersIn(htmlOrText) {
+function numbersIn(htmlOrText, raw = false) {
+  if (raw) return [...String(htmlOrText).matchAll(NUM)].map((m) => m[0].replace(/[.,]$/, ''));
   const t = String(htmlOrText).replace(/<!--charts-->[\s\S]*?<!--\/charts-->/g, ' ').replace(/<(figure|svg|script|style)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]*>/g, ' ').replace(/&#?\w+;/g, ' ');
   return [...t.matchAll(NUM)].map((m) => m[0].replace(/[.,]$/, ''));
 }
@@ -70,7 +71,7 @@ export function renderRun(run, c, deps) {
 
   // ---- number check: every number written in the article must appear in the run's report
   const src = run.checkAgainst.map((f) => fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
-  const srcNums = new Set(numbersIn(src));
+  const srcNums = new Set(numbersIn(src, true));
   const missing = [...new Set(numbersIn(body.replace(/<section id="data"[\s\S]*$/, '')).filter((n) => !srcNums.has(n)))];
   const text = body.replace(/<(figure|svg)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]*>/g, ' ').replace(/&#?\w+;/g, ' ');
   const words = (text.match(/\S+/g) || []).length;

@@ -28,12 +28,13 @@ export function readFlags(root) {
   const lines = text.split('\n');
   const title = (lines.find((l) => /^#\s/.test(l)) || '# Flag registry').replace(/^#\s+/, '');
   const groups = [];
-  let cur = null, intro = [], summary = [], inSummary = false;
+  let cur = null, intro = [], summary = [], inSummary = false, summaryTitle = 'Summary';
   for (let i = 0; i < lines.length; i++) {
     const l = lines[i];
     const h = l.match(/^##\s+(.+)$/);
     if (h) {
       inSummary = /^summary/i.test(h[1]);
+      if (inSummary) summaryTitle = h[1];
       cur = inSummary ? null : { name: h[1], rows: [] };
       if (cur) groups.push(cur);
       continue;
@@ -51,7 +52,7 @@ export function readFlags(root) {
     r.key = m && FLAG_STATUS[m[1]] ? m[1] : 'untested';
     r.note = r.status.replace(/^\s*`[a-z-]+`\s*/, '').replace(/^[—–-]\s*/, '').replace(/^;\s*/, '');
   }
-  return { title, intro: intro.join('\n').trim(), summary: summary.join('\n').trim(), groups, rows, rel: 'research/FLAGS.md', text };
+  return { title, intro: intro.join('\n').trim(), summary: summary.join('\n').trim(), summaryTitle, groups, rows, rel: 'research/FLAGS.md', text };
 }
 
 export function pageFlagsBody(F, deps) {
@@ -80,5 +81,5 @@ export function pageFlagsBody(F, deps) {
 <h2 class="sr">Status legend</h2>${legend}
 </div></section>
 <section><div class="wrap">${tables}</div></section>
-<section><div class="wrap prose"><h2 id="summary">Summary</h2>${md(F.summary)}<p class="muted small">${esc(headline)}. Statuses change only with evidence recorded in the repository; the sources are the result reports linked from the <a href="/journal/">journal</a>.</p></div></section>`;
+<section><div class="wrap prose"><h2 id="summary">${esc(F.summaryTitle)}</h2>${md(F.summary)}<p class="muted small">${esc(headline)}. Statuses change only with evidence recorded in the repository; the sources are the result reports linked from the <a href="/journal/">journal</a>.</p></div></section>`;
 }
