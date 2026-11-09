@@ -186,11 +186,12 @@ function init() {
   });
 
   // ---------------------------------------------------------------- filters + tools
-  document.addEventListener('nrv:filter', (ev) => {
-    const { match } = ev.detail;
+  const applyFilter = ({ match }) => {
     for (const n of nodes) { n.dim = !match(n.el.dataset); n.el.classList.toggle('dim', n.dim); n.el.setAttribute('tabindex', n.dim ? '-1' : '0'); }
     for (const e of edges) e.el.classList.toggle('dim', e.s.dim || e.t.dim);
-  });
+  };
+  document.addEventListener('nrv:filter', (ev) => applyFilter(ev.detail));
+  if (document.nrvFilterState) applyFilter(document.nrvFilterState);
   tools.addEventListener('click', (e) => {
     const b = e.target.closest('button[data-act]');
     if (!b) return;

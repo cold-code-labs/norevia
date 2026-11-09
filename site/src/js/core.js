@@ -40,7 +40,8 @@ for (const form of document.querySelectorAll('form[data-filters]')) {
     if (empty) empty.hidden = n > 0 || !items.length;
     const active = state.pivot.size || state.area.size || state.ev.size || state.st.size || q.value.trim();
     count.textContent = active ? `${n} of ${items.length} cards match` : `${items.length} cards`;
-    document.dispatchEvent(new CustomEvent('nrv:filter', { detail: { match, active: !!active } }));
+    document.nrvFilterState = { match, active: !!active };
+    document.dispatchEvent(new CustomEvent('nrv:filter', { detail: document.nrvFilterState }));
     const params = new URLSearchParams();
     for (const k of ['area', 'ev', 'st', 'pivot']) if (state[k].size) params.set(k, [...state[k]].join(','));
     if (q.value.trim()) params.set('q', q.value.trim());
