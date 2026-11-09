@@ -89,7 +89,7 @@ const PRINCIPLES = [
 
 const glyph = (inner) => '<svg class="glyph" viewBox="0 0 46 46" aria-hidden="true">' + inner + '</svg>';
 
-export function pageLanding({ LAB, assets, build }) {
+export function pageLanding({ LAB, assets, build, head }) {
   const S = LAB.SITE;
   const title = `Norevia — ${S.title}`;
   const desc = `Norevia, a Cold Code Labs research project: bioinspired agentic swarms — AI agents that organise the way living systems do. First release soon.`;
@@ -98,16 +98,9 @@ export function pageLanding({ LAB, assets, build }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${esc(title)}</title>
-<meta name="description" content="${esc(desc)}">
+${head}
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#f4f3ee">
-<meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(desc)}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="${esc(S.full)}">
-<meta property="og:url" content="${S.url}/">
-<link rel="canonical" href="${S.url}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 ${assets.preload || ''}
 <link rel="stylesheet" href="${assets.base}">
@@ -116,7 +109,7 @@ ${assets.preload || ''}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-${topBar({ nav: [['#slime', 'Living models'], ['#unfold', 'How it unfolds'], ['#nature', 'Unseen · Seen · Beyond'], ['/explore/', 'Research']] })}
+${topBar({ nav: [['#slime', 'Living models'], ['#unfold', 'How it unfolds'], ['#nature', 'Unseen · Seen · Beyond'], ['/journal/', 'Journal'], ['/explore/', 'Research'], ['/contact/', 'Contact']] })}
 
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="hero-title">
@@ -227,7 +220,7 @@ ${PRINCIPLES.map(([h, p, g], i) => `<li class="u" style="--d:${i * 110}ms">${gly
 </section>
 </main>
 
-${footer({ site: S, links: [['/explore/', 'Research archive'], ['/method/', 'Method'], ['/about/', 'About'], [S.repo, 'GitHub']] })}
+${footer({ site: S, links: [['/journal/', 'Journal'], ['/explore/', 'Research archive'], ['/flags/', 'Flag registry'], ['/method/', 'Method'], ['/about/', 'About'], ['/contact/', 'Contact'], [S.repo, 'GitHub']] })}
 </body>
 </html>
 `;

@@ -43,52 +43,52 @@
   "hash": "44c171e3a36f252d46d924ab774ea53b",
   "size": 40404
  },
- "/assets/site.e951f358b5.css": {
-  "hash": "b58f68db1931b649bb1dfe5bac3f3f12",
-  "size": 41609
+ "/assets/site.2e0469fd3f.css": {
+  "hash": "8cd003c985e48d9733cbcf2c50460bc2",
+  "size": 48749
  },
  "/assets/home.795c35e82d.css": {
   "hash": "06b4ff97a44221132dbd00d83776a062",
   "size": 24354
  },
- "/assets/home.e3a8b15b0c.js": {
-  "hash": "7edcc84ccc7e9d95e039be46baa930e9",
+ "/assets/home.c00894f63f.js": {
+  "hash": "b7e1bba7bdde2dd7b4b2b648e44ad021",
   "size": 29128
  },
- "/assets/core.d6a74019c4.js": {
-  "hash": "393818b9da4702f052742abd7550a679",
+ "/assets/core.9a212dfe84.js": {
+  "hash": "f5e7fc6ac27414a8c148dff4b2d134cb",
   "size": 7800
  },
- "/assets/graph.7c4561d98f.js": {
-  "hash": "c937dbc76d264508f626ff4c663572c2",
+ "/assets/graph.1604e60de3.js": {
+  "hash": "638bb4904bddc46bec8f13d64ec7a291",
   "size": 20107
  },
- "/assets/board.e8b5f45f23.js": {
-  "hash": "06f17ad5f6886dc599117c6c5627f851",
+ "/assets/board.8efc65883d.js": {
+  "hash": "da9d2631e10eebd88ee2a602ec06451f",
   "size": 9347
  },
- "/assets/card.9ebdd6a0ea.js": {
-  "hash": "9d63117979a6d7349062afcf93f4f4b6",
+ "/assets/card.b1e5c9984f.js": {
+  "hash": "3342fae15deb3310a6c5ae84612341ac",
   "size": 8264
  },
- "/assets/play-vote.4c0d29139d.js": {
-  "hash": "83ee90a0d878cd0cc096b4329e503e49",
+ "/assets/play-vote.9f488756fd.js": {
+  "hash": "bad1954cb0d378845d076752478f923d",
   "size": 34421
  },
- "/assets/play-verifier.45b750d35b.js": {
-  "hash": "0c5e334af102a3b1261e089a2b90af46",
+ "/assets/play-verifier.44ec152077.js": {
+  "hash": "4b04e3f968af4ff3423a819f5ced3203",
   "size": 34425
  },
- "/assets/play-elastic.df6b514b82.js": {
-  "hash": "f5d6b52309f3d4d4e08325e0513236b8",
+ "/assets/play-elastic.8194f45d12.js": {
+  "hash": "959e04bcba7647ed840fded6fc66a366",
   "size": 34424
  },
- "/assets/play-stigmergy.d477552450.js": {
-  "hash": "3ff47d86dc705958766d5ca7e249fd0c",
+ "/assets/play-stigmergy.e81e87b366.js": {
+  "hash": "e13f07fe6b169630050e9c02e13ca8bf",
   "size": 34426
  },
- "/assets/play-threshold.8ead2b1177.js": {
-  "hash": "7a6aa3f24864b3b4e79ed8fa8f504f9e",
+ "/assets/play-threshold.f637aa41ef.js": {
+  "hash": "352250eba66370d43437034697970ea6",
   "size": 34426
  },
  "/assets/formation-0.svg": {
@@ -119,736 +119,896 @@
   "hash": "1e5ee3a1ad8e3ad95219fee9af0bd5aa",
   "size": 418
  },
+ "/assets/run-lab001.e63936ecee.svg": {
+  "hash": "4bcb6fe5e7eeef79beafbd9d7c10db93",
+  "size": 28387
+ },
+ "/assets/run-lab001.static.cbafe1e461.svg": {
+  "hash": "fef0ae6224025e92ab39522873a013c3",
+  "size": 8447
+ },
+ "/assets/run-lab002.cb9ed1a6f6.svg": {
+  "hash": "b7af8bf29f6a8678537a665cc1136a21",
+  "size": 22775
+ },
+ "/assets/run-lab002.static.c1e7e35cfe.svg": {
+  "hash": "8578d3423a0ffc84d273c4e3dcfa12d2",
+  "size": 3877
+ },
+ "/assets/run-lab003.313349a290.svg": {
+  "hash": "db65b7b8e039b1392fb09fe1a26b442b",
+  "size": 31052
+ },
+ "/assets/run-lab003.static.e5cf212ec7.svg": {
+  "hash": "9fc4b8d219e2f00233d7126894455906",
+  "size": 15866
+ },
+ "/assets/run-lab004.7c81ac01e9.svg": {
+  "hash": "f4590fbd4005fd3c21e85ee4094fecf5",
+  "size": 116078
+ },
+ "/assets/run-lab004.static.7e1a240199.svg": {
+  "hash": "6b44cf41a0619d346b8545366275640e",
+  "size": 33671
+ },
+ "/assets/run-lab004-sim.03776268eb.svg": {
+  "hash": "27f289eb8ab378f14e091e2965a11fb1",
+  "size": 95281
+ },
+ "/assets/run-lab004-sim.static.c309d1ae3e.svg": {
+  "hash": "b27a8f5d58e00225b1e3255ddac5eab3",
+  "size": 55881
+ },
+ "/assets/og/home.6c9a97ba78.png": {
+  "hash": "1fde3f0401c7b999da97cb0190e91931",
+  "size": 83685
+ },
+ "/assets/og/journal.9702aa4c41.png": {
+  "hash": "1727232a5f07f3eab243d7aed9b3339c",
+  "size": 69714
+ },
+ "/assets/og/flags.bdb72e1b15.png": {
+  "hash": "0e30890f0822021c00e7c2698307a4e2",
+  "size": 64178
+ },
+ "/assets/og/contact.d9655accb0.png": {
+  "hash": "b3653ddf8238d670446632d55267fcb5",
+  "size": 67570
+ },
+ "/assets/og/explore.79a9611a62.png": {
+  "hash": "aa3847e860862c2e0fecf810a84aabb6",
+  "size": 65243
+ },
+ "/assets/og/playgrounds.01513383d6.png": {
+  "hash": "1601e63f5d8ca9edeb0138b987ce4bc5",
+  "size": 75767
+ },
+ "/assets/og/hypotheses.4c2850bb8b.png": {
+  "hash": "5a5d511f572bf193e5b66d9e5ac64709",
+  "size": 66997
+ },
+ "/assets/og/experiments.3247f6d196.png": {
+  "hash": "c03ea306bc23d61169482b18c269972c",
+  "size": 66595
+ },
+ "/assets/og/literature.36eb0de441.png": {
+  "hash": "6caba5cce1550e84248d7cdc7fa0f2fe",
+  "size": 68526
+ },
+ "/assets/og/method.4c0ac8e37e.png": {
+  "hash": "7f8c48fd32594caf20371cb788fbd04d",
+  "size": 62468
+ },
+ "/assets/og/about.85b08a380e.png": {
+  "hash": "38a50d896b527e9fea9cf44b3e7e41d7",
+  "size": 66124
+ },
+ "/assets/og/default.84539a0a0f.png": {
+  "hash": "1c290d889f8ef9a790381d17ff6bdc41",
+  "size": 63948
+ },
+ "/assets/og/area-nature.233f5e9250.png": {
+  "hash": "3ece3e90e179866691627c46f58d4b03",
+  "size": 66990
+ },
+ "/assets/og/area-theory.1872d1fee1.png": {
+  "hash": "a48b6492c67091903ec76b74434b9f48",
+  "size": 60416
+ },
+ "/assets/og/area-hypothesis.9a2221c73f.png": {
+  "hash": "5dd44758b1664fa2a095bcb51486d062",
+  "size": 63004
+ },
+ "/assets/og/area-literature.f06ea1e82e.png": {
+  "hash": "654848c72d5227c029c3b6c60894325d",
+  "size": 60257
+ },
+ "/assets/og/area-oss.e6e9b3ca02.png": {
+  "hash": "d8b682a0e3b7b58a0d5d4e0729a52a5a",
+  "size": 63259
+ },
+ "/assets/og/area-simulation.410edecdfd.png": {
+  "hash": "8bf274e7a0cc402b18623fd67029207b",
+  "size": 62917
+ },
+ "/assets/og/area-observatory.b4bbf3e785.png": {
+  "hash": "96e88c0504a5666a5ba6936403536e74",
+  "size": 64904
+ },
+ "/assets/og/run-lab004-sim.91e5233023.png": {
+  "hash": "686bc41ef6aa87da6698797faf67ef23",
+  "size": 152808
+ },
+ "/assets/og/run-lab004.a83b246faf.png": {
+  "hash": "5b879a3262df6390db938fb6e7c89625",
+  "size": 108077
+ },
+ "/assets/og/run-lab003.1212b6c941.png": {
+  "hash": "8f23a3a29a0547df26c9fea66fd1c285",
+  "size": 79915
+ },
+ "/assets/og/run-lab002.e1f9287031.png": {
+  "hash": "01198d7868fda7690e34e3335361d75e",
+  "size": 85713
+ },
+ "/assets/og/run-lab001.fc85fa99a0.png": {
+  "hash": "f06bd1d93ea3c1a652d7ca21b37a130e",
+  "size": 84998
+ },
  "/index.html": {
-  "hash": "ebcb0b06f8713629be1ba85ef7e5e1a2",
-  "size": 55597
+  "hash": "c7f058db31df44410b2b93439b6fe3ea",
+  "size": 58617
  },
  "/explore/index.html": {
-  "hash": "98aa19472949735f8e330946638cd668",
-  "size": 497675
+  "hash": "67e64b85471ea5cb35a460bb3db947a2",
+  "size": 502374
  },
  "/playgrounds/index.html": {
-  "hash": "ee40819336e9d5dbfae01a7c4388517d",
-  "size": 23549
+  "hash": "0547c69f887306a9bcdede861f5013b5",
+  "size": 26768
  },
  "/playgrounds/correlated-voting/index.html": {
-  "hash": "e60e9efb1cb612d4acd5588da3f5c859",
-  "size": 10313
+  "hash": "a93c8f2c943e0e78c9b95098ffae9405",
+  "size": 13822
  },
  "/playgrounds/verifier/index.html": {
-  "hash": "fd4c3f70193aafe5a4e64ea831bf6628",
-  "size": 9385
+  "hash": "426e16ec77bf7186801a1268fa979f51",
+  "size": 12890
  },
  "/playgrounds/elastic-swarm/index.html": {
-  "hash": "b4bfd92bf9c80fdcd98e657105d7c8b9",
-  "size": 9653
+  "hash": "936c0e0b004d0948901d1bef1fc706cd",
+  "size": 13136
  },
  "/playgrounds/stigmergy/index.html": {
-  "hash": "f590a0e91c611d73938720d7d476b308",
-  "size": 11080
+  "hash": "ec3292966b95a88387c97be50d47048d",
+  "size": 14627
  },
  "/playgrounds/response-thresholds/index.html": {
-  "hash": "7fa53205786721a0e21f878803d8e0d6",
-  "size": 10203
+  "hash": "d799064fa3ee684da407fd07aa65ba3c",
+  "size": 13722
  },
  "/hypotheses/index.html": {
-  "hash": "03fe6215bd7f2f44430b798eeb1ee54d",
-  "size": 38025
+  "hash": "8448e226d23005a9a5790f5c0f8f6ac8",
+  "size": 41352
  },
  "/experiments/index.html": {
-  "hash": "3421dbcaa306f82a1f81471a4029f1b1",
-  "size": 359154
+  "hash": "8fdd60ce61187bd872394cde1d9c3699",
+  "size": 364186
  },
  "/literature/index.html": {
-  "hash": "de117492ad8f3428d532ecbf2f2ad9db",
-  "size": 132321
+  "hash": "b720bf9929dd5ee34fe7444255ec6f92",
+  "size": 135463
  },
  "/about/index.html": {
-  "hash": "fabd02f15e0dbcc553e4cad80f341efd",
-  "size": 6274
- },
- "/c/lit-bibliography/index.html": {
-  "hash": "11f2dc6843977a4f94befbb80fd2ff73",
-  "size": 34750
- },
- "/c/lit-synthesis/index.html": {
-  "hash": "b14c44a0d919d566b5cb270e9948c04b",
-  "size": 60912
- },
- "/c/lit-adaptive-computation-time/index.html": {
-  "hash": "261fbc8d74a070075be0c92564826539",
-  "size": 15368
- },
- "/c/lit-adaptive-consistency/index.html": {
-  "hash": "cd91194d912a9fbb3184954c0e86e63d",
-  "size": 21527
- },
- "/c/lit-agentnet/index.html": {
-  "hash": "e9268c59400b7917e1fff969b95125a6",
-  "size": 18289
- },
- "/c/lit-agentprune/index.html": {
-  "hash": "c02d1fc9ec781da3e0f3f697ea471634",
-  "size": 18994
- },
- "/c/lit-bio-autonomic/index.html": {
-  "hash": "97a80d419d70f6547620ea2ec037efa5",
-  "size": 14371
- },
- "/c/lit-correlated-errors/index.html": {
-  "hash": "e39f84f9b6bc67e39ed99c1c85284af1",
-  "size": 26351
- },
- "/c/lit-debate-or-vote/index.html": {
-  "hash": "0420f2359a7c9951f53ba3ed5ce0eb64",
-  "size": 22031
- },
- "/c/lit-debate-routing-matched-ceiling/index.html": {
-  "hash": "4191d936eb90b6dadd40af6eaf3427f5",
-  "size": 20714
- },
- "/c/lit-diverse-debate-hegazy/index.html": {
-  "hash": "b666d272ad4ea71993436a6dae77fe9e",
-  "size": 17330
- },
- "/c/lit-diversity-of-thought/index.html": {
-  "hash": "69caae541e817e40a5b0092e781fc774",
-  "size": 18028
- },
- "/c/lit-early-stopping-sc/index.html": {
-  "hash": "7f2ccbab5c84fc6b65c26b2b377a5db2",
-  "size": 20440
- },
- "/c/lit-frugalgpt/index.html": {
-  "hash": "3e3eae214dea371d68f3273425251ae7",
-  "size": 18130
- },
- "/c/lit-gptswarm/index.html": {
-  "hash": "fcb4e6cb9e98436ca6aac772917fa657",
-  "size": 19163
- },
- "/c/lit-great-models-think-alike/index.html": {
-  "hash": "f2b813aa8b2f42bd47c195a9b653ba08",
-  "size": 20153
- },
- "/c/lit-hong-page-diversity/index.html": {
-  "hash": "88213a458fe66d67f77f141c984f6b98",
-  "size": 21201
- },
- "/c/lit-inverse-scaling-ttc/index.html": {
-  "hash": "4d4932f087b0c8c0e942c0ec7491a763",
-  "size": 15940
- },
- "/c/lit-large-language-monkeys/index.html": {
-  "hash": "63c1f8e9b76f58a39f1ea16fee917b3b",
-  "size": 20219
- },
- "/c/lit-macnet/index.html": {
-  "hash": "440d242bb1a0997b4aecd5d317683fa4",
-  "size": 16278
- },
- "/c/lit-mast/index.html": {
-  "hash": "5bf2cc02d2f224e7e05bb6c657626cb2",
-  "size": 20880
- },
- "/c/lit-mixture-of-agents/index.html": {
-  "hash": "615a8c1fd65a0f31a7fd22a643d4f80e",
-  "size": 17560
- },
- "/c/lit-more-agents/index.html": {
-  "hash": "a0781c6ca7257164438b88d6cda185b7",
-  "size": 22871
- },
- "/c/lit-more-llm-calls/index.html": {
-  "hash": "bf23f21d1556a90c79d3250a822bbb52",
-  "size": 17784
- },
- "/c/lit-multiagent-debate-du/index.html": {
-  "hash": "f0b4af94ee3e303a69330f9d62dadbf8",
-  "size": 21186
- },
- "/c/lit-nothinking/index.html": {
-  "hash": "cc76f56abeae05256a24cbb9f4e4e3f8",
-  "size": 17676
- },
- "/c/lit-overthinking/index.html": {
-  "hash": "5719ed1ebfdade29c4dc23bc8304caf1",
-  "size": 15846
- },
- "/c/lit-pareto-test-time-multiagent/index.html": {
-  "hash": "b481fc09d2b980500489dfdcf6d64380",
-  "size": 19669
- },
- "/c/lit-rethinking-bounds-discussion/index.html": {
-  "hash": "dc40b622492b613e35787c786699a0be",
-  "size": 17480
- },
- "/c/lit-routellm/index.html": {
-  "hash": "c22f3cd17ea9fa25e966060487557108",
-  "size": 19700
- },
- "/c/lit-s1-budget-forcing/index.html": {
-  "hash": "4803785da1400e61d8b1985b5eda294d",
-  "size": 17177
- },
- "/c/lit-sas-equal-thinking-budget/index.html": {
-  "hash": "0fe565336bb406fb23dd6ff40143b869",
-  "size": 18267
- },
- "/c/lit-sas-vs-mas-hybrid/index.html": {
-  "hash": "eb1f4ab5bb14f0620299e33830d8cad2",
-  "size": 18294
- },
- "/c/lit-scaling-agent-systems/index.html": {
-  "hash": "0500a120175c888bffb1fa96de12c5cf",
-  "size": 25839
- },
- "/c/lit-self-consistency/index.html": {
-  "hash": "f13d6b0063b1d60eb6a4f184f79d1dbd",
-  "size": 19428
- },
- "/c/lit-self-moa/index.html": {
-  "hash": "2e32dbc4c6483ba43ce07c29a31f74fd",
-  "size": 17037
- },
- "/c/lit-selfheal/index.html": {
-  "hash": "591b852ba53ce50049131d96972736f9",
-  "size": 16340
- },
- "/c/lit-should-we-be-going-mad/index.html": {
-  "hash": "6ef627921de37a20b6d73d5ca82343ba",
-  "size": 18088
- },
- "/c/lit-silicon-crowd/index.html": {
-  "hash": "ff26918bf8b6fcb87c95aa8a790332ad",
-  "size": 16745
- },
- "/c/lit-snell-test-time-compute/index.html": {
-  "hash": "23444d9f6b98e04f85f4c4a51308a40c",
-  "size": 21421
- },
- "/c/lit-stop-overvaluing-mad/index.html": {
-  "hash": "3e9d6bf8306715015db381eb47d8cc23",
-  "size": 21447
- },
- "/c/lit-swarmbench-2025/index.html": {
-  "hash": "f251e96f5da760e10874947766b5e6ed",
-  "size": 20419
- },
- "/c/lit-swarmsys/index.html": {
-  "hash": "bb1b8dc50fb4ceafa8a95c8c32b270ac",
-  "size": 19606
- },
- "/c/oss-matrix/index.html": {
-  "hash": "f8fd1b9b1b74aa1230bb732774426945",
-  "size": 37174
- },
- "/c/oss-patterns/index.html": {
-  "hash": "ae205fa55b5286c31f1c18c5c50b0765",
-  "size": 41276
- },
- "/c/oss-agentnet/index.html": {
-  "hash": "9b9092758c8f718656da39b741ae3f75",
-  "size": 29420
- },
- "/c/oss-agentprune/index.html": {
-  "hash": "2a0cc3449409be83fdff33168b12ab61",
-  "size": 32681
- },
- "/c/oss-autogen/index.html": {
-  "hash": "52809618476b18f0e950372e9f1b76c3",
-  "size": 41924
- },
- "/c/oss-buzz/index.html": {
-  "hash": "90841fd3d1a45f7693a8b17f5b5d9075",
-  "size": 29481
- },
- "/c/oss-camel/index.html": {
-  "hash": "d61174af050dde3fe3f0bf58ace6df21",
-  "size": 38161
- },
- "/c/oss-chatdev-macnet/index.html": {
-  "hash": "01b540bf87e1429db6be7dabdf2db54d",
-  "size": 40412
- },
- "/c/oss-crewai/index.html": {
-  "hash": "9cbf638e90df050223d83fedf7c742e3",
-  "size": 30623
- },
- "/c/oss-gptswarm/index.html": {
-  "hash": "c014bb9b53fe9f749c5a63821794a6de",
-  "size": 28056
- },
- "/c/oss-langgraph-supervisor/index.html": {
-  "hash": "11eee0c32e29bdbdab8f5fab773aad8a",
-  "size": 27884
- },
- "/c/oss-langgraph-swarm/index.html": {
-  "hash": "5b152fafb4dbf3f0be2ab82924dd0057",
-  "size": 22146
- },
- "/c/oss-metagpt/index.html": {
-  "hash": "25e6c3a067c7c33908636847f4ac0a67",
-  "size": 35338
- },
- "/c/oss-moa/index.html": {
-  "hash": "fb7dd7bcc11d1c0ab333ce026957754e",
-  "size": 27457
- },
- "/c/oss-openai-agents-sdk/index.html": {
-  "hash": "abad7afe4e198a69c87e8d1ce6dfc8bf",
-  "size": 28374
- },
- "/c/oss-openai-swarm/index.html": {
-  "hash": "5884c1bd83c6df547c9ba81bd3de75b1",
-  "size": 22346
- },
- "/c/oss-plexil/index.html": {
-  "hash": "1d0772c23772747bd9ed844a1f6c936f",
-  "size": 28739
- },
- "/c/oss-selfheal/index.html": {
-  "hash": "03f11e40f680084239a7d1f05846d6a2",
-  "size": 31941
- },
- "/c/oss-stigmergic/index.html": {
-  "hash": "96d3967d34749511a83dbf43cbade302",
-  "size": 32384
- },
- "/c/oss-swarmsys/index.html": {
-  "hash": "6b5e78ff011593510db524a6d0b753e7",
-  "size": 14148
- },
- "/c/oss-symbiont/index.html": {
-  "hash": "da9f52a5bf89a9849f51d2711433310e",
-  "size": 34125
- },
- "/c/nat-candidates/index.html": {
-  "hash": "e89eca4a985f464083f29c9e7b32b4b3",
-  "size": 55910
- },
- "/c/nat-map/index.html": {
-  "hash": "c9b0e4eeb31255cde6575bcbecc23998",
-  "size": 23654
- },
- "/c/nat-accretion-planetesimals/index.html": {
-  "hash": "e5c643dfe07e12abf27011689d79d740",
-  "size": 13252
- },
- "/c/nat-army-ant-living-bridges/index.html": {
-  "hash": "3ef87467e8db7d87762eaf2adfe42068",
-  "size": 13504
- },
- "/c/nat-bacterial-quorum-sensing/index.html": {
-  "hash": "89b0f05be6a7933651fcafd14c86b9bd",
-  "size": 17993
- },
- "/c/nat-brain-energy-sparse/index.html": {
-  "hash": "8bb01ab51058b93b7a304f62467d91d2",
-  "size": 16732
- },
- "/c/nat-circadian-cadence/index.html": {
-  "hash": "2eaa8b7f3c8e5397bbf31d2dffb78e9c",
-  "size": 13704
- },
- "/c/nat-clonal-expansion-contraction/index.html": {
-  "hash": "6413fbb65e732eb71086c92d3946b081",
-  "size": 22149
- },
- "/c/nat-colony-size-scaling/index.html": {
-  "hash": "04e92f96e4914b7afb6d4ee4381eb611",
-  "size": 18290
- },
- "/c/nat-condorcet-correlated/index.html": {
-  "hash": "12ab9b84ef4f9ce8a2467f3bbeccf36b",
-  "size": 20920
- },
- "/c/nat-condorcet-jury/index.html": {
-  "hash": "14a643073b63ff2f22d514fc71278b30",
-  "size": 17141
- },
- "/c/nat-cosmic-web-physarum/index.html": {
-  "hash": "52d25edfc262de72a0d8f6a6fb3afa1c",
-  "size": 12570
- },
- "/c/nat-danger-theory/index.html": {
-  "hash": "c6b5b652566e9dfd3abf82fb7f707e81",
-  "size": 14276
- },
- "/c/nat-dictyostelium-aggregation/index.html": {
-  "hash": "b5a51cf35eefe501753f14574a78fd7c",
-  "size": 13399
- },
- "/c/nat-diversity-prediction/index.html": {
-  "hash": "508a7bce48f1748691080e0fa482ef64",
-  "size": 16109
- },
- "/c/nat-ecoli-run-and-tumble/index.html": {
-  "hash": "7454da84f1e28fe7d74b80779e351dee",
-  "size": 12833
- },
- "/c/nat-firefly-synchrony/index.html": {
-  "hash": "7f33b3cf683d57d8359a996522432cca",
-  "size": 12696
- },
- "/c/nat-galton-vox-populi/index.html": {
-  "hash": "b8b110476273b79061269bd29f1d5f17",
-  "size": 16181
- },
- "/c/nat-homeostasis-allostasis/index.html": {
-  "hash": "3657380c9618d70bc38cad3207b1322f",
-  "size": 18640
- },
- "/c/nat-hong-page-critique/index.html": {
-  "hash": "f51e9e5d3db5effa3b53486f4f6fd46b",
-  "size": 16421
- },
- "/c/nat-inactive-reserve/index.html": {
-  "hash": "485e7e913b1d74280da354cb410d8683",
-  "size": 22832
- },
- "/c/nat-informed-leaders/index.html": {
-  "hash": "aa26c8eebf4170411e6bc001fdf4fa4b",
-  "size": 20055
- },
- "/c/nat-interaction-rate-foraging/index.html": {
-  "hash": "82c391b38a37dcc00f8559f47699c8b7",
-  "size": 19693
- },
- "/c/nat-kessler-cascade/index.html": {
-  "hash": "a2fca7cc47b5767df24be88454cf2083",
-  "size": 20544
- },
- "/c/nat-lagrange-points/index.html": {
-  "hash": "9b23d141e25761896f1bc4d0e67252fa",
-  "size": 14187
- },
- "/c/nat-locust-marching-transition/index.html": {
-  "hash": "45d155d1294c3730259633685db1a0d5",
-  "size": 13087
- },
- "/c/nat-microtubule-dynamic-instability/index.html": {
-  "hash": "ff0b05697666ac641772a7ece61368bd",
-  "size": 11895
- },
- "/c/nat-myxococcus-group-predation/index.html": {
-  "hash": "d03caca0c5e0851c53cb4fabc2b228ab",
-  "size": 13068
- },
- "/c/nat-neutrophil-swarming/index.html": {
-  "hash": "57042257a720b59a7a1c528bc2ffa6f0",
-  "size": 14294
- },
- "/c/nat-open-cluster-dissolution/index.html": {
-  "hash": "5f0d0ceed03b009b156741c54c9b13f0",
-  "size": 12405
- },
- "/c/nat-orbital-resonance/index.html": {
-  "hash": "3879a072aaec109ab6d10c54b305c6a3",
-  "size": 14994
- },
- "/c/nat-penguin-huddle/index.html": {
-  "hash": "2d95301cb2ce875a1ef98d022d79458c",
-  "size": 12292
- },
- "/c/nat-pheromone-evaporation-aco/index.html": {
-  "hash": "f57a72ec1000792f9f10b4251f0a0cf0",
-  "size": 18773
- },
- "/c/nat-physarum-network/index.html": {
-  "hash": "1d66fbb3be51b588b9eb6fd324a3977f",
-  "size": 20351
- },
- "/c/nat-predator-prey-cycles/index.html": {
-  "hash": "93b0aa1690705be4f05f3d521bc0b7e1",
-  "size": 13313
- },
- "/c/nat-quorum-nest-bees/index.html": {
-  "hash": "ec2bc451a42963cd1b94427a4c8566cd",
-  "size": 19377
- },
- "/c/nat-recruitment-benefit-conditions/index.html": {
-  "hash": "4fdd4fee69a5fb9f726b21f4b32a626f",
-  "size": 19817
- },
- "/c/nat-reflex-vs-cortex/index.html": {
-  "hash": "9f71d919b91cc57b0bea3f05273c482c",
-  "size": 18606
- },
- "/c/nat-renal-filtration/index.html": {
-  "hash": "77c1e0963cfbba8da7d5dfde3d79188e",
-  "size": 12704
- },
- "/c/nat-response-threshold/index.html": {
-  "hash": "ef5d2fc4f820cca2e9923c92e7ff612e",
-  "size": 22679
- },
- "/c/nat-root-foraging/index.html": {
-  "hash": "6ba865783424fc6c6ab5e7e3ceb19017",
-  "size": 11867
- },
- "/c/nat-satellite-constellation-avoidance/index.html": {
-  "hash": "a22d440bb5e7f9ad57b9619e09f34754",
-  "size": 14599
- },
- "/c/nat-scale-free-correlation/index.html": {
-  "hash": "37854db98f7e2a85064134d96e4dc2e5",
-  "size": 16377
- },
- "/c/nat-shepherd-moons/index.html": {
-  "hash": "298a786c39cd4374abc33ea09cf82948",
-  "size": 12905
- },
- "/c/nat-small-groups-correlated-cues/index.html": {
-  "hash": "04a259909c588c91d44d943e83d08125",
-  "size": 21703
- },
- "/c/nat-speed-accuracy-quorum/index.html": {
-  "hash": "cc8a2091d7efe844b8bf11cca6e75a43",
-  "size": 17415
- },
- "/c/nat-stellar-thermostat/index.html": {
-  "hash": "b2086ac46fffb57b0202e18605b36ee7",
-  "size": 16596
- },
- "/c/nat-stigmergy/index.html": {
-  "hash": "eee61ffa1464516095a0c9e2d67ef255",
-  "size": 19712
- },
- "/c/nat-stop-signal-cross-inhibition/index.html": {
-  "hash": "367717a83431e6f8dc8df9bc66e5c893",
-  "size": 14649
- },
- "/c/nat-teams-not-swarms/index.html": {
-  "hash": "c363135f987ed649ee801ec9cbe6cf94",
-  "size": 15924
- },
- "/c/nat-topological-neighbors/index.html": {
-  "hash": "a67dcbf24446fd765dafbfd49e641ab8",
-  "size": 17225
- },
- "/c/nat-v-formation-flight/index.html": {
-  "hash": "e3da2eaffb85aa8ca9fbc4fb99437662",
-  "size": 13422
- },
- "/c/nat-vicsek-phase-transition/index.html": {
-  "hash": "8a79b484ecd611f9c5f4d3755fd1f675",
-  "size": 16987
- },
- "/c/nat-waggle-dance-recruitment/index.html": {
-  "hash": "1688cfe5c0d41187641618c777e5275b",
-  "size": 16587
- },
- "/c/nat-wound-healing-resolution/index.html": {
-  "hash": "31b46d9fa4dab9fa025cc8f65b67a0aa",
-  "size": 21745
- },
- "/c/th-model/index.html": {
-  "hash": "6e288b9cacaa13b0a7e1250ebf9cb4b6",
-  "size": 85135
- },
- "/c/h-01/index.html": {
-  "hash": "af91965f2403c7cb590b241152b4d999",
-  "size": 27405
- },
- "/c/h-02/index.html": {
-  "hash": "e36da0cafc564191be7d262c4e3693f1",
-  "size": 23932
- },
- "/c/h-03/index.html": {
-  "hash": "332e884c0682bcca3f2820d1552d11e3",
-  "size": 18509
- },
- "/c/h-04/index.html": {
-  "hash": "1e2f0f8aa87f698927c7e69a635b378a",
-  "size": 21524
- },
- "/c/h-05/index.html": {
-  "hash": "4d0784b5b25d7a0d124b778f3bf48164",
-  "size": 29286
- },
- "/c/h-06/index.html": {
-  "hash": "cd2e619fe48c2a4c27135e73a18316a2",
-  "size": 26515
- },
- "/c/h-07/index.html": {
-  "hash": "9fc3cbb409f5571f24271ad512a2fb53",
-  "size": 24771
- },
- "/c/h-08/index.html": {
-  "hash": "f19475c90e5ddba8c91f8722f835bceb",
-  "size": 25266
- },
- "/c/h-09/index.html": {
-  "hash": "2145dce3f995cd03c70d39955494788e",
-  "size": 18388
- },
- "/c/h-10/index.html": {
-  "hash": "eaf038b8ab452d4ef3a187dd3292951f",
-  "size": 20025
- },
- "/c/h-11/index.html": {
-  "hash": "a202bbff193ea8bd985bd870278506af",
-  "size": 23068
- },
- "/c/h-12/index.html": {
-  "hash": "be483959887d37ee00ab3d2bb6c853a5",
-  "size": 17210
- },
- "/c/h-13/index.html": {
-  "hash": "c37be5a3ae19cd2e600caf96c4fb4525",
-  "size": 18238
- },
- "/c/h-14/index.html": {
-  "hash": "1b5b2e97765982afd7b2eb7dd463ab1d",
-  "size": 19778
- },
- "/c/h-15/index.html": {
-  "hash": "f71a3298f89209b362abbc303e7ceb16",
-  "size": 21502
- },
- "/c/h-16/index.html": {
-  "hash": "36baea4b13c815e9eb77871193ee43c5",
-  "size": 23410
- },
- "/c/h-17/index.html": {
-  "hash": "c81409f296e9f87bc25f7305ea8ac74e",
-  "size": 20274
- },
- "/c/h-18/index.html": {
-  "hash": "be153aafbd6d89989bfc71db0b32088b",
-  "size": 18966
- },
- "/c/h-19/index.html": {
-  "hash": "95bfce94d9f7e97249b24ed97b979133",
-  "size": 17379
- },
- "/c/h-20/index.html": {
-  "hash": "67ee419ed01a2765ed67196e89e6ff45",
-  "size": 19629
- },
- "/c/h-21/index.html": {
-  "hash": "e249a6942657488d5888133222b331ab",
-  "size": 20874
- },
- "/c/h-22/index.html": {
-  "hash": "35b360fbe1eee6fbd6e626a24a0cdbb7",
-  "size": 16848
- },
- "/c/h-23/index.html": {
-  "hash": "83123451e66939efa1a2da6d0adb3978",
-  "size": 15206
- },
- "/c/h-24/index.html": {
-  "hash": "cb97dbeca629f8983a99384e4f4525ca",
-  "size": 19964
- },
- "/c/h-25/index.html": {
-  "hash": "7c359e4f6e6a2e0dfe492d4fb8630982",
-  "size": 17131
- },
- "/c/h-26/index.html": {
-  "hash": "44bbc5ff68cecc464d4bc33aae728cc0",
-  "size": 14021
- },
- "/c/h-27/index.html": {
-  "hash": "c157a87b0ad33719bd6b287c939dea65",
-  "size": 15605
- },
- "/c/sim-report/index.html": {
-  "hash": "04978fc9a8fb3451ceb9c1d69fd86987",
-  "size": 36693
- },
- "/c/sim-clonal/index.html": {
-  "hash": "a0834b661e2968f395214fb4eac69f83",
-  "size": 61730
- },
- "/c/sim-correlated-vote/index.html": {
-  "hash": "53db0576bfa2ef8c42b479659e9b0596",
-  "size": 459526
- },
- "/c/sim-elastic/index.html": {
-  "hash": "d849ec4c5888833e35f8f75caaf99f21",
-  "size": 65263
- },
- "/c/sim-quorum/index.html": {
-  "hash": "6a894ffe1523ae375fa168c8ad08ce4b",
-  "size": 31571
- },
- "/c/sim-response-threshold/index.html": {
-  "hash": "f4f0b38db02506c5fcc45e05fae8ccf1",
-  "size": 79514
- },
- "/c/sim-stigmergy/index.html": {
-  "hash": "c19673594be9b71fc3a4bc511dc4f584",
-  "size": 28775
- },
- "/c/sim-verifier/index.html": {
-  "hash": "b42d4421f101203e14ee5fb1cc1deb3b",
-  "size": 156249
- },
- "/c/obs-lab001-prereg/index.html": {
-  "hash": "0260f7ec8a7a0a73782cd878ded96a80",
-  "size": 21208
- },
- "/c/obs-lab001-bio-vs-artificial/index.html": {
-  "hash": "2e3f379c921a5823f967a86c04783e75",
-  "size": 120315
- },
- "/c/obs-lab002-prereg/index.html": {
-  "hash": "0220815bd3d7d604544b4a7cc68ebed3",
-  "size": 15885
- },
- "/c/obs-lab002-controller-threads/index.html": {
-  "hash": "a5439f2d2c7521347bf33f34b9bdc1ff",
-  "size": 62416
- },
- "/c/obs-lab003-calibration/index.html": {
-  "hash": "daa4ccc727406feb9b1f4af330e6bba1",
-  "size": 17784
- },
- "/c/obs-lab003-prereg-main/index.html": {
-  "hash": "9f95871e4d582d41305dfa4484d721b2",
-  "size": 19131
- },
- "/c/obs-lab003-prereg-step0/index.html": {
-  "hash": "907aa3cdadf1fc9a0b587127adb4acab",
-  "size": 14387
- },
- "/c/obs-lab003-split-retry-memory/index.html": {
-  "hash": "20c2f48294f10554f3e6d22a45df2cff",
-  "size": 93755
- },
- "/c/obs-lab004-prereg/index.html": {
-  "hash": "5d66d238de312b8bc6e6bb114f7ee780",
-  "size": 23866
- },
- "/c/obs-lab004-massive-swarm/index.html": {
-  "hash": "778cab03367f108febce947c7c4ff951",
-  "size": 198076
+  "hash": "d83fe9a5224eac8b44200208918b8449",
+  "size": 9553
  },
  "/c/obs-lab004-simulation/index.html": {
-  "hash": "c0bbba55dc04e8c84bbafd13a00e355e",
-  "size": 405949
+  "hash": "58b81854b71f853d5af6c936ba6f44e1",
+  "size": 413859
+ },
+ "/c/obs-lab004-massive-swarm/index.html": {
+  "hash": "0b75acf36a37242efb0c5063f56ab52f",
+  "size": 202075
+ },
+ "/c/obs-lab003-split-retry-memory/index.html": {
+  "hash": "6b087b99ec5770b3f02d5f69af476f6e",
+  "size": 100588
+ },
+ "/c/obs-lab002-controller-threads/index.html": {
+  "hash": "10551333e315b643e6747b2961bc5f20",
+  "size": 69899
+ },
+ "/c/obs-lab001-bio-vs-artificial/index.html": {
+  "hash": "3311ce47221334d2ae97bbcacb81334e",
+  "size": 124640
+ },
+ "/c/lit-bibliography/index.html": {
+  "hash": "a7036f38b94166a418b3f45c9a049c46",
+  "size": 39485
+ },
+ "/c/lit-synthesis/index.html": {
+  "hash": "20112150fd009cd996867f101969579f",
+  "size": 65477
+ },
+ "/c/lit-adaptive-computation-time/index.html": {
+  "hash": "5807317ca759882814a0134a7afb44d8",
+  "size": 20290
+ },
+ "/c/lit-adaptive-consistency/index.html": {
+  "hash": "504208d1521be13ea311c9f530b5780e",
+  "size": 26379
+ },
+ "/c/lit-agentnet/index.html": {
+  "hash": "92b5658a507de28ae4187eb44108c7f8",
+  "size": 23022
+ },
+ "/c/lit-agentprune/index.html": {
+  "hash": "5154663a7539480f6ffd48f00d27c675",
+  "size": 23743
+ },
+ "/c/lit-bio-autonomic/index.html": {
+  "hash": "d03d3090faa18d57c8d506fc0584e028",
+  "size": 19218
+ },
+ "/c/lit-correlated-errors/index.html": {
+  "hash": "b1e5258441e5c381d77eef9d2c44ab31",
+  "size": 31151
+ },
+ "/c/lit-debate-or-vote/index.html": {
+  "hash": "2145058559309a07d2799dd494f6caf7",
+  "size": 26936
+ },
+ "/c/lit-debate-routing-matched-ceiling/index.html": {
+  "hash": "cd59506da43b8388aea6424bb40d6d85",
+  "size": 26034
+ },
+ "/c/lit-diverse-debate-hegazy/index.html": {
+  "hash": "09b50a4297d0f308f33f8015e29153af",
+  "size": 22397
+ },
+ "/c/lit-diversity-of-thought/index.html": {
+  "hash": "07e3be62e25880ec75ac2fcaedc321dc",
+  "size": 22945
+ },
+ "/c/lit-early-stopping-sc/index.html": {
+  "hash": "89ca5f300ce93489dd461336e10c8977",
+  "size": 25257
+ },
+ "/c/lit-frugalgpt/index.html": {
+  "hash": "7baa614e78fd339ba7f83c75d2185602",
+  "size": 22767
+ },
+ "/c/lit-gptswarm/index.html": {
+  "hash": "c2e020958e50799e930450fc422e41ec",
+  "size": 23748
+ },
+ "/c/lit-great-models-think-alike/index.html": {
+  "hash": "aa260fb0eb2b43b63eeea01c2c62b883",
+  "size": 25014
+ },
+ "/c/lit-hong-page-diversity/index.html": {
+  "hash": "9f401a3ef74332da5b9287692df24a03",
+  "size": 26125
+ },
+ "/c/lit-inverse-scaling-ttc/index.html": {
+  "hash": "1ae00f74a61ee0614e73108527e04452",
+  "size": 20809
+ },
+ "/c/lit-large-language-monkeys/index.html": {
+  "hash": "b7c1b1135364a00cd07ff13370678a85",
+  "size": 25103
+ },
+ "/c/lit-macnet/index.html": {
+  "hash": "722d59d579ce194c32440b5f0798bb75",
+  "size": 21012
+ },
+ "/c/lit-mast/index.html": {
+  "hash": "d7f77bcb59aa55bcb6ccb9491b3cc53f",
+  "size": 25390
+ },
+ "/c/lit-mixture-of-agents/index.html": {
+  "hash": "bbae6703db6b275df4141f36ebd994b3",
+  "size": 22418
+ },
+ "/c/lit-more-agents/index.html": {
+  "hash": "5860e6d689105b04aae5aa8bb1f13bb2",
+  "size": 27551
+ },
+ "/c/lit-more-llm-calls/index.html": {
+  "hash": "440ff167d51e4e8151cd3d8aaa7488e8",
+  "size": 22598
+ },
+ "/c/lit-multiagent-debate-du/index.html": {
+  "hash": "439907179bd351bc256e5a63bf791c68",
+  "size": 26056
+ },
+ "/c/lit-nothinking/index.html": {
+  "hash": "49e8c17e2881f5617e679a561b56d2ca",
+  "size": 22426
+ },
+ "/c/lit-overthinking/index.html": {
+  "hash": "cae3a88d3620e7fda2c3d92dbb3aebb9",
+  "size": 20571
+ },
+ "/c/lit-pareto-test-time-multiagent/index.html": {
+  "hash": "7b5df5a49eead427c2a009407364ab48",
+  "size": 24794
+ },
+ "/c/lit-rethinking-bounds-discussion/index.html": {
+  "hash": "5ff5e6c1ea78b165d9305788d82c735e",
+  "size": 22629
+ },
+ "/c/lit-routellm/index.html": {
+  "hash": "b2bcf3f8113dcd16168ac255ebe289d3",
+  "size": 24285
+ },
+ "/c/lit-s1-budget-forcing/index.html": {
+  "hash": "db7567f99443e2ec5c9b3d795e6dec6d",
+  "size": 22012
+ },
+ "/c/lit-sas-equal-thinking-budget/index.html": {
+  "hash": "82d453ff53c2cda3f3ececf4f7e1c41b",
+  "size": 23197
+ },
+ "/c/lit-sas-vs-mas-hybrid/index.html": {
+  "hash": "cd044792f177e7dff1134884d66a7c35",
+  "size": 23268
+ },
+ "/c/lit-scaling-agent-systems/index.html": {
+  "hash": "563cbd34655c0a78b70c73804569fc2c",
+  "size": 30755
+ },
+ "/c/lit-self-consistency/index.html": {
+  "hash": "993cc2219d573c67ec55803d96ca4f08",
+  "size": 24120
+ },
+ "/c/lit-self-moa/index.html": {
+  "hash": "a9d6ed0e1a9ad056de68b0f168d6aecb",
+  "size": 21798
+ },
+ "/c/lit-selfheal/index.html": {
+  "hash": "f3ce2bf8d557eae59dfc798ecad6e731",
+  "size": 20982
+ },
+ "/c/lit-should-we-be-going-mad/index.html": {
+  "hash": "166b2595895730c5aef82c9791d5497e",
+  "size": 22971
+ },
+ "/c/lit-silicon-crowd/index.html": {
+  "hash": "b9dab998affd18e563d082026cebc940",
+  "size": 21678
+ },
+ "/c/lit-snell-test-time-compute/index.html": {
+  "hash": "14eb342281b34cbedd8f4aca6bf26c4e",
+  "size": 26295
+ },
+ "/c/lit-stop-overvaluing-mad/index.html": {
+  "hash": "0a317fc175170f66e679d5b5cab80aed",
+  "size": 26481
+ },
+ "/c/lit-swarmbench-2025/index.html": {
+  "hash": "4a61dc456dc5b08281db34b34792f3ae",
+  "size": 25155
+ },
+ "/c/lit-swarmsys/index.html": {
+  "hash": "1d93413bf1f22bd85e33d640908bcbf5",
+  "size": 24294
+ },
+ "/c/oss-matrix/index.html": {
+  "hash": "4bc7a129619ed57f17bffd537d13cfd4",
+  "size": 41927
+ },
+ "/c/oss-patterns/index.html": {
+  "hash": "bfcd6f954c981d0688b2777ef9464cba",
+  "size": 46097
+ },
+ "/c/oss-agentnet/index.html": {
+  "hash": "88535fc2fd02c437c7d296a81f9c3764",
+  "size": 34175
+ },
+ "/c/oss-agentprune/index.html": {
+  "hash": "68c65516197c99148bdd4fac8e8e8a8b",
+  "size": 37453
+ },
+ "/c/oss-autogen/index.html": {
+  "hash": "f1d932030e5ecafe4baa0308303cab99",
+  "size": 46483
+ },
+ "/c/oss-buzz/index.html": {
+  "hash": "a47f02942abb73ad1772d28b3dd49323",
+  "size": 34196
+ },
+ "/c/oss-camel/index.html": {
+  "hash": "7e330d2d716135ace6d03820f36d6305",
+  "size": 42939
+ },
+ "/c/oss-chatdev-macnet/index.html": {
+  "hash": "52487ccf63ddafd6e0394871c3364e83",
+  "size": 45190
+ },
+ "/c/oss-crewai/index.html": {
+  "hash": "8103442c2ff41492db2ce6cf5648098b",
+  "size": 35432
+ },
+ "/c/oss-gptswarm/index.html": {
+  "hash": "a1c44dc6b1e8fb6d332cbad09db6c9e0",
+  "size": 32811
+ },
+ "/c/oss-langgraph-supervisor/index.html": {
+  "hash": "513f344793cfda4b3598461afe5258ba",
+  "size": 32794
+ },
+ "/c/oss-langgraph-swarm/index.html": {
+  "hash": "7232d74069025ee96e615149849aa0a7",
+  "size": 26898
+ },
+ "/c/oss-metagpt/index.html": {
+  "hash": "84c6b57a612a9ecdad00cb6d93574dda",
+  "size": 39914
+ },
+ "/c/oss-moa/index.html": {
+  "hash": "1013987f0638f342d667eb45e8edf9a3",
+  "size": 32044
+ },
+ "/c/oss-openai-agents-sdk/index.html": {
+  "hash": "83b46232ef2b06f038674193b4d13437",
+  "size": 33179
+ },
+ "/c/oss-openai-swarm/index.html": {
+  "hash": "4945cc0a57bd2742e339216d7fbff758",
+  "size": 27133
+ },
+ "/c/oss-plexil/index.html": {
+  "hash": "46adf54274bfa23c28b1ee238cb5c8b2",
+  "size": 33312
+ },
+ "/c/oss-selfheal/index.html": {
+  "hash": "0e09d288d0df2503c5b3583a758c3143",
+  "size": 36676
+ },
+ "/c/oss-stigmergic/index.html": {
+  "hash": "7c84068b2a70da684dc2b68908747e0d",
+  "size": 37235
+ },
+ "/c/oss-swarmsys/index.html": {
+  "hash": "f6a2f5c4ed943ad050d38fd0bd7be24c",
+  "size": 18893
+ },
+ "/c/oss-symbiont/index.html": {
+  "hash": "6f7a364b0523b8b35c83855962a3cd3a",
+  "size": 38896
+ },
+ "/c/nat-candidates/index.html": {
+  "hash": "0a5be88ca7e080c7ff4abe42cfab286f",
+  "size": 60548
+ },
+ "/c/nat-map/index.html": {
+  "hash": "4be916fce55267ba608c17620245734d",
+  "size": 28222
+ },
+ "/c/nat-accretion-planetesimals/index.html": {
+  "hash": "d8c876a8f3b856af2b1185762083d56f",
+  "size": 17960
+ },
+ "/c/nat-army-ant-living-bridges/index.html": {
+  "hash": "e03fdbccf1ffd544f35629a56d2e4331",
+  "size": 18365
+ },
+ "/c/nat-bacterial-quorum-sensing/index.html": {
+  "hash": "fb818c5c41a83f02fa35ece6645796c6",
+  "size": 22800
+ },
+ "/c/nat-brain-energy-sparse/index.html": {
+  "hash": "089ce46d58167227b8d8aa3dbd96576c",
+  "size": 21389
+ },
+ "/c/nat-circadian-cadence/index.html": {
+  "hash": "b191587f4b40cd3ec9f7f6b884b052a3",
+  "size": 18501
+ },
+ "/c/nat-clonal-expansion-contraction/index.html": {
+  "hash": "010e728138557b3fbcf5a2950ef2e89a",
+  "size": 27155
+ },
+ "/c/nat-colony-size-scaling/index.html": {
+  "hash": "f9cda2465a350dd2a0d0aaffbcd61fde",
+  "size": 23036
+ },
+ "/c/nat-condorcet-correlated/index.html": {
+  "hash": "e4f975b49df767c7d3b60cab807e40a6",
+  "size": 25739
+ },
+ "/c/nat-condorcet-jury/index.html": {
+  "hash": "c29925e1318368ed9e099547b2d273f5",
+  "size": 21881
+ },
+ "/c/nat-cosmic-web-physarum/index.html": {
+  "hash": "066bbaffd3a652ada2ed2be4d88832dc",
+  "size": 17226
+ },
+ "/c/nat-danger-theory/index.html": {
+  "hash": "3ed565b2b471e304359e90e65b032aef",
+  "size": 18893
+ },
+ "/c/nat-dictyostelium-aggregation/index.html": {
+  "hash": "fa814c10129cf659b691cc9521b32fbb",
+  "size": 18341
+ },
+ "/c/nat-diversity-prediction/index.html": {
+  "hash": "b49d8414a49d115b75c0d463ebdaaf31",
+  "size": 20944
+ },
+ "/c/nat-ecoli-run-and-tumble/index.html": {
+  "hash": "2dff834db26ceccf6610a64d025a9a8e",
+  "size": 17635
+ },
+ "/c/nat-firefly-synchrony/index.html": {
+  "hash": "a3f68b2fcfccd13793febd55c4b7e9ef",
+  "size": 17404
+ },
+ "/c/nat-galton-vox-populi/index.html": {
+  "hash": "2b5eda0e47e3f96532e6e27650119476",
+  "size": 21055
+ },
+ "/c/nat-homeostasis-allostasis/index.html": {
+  "hash": "1c8a2706bc82a5ad525140e47b6424af",
+  "size": 23405
+ },
+ "/c/nat-hong-page-critique/index.html": {
+  "hash": "953bb84b3efbbfb6966a9b1041309a71",
+  "size": 20852
+ },
+ "/c/nat-inactive-reserve/index.html": {
+  "hash": "333e6598b27641aaad3291c01869ec8e",
+  "size": 27394
+ },
+ "/c/nat-informed-leaders/index.html": {
+  "hash": "e71a868c1fc15f8ef1ccc223c1178658",
+  "size": 24903
+ },
+ "/c/nat-interaction-rate-foraging/index.html": {
+  "hash": "87909bacf94e6476e1280f04130a8ea2",
+  "size": 24457
+ },
+ "/c/nat-kessler-cascade/index.html": {
+  "hash": "87cf2f81937c38035bdde86359e11544",
+  "size": 25363
+ },
+ "/c/nat-lagrange-points/index.html": {
+  "hash": "94bc8637d20fab7bdc7ce92e4f1ba93a",
+  "size": 18882
+ },
+ "/c/nat-locust-marching-transition/index.html": {
+  "hash": "83f82d17857d08c47f0c0f334be79a11",
+  "size": 18006
+ },
+ "/c/nat-microtubule-dynamic-instability/index.html": {
+  "hash": "96c4d2d5fc5da7acb4d4c0cceec8ff30",
+  "size": 16900
+ },
+ "/c/nat-myxococcus-group-predation/index.html": {
+  "hash": "b28d6d2308adffc6285443d36065dd3a",
+  "size": 17991
+ },
+ "/c/nat-neutrophil-swarming/index.html": {
+  "hash": "885f98dcb5cc1e8ed099c8fcf7a8b1b6",
+  "size": 19096
+ },
+ "/c/nat-open-cluster-dissolution/index.html": {
+  "hash": "6b8c502838d12832890f2457f546ea00",
+  "size": 17107
+ },
+ "/c/nat-orbital-resonance/index.html": {
+  "hash": "21b36db8afb92648f27e58471c5d9177",
+  "size": 19709
+ },
+ "/c/nat-penguin-huddle/index.html": {
+  "hash": "23200cd64165df1013662896b04c0675",
+  "size": 16874
+ },
+ "/c/nat-pheromone-evaporation-aco/index.html": {
+  "hash": "f6f652260f85d8ab131ff55848fdae97",
+  "size": 23686
+ },
+ "/c/nat-physarum-network/index.html": {
+  "hash": "f8e736e505d597fc7fd20de103b4ee3f",
+  "size": 25064
+ },
+ "/c/nat-predator-prey-cycles/index.html": {
+  "hash": "e27df3d2976a50026e1e78d12bb9731a",
+  "size": 18096
+ },
+ "/c/nat-quorum-nest-bees/index.html": {
+  "hash": "4a56d1833871c216969c0e2643048a5b",
+  "size": 24177
+ },
+ "/c/nat-recruitment-benefit-conditions/index.html": {
+  "hash": "fabb63c3a36045f291e88902bd31d308",
+  "size": 24803
+ },
+ "/c/nat-reflex-vs-cortex/index.html": {
+  "hash": "d78896b221c28ea4a79b8c49cb22dd4c",
+  "size": 23414
+ },
+ "/c/nat-renal-filtration/index.html": {
+  "hash": "5f47f50e88b8bdef163feb8ec10ee628",
+  "size": 17385
+ },
+ "/c/nat-response-threshold/index.html": {
+  "hash": "334f1d8cea375137e44702845d8f17b5",
+  "size": 27378
+ },
+ "/c/nat-root-foraging/index.html": {
+  "hash": "fa59bfef1c7578eb3a361853e7487b3f",
+  "size": 16502
+ },
+ "/c/nat-satellite-constellation-avoidance/index.html": {
+  "hash": "56a0b904675a66915ccdadc0f327a879",
+  "size": 19563
+ },
+ "/c/nat-scale-free-correlation/index.html": {
+  "hash": "6709492fb5e5cb057eb7c7ce84af04d6",
+  "size": 21070
+ },
+ "/c/nat-shepherd-moons/index.html": {
+  "hash": "b949420db6553fef9ccbcf306713bb82",
+  "size": 17437
+ },
+ "/c/nat-small-groups-correlated-cues/index.html": {
+  "hash": "3fe5e415496dcedec907c85bd8ff8ef6",
+  "size": 26630
+ },
+ "/c/nat-speed-accuracy-quorum/index.html": {
+  "hash": "c9c38e02f27087140ca64e66421a70f9",
+  "size": 22278
+ },
+ "/c/nat-stellar-thermostat/index.html": {
+  "hash": "d696cd332c99e0a016a5575f635fc3ea",
+  "size": 21396
+ },
+ "/c/nat-stigmergy/index.html": {
+  "hash": "35bdf3ed3bdab4bbc462b51a3c1a1c8c",
+  "size": 24430
+ },
+ "/c/nat-stop-signal-cross-inhibition/index.html": {
+  "hash": "66d2eff6f44207e784afbbb75ad770f5",
+  "size": 19555
+ },
+ "/c/nat-teams-not-swarms/index.html": {
+  "hash": "673018311c92a70fe54f36fa850205d7",
+  "size": 20552
+ },
+ "/c/nat-topological-neighbors/index.html": {
+  "hash": "1f40473ceb62a6ce1736e095cda1ac79",
+  "size": 21986
+ },
+ "/c/nat-v-formation-flight/index.html": {
+  "hash": "0b09cb5af17430542c2d415e87241311",
+  "size": 18203
+ },
+ "/c/nat-vicsek-phase-transition/index.html": {
+  "hash": "1905608ecea2c0e65c9a79c6101a4ec3",
+  "size": 21818
+ },
+ "/c/nat-waggle-dance-recruitment/index.html": {
+  "hash": "07d83b3774bc45012dd3b1ac0662246d",
+  "size": 21277
+ },
+ "/c/nat-wound-healing-resolution/index.html": {
+  "hash": "2daf6b8a794d9bb47795bb8b9374ea6f",
+  "size": 26635
+ },
+ "/c/th-model/index.html": {
+  "hash": "7df346b827352ca090bcd13207e306bb",
+  "size": 89668
+ },
+ "/c/h-01/index.html": {
+  "hash": "c70a3a4645bd73e3ecac382c71a04d16",
+  "size": 31875
+ },
+ "/c/h-02/index.html": {
+  "hash": "34442bec0b475e3c05f4c9cf8d41cb56",
+  "size": 28348
+ },
+ "/c/h-03/index.html": {
+  "hash": "268d6dc61e72a7b48a4d109178d80501",
+  "size": 22975
+ },
+ "/c/h-04/index.html": {
+  "hash": "b7981e59754f9742e1f3f88d084729cd",
+  "size": 26011
+ },
+ "/c/h-05/index.html": {
+  "hash": "5aaf7478255c9ce3dbaa9884776797e5",
+  "size": 33766
+ },
+ "/c/h-06/index.html": {
+  "hash": "019495fa631c5f841bd6e0fa49e34e93",
+  "size": 31169
+ },
+ "/c/h-07/index.html": {
+  "hash": "0cb8d516fcf5a46b7d3123c96fbace29",
+  "size": 29300
+ },
+ "/c/h-08/index.html": {
+  "hash": "f415da6bc949c75695d3a0634ea3863c",
+  "size": 29823
+ },
+ "/c/h-09/index.html": {
+  "hash": "d993353ce204b875ba6458488d628495",
+  "size": 23013
+ },
+ "/c/h-10/index.html": {
+  "hash": "1267fc4f52094a535c49e1a0dbea149a",
+  "size": 24576
+ },
+ "/c/h-11/index.html": {
+  "hash": "57f2b18f6bcd640818add16054459a03",
+  "size": 27603
+ },
+ "/c/h-12/index.html": {
+  "hash": "2cddc1ab10ee126415400826dfd61ff6",
+  "size": 21845
+ },
+ "/c/h-13/index.html": {
+  "hash": "2cb15978d7f8a958d4423c9a1444765d",
+  "size": 22999
+ },
+ "/c/h-14/index.html": {
+  "hash": "9bc0bfdcb8b97f228643736f1f0f63a5",
+  "size": 24383
+ },
+ "/c/h-15/index.html": {
+  "hash": "f77e250d43277aa5b72fbad280e2de0e",
+  "size": 26228
+ },
+ "/c/h-16/index.html": {
+  "hash": "33a50964cadf87ce79051645f936e0c3",
+  "size": 27984
+ },
+ "/c/h-17/index.html": {
+  "hash": "49bc5a13168db78ac95d327c7b085ac6",
+  "size": 24912
+ },
+ "/c/h-18/index.html": {
+  "hash": "3b0c2ccff4160ac9b6af329b21445c13",
+  "size": 23447
+ },
+ "/c/h-19/index.html": {
+  "hash": "2e6a81d9bb7667808740e7bb72b35e6b",
+  "size": 21937
+ },
+ "/c/h-20/index.html": {
+  "hash": "273c6e1326cdd2d7a985f798262ac52f",
+  "size": 24196
+ },
+ "/c/h-21/index.html": {
+  "hash": "dcc6d6fe48edf69e41a9e5057b01a855",
+  "size": 25537
+ },
+ "/c/h-22/index.html": {
+  "hash": "8815cc34474ef7f50bd0dc9472e02d36",
+  "size": 21448
+ },
+ "/c/h-23/index.html": {
+  "hash": "6fa3f5a7d71461343473832a7c0bf16c",
+  "size": 19877
+ },
+ "/c/h-24/index.html": {
+  "hash": "2fb3e2d3d8d8874493271cab94555ec9",
+  "size": 24640
+ },
+ "/c/h-25/index.html": {
+  "hash": "dab9bf740113f24807f9feb87841718f",
+  "size": 21770
+ },
+ "/c/h-26/index.html": {
+  "hash": "ed30cb055a2a017e475c9f982d036487",
+  "size": 18651
+ },
+ "/c/h-27/index.html": {
+  "hash": "062909b2a4845729a8dc48f5ef8efb0e",
+  "size": 20269
+ },
+ "/c/sim-report/index.html": {
+  "hash": "46377dc5953ad164b290cb8d3cb7b041",
+  "size": 41337
+ },
+ "/c/sim-clonal/index.html": {
+  "hash": "ed6666755c6eaa9434788084dfa1036c",
+  "size": 66291
+ },
+ "/c/sim-correlated-vote/index.html": {
+  "hash": "e5a63dfb3abd2e86bb3d9afd25b63553",
+  "size": 464204
+ },
+ "/c/sim-elastic/index.html": {
+  "hash": "29b13c9b45205c68e5a020aeed3017f2",
+  "size": 69686
+ },
+ "/c/sim-quorum/index.html": {
+  "hash": "604fc49022ac05302a5a9467e5b52265",
+  "size": 36054
+ },
+ "/c/sim-response-threshold/index.html": {
+  "hash": "7610706d453b71d81adfc06ef196e24a",
+  "size": 84295
+ },
+ "/c/sim-stigmergy/index.html": {
+  "hash": "da2eba9ae9646305c109dc10d653940c",
+  "size": 33348
+ },
+ "/c/sim-verifier/index.html": {
+  "hash": "df9c1d69a25333fd30fe82e7cf5863b4",
+  "size": 160836
+ },
+ "/c/obs-lab001-prereg/index.html": {
+  "hash": "73f536923120e3c0ce99a06f299623f2",
+  "size": 25804
+ },
+ "/c/obs-lab002-prereg/index.html": {
+  "hash": "2acbdd4d8d4c5dca6a093cca2856ec3c",
+  "size": 20528
+ },
+ "/c/obs-lab003-calibration/index.html": {
+  "hash": "f46fa09d5e625905d9babd2d4ee90c20",
+  "size": 22555
+ },
+ "/c/obs-lab003-prereg-main/index.html": {
+  "hash": "8a74188ef435d3befb95a32d07ed4f2a",
+  "size": 23822
+ },
+ "/c/obs-lab003-prereg-step0/index.html": {
+  "hash": "53c4a75b434fb46c44cc4c47f387811e",
+  "size": 18972
+ },
+ "/c/obs-lab004-prereg/index.html": {
+  "hash": "b3ee123c9563d02d7ac2e9fec53a8410",
+  "size": 28458
+ },
+ "/journal/index.html": {
+  "hash": "e95e9b7cf752a0e9c401b4d27f27d04e",
+  "size": 16441
+ },
+ "/journal/feed.xml": {
+  "hash": "2ac512547a1511be0865e4424ea83369",
+  "size": 9641
+ },
+ "/flags/index.html": {
+  "hash": "ff1097b216c7b107ac0813a117d24f56",
+  "size": 42393
+ },
+ "/contact/index.html": {
+  "hash": "375ba88ac763068478b81df5cc4bd269",
+  "size": 9079
+ },
+ "/contact/thanks/index.html": {
+  "hash": "123230248bfc047c6e8c88392b5969ec",
+  "size": 7070
+ },
+ "/contact/error/index.html": {
+  "hash": "02e68f5821dde7018e77f0041d1efb11",
+  "size": 9261
  },
  "/method/index.html": {
-  "hash": "83c04e9897ae0db2cd0f328d3c409493",
-  "size": 16775
+  "hash": "44357d5c98a3f30246d85e0d6696dcff",
+  "size": 19791
  },
  "/404.html": {
-  "hash": "ed397556dfc2a365b501a2c61bde416e",
-  "size": 4240
+  "hash": "0c7f5ec7a5e5a5528e66d18ed0196c33",
+  "size": 7320
  },
  "/robots.txt": {
-  "hash": "e53a45289af6dfa017c91b417e81e6b3",
-  "size": 77
+  "hash": "503ddafae9e7c6147589df22ba3c9285",
+  "size": 94
  },
  "/sitemap.xml": {
-  "hash": "4cdbb4236e5b7510485f4ec80d63c130",
-  "size": 13739
+  "hash": "8254b5060317e9278f6391e67bacc5cc",
+  "size": 19207
  },
  "/archive.json": {
-  "hash": "10ea067f68ef4d1380c488b56d1940bc",
-  "size": 214474
+  "hash": "d0912caddf02d7b5624129557db923cd",
+  "size": 217377
  }
 }

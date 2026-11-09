@@ -39,3 +39,11 @@ The build has no package dependencies and requires Node 20 or newer. The site us
 - If the asset token expires, create a new session and upload again.
 - If the custom hostname is already attached to a different Worker or has an existing DNS record, inspect that Cloudflare state manually. The deployment script intentionally stops without changing it.
 - `site/build-report.json` is the source of truth for local build warnings; fix broken card relations before publishing.
+
+## Contact form (send_email binding)
+
+`POST /api/contact` is handled by `src/worker.js` and sends the message with the Cloudflare `send_email` binding `EMAIL` (destination `norevia@coldcodelabs.com`, sender `norevia@mail.coldcodelabs.com`). `deploy.mjs` adds the binding to the Worker metadata. Prerequisites in the Cloudflare account: Email Routing enabled with `norevia@coldcodelabs.com` as a verified destination address, and `mail.coldcodelabs.com` onboarded as a sender domain. Success redirects to `/contact/thanks/`, failure to `/contact/error/`.
+
+## Open Graph images and SEO
+
+OG images (PNG 1200x630) are rendered from SVG by `node site/og.mjs` into `site/src/og/` (needs `rsvg-convert`; the user-space copy is `../../tools/bin/rsvg-convert`) and are committed; `build.mjs` copies them and warns if one is missing or stale. Re-run `node site/og.mjs` after changing run titles or art. The journal (`/journal/`, Atom feed `/journal/feed.xml`) and its articles are generated from `results/lab00N/REPORT.md` plus `lib/journal-data.mjs`; the build fails if a number written there is not in the report.

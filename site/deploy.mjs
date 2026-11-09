@@ -77,7 +77,7 @@ const step3 = `async () => {
   const metadata = {
     main_module: 'worker.js',
     compatibility_date: '2025-10-01',
-    bindings: [{ type: 'assets', name: 'ASSETS' }],
+    bindings: [{ type: 'assets', name: 'ASSETS' }, { type: 'send_email', name: 'EMAIL' }],
     assets: {
       jwt: ${JSON.stringify(completion)},
       config: { html_handling: 'auto-trailing-slash', not_found_handling: '404-page', _headers: ${JSON.stringify(headers)} },

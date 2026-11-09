@@ -1,0 +1,122 @@
+// Norevia — journal: one article per experiment run. Editorial layer only.
+// Every sentence here is copied or condensed from the run's REPORT.md (SIMULATION.md for the simulation) and every
+// number must appear in that source: lib/journal.mjs checks this at build time and fails the build otherwise.
+// The long-form sections of each article (setup, tables, verdicts, reading, limits) are the report's own sections,
+// rendered verbatim from the Markdown; only the TL;DR, dek and key finding are written here.
+//
+// sections: report "## " headings (matched by prefix) that feed each part of the article.
+
+export const RUNS = [
+  {
+    key: 'lab004-sim', id: 'obs-lab004-simulation', code: 'LAB-004 · Simulation', num: 'LAB-004',
+    short: 'A calibrated simulation to 100,000 agents',
+    report: 'results/lab004/SIMULATION.md', checkAgainst: ['results/lab004/SIMULATION.md'],
+    prereg: ['obs-lab004-prereg'], parent: 'obs-lab004-massive-swarm',
+    dek: 'The coordination code of the real runs, driven by a simulated backend fitted on real runs and validated on held-out runs at N = 300 and 1,000, then extrapolated to N = 100,000. Exploratory.',
+    finding: 'At constant density there is no phase transition in coverage, false success, error correlation or gregarious share.',
+    tldr: [
+      'The simulated backend was fitted on the pool calibration and real runs with N up to 100, then validated on held-out real runs at N = 300 and 1,000: 12 of 12 arms pass, with coverage error at most 10 percent. The first version (v1) had failed validation, with only 3 of 12 arms passing.',
+      'On a fixed pool of 630 tasks, arms that keep retrying unresolved tasks gain coverage slowly, 0.43 at N = 1,000 to 0.66–0.67 at N ≥ 30,000, while accepted tasks per US$ collapse from about 900 to 14 and false success climbs from 0.25 to 0.33–0.34.',
+      'At constant density (tasks = 2.1 N) there is no phase transition in coverage, false success, error correlation or gregarious share; the capped orchestrator collapses to 0.0007 at N = 100,000 because of its throughput cap (by construction).',
+    ],
+    tested: 'The same coordination code as the real runs, driven by a simulated backend, extrapolated to N = 100,000. The simulation is exploratory: it validates swarm dynamics, not new tasks.',
+    sections: { tested: ['How the simulator was built and validated'], results: ['What the extrapolation shows'], means: [], limits: [] },
+    means: [
+      'On a fixed pool of 630 tasks, more attempts per task give a wrong-but-visible-passing candidate more chances to commit first: accepted per US$ collapses from about 900 to 14 and false success climbs from 0.25 to 0.33–0.34.',
+      'wound_resolution, the uncapped orchestrator and voting plateau at 0.41–0.42.',
+      'Constant density (tasks = 2.1 N): coverage is flat near 0.41–0.42 (board, wound, renal, uncapped orchestrator) or 0.26–0.40 (others); no phase transition in coverage, false success, error correlation or gregarious share.',
+    ],
+    limits: [
+      'Simulation, exploratory: the held-out runs use the same 630 tasks as the fit, so the validation covers swarm dynamics, not new tasks.',
+      'The first simulator version failed validation (3 of 12 arms) and the second was chosen after seeing that (Amendment 2 of the pre-registration).',
+      'v2’s α = 0.05 means almost no smoothing of per-task estimates from 3 attempts; simulator success ignores agent identity and assumes independence given the task.',
+      'False-success rate errors up to 0.15 (HISTORY) and 0.09 (RENAL): context effects on false success are not modelled.',
+    ],
+    files: ['results/lab004/sim-validation.json', 'results/lab004/sim-validation-v1.json', 'results/lab004/sim-extrapolation.json'],
+  },
+  {
+    key: 'lab004', id: 'obs-lab004-massive-swarm', code: 'LAB-004', num: 'LAB-004',
+    short: 'Massive swarm: up to 1,000 real agents',
+    report: 'results/lab004/REPORT.md', checkAgainst: ['results/lab004/REPORT.md'],
+    prereg: ['obs-lab004-prereg'], companion: 'obs-lab004-simulation',
+    dek: '630 verifiable micro-tasks, 12 coordination arms and N from 10 to 1,000 real Haiku 5.5 agents. Coverage saturates near N = 300 without a phase jump.',
+    finding: 'Coverage saturates near N = 300 without a phase jump; only wound_resolution shows a clear cost advantage.',
+    tldr: [
+      '630 verifiable micro-tasks, 12 coordination arms, N from 10 to 1,000 real Haiku 5.5 agents, and a validated simulation to 100,000.',
+      'Coverage saturates at N ≈ 300 at ≈ 0.41–0.48, smoothly with no jump between neighbouring N. Beyond saturation, more agents only buy duplicates: duplicate calls per call 0.14 (N=100) → 0.84 (N=1,000) for broadcast arms.',
+      'Across (S) and (B), no flag beats a simple non-bio engineering control on coverage; the only flag with a clear, interval-backed advantage is wound_resolution (cost saving, equal coverage), and a plain "stop when resolved" dispatcher also gets it.',
+    ],
+    tested: 'Every real call used Claude Haiku 5.5 through the Anthropic API. N agents work on 630 micro-tasks in 4 rounds, under 12 coordination arms: 3 baselines, ORCH-U, 7 flags and a HISTORY control.',
+    sections: { tested: ['What was built'], results: ['Scale curves', 'Verdict per flag', 'Calibrated simulator'], means: [], limits: ['Limits and incidents'] },
+    means: [
+      'Coverage saturates at N ≈ 300 at ≈ 0.41–0.48 (the pool is only ~45% solvable by this model with 4 attempts per agent): smoothly, with no jump between neighbouring N.',
+      'Beyond saturation, more agents only buy duplicates: accepted per US$ falls ≈ 5.5× from N = 100 to 1,000 for INDEP and BOARD for +0.0–0.2 coverage.',
+      'No density transition: the gregarious share of LOCUST follows the failure-flip rule, not density; the simulated share stays ≈ 0.40 from N = 10 to 100,000 at constant density. Vicsek/locust-style alignment did not show up in this setting.',
+      'Majority voting hurts: VOTE/LEADERS committed false successes in 46% (N = 300) and 60% (N = 1,000) of tasks against 22–25% for "commit on the first visible pass", because wrong answers agree (often on the same trap).',
+    ],
+    limits: [],
+    files: ['results/lab004/summary.json', 'results/lab004/curves.csv', 'results/lab004/curves.svg', 'results/lab004/runs-main.jsonl', 'results/lab004/runs-pool.jsonl', 'results/lab004/sim-validation.json', 'results/lab004/sim-extrapolation.json', 'results/lab004/ledger.jsonl'],
+  },
+  {
+    key: 'lab003', id: 'obs-lab003-split-retry-memory', code: 'LAB-003', num: 'LAB-003',
+    short: 'When splitting pays, retry or recruit, and type memory',
+    report: 'results/lab003/REPORT.md', checkAgainst: ['results/lab003/REPORT.md'],
+    prereg: ['obs-lab003-prereg-step0', 'obs-lab003-prereg-main', 'obs-lab003-calibration'],
+    dek: 'After fixing false success with a stronger agent-visible probe, splitting into package owners pays from about 3 packages; retry and recruit give the same result at equal budget; request-type memory did not help.',
+    finding: 'Splitting pays from about 3 packages; at 8 and 15 it is large.',
+    tldr: [
+      'Step 0, false success: with 60% of the hidden cases in the agent-visible probe, false success after repair was 0/93, so acceptance is now measurable.',
+      'Q1, from how many packages does splitting pay? From about 3. Cost per accepted task, TEAM/SOLO ratio: 0.64 (0.51–0.81) at 3 packages and 0.37 (0.13–0.55) at 8; at 15 packages SOLO accepted 0/6 and TEAM 4/6.',
+      'Q2 and Q3 are null results: no detectable difference between retrying and recruiting, and request-type memory did not help (first-pass failure 14.0% without memory, 19.3% with it).',
+    ],
+    tested: 'Four questions, each with its own pre-registration: Step 0 — false success; Q1 — from how many packages does splitting pay?; Q2 — retry or recruit?; Q3 — does request-type memory help? All runs used Claude Haiku 5.5 via the Anthropic API.',
+    sections: { tested: [], results: ['Answers in brief'], means: ['What was and was not worth measuring'], limits: ['Limits and incidents'] },
+    means: [],
+    limits: [],
+    files: ['results/lab003/summary.json', 'results/lab003/summary-q2b.json', 'results/lab003/runs-q1.jsonl', 'results/lab003/runs-q2.jsonl', 'results/lab003/runs-q2b.jsonl', 'results/lab003/runs-q3.jsonl', 'results/lab003/runs-cal.jsonl', 'results/lab003/runs-cal2.jsonl', 'results/lab003/ledger.jsonl'],
+  },
+  {
+    key: 'lab002', id: 'obs-lab002-controller-threads', code: 'LAB-002', num: 'LAB-002',
+    short: 'Controller and threads',
+    report: 'results/lab002/REPORT.md', checkAgainst: ['results/lab002/REPORT.md'],
+    prereg: ['obs-lab002-prereg'],
+    dek: 'A single point of contact that acknowledges at once and runs each request as a thread, unfolding only past a threshold. The conversation stayed free; the primary cost outcome was inconclusive.',
+    finding: 'The conversation stayed free (0 s blocked against 1,479 to 1,860 s without a controller); the primary cost outcome was inconclusive.',
+    tldr: [
+      'The conversation stays free: under the controller the main conversation was blocked 0 s; without a controller (SOLO-SEQ: one agent, one request after another) it was blocked for 1,479–1,860 s.',
+      'Unfolding by threshold behaves as designed: CTRL unfolded 0 of 6 text requests and 8 of 8 repair requests; cost per LP request was US$ 0.0046 (CTRL) vs 0.0175 (ALWAYS), 3.8×.',
+      'The primary pre-registered outcome, cost per accepted request, is INCONCLUSIVE: the demonstration cannot rank the policies.',
+    ],
+    tested: 'A controller as the single point of contact: submit() acknowledges at once and runs the request as a thread, which unfolds into child threads under a shared per-request budget. Four policies were compared on 7 requests, 2 repetitions: CTRL, CTRL-NOMEM, ALWAYS and SOLO-SEQ.',
+    sections: { tested: ['What was built'], results: ['Result in brief', 'Tables'], means: ['Reading'], limits: ['Limits and incidents'] },
+    means: [],
+    limits: [],
+    files: ['results/lab002/summary.json', 'results/lab002/runs-main.jsonl', 'results/lab002/arms-main.jsonl', 'results/lab002/runs-mem2.jsonl', 'results/lab002/ledger.jsonl'],
+  },
+  {
+    key: 'lab001', id: 'obs-lab001-bio-vs-artificial', code: 'LAB-001', num: 'LAB-001',
+    short: 'Biological swarm mechanisms vs artificial structures',
+    report: 'results/lab001/REPORT.md', checkAgainst: ['results/lab001/REPORT.md'],
+    prereg: ['obs-lab001-prereg'],
+    dek: '15 agent structures at a matched budget. The pre-registered outcome was degenerate; the exploratory analysis points to re-review, not the biological label.',
+    finding: 'No bio mechanism beat the best artificial structure on the pre-registered outcome (nothing was detectable).',
+    tldr: [
+      'The pre-registered primary outcome is degenerate: across 9 tasks, 13 of 15 arms accepted 0 tasks, so under the pre-registered rule every mechanism is INCONCLUSIVE.',
+      'On the exploratory per-package outcome, ORCH (central planner) accepted 61% of packages at US$ 0.0156 per accepted package; THRESH reached 81% (habituating) and 85% (fixed thresholds), about +20 points over ORCH (CI +7 to +39).',
+      'A non-bio control (CTRL+PATROL2: two extra review rounds on every package) reaches 76%; THRESH adds only +5 points over it, at 0.67× the control’s cost per accepted package. The threshold explains a cost saving, not extra accuracy.',
+    ],
+    tested: '15 agent structures plus 1 exploratory control worked on multi-package repair tasks, each mechanism alone, under the same ceiling for every arm: calls ≤ 2k+4 and USD ≤ 0.02 + 0.0001 × LOC.',
+    sections: { tested: ['Setup'], results: ['Result in brief', 'Pre-registered result', 'Exploratory result', 'Verdict per mechanism'], means: ['What this does and does not say'], limits: ['Deviations, incidents and limits'] },
+    means: [],
+    limits: [],
+    files: ['results/lab001/summary.json', 'results/lab001/summary-secondary.json', 'results/lab001/runs-main.jsonl', 'results/lab001/runs-expl.jsonl', 'results/lab001/main-tasks.json', 'results/lab001/ledger.jsonl'],
+  },
+];
+
+// Cards that belong to a run (pre-registrations, calibration) borrow that run's visual identity.
+export const CARD_ART = {
+  'obs-lab001-prereg': 'lab001',
+  'obs-lab002-prereg': 'lab002',
+  'obs-lab003-prereg-step0': 'lab003', 'obs-lab003-prereg-main': 'lab003', 'obs-lab003-calibration': 'lab003',
+  'obs-lab004-prereg': 'lab004',
+};

@@ -18,6 +18,14 @@ import * as LAB from './lab.config.mjs';
 import { pageLanding } from './lib/home.mjs';
 import { topBar, footer } from './lib/chrome.mjs';
 import * as MODELS from './src/js/models.js';
+import { rng, FORMATIONS, formationFile } from './lib/formation.mjs';
+import { headMeta, metaDesc, atomFeed } from './lib/seo.mjs';
+import { RUN_ART, ART_URLS, artSvg, artPicture } from './lib/motifs.mjs';
+import { ogSpecs, ogHash } from './lib/og.mjs';
+import { RUNS, CARD_ART } from './lib/journal-data.mjs';
+import { renderRun, pagePost, pageJournalIndex, dateLong } from './lib/journal.mjs';
+import { readFlags, pageFlagsBody } from './lib/flags.mjs';
+import { pageContactBody, pageThanksBody } from './lib/contact.mjs';
 
 const SITE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SITE_DIR, '..');
@@ -284,6 +292,7 @@ const ARROW = '<span class="arr" aria-hidden="true">→</span>';
 
 const NAV = [
   ['/', 'Home'],
+  ['/journal/', 'Journal'],
   ['/explore/', 'Research'],
   ['/playgrounds/', 'Playgrounds'],
   ['/hypotheses/', 'Hypotheses'],
@@ -291,29 +300,28 @@ const NAV = [
   ['/literature/', 'Literature & OSS'],
   ['/method/', 'Method'],
   ['/about/', 'About'],
+  ['/contact/', 'Contact'],
 ];
 
 let ASSETS = { base: '', css: '', js: {}, preload: '' };
 let BUILD = {};
+let SNAPSHOT = ''; // newest card update: the date the content snapshot refers to (lastmod for pages without their own date)
+const RUN_BY_ID = new Map(RUNS.map((r) => [r.id, r]));
 
-function layout({ title, desc, path: p, body, cls = '', scripts = [] }) {
+// og: key of an Open Graph image (src/og/<key>.png); crumbs: [[name, path]...]; nodes: extra JSON-LD nodes
+let OGS = {}; // key -> { url } filled in main()
+function layout({ title, desc, path: p, body, cls = '', scripts = [], og = 'default', ogAlt = '', type = 'website', published, modified, noindex = false, crumbs, nodes = [], kind = 'WebPage', name }) {
   const full = p === '/' ? `Norevia — ${LAB.SITE.title}: ${LAB.SITE.subtitle}` : `${title} · Norevia`;
   const section = NAV.slice(1).find(([href]) => p.startsWith(href))?.[0] || (p === '/' ? '/' : null);
+  const head = headMeta(LAB.SITE, { title: full, desc: desc || LAB.SITE.description, path: p, og: OGS[og] || OGS.default, ogAlt: ogAlt || full, type, published, modified: modified || SNAPSHOT, noindex, crumbs: crumbs || (p === '/' ? null : [['Home', '/'], [title, p]]), nodes, kind, name: name || title });
   return `<!doctype html>
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${esc(full)}</title>
-<meta name="description" content="${esc(desc || LAB.SITE.description)}">
+${head}
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#f4f3ee">
-<meta property="og:title" content="${esc(full)}">
-<meta property="og:description" content="${esc(desc || LAB.SITE.description)}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="${esc(LAB.SITE.full)}">
-<meta property="og:url" content="${LAB.SITE.url}${p}">
-<link rel="canonical" href="${LAB.SITE.url}${p}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 ${ASSETS.preload}
 <link rel="stylesheet" href="${ASSETS.base}">
@@ -327,7 +335,7 @@ ${topBar({ nav: NAV.slice(1), current: section, solid: true })}
 <main id="main" tabindex="-1">
 ${body}
 </main>
-${footer({ site: LAB.SITE, links: [...NAV.slice(1).filter(([h]) => ['/explore/', '/method/', '/about/'].includes(h)), ['/archive.json', 'Open data'], [LAB.SITE.repo, 'GitHub']], meta: `Archive generated from the <code>norevia/</code> repository on ${esc(BUILD.dateHuman)}${BUILD.commit ? ` · commit <code>${esc(BUILD.commit)}</code>` : ''} · ${BUILD.cards} cards · research content CC BY 4.0 · code MIT.` })}
+${footer({ site: LAB.SITE, links: [...NAV.slice(1).filter(([h]) => ['/journal/', '/explore/', '/method/', '/about/', '/contact/'].includes(h)), ['/flags/', 'Flag registry'], ['/journal/feed.xml', 'Atom feed'], ['/archive.json', 'Open data'], [LAB.SITE.repo, 'GitHub']], meta: `Archive generated from the <code>norevia/</code> repository on ${esc(BUILD.dateHuman)}${BUILD.commit ? ` · commit <code>${esc(BUILD.commit)}</code>` : ''} · ${BUILD.cards} cards · research content CC BY 4.0 · code MIT.` })}
 </body>
 </html>
 `;
@@ -336,7 +344,7 @@ ${footer({ site: LAB.SITE, links: [...NAV.slice(1).filter(([h]) => ['/explore/',
 function cardItem(c, opts = {}) {
   const dataAttrs = ` data-area="${c.area}" data-ev="${c.evidence}"${c.status ? ` data-st="${c.status.key}"` : ''} data-text="${esc([c.id, c.rawId, c.title, c.summary, c.tags.join(' ')].join(' ').toLowerCase())}"`;
   return `<li class="card-item ev-${c.evidence}"${dataAttrs}>
-<a class="card-link" href="${c.url}">
+<a class="card-link" href="${c.url}">${RUN_BY_ID.has(c.id) ? `<span class="card-art" style="--run:${RUN_ART[RUN_BY_ID.get(c.id).key].accent}">${artPicture(RUN_BY_ID.get(c.id).key, { cls: 'run-art', alt: false })}</span>` : ''}
 <span class="card-top">${seal(c.evidence)}${opts.hideArea ? '' : areaChip(c.area)}${statusChip(c.status)}</span>
 <span class="card-title">${esc(c.title)}</span>
 <span class="card-sum">${esc(c.summary)}</span>
@@ -350,37 +358,10 @@ function cardList(list, opts = {}) {
   return `<ul class="cards${opts.cls ? ' ' + opts.cls : ''}"${opts.id ? ` id="${opts.id}"` : ''}>${list.map((c) => cardItem(c, opts)).join('')}</ul>`;
 }
 
-function pageHead({ eyebrow, title, lead, extra = '', seed = 7 }) {
-  return `<section class="phead">${formationSvg(seed)}<div class="wrap"><p class="eyebrow u">${eyebrow}</p><h1${/</.test(title) ? '' : ' data-words'}>${title}</h1>${lead ? `<p class="lead u" style="--d:350ms">${lead}</p>` : ''}${extra ? `<div class="phead-extra u" style="--d:500ms">${extra}</div>` : ''}</div></section>`;
+function pageHead({ eyebrow, title, lead, extra = '', seed = 7, art = '' }) {
+  return `<section class="phead">${art || formationSvg(seed)}<div class="wrap"><p class="eyebrow u">${eyebrow}</p><h1${/</.test(title) ? '' : ' data-words'}>${title}</h1>${lead ? `<p class="lead u" style="--d:350ms">${lead}</p>` : ''}${extra ? `<div class="phead-extra u" style="--d:500ms">${extra}</div>` : ''}</div></section>`;
 }
 
-function rng(seed) {
-  let s = seed >>> 0;
-  return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
-}
-// Deterministic "swarm cluster" motif for page heads: a few agents with nearest-neighbour links.
-// Page-head mark: the landing-page colony in miniature — a nest with a breathing membrane, pheromone trails
-// out to seed clusters and ants walking them (SMIL, so it animates inside a cached <img>). Six deterministic
-// variants are written once; pages only reference them. Static under reduced motion.
-const FORMATIONS = 6;
-function formationFile(seed) {
-  const r = rng(seed * 7919 + 13), C = 200, TAU = Math.PI * 2, f1 = (v) => v.toFixed(1);
-  const memb = (R, k) => Array.from({ length: 41 }, (_, i) => { const t = (i / 40) * TAU, rr = R * (1 + 0.06 * Math.sin(3 * t + k) + 0.04 * Math.sin(5 * t - k)); return (i ? 'L' : 'M') + f1(C + Math.cos(t) * rr) + ' ' + f1(C + Math.sin(t) * rr); }).join('') + 'Z';
-  const a0 = r() * TAU, trails = [], foods = [], ants = [];
-  for (let k = 0; k < 3; k++) {
-    const t = a0 + k * 2.1 + r() * 0.5, d = 150 + r() * 22, fx = C + Math.cos(t) * d, fy = C + Math.sin(t) * d;
-    const sx = C + Math.cos(t) * 44, sy = C + Math.sin(t) * 44, bend = (r() - 0.5) * 120;
-    const mx = (sx + fx) / 2 - Math.sin(t) * bend, my = (sy + fy) / 2 + Math.cos(t) * bend;
-    const path = 'M' + f1(sx) + ' ' + f1(sy) + 'Q' + f1(mx) + ' ' + f1(my) + ' ' + f1(fx) + ' ' + f1(fy);
-    trails.push('<path class="tr" d="' + path + '"/>');
-    for (let q = 0; q < 9; q++) { const u = r() * TAU, dd = Math.sqrt(r()) * 13; foods.push('<ellipse class="sd" cx="' + f1(fx + Math.cos(u) * dd) + '" cy="' + f1(fy + Math.sin(u) * dd) + '" rx="3.2" ry="2.1" transform="rotate(' + Math.round(u * 57) + ' ' + f1(fx + Math.cos(u) * dd) + ' ' + f1(fy + Math.sin(u) * dd) + ')"/>'); }
-    for (let q = 0; q < 4; q++) ants.push('<g><path class="ant" d="M-5 0a2.8 1.7 0 1 0 5.6 0a2.8 1.7 0 1 0-5.6 0M1.4 0a1.4 1 0 1 0 2.8 0a1.4 1 0 1 0-2.8 0M4.6 0a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0-2.4 0"/><animateMotion dur="' + (7 + r() * 3).toFixed(1) + 's" begin="-' + (q * 2.1 + r()).toFixed(1) + 's" repeatCount="indefinite" rotate="auto" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear" path="' + path + '"/></g>');
-  }
-  const cyto = Array.from({ length: 26 }, () => { const t = r() * TAU, d = Math.sqrt(r()) * 34; return '<circle class="cy" cx="' + f1(C + Math.cos(t) * d) + '" cy="' + f1(C + Math.sin(t) * d) + '" r="' + f1(1 + r() * 1.6) + '"/>'; }).join('');
-  const css = '.tr{fill:none;stroke:#0e7a62;stroke-width:5;stroke-linecap:round;opacity:.16}.sd{fill:#c98a00}.ant{fill:#101312}.cy{fill:#101312;opacity:.18}.mb{fill:rgba(16,19,18,.04);stroke:#101312;stroke-opacity:.35;stroke-width:1.2}.nu{fill:#0e7a62;opacity:.85}@media (prefers-reduced-motion:reduce){animateMotion,animate{display:none}}';
-  const breathe = (R, k1, k2, cls) => '<path class="' + cls + '" d="' + memb(R, k1) + '"><animate attributeName="d" dur="6s" repeatCount="indefinite" values="' + memb(R, k1) + ';' + memb(R, k2) + ';' + memb(R, k1) + '"/></path>';
-  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><style>' + css + '</style>' + trails.join('') + foods.join('') + breathe(48, 0, 2.2, 'mb') + cyto + breathe(15, 1, 3.4, 'nu') + ants.join('') + '</svg>';
-}
 function formationSvg(seed = 7) {
   return `<img class="formation" src="/assets/formation-${Math.abs(Math.round(seed)) % FORMATIONS}.svg" alt="" aria-hidden="true" width="400" height="400" decoding="async">`;
 }
@@ -578,7 +559,7 @@ ${graphLegend(cards)}
 ${cardList(sortCards(cards), { id: 'all-cards', cls: 'filterable', empty: 'No cards yet. The generator is ready and will publish as soon as the first ones arrive.' })}
 <p class="empty filtered-empty" hidden>No card matches the filters.</p>
 </div></section>`;
-  return layout({ title: 'Explore', desc: 'Interactive force-directed knowledge graph of every Norevia card, with search and filters by area, evidence and status.', path: '/explore/', body, scripts: ['graph'] });
+  return layout({ title: 'Explore', desc: 'Interactive force-directed knowledge graph of every Norevia card, with search and filters by area, evidence and status.', path: '/explore/', body, scripts: ['graph'], og: 'explore' });
 }
 
 function playLinks(p) {
@@ -600,7 +581,7 @@ function pagePlaygrounds(ctx) {
 ${DISCLAIMER}
 <ul class="play-grid">${PLAYGROUNDS.map((p) => `<li class="play-tile rv"><a href="/playgrounds/${p.slug}/"><span class="pv">${playPreview(p.key, ctx)}</span><span class="pb"><span class="pk">PLAYGROUND ${p.key.toUpperCase()}</span><h3>${esc(p.title)}</h3><p>${esc(p.short)}</p></span></a></li>`).join('')}</ul>
 </div></section>`;
-  return layout({ title: 'Playgrounds', desc: 'Interactive in-browser playgrounds ported from the Norevia simulations: correlated voting, verifier best-of-N, elastic swarm, stigmergy and response thresholds.', path: '/playgrounds/', body });
+  return layout({ title: 'Playgrounds', desc: 'Interactive in-browser playgrounds ported from the Norevia simulations: correlated voting, verifier best-of-N, elastic swarm, stigmergy and response thresholds.', path: '/playgrounds/', body, og: 'playgrounds' });
 }
 
 const RANGE = (id, label, { min, max, step, value, hint = '', fmtAttr = '' }) => `<div class="ctl"><label for="${id}">${label} <output for="${id}" data-out="${id}">${value}</output></label><input type="range" id="${id}" name="${id}" min="${min}" max="${max}" step="${step}" value="${value}"${fmtAttr}>${hint ? `<span class="hint">${hint}</span>` : ''}</div>`;
@@ -697,7 +678,7 @@ ${spec.viz}
 </div>
 </div>
 </div></section>`;
-  return layout({ title: `${p.title} — playground`, desc: `${p.short} Interactive model illustration (not an LLM result).`, path: `/playgrounds/${p.slug}/`, body, scripts: [p.script] });
+  return layout({ title: `${p.title} — playground`, desc: `${p.short} Interactive model illustration (not an LLM result).`, path: `/playgrounds/${p.slug}/`, body, scripts: [p.script], og: 'playgrounds', crumbs: [['Home', '/'], ['Playgrounds', '/playgrounds/'], [p.title, `/playgrounds/${p.slug}/`]] });
 }
 
 function pageHypotheses(cards) {
@@ -719,14 +700,14 @@ function pageHypotheses(cards) {
     eyebrow: 'Official register',
     title: 'Hypothesis board',
     lead: 'Every hypothesis is falsifiable: it declares variables, a prediction and what would refute it. Status changes only with evidence recorded in the repository. Each tile links to the experiments that test it.',
-    extra: `<ul class="statuslist">${cols.map((k) => `<li>${statusChipKey(k, STATUS[k]?.label || 'Other')} <strong>${hyps.filter((h) => (h.status?.key || 'other') === k).length}</strong></li>`).join('')}</ul>`,
+    extra: `<p class="ctas"><a class="btn small ghost" href="/flags/">Flag registry: the mechanisms behind the hypotheses</a><a class="btn small ghost" href="/journal/">Journal: the runs that test them</a></p><ul class="statuslist">${cols.map((k) => `<li>${statusChipKey(k, STATUS[k]?.label || 'Other')} <strong>${hyps.filter((h) => (h.status?.key || 'other') === k).length}</strong></li>`).join('')}</ul>`,
     seed: 9,
   })}
 <section><div class="wrap">
 ${hyps.length ? `<div class="board-tools" hidden data-board-tools><label class="search" style="flex:1;min-width:240px"><span class="sr">Search hypotheses</span><input type="search" placeholder="Search hypotheses…  (press / to focus)" data-board-q autocomplete="off"></label><p class="fcount" aria-live="polite" data-board-count></p></div>${board}` : '<p class="empty">No hypotheses registered yet. The register lives in <code>hypotheses/</code> (H-01, H-02…).</p>'}
 <p class="muted small" style="margin-top:1.4rem">“Preliminary support” usually means support inside a simulated model (local validation of the model), not with LLM agents. Author-reported results alone never move a status to supported.</p>
 </div></section>`;
-  return layout({ title: 'Hypotheses', desc: 'Live board of the Norevia falsifiable hypotheses by status, each linked to the experiments that test it.', path: '/hypotheses/', body, scripts: ['board'] });
+  return layout({ title: 'Hypotheses', desc: 'Live board of the Norevia falsifiable hypotheses by status, each linked to the experiments that test it.', path: '/hypotheses/', body, scripts: ['board'], og: 'hypotheses' });
 }
 
 function summaryBlock(ds) {
@@ -795,7 +776,8 @@ function pageExperiments(cards, datasets, obsStatus) {
   const block = (c) => {
     const charts = chartsFor(c, 1);
     const pl = playFor(c.id).filter((p) => p.sim === c.id);
-    return `<article class="exp ev-${c.evidence}"><p class="card-top">${seal(c.evidence)}${statusChip(c.status)}</p><h3><a href="${c.url}">${esc(c.title)}</a> <span class="cid">${esc(c.id)}</span></h3><p>${esc(c.summary)}</p>${pl.length ? `<p>${pl.map((p) => `<a class="btn small" href="/playgrounds/${p.slug}/">▶ Try the ${esc(p.title.toLowerCase())} playground</a>`).join(' ')}</p>` : ''}${charts.slice(0, 2).join('')}${charts.length > 2 ? `<p><a class="more" href="${c.url}#results">All charts and data</a></p>` : ''}${c.data.length ? `<p class="muted small">Data: ${c.data.map((d) => `<code>${esc(d.file)}</code>`).join(', ')}</p>` : '<p class="muted small">No data file associated.</p>'}</article>`;
+    const run = RUN_BY_ID.get(c.id);
+    return `<article class="exp ev-${c.evidence}"${run ? ` style="--run:${RUN_ART[run.key].accent}"` : ''}>${run ? `<a class="exp-art" href="${c.url}" tabindex="-1" aria-hidden="true">${artPicture(run.key, { cls: 'run-art', alt: false })}</a>` : ''}<p class="card-top">${seal(c.evidence)}${statusChip(c.status)}</p><h3><a href="${c.url}">${esc(c.title)}</a> <span class="cid">${esc(c.id)}</span></h3><p>${esc(c.summary)}</p>${pl.length ? `<p>${pl.map((p) => `<a class="btn small" href="/playgrounds/${p.slug}/">▶ Try the ${esc(p.title.toLowerCase())} playground</a>`).join(' ')}</p>` : ''}${charts.slice(0, 2).join('')}${charts.length > 2 ? `<p><a class="more" href="${c.url}#results">All charts and data</a></p>` : ''}${c.data.length ? `<p class="muted small">Data: ${c.data.map((d) => `<code>${esc(d.file)}</code>`).join(', ')}</p>` : '<p class="muted small">No data file associated.</p>'}</article>`;
   };
   const running = obsStatus.filter((s) => Number(s.pending) > 0 || (s.finished != null && s.total != null && s.finished < s.total));
   const body = `${pageHead({
@@ -820,7 +802,7 @@ ${obs.length ? obs.map(block).join('') : '<p class="empty">No interpreted Observ
 ${obsSummaries.length ? `<h3 style="margin-top:2rem">Preliminary run summaries</h3><p class="muted narrow">Automatically charted from the Observatory’s summary files. These are calibration/pilot phases with small samples: read them as instrument checks, not findings.</p><div class="exp-grid">${obsSummaries.map((x) => x.html).join('')}</div>` : ''}
 </div></section>
 ${rest.length ? `<section><div class="wrap"><h2 id="data">Data without an interpretive card yet</h2><p class="muted narrow">Files in <code>results/</code> with no associated card. Raw data: no reading, no conclusion.</p>${rest.map((d) => `<article class="exp"><h3><code>${esc(d.file)}</code></h3>${summaryBlock(d)}${d.error ? `<p class="muted">Not charted: ${esc(d.error)}.</p>` : d.specs.slice(0, 3).map(renderChart).join('') || (d.metrics.length ? metricsTable(d) : '<p class="muted">Format not recognised for charting.</p>')}</article>`).join('')}</div></section>` : ''}`;
-  return layout({ title: 'Experiments', desc: 'Simulations and Swarm Efficiency Observatory benchmarks, with charts generated from the data files.', path: '/experiments/', body });
+  return layout({ title: 'Experiments', desc: 'Simulations and Swarm Efficiency Observatory benchmarks, with charts generated from the data files.', path: '/experiments/', body, og: 'experiments' });
 }
 
 function pageLiterature(cards) {
@@ -842,7 +824,7 @@ ${lit.length ? `<ul class="refs filterable">${lit.map(item).join('')}</ul>` : '<
 ${oss.length ? `<ul class="refs filterable">${oss.map(item).join('')}</ul>` : '<p class="empty">No project inspected yet.</p>'}
 <p class="empty filtered-empty" hidden>No source matches the filters.</p>
 </div></section>`;
-  return layout({ title: 'Literature & OSS', desc: 'Papers and open-source projects catalogued by Norevia, each with its evidence level.', path: '/literature/', body });
+  return layout({ title: 'Literature & OSS', desc: 'Papers and open-source projects catalogued by Norevia, each with its evidence level.', path: '/literature/', body, og: 'literature' });
 }
 
 function pageMethod(cards) {
@@ -895,7 +877,7 @@ summary: One sentence for the site.
 Mechanism · Evidence · Engineering analogue · Testable hypothesis · Limits / gaps</code></pre>
 <p class="muted small">Optional for experiments: <code>data: file.json</code> (relative to the card or the repo root) and <code>chart: { x: n_agents, y: [accuracy], group: arch }</code>. Hypotheses use <code>status: open | testing | preliminary-support | preliminary-refuted | inconclusive</code>. During the translation the generator also accepts the legacy Portuguese values.</p>
 </div></section>`;
-  return layout({ title: 'Method', desc: 'Evidence levels, research rules and what remains to be proven in Norevia.', path: '/method/', body });
+  return layout({ title: 'Method', desc: 'Evidence levels, research rules and what remains to be proven in Norevia.', path: '/method/', body, og: 'method' });
 }
 
 function pageAbout(cards, datasets) {
@@ -909,6 +891,7 @@ function pageAbout(cards, datasets) {
 <div class="about-grid">
 <div id="norevia"><h3>The project</h3><p>${esc(LAB.SITE.definition)}</p><p>${esc(LAB.SITE.scope)} Nature proposes mechanisms; experiments decide.</p><p><a href="/method/">How we read evidence</a></p></div>
 <div id="cold-code-labs"><h3>Cold Code Labs</h3><p>Cold Code Labs is the company behind Norevia. It funds and runs the research and publishes the archive, code and data openly.</p><p><a href="${LAB.SITE.companyUrl}" rel="noopener noreferrer">coldcodelabs.com</a></p></div>
+<div id="contact"><h3>Contact</h3><p>Questions about a run, a correction to a card, an idea for an experiment or a collaboration: write to the team.</p><p><a class="btn small" href="/contact/">Contact the Norevia team</a></p></div>
 <div id="open-data"><h3>Open data</h3><p>The whole archive — ${cards.length} cards, ${datasets.length} datasets, evidence levels, relations and build warnings — is one JSON file.</p><p><a class="btn small" href="/archive.json">archive.json</a></p></div>
 <div id="code"><h3>Source code</h3><p>Cards, simulations, the Observatory harness and this site’s generator live in one repository.</p><p><a class="btn small ghost" href="${LAB.SITE.repo}" rel="noopener noreferrer">github.com/cold-code-labs/norevia</a></p></div>
 </div>
@@ -922,7 +905,7 @@ function pageAbout(cards, datasets) {
 <h2>Licences</h2>
 <p>Research content CC BY 4.0 · code MIT.</p>
 </div></section>`;
-  return layout({ title: 'About', desc: 'Norevia is a Cold Code Labs research project. Open data, source code and how the site is built.', path: '/about/', body });
+  return layout({ title: 'About', desc: 'Norevia is a Cold Code Labs research project. Open data, source code and how the site is built.', path: '/about/', body, og: 'about' });
 }
 
 // Small radial neighbourhood graph on a card page.
@@ -949,7 +932,7 @@ function pageCard(c, cards, ctx) {
   const exps = c.area === 'hypothesis' ? expsFor(c, cards) : [];
   const body = `
 <article class="cardpage ev-${c.evidence}">
-<header class="phead card-head">${formationSvg(c.id.length * 13 + c.id.charCodeAt(c.id.length - 1))}<div class="wrap">
+<header class="phead card-head">${CARD_ART[c.id] ? artPicture(CARD_ART[c.id], { cls: 'formation formation-run', alt: false, loading: 'eager' }) : formationSvg(c.id.length * 13 + c.id.charCodeAt(c.id.length - 1))}<div class="wrap">
 <nav class="crumbs u" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${areaHref(c.area)}">${esc(AREAS[c.area].plural)}</a> / <span>${esc(c.id)}</span></nav>
 <p class="card-top u" style="--d:120ms">${seal(c.evidence, ' seal-lg')}${areaChip(c.area)}${statusChip(c.status)}</p>
 <h1 data-words>${esc(c.title)}</h1>
@@ -981,7 +964,11 @@ ${related.length || backlinks.length ? `<section class="related"><h2 id="related
 </div>
 </div>
 </article>`;
-  return layout({ title: `${c.id} · ${c.title}`, desc: c.summary, path: c.url, body, scripts: ['card'] });
+  const title = `${c.id} · ${c.title}`;
+  const curl = LAB.SITE.url + c.url;
+  const nodes = [{ '@type': 'Article', '@id': `${curl}#article`, headline: c.title.slice(0, 110), description: metaDesc(c.summary, 300), url: curl, inLanguage: 'en', ...(c.updated ? { dateModified: c.updated } : {}), identifier: c.id, keywords: c.tags, about: AREAS[c.area].label, author: { '@id': `${LAB.SITE.companyUrl}/#organization` }, publisher: { '@id': `${LAB.SITE.companyUrl}/#organization` }, isPartOf: { '@id': `${LAB.SITE.url}/#website` }, mainEntityOfPage: { '@id': `${curl}#webpage` }, license: 'https://creativecommons.org/licenses/by/4.0/' }];
+  const ogKey = CARD_ART[c.id] ? `run-${CARD_ART[c.id]}` : `area-${c.area}`;
+  return layout({ title, name: c.title, desc: c.summary, path: c.url, body, scripts: ['card'], og: ogKey, type: 'article', modified: c.updated || undefined, crumbs: [['Home', '/'], [AREAS[c.area].plural, areaHref(c.area).replace(/[?#].*$/, '')], [c.id, c.url]], nodes, kind: 'WebPage' });
 }
 
 function areaHref(a) {
@@ -989,7 +976,7 @@ function areaHref(a) {
 }
 
 function page404() {
-  return layout({ title: 'Not found', path: '/404', body: `${pageHead({ eyebrow: '404 · gap', title: 'This trail has evaporated', lead: 'The page does not exist (yet). Maybe the card is being written right now — or it was renamed during the English translation.' })}<section><div class="wrap"><p class="ctas"><a class="btn" href="/explore/">Explore the archive</a><a class="btn ghost" href="/">Home</a></p></div></section>` });
+  return layout({ title: 'Not found', noindex: true, path: '/404', body: `${pageHead({ eyebrow: '404 · gap', title: 'This trail has evaporated', lead: 'The page does not exist (yet). Maybe the card is being written right now — or it was renamed during the English translation.' })}<section><div class="wrap"><p class="ctas"><a class="btn" href="/explore/">Explore the archive</a><a class="btn ghost" href="/">Home</a></p></div></section>` });
 }
 
 // ------------------------------------------------------------------ assets: tiny bundler (models.js inlined into each entry)
@@ -1040,6 +1027,7 @@ function main() {
     commit: git.commit,
     cards: cards.length,
   };
+  SNAPSHOT = cards.map((c) => c.updated).filter((d) => /^\d{4}-\d\d-\d\d$/.test(d)).sort().pop() || BUILD.date.slice(0, 10);
   // id regex: new ids + legacy ids (so Portuguese bodies still link to the renamed cards)
   const aliasIds = Object.keys(ID_MAP).filter((o) => byId.has(ID_MAP[o]));
   const ids = [...cards.map((c) => c.id), ...aliasIds].filter((id) => id.length >= 4).sort((a, b) => b.length - a.length).map((id) => id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
@@ -1093,7 +1081,27 @@ function main() {
   for (const name of Object.keys(entries)) put(ASSETS.js[name], jsBodies[name], 'text/javascript; charset=utf-8');
   for (let k = 0; k < FORMATIONS; k++) put(`/assets/formation-${k}.svg`, formationFile(k + 1), 'image/svg+xml');
   put('/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#101312"/><g fill="none" stroke="#f4f3ee" stroke-width="1.4" opacity=".6"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="8"/></g><circle cx="20" cy="20" r="3.4" fill="#7fdcc2"/><g fill="#f4f3ee"><circle cx="34" cy="20" r="2.2"/><circle cx="10" cy="10" r="1.8"/><circle cx="26" cy="33" r="1.6"/></g></svg>`, 'image/svg+xml');
-  put('/', pageLanding({ LAB, assets: HOME, build: BUILD }));
+  // run art (hashed names: /assets/* is cached immutably) and Open Graph images (rendered by site/og.mjs into src/og/)
+  for (const k of Object.keys(RUN_ART)) {
+    const anim = artSvg(k, true), stat = artSvg(k, false);
+    ART_URLS[k] = { anim: `/assets/run-${k}.${h(anim)}.svg`, stat: `/assets/run-${k}.static.${h(stat)}.svg` };
+    put(ART_URLS[k].anim, anim, 'image/svg+xml');
+    put(ART_URLS[k].stat, stat, 'image/svg+xml');
+  }
+  const ogDir = path.join(SITE_DIR, 'src/og');
+  const ogIdx = fs.existsSync(path.join(ogDir, 'index.json')) ? JSON.parse(fs.readFileSync(path.join(ogDir, 'index.json'), 'utf8')) : {};
+  OGS = {};
+  for (const spec of ogSpecs()) {
+    const f = path.join(ogDir, spec.key + '.png');
+    if (!fs.existsSync(f)) { warn('site/src/og/' + spec.key + '.png', 'Open Graph image missing — run node site/og.mjs'); continue; }
+    const buf = fs.readFileSync(f);
+    if (buf.readUInt32BE(16) !== 1200 || buf.readUInt32BE(20) !== 630) warn('site/src/og/' + spec.key + '.png', 'Open Graph image is not 1200x630');
+    if (ogIdx[spec.key] !== ogHash(spec)) warn('site/src/og/' + spec.key + '.png', 'Open Graph image is stale — run node site/og.mjs');
+    OGS[spec.key] = `/assets/og/${spec.key}.${h(buf)}.png`;
+    put(OGS[spec.key], buf, 'image/png');
+  }
+  const T = LAB.SITE;
+  put('/', pageLanding({ LAB, assets: HOME, build: BUILD, head: headMeta(T, { title: `Norevia — ${T.title}: ${T.subtitle}`, desc: 'Norevia, a Cold Code Labs research project: bioinspired agentic swarms — AI agents that organise the way living systems do. Open experiments, pre-registered results and a flag registry of bio-inspired mechanisms.', path: '/', og: OGS.home, ogAlt: 'Norevia — Bioinspired Agentic Swarms', modified: SNAPSHOT, kind: 'WebPage', name: 'Norevia — Bioinspired Agentic Swarms' }) }));
   put('/explore/', pageExplore(cards, G));
   put('/playgrounds/', pagePlaygrounds(ctx));
   for (const p of PLAYGROUNDS) put(`/playgrounds/${p.slug}/`, pagePlayground(p, ctx));
@@ -1101,17 +1109,52 @@ function main() {
   put('/experiments/', pageExperiments(cards, datasets, obsStatus));
   put('/literature/', pageLiterature(cards));
   put('/about/', pageAbout(cards, datasets));
-  for (const c of cards) put(c.url, pageCard(c, cards, ctx));
+  // journal: one article per run (rendered at the existing card URL /c/<id>/), index, flag registry, contact
+  const jdeps = { ctx, chartsFor, seal, root: ROOT, repoUrl: T.repo, byId, layout, SITE: T, evLabel, EVIDENCE, pageHead };
+  const posts = [];
+  for (const run of RUNS) {
+    const c = byId.get(run.id);
+    if (!c) throw new Error(`journal: card ${run.id} not found`);
+    const art = renderRun(run, c, jdeps);
+    if (art.missing.length) throw new Error(`journal: numbers in ${run.id} that are not in ${run.checkAgainst.join(', ')}: ${art.missing.join(', ')}`);
+    posts.push({ run, c, art });
+  }
+  posts.sort((a, b) => b.c.updated.localeCompare(a.c.updated)); // stable: ties keep RUNS order (newest first)
+  const EXT = { json: 'application/json', jsonl: 'application/x-ndjson', csv: 'text/csv', svg: 'image/svg+xml', gz: 'application/gzip' };
+  for (const { run, c, art } of posts) {
+    const { page } = pagePost(run, c, art, jdeps);
+    const url = T.url + c.url;
+    const nodes = [
+      { '@type': ['BlogPosting', 'ScholarlyArticle'], '@id': `${url}#article`, headline: c.title.slice(0, 110), alternativeHeadline: run.short, description: run.dek, url, inLanguage: 'en', datePublished: c.updated, dateModified: c.updated, wordCount: art.words, timeRequired: `PT${art.readMin}M`, keywords: c.tags, image: T.url + OGS['run-' + run.key], author: { '@id': `${T.companyUrl}/#organization` }, publisher: { '@id': `${T.companyUrl}/#organization` }, isPartOf: { '@type': 'Blog', '@id': `${T.url}/journal/#blog` }, mainEntityOfPage: { '@id': `${url}#webpage` }, license: 'https://creativecommons.org/licenses/by/4.0/', isBasedOn: { '@id': `${url}#dataset` } },
+      { '@type': 'Dataset', '@id': `${url}#dataset`, name: `Data of ${c.title}`, description: `Result tables, run records and ledger behind ${run.num}${run.key === 'lab004-sim' ? ' (simulation)' : ''}, from the Norevia repository.`, url, inLanguage: 'en', creator: { '@id': `${T.companyUrl}/#organization` }, publisher: { '@id': `${T.companyUrl}/#organization` }, license: 'https://creativecommons.org/licenses/by/4.0/', isAccessibleForFree: true, dateModified: c.updated, keywords: c.tags, distribution: art.files.map((f) => ({ '@type': 'DataDownload', name: f.split('/').pop(), encodingFormat: EXT[f.split('.').pop()] || 'application/octet-stream', contentUrl: `${T.repo}/blob/main/${f}` })) },
+    ];
+    put(c.url, layout({ title: c.title, desc: run.dek, path: c.url, body: page, scripts: ['card'], og: 'run-' + run.key, ogAlt: `${run.num}: ${run.short}`, type: 'article', published: c.updated, modified: c.updated, crumbs: [['Home', '/'], ['Journal', '/journal/'], [c.title, c.url]], nodes, kind: 'WebPage' }));
+  }
+  for (const c of cards) if (!RUN_BY_ID.has(c.id)) put(c.url, pageCard(c, cards, ctx));
+  const newest = posts[0].c.updated;
+  put('/journal/', layout({ title: 'Journal', desc: 'Norevia journal: every experiment run written up as an article, newest first, with the key finding, the numbers, what they mean and the limits.', path: '/journal/', body: pageJournalIndex(posts, jdeps), og: 'journal', modified: newest, kind: 'CollectionPage', nodes: [{ '@type': 'Blog', '@id': `${T.url}/journal/#blog`, name: 'Norevia journal', url: `${T.url}/journal/`, inLanguage: 'en', publisher: { '@id': `${T.companyUrl}/#organization` }, blogPost: posts.map((p) => ({ '@id': `${T.url}${p.c.url}#article` })) }] }));
+  put('/journal/feed.xml', atomFeed(T, posts.map(({ run, c }) => ({ url: T.url + c.url, title: c.title, summary: run.dek, date: c.updated, content: `<p>${esc(run.dek)}</p><p><strong>Key finding.</strong> ${esc(run.finding)}</p><ul>${run.tldr.map((x) => `<li>${esc(x)}</li>`).join('')}</ul><p><a href="${T.url}${c.url}">Read the article</a></p>` }))), 'application/atom+xml; charset=utf-8');
+  const FL = readFlags(ROOT);
+  if (FL) put('/flags/', layout({ title: 'Flag registry', desc: `Registry of ${FL.rows.length} bio-inspired mechanisms as runtime flags for AI agent swarms: the signal each reads, the action it takes, linked hypotheses and what local tests have shown.`, path: '/flags/', body: pageFlagsBody(FL, { pageHead, ctx, repoUrl: T.repo }), og: 'flags', modified: SNAPSHOT, kind: 'CollectionPage' }));
+  else warn('research/FLAGS.md', 'flag registry not found — /flags/ not generated');
+  put('/contact/', layout({ title: 'Contact', desc: 'Write to the Norevia team at Cold Code Labs: questions about a run or a hypothesis, corrections to a card, ideas for an experiment or a collaboration.', path: '/contact/', body: pageContactBody({ pageHead }), og: 'contact', kind: 'ContactPage', name: 'Contact the Norevia team' }));
+  put('/contact/thanks/', layout({ title: 'Message sent', desc: 'Your message to the Norevia team was sent.', path: '/contact/thanks/', body: pageThanksBody({ pageHead }), og: 'contact', noindex: true, crumbs: [['Home', '/'], ['Contact', '/contact/'], ['Message sent', '/contact/thanks/']] }));
+  put('/contact/error/', layout({ title: 'Message not sent', desc: 'Your message to the Norevia team could not be sent. Please try again or write to us by email.', path: '/contact/error/', body: pageContactBody({ pageHead }, { error: true }), og: 'contact', noindex: true, crumbs: [['Home', '/'], ['Contact', '/contact/'], ['Message not sent', '/contact/error/']] }));
   put('/method/', pageMethod(cards)); // last: includes warnings raised while rendering
   put('/404.html', page404());
-  put('/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${LAB.SITE.url}/sitemap.xml\n`, 'text/plain; charset=utf-8');
+  put('/robots.txt', `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${LAB.SITE.url}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   const htmlPaths = [...files.keys()].filter((p) => p.endsWith('/'));
-  put('/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${htmlPaths.map((p) => `<url><loc>${LAB.SITE.url}${p}</loc></url>`).join('\n')}\n</urlset>\n`, 'application/xml; charset=utf-8');
+  const lastmod = new Map(cards.map((c) => [c.url, /^\d{4}-\d\d-\d\d$/.test(c.updated) ? c.updated : SNAPSHOT]));
+  lastmod.set('/journal/', newest);
+  const NOINDEX = new Set(['/404/', '/contact/thanks/', '/contact/error/']);
+  const sitemapPaths = htmlPaths.filter((p) => !NOINDEX.has(p));
+  put('/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map((p) => `<url><loc>${LAB.SITE.url}${p}</loc><lastmod>${lastmod.get(p) || SNAPSHOT}</lastmod></url>`).join('\n')}\n</urlset>\n`, 'application/xml; charset=utf-8');
   put('/archive.json', JSON.stringify({
     project: LAB.SITE.name, publisher: LAB.SITE.company, description: LAB.SITE.full, generated: BUILD.date, commit: BUILD.commit || null,
     evidence_levels: EVIDENCE, hypothesis_statuses: STATUS,
     cards: sortCards(cards).map((c) => ({ id: c.id, legacy_id: c.rawId !== c.id ? c.rawId : undefined, title: c.title, area: c.area, evidence: c.evidence, status: c.status?.key || null, tags: c.tags, sources: c.sources, related: c.related, updated: c.updated || null, summary: c.summary, url: LAB.SITE.url + c.url, file: c.file, data: c.data.map((d) => d.file) })),
     datasets: datasets.map((d) => ({ file: d.file, card: d.owner?.id || null, charts: d.specs.length })),
+    journal: posts.map(({ run, c, art }) => ({ id: c.id, title: c.title, date: c.updated, dek: run.dek, key_finding: run.finding, reading_minutes: art.readMin, url: LAB.SITE.url + c.url })),
     warnings,
   }, null, 1), 'application/json; charset=utf-8');
 
@@ -1132,6 +1175,8 @@ function main() {
     "  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
     '  Strict-Transport-Security: max-age=31536000',
     `  X-Norevia-Build: ${BUILD.date}${BUILD.commit ? ' ' + BUILD.commit : ''}`,
+    '/journal/feed.xml',
+    '  Content-Type: application/atom+xml; charset=utf-8',
     '/assets/*',
     '  Cache-Control: public, max-age=31536000, immutable',
     '',
