@@ -333,3 +333,68 @@ a.sp-tag:hover { text-decoration: underline; }
  .hero-foot .made { max-width:15em; text-align:right; }
 }
 @media(prefers-reduced-motion:reduce) { .stage { transition:none; } }
+
+/* Nature is the starting point; diagrams below are original schematic art. */
+.hero-ecology { position:absolute; width:min(53vw,740px); left:49%; top:48%; transform:translateY(-50%); pointer-events:none; }
+.nature-plate { display:block; width:100%; height:auto; overflow:visible; }
+.nature-plate .soil-line { fill:none; stroke:#788b69; stroke-width:2; }
+.nature-plate .root-line { fill:none; stroke:#a2af8e; stroke-width:1.4; }
+.nature-plate .tunnel { fill:none; stroke:#c6c5b3; stroke-width:19; stroke-linecap:round; opacity:.55; }
+.nature-plate .chamber { fill:#e6e7db; stroke:#b3b9a0; stroke-width:1.2; }
+.nature-plate .nursery { fill:#e1e9d9; }
+.nature-plate .brood { fill:#fcfaf0; stroke:#a7b394; stroke-width:1; }
+.nature-plate .nature-ant { fill:#283c31; stroke:#283c31; stroke-width:1.1; stroke-linecap:round; }
+.nature-plate .exposed-ant { fill:#a36535; stroke:#a36535; }
+.nature-plate .boundary { fill:none; stroke:#a36535; stroke-width:1.5; stroke-dasharray:4 6; }
+.nature-plate text { fill:#6d7566; font:9px monospace; letter-spacing:1.2px; }
+.nature-plate .ant-motion { animation:colony-step 4s ease-in-out infinite; animation-delay:var(--delay); }
+@keyframes colony-step { 0%,100% { transform:translateX(-4px); } 50% { transform:translateX(4px); } }
+.nature-plate .honeycomb { fill:#eee5c9; stroke:#d6c59a; stroke-width:1.2; }
+.nature-plate .nature-bee { fill:none; stroke:#3e4938; stroke-width:1.5; }
+.nature-plate .wing { fill:#fafbf4; stroke:#a9b6a3; }
+.nature-plate .bee-body { fill:#d6ac55; }
+.nature-plate .bee-stripe { stroke:#454330; stroke-width:4; }
+.nature-plate .bee-head { fill:#454330; }
+.nature-plate .signal-wave { fill:none; stroke:#a36535; stroke-width:2; animation:signal-breathe 3s ease-in-out infinite; }
+@keyframes signal-breathe { 50% { opacity:.3; } }
+.nature-plate .inhibit { fill:none; stroke:#799073; stroke-width:1.5; stroke-dasharray:4 5; }
+.nature-plate .stop-mark { stroke:#a36535; stroke-width:3; }
+.nature-plate .affected-brood { fill:#e2b88e; stroke:#a36535; stroke-width:1.4; }
+.nature-plate .spore { fill:#a36535; }
+.bio-origins { background:#ebeee3; }
+.bio-heading { display:grid; grid-template-columns:1.15fr 1fr; gap:3rem; align-items:end; margin-bottom:3.5rem; }
+.bio-heading h2 { max-width:13ch; }
+.bio-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.3rem; align-items:start; }
+.bio-card { min-width:0; padding:1.5rem; background:#f8f7f1; border:1px solid #d6ddca; border-radius:22px; }
+.bio-art { margin:-.5rem -.5rem 1.5rem; }
+.bio-card .kicker { font-size:.62rem; letter-spacing:.09em; margin-bottom:.9rem; }
+.bio-card h3 { font-size:clamp(1.55rem,2vw,2rem); line-height:1.13; letter-spacing:-.02em; }
+.bio-card p { font-size:.96rem; line-height:1.65; color:var(--ink2); }
+.bio-label { display:block; color:var(--accent); font:500 .63rem/1.5 var(--mono); text-transform:uppercase; letter-spacing:.1em; margin-bottom:.45rem; }
+.bio-card details { border-top:1px solid var(--line); padding-top:1rem; margin-top:1.5rem; }
+.bio-card summary { cursor:pointer; font-size:.85rem; font-weight:600; line-height:1.5; }
+.bio-card summary:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+.bio-card .bio-fold { padding-top:.6rem; }
+.bio-fold a,.bio-source { font-size:.76rem; line-height:1.6; }
+.bio-source { display:block; margin-top:1.5rem; color:var(--ink2); }
+.bio-evidence-note { margin:2rem 0 0; max-width:90ch; color:var(--muted); font-size:.82rem; line-height:1.65; }
+.stage-ecology { position:absolute; width:48%; left:50%; top:50%; transform:translateY(-50%); padding-right:3rem; }
+.stage-ecology [hidden] { display:none; }
+.stage-ecology .nature-plate text { fill:#adbba3; }
+.stage-ecology .nature-plate .soil-line,.stage-ecology .nature-plate .root-line { stroke:#8f9e78; }
+.stage-ecology .nature-plate .nature-ant { fill:#bfd8b5; stroke:#bfd8b5; }
+.stage-ecology .nature-plate .chamber { fill:#26372d; stroke:#617d62; }
+.stage-ecology .nature-plate .tunnel { stroke:#3b4d3d; }
+.stage-ecology .nature-plate .honeycomb { fill:#343929; stroke:#727957; }
+@media(max-width:1000px) { .bio-grid { gap:.8rem; } .bio-card { padding:1rem; } }
+@media(max-width:860px) {
+ .hero-ecology { width:340px; max-width:94%; left:50%; top:70px; transform:translateX(-50%); }
+ .hero-in { padding-top:310px; }
+ .bio-heading,.bio-grid { grid-template-columns:1fr; gap:1.5rem; }
+ .bio-heading h2 { max-width:16ch; }
+ .bio-card { padding:1.5rem; }
+ .bio-art { max-width:440px; margin:0 auto 1rem; }
+ .stage-ecology { width:100%; left:0; top:auto; bottom:2rem; transform:none; padding:0 1rem; }
+ .stage-ecology .nature-plate { max-height:330px; }
+}
+@media(prefers-reduced-motion:reduce) { .nature-plate .ant-motion,.nature-plate .signal-wave { animation:none; } }

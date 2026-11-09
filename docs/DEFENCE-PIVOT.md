@@ -23,3 +23,7 @@ The landing-page sketch has 16 ring nodes and four cross-links. A step copies th
 ## Verification
 
 Run `node site/build.mjs`. The generator checks card IDs, relations, evidence and journal numbers. Two historical Observatory support documents without card frontmatter are intentionally reported and skipped. Check the landing interaction in desktop/mobile with reduced motion, and verify relevance filters operate on both graph and list. No model API calls are needed to build or interact with this site.
+
+## Nature-first presentation
+
+The landing page begins with a schematic ant colony and three source-linked biological mechanisms: contact-network plasticity (Stroeymeyt 2018), honeybee stop signals (Tan 2016, with its figure-quality correction), and destructive brood disinfection (Pull 2018). Each pairs the named-species observation with an expandable engineering hypothesis and refutation test. The agent-network sketch follows these observations. Drawings are illustrations, not biological simulations, and recovery remains an engineering question. Blockchain is not introduced as a core mechanism.

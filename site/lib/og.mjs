@@ -1,6 +1,7 @@
 // Norevia — Open Graph images (1200 x 630). Specs and SVG layout live here; `node site/og.mjs` rasterises them to PNG
 // (librsvg, tools/bin/rsvg-convert) into site/src/og/, and build.mjs copies the PNGs into the site.
 import crypto from 'node:crypto';
+import { natureArt } from './nature-art.mjs';
 import { RUNS } from './journal-data.mjs';
 import { artSvg, RUN_ART, PAL } from './motifs.mjs';
 import { formationFile } from './formation.mjs';
@@ -9,7 +10,7 @@ export const AREA_LABELS = { nature: 'Natural mechanisms', theory: 'Theory', hyp
 
 export function ogSpecs() {
   const S = [
-    { key: 'home', eyebrow: 'A Cold Code Labs research project', title: 'Social Immunity for Agentic Systems', dek: 'Collective defence for agent systems. A research question, tested against strong baselines.', art: 'formation:2' },
+    { key: 'home', eyebrow: 'A Cold Code Labs research project', title: 'Social Immunity for Agentic Systems', dek: 'From living colonies to collective defence in agent systems. Nature inspires; evidence decides.', art: 'formation:2' },
     { key: 'journal', eyebrow: 'Journal', title: 'Experiment runs, one article each', dek: 'Newest first: what was tested, the numbers, what they mean and the limits.', art: 'formation:4' },
     { key: 'flags', eyebrow: 'Registry', title: 'Flag registry', dek: 'Every bio-inspired mechanism as a runtime flag: signal, action and test status.', art: 'formation:5' },
     { key: 'contact', eyebrow: 'Contact', title: 'Write to the Norevia team', dek: 'Questions, corrections, ideas for an experiment or a collaboration.', art: 'formation:1' },
@@ -46,7 +47,9 @@ export function ogSvg(spec) {
   const dl = wrap(spec.dek, 40, 4);
   const ty = 250 - (tl.length - 1) * 8;
   let artInner = '', ax = 640, ay = 70, aw = 520, ah = 490;
-  if (['home','default','about','explore'].includes(spec.key)) {
+  if (['home','default','about'].includes(spec.key)) {
+    artInner = '<g transform="translate(655 130) scale(1.03)">' + natureArt('colony').replace('<svg ', '<svg width="480" height="330" ').replace('class="nature-plate nature-colony"', 'class="nature-plate nature-colony" style="color:#283c31"') + '</g>';
+  } else if (['explore'].includes(spec.key)) {
     const points = Array.from({length:16}, (_,i) => [900+Math.cos(i*Math.PI/8)*170,310+Math.sin(i*Math.PI/8)*170]);
     const lines = points.map(([x,y],i) => {const [a,b]=points[(i+1)%16];return '<path d="M'+x+' '+y+'L'+a+' '+b+'" stroke="#0e7a62" opacity=".4"/>';}).join('');
     artInner=lines+points.map(([x,y],i)=>'<circle cx="'+x+'" cy="'+y+'" r="12" fill="#fbfaf6" stroke="'+(i===0?'#ba4343':'#0e7a62')+'" stroke-width="2"/>').join('')+'<path d="M730 310H1058" stroke="#b46637" stroke-dasharray="5 7"/><text x="900" y="525" text-anchor="middle" font-family="monospace" font-size="17" fill="#0e7a62">TRACE · CONTAIN · VERIFY</text>';
@@ -61,6 +64,7 @@ export function ogSvg(spec) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 <rect width="1200" height="630" fill="${PAL.paper}"/>
 <rect x="${ax}" y="${ay}" width="${aw}" height="${ah}" rx="28" fill="#fbfaf6" stroke="${PAL.ink}" stroke-opacity=".12"/>
+<style>.nature-ant{fill:#283c31;stroke:#283c31;stroke-width:1.1}.exposed-ant{fill:#a36535;stroke:#a36535}.chamber{fill:#e6e7db;stroke:#b3b9a0}.tunnel{fill:none;stroke:#c6c5b3;stroke-width:19;opacity:.55}.brood{fill:#fcfaf0;stroke:#a7b394}.boundary{fill:none;stroke:#a36535;stroke-dasharray:4 6}.soil-line,.root-line{fill:none;stroke:#788b69}.nature-plate text{fill:#6d7566;font:9px monospace}</style>
 ${artInner}
 <rect x="64" y="64" width="44" height="6" rx="3" fill="${accent}"/>
 <text x="64" y="110" font-family="Liberation Sans, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3" fill="${PAL.ink}" fill-opacity=".6">${x(spec.eyebrow.toUpperCase())}</text>

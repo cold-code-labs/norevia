@@ -10,6 +10,7 @@
   const stageRoot = document.querySelector('[data-stages]');
   function selectStage(n) {
     phase=n;
+    stageRoot?.querySelectorAll('[data-stage-illustration]').forEach((el,i)=>{el.hidden=i!==n;});
     stageRoot?.querySelectorAll('.stage').forEach((el,i)=> {el.classList.toggle('on',i===n);el.setAttribute('aria-hidden',String(i!==n));});
     stageRoot?.querySelectorAll('[data-stage]').forEach((el,i)=>el.setAttribute('aria-pressed',String(i===n)));
     const count=stageRoot?.querySelector('.stage-count'); if(count) count.textContent=`0${n+1} / 04 · Illustrative policy`;
