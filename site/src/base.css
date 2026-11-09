@@ -149,6 +149,9 @@ a.pill:hover { border-color: var(--ink); }
 .words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
 .words .w > span { display: inline-block; transform: translateY(105%); opacity: 0; transition: transform 1.1s var(--ease), opacity 1.1s var(--ease); transition-delay: calc(var(--i) * 70ms + var(--d, 0ms)); }
 .words.in .w > span { transform: none; opacity: 1; }
+/* Reveal masks are only needed during entry. Fraunces italic overhangs and
+   descenders extend beyond the line box; never clip them once revealed. */
+.words.in .w, .rm .words .w, .no-js .words .w { overflow: visible; }
 
 /* ---------------------------------------------------------------- responsive chrome */
 @media (max-width: 1080px) {
