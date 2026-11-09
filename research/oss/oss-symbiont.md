@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Shared evidence, quorum or reinforcement exposes a useful poisoning/false-consensus test surface, not proven protection."
 id: oss-symbiont
 title: SYMBIONT — Physarum reinforcement by message volume, scout quorum and castes mapped to model tiers
 area: oss

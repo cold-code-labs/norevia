@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-debate-or-vote
 title: "Debate or Vote (Choi, Zhu & Li, NeurIPS 2025) — majority voting explains most of the gain from debate"
 area: literature

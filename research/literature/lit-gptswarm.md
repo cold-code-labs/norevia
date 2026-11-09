@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
 id: lit-gptswarm
 title: "GPTSwarm — language agents as optimizable graphs"
 area: literature

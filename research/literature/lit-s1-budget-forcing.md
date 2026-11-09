@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-s1-budget-forcing
 title: 's1: Simple test-time scaling — budget forcing of sequential reasoning'
 area: literature

@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-early-stopping-sc
 title: 'Early-Stopping Self-Consistency (ESC) — stop when a window of samples agrees'
 area: literature

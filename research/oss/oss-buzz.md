@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
 id: oss-buzz
 title: Buzz — VM and language for robot swarms with dynamic swarms, situated neighborhood and virtual stigmergy
 area: oss

@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
 id: lit-mast
 title: "MAST — why do multi-agent LLM systems fail?"
 area: literature

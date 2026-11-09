@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-should-we-be-going-mad
 title: "Should we be going MAD? (Smit et al., ICML 2024) — debate vs. ensembles with cost"
 area: literature

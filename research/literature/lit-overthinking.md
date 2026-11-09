@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-overthinking
 title: 'Do NOT Think That Much for 2+3=? — overthinking in long reasoning models'
 area: literature

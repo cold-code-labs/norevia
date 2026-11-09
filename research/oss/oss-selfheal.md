@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
 id: oss-selfheal
 title: SelfHeal — ReAct fixer + separate LLM critic in up to 3 attempts, no test execution in the loop
 area: oss

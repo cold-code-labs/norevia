@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-crewai
 title: CrewAI — crews of roles in a sequential or hierarchical process with task guardrails and bounded retry
 area: oss

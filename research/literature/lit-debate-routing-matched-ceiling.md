@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-debate-routing-matched-ceiling
 title: "Statistical Scouting Finds Debate-Safe but Not Debate-Useful Cases (Hu, Shen & Lakshmipathi, 2026) — per-example routing among greedy, voting and debate"
 area: literature

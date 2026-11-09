@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-rethinking-bounds-discussion
 title: "Rethinking the Bounds of LLM Reasoning (Wang et al., ACL 2024) — single agent with a strong prompt ≈ discussion"
 area: literature

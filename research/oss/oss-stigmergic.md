@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Shared evidence, quorum or reinforcement exposes a useful poisoning/false-consensus test surface, not proven protection."
 id: oss-stigmergic
 title: Stigmergic — pheromone floor in SQLite/Postgres with atomic claim and NLI quorum (SemanticRaft) before commit
 area: oss

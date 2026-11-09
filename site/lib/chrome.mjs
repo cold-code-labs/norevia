@@ -12,7 +12,7 @@ export function topBar({ nav, current = null, solid = false }) {
 <a class="brand" href="/" aria-label="Norevia — home">${LOGO}<span>Norevia</span></a>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu <i aria-hidden="true"></i></button>
 <nav id="site-nav" aria-label="Main"><ul>${nav.map(([href, label]) => `<li><a href="${href}"${href === current ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`).join('')}</ul></nav>
-<a class="pill" href="/#soon"><span class="pulse" aria-hidden="true"></span><span class="pl">Release</span> <b>Soon</b></a>
+<a class="pill" href="/defence/"><span class="pulse" aria-hidden="true"></span><span class="pl">Open</span> <b>Research</b></a>
 </div>
 </header>`;
 }

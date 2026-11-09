@@ -22,10 +22,11 @@ for (const form of document.querySelectorAll('form[data-filters]')) {
   const empty = scope.querySelector('.filtered-empty');
   const count = form.querySelector('.fcount');
   const q = form.querySelector('input[name="q"]');
-  const state = { area: new Set(), ev: new Set(), st: new Set() };
+  const state = { area: new Set(), ev: new Set(), st: new Set(), pivot: new Set() };
   form.hidden = false;
   form.addEventListener('submit', (e) => e.preventDefault());
   const match = (d) => {
+    if (state.pivot.size && !state.pivot.has(d.pivot)) return false;
     if (state.area.size && !state.area.has(d.area)) return false;
     if (state.ev.size && !state.ev.has(d.ev)) return false;
     if (state.st.size && !state.st.has(d.st)) return false;
@@ -37,11 +38,11 @@ for (const form of document.querySelectorAll('form[data-filters]')) {
     let n = 0;
     for (const li of items) { const ok = match(li.dataset); li.hidden = !ok; if (ok) n++; }
     if (empty) empty.hidden = n > 0 || !items.length;
-    const active = state.area.size || state.ev.size || state.st.size || q.value.trim();
+    const active = state.pivot.size || state.area.size || state.ev.size || state.st.size || q.value.trim();
     count.textContent = active ? `${n} of ${items.length} cards match` : `${items.length} cards`;
     document.dispatchEvent(new CustomEvent('nrv:filter', { detail: { match, active: !!active } }));
     const params = new URLSearchParams();
-    for (const k of ['area', 'ev', 'st']) if (state[k].size) params.set(k, [...state[k]].join(','));
+    for (const k of ['area', 'ev', 'st', 'pivot']) if (state[k].size) params.set(k, [...state[k]].join(','));
     if (q.value.trim()) params.set('q', q.value.trim());
     const s = params.toString();
     history.replaceState(null, '', location.pathname + (s ? '?' + s : '') + location.hash);
@@ -57,7 +58,7 @@ for (const form of document.querySelectorAll('form[data-filters]')) {
   });
   q.addEventListener('input', apply);
   const params = new URLSearchParams(location.search);
-  for (const key of ['area', 'ev', 'st']) {
+  for (const key of ['area', 'ev', 'st', 'pivot']) {
     for (const v of (params.get(key) || '').split(',').filter(Boolean)) {
       const b = form.querySelector(`button[data-filter="${key}"][data-value="${CSS.escape(v)}"]`);
       if (b) { b.setAttribute('aria-pressed', 'true'); state[key].add(v); }

@@ -133,13 +133,13 @@ export function pageJournalIndex(posts, deps) {
   return `${pageHead({
     eyebrow: 'Journal',
     title: 'Experiment runs, one article each',
-    lead: 'Every run of the Swarm Efficiency Observatory is written up as an article, newest first: what was tested, the numbers, what they mean and the limits. All text and numbers come from the run reports, which stay the source of truth.',
+    lead: 'Historical experiments are written up from their source reports, newest first. LAB-001–006 primarily used coding or synthetic tasks: they inform methods and coordination, but are not evidence of cyber-defence efficacy.',
     extra: `<p class="ctas"><a class="btn small" href="/journal/feed.xml">Atom feed</a><a class="btn small ghost" href="/flags/">Flag registry</a><a class="btn small ghost" href="/experiments/">All experiments and simulations</a></p>`,
     seed: 4,
   })}
 <section><div class="wrap">
 <h2 class="sr">Articles</h2>
 <ol class="post-list">${items}</ol>
-<p class="muted small narrow">The pre-registration and calibration documents of each run are cards in the archive; each article links to them. Results here are for one small model (Claude Haiku 5.5) and say nothing yet about other models or domains.</p>
+<p class="muted small narrow">The pre-registration and calibration documents of each run are cards in the archive; each article links to them. Earlier results retain their original scope and must not be read as defence findings. LAB-007 is a draft and has not run.</p>
 </div></section>`;
 }

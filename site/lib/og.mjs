@@ -9,18 +9,18 @@ export const AREA_LABELS = { nature: 'Natural mechanisms', theory: 'Theory', hyp
 
 export function ogSpecs() {
   const S = [
-    { key: 'home', eyebrow: 'A Cold Code Labs research project', title: 'Bioinspired Agentic Swarms', dek: 'Toward a General Theory of AI Swarm Efficiency. Where nature proposes and experiments decide.', art: 'formation:2' },
+    { key: 'home', eyebrow: 'A Cold Code Labs research project', title: 'Social Immunity for Agentic Systems', dek: 'Collective defence for agent systems. A research question, tested against strong baselines.', art: 'formation:2' },
     { key: 'journal', eyebrow: 'Journal', title: 'Experiment runs, one article each', dek: 'Newest first: what was tested, the numbers, what they mean and the limits.', art: 'formation:4' },
     { key: 'flags', eyebrow: 'Registry', title: 'Flag registry', dek: 'Every bio-inspired mechanism as a runtime flag: signal, action and test status.', art: 'formation:5' },
     { key: 'contact', eyebrow: 'Contact', title: 'Write to the Norevia team', dek: 'Questions, corrections, ideas for an experiment or a collaboration.', art: 'formation:1' },
-    { key: 'explore', eyebrow: 'Explore', title: 'The knowledge swarm', dek: 'Every card is an agent: colour is the area, shape is the evidence level.', art: 'formation:3' },
+    { key: 'explore', eyebrow: 'Explore', title: 'The defence research archive', dek: 'Mechanisms, evidence and historical results. Filter by relevance to collective defence.', art: 'formation:3' },
     { key: 'playgrounds', eyebrow: 'Playgrounds', title: 'Models you can touch', dek: 'Five small worlds ported from the simulations: voting, verifiers, elastic swarms, stigmergy and thresholds.', art: 'formation:5' },
     { key: 'hypotheses', eyebrow: 'Official register', title: 'Hypothesis board', dek: 'Falsifiable hypotheses by status, each linked to the experiments that test it.', art: 'formation:0' },
     { key: 'experiments', eyebrow: 'Swarm Efficiency Observatory', title: 'Experiments', dek: 'Simulations and benchmarks with real LLM agents, with charts from the data files.', art: 'formation:2' },
     { key: 'literature', eyebrow: 'Sources', title: 'Literature and open source', dek: 'Papers and projects, each with its evidence level and recorded source.', art: 'formation:4' },
     { key: 'method', eyebrow: 'Evidence discipline', title: 'Method', dek: 'Natural phenomenon, author-reported result, hypothesis, local validation and gap.', art: 'formation:1' },
-    { key: 'about', eyebrow: 'About', title: 'About Norevia', dek: 'A Cold Code Labs research project on AI agents that organise the way living systems do.', art: 'formation:3' },
-    { key: 'default', eyebrow: 'Norevia', title: 'Bioinspired Agentic Swarms', dek: 'A Cold Code Labs research project.', art: 'formation:0' },
+    { key: 'about', eyebrow: 'About', title: 'About Norevia', dek: 'A research project on collective defence and information integrity in agent systems.', art: 'formation:3' },
+    { key: 'default', eyebrow: 'Norevia', title: 'Social Immunity for Agentic Systems', dek: 'A Cold Code Labs research project.', art: 'formation:0' },
   ];
   Object.entries(AREA_LABELS).forEach(([a, label], i) => S.push({ key: `area-${a}`, eyebrow: 'Research card', title: label, dek: 'An entry of the Norevia archive with its evidence level, sources and relations.', art: `formation:${i % 6}` }));
   for (const r of RUNS) S.push({ key: `run-${r.key}`, eyebrow: `${r.code} · Journal`, title: r.short, dek: r.finding, art: r.key, accent: RUN_ART[r.key].accent });
@@ -46,7 +46,11 @@ export function ogSvg(spec) {
   const dl = wrap(spec.dek, 40, 4);
   const ty = 250 - (tl.length - 1) * 8;
   let artInner = '', ax = 640, ay = 70, aw = 520, ah = 490;
-  if (spec.art.startsWith('formation:')) {
+  if (['home','default','about','explore'].includes(spec.key)) {
+    const points = Array.from({length:16}, (_,i) => [900+Math.cos(i*Math.PI/8)*170,310+Math.sin(i*Math.PI/8)*170]);
+    const lines = points.map(([x,y],i) => {const [a,b]=points[(i+1)%16];return '<path d="M'+x+' '+y+'L'+a+' '+b+'" stroke="#0e7a62" opacity=".4"/>';}).join('');
+    artInner=lines+points.map(([x,y],i)=>'<circle cx="'+x+'" cy="'+y+'" r="12" fill="#fbfaf6" stroke="'+(i===0?'#ba4343':'#0e7a62')+'" stroke-width="2"/>').join('')+'<path d="M730 310H1058" stroke="#b46637" stroke-dasharray="5 7"/><text x="900" y="525" text-anchor="middle" font-family="monospace" font-size="17" fill="#0e7a62">TRACE · CONTAIN · VERIFY</text>';
+  } else if (spec.art.startsWith('formation:')) {
     const f = formationFile(Number(spec.art.split(':')[1]) + 1).replace(/<g><path class="ant"[\s\S]*?<\/g>/g, '');
     artInner = f.replace('<svg ', `<svg x="${ax + 60}" y="${ay + 45}" width="400" height="400" `);
   } else {

@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
 id: lit-selfheal
 title: "SelfHeal — fix patterns and bug repair in LLM agents with a separate critic"
 area: literature

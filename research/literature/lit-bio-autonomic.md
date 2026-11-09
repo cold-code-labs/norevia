@@ -1,4 +1,6 @@
 ---
+pivot: keep
+pivot_reason: "Direct integrity/resilience candidate; full text unavailable in existing card, so no efficacy claim is publishable."
 id: lit-bio-autonomic
 title: "Bio-Autonomic — resilience in LLM multi-agent systems via autonomic control and immune detection"
 area: literature

@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-hong-page-diversity
 title: "Diversity vs ability: diverse groups outperform groups of the best (Hong & Page, PNAS 2004)"
 area: literature

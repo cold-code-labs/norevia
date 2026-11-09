@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
 id: lit-mixture-of-agents
 title: "Mixture-of-Agents (Wang et al., ICLR 2025) — layers of proposers and an aggregator"
 area: literature

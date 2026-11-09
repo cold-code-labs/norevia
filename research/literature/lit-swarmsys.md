@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
 id: lit-swarmsys
 title: "SwarmSys — decentralized swarm-inspired agents for scalable reasoning"
 area: literature

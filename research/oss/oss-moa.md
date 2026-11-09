@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
 id: oss-moa
 title: Mixture-of-Agents (Together) — layers of LLM proposers aggregated by a synthesis prompt
 area: oss

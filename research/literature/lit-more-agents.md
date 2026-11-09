@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-more-agents
 title: 'More Agents Is All You Need — sampling-and-voting (Agent Forest)'
 area: literature

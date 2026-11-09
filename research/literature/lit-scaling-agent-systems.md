@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-scaling-agent-systems
 title: Towards a Science of Scaling Agent Systems — when multi-agent architectures help or hurt
 area: literature

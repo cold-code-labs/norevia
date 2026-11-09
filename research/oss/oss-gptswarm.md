@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
 id: oss-gptswarm
 title: GPTSwarm — agents as a computational graph with edges optimized by REINFORCE
 area: oss

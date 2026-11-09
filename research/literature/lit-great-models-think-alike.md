@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-great-models-think-alike
 title: "Great Models Think Alike and this Undermines AI Oversight (Goel et al., 2025)"
 area: literature

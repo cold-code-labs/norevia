@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-adaptive-consistency
 title: 'Adaptive-Consistency — number of samples per question decided by agreement'
 area: literature

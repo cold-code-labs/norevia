@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-diverse-debate-hegazy
 title: "Diversity of Thought Elicits Stronger Reasoning in Multi-Agent Debate — heterogeneous vs homogeneous models (Hegazy, 2024)"
 area: literature

@@ -1,0 +1,41 @@
+{
+  "checked": "2026-11-09T18:12:42.034Z",
+  "pages": 204,
+  "localLinks": 10556,
+  "missing": [],
+  "browser": {
+    "desktop": true,
+    "mobile": true,
+    "reducedMotion": true,
+    "noHorizontalOverflow": true,
+    "claimSequence": [
+      [
+        1,
+        0,
+        16
+      ],
+      [
+        4,
+        0,
+        16
+      ],
+      [
+        4,
+        4,
+        12
+      ],
+      [
+        0,
+        0,
+        16
+      ]
+    ],
+    "reset": true,
+    "stageSelection": true,
+    "filterQuery": true
+  },
+  "limits": [
+    "Illustration only, no security efficacy benchmark.",
+    "Contact email delivery not tested; no message sent."
+  ]
+}

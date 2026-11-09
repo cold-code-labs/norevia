@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
 id: lit-agentprune
 title: "AgentPrune (Cut the Crap) — pruning redundant communication in LLM multi-agent systems"
 area: literature

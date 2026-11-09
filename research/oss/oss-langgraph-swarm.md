@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-langgraph-swarm
 title: LangGraph Swarm — handoff via Command(goto) and active_agent router over StateGraph
 area: oss

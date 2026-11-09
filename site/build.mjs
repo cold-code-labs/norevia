@@ -32,6 +32,10 @@ const ROOT = path.resolve(SITE_DIR, '..');
 const DIST = path.join(SITE_DIR, 'dist');
 const DEPLOY = path.join(SITE_DIR, 'deploy');
 const t0 = Date.now();
+const PIVOT = JSON.parse(fs.readFileSync(path.join(SITE_DIR, 'lib/pivot-data.json'), 'utf8'));
+const PIVOT_LABELS = { keep: 'Keep', adapt: 'Adapt for defence', foundation: 'Method foundation', archive: 'Historical archive', pending: 'Review pending' };
+function pivotNote(c) { return '<p class="muted" role="note"><strong>Defence relevance: ' + esc(PIVOT_LABELS[c.pivot]) + '.</strong> ' + esc(c.pivotReason || 'This card awaits a dedicated relevance review.') + ' Classification concerns reuse, not demonstrated security efficacy. Original findings and hypothesis statuses retain their original experimental scope. <a href="/defence/">Read the defence agenda</a>.</p>'; }
+
 
 const SOURCES = [
   { dir: 'research/literature', area: 'literature' },
@@ -292,6 +296,7 @@ const ARROW = '<span class="arr" aria-hidden="true">→</span>';
 
 const NAV = [
   ['/', 'Home'],
+  ['/defence/', 'Defence agenda'],
   ['/journal/', 'Journal'],
   ['/explore/', 'Research'],
   ['/playgrounds/', 'Playgrounds'],
@@ -342,10 +347,10 @@ ${footer({ site: LAB.SITE, links: [...NAV.slice(1).filter(([h]) => ['/journal/',
 }
 
 function cardItem(c, opts = {}) {
-  const dataAttrs = ` data-area="${c.area}" data-ev="${c.evidence}"${c.status ? ` data-st="${c.status.key}"` : ''} data-text="${esc([c.id, c.rawId, c.title, c.summary, c.tags.join(' ')].join(' ').toLowerCase())}"`;
+  const dataAttrs = ` data-pivot="${c.pivot}" data-area="${c.area}" data-ev="${c.evidence}"${c.status ? ` data-st="${c.status.key}"` : ''} data-text="${esc([c.id, c.rawId, c.title, c.summary, c.tags.join(' ')].join(' ').toLowerCase())}"`;
   return `<li class="card-item ev-${c.evidence}"${dataAttrs}>
 <a class="card-link" href="${c.url}">${RUN_BY_ID.has(c.id) ? `<span class="card-art" style="--run:${RUN_ART[RUN_BY_ID.get(c.id).key].accent}">${artPicture(RUN_BY_ID.get(c.id).key, { cls: 'run-art', alt: false })}</span>` : ''}
-<span class="card-top">${seal(c.evidence)}${opts.hideArea ? '' : areaChip(c.area)}${statusChip(c.status)}</span>
+<span class="card-top">${seal(c.evidence)}${opts.hideArea ? '' : areaChip(c.area)}${statusChip(c.status)}<span class="chip">${esc(PIVOT_LABELS[c.pivot])}</span></span>
 <span class="card-title">${esc(c.title)}</span>
 <span class="card-sum">${esc(c.summary)}</span>
 <span class="cid">${esc(c.id)}</span>
@@ -436,7 +441,7 @@ function graphSvg(cards, G, { mini = false } = {}) {
   const nodeSvg = nodes.map((n) => {
     const s = (mini ? 4 : 6) + Math.min(6, Math.sqrt(n.deg) * (mini ? 0.8 : 1.3));
     const c = n.c;
-    const attrs = mini ? '' : ` data-id="${esc(c.id)}" data-area="${c.area}" data-ev="${c.evidence}"${c.status ? ` data-st="${c.status.key}"` : ''} data-title="${esc(c.title)}" data-sum="${esc(c.summary.length > 260 ? c.summary.slice(0, 257) + '…' : c.summary)}" data-text="${esc([c.id, c.rawId, c.title, c.tags.join(' ')].join(' ').toLowerCase())}"`;
+    const attrs = mini ? '' : ` data-id="${esc(c.id)}" data-pivot="${c.pivot}" data-area="${c.area}" data-ev="${c.evidence}"${c.status ? ` data-st="${c.status.key}"` : ''} data-title="${esc(c.title)}" data-sum="${esc(c.summary.length > 260 ? c.summary.slice(0, 257) + '…' : c.summary)}" data-text="${esc([c.id, c.rawId, c.title, c.tags.join(' ')].join(' ').toLowerCase())}"`;
     return `<a href="${c.url}" class="node n-${c.area}"${attrs} transform="translate(${n.x.toFixed(1)} ${n.y.toFixed(1)})" aria-label="${esc(`${c.id}: ${c.title} — ${AREAS[c.area].label}, ${evLabel(c.evidence)}${c.status ? ', ' + c.status.label : ''}`)}"><circle class="halo" r="${(s + 9).toFixed(1)}"/>${nodeShape(c.evidence, s)}${mini ? '' : `<text class="lbl" y="${(-s - 6).toFixed(1)}" text-anchor="middle">${esc(c.id)}</text>`}</a>`;
   }).join('');
   return `<svg class="graph${mini ? ' mini' : ''}" viewBox="0 0 ${W} ${H}" role="group" aria-label="Knowledge graph: ${cards.length} cards; colour = area, shape = evidence level, lines = declared relations">${labels}<g class="edges">${edgeSvg}</g><g class="nodes">${nodeSvg}</g>${cards.length ? '' : `<text class="alabel" x="${cx}" y="${cy}" text-anchor="middle">Waiting for the first cards</text>`}</svg>`;
@@ -458,6 +463,7 @@ function filters(cards, { areas = true, status = false } = {}) {
 <label class="search"><span class="sr">Search</span><input type="search" name="q" placeholder="Search by title, id or tag…  (press / to focus)" autocomplete="off"></label>
 ${areas && areaKeys.length > 1 ? `<fieldset><legend>Area</legend>${areaKeys.map((a) => `<button type="button" class="chip ar ar-${a}" data-filter="area" data-value="${a}" aria-pressed="false">${esc(AREAS[a].plural)} <span class="n">${cards.filter((c) => c.area === a).length}</span></button>`).join('')}</fieldset>` : ''}
 ${evKeys.length ? `<fieldset><legend>Evidence</legend>${evKeys.map((k) => `<button type="button" class="chip ev-${k}" data-filter="ev" data-value="${k}" aria-pressed="false">${icon(k)}${esc(evLabel(k))} <span class="n">${cards.filter((c) => c.evidence === k).length}</span></button>`).join('')}</fieldset>` : ''}
+${Object.entries(PIVOT_LABELS).some(([k]) => cards.some(c => c.pivot === k)) ? `<fieldset><legend>Defence relevance</legend>${Object.entries(PIVOT_LABELS).filter(([k]) => cards.some(c => c.pivot === k)).map(([k,v]) => `<button type="button" class="chip" data-filter="pivot" data-value="${k}" aria-pressed="false">${v} <span class="n">${cards.filter(c => c.pivot === k).length}</span></button>`).join('')}</fieldset>` : ''}
 ${status && stKeys.length ? `<fieldset><legend>Status</legend>${stKeys.map((k) => `<button type="button" class="chip st-${k}" data-filter="st" data-value="${k}" aria-pressed="false">${esc(STATUS[k].label)} <span class="n">${cards.filter((c) => c.status?.key === k).length}</span></button>`).join('')}</fieldset>` : ''}
 <p class="fcount" aria-live="polite"></p>
 </form>`;
@@ -529,11 +535,16 @@ function playPreview(key, ctx) {
 
 // ------------------------------------------------------------------ pages
 
+function pageDefence(cards) {
+ const counts = Object.entries(PIVOT_LABELS).map(([k,v]) => '<li><strong>'+v+': '+cards.filter(c=>c.pivot===k).length+'</strong></li>').join('');
+ return layout({title:'Collective defence research agenda',path:'/defence/',body:pageHead({eyebrow:'Research programme',title:'Social immunity. Security evidence.',lead:LAB.QUESTION,seed:17}) + `<section><div class="wrap prose"><h2>Threat model</h2><p>Untrusted documents, tool output or shared memory may carry a malicious instruction or false evidence. An exposed agent can copy it to peers, making one source look like many. Our initial scope is information integrity in LLM-based agent systems, using synthetic or licensed cases in owned or isolated environments.</p><h2>Four testable mechanisms</h2><ol><li>Local alarms: does targeted review detect compromised evidence earlier, at an acceptable false-alarm rate?</li><li>Selective inhibition: can source-specific quarantine contain propagation while preserving benign work?</li><li>Network plasticity: does changing read and communication paths add value beyond conventional isolation?</li><li>Bounded recovery: can independent checks clear affected state and permit safe restoration without retaining poisoned memory?</li></ol><h2>The comparison that matters</h2><p>Compare with provenance tracking, least privilege, independent verification, rate limits and well-implemented quarantine, at matched model budget and utility. Include no-sharing and fixed-sharing controls and mechanism ablations. A gain caused by extra review or extra tokens is not evidence for a biological mechanism.</p><h2>Measure both protection and disruption</h2><p>Track propagation, containment time, residual poisoned state, false positives, missed incidents, legitimate work completed, recovery quality, latency and token cost. Record model versions, seeds, threat assumptions and verifier error.</p><h2>Current evidence</h2><p>LAB-001–006 provide historical methods and failure evidence from coding and synthetic tasks. They do not establish defensive efficacy. LAB-007 is a proposed poisoned-evidence containment study; it has not run. Its budget and batch design must be settled before execution.</p><h2>Archive review</h2><ul>${counts}</ul><p>Classification is a dated relevance review, separate from the evidence badge. Pending items are visible and unreviewed, not silently promoted. Historical papers and experiments preserve their original claims and versions. Machine screening of abstracts is discovery, not full-text or human validation.</p><p><a href="/explore/">Filter the archive</a> · <a href="/literature/">Sources and implementations</a> · <a href="/method/">Evidence rules</a> · <a href="/experiments/">Experiments</a></p><h2>Source-review limits</h2><p>The six highlighted biological publications were checked through abstracts and selected sections; full-text appraisal is incomplete. The guarding study’s full text was inaccessible. One source is a conceptual review rather than an independent experiment. Our discovery catalogue and AI screening are not a systematic review, and retained OSS cards refer to their previously recorded commits.</p><p>Security-specific implementations and propagation benchmarks still require pinned licences, reproducible ground truth and independent evaluation before they can support a performance claim.</p><h2>Biological anchors</h2><p><a href="https://doi.org/10.1126/science.aat4793">Stroeymeyt et al. (2018), organisational immunity in ants</a> and <a href="https://doi.org/10.1371/journal.pbio.1002423">Tan et al. (2016), honeybee stop signals</a> motivate specific hypotheses. They are natural observations, not demonstrations of software security.</p></div></section>`});
+}
+
 function pageExplore(cards, G) {
   const body = `${pageHead({
     eyebrow: 'Explore',
-    title: 'The knowledge swarm',
-    lead: 'Every card is an agent. Colour is the area, shape is the evidence level, lines are relations declared in <code>related</code>. Hover or focus a node to preview it; click to open. Positions are visual organisation only — they measure nothing.',
+    title: 'The defence research archive',
+    lead: 'Browse retained research by defence relevance. Keep, adapt, foundation and archive describe reuse; pending marks unfinished review. Colour is the area, shape is the evidence level, lines are declared relations. Hover or focus a node to preview it; click to open. Positions are visual organisation only — they measure nothing.',
     seed: 3,
   })}
 <section><div class="wrap">
@@ -781,14 +792,14 @@ function pageExperiments(cards, datasets, obsStatus) {
   };
   const running = obsStatus.filter((s) => Number(s.pending) > 0 || (s.finished != null && s.total != null && s.finished < s.total));
   const body = `${pageHead({
-    eyebrow: 'Swarm Efficiency Observatory',
+    eyebrow: 'Defensive research · historical experiments',
     title: 'Experiments',
-    lead: 'A wind tunnel for swarms: the same task under different architectures, comparable budgets, multiple runs and objective acceptance criteria. Simulations explore dynamics; the Observatory measures real LLM agents.',
+    lead: 'The existing Observatory and simulations provide reusable methods. LAB-001–006 primarily used coding or synthetic tasks; they are not evidence of cyber-defence efficacy. LAB-007 is a proposed containment study and has not run.',
     seed: 11,
   })}
 <section><div class="wrap">
 <ol class="abc">${LAB.OBSERVATORY_DESIGN.map((a) => `<li><span class="k">${a.k}</span><strong>${esc(a.name)}</strong><span class="muted">${esc(a.d)}</span></li>`).join('')}</ol>
-<p class="muted">Metrics: ${LAB.OBSERVATORY_METRICS.map(esc).join(' · ')}. The goal is to locate transition points: when the single agent stops being the best choice, when a micro-swarm adds value and when expanding wastes resources.</p>
+<p class="muted">Proposed defence metrics: ${LAB.OBSERVATORY_METRICS.map(esc).join(' · ')}. New experiments must compare with strong conventional controls at matched cost.</p>
 </div></section>
 <section><div class="wrap">
 <h2 id="simulations">Agent-based simulations <span class="count">${sims.length}</span></h2>
@@ -802,14 +813,14 @@ ${obs.length ? obs.map(block).join('') : '<p class="empty">No interpreted Observ
 ${obsSummaries.length ? `<h3 style="margin-top:2rem">Preliminary run summaries</h3><p class="muted narrow">Automatically charted from the Observatory’s summary files. These are calibration/pilot phases with small samples: read them as instrument checks, not findings.</p><div class="exp-grid">${obsSummaries.map((x) => x.html).join('')}</div>` : ''}
 </div></section>
 ${rest.length ? `<section><div class="wrap"><h2 id="data">Data without an interpretive card yet</h2><p class="muted narrow">Files in <code>results/</code> with no associated card. Raw data: no reading, no conclusion.</p>${rest.map((d) => `<article class="exp"><h3><code>${esc(d.file)}</code></h3>${summaryBlock(d)}${d.error ? `<p class="muted">Not charted: ${esc(d.error)}.</p>` : d.specs.slice(0, 3).map(renderChart).join('') || (d.metrics.length ? metricsTable(d) : '<p class="muted">Format not recognised for charting.</p>')}</article>`).join('')}</div></section>` : ''}`;
-  return layout({ title: 'Experiments', desc: 'Simulations and Swarm Efficiency Observatory benchmarks, with charts generated from the data files.', path: '/experiments/', body, og: 'experiments' });
+  return layout({ title: 'Experiments', desc: 'Historical swarm experiments and proposed defensive evaluations, with scope and evidence limits stated.', path: '/experiments/', body, og: 'experiments' });
 }
 
 function pageLiterature(cards) {
   const lit = sortCards(cards.filter((c) => c.area === 'literature'));
   const oss = sortCards(cards.filter((c) => c.area === 'oss'));
   const both = [...lit, ...oss];
-  const item = (c) => `<li class="ref-item ev-${c.evidence}" data-area="${c.area}" data-ev="${c.evidence}" data-text="${esc([c.id, c.rawId, c.title, c.summary, c.tags.join(' '), c.sources.join(' ')].join(' ').toLowerCase())}"><p class="card-top">${seal(c.evidence)}${statusChip(c.status)}</p><h3><a href="${c.url}">${esc(c.title)}</a> <span class="cid">${esc(c.id)}</span></h3><p>${esc(c.summary)}</p>${c.sources.length ? `<p class="src small">${inline(c.sources[0])}${c.sources.length > 1 ? ` <span class="muted">+${c.sources.length - 1}</span>` : ''}</p>` : '<p class="src small muted">No source recorded — treat as a gap.</p>'}</li>`;
+  const item = (c) => `<li class="ref-item ev-${c.evidence}" data-pivot="${c.pivot}" data-area="${c.area}" data-ev="${c.evidence}" data-text="${esc([c.id, c.rawId, c.title, c.summary, c.tags.join(' '), c.sources.join(' ')].join(' ').toLowerCase())}"><p class="card-top">${seal(c.evidence)}${statusChip(c.status)}</p><h3><a href="${c.url}">${esc(c.title)}</a> <span class="cid">${esc(c.id)}</span></h3><p>${esc(c.summary)}</p>${c.sources.length ? `<p class="src small">${inline(c.sources[0])}${c.sources.length > 1 ? ` <span class="muted">+${c.sources.length - 1}</span>` : ''}</p>` : '<p class="src small muted">No source recorded — treat as a gap.</p>'}</li>`;
   const body = `${pageHead({
     eyebrow: 'Sources',
     title: 'Literature & open source',
@@ -837,7 +848,7 @@ function pageMethod(cards) {
     seed: 17,
   })}
 <section><div class="wrap">
-<h2 id="levels">Evidence levels</h2>
+<h2 id="defence">Defence evaluation</h2><p>Start with a threat model, trusted ground truth and a strong conventional baseline. Record both containment and disruption of legitimate work. The <a href="/defence/">defence agenda</a> states the current assumptions and evidence gaps. A relevance label never upgrades an evidence level.</p><h2 id="levels">Evidence levels</h2>
 <p class="muted narrow">Every badge carries a shape, a colour and a text label — never colour alone.</p>
 <ol class="ladder">${Object.entries(EVIDENCE).map(([k, e]) => {
   const list = cards.filter((c) => c.evidence === k);
@@ -883,8 +894,8 @@ Mechanism · Evidence · Engineering analogue · Testable hypothesis · Limits /
 function pageAbout(cards, datasets) {
   const body = `${pageHead({
     eyebrow: 'About',
-    title: 'Bioinspired Agentic Swarms',
-    lead: 'Norevia is a Cold Code Labs research project on AI agents that organise the way living systems do — gathering around hard problems, staying lean on easy ones, and dissolving when the work is done. First release soon.',
+    title: LAB.SITE.title,
+    lead: LAB.SITE.definition,
     seed: 19,
   })}
 <section><div class="wrap">
@@ -931,7 +942,7 @@ function pageCard(c, cards, ctx) {
   const extraMeta = Object.entries(c.fm).filter(([k, v]) => !skip.includes(k) && v !== '' && v != null && (typeof v !== 'object' || Array.isArray(v)));
   const exps = c.area === 'hypothesis' ? expsFor(c, cards) : [];
   const body = `
-<article class="cardpage ev-${c.evidence}">
+<article class="cardpage ev-${c.evidence}"><div class="wrap">${pivotNote(c)}</div>
 <header class="phead card-head">${CARD_ART[c.id] ? artPicture(CARD_ART[c.id], { cls: 'formation formation-run', alt: false, loading: 'eager' }) : formationSvg(c.id.length * 13 + c.id.charCodeAt(c.id.length - 1))}<div class="wrap">
 <nav class="crumbs u" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${areaHref(c.area)}">${esc(AREAS[c.area].plural)}</a> / <span>${esc(c.id)}</span></nav>
 <p class="card-top u" style="--d:120ms">${seal(c.evidence, ' seal-lg')}${areaChip(c.area)}${statusChip(c.status)}</p>
@@ -1014,6 +1025,11 @@ function stigmergyCurve() {
 
 function main() {
   const cards = readCards();
+  for (const c of cards) {
+    const review = c.fm.pivot ? {category:c.fm.pivot, reason:c.fm.pivot_reason} : PIVOT.entries[c.id];
+    c.pivot = review?.category || (c.area === 'observatory' ? (/lab002|lab004/.test(c.file) ? 'adapt' : 'foundation') : 'pending');
+    c.pivotReason = review?.reason || (c.area === 'observatory' ? 'Historical methods and results; not a cyber-defence evaluation.' : '');
+  }
   const byId = new Map(cards.map((c) => [c.id, c]));
   const byIdLower = new Map(cards.map((c) => [c.id.toLowerCase(), c]));
   for (const c of cards) for (const r of c.related) if (!byId.has(r)) warn(c.file, `related points to "${r}", which does not exist yet`);
@@ -1101,7 +1117,8 @@ function main() {
     put(OGS[spec.key], buf, 'image/png');
   }
   const T = LAB.SITE;
-  put('/', pageLanding({ LAB, assets: HOME, build: BUILD, head: headMeta(T, { title: `Norevia — ${T.title}: ${T.subtitle}`, desc: 'Norevia, a Cold Code Labs research project: bioinspired agentic swarms — AI agents that organise the way living systems do. Open experiments, pre-registered results and a flag registry of bio-inspired mechanisms.', path: '/', og: OGS.home, ogAlt: 'Norevia — Bioinspired Agentic Swarms', modified: SNAPSHOT, kind: 'WebPage', name: 'Norevia — Bioinspired Agentic Swarms' }) }));
+  put('/', pageLanding({ LAB, assets: HOME, build: BUILD, head: headMeta(T, { title: `Norevia — ${T.title}: ${T.subtitle}`, desc: T.description, path: '/', og: OGS.home, ogAlt: `Norevia — ${T.title}`, modified: SNAPSHOT, kind: 'WebPage', name: `Norevia — ${T.title}` }) }));
+  put('/defence/', pageDefence(cards));
   put('/explore/', pageExplore(cards, G));
   put('/playgrounds/', pagePlaygrounds(ctx));
   for (const p of PLAYGROUNDS) put(`/playgrounds/${p.slug}/`, pagePlayground(p, ctx));
@@ -1128,7 +1145,7 @@ function main() {
       { '@type': ['BlogPosting', 'ScholarlyArticle'], '@id': `${url}#article`, headline: c.title.slice(0, 110), alternativeHeadline: run.short, description: run.dek, url, inLanguage: 'en', datePublished: c.updated, dateModified: c.updated, wordCount: art.words, timeRequired: `PT${art.readMin}M`, keywords: c.tags, image: T.url + OGS['run-' + run.key], author: { '@id': `${T.companyUrl}/#organization` }, publisher: { '@id': `${T.companyUrl}/#organization` }, isPartOf: { '@type': 'Blog', '@id': `${T.url}/journal/#blog` }, mainEntityOfPage: { '@id': `${url}#webpage` }, license: 'https://creativecommons.org/licenses/by/4.0/', isBasedOn: { '@id': `${url}#dataset` } },
       { '@type': 'Dataset', '@id': `${url}#dataset`, name: `Data of ${c.title}`, description: `Result tables, run records and ledger behind ${run.num}${run.key === 'lab004-sim' ? ' (simulation)' : ''}, from the Norevia repository.`, url, inLanguage: 'en', creator: { '@id': `${T.companyUrl}/#organization` }, publisher: { '@id': `${T.companyUrl}/#organization` }, license: 'https://creativecommons.org/licenses/by/4.0/', isAccessibleForFree: true, dateModified: c.updated, keywords: c.tags, distribution: art.files.map((f) => ({ '@type': 'DataDownload', name: f.split('/').pop(), encodingFormat: EXT[f.split('.').pop()] || 'application/octet-stream', contentUrl: `${T.repo}/blob/main/${f}` })) },
     ];
-    put(c.url, layout({ title: c.title, desc: run.dek, path: c.url, body: page, scripts: ['card'], og: 'run-' + run.key, ogAlt: `${run.num}: ${run.short}`, type: 'article', published: c.updated, modified: c.updated, crumbs: [['Home', '/'], ['Journal', '/journal/'], [c.title, c.url]], nodes, kind: 'WebPage' }));
+    put(c.url, layout({ title: c.title, desc: run.dek, path: c.url, body: `<div class="wrap">${pivotNote(c)}</div>` + page, scripts: ['card'], og: 'run-' + run.key, ogAlt: `${run.num}: ${run.short}`, type: 'article', published: c.updated, modified: c.updated, crumbs: [['Home', '/'], ['Journal', '/journal/'], [c.title, c.url]], nodes, kind: 'WebPage' }));
   }
   for (const c of cards) if (!RUN_BY_ID.has(c.id)) put(c.url, pageCard(c, cards, ctx));
   const newest = posts[0].c.updated;
@@ -1152,7 +1169,7 @@ function main() {
   put('/archive.json', JSON.stringify({
     project: LAB.SITE.name, publisher: LAB.SITE.company, description: LAB.SITE.full, generated: BUILD.date, commit: BUILD.commit || null,
     evidence_levels: EVIDENCE, hypothesis_statuses: STATUS,
-    cards: sortCards(cards).map((c) => ({ id: c.id, legacy_id: c.rawId !== c.id ? c.rawId : undefined, title: c.title, area: c.area, evidence: c.evidence, status: c.status?.key || null, tags: c.tags, sources: c.sources, related: c.related, updated: c.updated || null, summary: c.summary, url: LAB.SITE.url + c.url, file: c.file, data: c.data.map((d) => d.file) })),
+    cards: sortCards(cards).map((c) => ({ id: c.id, legacy_id: c.rawId !== c.id ? c.rawId : undefined, title: c.title, area: c.area, evidence: c.evidence, defence_relevance: c.pivot, defence_review_reason: c.pivotReason, status: c.status?.key || null, tags: c.tags, sources: c.sources, related: c.related, updated: c.updated || null, summary: c.summary, url: LAB.SITE.url + c.url, file: c.file, data: c.data.map((d) => d.file) })),
     datasets: datasets.map((d) => ({ file: d.file, card: d.owner?.id || null, charts: d.specs.length })),
     journal: posts.map(({ run, c, art }) => ({ id: c.id, title: c.title, date: c.updated, dek: run.dek, key_finding: run.finding, reading_minutes: art.readMin, url: LAB.SITE.url + c.url })),
     warnings,

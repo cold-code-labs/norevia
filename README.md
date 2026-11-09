@@ -1,27 +1,27 @@
-# Norevia — Bioinspired Agentic Swarms
+# Norevia — Social Immunity for Agentic Systems
 
-**AI agents that organise the way living systems do** — gathering around hard problems, staying lean on easy ones, and dissolving when the work is done.
+**Collective defence for agent systems** — testing whether social-immunity mechanisms can contain compromised information while preserving legitimate work.
 
-A [Cold Code Labs](https://coldcodelabs.com) research project · **First release: soon** · [norevia.coldcodelabs.com](https://norevia.coldcodelabs.com)
+A [Cold Code Labs](https://coldcodelabs.com) research project · **Collective defence research programme** · [norevia.coldcodelabs.com](https://norevia.coldcodelabs.com)
 
-## How a swarm unfolds
-1. **Sense** — one agent takes the task. Most work never needs more.
-2. **Recruit** — when difficulty rises, specialists join, each once the stimulus crosses its own threshold *(response thresholds in honeybee division of labour)*.
-3. **Decide** — agents explore in parallel and commit only when a quorum converges on an answer that can be checked *(quorum sensing in nest-site selection)*.
-4. **Dissolve** — once the result is verified, the swarm releases itself; only what is worth remembering stays *(pheromone trails that evaporate unless reinforced)*.
+## How collective defence could work
+1. **Detect** — identify suspicious evidence and preserve its provenance before it enters shared memory or action.
+2. **Signal** — recruit targeted review and inhibit only the implicated source, tool or action.
+3. **Reconfigure** — narrow information flow, quarantine sources and independently verify claims.
+4. **Recover** — stand down after containment is verified and retain only validated evidence.
 
-Swarms don't always win: every mechanism has to beat one strong agent on the same budget — or it stays out.
+These are engineering hypotheses. Each must beat well-implemented security controls at matched cost in owned or isolated environments. Consensus alone is not evidence that a claim is safe.
 
 ## The research behind it
-> When is it better to invest more effort in individual reasoning, and when in collective organisation?
+> When does adaptive collective defence contain compromised information better than strong conventional security controls, at matched cost and utility?
 
-We investigate how biological principles of organisation and regulation can improve the efficiency of AI agent swarms. We start with LLM-based agents, seeking to predict when to concentrate reasoning, when to cooperate and how to adapt collective effort under constraints of cost, time and quality. The long-term goal is a General Theory of AI Swarm Efficiency — a research goal, not an established result.
+We study whether collective organisation inspired by social immunity can help LLM-based agent systems detect, contain and recover from compromised or misleading information. We measure propagation, containment, benign-work disruption, false alarms, missed incidents, latency and cost. The aim is a falsifiable account of when local alarms, selective inhibition, contact-network plasticity and bounded memory add value beyond conventional security engineering.
 
-**Scope.** First experimental object: LLM-based software agents — not robotics, and not every autonomous system. Generalising to other forms of AI is a result to demonstrate, not a premise.
+**Scope.** First experimental object: information integrity in LLM-based agent systems, evaluated with synthetic cases or licensed data in owned or isolated environments. No third-party targets. Generalising beyond this scope requires evidence.
 
-**Reading the title.** *Bioinspired*: biological systems are where the organising principles come from (specialisation and recruitment, stigmergy, feedback regulation, regulated repair and termination) — they suggest mechanisms, they do not prove efficacy. *Agentic*: the LLM is the technology, the agent (model + state + tools + execution loop) is the unit of action, and the swarm is how agents divide work, share information and adapt participation. *Swarms*: not any multi-agent system — we count as swarm behaviour only observable local autonomy, adaptive interactions and distributed decisions; fixed scripts and central orchestrators are baselines. Being able to form a swarm does not oblige the system to form one on every request. The General Theory is a research goal, not an established result; comparing with the best single agent under the same budget is one test of it, not its definition.
+**Reading the title.** *Social immunity* names collective defences observed in social organisms; it does not establish an equivalence with software security. *Agentic systems* are LLM-based agents, their tools, state, memory and communication paths. *Collective defence* is an empirical question: adaptive biology-inspired controls must be compared with provenance, least privilege, independent verification, quarantine and rate limits. Fixed scripts and central controls remain baselines.
 
-Norevia studies **when, how and why** multiple computational agents should cooperate instead of concentrating resources in a single agent. Nature — insect colonies, the human body, celestial systems, collective physics — is used as a **source of hypotheses**; experimental engineering is the **instrument of validation**.
+Norevia studies **when, how and why** agent systems should coordinate to preserve their own information integrity. Social-insect immunity supplies candidate mechanisms; experimental security engineering is the instrument of validation.
 
 ## Evidence discipline
 Every card carries exactly one evidence level:
@@ -38,10 +38,10 @@ Every card carries exactly one evidence level:
 | `research/literature` | Paper cards (arXiv/DOI version, claims, what we verified), synthesis and bibliography |
 | `research/oss` | Inspected open-source projects (commit, license, coordination mechanism), comparison matrix and patterns |
 | `research/nature` | Natural mechanisms → engineering analogue → testable hypothesis |
-| `research/theory` | Formal model of a candidate "law of collective efficiency" — one component of the General Theory of Swarm Efficiency (`model.mjs`, tests) |
+| `research/theory` | Formal models and simulations; current model needs extensions for propagation, adversaries, trust decay and cost-asymmetric defence losses |
 | `hypotheses` | Official hypothesis registry with refutation criteria and status |
 | `sims` | Agent-based simulations (Node.js, deterministic by seed, preregistered) |
-| `observatory` | Swarm Efficiency Observatory — benchmarks with real LLMs: harness (`observatory/`), results of LAB-001…004 (`results/lab00N/`) |
+| `observatory` | Reusable benchmark harness and historical LAB-001…006 results; LAB-007 defence study is a draft and has not run |
 | `results` | Versioned results of simulations |
 | `site` | Zero-dependency generator and deploy tooling of norevia.coldcodelabs.com (landing page: `site/lib/home.mjs`) |
 | `docs` | Conventions and working briefs |

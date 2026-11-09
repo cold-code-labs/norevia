@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-sas-vs-mas-hybrid
 title: Single-agent or Multi-agent Systems? Why Not Both? — the MAS advantage shrinks with better models; routing and cascade
 area: literature

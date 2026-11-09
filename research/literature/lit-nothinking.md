@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-nothinking
 title: 'Reasoning Models Can Be Effective Without Thinking — NoThinking + parallel scaling'
 area: literature

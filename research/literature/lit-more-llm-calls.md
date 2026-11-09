@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-more-llm-calls
 title: Are More LLM Calls All You Need? — non-monotonic scaling of compound systems
 area: literature

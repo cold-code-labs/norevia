@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-correlated-errors
 title: "Correlated Errors in Large Language Models (Kim, Garg, Peng & Garg, ICML 2025)"
 area: literature

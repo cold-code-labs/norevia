@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-stop-overvaluing-mad
 title: "Stop Overvaluing Multi-Agent Debate (Zhang et al., 2025) — MAD rarely beats CoT/SC; heterogeneity as an antidote"
 area: literature

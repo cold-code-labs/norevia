@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-large-language-monkeys
 title: Large Language Monkeys — repeated sampling and the verification bottleneck
 area: literature

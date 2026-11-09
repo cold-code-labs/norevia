@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
 id: oss-chatdev-macnet
 title: "ChatDev + MacNet — DAG of agents in topological order, with hierarchical aggregation and execution-based pruning"
 area: oss

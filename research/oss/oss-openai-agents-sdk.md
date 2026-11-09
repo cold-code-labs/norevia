@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-openai-agents-sdk
 title: OpenAI Agents SDK — turn loop with handoffs, max_turns=10 and tripwire guardrails
 area: oss

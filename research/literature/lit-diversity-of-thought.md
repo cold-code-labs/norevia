@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-diversity-of-thought
 title: "Diversity of Thought Improves Reasoning Abilities of LLMs — DIV-SE / IDIV-SE (Naik et al., 2023–2024)"
 area: literature

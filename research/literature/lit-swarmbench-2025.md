@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Local-view robustness benchmark can inform containment experiments after replacing tasks and metrics."
 id: lit-swarmbench-2025
 title: "SwarmBench — benchmarking LLM swarm intelligence under local constraints"
 area: literature

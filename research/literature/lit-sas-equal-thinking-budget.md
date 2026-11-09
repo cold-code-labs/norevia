@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-sas-equal-thinking-budget
 title: Single agent beats MAS on multi-hop reasoning with an equal thinking-token budget
 area: literature

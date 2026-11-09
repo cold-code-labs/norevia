@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
 id: oss-autogen
 title: "AutoGen — group chat with a central manager and composable termination conditions"
 area: oss

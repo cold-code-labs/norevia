@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
 id: lit-self-moa
 title: "Self-MoA (Li et al., TMLR 2026) — aggregating samples from the best model beats mixing models"
 area: literature

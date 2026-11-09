@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-pareto-test-time-multiagent
 title: "Multi-Agent Reasoning Improves Compute Efficiency (Wunderlich et al., ACL 2026 SRW) — Pareto frontier with paired compute"
 area: literature

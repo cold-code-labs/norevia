@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-inverse-scaling-ttc
 title: 'Inverse Scaling in Test-Time Compute — when thinking more makes things worse'
 area: literature

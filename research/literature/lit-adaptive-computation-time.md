@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-adaptive-computation-time
 title: 'Adaptive Computation Time (ACT) — learned halting with a ponder cost'
 area: literature

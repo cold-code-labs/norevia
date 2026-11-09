@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
 id: lit-silicon-crowd
 title: "Wisdom of the Silicon Crowd: an ensemble of 12 LLMs rivals a human crowd in forecasting (Schoenegger et al., 2024)"
 area: literature

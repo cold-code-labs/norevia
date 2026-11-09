@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-langgraph-supervisor
 title: LangGraph Supervisor — star-topology ReAct supervisor with output_mode last_message as default pruning
 area: oss

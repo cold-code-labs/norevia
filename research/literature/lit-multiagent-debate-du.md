@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-multiagent-debate-du
 title: "Multiagent Debate (Du et al., ICML 2024) — debate among instances of the same LLM"
 area: literature

@@ -12,41 +12,41 @@ export const SITE = {
   url: 'https://norevia.coldcodelabs.com',
   repo: 'https://github.com/cold-code-labs/norevia',
   lang: 'en',
-  title: 'Bioinspired Agentic Swarms',
-  subtitle: 'Toward a General Theory of AI Swarm Efficiency',
-  scope: 'First experimental object: LLM-based software agents — not robotics, and not every autonomous system. Generalising to other forms of AI is a result to demonstrate later, not a premise.',
-  definition: 'We investigate how biological principles of organisation and regulation can improve the efficiency of AI agent swarms. We start with LLM-based agents, seeking to predict when to concentrate reasoning, when to cooperate and how to adapt collective effort under constraints of cost, time and quality.',
-  tagline: 'Where nature proposes and experiments decide.',
+  title: 'Social Immunity for Agentic Systems',
+  subtitle: 'Collective Defence for Agent Systems',
+  scope: 'First experimental object: LLM-based agents defending their own information integrity in owned or isolated environments. We study defensive coordination and containment, not operations against third-party systems.',
+  definition: 'Norevia studies when collective, bioinspired organisation helps agent systems detect, contain and recover from compromised or misleading information. Social immunity supplies hypotheses; security engineering baselines and controlled experiments decide whether they help.',
+  tagline: 'Collective defence, measured against strong baselines.',
   description:
-    'Norevia — Bioinspired Agentic Swarms. A Cold Code Labs research project on AI agents that organise the way living systems do: when to think alone, when to cooperate, and how much. First release soon.',
+    'Norevia — Social Immunity for Agentic Systems. A Cold Code Labs research project on collective defence, information integrity and bounded recovery in LLM-based agent systems.',
 };
 
-// How to read the title. "Agentic" names the level of organisation we want to understand; "LLM-based" bounds what we test first.
+// How to read the title. Social immunity is the natural source of hypotheses; efficacy in agents remains unproven.
 export const TITLE_READING = [
-  ['Bioinspired', 'Where the organising principles come from: biological systems guide the design of mechanisms — not as copies of biology, and not as proof that they work.'],
-  ['Agentic', 'The unit of action: an agent is a model plus state, tools and execution loops pursuing a goal. The LLM is the technology; the agent is what acts; the swarm is how agents divide work, share information and adapt their participation.'],
-  ['Swarms', 'Not any multi-agent system. We count as swarm behaviour only what we can observe: local autonomy, adaptive interactions and distributed decisions. Agents following a fixed script — or a central orchestrator — are baselines, not swarms by label.'],
+  ['Social immunity', 'Collective defences observed in social organisms. These observations suggest hypotheses; they do not establish equivalence with software security.'],
+  ['Agentic systems', 'LLM-based agents together with their tools, state, memory and communication paths — the system whose information integrity we study.'],
+  ['Collective defence', 'A measurable research question. Adaptive mechanisms must be compared with strong conventional security controls at matched cost and utility.'],
 ];
 
 export const QUESTION =
-  'When is it better to invest more effort in individual reasoning, and when in collective organisation?';
+  'When does adaptive collective defence contain compromised information better than strong conventional security controls, at matched cost and utility?';
 
 export const SUBQUESTIONS = [
-  'Which principles of organisation make cooperation between AI agents computationally advantageous — and under which conditions?',
-  'Given a hard task, which next action has the highest expected benefit net of cost and latency: think longer, call a specialist, fetch external information, or verify?',
-  'What is the least computation, reasoning and coordination needed to produce a verifiably correct result — and can a system discover that configuration by itself?',
-  'When does one agent with high reasoning effort beat N agents?',
-  'When does a micro-swarm of 2 or 3 agents add value?',
-  'When does expanding start to waste resources?',
+  'How far does a poisoned claim propagate through an agent network, and which controls stop it?',
+  'When do provenance, least privilege, quarantine and independent verification outperform adaptive signalling or network rewiring?',
+  'How can a system contain a specific source or action without suppressing benign work?',
+  'What evidence is sufficient to escalate, inhibit, recover and stand down?',
+  'How do false positives, missed incidents, latency and cost trade off under matched budgets?',
+  'Which biological mechanisms add measurable value beyond conventional controls?',
 ];
 
 export const MANIFESTO = [
-  'We do not just say “we build swarms inspired by nature”. We ask which principles of organisation make computational cooperation efficient — and under which conditions. Nature is the source of hypotheses; experimental engineering is the instrument of validation.',
-  'Being able to form a swarm does not oblige the system to form one on every request. A greeting can take a minimal path; a complex task may justify progressive mobilisation. Collective organisation becomes a variable of the execution, not a configuration chosen in advance.',
-  'Our intended contribution is not “applying biology to agents”. It is explaining, predicting and measuring when these mechanisms improve efficiency — and when they only add complexity. An efficient AI swarm may need less generative reasoning in coordination, reserving it for where it adds value: a hypothesis to test, not a conclusion.',
-  'The General Theory of AI Swarm Efficiency is a research goal, not an established result. “General” is earned only if the same relations survive tests across different domains — code, cybersecurity, spatial coordination — and their predictions can be refuted.',
-  'We do not just want to build an efficient swarm. We want to understand why it is efficient, under which conditions, and which fundamental limits govern that efficiency — without assuming that swarms always win.',
-  'Efficient organisation does not require human-level intelligence in every component. But natural analogies inspire mechanisms; they do not demonstrate computational efficacy. That is why every entry in this archive carries its evidence level.',
+    'Social immunity is the biological starting point: colonies combine prevention, detection, selective response and recovery to limit disease spread. Transfer to software agents is an engineering hypothesis, not a demonstrated equivalence.',
+    'Our first target is agent-system integrity: malicious or misleading content entering shared context, memory or tool workflows. All evaluation uses synthetic cases or licensed datasets in owned or isolated environments.',
+    'Every adaptive defence is compared with strong conventional controls, including provenance tracking, least privilege, independent verification, quarantine and rate limits, at matched cost.',
+    'We measure propagation, containment, benign-work disruption, false alarms, missed incidents, recovery, latency and cost. Consensus alone is not proof that a claim is safe.',
+    'The contribution we seek is a falsifiable account of when local signals, selective inhibition, contact-network plasticity and bounded memory improve collective defence — and when they do not.',
+    'Biological sources suggest mechanisms; implementation records show what software does; author-reported results are not local validation. Every claim in the archive keeps its evidence level and provenance.',
 ];
 
 // Pillars and the tags that connect them to cards (counts computed at build time).
@@ -54,67 +54,69 @@ export const MANIFESTO = [
 export const PILLARS = [
   {
     key: 'theory',
-    name: 'General Theory of AI Swarm Efficiency',
-    question: 'Which principles make cooperation efficient?',
+    name: 'Collective Defence',
+    question: 'When does adaptive coordination improve containment?',
     role: 'Scientific discovery',
-    match: ['swarm-efficiency', 'general-theory', 'collective-efficiency', 'law-of-collective-efficiency', 'theory', 'marginal-gain', 'scaling', 'scaling-law', 'eficiencia-coletiva', 'lei-da-eficiencia-coletiva', 'teoria', 'ganho-marginal', 'escalonamento'],
+    match: ['collective-defence', 'social-immunity', 'information-integrity', 'poisoned-evidence', 'containment', 'propagation', 'defense-core', 'defense-bio'],
   },
   {
     key: 'observatory',
-    name: 'Swarm Efficiency Observatory',
-    question: 'How do we demonstrate it?',
+    name: 'Defence Evaluation',
+    question: 'How do we measure containment and harm?',
     role: 'Experimental validation',
-    match: ['observatory', 'benchmark', 'cost-per-correct', 'cost-per-success', 'custo-por-acerto'],
+    match: ['observatory', 'benchmark', 'defensive-evaluation', 'false-positive', 'false-negative', 'cost-per-accepted-result'],
   },
   {
     key: 'adaptive',
-    name: 'Adaptive Swarm Activation',
-    question: 'When and how much to cooperate?',
+    name: 'Signals and Recruitment',
+    question: 'How should alarms recruit targeted review?',
     role: 'Orchestration',
-    match: ['adaptive-activation', 'adaptive-swarm-activation', 'routing', 'reasoning-effort', 'when-to-cooperate', 'how-much-to-cooperate', 'roteamento', 'ativacao-adaptativa', 'quando-cooperar', 'quanto-cooperar'],
+    match: ['alarm-signal', 'danger-signal', 'response-threshold', 'recruitment', 'quorum', 'defense-bio'],
   },
   {
     key: 'elastic',
-    name: 'Elastic Swarm',
-    question: 'How to expand and contract?',
+    name: 'Containment and Recovery',
+    question: 'How do we restrict spread and stand down safely?',
     role: 'Operational mechanism',
-    match: ['elastic-swarm', 'micro-swarm', 'macro-swarm', 'division-of-labor', 'recruitment', 'quorum', 'expansion-contraction', 'divisao-de-trabalho', 'recrutamento'],
+    match: ['quarantine', 'cross-inhibition', 'network-plasticity', 'contact-network', 'wound-resolution', 'bounded-recovery'],
   },
   {
     key: 'responsibility',
-    name: 'Persistent responsibility',
-    question: 'How to guarantee delivery?',
+    name: 'Evidence and Memory Integrity',
+    question: 'What may be trusted, shared and retained?',
     role: 'Reliability',
-    match: ['persistent-responsibility', 'healing', 'bounded-repair', 'repair', 'self-healing', 'verification', 'verifiable-acceptance', 'bounded-memory', 'responsabilidade-persistente', 'reparo', 'reparo-delimitado', 'verificacao', 'aceite-verificavel', 'memoria-limitada'],
+    match: ['provenance', 'verification', 'memory-poisoning', 'bounded-memory', 'evidence-tracking', 'least-privilege', 'self-healing'],
   },
 ];
 
 export const FAMILIES = [
-  { name: 'Ants and hives', principle: 'Stigmergy, specialisation and reinforcement with decay', use: 'Coordination with less communication', match: ['social-insects', 'ants', 'bees', 'hive', 'stigmergy', 'pheromone', 'quorum', 'insetos-sociais', 'formigas', 'abelhas', 'colmeia', 'estigmergia', 'feromonio'] },
-  { name: 'The human body', principle: 'Reflexes, immunity, homeostasis and selective memory', use: 'Fast reaction and bounded recovery', match: ['body', 'immunity', 'homeostasis', 'reflex', 'immune-system', 'corpo', 'imunidade', 'homeostase', 'reflexo', 'sistema-imune'] },
-  { name: 'Celestial systems', principle: 'Equilibrium, resonance, dependencies and cascade containment', use: 'Capacity control and stability', match: ['celestial', 'celestial-analogy', 'orbit', 'resonance', 'cascade', 'kessler', 'celeste', 'celeste-analogia', 'orbita', 'ressonancia', 'cascata'] },
+  { name: 'Social-insect immunity', principle: 'Recognition, alarm, inhibition, guarding and contact-network change', use: 'Selective, local containment hypotheses', match: ['social-immunity', 'social-insects', 'ants', 'bees', 'alarm', 'inhibition', 'network-plasticity', 'sanitary-care'] },
+  { name: 'Agent-system security', principle: 'Provenance, least privilege, independent verification and quarantine', use: 'Conventional baseline and external validity', match: ['prompt-injection', 'memory-poisoning', 'provenance', 'zero-trust', 'quarantine', 'agent-security'] },
+  { name: 'Immune and recovery mechanisms', principle: 'Danger signals, selective response, contraction and bounded memory', use: 'Escalation, recovery and safe stand-down hypotheses', match: ['danger-theory', 'clonal-expansion', 'wound-resolution', 'bounded-memory', 'self-healing'] },
 ];
 
 export const OBSERVATORY_DESIGN = [
-  { k: 'A', name: 'Single agent', d: 'High reasoning effort' },
-  { k: 'B', name: 'Fixed swarm', d: 'Predefined specialists' },
-  { k: 'C', name: 'Elastic swarm', d: 'On-demand activation' },
+  { k: 'A', name: 'No sharing', d: 'Each agent keeps its evidence local' },
+  { k: 'B', name: 'Conventional security', d: 'Provenance, least privilege, verification and quarantine' },
+  { k: 'C', name: 'Adaptive collective defence', d: 'Local alarm, targeted inhibition and bounded rewiring' },
 ];
 
-export const OBSERVATORY_METRICS = ['Verifiable completion', 'Cost per accepted result', 'Latency', 'Communication and rework'];
+export const OBSERVATORY_METRICS = ['Propagation and containment', 'Benign-work disruption', 'False alarms and missed incidents', 'Recovery, latency and cost'];
 
 export const NOT_YET_PROVEN = [
-  'We have not discovered a universal law. We have formulated the question and candidate hypotheses.',
-  'We have not shown that the adaptive swarm is superior. It may lose to simple architectures under many conditions.',
-  'We do not yet have a validated marginal-gain function. We need to estimate it without spending more than we save.',
-  'We have not shown generalisation. Results on coding tasks may not transfer to research, planning or other domains.',
-  'We have not established scientific novelty. A systematic literature review and reproduction of the main existing results are required.',
+  'No local experiment has shown that social-immunity mechanisms improve defence in agent systems.',
+  'The proposed LAB-007 has not run; all listed outcomes are hypotheses and design targets.',
+  'No standard licensed benchmark for agent-to-agent poisoning propagation was confirmed in the survey.',
+  'Coding and general swarm-efficiency results do not establish cyber-defence efficacy.',
+  'The literature harvest is a discovery set, not an exhaustive systematic review or human-verified inclusion set.',
 ];
 
 export const RULES = [
   'Results published by authors are not local validation.',
-  'A natural analogy does not prove efficacy in LLMs.',
-  'Celestial bodies have no intent: celestial metaphors describe dynamics, not purpose.',
+  'A natural analogy does not prove security efficacy in LLM agents.',
+  'Use only owned or isolated defensive environments; do not target third parties.',
+  'Compare against strong conventional security controls at matched cost.',
+  'Treat consensus as evidence to inspect, not as proof of correctness or safety.',
   'We never invent sources, numbers, DOIs, arXiv ids, commits or quotations. What was not opened becomes a gap.',
   'We prefer primary sources: paper, DOI, versioned arXiv id, commit SHA.',
 ];

@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
 id: lit-snell-test-time-compute
 title: Snell et al. — compute-optimal allocation of test-time compute by difficulty
 area: literature

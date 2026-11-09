@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-metagpt
 title: "MetaGPT — SOP via publish/subscribe, TeamLeader hub and per-round dollar budget"
 area: oss

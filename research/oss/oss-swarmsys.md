@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
 id: oss-swarmsys
 title: SwarmSys — official code not located (Explorers/Workers/Validators only in the paper)
 area: oss

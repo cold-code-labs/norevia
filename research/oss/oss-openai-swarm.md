@@ -1,4 +1,6 @@
 ---
+pivot: archive
+pivot_reason: "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
 id: oss-openai-swarm
 title: OpenAI Swarm — handoff as a function that returns Agent in a single chat-completions loop
 area: oss

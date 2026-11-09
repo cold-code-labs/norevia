@@ -1,4 +1,6 @@
 ---
+pivot: adapt
+pivot_reason: "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
 id: oss-camel
 title: "CAMEL — two-agent RolePlaying and Workforce with LLM coordinator, strategy-based recovery and on-demand workers"
 area: oss

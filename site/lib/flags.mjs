@@ -72,7 +72,7 @@ export function pageFlagsBody(F, deps) {
   return `${pageHead({
     eyebrow: 'Registry',
     title: 'Flag registry',
-    lead: 'Each bio-inspired mechanism in the archive, turned into a runtime flag for an agent swarm: the signal it reads, the action it takes, the hypotheses it touches and what local tests have shown so far. Most flags are still untested; the tested ones are mostly null results or explained by plain engineering.',
+    lead: 'Historical candidate controls and their original test statuses. They are research proposals, not enabled runtime settings. Reuse for collective defence requires threat-specific tests; coding and synthetic results do not establish security efficacy.',
     extra: `<p class="ctas"><a class="btn small" href="/journal/">Journal: the runs behind the statuses</a><a class="btn small ghost" href="/hypotheses/">Hypothesis board</a><a class="btn small ghost" href="${repoUrl}/blob/main/${F.rel}" rel="noopener noreferrer">Source: ${esc(F.rel)}</a></p>`,
     seed: 6,
   })}

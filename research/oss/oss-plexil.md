@@ -1,4 +1,6 @@
 ---
+pivot: foundation
+pivot_reason: "Mechanical plan conditions and postconditions inform conventional verification baselines; not an LLM swarm."
 id: oss-plexil
 title: PLEXIL — plan executive with per-node state machine, checked conditions and quiescence loop
 area: oss

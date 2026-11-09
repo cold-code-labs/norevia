@@ -1,0 +1,767 @@
+{
+  "reviewed": "2026-11-09",
+  "basis": "Research pivot audit; classification is relevance, not efficacy or a new validation.",
+  "entries": {
+    "H-01": {
+      "category": "foundation",
+      "reason": "correlated errors are the base of all corroboration limits",
+      "direction": "-"
+    },
+    "H-02": {
+      "category": "foundation",
+      "reason": "verifier specificity bounds everything downstream",
+      "direction": "-"
+    },
+    "H-03": {
+      "category": "foundation",
+      "reason": "general effort vs coordination trade-off",
+      "direction": "-"
+    },
+    "H-04": {
+      "category": "foundation",
+      "reason": "split-by-size, held up in LAB-003/006",
+      "direction": "-"
+    },
+    "H-05": {
+      "category": "adapt",
+      "reason": "scaling by count is not the new variable",
+      "direction": "scale responders by verified incident severity, contract on resolution"
+    },
+    "H-06": {
+      "category": "adapt",
+      "reason": "positive-eng only (recruit = retry)",
+      "direction": "activate specialists by incident-linked stimulus with fixed authorisation bounds (risk-adjusted depth)"
+    },
+    "H-07": {
+      "category": "adapt",
+      "reason": "sim-support, null in LLM; the board is a central object for defence",
+      "direction": "shared evidence board with provenance, trust weight and decay, for SOC-style triage"
+    },
+    "H-08": {
+      "category": "adapt",
+      "reason": "quorum amplified false success in our tests",
+      "direction": "multi-source corroboration (independent evidence types) before containment; tune k by cost of false containment vs delay"
+    },
+    "H-09": {
+      "category": "foundation",
+      "reason": "general effort allocation",
+      "direction": "-"
+    },
+    "H-10": {
+      "category": "foundation",
+      "reason": "general",
+      "direction": "-"
+    },
+    "H-11": {
+      "category": "foundation",
+      "reason": "general",
+      "direction": "-"
+    },
+    "H-12": {
+      "category": "adapt",
+      "reason": "iid stopping rules fail under correlation",
+      "direction": "calibration of detection and containment stopping when sources share failure modes"
+    },
+    "H-13": {
+      "category": "keep",
+      "reason": "direct analogue of false positives and false closure",
+      "direction": "keep as is; add a false-containment and false-all-clear metric"
+    },
+    "H-14": {
+      "category": "keep",
+      "reason": "bounded remediation and recovery verification",
+      "direction": "keep; add reversible-action requirement"
+    },
+    "H-15": {
+      "category": "keep",
+      "reason": "diverse detectors and verifiers break shared blind spots",
+      "direction": "keep; measure shared-miss rate"
+    },
+    "H-16": {
+      "category": "foundation",
+      "reason": "cost of control layer",
+      "direction": "-"
+    },
+    "H-17": {
+      "category": "foundation",
+      "reason": "general",
+      "direction": "-"
+    },
+    "H-18": {
+      "category": "adapt",
+      "reason": "agreement between alerts is not evidence of threat",
+      "direction": "agreement among correlated alert sources is not corroboration; use independent confirmation"
+    },
+    "H-19": {
+      "category": "adapt",
+      "reason": "memory is also an attack surface",
+      "direction": "verified, provenance-tagged memory with expiry and quarantine; compare with unverified persistent memory"
+    },
+    "H-20": {
+      "category": "adapt",
+      "reason": "null in LLM; useful as priority rule",
+      "direction": "triage priority proportional to verified evidence quality, not claim volume"
+    },
+    "H-21": {
+      "category": "archive",
+      "reason": "null-llm; AIMD rule is cheaper",
+      "direction": "- (revisit only for investigation-budget control)"
+    },
+    "H-22": {
+      "category": "adapt",
+      "reason": "k fixed readers limits what can spread",
+      "direction": "bound who an agent may read; compare fixed vs threat-reactive neighbourhood (feeds defensive plasticity)"
+    },
+    "H-23": {
+      "category": "adapt",
+      "reason": "needs a near-perfect router",
+      "direction": "route alerts to few specialists; measure missed-alert cost of a wrong route"
+    },
+    "H-24": {
+      "category": "keep",
+      "reason": "cascades of delegated work and alert storms",
+      "direction": "keep; add alert and remediation loops as the branching process"
+    },
+    "H-25": {
+      "category": "adapt",
+      "reason": "EWMA decay is conventional",
+      "direction": "decay of trust and reputation of sources and edges after threat evidence"
+    },
+    "H-26": {
+      "category": "adapt",
+      "reason": "null-llm in repair; surge is real in incidents",
+      "direction": "surge reserve for incident bursts, activated by confirmed damage"
+    },
+    "H-27": {
+      "category": "adapt",
+      "reason": "counterexample ends deadlock",
+      "direction": "executable counter-evidence inhibits a containment or attribution proposal (inhibitory signal with threat information)"
+    },
+    "nat-accretion-planetesimals": {
+      "category": "archive",
+      "reason": "celestial analogy, lens only",
+      "direction": "-"
+    },
+    "nat-army-ant-living-bridges": {
+      "category": "archive",
+      "reason": "structure-building, no defence link",
+      "direction": "-"
+    },
+    "nat-bacterial-quorum-sensing": {
+      "category": "adapt",
+      "reason": "density threshold for collective action",
+      "direction": "act only when density of independent threat signals passes a threshold (corroboration)"
+    },
+    "nat-brain-energy-sparse": {
+      "category": "adapt",
+      "reason": "cost control",
+      "direction": "few specialists per alert; cheap always-on detectors, costly investigators on demand"
+    },
+    "nat-circadian-cadence": {
+      "category": "archive",
+      "reason": "timing, no defence link",
+      "direction": "-"
+    },
+    "nat-clonal-expansion-contraction": {
+      "category": "keep",
+      "reason": "expand on verified threat, contract 90-95%, keep small memory",
+      "direction": "keep; responders expand on confirmed threat, contract, retain verified signatures"
+    },
+    "nat-colony-size-scaling": {
+      "category": "foundation",
+      "reason": "scaling baseline",
+      "direction": "-"
+    },
+    "nat-condorcet-correlated": {
+      "category": "foundation",
+      "reason": "effective n",
+      "direction": "-"
+    },
+    "nat-condorcet-jury": {
+      "category": "foundation",
+      "reason": "baseline theory",
+      "direction": "-"
+    },
+    "nat-cosmic-web-physarum": {
+      "category": "archive",
+      "reason": "analogy",
+      "direction": "-"
+    },
+    "nat-danger-theory": {
+      "category": "keep",
+      "reason": "escalate on damage not novelty",
+      "direction": "keep; see H-D07"
+    },
+    "nat-dictyostelium-aggregation": {
+      "category": "adapt",
+      "reason": "cheater tolerance and containment",
+      "direction": "compromised or defecting agent: tolerate, contain, exclude by external control"
+    },
+    "nat-diversity-prediction": {
+      "category": "foundation",
+      "reason": "independence maths",
+      "direction": "-"
+    },
+    "nat-ecoli-run-and-tumble": {
+      "category": "archive",
+      "reason": "null-llm, search heuristic",
+      "direction": "-"
+    },
+    "nat-firefly-synchrony": {
+      "category": "archive",
+      "reason": "no defence link",
+      "direction": "-"
+    },
+    "nat-galton-vox-populi": {
+      "category": "foundation",
+      "reason": "social influence degrades crowds",
+      "direction": "-"
+    },
+    "nat-homeostasis-allostasis": {
+      "category": "adapt",
+      "reason": "anticipatory vs reactive control",
+      "direction": "pre-emptive defensive posture raised by risk context, relaxed on resolution"
+    },
+    "nat-hong-page-critique": {
+      "category": "foundation",
+      "reason": "evidence discipline on diversity claims",
+      "direction": "-"
+    },
+    "nat-inactive-reserve": {
+      "category": "adapt",
+      "reason": "null-llm in repair",
+      "direction": "cold surge capacity woken by confirmed incident"
+    },
+    "nat-informed-leaders": {
+      "category": "adapt",
+      "reason": "weight informed agents",
+      "direction": "weight agents holding verifiable evidence; guard against a compromised informed agent"
+    },
+    "nat-interaction-rate-foraging": {
+      "category": "adapt",
+      "reason": "encounter-rate regulation",
+      "direction": "regulate patrol and investigation effort by the rate of verified positive findings"
+    },
+    "nat-kessler-cascade": {
+      "category": "adapt",
+      "reason": "critical density of self-generating work",
+      "direction": "alert storms and remediation loops that create more alerts; caps and reaping"
+    },
+    "nat-lagrange-points": {
+      "category": "archive",
+      "reason": "analogy",
+      "direction": "-"
+    },
+    "nat-locust-marching-transition": {
+      "category": "archive",
+      "reason": "null-llm, no density transition seen",
+      "direction": "-"
+    },
+    "nat-microtubule-dynamic-instability": {
+      "category": "archive",
+      "reason": "no defence link",
+      "direction": "-"
+    },
+    "nat-myxococcus-group-predation": {
+      "category": "archive",
+      "reason": "group-threshold payoff, no defence link",
+      "direction": "-"
+    },
+    "nat-neutrophil-swarming": {
+      "category": "keep",
+      "reason": "signal relay recruitment with self-limit",
+      "direction": "keep; see H-D08"
+    },
+    "nat-open-cluster-dissolution": {
+      "category": "archive",
+      "reason": "analogy",
+      "direction": "-"
+    },
+    "nat-orbital-resonance": {
+      "category": "archive",
+      "reason": "analogy",
+      "direction": "-"
+    },
+    "nat-penguin-huddle": {
+      "category": "adapt",
+      "reason": "rotation of exposure",
+      "direction": "rotate which agents read untrusted content (limits exposure per agent)"
+    },
+    "nat-pheromone-evaporation-aco": {
+      "category": "adapt",
+      "reason": "decay of reinforcement",
+      "direction": "evidence and trust decay; stale indicators lose weight"
+    },
+    "nat-physarum-network": {
+      "category": "adapt",
+      "reason": "flow-driven edge strengthening and pruning",
+      "direction": "rewire who-reads-whom by useful flow and by trust (defensive plasticity)"
+    },
+    "nat-predator-prey-cycles": {
+      "category": "archive",
+      "reason": "autoscaling control, conventional",
+      "direction": "-"
+    },
+    "nat-quorum-nest-bees": {
+      "category": "adapt",
+      "reason": "quorum not consensus",
+      "direction": "multi-source corroboration before containment"
+    },
+    "nat-recruitment-benefit-conditions": {
+      "category": "adapt",
+      "reason": "sharing is ecology-dependent",
+      "direction": "when broadcasting an alarm pays vs when it only spreads noise"
+    },
+    "nat-reflex-vs-cortex": {
+      "category": "adapt",
+      "reason": "latency tiers",
+      "direction": "tiered response: deterministic reflex playbook, cheap triage agent, strong investigator"
+    },
+    "nat-renal-filtration": {
+      "category": "adapt",
+      "reason": "discard by default, reabsorb functional items",
+      "direction": "memory hygiene: transient context dropped, only verified items persisted"
+    },
+    "nat-response-threshold": {
+      "category": "adapt",
+      "reason": "activation by stimulus",
+      "direction": "see H-06"
+    },
+    "nat-root-foraging": {
+      "category": "archive",
+      "reason": "no defence link",
+      "direction": "-"
+    },
+    "nat-satellite-constellation-avoidance": {
+      "category": "archive",
+      "reason": "built system, not nature",
+      "direction": "-"
+    },
+    "nat-scale-free-correlation": {
+      "category": "adapt",
+      "reason": "propagation of information",
+      "direction": "propagate verified findings fast, damp unverified ones"
+    },
+    "nat-shepherd-moons": {
+      "category": "adapt",
+      "reason": "few guards confine many",
+      "direction": "gatekeeper agents with rate limits and schema checks; compare with plain gateway controls"
+    },
+    "nat-small-groups-correlated-cues": {
+      "category": "foundation",
+      "reason": "correlation limits",
+      "direction": "-"
+    },
+    "nat-speed-accuracy-quorum": {
+      "category": "adapt",
+      "reason": "tunable threshold",
+      "direction": "tune corroboration k by cost of false containment vs delay"
+    },
+    "nat-stellar-thermostat": {
+      "category": "archive",
+      "reason": "analogy",
+      "direction": "-"
+    },
+    "nat-stigmergy": {
+      "category": "adapt",
+      "reason": "coordination via artifact",
+      "direction": "evidence board with provenance and decay"
+    },
+    "nat-stop-signal-cross-inhibition": {
+      "category": "adapt",
+      "reason": "inhibitory signalling",
+      "direction": "inhibit the specific risky tool, source or action with threat information"
+    },
+    "nat-teams-not-swarms": {
+      "category": "foundation",
+      "reason": "counter-model",
+      "direction": "-"
+    },
+    "nat-topological-neighbors": {
+      "category": "adapt",
+      "reason": "fixed k readers",
+      "direction": "bounded neighbourhood as a propagation limit"
+    },
+    "nat-v-formation-flight": {
+      "category": "archive",
+      "reason": "no defence link",
+      "direction": "-"
+    },
+    "nat-vicsek-phase-transition": {
+      "category": "archive",
+      "reason": "no defence link",
+      "direction": "-"
+    },
+    "nat-waggle-dance-recruitment": {
+      "category": "adapt",
+      "reason": "recruitment proportional to quality",
+      "direction": "recruit investigators in proportion to verified evidence quality"
+    },
+    "nat-wound-healing-resolution": {
+      "category": "keep",
+      "reason": "active termination of response",
+      "direction": "keep; recovery verification and stand-down (see H-D13)"
+    },
+    "nat-candidates": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "nat-map": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-clonal": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-elastic": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-quorum": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-response-threshold": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-stigmergy": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "th-model": {
+      "category": "adapt",
+      "reason": "Historical mechanism or model needs explicit propagation, threat and containment assumptions before defensive use."
+    },
+    "sim-correlated-vote": {
+      "category": "foundation",
+      "reason": "Reusable method for correlated error and verifier limitations; no defensive efficacy demonstrated."
+    },
+    "sim-verifier": {
+      "category": "foundation",
+      "reason": "Reusable method for correlated error and verifier limitations; no defensive efficacy demonstrated."
+    },
+    "sim-report": {
+      "category": "foundation",
+      "reason": "Reusable method for correlated error and verifier limitations; no defensive efficacy demonstrated."
+    },
+    "H-D01": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D02": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D03": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D04": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D05": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D06": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D07": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D08": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D09": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D10": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D11": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D12": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D13": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "H-D14": {
+      "category": "keep",
+      "reason": "New defence hypothesis; untested, with explicit conventional baseline and refutation criterion."
+    },
+    "lit-adaptive-computation-time": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-adaptive-consistency": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-agentnet": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "lit-agentprune": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "lit-bio-autonomic": {
+      "category": "keep",
+      "reason": "Direct integrity/resilience candidate; full text unavailable in existing card, so no efficacy claim is publishable."
+    },
+    "lit-correlated-errors": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-debate-or-vote": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-debate-routing-matched-ceiling": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-diverse-debate-hegazy": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-diversity-of-thought": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-early-stopping-sc": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-frugalgpt": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-gptswarm": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "lit-great-models-think-alike": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-hong-page-diversity": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-inverse-scaling-ttc": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-large-language-monkeys": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-macnet": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "lit-mast": {
+      "category": "adapt",
+      "reason": "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
+    },
+    "lit-mixture-of-agents": {
+      "category": "archive",
+      "reason": "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
+    },
+    "lit-more-agents": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-more-llm-calls": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-multiagent-debate-du": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-nothinking": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-overthinking": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-pareto-test-time-multiagent": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-rethinking-bounds-discussion": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-routellm": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-s1-budget-forcing": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-sas-equal-thinking-budget": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-sas-vs-mas-hybrid": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-scaling-agent-systems": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-self-consistency": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-self-moa": {
+      "category": "archive",
+      "reason": "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
+    },
+    "lit-selfheal": {
+      "category": "adapt",
+      "reason": "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
+    },
+    "lit-should-we-be-going-mad": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-silicon-crowd": {
+      "category": "archive",
+      "reason": "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
+    },
+    "lit-snell-test-time-compute": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-stop-overvaluing-mad": {
+      "category": "foundation",
+      "reason": "General evidence on compute allocation, baselines, verification or correlated errors; no defence-specific efficacy follows."
+    },
+    "lit-swarmbench-2025": {
+      "category": "adapt",
+      "reason": "Local-view robustness benchmark can inform containment experiments after replacing tasks and metrics."
+    },
+    "lit-swarmsys": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "oss-agentnet": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "oss-agentprune": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "oss-autogen": {
+      "category": "archive",
+      "reason": "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
+    },
+    "oss-buzz": {
+      "category": "archive",
+      "reason": "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
+    },
+    "oss-camel": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-chatdev-macnet": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "oss-crewai": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-gptswarm": {
+      "category": "adapt",
+      "reason": "Communication graph is a candidate containment surface; efficiency results do not demonstrate cyber containment."
+    },
+    "oss-langgraph-supervisor": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-langgraph-swarm": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-metagpt": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-moa": {
+      "category": "archive",
+      "reason": "Generic aggregation or forecasting is peripheral to collective defence; retain as historical comparison."
+    },
+    "oss-openai-agents-sdk": {
+      "category": "adapt",
+      "reason": "Coordination implementation can host defensive workflows; no tested security boundary follows from this card."
+    },
+    "oss-openai-swarm": {
+      "category": "archive",
+      "reason": "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
+    },
+    "oss-plexil": {
+      "category": "foundation",
+      "reason": "Mechanical plan conditions and postconditions inform conventional verification baselines; not an LLM swarm."
+    },
+    "oss-selfheal": {
+      "category": "adapt",
+      "reason": "Failure diagnosis or repair can inform recovery design; requires defensive tasks and independent verification."
+    },
+    "oss-stigmergic": {
+      "category": "adapt",
+      "reason": "Shared evidence, quorum or reinforcement exposes a useful poisoning/false-consensus test surface, not proven protection."
+    },
+    "oss-swarmsys": {
+      "category": "archive",
+      "reason": "Historical, robotic or unavailable implementation; retain without prominent cyber recommendation."
+    },
+    "oss-symbiont": {
+      "category": "adapt",
+      "reason": "Shared evidence, quorum or reinforcement exposes a useful poisoning/false-consensus test surface, not proven protection."
+    },
+    "lit-bibliography": {
+      "category": "foundation",
+      "reason": "Historical bibliography, synthesis or implementation inventory. Preserved as methodological context; its original scope does not establish cyber-defence efficacy."
+    },
+    "lit-synthesis": {
+      "category": "foundation",
+      "reason": "Historical bibliography, synthesis or implementation inventory. Preserved as methodological context; its original scope does not establish cyber-defence efficacy."
+    },
+    "oss-matrix": {
+      "category": "foundation",
+      "reason": "Historical bibliography, synthesis or implementation inventory. Preserved as methodological context; its original scope does not establish cyber-defence efficacy."
+    },
+    "oss-patterns": {
+      "category": "foundation",
+      "reason": "Historical bibliography, synthesis or implementation inventory. Preserved as methodological context; its original scope does not establish cyber-defence efficacy."
+    }
+  },
+  "provenance": {
+    "researchAudit": "Norevia research pivot audit, 2026-11-09",
+    "libraryAudit": "Norevia Library defence card audit, 2026-11-09",
+    "libraryScope": "60 individually reviewed cards plus four historical aggregate documents; source bodies preserved. Primary-source verification is partial, not a full-text systematic review."
+  }
+}
