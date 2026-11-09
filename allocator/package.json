@@ -1,0 +1,1 @@
+{ "name": "norevia-allocator", "version": "0.1.0", "type": "module", "description": "Norevia Allocator v0 — decides solo vs team, repairs only what fails, stops when resolved, verifies before accepting. Zero dependencies, model-agnostic.", "main": "index.mjs", "license": "MIT", "scripts": { "test": "node --test test/allocator.test.mjs" } }

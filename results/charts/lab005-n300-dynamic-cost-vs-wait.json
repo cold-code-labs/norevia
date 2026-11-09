@@ -1,0 +1,51 @@
+[
+ {
+  "x": "D-FULL",
+  "accepted_per_usd": 1482,
+  "mean_wait_rounds": 0.063,
+  "coverage_rate": 0.4135,
+  "calls": 2400
+ },
+ {
+  "x": "D-CENTRAL",
+  "accepted_per_usd": 1912.4,
+  "mean_wait_rounds": 0.089,
+  "coverage_rate": 0.4095,
+  "calls": 1807
+ },
+ {
+  "x": "D-AIMD",
+  "accepted_per_usd": 3700,
+  "mean_wait_rounds": 0.982,
+  "coverage_rate": 0.3821,
+  "calls": 900
+ },
+ {
+  "x": "D-ACL",
+  "accepted_per_usd": 2008.9,
+  "mean_wait_rounds": 0.494,
+  "coverage_rate": 0.404,
+  "calls": 1705
+ },
+ {
+  "x": "D-HYST",
+  "accepted_per_usd": 2479.3,
+  "mean_wait_rounds": 0.58,
+  "coverage_rate": 0.4095,
+  "calls": 1435
+ },
+ {
+  "x": "D-PCTRL",
+  "accepted_per_usd": 1954.2,
+  "mean_wait_rounds": 0.116,
+  "coverage_rate": 0.4147,
+  "calls": 1807
+ },
+ {
+  "x": "D-PPD",
+  "accepted_per_usd": 2064.2,
+  "mean_wait_rounds": 0.23,
+  "coverage_rate": 0.4131,
+  "calls": 1703
+ }
+]

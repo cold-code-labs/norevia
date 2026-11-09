@@ -1,0 +1,82 @@
+[
+ {
+  "x": "ALL repo tasks",
+  "policy": "SOLO",
+  "acceptance_rate": 0.833,
+  "cost_per_accepted_usd": 0.0552,
+  "median_critical_path_s": 98.7,
+  "false_success": 0
+ },
+ {
+  "x": "ALL repo tasks",
+  "policy": "ALWAYS-SPLIT",
+  "acceptance_rate": 0.95,
+  "cost_per_accepted_usd": 0.029,
+  "median_critical_path_s": 61.2,
+  "false_success": 3
+ },
+ {
+  "x": "ALL repo tasks",
+  "policy": "ORCH",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0337,
+  "median_critical_path_s": 104.3,
+  "false_success": 0
+ },
+ {
+  "x": "ALL repo tasks",
+  "policy": "TODAY",
+  "acceptance_rate": 0.85,
+  "cost_per_accepted_usd": 0.1504,
+  "median_critical_path_s": 199.6,
+  "false_success": 0
+ },
+ {
+  "x": "ALL repo tasks",
+  "policy": "ALLOCATOR",
+  "acceptance_rate": 0.95,
+  "cost_per_accepted_usd": 0.029,
+  "median_critical_path_s": 62.7,
+  "false_success": 3
+ },
+ {
+  "x": "ALL micro bundles",
+  "policy": "SOLO",
+  "acceptance_rate": 0.677,
+  "cost_per_accepted_usd": 0.0016,
+  "median_critical_path_s": 4.8,
+  "false_success": 2
+ },
+ {
+  "x": "ALL micro bundles",
+  "policy": "ALWAYS-SPLIT",
+  "acceptance_rate": 0.729,
+  "cost_per_accepted_usd": 0.001,
+  "median_critical_path_s": 2.7,
+  "false_success": 1
+ },
+ {
+  "x": "ALL micro bundles",
+  "policy": "ORCH",
+  "acceptance_rate": 0.813,
+  "cost_per_accepted_usd": 0.0009,
+  "median_critical_path_s": 4.1,
+  "false_success": 11
+ },
+ {
+  "x": "ALL micro bundles",
+  "policy": "TODAY",
+  "acceptance_rate": 0.51,
+  "cost_per_accepted_usd": 0.0187,
+  "median_critical_path_s": 19.3,
+  "false_success": 0
+ },
+ {
+  "x": "ALL micro bundles",
+  "policy": "ALLOCATOR",
+  "acceptance_rate": 0.688,
+  "cost_per_accepted_usd": 0.0011,
+  "median_critical_path_s": 2.8,
+  "false_success": 5
+ }
+]

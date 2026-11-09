@@ -22,13 +22,13 @@ Sources of status: `results/sims/`, `results/observatory/biosmoke-summary.md`, `
 | `split_by_size` (division of labour) | nat-colony-size-scaling, nat-teams-not-swarms | number of independent packages | single owner per package with package-only context when k ≥ ~3 | H-11, H-04 | `positive-eng` — LAB-003 Q1: team cost/accepted 0.64× at k=3, 0.37× at k=8, only team succeeds at k=15 |
 | `group_threshold_payoff` | nat-myxococcus-group-predation | task needs several tools/perspectives at once | form the group only above the minimum useful size | — | `untested` |
 | `relay_recruit_selflimit` | nat-neutrophil-swarming | local "problem found" signal | nearby agents join and re-emit; recruitment stops by self-limit | — | `untested` |
-| `acceptance_coupled_launch` | nat-interaction-rate-foraging | recent rate of accepted results | launch new attempts proportionally to acceptance rate | H-05, H-21 | `untested` |
-| `proportional_allocation` | nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions | verified partial-quality score | expand candidates in proportion to quality | H-20 | `untested` |
+| `acceptance_coupled_launch` | nat-interaction-rate-foraging | recent rate of accepted results | launch new attempts proportionally to acceptance rate | H-05, H-21 | `null-llm` — LAB-005 (bursty pool, N = 300): −29% calls vs all agents on, +0.4 rounds of waiting; an additive-increase/multiplicative-decrease rule on the same signal is cheaper and a damped controller dominates it in cost × waiting (`results/lab005/REPORT.md`) |
+| `proportional_allocation` | nat-waggle-dance-recruitment, nat-recruitment-benefit-conditions | verified partial-quality score | expand candidates in proportion to quality | H-20 | `null-llm` — LAB-005 (micro-tasks, N = 100 and 300): probability-matching on partial quality beats best-first (×1.6–2.0 accepted/US$) but not uniform spreading by claims (Δ coverage +0.002 at N = 300, −0.03 at N = 100); no bio-specific effect (`results/lab005/REPORT.md`) |
 | `root_foraging` | nat-root-foraging | local reward on a branch | add budget to a branch only after reward, in proportion | — | `untested` |
 | `sparse_activation` | nat-brain-energy-sparse | router score per specialist | k ≪ N specialists active per task | H-23 | `sim-support` (router must be near-perfect) |
 | `clonal_expansion` | nat-clonal-expansion-contraction | verified problem appears / resolved | clone the configuration that solved similar work; contract after | H-05, H-19, H-21, H-24 | `null-llm` — ELASTIC no gain (LAB-001); type memory no gain (LAB-003 Q3) |
 | `homeostatic_escalation` | nat-homeostasis-allostasis | failed check | retry cheaply, then more effort/agents | — | `positive-eng` — retry with feedback works (LAB-003 Q2) |
-| `quorum_sensing_activation` | nat-bacterial-quorum-sensing | density of standard "blocker" signals in a shared medium | trigger the costly collective action only above a signal density | — | `untested` |
+| `quorum_sensing_activation` | nat-bacterial-quorum-sensing | density of standard "blocker" signals in a shared medium | trigger the costly collective action only above a signal density | — | `null-llm` — LAB-005: a class-density trigger for team attempts does no better than escalating after 1–2 failures on the task, and is worse than the plain board at N = 100 (×0.86); engineering-equivalent at best (`results/lab005/REPORT.md`) |
 | `dicty_aggregation` | nat-dictyostelium-aggregation | weak signals crossing a threshold | form a temporary collective with entry and cheater rules | — | `untested` |
 
 ## Coordination and communication
@@ -55,7 +55,7 @@ Sources of status: `results/sims/`, `results/observatory/biosmoke-summary.md`, `
 |---|---|---|---|---|---|
 | `quorum_stop` | nat-quorum-nest-bees, nat-speed-accuracy-quorum | k independent verified agreements | stop at quorum; tune k by cost of delay vs error | H-08 | `null-llm` (LAB-001); quorum amplified false success under weak verifier (biosmoke); sims inconclusive; LAB-004 (N ≤ 1,000): `null-llm` — worse than the board at N = 300 (Δ coverage −0.07), no detectable gain at N = 1,000; false success not detectably lower (0.22 vs 0.25) (`results/lab004/REPORT.md`) |
 | `cross_inhibition` | nat-stop-signal-cross-inhibition | counterexample / failing test against an option | reduce the rival option's weight | H-08, H-27 | `null-llm` (bundled in quorum, LAB-001) |
-| `correlation_stop` | nat-condorcet-correlated, nat-small-groups-correlated-cues | estimated error correlation ρ between agents | stop adding voters when effective n saturates | H-01, H-04, H-10 | `sim-support` |
+| `correlation_stop` | nat-condorcet-correlated, nat-small-groups-correlated-cues | estimated error correlation ρ between agents | stop adding voters when effective n saturates | H-01, H-04, H-10 | `sim-support`; LAB-005 real LLM agents: `null-llm` — worse than fixed-3 and margin voting (×0.5 accepted/US$ at N = 100, Δ coverage −0.12 at N = 300); wrong answers agree (≈ 0.4), false success stays 0.52–0.60 (`results/lab005/REPORT.md`) |
 | `condorcet_ceiling` | nat-condorcet-jury | marginal gain per vote | cap the number of votes | — | `lens` |
 | `diversity_check` | nat-hong-page-critique | identical model/prompt/temperature | treat N identical copies as one agent; require real diversity | — | `lens` |
 | `ecoli_run_tumble` | nat-ecoli-run-and-tumble | last few evaluations improving or not | keep direction while improving, change approach when not | — | `null-llm` — LAB-004: worse than independent agents at N = 300 (Δ coverage −0.07, accepted/US$ ×0.70), no detectable difference at N = 1,000 (`results/lab004/REPORT.md`) |
@@ -66,7 +66,7 @@ Sources of status: `results/sims/`, `results/observatory/biosmoke-summary.md`, `
 | `danger_signal_escalation` | nat-danger-theory | confirmed damage (regression, failed acceptance) | escalate only on damage, not on novelty | — | `untested` |
 | `wound_resolution` | nat-wound-healing-resolution | incident resolved | active shutdown: stop extra agents, cancel waits, consolidate evidence | H-14, H-24 | `positive-eng` — LAB-004: at N = 1,000 accepted/US$ ×1.43 (1.37–1.49) vs the board with equal coverage, nothing at N ≤ 300; an uncapped central dispatcher that stops when tasks are resolved saves more (cost control, not a bio-specific effect) (`results/lab004/REPORT.md`) |
 | `kessler_guard` | nat-kessler-cascade | orphaned work generating more work | cap and reap ownerless tasks/delegations | H-24 | `untested` (shadow L3 rules related, F3) |
-| `predator_prey_damping` | nat-predator-prey-cycles | backlog vs idleness | elastic spawn/retire with damping to avoid oscillation | — | `untested` |
+| `predator_prey_damping` | nat-predator-prey-cycles | backlog vs idleness | elastic spawn/retire with damping to avoid oscillation | — | `positive-eng` — LAB-005 (bursty pool, N = 300): −29% calls vs all agents on, +0.2 rounds of waiting; a threshold autoscaler or an undamped proportional rule trace the same cost–waiting curve, the damped rule does not leave it (`results/lab005/REPORT.md`) |
 | `stellar_backpressure` | nat-stellar-thermostat | load | reduce admission/concurrency before degrading | — | `untested` |
 | `shepherd_guards` | nat-shepherd-moons | boundary violations | a few gatekeeper agents (rate limits, schema checks) hold the crowd | — | `untested` |
 | `renal_compaction` | nat-renal-filtration | context growth | discard transient context by default, reabsorb only functional items | — | `null-llm` — LAB-004: no gain over a stateless agent (accepted/US$ ×1.00, Δ coverage +0.016); cuts cost 27% vs carrying the full history, which raised coverage ≈ +0.04 but also false success (0.40 vs 0.34) (`results/lab004/REPORT.md`) |
@@ -74,9 +74,10 @@ Sources of status: `results/sims/`, `results/observatory/biosmoke-summary.md`, `
 | `satellite_avoidance` | nat-satellite-constellation-avoidance | predicted conflict between agents on the same resource | coordinate manoeuvres to avoid collisions | — | `untested` |
 | `accretion_threshold` | nat-accretion-planetesimals | aggregation stalls | switch from pairwise merging to a collective step past a density threshold | — | `lens` |
 
-## Summary (v1)
+## Summary (v2, after LAB-006 · 2026-11-09)
 - 56 cards → 43 flags (some cards share a flag) + 3 lenses (46 rows).
-- **Tested with LLM agents: 10 flags.** Positive only as engineering (no bio-specific effect): `split_by_size`, `homeostatic_escalation`, `response_threshold`. Null: `inactive_reserve`, `adaptive_activation`, `clonal_expansion`, `stigmergy_board`, `pheromone_evaporation`, `quorum_stop`, `cross_inhibition`.
-- **Simulation-only support: 3 flags** (`correlation_stop`, `sparse_activation`, `topological_neighbours`); `stigmergy_board` and `pheromone_evaporation` also had simulation support but were null with LLM agents.
-- **Untested: 30 flags.** Suggested next batch (cheap, high information): `locust_phase_switch`, `renal_compaction`, `ecoli_run_tumble`, `informed_leaders`, `wound_resolution`.
+- **Tested with LLM agents: 20 flags.** No flag has shown a bio-specific effect: where a flag helped (`positive-eng`), its closest non-bio engineering control did as well or better.
+- Simulation-only support: 2 flags. Untested: 21 flags.
+- The mechanisms that held up — split by size, retry with feedback, active stop when resolved, verification gate — are combined in the Norevia Allocator v0 (`allocator/`, evaluated in LAB-006).
+- Counts are computed from the table above; a row can carry more than one status label.
 - Gap: the registry covers only mechanisms with a nature card; new candidates enter by adding a card first.

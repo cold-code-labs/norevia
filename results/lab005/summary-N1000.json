@@ -1,0 +1,190 @@
+{
+ "N": 1000,
+ "arms": {
+  "S-CENTRAL": {
+   "seeds": 2,
+   "coverage": 0.4151,
+   "coverageSd": 0.0024,
+   "fsRate": 0.2497,
+   "calls": 2109,
+   "costTable": 0.1552,
+   "acceptedPerUsd": 1685.3,
+   "dupPerCall": 0.701,
+   "meanWaitRounds": 0.105,
+   "backlogArea": 2109,
+   "activeAgentRounds": 6000,
+   "teamCalls": 0,
+   "errCorr": 0.412
+  },
+  "S-BOARD": {
+   "seeds": 2,
+   "coverage": 0.4269,
+   "coverageSd": 0.0047,
+   "fsRate": 0.27,
+   "calls": 6000,
+   "costTable": 0.445,
+   "acceptedPerUsd": 604.6,
+   "dupPerCall": 0.895,
+   "meanWaitRounds": 0.128,
+   "backlogArea": 2039,
+   "activeAgentRounds": 6000,
+   "teamCalls": 0,
+   "errCorr": 0.418
+  },
+  "S-GREEDY": {
+   "seeds": 1,
+   "coverage": 0.3032,
+   "coverageSd": 0,
+   "fsRate": 0.2765,
+   "calls": 6000,
+   "costTable": 0.3684,
+   "acceptedPerUsd": 518.4,
+   "dupPerCall": 0.923,
+   "meanWaitRounds": 0.691,
+   "backlogArea": 2663,
+   "activeAgentRounds": 6000,
+   "teamCalls": 0,
+   "errCorr": 0.692
+  },
+  "S-PROP": {
+   "seeds": 2,
+   "coverage": 0.4278,
+   "coverageSd": 0.0055,
+   "fsRate": 0.2687,
+   "calls": 6000,
+   "costTable": 0.4263,
+   "acceptedPerUsd": 632.2,
+   "dupPerCall": 0.895,
+   "meanWaitRounds": 0.235,
+   "backlogArea": 2074,
+   "activeAgentRounds": 6000,
+   "teamCalls": 0,
+   "errCorr": 0.516
+  },
+  "S-QSA": {
+   "seeds": 2,
+   "coverage": 0.4254,
+   "coverageSd": 0.0016,
+   "fsRate": 0.2727,
+   "calls": 6000,
+   "costTable": 0.4472,
+   "acceptedPerUsd": 599.3,
+   "dupPerCall": 0.895,
+   "meanWaitRounds": 0.103,
+   "backlogArea": 2047,
+   "activeAgentRounds": 6000,
+   "teamCalls": 5098,
+   "errCorr": 0.416
+  }
+ },
+ "flags": {
+  "proportional_allocation": {
+   "arm": "S-PROP",
+   "class": "null",
+   "vsBase": {
+    "vs": "S-BOARD",
+    "deltaCoverage": 0.001,
+    "deltaCI": [
+     -0.008,
+     0.01
+    ],
+    "ratioAcceptedPerUsd": 1.046,
+    "ratioCI": [
+     0.97,
+     1.128
+    ],
+    "verdict": "INCONCLUSIVE",
+    "note": ""
+   },
+   "vsControls": [
+    {
+     "vs": "S-GREEDY",
+     "deltaCoverage": 0.125,
+     "deltaCI": [
+      0.098,
+      0.152
+     ],
+     "ratioAcceptedPerUsd": 1.219,
+     "ratioCI": [
+      0.917,
+      1.569
+     ],
+     "verdict": "INCONCLUSIVE",
+     "note": ""
+    },
+    {
+     "vs": "S-BOARD",
+     "deltaCoverage": 0.001,
+     "deltaCI": [
+      -0.008,
+      0.01
+     ],
+     "ratioAcceptedPerUsd": 1.046,
+     "ratioCI": [
+      0.969,
+      1.129
+     ],
+     "verdict": "INCONCLUSIVE",
+     "note": ""
+    }
+   ],
+   "vsReference": {
+    "vs": "S-CENTRAL",
+    "deltaCoverage": 0.013,
+    "deltaCI": [
+     0.003,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.375,
+    "ratioCI": [
+     0.348,
+     0.406
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "fsRate": 0.2687,
+   "controlsFsRate": {
+    "S-GREEDY": 0.2765,
+    "S-BOARD": 0.27
+   }
+  },
+  "quorum_sensing_activation": {
+   "arm": "S-QSA",
+   "class": "null",
+   "vsBase": {
+    "vs": "S-BOARD",
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.007,
+     0.004
+    ],
+    "ratioAcceptedPerUsd": 0.991,
+    "ratioCI": [
+     0.966,
+     1.018
+    ],
+    "verdict": "INCONCLUSIVE",
+    "note": ""
+   },
+   "vsControls": [],
+   "vsReference": {
+    "vs": "S-CENTRAL",
+    "deltaCoverage": 0.01,
+    "deltaCI": [
+     0.002,
+     0.019
+    ],
+    "ratioAcceptedPerUsd": 0.356,
+    "ratioCI": [
+     0.344,
+     0.369
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "fsRate": 0.2727,
+   "controlsFsRate": {}
+  }
+ }
+}

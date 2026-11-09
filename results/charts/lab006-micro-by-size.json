@@ -1,0 +1,122 @@
+[
+ {
+  "x": "micro m=3",
+  "policy": "SOLO",
+  "acceptance_rate": 0.9,
+  "cost_per_accepted_usd": 0.0003,
+  "median_critical_path_s": 2.2,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=3",
+  "policy": "ALWAYS-SPLIT",
+  "acceptance_rate": 0.775,
+  "cost_per_accepted_usd": 0.0004,
+  "median_critical_path_s": 2.3,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=3",
+  "policy": "ORCH",
+  "acceptance_rate": 0.9,
+  "cost_per_accepted_usd": 0.0003,
+  "median_critical_path_s": 3.3,
+  "false_success": 4
+ },
+ {
+  "x": "micro m=3",
+  "policy": "TODAY",
+  "acceptance_rate": 0.675,
+  "cost_per_accepted_usd": 0.003,
+  "median_critical_path_s": 12.4,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=3",
+  "policy": "ALLOCATOR",
+  "acceptance_rate": 0.75,
+  "cost_per_accepted_usd": 0.0004,
+  "median_critical_path_s": 2.3,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=8",
+  "policy": "SOLO",
+  "acceptance_rate": 0.5,
+  "cost_per_accepted_usd": 0.0025,
+  "median_critical_path_s": 8,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=8",
+  "policy": "ALWAYS-SPLIT",
+  "acceptance_rate": 0.75,
+  "cost_per_accepted_usd": 0.001,
+  "median_critical_path_s": 2.7,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=8",
+  "policy": "ORCH",
+  "acceptance_rate": 0.781,
+  "cost_per_accepted_usd": 0.0009,
+  "median_critical_path_s": 4.5,
+  "false_success": 5
+ },
+ {
+  "x": "micro m=8",
+  "policy": "TODAY",
+  "acceptance_rate": 0.438,
+  "cost_per_accepted_usd": 0.0188,
+  "median_critical_path_s": 21.2,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=8",
+  "policy": "ALLOCATOR",
+  "acceptance_rate": 0.688,
+  "cost_per_accepted_usd": 0.0011,
+  "median_critical_path_s": 2.9,
+  "false_success": 2
+ },
+ {
+  "x": "micro m=15",
+  "policy": "SOLO",
+  "acceptance_rate": 0.542,
+  "cost_per_accepted_usd": 0.0039,
+  "median_critical_path_s": 10.6,
+  "false_success": 2
+ },
+ {
+  "x": "micro m=15",
+  "policy": "ALWAYS-SPLIT",
+  "acceptance_rate": 0.625,
+  "cost_per_accepted_usd": 0.0023,
+  "median_critical_path_s": 3.4,
+  "false_success": 1
+ },
+ {
+  "x": "micro m=15",
+  "policy": "ORCH",
+  "acceptance_rate": 0.708,
+  "cost_per_accepted_usd": 0.002,
+  "median_critical_path_s": 5.3,
+  "false_success": 2
+ },
+ {
+  "x": "micro m=15",
+  "policy": "TODAY",
+  "acceptance_rate": 0.333,
+  "cost_per_accepted_usd": 0.0717,
+  "median_critical_path_s": 31.8,
+  "false_success": 0
+ },
+ {
+  "x": "micro m=15",
+  "policy": "ALLOCATOR",
+  "acceptance_rate": 0.583,
+  "cost_per_accepted_usd": 0.0025,
+  "median_critical_path_s": 3.3,
+  "false_success": 3
+ }
+]

@@ -1,0 +1,1529 @@
+{
+ "reps": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "tasks": 39,
+ "groups": {
+  "repo k=1": {
+   "tasks": 6,
+   "arms": {
+    "SOLO": {
+     "runs": 24,
+     "accepted": 24,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.862,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.006,
+     "costPerAcceptedCI": [
+      0.0034,
+      0.0089
+     ],
+     "meanCost": 0.006,
+     "meanCalls": 1,
+     "medianCriticalPathS": 25.3,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 24,
+     "accepted": 24,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.862,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0058,
+     "costPerAcceptedCI": [
+      0.0033,
+      0.0086
+     ],
+     "meanCost": 0.0058,
+     "meanCalls": 1,
+     "medianCriticalPathS": 27.2,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ORCH": {
+     "runs": 24,
+     "accepted": 24,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.862,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.006,
+     "costPerAcceptedCI": [
+      0.0035,
+      0.0086
+     ],
+     "meanCost": 0.006,
+     "meanCalls": 2,
+     "medianCriticalPathS": 23.3,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "TODAY": {
+     "runs": 24,
+     "accepted": 24,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.862,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0235,
+     "costPerAcceptedCI": [
+      0.0122,
+      0.0375
+     ],
+     "meanCost": 0.0235,
+     "meanCalls": 4,
+     "medianCriticalPathS": 174.7,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ALLOCATOR": {
+     "runs": 24,
+     "accepted": 24,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.862,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0059,
+     "costPerAcceptedCI": [
+      0.0033,
+      0.0088
+     ],
+     "meanCost": 0.0059,
+     "meanCalls": 1,
+     "medianCriticalPathS": 22.7,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ALLOCATOR"
+   ],
+   "allocatorOnFrontier": true,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.996,
+     "costRatioCI": [
+      0.558,
+      1.668
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.019,
+     "costRatioCI": [
+      0.813,
+      1.272
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 0.998,
+     "costRatioCI": [
+      0.538,
+      1.958
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.252,
+     "costRatioCI": [
+      0.15,
+      0.353
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "WINS"
+    }
+   }
+  },
+  "repo k=3": {
+   "tasks": 4,
+   "arms": {
+    "SOLO": {
+     "runs": 16,
+     "accepted": 16,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.806,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0175,
+     "costPerAcceptedCI": [
+      0.012,
+      0.0215
+     ],
+     "meanCost": 0.0175,
+     "meanCalls": 1,
+     "medianCriticalPathS": 112.3,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 16,
+     "accepted": 16,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.806,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.015,
+     "costPerAcceptedCI": [
+      0.0109,
+      0.018
+     ],
+     "meanCost": 0.015,
+     "meanCalls": 3,
+     "medianCriticalPathS": 59.8,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ORCH": {
+     "runs": 16,
+     "accepted": 16,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.806,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0184,
+     "costPerAcceptedCI": [
+      0.0122,
+      0.0231
+     ],
+     "meanCost": 0.0184,
+     "meanCalls": 2,
+     "medianCriticalPathS": 123,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "TODAY": {
+     "runs": 16,
+     "accepted": 15,
+     "acceptance": 0.938,
+     "acceptanceCI": [
+      0.717,
+      0.989
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0656,
+     "costPerAcceptedCI": [
+      0.0459,
+      0.0893
+     ],
+     "meanCost": 0.0615,
+     "meanCalls": 8,
+     "medianCriticalPathS": 218.9,
+     "budgetHits": 0,
+     "hiddenFrac": 0.996
+    },
+    "ALLOCATOR": {
+     "runs": 16,
+     "accepted": 16,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.806,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.015,
+     "costPerAcceptedCI": [
+      0.011,
+      0.0183
+     ],
+     "meanCost": 0.015,
+     "meanCalls": 3,
+     "medianCriticalPathS": 56,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    }
+   },
+   "frontier": [
+    "ALLOCATOR"
+   ],
+   "allocatorOnFrontier": true,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.858,
+     "costRatioCI": [
+      0.579,
+      1.241
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 0.999,
+     "costRatioCI": [
+      0.649,
+      1.591
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 0.814,
+     "costRatioCI": [
+      0.517,
+      1.369
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.229,
+     "costRatioCI": [
+      0.187,
+      0.26
+     ],
+     "deltaAcceptance": 0.063,
+     "deltaAcceptanceCI": [
+      0,
+      0.188
+     ],
+     "outcome": "WINS"
+    }
+   }
+  },
+  "repo k=8": {
+   "tasks": 3,
+   "arms": {
+    "SOLO": {
+     "runs": 12,
+     "accepted": 8,
+     "acceptance": 0.667,
+     "acceptanceCI": [
+      0.391,
+      0.862
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.1565,
+     "costPerAcceptedCI": [
+      0.0894,
+      0.3494
+     ],
+     "meanCost": 0.1044,
+     "meanCalls": 2.58,
+     "medianCriticalPathS": 637.8,
+     "budgetHits": 0,
+     "hiddenFrac": 0.888
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 12,
+     "accepted": 11,
+     "acceptance": 0.917,
+     "acceptanceCI": [
+      0.646,
+      0.985
+     ],
+     "falseSuccess": 1,
+     "costPerAccepted": 0.0534,
+     "costPerAcceptedCI": [
+      0.0473,
+      0.0672
+     ],
+     "meanCost": 0.0489,
+     "meanCalls": 8,
+     "medianCriticalPathS": 73.5,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ORCH": {
+     "runs": 12,
+     "accepted": 12,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.757,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0562,
+     "costPerAcceptedCI": [
+      0.0534,
+      0.0577
+     ],
+     "meanCost": 0.0562,
+     "meanCalls": 4,
+     "medianCriticalPathS": 149.6,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "TODAY": {
+     "runs": 12,
+     "accepted": 10,
+     "acceptance": 0.833,
+     "acceptanceCI": [
+      0.552,
+      0.953
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.3237,
+     "costPerAcceptedCI": [
+      0.2739,
+      0.4915
+     ],
+     "meanCost": 0.2697,
+     "meanCalls": 18,
+     "medianCriticalPathS": 274.6,
+     "budgetHits": 0,
+     "hiddenFrac": 0.983
+    },
+    "ALLOCATOR": {
+     "runs": 12,
+     "accepted": 9,
+     "acceptance": 0.75,
+     "acceptanceCI": [
+      0.468,
+      0.911
+     ],
+     "falseSuccess": 3,
+     "costPerAccepted": 0.0652,
+     "costPerAcceptedCI": [
+      0.0477,
+      0.0978
+     ],
+     "meanCost": 0.0489,
+     "meanCalls": 8,
+     "medianCriticalPathS": 70.7,
+     "budgetHits": 0,
+     "hiddenFrac": 0.998
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ORCH",
+    "ALLOCATOR"
+   ],
+   "allocatorOnFrontier": true,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.416,
+     "costRatioCI": [
+      0,
+      1.094
+     ],
+     "deltaAcceptance": 0.083,
+     "deltaAcceptanceCI": [
+      -0.5,
+      1
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.221,
+     "costRatioCI": [
+      0.973,
+      2.067
+     ],
+     "deltaAcceptance": -0.167,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 1.16,
+     "costRatioCI": [
+      0.894,
+      1.696
+     ],
+     "deltaAcceptance": -0.25,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.201,
+     "costRatioCI": [
+      0.097,
+      0.357
+     ],
+     "deltaAcceptance": -0.083,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0.5
+     ],
+     "outcome": "TIE"
+    }
+   }
+  },
+  "repo k=15": {
+   "tasks": 2,
+   "arms": {
+    "SOLO": {
+     "runs": 8,
+     "accepted": 2,
+     "acceptance": 0.25,
+     "acceptanceCI": [
+      0.071,
+      0.591
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.5418,
+     "costPerAcceptedCI": [
+      0.5184,
+      0.5652
+     ],
+     "meanCost": 0.1354,
+     "meanCalls": 3,
+     "medianCriticalPathS": 638.4,
+     "budgetHits": 0,
+     "hiddenFrac": 0.835
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 8,
+     "accepted": 6,
+     "acceptance": 0.75,
+     "acceptanceCI": [
+      0.409,
+      0.929
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.1146,
+     "costPerAcceptedCI": [
+      0.0918,
+      0.1601
+     ],
+     "meanCost": 0.0859,
+     "meanCalls": 15.13,
+     "medianCriticalPathS": 79.2,
+     "budgetHits": 0,
+     "hiddenFrac": 0.999
+    },
+    "ORCH": {
+     "runs": 8,
+     "accepted": 8,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.676,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.1134,
+     "costPerAcceptedCI": [
+      0.1132,
+      0.1137
+     ],
+     "meanCost": 0.1134,
+     "meanCalls": 5.88,
+     "medianCriticalPathS": 354.7,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "TODAY": {
+     "runs": 8,
+     "accepted": 2,
+     "acceptance": 0.25,
+     "acceptanceCI": [
+      0.071,
+      0.591
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 1.4413,
+     "costPerAcceptedCI": [
+      null,
+      null
+     ],
+     "meanCost": 0.3603,
+     "meanCalls": 16,
+     "medianCriticalPathS": 164.8,
+     "budgetHits": 8,
+     "hiddenFrac": 0.949
+    },
+    "ALLOCATOR": {
+     "runs": 8,
+     "accepted": 8,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.676,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0853,
+     "costPerAcceptedCI": [
+      0.0795,
+      0.091
+     ],
+     "meanCost": 0.0853,
+     "meanCalls": 15.13,
+     "medianCriticalPathS": 80.3,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ALLOCATOR"
+   ],
+   "allocatorOnFrontier": true,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.157,
+     "costRatioCI": [
+      0.141,
+      0.176
+     ],
+     "deltaAcceptance": 0.75,
+     "deltaAcceptanceCI": [
+      0.75,
+      0.75
+     ],
+     "outcome": "WINS"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 0.744,
+     "costRatioCI": [
+      0.497,
+      0.991
+     ],
+     "deltaAcceptance": 0.25,
+     "deltaAcceptanceCI": [
+      0,
+      0.5
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 0.752,
+     "costRatioCI": [
+      0.7,
+      0.805
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "outcome": "WINS"
+    },
+    "TODAY": {
+     "costRatio": 0.059,
+     "costRatioCI": [
+      0,
+      0.122
+     ],
+     "deltaAcceptance": 0.75,
+     "deltaAcceptanceCI": [
+      0.5,
+      1
+     ],
+     "outcome": "WINS"
+    }
+   }
+  },
+  "micro m=3": {
+   "tasks": 10,
+   "arms": {
+    "SOLO": {
+     "runs": 40,
+     "accepted": 36,
+     "acceptance": 0.9,
+     "acceptanceCI": [
+      0.769,
+      0.96
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0003,
+     "costPerAcceptedCI": [
+      0.0002,
+      0.0006
+     ],
+     "meanCost": 0.0003,
+     "meanCalls": 1.2,
+     "medianCriticalPathS": 2.2,
+     "budgetHits": 0,
+     "hiddenFrac": 0.967
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 40,
+     "accepted": 31,
+     "acceptance": 0.775,
+     "acceptanceCI": [
+      0.625,
+      0.877
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0004,
+     "costPerAcceptedCI": [
+      0.0002,
+      0.0007
+     ],
+     "meanCost": 0.0003,
+     "meanCalls": 3.52,
+     "medianCriticalPathS": 2.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.925
+    },
+    "ORCH": {
+     "runs": 40,
+     "accepted": 36,
+     "acceptance": 0.9,
+     "acceptanceCI": [
+      0.769,
+      0.96
+     ],
+     "falseSuccess": 4,
+     "costPerAccepted": 0.0003,
+     "costPerAcceptedCI": [
+      0.0002,
+      0.0004
+     ],
+     "meanCost": 0.0003,
+     "meanCalls": 2,
+     "medianCriticalPathS": 3.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.967
+    },
+    "TODAY": {
+     "runs": 40,
+     "accepted": 27,
+     "acceptance": 0.675,
+     "acceptanceCI": [
+      0.52,
+      0.799
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.003,
+     "costPerAcceptedCI": [
+      0.0022,
+      0.0051
+     ],
+     "meanCost": 0.002,
+     "meanCalls": 8,
+     "medianCriticalPathS": 12.4,
+     "budgetHits": 0,
+     "hiddenFrac": 0.85
+    },
+    "ALLOCATOR": {
+     "runs": 40,
+     "accepted": 30,
+     "acceptance": 0.75,
+     "acceptanceCI": [
+      0.598,
+      0.858
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0004,
+     "costPerAcceptedCI": [
+      0.0002,
+      0.0008
+     ],
+     "meanCost": 0.0003,
+     "meanCalls": 3.52,
+     "medianCriticalPathS": 2.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.917
+    }
+   },
+   "frontier": [
+    "SOLO"
+   ],
+   "allocatorOnFrontier": false,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 1.331,
+     "costRatioCI": [
+      0.501,
+      3.537
+     ],
+     "deltaAcceptance": -0.15,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0.2
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.023,
+     "costRatioCI": [
+      0.46,
+      2.294
+     ],
+     "deltaAcceptance": -0.025,
+     "deltaAcceptanceCI": [
+      -0.325,
+      0.275
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 1.361,
+     "costRatioCI": [
+      0.686,
+      3.218
+     ],
+     "deltaAcceptance": -0.15,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0.2
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.133,
+     "costRatioCI": [
+      0.063,
+      0.291
+     ],
+     "deltaAcceptance": 0.075,
+     "deltaAcceptanceCI": [
+      -0.3,
+      0.425
+     ],
+     "outcome": "TIE"
+    }
+   }
+  },
+  "micro m=8": {
+   "tasks": 8,
+   "arms": {
+    "SOLO": {
+     "runs": 32,
+     "accepted": 16,
+     "acceptance": 0.5,
+     "acceptanceCI": [
+      0.336,
+      0.664
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0025,
+     "costPerAcceptedCI": [
+      0.0013,
+      0.0055
+     ],
+     "meanCost": 0.0012,
+     "meanCalls": 2.22,
+     "medianCriticalPathS": 8,
+     "budgetHits": 0,
+     "hiddenFrac": 0.93
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 32,
+     "accepted": 24,
+     "acceptance": 0.75,
+     "acceptanceCI": [
+      0.579,
+      0.867
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.001,
+     "costPerAcceptedCI": [
+      0.0007,
+      0.0019
+     ],
+     "meanCost": 0.0008,
+     "meanCalls": 8.56,
+     "medianCriticalPathS": 2.7,
+     "budgetHits": 0,
+     "hiddenFrac": 0.965
+    },
+    "ORCH": {
+     "runs": 32,
+     "accepted": 25,
+     "acceptance": 0.781,
+     "acceptanceCI": [
+      0.612,
+      0.89
+     ],
+     "falseSuccess": 5,
+     "costPerAccepted": 0.0009,
+     "costPerAcceptedCI": [
+      0.0007,
+      0.0016
+     ],
+     "meanCost": 0.0007,
+     "meanCalls": 4.22,
+     "medianCriticalPathS": 4.5,
+     "budgetHits": 0,
+     "hiddenFrac": 0.973
+    },
+    "TODAY": {
+     "runs": 32,
+     "accepted": 14,
+     "acceptance": 0.438,
+     "acceptanceCI": [
+      0.282,
+      0.607
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0188,
+     "costPerAcceptedCI": [
+      0.0121,
+      0.0393
+     ],
+     "meanCost": 0.0082,
+     "meanCalls": 18,
+     "medianCriticalPathS": 21.2,
+     "budgetHits": 0,
+     "hiddenFrac": 0.918
+    },
+    "ALLOCATOR": {
+     "runs": 32,
+     "accepted": 22,
+     "acceptance": 0.688,
+     "acceptanceCI": [
+      0.514,
+      0.82
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.0011,
+     "costPerAcceptedCI": [
+      0.0007,
+      0.0022
+     ],
+     "meanCost": 0.0008,
+     "meanCalls": 8.56,
+     "medianCriticalPathS": 2.9,
+     "budgetHits": 0,
+     "hiddenFrac": 0.961
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ORCH"
+   ],
+   "allocatorOnFrontier": false,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.448,
+     "costRatioCI": [
+      0.145,
+      1.671
+     ],
+     "deltaAcceptance": 0.188,
+     "deltaAcceptanceCI": [
+      -0.313,
+      0.625
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.092,
+     "costRatioCI": [
+      0.625,
+      2.015
+     ],
+     "deltaAcceptance": -0.063,
+     "deltaAcceptanceCI": [
+      -0.438,
+      0.313
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 1.191,
+     "costRatioCI": [
+      0.551,
+      2.583
+     ],
+     "deltaAcceptance": -0.094,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0.313
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.059,
+     "costRatioCI": [
+      0.029,
+      0.118
+     ],
+     "deltaAcceptance": 0.25,
+     "deltaAcceptanceCI": [
+      -0.125,
+      0.594
+     ],
+     "outcome": "TIE"
+    }
+   }
+  },
+  "micro m=15": {
+   "tasks": 6,
+   "arms": {
+    "SOLO": {
+     "runs": 24,
+     "accepted": 13,
+     "acceptance": 0.542,
+     "acceptanceCI": [
+      0.351,
+      0.721
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.0039,
+     "costPerAcceptedCI": [
+      0.0017,
+      0.0133
+     ],
+     "meanCost": 0.0021,
+     "meanCalls": 2,
+     "medianCriticalPathS": 10.6,
+     "budgetHits": 0,
+     "hiddenFrac": 0.95
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 24,
+     "accepted": 15,
+     "acceptance": 0.625,
+     "acceptanceCI": [
+      0.427,
+      0.788
+     ],
+     "falseSuccess": 1,
+     "costPerAccepted": 0.0023,
+     "costPerAcceptedCI": [
+      0.0014,
+      0.0053
+     ],
+     "meanCost": 0.0014,
+     "meanCalls": 15.79,
+     "medianCriticalPathS": 3.4,
+     "budgetHits": 0,
+     "hiddenFrac": 0.975
+    },
+    "ORCH": {
+     "runs": 24,
+     "accepted": 17,
+     "acceptance": 0.708,
+     "acceptanceCI": [
+      0.508,
+      0.851
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.002,
+     "costPerAcceptedCI": [
+      0.0015,
+      0.0028
+     ],
+     "meanCost": 0.0014,
+     "meanCalls": 5.63,
+     "medianCriticalPathS": 5.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.969
+    },
+    "TODAY": {
+     "runs": 24,
+     "accepted": 8,
+     "acceptance": 0.333,
+     "acceptanceCI": [
+      0.18,
+      0.533
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0717,
+     "costPerAcceptedCI": [
+      0.0437,
+      0.2638
+     ],
+     "meanCost": 0.0239,
+     "meanCalls": 32,
+     "medianCriticalPathS": 31.8,
+     "budgetHits": 0,
+     "hiddenFrac": 0.933
+    },
+    "ALLOCATOR": {
+     "runs": 24,
+     "accepted": 14,
+     "acceptance": 0.583,
+     "acceptanceCI": [
+      0.388,
+      0.755
+     ],
+     "falseSuccess": 3,
+     "costPerAccepted": 0.0025,
+     "costPerAcceptedCI": [
+      0.0015,
+      0.006
+     ],
+     "meanCost": 0.0014,
+     "meanCalls": 15.71,
+     "medianCriticalPathS": 3.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.972
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ORCH",
+    "ALLOCATOR"
+   ],
+   "allocatorOnFrontier": true,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.625,
+     "costRatioCI": [
+      0.16,
+      2.365
+     ],
+     "deltaAcceptance": 0.042,
+     "deltaAcceptanceCI": [
+      -0.458,
+      0.542
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.058,
+     "costRatioCI": [
+      0.619,
+      1.903
+     ],
+     "deltaAcceptance": -0.042,
+     "deltaAcceptanceCI": [
+      -0.333,
+      0.167
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 1.208,
+     "costRatioCI": [
+      0.667,
+      2.842
+     ],
+     "deltaAcceptance": -0.125,
+     "deltaAcceptanceCI": [
+      -0.5,
+      0.25
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.034,
+     "costRatioCI": [
+      0.008,
+      0.109
+     ],
+     "deltaAcceptance": 0.25,
+     "deltaAcceptanceCI": [
+      -0.292,
+      0.75
+     ],
+     "outcome": "TIE"
+    }
+   }
+  },
+  "ALL repo tasks": {
+   "tasks": 15,
+   "arms": {
+    "SOLO": {
+     "runs": 60,
+     "accepted": 50,
+     "acceptance": 0.833,
+     "acceptanceCI": [
+      0.72,
+      0.907
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0552,
+     "costPerAcceptedCI": [
+      0.0223,
+      0.108
+     ],
+     "meanCost": 0.046,
+     "meanCalls": 1.58,
+     "medianCriticalPathS": 98.7,
+     "budgetHits": 0,
+     "hiddenFrac": 0.956
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 60,
+     "accepted": 57,
+     "acceptance": 0.95,
+     "acceptanceCI": [
+      0.863,
+      0.983
+     ],
+     "falseSuccess": 3,
+     "costPerAccepted": 0.029,
+     "costPerAcceptedCI": [
+      0.0148,
+      0.0465
+     ],
+     "meanCost": 0.0276,
+     "meanCalls": 4.82,
+     "medianCriticalPathS": 61.2,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "ORCH": {
+     "runs": 60,
+     "accepted": 60,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.94,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0337,
+     "costPerAcceptedCI": [
+      0.0169,
+      0.0539
+     ],
+     "meanCost": 0.0337,
+     "meanCalls": 2.92,
+     "medianCriticalPathS": 104.3,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    },
+    "TODAY": {
+     "runs": 60,
+     "accepted": 51,
+     "acceptance": 0.85,
+     "acceptanceCI": [
+      0.739,
+      0.919
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.1504,
+     "costPerAcceptedCI": [
+      0.0676,
+      0.278
+     ],
+     "meanCost": 0.1278,
+     "meanCalls": 9.47,
+     "medianCriticalPathS": 199.6,
+     "budgetHits": 8,
+     "hiddenFrac": 0.989
+    },
+    "ALLOCATOR": {
+     "runs": 60,
+     "accepted": 57,
+     "acceptance": 0.95,
+     "acceptanceCI": [
+      0.863,
+      0.983
+     ],
+     "falseSuccess": 3,
+     "costPerAccepted": 0.029,
+     "costPerAcceptedCI": [
+      0.0147,
+      0.0455
+     ],
+     "meanCost": 0.0275,
+     "meanCalls": 4.82,
+     "medianCriticalPathS": 62.7,
+     "budgetHits": 0,
+     "hiddenFrac": 1
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ORCH"
+   ],
+   "allocatorOnFrontier": false,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.525,
+     "costRatioCI": [
+      0.232,
+      1.389
+     ],
+     "deltaAcceptance": 0.117,
+     "deltaAcceptanceCI": [
+      -0.017,
+      0.3
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 0.998,
+     "costRatioCI": [
+      0.429,
+      2.359
+     ],
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      -0.05,
+      0.05
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 0.861,
+     "costRatioCI": [
+      0.368,
+      2.131
+     ],
+     "deltaAcceptance": -0.05,
+     "deltaAcceptanceCI": [
+      -0.133,
+      0
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.193,
+     "costRatioCI": [
+      0.102,
+      0.358
+     ],
+     "deltaAcceptance": 0.1,
+     "deltaAcceptanceCI": [
+      -0.067,
+      0.283
+     ],
+     "outcome": "WINS"
+    }
+   }
+  },
+  "ALL micro bundles": {
+   "tasks": 24,
+   "arms": {
+    "SOLO": {
+     "runs": 96,
+     "accepted": 65,
+     "acceptance": 0.677,
+     "acceptanceCI": [
+      0.578,
+      0.762
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.0016,
+     "costPerAcceptedCI": [
+      0.0009,
+      0.0027
+     ],
+     "meanCost": 0.0011,
+     "meanCalls": 1.74,
+     "medianCriticalPathS": 4.8,
+     "budgetHits": 0,
+     "hiddenFrac": 0.95
+    },
+    "ALWAYS-SPLIT": {
+     "runs": 96,
+     "accepted": 70,
+     "acceptance": 0.729,
+     "acceptanceCI": [
+      0.633,
+      0.808
+     ],
+     "falseSuccess": 1,
+     "costPerAccepted": 0.001,
+     "costPerAcceptedCI": [
+      0.0007,
+      0.0016
+     ],
+     "meanCost": 0.0007,
+     "meanCalls": 8.27,
+     "medianCriticalPathS": 2.7,
+     "budgetHits": 0,
+     "hiddenFrac": 0.951
+    },
+    "ORCH": {
+     "runs": 96,
+     "accepted": 78,
+     "acceptance": 0.813,
+     "acceptanceCI": [
+      0.723,
+      0.878
+     ],
+     "falseSuccess": 11,
+     "costPerAccepted": 0.0009,
+     "costPerAcceptedCI": [
+      0.0006,
+      0.0013
+     ],
+     "meanCost": 0.0007,
+     "meanCalls": 3.65,
+     "medianCriticalPathS": 4.1,
+     "budgetHits": 0,
+     "hiddenFrac": 0.969
+    },
+    "TODAY": {
+     "runs": 96,
+     "accepted": 49,
+     "acceptance": 0.51,
+     "acceptanceCI": [
+      0.412,
+      0.608
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0187,
+     "costPerAcceptedCI": [
+      0.0108,
+      0.0324
+     ],
+     "meanCost": 0.0096,
+     "meanCalls": 17.33,
+     "medianCriticalPathS": 19.3,
+     "budgetHits": 0,
+     "hiddenFrac": 0.893
+    },
+    "ALLOCATOR": {
+     "runs": 96,
+     "accepted": 66,
+     "acceptance": 0.688,
+     "acceptanceCI": [
+      0.589,
+      0.771
+     ],
+     "falseSuccess": 5,
+     "costPerAccepted": 0.0011,
+     "costPerAcceptedCI": [
+      0.0007,
+      0.0017
+     ],
+     "meanCost": 0.0007,
+     "meanCalls": 8.25,
+     "medianCriticalPathS": 2.8,
+     "budgetHits": 0,
+     "hiddenFrac": 0.945
+    }
+   },
+   "frontier": [
+    "ALWAYS-SPLIT",
+    "ORCH"
+   ],
+   "allocatorOnFrontier": false,
+   "allocatorVs": {
+    "SOLO": {
+     "costRatio": 0.687,
+     "costRatioCI": [
+      0.305,
+      1.496
+     ],
+     "deltaAcceptance": 0.01,
+     "deltaAcceptanceCI": [
+      -0.26,
+      0.292
+     ],
+     "outcome": "TIE"
+    },
+    "ALWAYS-SPLIT": {
+     "costRatio": 1.053,
+     "costRatioCI": [
+      0.566,
+      1.982
+     ],
+     "deltaAcceptance": -0.042,
+     "deltaAcceptanceCI": [
+      -0.302,
+      0.229
+     ],
+     "outcome": "TIE"
+    },
+    "ORCH": {
+     "costRatio": 1.223,
+     "costRatioCI": [
+      0.749,
+      2.023
+     ],
+     "deltaAcceptance": -0.125,
+     "deltaAcceptanceCI": [
+      -0.313,
+      0.063
+     ],
+     "outcome": "TIE"
+    },
+    "TODAY": {
+     "costRatio": 0.057,
+     "costRatioCI": [
+      0.029,
+      0.11
+     ],
+     "deltaAcceptance": 0.177,
+     "deltaAcceptanceCI": [
+      -0.052,
+      0.406
+     ],
+     "outcome": "WINS"
+    }
+   }
+  }
+ },
+ "decisions": {
+  "1": {
+   "runs": 24,
+   "team": 0,
+   "solo": 24,
+   "repairs": 0,
+   "stopResolved": 24,
+   "budgetStops": 0,
+   "gateRejected": 0,
+   "baselineChecks": 24
+  },
+  "3": {
+   "runs": 56,
+   "team": 56,
+   "solo": 0,
+   "repairs": 21,
+   "stopResolved": 46,
+   "budgetStops": 0,
+   "gateRejected": 10,
+   "baselineChecks": 16
+  },
+  "8": {
+   "runs": 44,
+   "team": 44,
+   "solo": 0,
+   "repairs": 18,
+   "stopResolved": 36,
+   "budgetStops": 0,
+   "gateRejected": 8,
+   "baselineChecks": 12
+  },
+  "15": {
+   "runs": 32,
+   "team": 32,
+   "solo": 0,
+   "repairs": 18,
+   "stopResolved": 25,
+   "budgetStops": 0,
+   "gateRejected": 7,
+   "baselineChecks": 8
+  }
+ }
+}

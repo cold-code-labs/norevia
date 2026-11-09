@@ -1,0 +1,72 @@
+[
+ {
+  "x": "S-CENTRAL",
+  "coverage_rate": 0.3828,
+  "accepted_per_usd": 5526.2,
+  "false_success_rate": 0.1975,
+  "duplicates_rate": 0
+ },
+ {
+  "x": "S-BOARD",
+  "coverage_rate": 0.3153,
+  "accepted_per_usd": 4518.6,
+  "false_success_rate": 0.204,
+  "duplicates_rate": 0.178
+ },
+ {
+  "x": "S-GREEDY",
+  "coverage_rate": 0.1323,
+  "accepted_per_usd": 2089,
+  "false_success_rate": 0.2647,
+  "duplicates_rate": 0.648
+ },
+ {
+  "x": "S-PROP",
+  "coverage_rate": 0.2831,
+  "accepted_per_usd": 4183.1,
+  "false_success_rate": 0.2253,
+  "duplicates_rate": 0.262
+ },
+ {
+  "x": "S-ESC1",
+  "coverage_rate": 0.2627,
+  "accepted_per_usd": 3753.8,
+  "false_success_rate": 0.2161,
+  "duplicates_rate": 0.304
+ },
+ {
+  "x": "S-ESC2",
+  "coverage_rate": 0.3095,
+  "accepted_per_usd": 4486.7,
+  "false_success_rate": 0.2095,
+  "duplicates_rate": 0.189
+ },
+ {
+  "x": "S-QSA",
+  "coverage_rate": 0.2706,
+  "accepted_per_usd": 3880.3,
+  "false_success_rate": 0.2057,
+  "duplicates_rate": 0.304
+ },
+ {
+  "x": "S-FIXED3",
+  "coverage_rate": 0.1434,
+  "accepted_per_usd": 2079.1,
+  "false_success_rate": 0.5483,
+  "duplicates_rate": 0.667
+ },
+ {
+  "x": "S-SEQMAJ",
+  "coverage_rate": 0.1632,
+  "accepted_per_usd": 2310.5,
+  "false_success_rate": 0.4571,
+  "duplicates_rate": 0.588
+ },
+ {
+  "x": "S-SEQCORR",
+  "coverage_rate": 0.0757,
+  "accepted_per_usd": 1083.7,
+  "false_success_rate": 0.5233,
+  "duplicates_rate": 0.667
+ }
+]

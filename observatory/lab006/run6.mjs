@@ -1,0 +1,21 @@
+// LAB-006 evaluation. node lab006/run6.mjs --reps 3 [--phase main] [--only repo|micro|k1,k3|...] [--arms A,B]
+import fs from 'node:fs'; import path from 'node:path';
+import { compose, loadTask3 } from '../lab003/build3.mjs'; import { plan } from '../lab003/plan.mjs'; import { buildTasks } from '../lab004/tasks.mjs';
+import { repoAdapter, microAdapter } from './adapters.mjs'; import { ARMS } from './arms.mjs'; import { OUT, spentCounted, CAP, CapError } from './api.mjs';
+const argv = process.argv.slice(2); const opt = (k, d) => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i + 1] : d; };
+const reps = Number(opt('reps', 1)), phase = opt('phase', 'main'), only = opt('only', 'all'), stopAt = Number(opt('stop-at', 28.5)), jobsN = Number(opt('jobs', 10)); const armNames = opt('arms', 'all') === 'all' ? Object.keys(ARMS) : opt('arms').split(',');
+const file = path.join(OUT, `runs-${phase}.jsonl`); const done = new Set(fs.existsSync(file) ? fs.readFileSync(file, 'utf8').split('\n').filter(Boolean).map((l) => { const r = JSON.parse(l); return `${r.task}|${r.arm}|${r.rep}`; }) : []);
+// ---- task set (fixed by seeds; PREREG.md)
+const repoTasks = plan(77, [[1, 6], [3, 4], [8, 3], [15, 2]]); for (const t of repoTasks) compose(t.id, t.pkgs, 0.6);
+const pool = buildTasks(); const rows = fs.readFileSync('/data/OpenBot/Shared/Norevia/norevia/results/lab004/runs-pool.jsonl', 'utf8').split('\n').filter(Boolean).map(JSON.parse); const hid = {}; for (const r of rows) if (r.mode === 'fresh') (hid[r.ti] ||= []).push(+r.hid); const solvable = Object.entries(hid).filter(([, v]) => v.length >= 3 && v.reduce((a, b) => a + b, 0) >= 2).map(([i]) => Number(i));
+let s = 4242; const rng = () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296; const sh = [...solvable].sort(() => rng() - 0.5); let off = 0; const bundles = []; for (const [m, n] of [[3, 10], [8, 8], [15, 6]]) for (let i = 0; i < n; i++) { bundles.push({ id: `mb${m}-${i + 1}`, m, tasks: sh.slice(off, off + m).map((ix) => pool[ix]) }); off += m; }
+const all = [...repoTasks.map((t) => ({ id: t.id, group: `repo-k${t.k}`, make: () => repoAdapter(loadTask3(t.id)) })), ...bundles.map((b) => ({ id: b.id, group: `micro-m${b.m}`, make: () => microAdapter(b.id, b.tasks) }))].filter((t) => only === 'all' || only.split(',').some((o) => t.group.includes(o) || t.id === o));
+console.log(`${phase}: ${all.length} tasks × ${armNames.length} arms × ${reps} reps; solvable micro pool ${solvable.length}; counted $${spentCounted().toFixed(3)} of $${CAP}`);
+for (let rep = 1; rep <= reps; rep++) { const jobs = []; for (const t of all) for (const a of armNames) if (!done.has(`${t.id}|${a}|${rep}`)) jobs.push({ t, a }); jobs.sort(() => rng() - 0.5); const t0 = Date.now();
+  await Promise.all(Array.from({ length: jobsN }, async () => { while (jobs.length) { if (spentCounted() > stopAt) { jobs.length = 0; return; } const { t, a } = jobs.shift(); const ad = t.make(); const w0 = Date.now(); let r;
+    try { r = await ARMS[a](ad); } catch (e) { console.log('STOP', t.id, a, String(e.message).slice(0, 90)); if (e instanceof CapError) { jobs.length = 0; return; } continue; }
+    const h = await ad.hidden(r.cands); const rec = { phase, task: t.id, group: t.group, kind: ad.kind, k: ad.k, arm: a, rep, mode: r.mode, claimedOK: r.gate, accepted: h.accepted, falseSuccess: r.gate && !h.accepted, hiddenFrac: +h.frac.toFixed(3), cost: +r.usd.toFixed(5), calls: r.calls, inTok: r.inTok, outTok: r.outTok, criticalPathS: +(r.criticalPathMs / 1000).toFixed(1), wallS: +((Date.now() - w0) / 1000).toFixed(1), budgetHit: r.budgetHit, failedCalls: r.failedCalls };
+    fs.appendFileSync(file, JSON.stringify(rec) + '\n'); if (a === 'ALLOCATOR') fs.appendFileSync(path.join(OUT, `decisions-${phase}.jsonl`), JSON.stringify({ task: t.id, rep, events: r.events }) + '\n');
+    console.log(`r${rep} ${t.id.padEnd(10)} ${a.padEnd(12)} ${rec.accepted ? 'ACC' : rec.falseSuccess ? 'FS ' : 'fail'} frac ${rec.hiddenFrac} $${rec.cost} calls ${rec.calls} cp ${rec.criticalPathS}s mode ${rec.mode} | counted $${spentCounted().toFixed(3)}`); } }));
+  console.log(`-- rep ${rep} done in ${((Date.now() - t0) / 1000).toFixed(0)}s; counted $${spentCounted().toFixed(3)}`); }
+console.log('end');

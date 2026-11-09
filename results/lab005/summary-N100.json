@@ -1,0 +1,370 @@
+{
+ "N": 100,
+ "arms": {
+  "S-CENTRAL": {
+   "seeds": 6,
+   "coverage": 0.3828,
+   "coverageSd": 0.0074,
+   "fsRate": 0.1975,
+   "calls": 600,
+   "costTable": 0.0436,
+   "acceptedPerUsd": 5526.2,
+   "dupPerCall": 0,
+   "meanWaitRounds": 2.304,
+   "backlogArea": 2985,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0
+  },
+  "S-BOARD": {
+   "seeds": 6,
+   "coverage": 0.3153,
+   "coverageSd": 0.0091,
+   "fsRate": 0.204,
+   "calls": 600,
+   "costTable": 0.044,
+   "acceptedPerUsd": 4518.6,
+   "dupPerCall": 0.178,
+   "meanWaitRounds": 2.172,
+   "backlogArea": 3074,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.382
+  },
+  "S-GREEDY": {
+   "seeds": 6,
+   "coverage": 0.1323,
+   "coverageSd": 0.0083,
+   "fsRate": 0.2647,
+   "calls": 600,
+   "costTable": 0.04,
+   "acceptedPerUsd": 2089,
+   "dupPerCall": 0.648,
+   "meanWaitRounds": 1.655,
+   "backlogArea": 3408,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.598
+  },
+  "S-PROP": {
+   "seeds": 6,
+   "coverage": 0.2831,
+   "coverageSd": 0.0114,
+   "fsRate": 0.2253,
+   "calls": 600,
+   "costTable": 0.0426,
+   "acceptedPerUsd": 4183.1,
+   "dupPerCall": 0.262,
+   "meanWaitRounds": 2.205,
+   "backlogArea": 3148,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.527
+  },
+  "S-ESC1": {
+   "seeds": 6,
+   "coverage": 0.2627,
+   "coverageSd": 0.0089,
+   "fsRate": 0.2161,
+   "calls": 600,
+   "costTable": 0.0441,
+   "acceptedPerUsd": 3753.8,
+   "dupPerCall": 0.304,
+   "meanWaitRounds": 1.892,
+   "backlogArea": 3126,
+   "activeAgentRounds": 600,
+   "teamCalls": 183,
+   "errCorr": 0.38
+  },
+  "S-ESC2": {
+   "seeds": 6,
+   "coverage": 0.3095,
+   "coverageSd": 0.0105,
+   "fsRate": 0.2095,
+   "calls": 600,
+   "costTable": 0.0435,
+   "acceptedPerUsd": 4486.7,
+   "dupPerCall": 0.189,
+   "meanWaitRounds": 2.046,
+   "backlogArea": 3058,
+   "activeAgentRounds": 600,
+   "teamCalls": 25,
+   "errCorr": 0.418
+  },
+  "S-QSA": {
+   "seeds": 6,
+   "coverage": 0.2706,
+   "coverageSd": 0.0065,
+   "fsRate": 0.2057,
+   "calls": 600,
+   "costTable": 0.0439,
+   "acceptedPerUsd": 3880.3,
+   "dupPerCall": 0.304,
+   "meanWaitRounds": 1.95,
+   "backlogArea": 3123,
+   "activeAgentRounds": 600,
+   "teamCalls": 189,
+   "errCorr": 0.418
+  },
+  "S-FIXED3": {
+   "seeds": 6,
+   "coverage": 0.1434,
+   "coverageSd": 0.0223,
+   "fsRate": 0.5483,
+   "calls": 600,
+   "costTable": 0.0434,
+   "acceptedPerUsd": 2079.1,
+   "dupPerCall": 0.667,
+   "meanWaitRounds": 3.528,
+   "backlogArea": 3480,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.417
+  },
+  "S-SEQMAJ": {
+   "seeds": 6,
+   "coverage": 0.1632,
+   "coverageSd": 0.0304,
+   "fsRate": 0.4571,
+   "calls": 600,
+   "costTable": 0.0444,
+   "acceptedPerUsd": 2310.5,
+   "dupPerCall": 0.588,
+   "meanWaitRounds": 2.693,
+   "backlogArea": 3381,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.224
+  },
+  "S-SEQCORR": {
+   "seeds": 6,
+   "coverage": 0.0757,
+   "coverageSd": 0.0105,
+   "fsRate": 0.5233,
+   "calls": 600,
+   "costTable": 0.0439,
+   "acceptedPerUsd": 1083.7,
+   "dupPerCall": 0.667,
+   "meanWaitRounds": 3.066,
+   "backlogArea": 3589,
+   "activeAgentRounds": 600,
+   "teamCalls": 0,
+   "errCorr": 0.381
+  }
+ },
+ "flags": {
+  "proportional_allocation": {
+   "arm": "S-PROP",
+   "class": "null",
+   "vsBase": {
+    "vs": "S-BOARD",
+    "deltaCoverage": -0.032,
+    "deltaCI": [
+     -0.046,
+     -0.019
+    ],
+    "ratioAcceptedPerUsd": 0.925,
+    "ratioCI": [
+     0.879,
+     0.973
+    ],
+    "verdict": "INCONCLUSIVE",
+    "note": ""
+   },
+   "vsControls": [
+    {
+     "vs": "S-GREEDY",
+     "deltaCoverage": 0.151,
+     "deltaCI": [
+      0.131,
+      0.171
+     ],
+     "ratioAcceptedPerUsd": 2.007,
+     "ratioCI": [
+      1.717,
+      2.317
+     ],
+     "verdict": "BETTER",
+     "note": ""
+    },
+    {
+     "vs": "S-BOARD",
+     "deltaCoverage": -0.032,
+     "deltaCI": [
+      -0.046,
+      -0.019
+     ],
+     "ratioAcceptedPerUsd": 0.925,
+     "ratioCI": [
+      0.879,
+      0.975
+     ],
+     "verdict": "INCONCLUSIVE",
+     "note": ""
+    }
+   ],
+   "vsReference": {
+    "vs": "S-CENTRAL",
+    "deltaCoverage": -0.1,
+    "deltaCI": [
+     -0.113,
+     -0.085
+    ],
+    "ratioAcceptedPerUsd": 0.757,
+    "ratioCI": [
+     0.723,
+     0.793
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "fsRate": 0.2253,
+   "controlsFsRate": {
+    "S-GREEDY": 0.2647,
+    "S-BOARD": 0.204
+   }
+  },
+  "quorum_sensing_activation": {
+   "arm": "S-QSA",
+   "class": "null",
+   "vsBase": {
+    "vs": "S-BOARD",
+    "deltaCoverage": -0.045,
+    "deltaCI": [
+     -0.059,
+     -0.031
+    ],
+    "ratioAcceptedPerUsd": 0.859,
+    "ratioCI": [
+     0.814,
+     0.903
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "vsControls": [
+    {
+     "vs": "S-ESC1",
+     "deltaCoverage": 0.008,
+     "deltaCI": [
+      -0.006,
+      0.022
+     ],
+     "ratioAcceptedPerUsd": 1.034,
+     "ratioCI": [
+      0.97,
+      1.1
+     ],
+     "verdict": "INCONCLUSIVE",
+     "note": ""
+    },
+    {
+     "vs": "S-ESC2",
+     "deltaCoverage": -0.039,
+     "deltaCI": [
+      -0.053,
+      -0.025
+     ],
+     "ratioAcceptedPerUsd": 0.865,
+     "ratioCI": [
+      0.818,
+      0.916
+     ],
+     "verdict": "INCONCLUSIVE",
+     "note": ""
+    }
+   ],
+   "vsReference": {
+    "vs": "S-CENTRAL",
+    "deltaCoverage": -0.112,
+    "deltaCI": [
+     -0.128,
+     -0.097
+    ],
+    "ratioAcceptedPerUsd": 0.702,
+    "ratioCI": [
+     0.668,
+     0.738
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "fsRate": 0.2057,
+   "controlsFsRate": {
+    "S-ESC1": 0.2161,
+    "S-ESC2": 0.2095
+   }
+  },
+  "correlation_stop": {
+   "arm": "S-SEQCORR",
+   "class": "null",
+   "vsBase": {
+    "vs": "S-FIXED3",
+    "deltaCoverage": -0.068,
+    "deltaCI": [
+     -0.081,
+     -0.054
+    ],
+    "ratioAcceptedPerUsd": 0.523,
+    "ratioCI": [
+     0.472,
+     0.577
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "vsControls": [
+    {
+     "vs": "S-FIXED3",
+     "deltaCoverage": -0.068,
+     "deltaCI": [
+      -0.081,
+      -0.054
+     ],
+     "ratioAcceptedPerUsd": 0.523,
+     "ratioCI": [
+      0.473,
+      0.576
+     ],
+     "verdict": "WORSE",
+     "note": ""
+    },
+    {
+     "vs": "S-SEQMAJ",
+     "deltaCoverage": -0.088,
+     "deltaCI": [
+      -0.102,
+      -0.073
+     ],
+     "ratioAcceptedPerUsd": 0.469,
+     "ratioCI": [
+      0.423,
+      0.519
+     ],
+     "verdict": "WORSE",
+     "note": ""
+    }
+   ],
+   "vsReference": {
+    "vs": "S-CENTRAL",
+    "deltaCoverage": -0.307,
+    "deltaCI": [
+     -0.337,
+     -0.278
+    ],
+    "ratioAcceptedPerUsd": 0.197,
+    "ratioCI": [
+     0.179,
+     0.215
+    ],
+    "verdict": "WORSE",
+    "note": ""
+   },
+   "fsRate": 0.5233,
+   "controlsFsRate": {
+    "S-FIXED3": 0.5483,
+    "S-SEQMAJ": 0.4571
+   }
+  }
+ }
+}

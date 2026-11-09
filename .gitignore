@@ -10,3 +10,5 @@ observatory/lab003/tasks/
 results/lab00*/raw/
 results/lab001/void/
 results/lab004/ledger.jsonl
+results/lab005/ledger.jsonl
+results/lab006/ledger.jsonl

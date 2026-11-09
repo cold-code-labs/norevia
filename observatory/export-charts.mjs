@@ -28,3 +28,12 @@ const r3 = (x, d = 4) => (x == null || !Number.isFinite(x) ? null : +x.toFixed(d
   const e = J('lab004/sim-extrapolation.json'); for (const [scn, tag] of [['fixedPool630', 'fixed-pool'], ['constantDensity', 'constant-density']]) { const sim = (arms) => arms.flatMap((arm) => e.scenarios[scn][arm].map((r) => ({ n_agents: r.N, policy: arm, coverage_rate: r.coverage, false_success_rate: r.fsRate, accepted_per_usd: r.acceptedPerUsd, conflicts_rate: r.conflictsPerCall }))); put(`lab004-sim-${tag}-baselines.json`, sim(G1)); put(`lab004-sim-${tag}-flags.json`, sim(G2)); }
   const v = J('lab004/sim-validation.json'); put('lab004-sim-validation-heldout.json', Object.entries(v.arms).flatMap(([arm, a]) => a.points.map((p) => ({ x: arm, condition: `N=${p.N}`, coverage_error_pct: r3(p.errCov * 100, 1) }))));
   const ref = s.verdictsCovRef['1000'] || {}; put('lab004-flag-verdicts-n1000.json', Object.entries(ref).map(([flag, x]) => ({ x: flag, accepted_per_usd_ratio: x.ratioAcceptedPerUsd, false_success_rate: x.fsRate, delta_coverage_rate: x.deltaCoverage }))); }
+
+// ---- LAB-005
+{ const arms = (N) => { const s = J(`lab005/summary-N${N}.json`); return Object.entries(s.arms); };
+  put('lab005-n100-static-by-arm.json', arms(100).map(([a, v]) => ({ x: a, coverage_rate: v.coverage, accepted_per_usd: v.acceptedPerUsd, false_success_rate: v.fsRate, duplicates_rate: v.dupPerCall })));
+  put('lab005-n300-static-by-arm.json', arms(300).filter(([a]) => a.startsWith('S-')).map(([a, v]) => ({ x: a, coverage_rate: v.coverage, accepted_per_usd: v.acceptedPerUsd, false_success_rate: v.fsRate, duplicates_rate: v.dupPerCall })));
+  put('lab005-n300-dynamic-cost-vs-wait.json', arms(300).filter(([a]) => a.startsWith('D-')).map(([a, v]) => ({ x: a, accepted_per_usd: v.acceptedPerUsd, mean_wait_rounds: v.meanWaitRounds, coverage_rate: v.coverage, calls: v.calls }))); }
+// ---- LAB-006
+{ const s = J('lab006/summary.json'); const rows = []; for (const [g, v] of Object.entries(s.groups)) for (const [arm, a] of Object.entries(v.arms)) rows.push({ x: g, policy: arm, acceptance_rate: a.acceptance, cost_per_accepted_usd: a.costPerAccepted, median_critical_path_s: a.medianCriticalPathS, false_success: a.falseSuccess });
+  const by = (names) => rows.filter((r) => names.includes(r.x)); put('lab006-repo-by-size.json', by(['repo k=1', 'repo k=3', 'repo k=8', 'repo k=15'])); put('lab006-micro-by-size.json', by(['micro m=3', 'micro m=8', 'micro m=15'])); put('lab006-pooled.json', by(['ALL repo tasks', 'ALL micro bundles'])); }
