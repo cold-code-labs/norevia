@@ -2,6 +2,7 @@
 // (src/home.css, src/js/home.js); the research archive pages keep the shared layout.
 // Positioning: Social Immunity for Agentic Systems. Copy is research positioning,
 // never a claim of results: the archive (/explore/, /method/) carries the evidence levels.
+import { pageLenses } from './lenses.mjs';
 import { natureArt } from './nature-art.mjs';
 import { esc } from './text.mjs';
 import { ARR, topBar, footer } from './chrome.mjs';
@@ -43,7 +44,7 @@ ${assets.preload || ''}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-${topBar({ nav: [['#nature', 'Learn from nature'], ['#containment', 'Try the translation'], ['#unfold', 'Research path'], ['/journal/', 'Journal'], ['/explore/', 'Research'], ['/contact/', 'Contact']] })}
+${topBar({ nav: [['#lenses', 'Three lenses'], ['#containment', 'Try the translation'], ['#unfold', 'Research path'], ['/journal/', 'Journal'], ['/explore/', 'Research'], ['/contact/', 'Contact']] })}
 
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="hero-title">
@@ -53,7 +54,7 @@ ${topBar({ nav: [['#nature', 'Learn from nature'], ['#containment', 'Try the tra
 <p class="pill hero-pill u" style="--d:200ms"><span class="pulse" aria-hidden="true"></span>Nature inspires · <b>Evidence decides</b></p>
 <h1 id="hero-title" data-words data-em="Immunity">Social Immunity for Agentic Systems</h1>
 <p class="lede u" style="--d:550ms">How do living colonies defend the collective? We study social-insect colonies to ask how agent systems could recognise threats, contain compromised information and recover together.</p>
-<p class="ctas u" style="--d:750ms"><a class="btn" href="#nature">Start with nature ${ARR}</a><a class="btn ghost" href="#containment">Explore the agent hypothesis <span class="arr down" aria-hidden="true">↓</span></a></p>
+<p class="ctas u" style="--d:750ms"><a class="btn" href="#lenses">Start with nature ${ARR}</a><a class="btn ghost" href="#containment">Explore the agent hypothesis <span class="arr down" aria-hidden="true">↓</span></a></p>
 </div>
 </div>
 <div class="wrap hero-foot" aria-hidden="true"><span class="scrollcue"><i></i>Scroll</span><span class="made">Illustrated ant colony · not a reconstruction of experimental data</span></div>
@@ -66,8 +67,10 @@ ${topBar({ nav: [['#nature', 'Learn from nature'], ['#containment', 'Try the tra
 </div>
 </section>
 
+${pageLenses()}
+
 <section class="sec bio-origins" id="nature" aria-labelledby="nature-title">
-<div class="wrap"><div class="bio-heading"><div><p class="kicker">01 / Observe nature</p><h2 id="nature-title" data-words data-em="colony.">Begin with a living colony.</h2></div><p class="lead">Ants and bees are the scientific starting point. Each mechanism below connects an observation in a named species to a software hypothesis and a test that could reject it.</p></div>
+<div class="wrap"><div class="bio-heading"><div><p class="kicker">01 / Seen — the central thesis</p><h2 id="nature-title" data-words data-em="colony.">Begin with a living colony.</h2></div><p class="lead">Ants and bees are the scientific starting point. Each mechanism below connects an observation in a named species to a software hypothesis and a test that could reject it.</p></div>
 <div class="bio-grid">
 <article class="bio-card"><div class="bio-art">${natureArt('colony')}</div><p class="kicker">Ants / Contact-network plasticity</p><h3>Change the contacts.<br>Limit the spread.</h3><p><span class="bio-label">Natural observation</span>In <em>Lasius niger</em>, pathogen exposure changed behaviour in exposed ants and nestmates, reinforcing transmission-inhibitory properties of their contact network.</p><details><summary>Follow the translation to agents ${ARR}</summary><div class="bio-fold"><p><span class="bio-label">Engineering hypothesis</span>Change who reads a suspect source and where its descendants can travel. Keep unrelated communication available.</p><p><span class="bio-label">Test that could reject it</span>If static segmentation and provenance gating achieve equal or better containment at matched utility and cost, adaptive rewiring adds no demonstrated value.</p><a href="/c/h-d01/">H-D01 / Defensive plasticity →</a></div></details><a class="bio-source" href="https://doi.org/10.1126/science.aat4793" rel="noopener noreferrer">Stroeymeyt et al. / Science, 2018 ↗</a></article>
 <article class="bio-card"><div class="bio-art">${natureArt('bees')}</div><p class="kicker">Bees / Inhibitory signals</p><h3>A signal can recruit.<br>It can also inhibit.</h3><p><span class="bio-label">Natural observation</span>In <em>Apis cerana</em>, stop signals vary with threat severity and attack context. They inhibit waggle dancing and can inhibit departures from the nest.</p><details><summary>Follow the translation to agents ${ARR}</summary><div class="bio-fold"><p><span class="bio-label">Engineering hypothesis</span>A local alarm recruits review. A specific inhibitory signal pauses the implicated tool or source, preserving unrelated work.</p><p><span class="bio-label">Test that could reject it</span>If a conventional per-tool deny rule using the same evidence matches the result, the biological signalling mechanism has not earned its complexity.</p><a href="/c/h-d04/">H-D04 / Alarm versus inhibition →</a></div></details><a class="bio-source" href="https://doi.org/10.1371/journal.pbio.1002423" rel="noopener noreferrer">Tan et al. / PLoS Biology, 2016 ↗</a></article>
@@ -105,7 +108,7 @@ ${STAGES.map(([h, p, bio], i) => `<li class="stage${i === 0 ? ' on' : ''}"><span
 <div class="wrap">
 <p class="kicker">04 / Test against strong engineering</p>
 <h2 id="pr-title" data-words data-em="not|agreement.">Trust evidence, not agreement.</h2>
-<p class="lead u">A biological analogy is not evidence of security. Every proposed mechanism faces provenance-aware, least-privilege and quarantine baselines at matched cost.</p>
+<p class="lead u">A natural analogy is not evidence of security. Every proposed mechanism faces provenance-aware, least-privilege and quarantine baselines at matched cost.</p>
 <ol class="p-grid">
 ${PRINCIPLES.map(([h, p, g], i) => `<li class="u" style="--d:${i * 110}ms">${glyph(g)}<h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('\n')}
 </ol>

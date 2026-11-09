@@ -27,3 +27,7 @@ Run `node site/build.mjs`. The generator checks card IDs, relations, evidence an
 ## Nature-first presentation
 
 The landing page begins with a schematic ant colony and three source-linked biological mechanisms: contact-network plasticity (Stroeymeyt 2018), honeybee stop signals (Tan 2016, with its figure-quality correction), and destructive brood disinfection (Pull 2018). Each pairs the named-species observation with an expandable engineering hypothesis and refutation test. The agent-network sketch follows these observations. Drawings are illustrations, not biological simulations, and recovery remains an engineering question. Blockchain is not introduced as a core mechanism.
+
+## Three lenses
+
+The LP presents Unseen (microscopic biological recognition), Seen (social-insect immunity, the central thesis), and Beyond (physical shielding). Magnetosphere, atmosphere and heliosphere are protective physical phenomena, not adaptive immune agents. Constellations are sky regions, not defensive collectives. Each lens separates observation, engineering hypothesis and rejection criterion; none establishes agent-system efficacy. Overview sources are linked alongside primary biological studies. The drawings are schematic and not to scale.

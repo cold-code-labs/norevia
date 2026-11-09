@@ -398,3 +398,48 @@ a.sp-tag:hover { text-decoration: underline; }
  .stage-ecology .nature-plate { max-height:330px; }
 }
 @media(prefers-reduced-motion:reduce) { .nature-plate .ant-motion,.nature-plate .signal-wave { animation:none; } }
+
+/* Three research lenses; biological defence and physical shielding stay distinct. */
+.research-lenses { background:#f4f3ee; }
+.research-lenses .bio-heading h2 { max-width:14ch; }
+.lens-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.3rem; align-items:start; }
+.lens-card { min-width:0; border:1px solid #d6ddca; border-radius:22px; padding:1.5rem; background:#faf9f4; }
+.lens-picture { margin:-.5rem -.5rem 1.5rem; }
+.lens-picture svg { width:100%; display:block; height:auto; }
+.lens-card .kicker { font-size:.63rem; letter-spacing:.08em; margin-bottom:.8rem; }
+.lens-card h3 { font-size:clamp(1.5rem,2vw,2rem); line-height:1.15; }
+.lens-card p { font-size:.95rem; line-height:1.65; color:var(--ink2); }
+.lens-kind { display:block; margin:1.1rem 0; font:500 .66rem/1.6 var(--mono); color:var(--accent); }
+.lens-card details { border-top:1px solid var(--line); padding-top:1rem; margin-top:1.4rem; }
+.lens-card summary { cursor:pointer; font-size:.85rem; font-weight:600; line-height:1.5; }
+.lens-card summary:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+.lens-source { display:block; font-size:.75rem; line-height:1.7; margin-top:1.5rem; color:var(--ink2); }
+.lens-source a { display:block; }
+.lens-note { max-width:95ch; margin:2rem 0 0; font-size:.82rem; line-height:1.7; color:var(--muted); }
+.lens-seen { background:#edf1e5; border-color:#a9b99b; }
+.lens-beyond { background:#152324; border-color:#334747; color:#f4f3ee; }
+.lens-beyond p,.lens-beyond .lens-source,.lens-beyond .kicker { color:#c1d0c9; }
+.lens-beyond .lens-kind { color:#a9cfbd; }
+.lens-beyond details { border-color:#3b5050; }
+.lens-beyond a { color:#c5dbc9; }
+.lens-art text { font:9px monospace; letter-spacing:1px; fill:#667c6b; }
+.cell-membrane { fill:#e1e9d9; stroke:#78936f; stroke-width:2; }
+.cell-inner { fill:none; stroke:#a5b99a; stroke-width:1; }
+.cell-nucleus { fill:#a8bfa4; stroke:#688562; stroke-width:1.5; }
+.cell-nucleus-line { fill:none; stroke:#688562; }
+.receptor { stroke:#688562; stroke-width:4; stroke-linecap:round; }
+.microbe { fill:#d9ab79; stroke:#9b653d; stroke-width:2; }
+.cell-signal { fill:none; stroke:#9b653d; stroke-width:1.5; stroke-dasharray:3 5; animation:lens-flow 8s linear infinite; }
+.signal-dot { fill:#9b653d; }
+.cosmic-star { fill:#aec7bd; opacity:.55; }
+.celestial text { fill:#b1c6bd; }
+.solar-particles { fill:none; stroke:#d1a776; stroke-width:1.4; stroke-dasharray:5 6; animation:lens-flow 8s linear infinite; }
+.magnetic-boundary { fill:#91bea9; fill-opacity:.06; stroke:#91bea9; stroke-width:1.5; }
+.field-line { fill:none; stroke:#8cb3a1; stroke-width:1; opacity:.7; }
+.atmosphere { fill:#8fbea9; fill-opacity:.15; stroke:#8fbea9; stroke-width:1; }
+.planet { fill:#678f87; stroke:#bed3c9; stroke-width:1; }
+.land { fill:#aec09a; }
+.penetrating-particle { fill:none; stroke:#d1a776; opacity:.6; stroke-dasharray:2 5; }
+@keyframes lens-flow { to { stroke-dashoffset:-44; } }
+@media(max-width:860px) { .lens-grid { grid-template-columns:1fr; } .lens-picture { max-width:440px; margin:0 auto 1rem; } }
+@media(prefers-reduced-motion:reduce) { .cell-signal,.solar-particles { animation:none; } }
