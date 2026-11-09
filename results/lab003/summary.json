@@ -1,0 +1,472 @@
+{
+ "Q1": {
+  "reps": [
+   1,
+   2,
+   3
+  ],
+  "units": 6,
+  "byK": {
+   "1": {
+    "tasks": 6,
+    "SOLO": {
+     "runs": 18,
+     "accepted": 18,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.824,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0065,
+     "meanCost": 0.0065,
+     "pkgAcceptance": 1,
+     "costPerAcceptedPkg": 0.00646,
+     "finalFrac": 1,
+     "calls": 1.1,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "TEAM": {
+     "runs": 18,
+     "accepted": 18,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.824,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0055,
+     "meanCost": 0.0055,
+     "pkgAcceptance": 1,
+     "costPerAcceptedPkg": 0.00548,
+     "finalFrac": 1,
+     "calls": 1,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "rho": 0.848,
+    "rhoCI": [
+     0.753,
+     0.984
+    ],
+    "rhoPkg": 0.848,
+    "teamPays": true
+   },
+   "3": {
+    "tasks": 4,
+    "SOLO": {
+     "runs": 12,
+     "accepted": 12,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.757,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0221,
+     "meanCost": 0.0221,
+     "pkgAcceptance": 1,
+     "costPerAcceptedPkg": 0.00735,
+     "finalFrac": 1,
+     "calls": 1.5,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "TEAM": {
+     "runs": 12,
+     "accepted": 12,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.757,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0141,
+     "meanCost": 0.0141,
+     "pkgAcceptance": 1,
+     "costPerAcceptedPkg": 0.0047,
+     "finalFrac": 1,
+     "calls": 3,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "rho": 0.639,
+    "rhoCI": [
+     0.512,
+     0.812
+    ],
+    "rhoPkg": 0.639,
+    "teamPays": true
+   },
+   "8": {
+    "tasks": 3,
+    "SOLO": {
+     "runs": 9,
+     "accepted": 7,
+     "acceptance": 0.778,
+     "acceptanceCI": [
+      0.453,
+      0.937
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.1199,
+     "meanCost": 0.0933,
+     "pkgAcceptance": 0.972,
+     "costPerAcceptedPkg": 0.01199,
+     "finalFrac": 0.998,
+     "calls": 2.6,
+     "truncated": 11,
+     "budgetHits": 0
+    },
+    "TEAM": {
+     "runs": 9,
+     "accepted": 9,
+     "acceptance": 1,
+     "acceptanceCI": [
+      0.701,
+      1
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": 0.0442,
+     "meanCost": 0.0442,
+     "pkgAcceptance": 1,
+     "costPerAcceptedPkg": 0.00553,
+     "finalFrac": 1,
+     "calls": 8.2,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "rho": 0.369,
+    "rhoCI": [
+     0.13,
+     0.553
+    ],
+    "rhoPkg": 0.461,
+    "teamPays": true
+   },
+   "15": {
+    "tasks": 2,
+    "SOLO": {
+     "runs": 6,
+     "accepted": 0,
+     "acceptance": 0,
+     "acceptanceCI": [
+      0,
+      0.39
+     ],
+     "falseSuccess": 0,
+     "costPerAccepted": null,
+     "meanCost": 0.1365,
+     "pkgAcceptance": 0.622,
+     "costPerAcceptedPkg": 0.01462,
+     "finalFrac": 0.887,
+     "calls": 3,
+     "truncated": 13,
+     "budgetHits": 0
+    },
+    "TEAM": {
+     "runs": 6,
+     "accepted": 4,
+     "acceptance": 0.667,
+     "acceptanceCI": [
+      0.3,
+      0.903
+     ],
+     "falseSuccess": 2,
+     "costPerAccepted": 0.1178,
+     "meanCost": 0.0785,
+     "pkgAcceptance": 0.978,
+     "costPerAcceptedPkg": 0.00535,
+     "finalFrac": 0.998,
+     "calls": 15.5,
+     "truncated": 0,
+     "budgetHits": 0
+    },
+    "rho": 0,
+    "rhoCI": [
+     0,
+     0
+    ],
+    "rhoPkg": 0.366,
+    "teamPays": true
+   }
+  },
+  "crossover": {
+   "kstar": 1.26,
+   "slope": -0.928,
+   "kstarCI": [
+    1.104,
+    1.482
+   ],
+   "noCrossoverShare": 0,
+   "smallestKWhereTeamPays": 1
+  }
+ },
+ "Q2": {
+  "reps": [
+   1,
+   2
+  ],
+  "tasks": 6,
+  "arms": {
+   "NONE": {
+    "runs": 12,
+    "accepted": 5,
+    "acceptance": 0.417,
+    "acceptanceCI": [
+     0.193,
+     0.68
+    ],
+    "falseSuccess": 3,
+    "pkgAcceptance": 0.927,
+    "costPerAccepted": 0.0989,
+    "meanCost": 0.0412,
+    "meanExtraCalls": 0,
+    "meanFinalFrac": 0.993
+   },
+   "RETRY": {
+    "runs": 12,
+    "accepted": 11,
+    "acceptance": 0.917,
+    "acceptanceCI": [
+     0.646,
+     0.985
+    ],
+    "falseSuccess": 1,
+    "pkgAcceptance": 0.99,
+    "costPerAccepted": 0.0896,
+    "meanCost": 0.0821,
+    "meanExtraCalls": 8,
+    "meanFinalFrac": 1
+   },
+   "RECRUIT-U": {
+    "runs": 12,
+    "accepted": 12,
+    "acceptance": 1,
+    "acceptanceCI": [
+     0.757,
+     1
+    ],
+    "falseSuccess": 0,
+    "pkgAcceptance": 1,
+    "costPerAccepted": 0.0851,
+    "meanCost": 0.0851,
+    "meanExtraCalls": 8,
+    "meanFinalFrac": 1
+   },
+   "RECRUIT-T": {
+    "runs": 12,
+    "accepted": 11,
+    "acceptance": 0.917,
+    "acceptanceCI": [
+     0.646,
+     0.985
+    ],
+    "falseSuccess": 1,
+    "pkgAcceptance": 0.99,
+    "costPerAccepted": 0.0925,
+    "meanCost": 0.0848,
+    "meanExtraCalls": 8,
+    "meanFinalFrac": 1
+   }
+  },
+  "contrasts": [
+   {
+    "a": "RECRUIT-T",
+    "b": "RETRY",
+    "deltaAcceptance": 0,
+    "deltaCI": [
+     0,
+     0
+    ],
+    "deltaPkgRate": 0,
+    "deltaPkgCI": [
+     0,
+     0
+    ],
+    "costRatio": 1.033,
+    "costRatioCI": [
+     1.003,
+     1.07
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   {
+    "a": "RECRUIT-U",
+    "b": "RETRY",
+    "deltaAcceptance": 0.083,
+    "deltaCI": [
+     0,
+     0.25
+    ],
+    "deltaPkgRate": 0.01,
+    "deltaPkgCI": [
+     0,
+     0.031
+    ],
+    "costRatio": 0.95,
+    "costRatioCI": [
+     0.745,
+     1.104
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   {
+    "a": "RECRUIT-T",
+    "b": "RECRUIT-U",
+    "deltaAcceptance": -0.083,
+    "deltaCI": [
+     -0.25,
+     0
+    ],
+    "deltaPkgRate": -0.01,
+    "deltaPkgCI": [
+     -0.031,
+     0
+    ],
+    "costRatio": 1.087,
+    "costRatioCI": [
+     0.963,
+     1.351
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   {
+    "a": "RETRY",
+    "b": "NONE",
+    "deltaAcceptance": 0.5,
+    "deltaCI": [
+     0.167,
+     0.833
+    ],
+    "deltaPkgRate": 0.063,
+    "deltaPkgCI": [
+     0.021,
+     0.104
+    ],
+    "costRatio": 0.906,
+    "costRatioCI": [
+     0.177,
+     1.686
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   {
+    "a": "RECRUIT-T",
+    "b": "NONE",
+    "deltaAcceptance": 0.5,
+    "deltaCI": [
+     0.167,
+     0.833
+    ],
+    "deltaPkgRate": 0.063,
+    "deltaPkgCI": [
+     0.021,
+     0.104
+    ],
+    "costRatio": 0.936,
+    "costRatioCI": [
+     0.179,
+     1.83
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  ]
+ },
+ "Q3": {
+  "reps": [
+   1,
+   2,
+   3
+  ],
+  "all": {
+   "units": 114,
+   "firstPassFailure": {
+    "NOMEM": 0.14,
+    "MEM": 0.193,
+    "NOMEMCI": [
+     0.088,
+     0.216
+    ],
+    "MEMCI": [
+     0.131,
+     0.275
+    ],
+    "delta": 0.053,
+    "deltaCI": [
+     0,
+     0.105
+    ]
+   },
+   "firstPassHiddenFail": {
+    "NOMEM": 0
+   },
+   "costPerAccepted": {
+    "NOMEM": 0.0062,
+    "MEM": 0.0065,
+    "ratio": 1.055,
+    "ratioCI": [
+     1.007,
+     1.104
+    ]
+   },
+   "accepted": {
+    "NOMEM": 114,
+    "MEM": 113
+   },
+   "falseSuccess": {
+    "NOMEM": 0,
+    "MEM": 1
+   },
+   "verdict": "NO DETECTABLE EFFECT"
+  },
+  "secondHalf": {
+   "units": 57,
+   "firstPassFailure": {
+    "NOMEM": 0.123,
+    "MEM": 0.158,
+    "NOMEMCI": [
+     0.061,
+     0.232
+    ],
+    "MEMCI": [
+     0.085,
+     0.274
+    ],
+    "delta": 0.035,
+    "deltaCI": [
+     -0.035,
+     0.105
+    ]
+   },
+   "firstPassHiddenFail": {
+    "NOMEM": 0
+   },
+   "costPerAccepted": {
+    "NOMEM": 0.0059,
+    "MEM": 0.0063,
+    "ratio": 1.058,
+    "ratioCI": [
+     0.985,
+     1.135
+    ]
+   },
+   "accepted": {
+    "NOMEM": 57,
+    "MEM": 56
+   },
+   "falseSuccess": {
+    "NOMEM": 0,
+    "MEM": 1
+   },
+   "verdict": "NO DETECTABLE EFFECT"
+  },
+  "meanMemoryChars": 1116
+ },
+ "ledger": {
+  "calls": 1480,
+  "counted": 14.742,
+  "estCost": 9.828
+ }
+}

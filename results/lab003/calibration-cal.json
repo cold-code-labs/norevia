@@ -1,0 +1,348 @@
+{
+ "runs": 76,
+ "share": 0.6,
+ "firstPass": {
+  "oldVisible": {
+   "runs": 76,
+   "probePass": 71,
+   "falseSuccess": 9,
+   "fsRate": 0.127,
+   "ci": [
+    0.068,
+    0.224
+   ]
+  },
+  "share40": {
+   "runs": 76,
+   "probePass": 62,
+   "falseSuccess": 0,
+   "fsRate": 0,
+   "ci": [
+    0,
+    0.058
+   ]
+  },
+  "share60": {
+   "runs": 76,
+   "probePass": 62,
+   "falseSuccess": 0,
+   "fsRate": 0,
+   "ci": [
+    0,
+    0.058
+   ]
+  },
+  "share80": {
+   "runs": 76,
+   "probePass": 62,
+   "falseSuccess": 0,
+   "fsRate": 0,
+   "ci": [
+    0,
+    0.058
+   ]
+  }
+ },
+ "afterRepair": {
+  "oldVisible": {
+   "runs": 76,
+   "probePass": 76,
+   "falseSuccess": 0,
+   "fsRate": 0,
+   "ci": [
+    0,
+    0.048
+   ]
+  },
+  "newProbe": {
+   "runs": 76,
+   "probePass": 76,
+   "falseSuccess": 0,
+   "fsRate": 0,
+   "ci": [
+    0,
+    0.048
+   ]
+  }
+ },
+ "accepted": {
+  "first": 62,
+  "last": 76
+ },
+ "cost": 0.4884,
+ "gate": {
+  "fsAfterRepairNew": 0,
+  "cond1_le_020": true,
+  "firstPassReduction": 1,
+  "cond2_reduction_ge_50": true,
+  "pass": true
+ },
+ "packages": {
+  "agenda-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 1
+  },
+  "texto-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "geometria-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "grade-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "estatistica-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "estoque-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "url-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "datas-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "config-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "inventory-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "replicas-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "codecs-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 1
+  },
+  "billing-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "telemetria-varint": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "search-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "cursor-paginacao": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "pedido-centavos": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "cache-chaves": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "calendar-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 0
+  },
+  "path-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "diario-checksum": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "agendador-heap": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "grafos-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 1
+  },
+  "eventos-projecao": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "cli-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "diff-patch": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "expr-ast": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "texto-largura": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 0
+  },
+  "relogio-vetorial": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "indice-paginas": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "layout-texto": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "razao-partidas": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "protocolo-quadros": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 0
+  },
+  "crdt-replicas": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "calendario-fiscal": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 0
+  },
+  "bytecode-vm": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 2
+  },
+  "numeros-kit": {
+   "class": "b",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 0
+  },
+  "recorrencia-agenda": {
+   "class": "c",
+   "runs": 2,
+   "acceptedLast": 2,
+   "falseSuccessLast": 0,
+   "acceptedFirst": 1
+  }
+ }
+}

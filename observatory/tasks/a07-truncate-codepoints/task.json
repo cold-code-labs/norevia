@@ -1,0 +1,14 @@
+{
+  "id": "a07-truncate-codepoints",
+  "class": "a",
+  "split": "test",
+  "title": "truncate cuts emojis in half",
+  "statement": "The module `src/truncate.mjs` truncates texts for display (titles, notifications).\n\n**Contract** — all lengths are measured in **Unicode code points**, not in UTF-16 units (an emoji such as `😀` counts 1; composite grapheme clusters, such as flags or ZWJ sequences, receive no special treatment). The result must never contain half of a surrogate pair.\n\n- `codePointLength(s)` → number of code points of `s`.\n- `truncate(text, maxLength, ellipsis = '…')`:\n  1. if `text` has at most `maxLength` code points, it is returned **unchanged**;\n  2. otherwise, if `maxLength <= codePointLength(ellipsis)`, returns only the first `maxLength` code points of `text`, **without** ellipsis;\n  3. otherwise, takes the first `maxLength - codePointLength(ellipsis)` code points of `text`, removes trailing whitespace from that excerpt (like `String.prototype.trimEnd`) and appends `ellipsis`.\n  - Non-string `text` or `ellipsis` → `TypeError`; `maxLength` that is not an integer ≥ 0 → `RangeError`.\n- `truncateFields(record, limits, ellipsis = '…')` returns a **new** object in which each string field of `record` listed in `limits` (`{ field: maxLength }`) was truncated with `truncate`; non-string fields stay as they are; `record` is not modified.\n\n**Examples**\n\n- `truncate('abcdefgh', 5)` → `'abcd…'`.\n- `truncate('Olá mundo', 5)` → `'Olá…'` (the space at the end of the excerpt is removed).\n- `truncate('abcdef', 3, '...')` → `'abc'`.\n\n**Reported symptom:** notifications with emojis appear cut too early, sometimes ending with a broken character (�). Texts with only Latin letters work. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/truncate.mjs",
+      "summary": "the kept excerpt uses text.slice(0, keep) (UTF-16 units) instead of slicing the code point array, although keep is counted in code points"
+    }
+  ],
+  "decomposable": false
+}

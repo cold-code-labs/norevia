@@ -1,0 +1,26 @@
+[
+ {
+  "x": "CTRL",
+  "accepted_of_14": 5,
+  "false_success": 9,
+  "cost_total_usd": 0.585
+ },
+ {
+  "x": "CTRL-NOMEM",
+  "accepted_of_14": 6,
+  "false_success": 8,
+  "cost_total_usd": 0.5821
+ },
+ {
+  "x": "ALWAYS",
+  "accepted_of_14": 4,
+  "false_success": 10,
+  "cost_total_usd": 0.5885
+ },
+ {
+  "x": "SOLO-SEQ",
+  "accepted_of_14": 6,
+  "false_success": 4,
+  "cost_total_usd": 0.4842
+ }
+]

@@ -33,8 +33,10 @@ const SOURCES = [
   { dir: 'hypotheses', area: 'hypothesis' },
   { dir: 'results/sims', area: 'simulation' },
   { dir: 'results/observatory', area: 'observatory' },
+  // LAB-001…004 (Norevia Lab): one report card plus pre-registration cards per lab; flat chart tables live in results/charts (exported by observatory/export-charts.mjs)
+  { dir: 'results/lab001', area: 'observatory' }, { dir: 'results/lab002', area: 'observatory' }, { dir: 'results/lab003', area: 'observatory' }, { dir: 'results/lab004', area: 'observatory' },
 ];
-const DATA_DIRS = ['results/sims', 'results/observatory'];
+const DATA_DIRS = ['results/sims', 'results/observatory', 'results/charts'];
 // Raw/operational data is not charted (individual runs, ledgers, status files, preregistration records).
 const DATA_SKIP = [/(^|\/)raw\//, /(^|\/)runs?\//, /ledger/i, /(^|\/)status[-_.]/i, /(^|\/)runs[-_]/i, /preregist/i, /\.tmp\//];
 

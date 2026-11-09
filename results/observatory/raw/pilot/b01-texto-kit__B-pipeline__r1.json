@@ -1,0 +1,93 @@
+{
+  "phase": "pilot",
+  "task": "b01-texto-kit",
+  "class": "b",
+  "split": "dev",
+  "arch": "B-pipeline",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 3,
+    "total": 3
+  },
+  "hidden": {
+    "pass": 19,
+    "total": 19
+  },
+  "cost": 0.0984334,
+  "inTok": 22588,
+  "outTok": 8163,
+  "cacheRead": 0,
+  "cacheWrite": 22582,
+  "latencyMs": 46212,
+  "wallMs": 46674,
+  "calls": 3,
+  "reworkCalls": 1,
+  "failedCalls": 0,
+  "candidates": 2,
+  "discarded": 1,
+  "testRuns": 1,
+  "filesChanged": [
+    "src/tokenize.mjs",
+    "src/wrap.mjs",
+    "src/slugify.mjs"
+  ],
+  "decomposed": null,
+  "events": [
+    {
+      "critiqueApprove": false,
+      "revisedFiles": [
+        "src/slugify.mjs"
+      ]
+    }
+  ],
+  "error": null,
+  "ts": "2026-11-07T22:34:10.558Z",
+  "finalFiles": {
+    "src/tokenize.mjs": "/**\n * Tokenização de texto em palavras.\n *\n * Uma palavra é uma sequência maximal de letras ou dígitos Unicode que pode conter\n * apóstrofos (') ou hífens (-) isolados ENTRE dois caracteres alfanuméricos\n * (\"d'água\", \"guarda-chuva\"). Todo o resto é separador. Tokens saem em minúsculas.\n */\nconst WORD = /[\\p{L}\\p{N}]+(?:['-][\\p{L}\\p{N}]+)*/gu;\n\n/**\n * @param {string} text\n * @returns {string[]} tokens em minúsculas, na ordem em que aparecem\n */\nexport function tokenize(text) {\n  if (typeof text !== 'string') throw new TypeError('text must be a string');\n  return (text.match(WORD) ?? []).map((w) => w.toLowerCase());\n}\n\n/**\n * Contagem de cada token.\n * @param {string} text\n * @returns {Map<string, number>} token -> contagem, na ordem da primeira ocorrência\n */\nexport function frequencies(text) {\n  const freq = new Map();\n  for (const t of tokenize(text)) freq.set(t, (freq.get(t) ?? 0) + 1);\n  return freq;\n}\n\n/**\n * As `n` palavras mais frequentes.\n *\n * Ordenação: contagem decrescente; empates em ordem crescente da palavra\n * (comparação simples de strings do JavaScript). Palavras listadas em `exclude`\n * (comparadas em minúsculas) são ignoradas. n <= 0 devolve [].\n *\n * @param {string} text\n * @param {number} [n=10]\n * @param {{ exclude?: string[] }} [options]\n * @returns {{ word: string, count: number }[]}\n */\nexport function topWords(text, n = 10, { exclude = [] } = {}) {\n  if (n <= 0) return [];\n  const skip = new Set(exclude.map((w) => w.toLowerCase()));\n  const entries = [];\n  for (const [word, count] of frequencies(text)) {\n    if (!skip.has(word)) entries.push({ word, count });\n  }\n  entries.sort((a, b) => b.count - a.count || (a.word < b.word ? -1 : a.word > b.word ? 1 : 0));\n  return entries.slice(0, n);\n}\n",
+    "src/wrap.mjs": "/**\n * Quebra de linhas e truncamento.\n */\n\n/**\n * wrap(text, width): quebra gulosa de linhas.\n * `width` deve ser inteiro >= 1 (senão RangeError).\n *\n * @param {string} text\n * @param {number} width\n * @returns {string}\n */\nexport function wrap(text, width) {\n  if (!Number.isInteger(width) || width < 1) throw new RangeError('width must be a positive integer');\n  const words = text.split(/\\s+/).filter(Boolean);\n  const lines = [];\n  let line = '';\n  for (const w of words) {\n    if (line === '') line = w;\n    else if (line.length + 1 + w.length <= width) line += ' ' + w;\n    else {\n      lines.push(line);\n      line = w;\n    }\n  }\n  if (line) lines.push(line);\n  return lines.join('\\n');\n}\n\n/**\n * truncate(text, max, ellipsis = '…'): se text.length <= max devolve o texto intacto;\n * senão devolve os primeiros (max - ellipsis.length) caracteres seguidos de `ellipsis`,\n * de modo que o resultado tenha exatamente `max` caracteres.\n */\nexport function truncate(text, max, ellipsis = '…') {\n  if (text.length <= max) return text;\n  if (max < ellipsis.length) throw new RangeError('max smaller than ellipsis');\n  return text.slice(0, max - ellipsis.length) + ellipsis;\n}\n",
+    "src/slugify.mjs": "/**\n * Geração de slugs para URLs.\n */\nexport function slugify(input, { separator = '-', maxLength = Infinity } = {}) {\n  if (typeof input !== 'string') throw new TypeError('input must be a string');\n  if (!(maxLength >= 0)) throw new RangeError('maxLength must be >= 0');\n  let s = input.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();\n  s = s.replace(/[^a-z0-9]+/g, () => separator);\n  s = trimSeparator(s, separator);\n  if (s.length > maxLength) {\n    s = s.slice(0, maxLength);\n    s = trimSeparator(s, separator);\n  }\n  return s;\n}\n\nfunction trimSeparator(s, sep) {\n  if (!sep) return s;\n  while (s.startsWith(sep)) s = s.slice(sep.length);\n  while (s.endsWith(sep)) s = s.slice(0, -sep.length);\n  return s;\n}\n\n/**\n * Slug que não colide com nenhum de `taken` (Set ou array de slugs existentes).\n */\nexport function uniqueSlug(input, taken, options = {}) {\n  const used = taken instanceof Set ? taken : new Set(taken);\n  const base = slugify(input, options);\n  if (!used.has(base)) return base;\n  const sep = options.separator ?? '-';\n  for (let i = 2; ; i++) {\n    const candidate = `${base}${sep}${i}`;\n    if (!used.has(candidate)) return candidate;\n  }\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.0475075,
+      "outTok": 2337,
+      "latencyMs": 14676,
+      "promptChars": 10944,
+      "response": "Corrigi três bugs: o desempate de `topWords` estava invertido, `wrap` usava `<` em vez de `<=`, e `slugify` não removia separadores finais após o corte por `maxLength`. Não executei nada, só raciocinei a partir da especificação.\n\n=== FILE: src/tokenize.mjs ===\n/**\n * Tokenização de texto em palavras.\n *\n * Uma palavra é uma sequência maximal de letras ou dígitos Unicode que pode conter\n * apóstrofos (') ou hífens (-) isolados ENTRE dois caracteres alfanuméricos\n * (\"d'água\", \"guarda-chuva\"). Todo o resto é separador. Tokens saem em minúsculas.\n */\nconst WORD = /[\\p{L}\\p{N}]+(?:['-][\\p{L}\\p{N}]+)*/gu;\n\n/**\n * @param {string} text\n * @returns {string[]} tokens em minúsculas, na ordem em que aparecem\n */\nexport function tokenize(text) {\n  if (typeof text !== 'string') throw new TypeError('text must be a string');\n  return (text.match(WORD) ?? []).map((w) => w.toLowerCase());\n}\n\n/**\n * Contagem de cada token.\n * @param {string} text\n * @returns {Map<string, number>} token -> contagem, na ordem da primeira ocorrência\n */\nexport function frequencies(text) {\n  const freq = new Map();\n  for (const t of tokenize(text)) freq.set(t, (freq.get(t) ?? 0) + 1);\n  return freq;\n}\n\n/**\n * As `n` palavras mais frequentes.\n *\n * Ordenação: contagem decrescente; empates em ordem crescente da palavra\n * (comparação simples de strings do JavaScript). Palavras listadas em `exclude`\n * (comparadas em minúsculas) são ignoradas. n <= 0 devolve [].\n *\n * @param {string} text\n * @param {number} [n=10]\n * @param {{ exclude?: string[] }} [options]\n * @returns {{ word: string, count: number }[]}\n */\nexport function topWords(text, n = 10, { exclude = [] } = {}) {\n  if (n <= 0) return [];\n  const skip = new Set(exclude.map((w) => w.toLowerCase()));\n  const entries = [];\n  for (const [word, count] of frequencies(text)) {\n    if (!skip.has(word)) entries.push({ word, count });\n  }\n  entries.sort((a, b) => b.count - a.count || (a.word < b.word ? -1 : a.word > b.word ? 1 : 0));\n  return entries.slice(0, n);\n}\n=== END FILE ===\n=== FILE: src/wrap.mjs ===\n/**\n * Quebra de linhas e truncamento.\n */\n\n/**\n * wrap(text, width): quebra gulosa de linhas.\n * `width` deve ser inteiro >= 1 (senão RangeError).\n *\n * @param {string} text\n * @param {number} width\n * @returns {string}\n */\nexport function wrap(text, width) {\n  if (!Number.isInteger(width) || width < 1) throw new RangeError('width must be a positive integer');\n  const words = text.split(/\\s+/).filter(Boolean);\n  const lines = [];\n  let line = '';\n  for (const w of words) {\n    if (line === '') line = w;\n    else if (line.length + 1 + w.length <= width) line += ' ' + w;\n    else {\n      lines.push(line);\n      line = w;\n    }\n  }\n  if (line) lines.push(line);\n  return lines.join('\\n');\n}\n\n/**\n * truncate(text, max, ellipsis = '…'): se text.length <= max devolve o texto intacto;\n * senão devolve os primeiros (max - ellipsis.length) caracteres seguidos de `ellipsis`,\n * de modo que o resultado tenha exatamente `max` caracteres.\n */\nexport function truncate(text, max, ellipsis = '…') {\n  if (text.length <= max) return text;\n  if (max < ellipsis.length) throw new RangeError('max smaller than ellipsis');\n  return text.slice(0, max - ellipsis.length) + ellipsis;\n}\n=== END FILE ===\n=== FILE: src/slugify.mjs ===\n/**\n * Geração de slugs para URLs.\n */\nexport function slugify(input, { separator = '-', maxLength = Infinity } = {}) {\n  if (typeof input !== 'string') throw new TypeError('input must be a string');\n  if (!(maxLength >= 0)) throw new RangeError('maxLength must be >= 0');\n  let s = input.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();\n  s = s.replace(/[^a-z0-9]+/g, separator);\n  s = trimSeparator(s, separator);\n  if (s.length > maxLength) {\n    s = s.slice(0, maxLength);\n    s = trimSeparator(s, separator);\n  }\n  return s;\n}\n\nfunction trimSeparator(s, sep) {\n  if (!sep) return s;\n  while (s.startsWith(sep)) s = s.slice(sep.length);\n  while (s.endsWith(sep)) s = s.slice(0, -sep.length);\n  return s;\n}\n\n/**\n * Slug que não colide com nenhum de `taken` (Set ou array de slugs existentes).\n */\nexport function uniqueSlug(input, taken, options = {}) {\n  const used = taken instanceof Set ? taken : new Set(taken);\n  const base = slugify(input, options);\n  if (!used.has(base)) return base;\n  const sep = options.separator ?? '-';\n  for (let i = 2; ; i++) {\n    const candidate = `${base}${sep}${i}`;\n    if (!used.has(candidate)) return candidate;\n  }\n}\n=== END FILE ==="
+    },
+    {
+      "role": "critic",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0048284,
+      "outTok": 4876,
+      "latencyMs": 23563,
+      "promptChars": 15253,
+      "response": "**Defects found. The proposed fix should not be approved.**\n\n1. **`src/slugify.mjs`, `slugify`: separator is used as a replacement string, so `$` patterns are expanded.**\n   - `s.replace(/[^a-z0-9]+/g, separator)` treats `$$`, `$&`, `` $` ``, and `$'` in `separator` as special patterns.\n   - Input: `slugify('a b', { separator: '$$' })`. Expected: `'a$$b'`. Actual: `'a$b'`.\n   - Input: `slugify('a b', { separator: '$&' })`. Expected: `'a$&b'`. Actual: `'a b'`.\n   - Spec step 3 requires each run to become exactly one `separator`. Fix: use a replacer function, e.g. `replace(/[^a-z0-9]+/g, () => separator)`.\n\n2. **`src/slugify.mjs`, `slugify`: a multi-character separator can leave a partial separator at the end after truncation.**\n   - Input: `slugify('ab cd', { separator: '--', maxLength: 3 })`. `s` is `'ab--cd'`, the slice gives `'ab-'`, and `trimSeparator` does not remove the lone `'-'`.\n   - Actual: `'ab-'`. Expected under step 5: a slug that never ends with a separator, so `'ab'`.\n   - Fix: after slicing, strip any trailing prefix of `separator` (or re-slice to the last non-separator position), not only full occurrences.\n\n3. **`src/tokenize.mjs`, `WORD`: decomposed (NFD) input splits words at combining marks.**\n   - U+0300–U+036F are category `Mn`, not `\\p{L}` or `\\p{N}`, so they act as separators.\n   - Input: `tokenize(\"d'a\\u0303gua\")` (NFD `d'água`). Actual: `[\"d'a\", 'gua']`. Expected per the spec's wording: `[\"d'água\"]` in NFC form, and the NFD form should not be split by its own accents.\n   - The spec literally says \"letras ou dígitos Unicode\", so this is a judgment call. It should at least be normalized (`text.normalize('NFC')`) before matching, and the decision documented.\n\n4. **`src/wrap.mjs` / `src/wrap.mjs`, `truncate`: `.length` counts UTF-16 code units, so astral characters can be split.**\n   - Input: `truncate('😀😀', 3)`. Actual: `'\\uD83D…'`, a lone surrogate. This is minor and arguably matches the literal `.length` in the spec, but it produces invalid output.\n   - The same unit mismatch affects the `wrap` width check for astral characters.\n\nThe visible tests pass, but they do not exercise items 1 and 2, which are concrete violations of the slugify contract."
+    },
+    {
+      "role": "reviser",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.0460975,
+      "outTok": 950,
+      "latencyMs": 7917,
+      "promptChars": 17871,
+      "response": "Corrigi o item 1 do revisor: o separador agora é inserido por uma função de substituição, então `$&`, `$$` e similares não são expandidos. Não alterei o item 2, porque a especificação manda remover apenas ocorrências completas do separador. Os itens 3 e 4 ficam como estão, pois seguem o texto literal da especificação.\n\n=== FILE: src/slugify.mjs ===\n/**\n * Geração de slugs para URLs.\n */\nexport function slugify(input, { separator = '-', maxLength = Infinity } = {}) {\n  if (typeof input !== 'string') throw new TypeError('input must be a string');\n  if (!(maxLength >= 0)) throw new RangeError('maxLength must be >= 0');\n  let s = input.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();\n  s = s.replace(/[^a-z0-9]+/g, () => separator);\n  s = trimSeparator(s, separator);\n  if (s.length > maxLength) {\n    s = s.slice(0, maxLength);\n    s = trimSeparator(s, separator);\n  }\n  return s;\n}\n\nfunction trimSeparator(s, sep) {\n  if (!sep) return s;\n  while (s.startsWith(sep)) s = s.slice(sep.length);\n  while (s.endsWith(sep)) s = s.slice(0, -sep.length);\n  return s;\n}\n\n/**\n * Slug que não colide com nenhum de `taken` (Set ou array de slugs existentes).\n */\nexport function uniqueSlug(input, taken, options = {}) {\n  const used = taken instanceof Set ? taken : new Set(taken);\n  const base = slugify(input, options);\n  if (!used.has(base)) return base;\n  const sep = options.separator ?? '-';\n  for (let i = 2; ; i++) {\n    const candidate = `${base}${sep}${i}`;\n    if (!used.has(candidate)) return candidate;\n  }\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

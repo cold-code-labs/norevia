@@ -1,0 +1,22 @@
+{
+  "id": "b09-datas-kit",
+  "class": "b",
+  "split": "test",
+  "title": "Dates kit: calendar, durations and business days",
+  "statement": "# Dates and deadlines kit (`src/`)\n\nPackage with three independent modules: `dates.mjs` (calendar date arithmetic), `duration.mjs` (durations as text) and `business.mjs` (business days). Reports: dates in February 2000 are rejected as invalid and timeouts configured in milliseconds (`'250ms'`) are not accepted. All modules must fully obey the contract below.\n\n## `src/dates.mjs`\n\nDates are `'YYYY-MM-DD'` strings of the Gregorian calendar (without time zone).\n- `isLeapYear(y)`: leap year according to the full Gregorian rule: divisible by 4, except those divisible by 100, which are only leap years if they are also divisible by 400 (2024 and 2000 yes; 1900 and 2023 no).\n- `daysInMonth(y, m)`: days of month `m` (1–12) of year `y`; invalid month → `RangeError`.\n- `parseISODate(s)` → `{ year, month, day }`; format other than `YYYY-MM-DD` with digits (e.g.: `'2024-3-5'`) → `SyntaxError`; nonexistent month or day (`'2023-02-29'`, `'2024-13-01'`) → `RangeError`. `formatISODate({ year, month, day })` does the inverse, with leading zeros (`{ year: 987, month: 1, day: 2 }` → `'0987-01-02'`).\n- `addDays(s, n)`: adds `n` days (may be negative). `daysBetween(a, b)`: days from `a` to `b` (negative if `b` is earlier).\n- `addMonths(s, n)`: adds `n` months (may be negative); if the day does not exist in the target month, uses the last day of that month (`addMonths('2023-01-31', 1)` → `'2023-02-28'`; `addMonths('2024-01-31', 1)` → `'2024-02-29'`).\n- `dayOfYear(s)`: position of the day in the year (January 1st = 1; `'2024-12-31'` → `366`).\n\n## `src/duration.mjs`\n\n- `parseDuration(text)`: the (trimmed) text is a sequence of one or more `<integer><unit>` parts, with units `d` (day), `h`, `m` (minute), `s` and `ms` (millisecond); spaces are optional between number and unit and between parts. Returns the sum in milliseconds. Empty text, number without unit, unknown unit, decimals or any unrecognized leftover → `SyntaxError`. E.g.: `'1h30m'` → `5400000`; `'250ms'` → `250`; `'1s 500ms'` → `1500`; `' 1 h 30 m '` → `5400000`.\n- `formatDuration(ms)`: `ms` integer `>= 0` (otherwise `RangeError`). Below 1000 → `'<ms>ms'` (`0` → `'0ms'`). Otherwise, parts `Nd`, `Nh`, `Nm`, `Ns` in that order, separated by one space, omitting the zero ones; the remaining fraction of a second is discarded. E.g.: `3723000` → `'1h 2m 3s'`; `90061001` → `'1d 1h 1m 1s'`.\n\n## `src/business.mjs`\n\nBusiness day = Monday to Friday that is **not** in the list of holidays. Input dates may be `'YYYY-MM-DD'` strings or `Date` objects at UTC midnight (never changed); `holidays` is an array of `'YYYY-MM-DD'` strings (default `[]`) and applies equally to `Date` inputs; outputs are `'YYYY-MM-DD'` strings. Invalid date → `RangeError`.\n- `isBusinessDay(date, holidays = [])`. E.g.: `isBusinessDay('2024-12-25', ['2024-12-25'])` → `false`; `isBusinessDay('2024-06-08')` (Saturday) → `false`.\n- `addBusinessDays(date, n, holidays = [])`: `n` integer (otherwise `RangeError`); moves forward (`n > 0`) or back (`n < 0`) `|n|` business days from `date` (the day itself does not count); `n = 0` returns the date itself. E.g.: `addBusinessDays('2024-06-07', 1)` (Friday) → `'2024-06-10'`; `addBusinessDays('2024-12-24', 1, ['2024-12-25'])` → `'2024-12-26'`.\n- `businessDaysBetween(a, b, holidays = [])`: number of business days `d` with `a < d <= b`; if `b < a`, the negative of the number with `b < d <= a`. E.g.: `('2024-06-07', '2024-06-14')` → `5`; with holiday `'2024-06-12'` → `4`.",
+  "bugs": [
+    {
+      "file": "src/dates.mjs",
+      "summary": "isLeapYear ignores the 400-year rule (2000 not a leap year)"
+    },
+    {
+      "file": "src/duration.mjs",
+      "summary": "alternation of units in the regex with 'm' before 'ms': '250ms' is not recognized"
+    },
+    {
+      "file": "src/business.mjs",
+      "summary": "holidays compared with the Date object instead of the ISO string: they never match"
+    }
+  ],
+  "decomposable": true
+}

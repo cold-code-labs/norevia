@@ -1,0 +1,30 @@
+{
+  "id": "c03-cursor-paginacao",
+  "class": "c",
+  "split": "dev",
+  "title": "Paginação por cursor: ordem de empate e cursor inclusivo/exclusivo entre servidor e cliente",
+  "statement": "# Ranking paginado por cursor (`src/`)\n\nO painel do enxame lista o ranking de agentes de forma paginada. O servidor (`server.mjs`) e o cliente (`client.mjs`) se comunicam apenas por `{ limit, cursor }` → `{ items, nextCursor }`; outras equipes também escrevem servidores e clientes que seguem este mesmo contrato, então cada lado deve obedecê-lo sozinho.\n\n## `order.mjs` — ordem canônica\n\nItem: `{ id: string não vazia, score: número finito, ... }`; ids são únicos. Ordem canônica (total): **`score` decrescente; empates por `id` crescente** (comparação de strings do JS com `<`).\n\n- `compareItems(a, b)`: comparador nessa ordem, na convenção de `Array.prototype.sort` (negativo se `a` vem antes).\n- `sortItems(items)`: cópia ordenada (valida itens: `TypeError`; id repetido → `Error`).\n- `rankOf(items, id)`: posição **1-based** na ordem canônica; `0` se ausente.\n\n## `cursor.mjs` — cursores de posição (keyset)\n\nUm cursor marca uma **posição** na ordem canônica pela chave `{ score, id }` de um item; o item não precisa existir mais na coleção. Token: `JSON.stringify([score, id])` em UTF-8 codificado em **base64url sem padding**.\n\n- `encodeCursor(item)`: `{ id: 'b2', score: 75 }` → `'Wzc1LCJiMiJd'`; `{ id: 'x', score: -1.5 }` → `'Wy0xLjUsIngiXQ'`.\n- `decodeCursor(token)` → `{ score, id }`; ex. `'WzYwLCJkNCJd'` → `{ score: 60, id: 'd4' }`. Token que não seja base64url de um array `[número finito, string não vazia]` → `SyntaxError`.\n- `compareToKey(item, key)`: negativo se `item` vem **antes** da posição `key` na ordem canônica, `0` se `item` tem exatamente a chave `key`, positivo se vem **depois**.\n\n## `server.mjs`\n\n- `listPage(items, { limit = 20, cursor = null })`: `limit` inteiro em `[1, 100]` (senão `RangeError`); cursor inválido → `SyntaxError` (de `decodeCursor`). Ordena `items` canonicamente. Sem cursor, a página começa no primeiro item; com cursor, começa no primeiro item que vem **estritamente depois** da posição do cursor (o item do cursor nunca se repete). Devolve até `limit` itens. `nextCursor` = `encodeCursor` do **último item devolvido** se ainda houver itens depois dele; senão `null`.\n- `createEndpoint(items)`: `fetchPage` assíncrono que responde `listPage(items, query)`; `fetchPage.calls` conta as chamadas.\n\n## `client.mjs`\n\n- `iteratePages(fetchPage, { limit = 50, maxPages = 1000 })`: gerador assíncrono. Pede a primeira página com `{ limit, cursor: null }` e depois sempre `{ limit, cursor: nextCursor }` da resposta anterior, até `nextCursor` ser `null`/`undefined`. Produz `{ index, items }` (`index` a partir de 0; `items` = os itens da resposta, que pelo contrato já são todos novos). Um `nextCursor` que já apareceu antes → `Error` com `cursor repetido`; mais de `maxPages` páginas → `Error`.\n- `fetchAll(fetchPage, opts)`: concatena os itens de todas as páginas.\n- `findFirst(fetchPage, pred, opts)`: primeiro item com `pred(item)` verdadeiro, sem pedir páginas além da que o contém; `undefined` se não houver.\n\n**Invariante:** para qualquer coleção e qualquer `limit`, `fetchAll(createEndpoint(items), { limit })` é igual a `listPage(items, { limit: 100 }).items` (coleções de até 100 itens), e cada página, exceto a última, tem exatamente `limit` itens.\n\n## Exemplo dourado\n\n```\nDATA = a1:90, b2:75, c3:90, d4:60, e5:75, f6:75, g7:40, h8:60      (id:score)\nordem canônica: a1, c3, b2, e5, f6, d4, h8, g7\nlistPage(DATA, { limit: 3 })                          → [a1, c3, b2], nextCursor 'Wzc1LCJiMiJd'\nlistPage(DATA, { limit: 3, cursor: 'Wzc1LCJiMiJd' })  → [e5, f6, d4], nextCursor 'WzYwLCJkNCJd'\nlistPage(DATA, { limit: 3, cursor: 'WzYwLCJkNCJd' })  → [h8, g7],     nextCursor null\nlistPage(DATA, { limit: 3, cursor: 'Wzc1LCJ6OSJd' })  → [d4, h8, g7], nextCursor null   (cursor de [75, \"z9\"], item removido)\n```\n\n## Sintomas relatados\n\n- O cliente interno, lendo o servidor interno, devolve a lista completa sem perdas nem duplicatas para `limit ≥ 2`, mas com `limit = 1` aborta com `cursor repetido`, e cada página traz um item a menos do que o pedido.\n- Os empates aparecem em ordem diferente da documentada, e um cliente de outra equipe (que segue o contrato) recebe itens repetidos do nosso servidor; nosso cliente, apontado para o servidor dessa equipe, perde itens.\n\nCorrija o pacote para que cada módulo obedeça ao contrato.",
+  "bugs": [
+    {
+      "file": "src/order.mjs",
+      "summary": "compareItems desempata por id DEcrescente (sinais trocados)",
+      "coupledWith": "src/cursor.mjs"
+    },
+    {
+      "file": "src/cursor.mjs",
+      "summary": "compareToKey desempata por id decrescente, espelhando order.mjs — paginação fica consistente, mas ordem e posições divergem do contrato; corrigir só um dos dois faz páginas perderem/repetirem itens nos empates",
+      "coupledWith": "src/order.mjs"
+    },
+    {
+      "file": "src/server.mjs",
+      "summary": "página com cursor começa no próprio item do cursor (>= 0, inclusivo) em vez de estritamente depois",
+      "coupledWith": "src/client.mjs"
+    },
+    {
+      "file": "src/client.mjs",
+      "summary": "iteratePages descarta o primeiro item de toda página com cursor, compensando o servidor inclusivo (perde itens com servidor correto; limit=1 entra em laço)",
+      "coupledWith": "src/server.mjs"
+    }
+  ],
+  "decomposable": false
+}

@@ -1,0 +1,1215 @@
+{
+ "note": "EXPLORATORY — not the pre-registered primary outcome",
+ "tasks": 9,
+ "referenceByPkgRate": "ORCH",
+ "arms": [
+  {
+   "arm": "SOLO",
+   "kind": "artificial",
+   "pkgAccepted": "29/59",
+   "pkgRate": 0.492,
+   "pkgRateCI": [
+    0.358,
+    0.6
+   ],
+   "hiddenPassFrac": 0.93,
+   "costPerPkg": 0.0392,
+   "costPerPkgCI": [
+    0.026,
+    0.05
+   ],
+   "meanCost": 0.1262,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 1.8,
+   "latencyMedianS": 187.1,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "ORCH",
+   "kind": "artificial",
+   "pkgAccepted": "36/59",
+   "pkgRate": 0.61,
+   "pkgRateCI": [
+    0.429,
+    0.75
+   ],
+   "hiddenPassFrac": 0.961,
+   "costPerPkg": 0.0156,
+   "costPerPkgCI": [
+    0.012,
+    0.023
+   ],
+   "meanCost": 0.0623,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 4.6,
+   "latencyMedianS": 128.5,
+   "budgetHits": 0,
+   "msgs": 5.1
+  },
+  {
+   "arm": "PIPE",
+   "kind": "artificial",
+   "pkgAccepted": "24/59",
+   "pkgRate": 0.407,
+   "pkgRateCI": [
+    0.277,
+    0.561
+   ],
+   "hiddenPassFrac": 0.89,
+   "costPerPkg": 0.0436,
+   "costPerPkgCI": [
+    0.033,
+    0.063
+   ],
+   "meanCost": 0.1163,
+   "probeAllPass": 5,
+   "falseSuccess": 5,
+   "accepted": 0,
+   "calls": 3,
+   "latencyMedianS": 355.2,
+   "budgetHits": 0,
+   "msgs": 1
+  },
+  {
+   "arm": "VOTE3",
+   "kind": "artificial",
+   "pkgAccepted": "16/59",
+   "pkgRate": 0.271,
+   "pkgRateCI": [
+    0.161,
+    0.4
+   ],
+   "hiddenPassFrac": 0.82,
+   "costPerPkg": 0.1051,
+   "costPerPkgCI": [
+    0.057,
+    0.204
+   ],
+   "meanCost": 0.1869,
+   "probeAllPass": 4,
+   "falseSuccess": 4,
+   "accepted": 0,
+   "calls": 3,
+   "latencyMedianS": 224.4,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "DEBATE",
+   "kind": "artificial",
+   "pkgAccepted": "32/59",
+   "pkgRate": 0.542,
+   "pkgRateCI": [
+    0.367,
+    0.727
+   ],
+   "hiddenPassFrac": 0.911,
+   "costPerPkg": 0.0922,
+   "costPerPkgCI": [
+    0.059,
+    0.142
+   ],
+   "meanCost": 0.3277,
+   "probeAllPass": 7,
+   "falseSuccess": 7,
+   "accepted": 0,
+   "calls": 4.2,
+   "latencyMedianS": 411.9,
+   "budgetHits": 6,
+   "msgs": 4
+  },
+  {
+   "arm": "TODAY",
+   "kind": "artificial",
+   "pkgAccepted": "29/59",
+   "pkgRate": 0.492,
+   "pkgRateCI": [
+    0.345,
+    0.625
+   ],
+   "hiddenPassFrac": 0.919,
+   "costPerPkg": 0.0809,
+   "costPerPkgCI": [
+    0.064,
+    0.117
+   ],
+   "meanCost": 0.2608,
+   "probeAllPass": 3,
+   "falseSuccess": 3,
+   "accepted": 0,
+   "calls": 8.8,
+   "latencyMedianS": 344.5,
+   "budgetHits": 9,
+   "msgs": 26.2
+  },
+  {
+   "arm": "CTRL",
+   "kind": "bio",
+   "pkgAccepted": "33/59",
+   "pkgRate": 0.559,
+   "pkgRateCI": [
+    0.415,
+    0.667
+   ],
+   "hiddenPassFrac": 0.955,
+   "costPerPkg": 0.0145,
+   "costPerPkgCI": [
+    0.011,
+    0.021
+   ],
+   "meanCost": 0.0532,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 6.6,
+   "latencyMedianS": 56.4,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "GATE",
+   "kind": "bio",
+   "pkgAccepted": "32/59",
+   "pkgRate": 0.542,
+   "pkgRateCI": [
+    0.431,
+    0.636
+   ],
+   "hiddenPassFrac": 0.94,
+   "costPerPkg": 0.0269,
+   "costPerPkgCI": [
+    0.016,
+    0.043
+   ],
+   "meanCost": 0.0957,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 5.2,
+   "latencyMedianS": 234.5,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "ELASTIC",
+   "kind": "bio",
+   "pkgAccepted": "31/59",
+   "pkgRate": 0.525,
+   "pkgRateCI": [
+    0.36,
+    0.671
+   ],
+   "hiddenPassFrac": 0.937,
+   "costPerPkg": 0.0243,
+   "costPerPkgCI": [
+    0.017,
+    0.031
+   ],
+   "meanCost": 0.0836,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 5.1,
+   "latencyMedianS": 212.7,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "THRESH-hab",
+   "kind": "bio",
+   "pkgAccepted": "48/59",
+   "pkgRate": 0.814,
+   "pkgRateCI": [
+    0.727,
+    0.881
+   ],
+   "hiddenPassFrac": 0.989,
+   "costPerPkg": 0.0207,
+   "costPerPkgCI": [
+    0.019,
+    0.023
+   ],
+   "meanCost": 0.1102,
+   "probeAllPass": 9,
+   "falseSuccess": 8,
+   "accepted": 1,
+   "calls": 14.6,
+   "latencyMedianS": 145.7,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "THRESH-fixed",
+   "kind": "ablation",
+   "pkgAccepted": "50/59",
+   "pkgRate": 0.847,
+   "pkgRateCI": [
+    0.759,
+    0.926
+   ],
+   "hiddenPassFrac": 0.989,
+   "costPerPkg": 0.0244,
+   "costPerPkgCI": [
+    0.021,
+    0.03
+   ],
+   "meanCost": 0.1353,
+   "probeAllPass": 9,
+   "falseSuccess": 6,
+   "accepted": 3,
+   "calls": 17.1,
+   "latencyMedianS": 203.2,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "STIG-evap",
+   "kind": "bio",
+   "pkgAccepted": "30/59",
+   "pkgRate": 0.508,
+   "pkgRateCI": [
+    0.367,
+    0.623
+   ],
+   "hiddenPassFrac": 0.948,
+   "costPerPkg": 0.0139,
+   "costPerPkgCI": [
+    0.011,
+    0.019
+   ],
+   "meanCost": 0.0464,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 7.1,
+   "latencyMedianS": 125.4,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "STIG-noevap",
+   "kind": "ablation",
+   "pkgAccepted": "31/59",
+   "pkgRate": 0.525,
+   "pkgRateCI": [
+    0.388,
+    0.638
+   ],
+   "hiddenPassFrac": 0.953,
+   "costPerPkg": 0.0155,
+   "costPerPkgCI": [
+    0.013,
+    0.02
+   ],
+   "meanCost": 0.0533,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 7.8,
+   "latencyMedianS": 147.8,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "QUORUM-q2",
+   "kind": "bio",
+   "pkgAccepted": "33/59",
+   "pkgRate": 0.559,
+   "pkgRateCI": [
+    0.36,
+    0.704
+   ],
+   "hiddenPassFrac": 0.956,
+   "costPerPkg": 0.0247,
+   "costPerPkgCI": [
+    0.02,
+    0.037
+   ],
+   "meanCost": 0.0905,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 13.9,
+   "latencyMedianS": 61.5,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "QUORUM-q1",
+   "kind": "ablation",
+   "pkgAccepted": "31/59",
+   "pkgRate": 0.525,
+   "pkgRateCI": [
+    0.358,
+    0.649
+   ],
+   "hiddenPassFrac": 0.948,
+   "costPerPkg": 0.0128,
+   "costPerPkgCI": [
+    0.01,
+    0.02
+   ],
+   "meanCost": 0.044,
+   "probeAllPass": 9,
+   "falseSuccess": 9,
+   "accepted": 0,
+   "calls": 6.9,
+   "latencyMedianS": 57.1,
+   "budgetHits": 0,
+   "msgs": 0
+  },
+  {
+   "arm": "CTRL+PATROL2",
+   "kind": "control",
+   "pkgAccepted": "45/59",
+   "pkgRate": 0.763,
+   "pkgRateCI": [
+    0.633,
+    0.855
+   ],
+   "hiddenPassFrac": 0.982,
+   "costPerPkg": 0.031,
+   "costPerPkgCI": [
+    0.026,
+    0.04
+   ],
+   "meanCost": 0.1548,
+   "probeAllPass": 9,
+   "falseSuccess": 8,
+   "accepted": 1,
+   "calls": 17.1,
+   "latencyMedianS": 229.7,
+   "budgetHits": 0,
+   "msgs": 0
+  }
+ ],
+ "contrasts": {
+  "CTRL": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.051,
+    "deltaCI": [
+     -0.159,
+     0.055
+    ],
+    "costPerPkgRatio": 0.932,
+    "ratioCI": [
+     0.754,
+     1.127
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.068,
+    "deltaCI": [
+     -0.075,
+     0.187
+    ],
+    "costPerPkgRatio": 0.371,
+    "ratioCI": [
+     0.254,
+     0.692
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "GATE": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.068,
+    "deltaCI": [
+     -0.164,
+     0.023
+    ],
+    "costPerPkgRatio": 1.726,
+    "ratioCI": [
+     1.214,
+     2.117
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.051,
+    "deltaCI": [
+     -0.018,
+     0.111
+    ],
+    "costPerPkgRatio": 0.687,
+    "ratioCI": [
+     0.419,
+     1.191
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "ELASTIC": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.085,
+    "deltaCI": [
+     -0.219,
+     0.044
+    ],
+    "costPerPkgRatio": 1.558,
+    "ratioCI": [
+     0.949,
+     2.026
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.034,
+    "deltaCI": [
+     -0.059,
+     0.123
+    ],
+    "costPerPkgRatio": 0.62,
+    "ratioCI": [
+     0.461,
+     0.818
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "THRESH-hab": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": 0.203,
+    "deltaCI": [
+     0.067,
+     0.388
+    ],
+    "costPerPkgRatio": 1.326,
+    "ratioCI": [
+     0.916,
+     1.638
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.322,
+    "deltaCI": [
+     0.164,
+     0.48
+    ],
+    "costPerPkgRatio": 0.528,
+    "ratioCI": [
+     0.418,
+     0.81
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "THRESH-fixed": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": 0.237,
+    "deltaCI": [
+     0.094,
+     0.422
+    ],
+    "costPerPkgRatio": 1.563,
+    "ratioCI": [
+     1.154,
+     1.93
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.356,
+    "deltaCI": [
+     0.224,
+     0.492
+    ],
+    "costPerPkgRatio": 0.622,
+    "ratioCI": [
+     0.443,
+     1.061
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "STIG-evap": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.102,
+    "deltaCI": [
+     -0.246,
+     0.057
+    ],
+    "costPerPkgRatio": 0.894,
+    "ratioCI": [
+     0.724,
+     1.093
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.017,
+    "deltaCI": [
+     -0.183,
+     0.19
+    ],
+    "costPerPkgRatio": 0.356,
+    "ratioCI": [
+     0.263,
+     0.565
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "STIG-noevap": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.085,
+    "deltaCI": [
+     -0.167,
+     0
+    ],
+    "costPerPkgRatio": 0.993,
+    "ratioCI": [
+     0.804,
+     1.144
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.034,
+    "deltaCI": [
+     -0.12,
+     0.162
+    ],
+    "costPerPkgRatio": 0.395,
+    "ratioCI": [
+     0.299,
+     0.696
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "QUORUM-q2": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.051,
+    "deltaCI": [
+     -0.22,
+     0.143
+    ],
+    "costPerPkgRatio": 1.584,
+    "ratioCI": [
+     1.219,
+     2.061
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.068,
+    "deltaCI": [
+     -0.156,
+     0.269
+    ],
+    "costPerPkgRatio": 0.63,
+    "ratioCI": [
+     0.461,
+     1.246
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "QUORUM-q1": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": -0.085,
+    "deltaCI": [
+     -0.14,
+     -0.034
+    ],
+    "costPerPkgRatio": 0.819,
+    "ratioCI": [
+     0.748,
+     0.922
+    ],
+    "verdict": "WORSE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.034,
+    "deltaCI": [
+     -0.102,
+     0.151
+    ],
+    "costPerPkgRatio": 0.326,
+    "ratioCI": [
+     0.229,
+     0.644
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "CTRL+PATROL2": {
+   "vsRef": {
+    "vs": "ORCH",
+    "deltaPkgRate": 0.153,
+    "deltaCI": [
+     0.063,
+     0.261
+    ],
+    "costPerPkgRatio": 1.987,
+    "ratioCI": [
+     1.617,
+     2.322
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "vsSolo": {
+    "vs": "SOLO",
+    "deltaPkgRate": 0.271,
+    "deltaCI": [
+     0.132,
+     0.386
+    ],
+    "costPerPkgRatio": 0.79,
+    "ratioCI": [
+     0.586,
+     1.387
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  }
+ },
+ "byTier": {
+  "mid": {
+   "tasks": 4,
+   "arms": [
+    {
+     "arm": "SOLO",
+     "pkgRate": 0.438,
+     "hidden": 0.961,
+     "costPerPkg": 0.02,
+     "meanCost": 0.035
+    },
+    {
+     "arm": "ORCH",
+     "pkgRate": 0.375,
+     "hidden": 0.952,
+     "costPerPkg": 0.0263,
+     "meanCost": 0.0395
+    },
+    {
+     "arm": "PIPE",
+     "pkgRate": 0.438,
+     "hidden": 0.956,
+     "costPerPkg": 0.0457,
+     "meanCost": 0.08
+    },
+    {
+     "arm": "VOTE3",
+     "pkgRate": 0.438,
+     "hidden": 0.959,
+     "costPerPkg": 0.0518,
+     "meanCost": 0.0906
+    },
+    {
+     "arm": "DEBATE",
+     "pkgRate": 0.688,
+     "hidden": 0.977,
+     "costPerPkg": 0.0539,
+     "meanCost": 0.1482
+    },
+    {
+     "arm": "TODAY",
+     "pkgRate": 0.375,
+     "hidden": 0.945,
+     "costPerPkg": 0.1128,
+     "meanCost": 0.1693
+    },
+    {
+     "arm": "CTRL",
+     "pkgRate": 0.375,
+     "hidden": 0.952,
+     "costPerPkg": 0.0215,
+     "meanCost": 0.0322
+    },
+    {
+     "arm": "GATE",
+     "pkgRate": 0.438,
+     "hidden": 0.953,
+     "costPerPkg": 0.0354,
+     "meanCost": 0.062
+    },
+    {
+     "arm": "ELASTIC",
+     "pkgRate": 0.438,
+     "hidden": 0.962,
+     "costPerPkg": 0.0167,
+     "meanCost": 0.0292
+    },
+    {
+     "arm": "THRESH-hab",
+     "pkgRate": 0.75,
+     "hidden": 0.99,
+     "costPerPkg": 0.0233,
+     "meanCost": 0.0698
+    },
+    {
+     "arm": "THRESH-fixed",
+     "pkgRate": 0.813,
+     "hidden": 0.992,
+     "costPerPkg": 0.0321,
+     "meanCost": 0.1045
+    },
+    {
+     "arm": "STIG-evap",
+     "pkgRate": 0.375,
+     "hidden": 0.946,
+     "costPerPkg": 0.0187,
+     "meanCost": 0.0281
+    },
+    {
+     "arm": "STIG-noevap",
+     "pkgRate": 0.313,
+     "hidden": 0.955,
+     "costPerPkg": 0.0226,
+     "meanCost": 0.0282
+    },
+    {
+     "arm": "QUORUM-q2",
+     "pkgRate": 0.188,
+     "hidden": 0.934,
+     "costPerPkg": 0.0744,
+     "meanCost": 0.0558
+    },
+    {
+     "arm": "QUORUM-q1",
+     "pkgRate": 0.25,
+     "hidden": 0.936,
+     "costPerPkg": 0.0274,
+     "meanCost": 0.0274
+    },
+    {
+     "arm": "CTRL+PATROL2",
+     "pkgRate": 0.625,
+     "hidden": 0.976,
+     "costPerPkg": 0.0454,
+     "meanCost": 0.1134
+    }
+   ]
+  },
+  "multi": {
+   "tasks": 5,
+   "arms": [
+    {
+     "arm": "SOLO",
+     "pkgRate": 0.512,
+     "hidden": 0.905,
+     "costPerPkg": 0.0453,
+     "meanCost": 0.1992
+    },
+    {
+     "arm": "ORCH",
+     "pkgRate": 0.698,
+     "hidden": 0.968,
+     "costPerPkg": 0.0134,
+     "meanCost": 0.0806
+    },
+    {
+     "arm": "PIPE",
+     "pkgRate": 0.395,
+     "hidden": 0.838,
+     "costPerPkg": 0.0428,
+     "meanCost": 0.1454
+    },
+    {
+     "arm": "VOTE3",
+     "pkgRate": 0.209,
+     "hidden": 0.709,
+     "costPerPkg": 0.1466,
+     "meanCost": 0.2639
+    },
+    {
+     "arm": "DEBATE",
+     "pkgRate": 0.488,
+     "hidden": 0.858,
+     "costPerPkg": 0.1122,
+     "meanCost": 0.4713
+    },
+    {
+     "arm": "TODAY",
+     "pkgRate": 0.535,
+     "hidden": 0.898,
+     "costPerPkg": 0.0726,
+     "meanCost": 0.334
+    },
+    {
+     "arm": "CTRL",
+     "pkgRate": 0.628,
+     "hidden": 0.957,
+     "costPerPkg": 0.013,
+     "meanCost": 0.0701
+    },
+    {
+     "arm": "GATE",
+     "pkgRate": 0.581,
+     "hidden": 0.93,
+     "costPerPkg": 0.0245,
+     "meanCost": 0.1226
+    },
+    {
+     "arm": "ELASTIC",
+     "pkgRate": 0.558,
+     "hidden": 0.916,
+     "costPerPkg": 0.0265,
+     "meanCost": 0.1271
+    },
+    {
+     "arm": "THRESH-hab",
+     "pkgRate": 0.837,
+     "hidden": 0.988,
+     "costPerPkg": 0.0198,
+     "meanCost": 0.1426
+    },
+    {
+     "arm": "THRESH-fixed",
+     "pkgRate": 0.86,
+     "hidden": 0.986,
+     "costPerPkg": 0.0216,
+     "meanCost": 0.16
+    },
+    {
+     "arm": "STIG-evap",
+     "pkgRate": 0.558,
+     "hidden": 0.949,
+     "costPerPkg": 0.0127,
+     "meanCost": 0.0611
+    },
+    {
+     "arm": "STIG-noevap",
+     "pkgRate": 0.605,
+     "hidden": 0.951,
+     "costPerPkg": 0.0141,
+     "meanCost": 0.0734
+    },
+    {
+     "arm": "QUORUM-q2",
+     "pkgRate": 0.698,
+     "hidden": 0.973,
+     "costPerPkg": 0.0197,
+     "meanCost": 0.1182
+    },
+    {
+     "arm": "QUORUM-q1",
+     "pkgRate": 0.628,
+     "hidden": 0.957,
+     "costPerPkg": 0.0106,
+     "meanCost": 0.0572
+    },
+    {
+     "arm": "CTRL+PATROL2",
+     "pkgRate": 0.814,
+     "hidden": 0.987,
+     "costPerPkg": 0.0268,
+     "meanCost": 0.1879
+    }
+   ]
+  }
+ },
+ "extraContrasts": {
+  "THRESH-hab vs CTRL+PATROL2": {
+   "vs": "CTRL+PATROL2",
+   "deltaPkgRate": 0.051,
+   "deltaCI": [
+    -0.028,
+    0.146
+   ],
+   "costPerPkgRatio": 0.667,
+   "ratioCI": [
+    0.55,
+    0.76
+   ],
+   "verdict": "BETTER"
+  },
+  "THRESH-fixed vs CTRL+PATROL2": {
+   "vs": "CTRL+PATROL2",
+   "deltaPkgRate": 0.085,
+   "deltaCI": [
+    0,
+    0.196
+   ],
+   "costPerPkgRatio": 0.787,
+   "ratioCI": [
+    0.696,
+    0.871
+   ],
+   "verdict": "BETTER"
+  },
+  "CTRL+PATROL2 vs CTRL": {
+   "vs": "CTRL",
+   "deltaPkgRate": 0.203,
+   "deltaCI": [
+    0.143,
+    0.273
+   ],
+   "costPerPkgRatio": 2.133,
+   "ratioCI": [
+    1.756,
+    2.565
+   ],
+   "verdict": "INCONCLUSIVE"
+  },
+  "THRESH-hab vs THRESH-fixed": {
+   "vs": "THRESH-fixed",
+   "deltaPkgRate": -0.034,
+   "deltaCI": [
+    -0.157,
+    0.059
+   ],
+   "costPerPkgRatio": 0.848,
+   "ratioCI": [
+    0.734,
+    0.978
+   ],
+   "verdict": "INCONCLUSIVE"
+  },
+  "STIG-evap vs STIG-noevap": {
+   "vs": "STIG-noevap",
+   "deltaPkgRate": -0.017,
+   "deltaCI": [
+    -0.139,
+    0.111
+   ],
+   "costPerPkgRatio": 0.899,
+   "ratioCI": [
+    0.77,
+    1.095
+   ],
+   "verdict": "INCONCLUSIVE"
+  },
+  "QUORUM-q2 vs QUORUM-q1": {
+   "vs": "QUORUM-q1",
+   "deltaPkgRate": 0.034,
+   "deltaCI": [
+    -0.089,
+    0.19
+   ],
+   "costPerPkgRatio": 1.933,
+   "ratioCI": [
+    1.444,
+    2.378
+   ],
+   "verdict": "WORSE"
+  }
+ },
+ "perTask": {
+  "lm01": {
+   "tier": "mid",
+   "k": 4,
+   "byArm": {
+    "SOLO": "0/4",
+    "ORCH": "0/4",
+    "PIPE": "0/4",
+    "VOTE3": "2/4",
+    "DEBATE": "3/4",
+    "TODAY": "0/4",
+    "CTRL": "1/4",
+    "GATE": "1/4",
+    "ELASTIC": "0/4",
+    "THRESH-hab": "3/4",
+    "THRESH-fixed": "4/4*",
+    "STIG-evap": "1/4",
+    "STIG-noevap": "1/4",
+    "QUORUM-q2": "0/4",
+    "QUORUM-q1": "0/4",
+    "CTRL+PATROL2": "2/4"
+   }
+  },
+  "lm03": {
+   "tier": "mid",
+   "k": 4,
+   "byArm": {
+    "SOLO": "3/4",
+    "ORCH": "3/4",
+    "PIPE": "3/4",
+    "VOTE3": "2/4",
+    "DEBATE": "3/4",
+    "TODAY": "2/4",
+    "CTRL": "1/4",
+    "GATE": "3/4",
+    "ELASTIC": "3/4",
+    "THRESH-hab": "3/4",
+    "THRESH-fixed": "3/4",
+    "STIG-evap": "2/4",
+    "STIG-noevap": "1/4",
+    "QUORUM-q2": "1/4",
+    "QUORUM-q1": "2/4",
+    "CTRL+PATROL2": "3/4"
+   }
+  },
+  "lm04": {
+   "tier": "mid",
+   "k": 4,
+   "byArm": {
+    "SOLO": "2/4",
+    "ORCH": "2/4",
+    "PIPE": "3/4",
+    "VOTE3": "2/4",
+    "DEBATE": "3/4",
+    "TODAY": "2/4",
+    "CTRL": "3/4",
+    "GATE": "2/4",
+    "ELASTIC": "3/4",
+    "THRESH-hab": "4/4*",
+    "THRESH-fixed": "4/4*",
+    "STIG-evap": "2/4",
+    "STIG-noevap": "2/4",
+    "QUORUM-q2": "1/4",
+    "QUORUM-q1": "1/4",
+    "CTRL+PATROL2": "4/4*"
+   }
+  },
+  "lm05": {
+   "tier": "mid",
+   "k": 4,
+   "byArm": {
+    "SOLO": "2/4",
+    "ORCH": "1/4",
+    "PIPE": "1/4",
+    "VOTE3": "1/4",
+    "DEBATE": "2/4",
+    "TODAY": "2/4",
+    "CTRL": "1/4",
+    "GATE": "1/4",
+    "ELASTIC": "1/4",
+    "THRESH-hab": "2/4",
+    "THRESH-fixed": "2/4",
+    "STIG-evap": "1/4",
+    "STIG-noevap": "1/4",
+    "QUORUM-q2": "1/4",
+    "QUORUM-q1": "1/4",
+    "CTRL+PATROL2": "1/4"
+   }
+  },
+  "lx01": {
+   "tier": "multi",
+   "k": 8,
+   "byArm": {
+    "SOLO": "2/8",
+    "ORCH": "3/8",
+    "PIPE": "2/8",
+    "VOTE3": "0/8",
+    "DEBATE": "2/8",
+    "TODAY": "3/8",
+    "CTRL": "3/8",
+    "GATE": "3/8",
+    "ELASTIC": "2/8",
+    "THRESH-hab": "7/8",
+    "THRESH-fixed": "6/8",
+    "STIG-evap": "5/8",
+    "STIG-noevap": "3/8",
+    "QUORUM-q2": "7/8",
+    "QUORUM-q1": "3/8",
+    "CTRL+PATROL2": "5/8"
+   }
+  },
+  "lx02": {
+   "tier": "multi",
+   "k": 9,
+   "byArm": {
+    "SOLO": "4/9",
+    "ORCH": "8/9",
+    "PIPE": "3/9",
+    "VOTE3": "2/9",
+    "DEBATE": "5/9",
+    "TODAY": "7/9",
+    "CTRL": "7/9",
+    "GATE": "5/9",
+    "ELASTIC": "4/9",
+    "THRESH-hab": "8/9",
+    "THRESH-fixed": "8/9",
+    "STIG-evap": "6/9",
+    "STIG-noevap": "7/9",
+    "QUORUM-q2": "6/9",
+    "QUORUM-q1": "7/9",
+    "CTRL+PATROL2": "8/9"
+   }
+  },
+  "lx10": {
+   "tier": "multi",
+   "k": 8,
+   "byArm": {
+    "SOLO": "5/8",
+    "ORCH": "7/8",
+    "PIPE": "6/8",
+    "VOTE3": "2/8",
+    "DEBATE": "7/8",
+    "TODAY": "6/8",
+    "CTRL": "5/8",
+    "GATE": "6/8",
+    "ELASTIC": "6/8",
+    "THRESH-hab": "7/8",
+    "THRESH-fixed": "7/8",
+    "STIG-evap": "6/8",
+    "STIG-noevap": "6/8",
+    "QUORUM-q2": "6/8",
+    "QUORUM-q1": "6/8",
+    "CTRL+PATROL2": "7/8"
+   }
+  },
+  "lx11": {
+   "tier": "multi",
+   "k": 9,
+   "byArm": {
+    "SOLO": "6/9",
+    "ORCH": "6/9",
+    "PIPE": "3/9",
+    "VOTE3": "1/9",
+    "DEBATE": "1/9",
+    "TODAY": "4/9",
+    "CTRL": "6/9",
+    "GATE": "6/9",
+    "ELASTIC": "5/9",
+    "THRESH-hab": "6/9",
+    "THRESH-fixed": "9/9*",
+    "STIG-evap": "2/9",
+    "STIG-noevap": "5/9",
+    "QUORUM-q2": "4/9",
+    "QUORUM-q1": "5/9",
+    "CTRL+PATROL2": "7/9"
+   }
+  },
+  "lx12": {
+   "tier": "multi",
+   "k": 9,
+   "byArm": {
+    "SOLO": "5/9",
+    "ORCH": "6/9",
+    "PIPE": "3/9",
+    "VOTE3": "4/9",
+    "DEBATE": "6/9",
+    "TODAY": "3/9",
+    "CTRL": "6/9",
+    "GATE": "5/9",
+    "ELASTIC": "7/9",
+    "THRESH-hab": "8/9",
+    "THRESH-fixed": "7/9",
+    "STIG-evap": "5/9",
+    "STIG-noevap": "5/9",
+    "QUORUM-q2": "7/9",
+    "QUORUM-q1": "6/9",
+    "CTRL+PATROL2": "8/9"
+   }
+  }
+ }
+}

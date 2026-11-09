@@ -1,0 +1,62 @@
+{
+  "phase": "calib",
+  "task": "b04-agenda-kit",
+  "class": "b",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 3,
+    "total": 3
+  },
+  "hidden": {
+    "pass": 19,
+    "total": 19
+  },
+  "cost": 0.00220082,
+  "inTok": 5435,
+  "outTok": 2968,
+  "cacheRead": 5052,
+  "cacheWrite": 381,
+  "latencyMs": 11310,
+  "wallMs": 11311,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/priority-queue.mjs",
+    "src/scheduler.mjs",
+    "src/rate-limiter.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:56:35.630Z",
+  "finalFiles": {
+    "src/priority-queue.mjs": "/**\n * Fila de prioridade (heap binário mínimo).\n *\n * `compare(a, b)` segue a convenção de Array#sort: negativo se `a` sai antes de `b`.\n * Elementos que o comparador considera iguais saem na ordem de inserção (FIFO).\n */\nexport class PriorityQueue {\n  #heap = [];\n  #seq = 0;\n  #compare;\n\n  constructor(compare = (a, b) => a - b) {\n    this.#compare = compare;\n  }\n\n  get size() {\n    return this.#heap.length;\n  }\n\n  push(value) {\n    this.#heap.push({ value, seq: this.#seq++ });\n    this.#up(this.#heap.length - 1);\n    return this.size;\n  }\n\n  /** Menor elemento sem removê-lo; fila vazia → undefined. */\n  peek() {\n    return this.#heap[0]?.value;\n  }\n\n  /** Remove e devolve o menor elemento; fila vazia → undefined. */\n  pop() {\n    const h = this.#heap;\n    if (h.length === 0) return undefined;\n    const top = h[0];\n    const last = h.pop();\n    if (h.length > 0) {\n      h[0] = last;\n      this.#down(0);\n    }\n    return top.value;\n  }\n\n  /** Esvazia a fila devolvendo todos os elementos na ordem de saída. */\n  drain() {\n    const out = [];\n    while (this.size > 0) out.push(this.pop());\n    return out;\n  }\n\n  #less(i, j) {\n    const a = this.#heap[i];\n    const b = this.#heap[j];\n    const c = this.#compare(a.value, b.value);\n    return c < 0 || (c === 0 && a.seq < b.seq);\n  }\n\n  #swap(i, j) {\n    [this.#heap[i], this.#heap[j]] = [this.#heap[j], this.#heap[i]];\n  }\n\n  #up(i) {\n    while (i > 0) {\n      const parent = (i - 1) >> 1;\n      if (!this.#less(i, parent)) break;\n      this.#swap(i, parent);\n      i = parent;\n    }\n  }\n\n  #down(i) {\n    const n = this.#heap.length;\n    for (;;) {\n      const l = 2 * i + 1;\n      const r = l + 1;\n      let m = i;\n      if (l < n && this.#less(l, m)) m = l;\n      if (r < n && this.#less(r, m)) m = r;\n      if (m === i) return;\n      this.#swap(i, m);\n      i = m;\n    }\n  }\n}\n",
+    "src/scheduler.mjs": "/**\n * Agendador de tarefas com relógio injetado (sem timers reais): quem usa chama\n * runDue() periodicamente.\n */\nexport function createScheduler(clock) {\n  let tasks = [];\n  let nextId = 1;\n\n  return {\n    /**\n     * Agenda `fn` para `clock.now() + delay` (delay >= 0, padrão 0; senão RangeError).\n     * Devolve um id numérico (1, 2, 3, ...).\n     */\n    schedule(fn, delay = 0) {\n      if (!(delay >= 0)) throw new RangeError('delay must be >= 0');\n      const id = nextId++;\n      tasks.push({ id, fn, due: clock.now() + delay });\n      return id;\n    },\n\n    /** Cancela uma tarefa pendente; devolve true se ela existia. */\n    cancel(id) {\n      const before = tasks.length;\n      tasks = tasks.filter((t) => t.id !== id);\n      return tasks.length < before;\n    },\n\n    /** Número de tarefas pendentes. */\n    pending() {\n      return tasks.length;\n    },\n\n    /** Menor horário pendente, ou null. */\n    nextDue() {\n      return tasks.length ? Math.min(...tasks.map((t) => t.due)) : null;\n    },\n\n    /**\n     * Executa todas as tarefas vencidas (due <= agora), em ordem de horário e, no\n     * empate, na ordem em que foram agendadas. Cada fn recebe o próprio id.\n     * Tarefas agendadas durante a execução ficam para uma próxima chamada.\n     * Devolve quantas tarefas foram executadas.\n     */\n    runDue() {\n      const now = clock.now();\n      const due = tasks.filter((t) => t.due <= now).sort((a, b) => a.due - b.due || a.id - b.id);\n      const ids = new Set(due.map((t) => t.id));\n      tasks = tasks.filter((t) => !ids.has(t.id));\n      for (const t of due) t.fn(t.id);\n      return due.length;\n    },\n  };\n}\n",
+    "src/rate-limiter.mjs": "/**\n * Token bucket com relógio injetado.\n *\n * O balde começa cheio (`capacity` fichas) e recebe `refillPerSecond` fichas por\n * segundo de forma contínua (frações contam), nunca passando de `capacity`.\n */\nexport function createTokenBucket({ capacity, refillPerSecond, clock }) {\n  if (!(capacity > 0)) throw new RangeError('capacity must be > 0');\n  if (!(refillPerSecond > 0)) throw new RangeError('refillPerSecond must be > 0');\n  let tokens = capacity;\n  let last = clock.now();\n\n  function refill() {\n    const now = clock.now();\n    if (now > last) {\n      tokens = Math.min(capacity, tokens + ((now - last) * refillPerSecond) / 1000);\n      last = now;\n    }\n  }\n\n  return {\n    /** Consome `n` fichas se houver; devolve true/false. n > capacity → RangeError. */\n    tryRemove(n = 1) {\n      if (n > capacity) throw new RangeError('n exceeds capacity');\n      refill();\n      if (tokens < n) return false;\n      tokens -= n;\n      return true;\n    },\n\n    /** Fichas disponíveis agora (pode ser fracionário). */\n    available() {\n      refill();\n      return tokens;\n    },\n\n    /** Milissegundos (arredondados para cima) até haver `n` fichas; 0 se já houver. */\n    msUntil(n = 1) {\n      refill();\n      if (tokens >= n) return 0;\n      return Math.ceil(((n - tokens) * 1000) / refillPerSecond);\n    },\n  };\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00220082,
+      "outTok": 2968,
+      "latencyMs": 11310,
+      "promptChars": 10142,
+      "response": "=== FILE: src/priority-queue.mjs ===\n/**\n * Fila de prioridade (heap binário mínimo).\n *\n * `compare(a, b)` segue a convenção de Array#sort: negativo se `a` sai antes de `b`.\n * Elementos que o comparador considera iguais saem na ordem de inserção (FIFO).\n */\nexport class PriorityQueue {\n  #heap = [];\n  #seq = 0;\n  #compare;\n\n  constructor(compare = (a, b) => a - b) {\n    this.#compare = compare;\n  }\n\n  get size() {\n    return this.#heap.length;\n  }\n\n  push(value) {\n    this.#heap.push({ value, seq: this.#seq++ });\n    this.#up(this.#heap.length - 1);\n    return this.size;\n  }\n\n  /** Menor elemento sem removê-lo; fila vazia → undefined. */\n  peek() {\n    return this.#heap[0]?.value;\n  }\n\n  /** Remove e devolve o menor elemento; fila vazia → undefined. */\n  pop() {\n    const h = this.#heap;\n    if (h.length === 0) return undefined;\n    const top = h[0];\n    const last = h.pop();\n    if (h.length > 0) {\n      h[0] = last;\n      this.#down(0);\n    }\n    return top.value;\n  }\n\n  /** Esvazia a fila devolvendo todos os elementos na ordem de saída. */\n  drain() {\n    const out = [];\n    while (this.size > 0) out.push(this.pop());\n    return out;\n  }\n\n  #less(i, j) {\n    const a = this.#heap[i];\n    const b = this.#heap[j];\n    const c = this.#compare(a.value, b.value);\n    return c < 0 || (c === 0 && a.seq < b.seq);\n  }\n\n  #swap(i, j) {\n    [this.#heap[i], this.#heap[j]] = [this.#heap[j], this.#heap[i]];\n  }\n\n  #up(i) {\n    while (i > 0) {\n      const parent = (i - 1) >> 1;\n      if (!this.#less(i, parent)) break;\n      this.#swap(i, parent);\n      i = parent;\n    }\n  }\n\n  #down(i) {\n    const n = this.#heap.length;\n    for (;;) {\n      const l = 2 * i + 1;\n      const r = l + 1;\n      let m = i;\n      if (l < n && this.#less(l, m)) m = l;\n      if (r < n && this.#less(r, m)) m = r;\n      if (m === i) return;\n      this.#swap(i, m);\n      i = m;\n    }\n  }\n}\n=== END FILE ===\n\n=== FILE: src/scheduler.mjs ===\n/**\n * Agendador de tarefas com relógio injetado (sem timers reais): quem usa chama\n * runDue() periodicamente.\n */\nexport function createScheduler(clock) {\n  let tasks = [];\n  let nextId = 1;\n\n  return {\n    /**\n     * Agenda `fn` para `clock.now() + delay` (delay >= 0, padrão 0; senão RangeError).\n     * Devolve um id numérico (1, 2, 3, ...).\n     */\n    schedule(fn, delay = 0) {\n      if (!(delay >= 0)) throw new RangeError('delay must be >= 0');\n      const id = nextId++;\n      tasks.push({ id, fn, due: clock.now() + delay });\n      return id;\n    },\n\n    /** Cancela uma tarefa pendente; devolve true se ela existia. */\n    cancel(id) {\n      const before = tasks.length;\n      tasks = tasks.filter((t) => t.id !== id);\n      return tasks.length < before;\n    },\n\n    /** Número de tarefas pendentes. */\n    pending() {\n      return tasks.length;\n    },\n\n    /** Menor horário pendente, ou null. */\n    nextDue() {\n      return tasks.length ? Math.min(...tasks.map((t) => t.due)) : null;\n    },\n\n    /**\n     * Executa todas as tarefas vencidas (due <= agora), em ordem de horário e, no\n     * empate, na ordem em que foram agendadas. Cada fn recebe o próprio id.\n     * Tarefas agendadas durante a execução ficam para uma próxima chamada.\n     * Devolve quantas tarefas foram executadas.\n     */\n    runDue() {\n      const now = clock.now();\n      const due = tasks.filter((t) => t.due <= now).sort((a, b) => a.due - b.due || a.id - b.id);\n      const ids = new Set(due.map((t) => t.id));\n      tasks = tasks.filter((t) => !ids.has(t.id));\n      for (const t of due) t.fn(t.id);\n      return due.length;\n    },\n  };\n}\n=== END FILE ===\n\n=== FILE: src/rate-limiter.mjs ===\n/**\n * Token bucket com relógio injetado.\n *\n * O balde começa cheio (`capacity` fichas) e recebe `refillPerSecond` fichas por\n * segundo de forma contínua (frações contam), nunca passando de `capacity`.\n */\nexport function createTokenBucket({ capacity, refillPerSecond, clock }) {\n  if (!(capacity > 0)) throw new RangeError('capacity must be > 0');\n  if (!(refillPerSecond > 0)) throw new RangeError('refillPerSecond must be > 0');\n  let tokens = capacity;\n  let last = clock.now();\n\n  function refill() {\n    const now = clock.now();\n    if (now > last) {\n      tokens = Math.min(capacity, tokens + ((now - last) * refillPerSecond) / 1000);\n      last = now;\n    }\n  }\n\n  return {\n    /** Consome `n` fichas se houver; devolve true/false. n > capacity → RangeError. */\n    tryRemove(n = 1) {\n      if (n > capacity) throw new RangeError('n exceeds capacity');\n      refill();\n      if (tokens < n) return false;\n      tokens -= n;\n      return true;\n    },\n\n    /** Fichas disponíveis agora (pode ser fracionário). */\n    available() {\n      refill();\n      return tokens;\n    },\n\n    /** Milissegundos (arredondados para cima) até haver `n` fichas; 0 se já houver. */\n    msUntil(n = 1) {\n      refill();\n      if (tokens >= n) return 0;\n      return Math.ceil(((n - tokens) * 1000) / refillPerSecond);\n    },\n  };\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

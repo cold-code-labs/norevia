@@ -1,0 +1,14 @@
+{
+  "id": "a06-csv-quoting",
+  "class": "a",
+  "split": "dev",
+  "title": "CSV corrupts fields with several quotes",
+  "statement": "The module `src/csv.mjs` serializes data to CSV in RFC 4180 style.\n\n**Contract**\n\n- `formatField(value, delimiter = ',')`:\n  - `null` and `undefined` become an empty field; other non-string values are converted with `String(value)` (e.g.: `0` → `0`, `false` → `false`).\n  - The field is wrapped in double quotes if it contains the **delimiter in use**, double quotes (`\"`), `\\n` or `\\r`, or if it **starts or ends with a space**. Otherwise it is written as is (other characters, such as the comma when the delimiter is `;`, do not force quotes).\n  - Inside a quoted field, **each** double quote of the content is written doubled (`\"\"`).\n- `formatRow(fields, delimiter = ',')` formats each field and joins them with the delimiter. `fields` that is not an array → `TypeError`.\n- `toCsv(rows, { delimiter = ',' } = {})` formats each row and joins them with `\\r\\n`, **without** a trailing line break; `toCsv([])` → `''`. `rows` that is not an array → `TypeError`; `delimiter` that is not a single character, or that is `\"`, `\\r` or `\\n` → `RangeError`.\n\n**Examples**\n\n- `formatField('a,b')` → `\"a,b\"`; `formatField(' x')` → `\" x\"`.\n- `formatField('5\" tela')` → `\"5\"\" tela\"`.\n- `formatRow(['a;b', 'c,d'], ';')` → `\"a;b\";c,d`.\n\n**Reported symptom:** exported spreadsheets become corrupted (columns shifted when reopened) when a text contains several quoted utterances, such as `ele disse \"oi\" e \"tchau\"`. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/csv.mjs",
+      "summary": "escaping uses String.prototype.replace with a string (only the first quote is doubled) instead of replaceAll"
+    }
+  ],
+  "decomposable": false
+}

@@ -1,0 +1,80 @@
+{
+  "phase": "pilot",
+  "task": "a05-lru-cache",
+  "class": "a",
+  "split": "dev",
+  "arch": "C-decompose",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 7,
+    "total": 7
+  },
+  "cost": 0.0204773,
+  "inTok": 5373,
+  "outTok": 1186,
+  "cacheRead": 0,
+  "cacheWrite": 5369,
+  "latencyMs": 9603,
+  "wallMs": 9606,
+  "calls": 2,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 2,
+  "filesChanged": [
+    "src/lru.mjs"
+  ],
+  "decomposed": false,
+  "events": [
+    {
+      "decomposed": false,
+      "plan": {
+        "decomposable": false,
+        "n": 1,
+        "reason": "The bug is confined to a single class in one file (src/lru.mjs): the set() method, when the key already exists, calls this.#map.set(key, value) without first deleting the entry, so the key keeps its o"
+      },
+      "repaired": false
+    }
+  ],
+  "error": null,
+  "ts": "2026-11-07T22:33:52.493Z",
+  "finalFiles": {
+    "src/lru.mjs": "/**\n * Cache LRU (least recently used) com capacidade fixa.\n *\n * - `get(key)` e `set(key, value)` marcam a chave como a mais recentemente usada.\n * - `has(key)` e `peek(key)` NÃO alteram a ordem de uso.\n * - Ao inserir uma chave nova com o cache cheio, a chave usada há mais tempo é\n *   removida e `onEvict(key, value)` é chamado (apenas para remoções por\n *   capacidade; não para `delete`, `clear` ou atualização de valor).\n */\nexport class LRUCache {\n  #map = new Map(); // ordem de iteração: menos -> mais recentemente usada\n  #capacity;\n  #onEvict;\n\n  constructor(capacity, { onEvict } = {}) {\n    if (!Number.isInteger(capacity) || capacity < 1) {\n      throw new RangeError('capacity must be a positive integer');\n    }\n    this.#capacity = capacity;\n    this.#onEvict = onEvict;\n  }\n\n  get size() {\n    return this.#map.size;\n  }\n\n  get capacity() {\n    return this.#capacity;\n  }\n\n  has(key) {\n    return this.#map.has(key);\n  }\n\n  peek(key) {\n    return this.#map.get(key);\n  }\n\n  get(key) {\n    if (!this.#map.has(key)) return undefined;\n    const value = this.#map.get(key);\n    this.#map.delete(key);\n    this.#map.set(key, value);\n    return value;\n  }\n\n  set(key, value) {\n    if (this.#map.has(key)) {\n      this.#map.delete(key);\n      this.#map.set(key, value);\n      return this;\n    }\n    if (this.#map.size >= this.#capacity) {\n      const [oldestKey, oldestValue] = this.#map.entries().next().value;\n      this.#map.delete(oldestKey);\n      this.#onEvict?.(oldestKey, oldestValue);\n    }\n    this.#map.set(key, value);\n    return this;\n  }\n\n  delete(key) {\n    return this.#map.delete(key);\n  }\n\n  clear() {\n    this.#map.clear();\n  }\n\n  /** Chaves da menos para a mais recentemente usada. */\n  keys() {\n    return [...this.#map.keys()];\n  }\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "planner",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0010299,
+      "outTok": 338,
+      "latencyMs": 3518,
+      "promptChars": 4291,
+      "response": "{\"decomposable\": false, \"reason\": \"The bug is confined to a single class in one file (src/lru.mjs): the set() method, when the key already exists, calls this.#map.set(key, value) without first deleting the entry, so the key keeps its original position in the Map's insertion order instead of moving to the most-recently-used end. A single fix (delete the key before re-inserting, or delete then set in the existing-key branch) is needed in one place, so there are no independent subproblems to split.\", \"subproblems\": [{\"files\": [\"src/lru.mjs\"], \"goal\": \"In set(key, value), when the key already exists, remove it from #map before re-inserting so the updated key moves to the most-recently-used position (end of the Map iteration order). Keep onEvict uncalled on value updates, keep set() returning this, and verify that keys() and the eviction order match the spec, including the example where set('a', 4) on a full cache of a,b,c yields keys() == ['b','c','a'] and a later set('d', 5) evicts 'b'.\"}]}"
+    },
+    {
+      "role": "joint-solver",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.0194474,
+      "outTok": 848,
+      "latencyMs": 5996,
+      "promptChars": 4190,
+      "response": "The bug is in `set`: updating an existing key didn't move it to the most-recently-used position. Fixed by deleting and re-inserting.\n\n=== FILE: src/lru.mjs ===\n/**\n * Cache LRU (least recently used) com capacidade fixa.\n *\n * - `get(key)` e `set(key, value)` marcam a chave como a mais recentemente usada.\n * - `has(key)` e `peek(key)` NÃO alteram a ordem de uso.\n * - Ao inserir uma chave nova com o cache cheio, a chave usada há mais tempo é\n *   removida e `onEvict(key, value)` é chamado (apenas para remoções por\n *   capacidade; não para `delete`, `clear` ou atualização de valor).\n */\nexport class LRUCache {\n  #map = new Map(); // ordem de iteração: menos -> mais recentemente usada\n  #capacity;\n  #onEvict;\n\n  constructor(capacity, { onEvict } = {}) {\n    if (!Number.isInteger(capacity) || capacity < 1) {\n      throw new RangeError('capacity must be a positive integer');\n    }\n    this.#capacity = capacity;\n    this.#onEvict = onEvict;\n  }\n\n  get size() {\n    return this.#map.size;\n  }\n\n  get capacity() {\n    return this.#capacity;\n  }\n\n  has(key) {\n    return this.#map.has(key);\n  }\n\n  peek(key) {\n    return this.#map.get(key);\n  }\n\n  get(key) {\n    if (!this.#map.has(key)) return undefined;\n    const value = this.#map.get(key);\n    this.#map.delete(key);\n    this.#map.set(key, value);\n    return value;\n  }\n\n  set(key, value) {\n    if (this.#map.has(key)) {\n      this.#map.delete(key);\n      this.#map.set(key, value);\n      return this;\n    }\n    if (this.#map.size >= this.#capacity) {\n      const [oldestKey, oldestValue] = this.#map.entries().next().value;\n      this.#map.delete(oldestKey);\n      this.#onEvict?.(oldestKey, oldestValue);\n    }\n    this.#map.set(key, value);\n    return this;\n  }\n\n  delete(key) {\n    return this.#map.delete(key);\n  }\n\n  clear() {\n    this.#map.clear();\n  }\n\n  /** Chaves da menos para a mais recentemente usada. */\n  keys() {\n    return [...this.#map.keys()];\n  }\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

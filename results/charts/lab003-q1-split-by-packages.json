@@ -1,0 +1,66 @@
+[
+ {
+  "k": 1,
+  "policy": "SOLO",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0065,
+  "package_accept_rate": 1,
+  "hidden_pass_rate": 1
+ },
+ {
+  "k": 1,
+  "policy": "TEAM",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0055,
+  "package_accept_rate": 1,
+  "hidden_pass_rate": 1
+ },
+ {
+  "k": 3,
+  "policy": "SOLO",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0221,
+  "package_accept_rate": 1,
+  "hidden_pass_rate": 1
+ },
+ {
+  "k": 3,
+  "policy": "TEAM",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0141,
+  "package_accept_rate": 1,
+  "hidden_pass_rate": 1
+ },
+ {
+  "k": 8,
+  "policy": "SOLO",
+  "acceptance_rate": 0.778,
+  "cost_per_accepted_usd": 0.1199,
+  "package_accept_rate": 0.972,
+  "hidden_pass_rate": 0.998
+ },
+ {
+  "k": 8,
+  "policy": "TEAM",
+  "acceptance_rate": 1,
+  "cost_per_accepted_usd": 0.0442,
+  "package_accept_rate": 1,
+  "hidden_pass_rate": 1
+ },
+ {
+  "k": 15,
+  "policy": "SOLO",
+  "acceptance_rate": 0,
+  "cost_per_accepted_usd": null,
+  "package_accept_rate": 0.622,
+  "hidden_pass_rate": 0.887
+ },
+ {
+  "k": 15,
+  "policy": "TEAM",
+  "acceptance_rate": 0.667,
+  "cost_per_accepted_usd": 0.1178,
+  "package_accept_rate": 0.978,
+  "hidden_pass_rate": 0.998
+ }
+]

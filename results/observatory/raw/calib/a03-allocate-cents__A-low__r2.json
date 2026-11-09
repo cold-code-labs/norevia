@@ -1,0 +1,58 @@
+{
+  "phase": "calib",
+  "task": "a03-allocate-cents",
+  "class": "a",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 2,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 8,
+    "total": 8
+  },
+  "cost": 0.00092967,
+  "inTok": 2577,
+  "outTok": 1059,
+  "cacheRead": 2197,
+  "cacheWrite": 378,
+  "latencyMs": 5222,
+  "wallMs": 5224,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/allocate.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:56:24.117Z",
+  "finalFiles": {
+    "src/allocate.mjs": "/**\n * Rateio de valores monetários em centavos.\n *\n * allocate(totalCents, weights) divide `totalCents` em partes inteiras\n * proporcionais a `weights`, sem perder nem criar centavos (a soma das partes\n * é sempre `totalCents`).\n *\n * Método do maior resto:\n *   1. cada parte recebe floor(totalCents * w / soma(weights));\n *   2. os centavos que sobram são entregues, um por parte, às partes com maior\n *      resto da divisão; em caso de empate no resto, a parte de menor índice\n *      recebe primeiro.\n */\n\nfunction assertInt(name, value) {\n  if (!Number.isSafeInteger(value) || value < 0) {\n    throw new RangeError(`${name} must be a non-negative integer, got ${value}`);\n  }\n}\n\nexport function allocate(totalCents, weights) {\n  assertInt('totalCents', totalCents);\n  if (!Array.isArray(weights) || weights.length === 0) {\n    throw new RangeError('weights must be a non-empty array');\n  }\n  weights.forEach((w, i) => assertInt(`weights[${i}]`, w));\n  const sum = weights.reduce((acc, w) => acc + w, 0);\n  if (sum === 0) throw new RangeError('weights must not all be zero');\n\n  const parts = weights.map((w, index) => {\n    const scaled = totalCents * w;\n    const base = Math.floor(scaled / sum);\n    return { index, amount: base, remainder: scaled - base * sum };\n  });\n\n  let leftover = totalCents - parts.reduce((acc, p) => acc + p.amount, 0);\n  const byRemainder = [...parts].sort(\n    (x, y) => y.remainder - x.remainder || x.index - y.index,\n  );\n  for (let i = 0; leftover > 0; i++, leftover--) {\n    byRemainder[i].amount += 1;\n  }\n  return parts.map((p) => p.amount);\n}\n\n/**\n * Divide `totalCents` em `n` partes iguais (diferença máxima de 1 centavo).\n */\nexport function splitEvenly(totalCents, n) {\n  if (!Number.isInteger(n) || n < 1) throw new RangeError('n must be a positive integer');\n  return allocate(totalCents, new Array(n).fill(1));\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00092967,
+      "outTok": 1059,
+      "latencyMs": 5222,
+      "promptChars": 3946,
+      "response": "O empate no resto desempatava pelo maior índice (`y.index - x.index`). Inverti a comparação para que o menor índice venha primeiro.\n\n=== FILE: src/allocate.mjs ===\n/**\n * Rateio de valores monetários em centavos.\n *\n * allocate(totalCents, weights) divide `totalCents` em partes inteiras\n * proporcionais a `weights`, sem perder nem criar centavos (a soma das partes\n * é sempre `totalCents`).\n *\n * Método do maior resto:\n *   1. cada parte recebe floor(totalCents * w / soma(weights));\n *   2. os centavos que sobram são entregues, um por parte, às partes com maior\n *      resto da divisão; em caso de empate no resto, a parte de menor índice\n *      recebe primeiro.\n */\n\nfunction assertInt(name, value) {\n  if (!Number.isSafeInteger(value) || value < 0) {\n    throw new RangeError(`${name} must be a non-negative integer, got ${value}`);\n  }\n}\n\nexport function allocate(totalCents, weights) {\n  assertInt('totalCents', totalCents);\n  if (!Array.isArray(weights) || weights.length === 0) {\n    throw new RangeError('weights must be a non-empty array');\n  }\n  weights.forEach((w, i) => assertInt(`weights[${i}]`, w));\n  const sum = weights.reduce((acc, w) => acc + w, 0);\n  if (sum === 0) throw new RangeError('weights must not all be zero');\n\n  const parts = weights.map((w, index) => {\n    const scaled = totalCents * w;\n    const base = Math.floor(scaled / sum);\n    return { index, amount: base, remainder: scaled - base * sum };\n  });\n\n  let leftover = totalCents - parts.reduce((acc, p) => acc + p.amount, 0);\n  const byRemainder = [...parts].sort(\n    (x, y) => y.remainder - x.remainder || x.index - y.index,\n  );\n  for (let i = 0; leftover > 0; i++, leftover--) {\n    byRemainder[i].amount += 1;\n  }\n  return parts.map((p) => p.amount);\n}\n\n/**\n * Divide `totalCents` em `n` partes iguais (diferença máxima de 1 centavo).\n */\nexport function splitEvenly(totalCents, n) {\n  if (!Number.isInteger(n) || n < 1) throw new RangeError('n must be a positive integer');\n  return allocate(totalCents, new Array(n).fill(1));\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

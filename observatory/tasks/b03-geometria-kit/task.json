@@ -1,0 +1,22 @@
+{
+  "id": "b03-geometria-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "2D geometry kit: vectors, polygons and boxes",
+  "statement": "# 2D geometry kit (`src/`)\n\nPackage with three independent modules (`vector.mjs`, `polygon.mjs`, `bbox.mjs`). Points and vectors are objects `{ x, y }`; no function changes its arguments. Reports: the turning direction computed by the kit sometimes comes out inverted, and the collision test between boxes fails for boxes that merely touch. All modules must fully obey the contract below.\n\n## `src/vector.mjs`\n\n- `vec(x, y)`, `add(a, b)`, `sub(a, b)` (= a − b), `scale(v, k)`, `dot(a, b)`, `length(v)` (Euclidean norm): usual definitions, returning new objects.\n- `cross(a, b)`: 2D cross product `a.x*b.y − a.y*b.x`; positive when `b` is counterclockwise from `a`. E.g.: `cross(vec(1,0), vec(0,1))` → `1`; `cross(vec(2,3), vec(4,1))` → `-10`.\n- `normalize(v)`: unit vector in the same direction (`normalize(vec(3,4))` → `{x:0.6, y:0.8}`); zero vector → `RangeError`.\n- `rotate(v, angle)`: rotation by `angle` radians counterclockwise.\n- `angleBetween(a, b)`: oriented angle from `a` to `b`, computed as `Math.atan2(cross(a, b), dot(a, b))`, in the interval (−π, π]: positive if `b` is counterclockwise from `a`; opposite vectors give exactly `+π` (e.g.: `angleBetween(vec(1,0), vec(-1,0))` → `Math.PI`).\n\n## `src/polygon.mjs`\n\nPolygon = array of vertices `{x, y}`, implicitly closed (the last vertex connects to the first).\n- `signedArea(poly)`: shoelace formula; positive for vertices in counterclockwise order. `area(poly)` = absolute value.\n- `orientation(poly)`: `'ccw'`, `'cw'` or `'degenerate'` (zero area).\n- `perimeter(poly)`: sum of the lengths of **all** edges of the closed polygon, including the edge from the last vertex back to the first. Fewer than 2 vertices → `0`; with 2 vertices the result is twice the distance between them. E.g.: square `(0,0),(2,0),(2,2),(0,2)` → `8`; triangle `(0,0),(4,0),(0,3)` → `12`.\n- `centroid(poly)`: center of mass of the region (standard polygon centroid formula); zero area → `RangeError`. E.g.: triangle `(0,0),(6,0),(0,3)` → `{x:2, y:1}`.\n\n## `src/bbox.mjs`\n\nAxis-aligned, **closed** boxes `{ minX, minY, maxX, maxY }` (the border belongs to the box).\n- `boundingBox(points)`: smallest box containing all points; empty list → `null`.\n- `intersects(a, b)`: `true` if the boxes have any point in common — touching only at an edge or only at a corner counts as intersection. The result does not depend on the order of the arguments. E.g.: with `a = {minX:0, minY:0, maxX:1, maxY:1}`, `intersects(a, {minX:1, minY:1, maxX:2, maxY:2})` → `true` (corner) and `intersects(a, {minX:0, minY:1.5, maxX:1, maxY:2})` → `false`.\n- `containsPoint(box, p)`: point inside or on the border.\n- `union(a, b)`: smallest box containing `a` and `b`.\n- `expand(box, margin)`: subtracts `margin` from the minimums and adds it to the maximums (negative shrinks); if the result ends up inverted (`minX > maxX` or `minY > maxY`) → `null`. A zero-width box is valid.",
+  "bugs": [
+    {
+      "file": "src/vector.mjs",
+      "summary": "cross with inverted sign (a.y*b.x - a.x*b.y), also affecting angleBetween"
+    },
+    {
+      "file": "src/polygon.mjs",
+      "summary": "perimeter omits the closing edge (loop up to n - 1)"
+    },
+    {
+      "file": "src/bbox.mjs",
+      "summary": "intersects uses < in one of the y-axis comparisons: boxes that merely touch fail in one of the orders"
+    }
+  ],
+  "decomposable": true
+}

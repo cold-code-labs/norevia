@@ -1,0 +1,10 @@
+{
+  "phase": "smoke",
+  "pending": 0,
+  "finished": 4,
+  "total": 4,
+  "phaseSpendUsd": 0.023393800000000003,
+  "globalSpendUsd": 0.023393800000000003,
+  "stopReason": null,
+  "updated": "2026-11-07T22:31:16.172Z"
+}

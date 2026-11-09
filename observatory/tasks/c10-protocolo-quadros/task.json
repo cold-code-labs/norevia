@@ -1,0 +1,50 @@
+{
+  "id": "c10-protocolo-quadros",
+  "class": "c",
+  "split": "dev",
+  "title": "Protocolo de quadros: UTF-8, escape SLIP, CRC e numeração com erros que se compensam",
+  "statement": "# Protocolo de quadros entre agentes (`src/`)\n\nOs agentes embarcados do enxame trocam mensagens de texto por um enlace serial. O pacote tem cinco módulos ESM:\n\n- `utf8.mjs` — `encodeUtf8`, `decodeUtf8`, `utf8Length`, `codePoints`, `codePointSize`, `isContinuation`, `REPLACEMENT`;\n- `slip.mjs` — `END`, `ESC`, `ESC_END`, `ESC_ESC`, `stuff`, `unstuff`, `concatBytes`, `toHex`, `fromHex`, `FrameSplitter`;\n- `frame.mjs` — `crc16`, `encodeFrame`, `decodeFrame`, `FrameError`, constantes `SEQ_MAX`, `FLAG_MORE`, `HEADER_SIZE`, `CRC_SIZE`, `MAX_PAYLOAD`;\n- `sender.mjs` — `fragment`, `Sender`;\n- `receiver.mjs` — `Receiver`, `WINDOW`.\n\nDo outro lado do enlace há um firmware que segue esta especificação; os vetores dourados abaixo (bytes em hexadecimal, no formato de `toHex`) foram capturados dele.\n\n## UTF-8 (`utf8.mjs`)\n\n- `codePoints(str)`: gerador dos pontos de código de `str`; um par substituto (alto `D800`–`DBFF` seguido de baixo `DC00`–`DFFF`) é um ponto de código; substituto sem par → `U+FFFD` (`REPLACEMENT`).\n- `encodeUtf8(str)` → `Uint8Array`, mesmo resultado de `new TextEncoder().encode(str)`. Não-string → `TypeError`. `utf8Length(str)` = `encodeUtf8(str).length`; `codePointSize(cp)` = nº de bytes UTF-8 do ponto de código.\n- `decodeUtf8(bytes)`: inverso estrito para `Uint8Array` (outro tipo → `TypeError`). Aceita apenas UTF-8 bem-formado (tabela 3-7 do Unicode: sem byte inicial inválido, sem continuação faltando ou sobrando, sem forma não mínima, sem pontos `U+D800`–`U+DFFF`, nada acima de `U+10FFFF`); o resto → `TypeError`.\n\nExemplos: `encodeUtf8('aé€😀')` → `61 c3 a9 e2 82 ac f0 9f 98 80`; `encodeUtf8('\\uD800x')` → `ef bf bd 78`; `decodeUtf8(fromHex('c0 80'))` e `decodeUtf8(fromHex('e2 82'))` → `TypeError`.\n\n## SLIP (`slip.mjs`)\n\n- `END = 0xC0`, `ESC = 0xDB`, `ESC_END = 0xDC`, `ESC_ESC = 0xDD`. `stuff(bytes)`: `END` → `ESC ESC_END`, `ESC` → `ESC ESC_ESC`. `unstuff`: inverso; `END` cru, `ESC` no fim ou seguido de outro byte → `RangeError`.\n- `FrameSplitter#push(chunk)`: recebe pedaços arbitrários de um fluxo e devolve o conteúdo (ainda escapado, sem os `END`) de cada quadro completado; bytes antes do primeiro `END` são descartados; conteúdo vazio entre dois `END` é ignorado. `pending` = bytes acumulados do quadro em curso.\n- `toHex(bytes)`: hex minúsculo separado por espaços; `fromHex(text)`: inverso. `concatBytes(parts)`: concatena.\n\n## Quadro (`frame.mjs`)\n\n```\ncorpo = seq(1) ‖ flags(1) ‖ len(2, big-endian) ‖ payload(len bytes) ‖ crc(2, big-endian)\nfio   = END ‖ stuff(corpo) ‖ END\n```\n\n- `seq` 0–255; `flags`: bit 0 = `FLAG_MORE`, demais bits 0; `len` = nº de bytes do payload; `crc = crc16(seq ‖ flags ‖ len ‖ payload)`.\n- `crc16`: CRC-16/CCITT-FALSE (polinômio `0x1021`, inicial `0xFFFF`, sem reflexão, sem xor final); `crc16(encodeUtf8('123456789'))` → `0x29B1`.\n- `encodeFrame({ seq, more = false, payload })` → fio. `seq` fora de 0–255 → `RangeError`; `more` não-boolean ou `payload` não-`Uint8Array` → `TypeError`; payload > 65535 bytes → `RangeError`.\n- `decodeFrame(wire)` → `{ seq, more, payload }`. Aceita o fio com os dois `END` ou sem eles (como sai de `FrameSplitter`): remove no máximo um `END` de cada ponta e interpreta o resto como `stuff(corpo)`. Erros: `FrameError` com `code`, verificados nesta ordem: `'ESCAPE'` (escape inválido), `'SHORT'` (corpo com menos de 6 bytes), `'LENGTH'` (`len` ≠ tamanho do corpo − 6), `'CRC'`, `'FLAGS'`. Não-`Uint8Array` → `TypeError`.\n\nVetores dourados (payload = `encodeUtf8` do texto):\n\n| quadro | fio |\n|---|---|\n| `{ seq: 0, more: false, payload: 'oi' }` | `c0 00 00 00 02 6f 69 86 eb c0` |\n| `{ seq: 192, more: true, payload: 'é' }` | `c0 db dc 01 00 02 c3 a9 13 d5 c0` |\n| `{ seq: 4, more: false, payload: 'bom' }` | `c0 04 00 00 03 62 6f 6d f8 db dc c0` |\n| `{ seq: 0, more: true, payload: 'fim' }` | `c0 00 01 00 03 66 69 6d 0a db dc c0` |\n\n## Emissor (`sender.mjs`)\n\n- `fragment(text, maxPayload)`: os bytes `encodeUtf8(text)` divididos em pedaços consecutivos de `maxPayload` bytes (o último pode ser menor); texto vazio → `[Uint8Array(0)]`. `maxPayload` inteiro de 1 a 1024 (senão `RangeError`); `text` não-string → `TypeError`. Ex.: `fragment('aé€', 2)` → `61 c3` | `a9 e2` | `82 ac`.\n- `new Sender({ maxPayload = 64, initialSeq = 0 })`; `send(text)` → array de quadros (fio), um por fragmento, `more = true` em todos menos no último. Os quadros do `Sender` são numerados `initialSeq`, `initialSeq + 1`, … módulo 256, continuando entre chamadas de `send`; `nextSeq` = número do próximo quadro.\n\n## Receptor (`receiver.mjs`)\n\n`new Receiver({ initialSeq = 0 })` espera primeiro o quadro `initialSeq`. `stats = { frames, delivered, duplicates, corrupt, invalid }`; `buffered` = nº de quadros guardados fora de ordem; `WINDOW = 127`.\n\n- `push(wire)`: `decodeFrame`; `FrameError` → `stats.corrupt++`, devolve `[]`. Senão `stats.frames++` e, com `d = (seq − esperado) mod 256`:\n  - `d = 0`: aceita o quadro e, em seguida, os guardados que vierem em sequência;\n  - `1 ≤ d ≤ WINDOW`: guarda o quadro (se já houver um guardado com esse `seq`, conta `stats.duplicates++`) e devolve `[]`;\n  - `d > WINDOW`: quadro já aceito antes (retransmissão) — `stats.duplicates++` e ignora.\n- Remontagem: a mensagem é `decodeUtf8` da concatenação dos payloads aceitos, em ordem de `seq`, até o quadro com `more = false` (inclusive). Sucesso → `stats.delivered++` e a mensagem é entregue; `TypeError` de UTF-8 → `stats.invalid++`, mensagem descartada.\n- `push` devolve as mensagens entregues por aquele quadro, em ordem. `pushBytes(chunk)`: passa o pedaço por um `FrameSplitter` interno e faz `push` de cada quadro completado; devolve as mensagens entregues.\n\nO `Receiver` precisa aceitar o que o firmware envia (fragmentado como em `fragment`), e o firmware precisa aceitar o que o `Sender` envia.\n\n## Sintomas relatados\n\nOs testes internos de ida e volta passam, mas o firmware discorda dos nossos fragmentos. Corrija o pacote para que obedeça integralmente à especificação acima.",
+  "bugs": [
+    {
+      "file": "src/utf8.mjs",
+      "summary": "codePoints não junta pares substitutos (testa o segundo como alto) nem troca substituto isolado por U+FFFD → encodeUtf8 gera CESU-8 (emoji = 6 bytes); decodeUtf8 aceita substitutos codificados (ED A0..BF), devolvendo as metades",
+      "coupledWith": "src/sender.mjs, src/receiver.mjs"
+    },
+    {
+      "file": "src/sender.mjs",
+      "summary": "fragment codifica unidade UTF-16 a unidade e nunca corta caracteres (fragmentos menores ou maiores que maxPayload); só funciona porque utf8 aceita metades de pares e o receptor decodifica por fragmento",
+      "coupledWith": "src/utf8.mjs, src/receiver.mjs"
+    },
+    {
+      "file": "src/sender.mjs",
+      "summary": "seq volta com % SEQ_MAX (255) em vez de % 256: 254 → 0, pulando 255 (sem sinal nos visíveis)",
+      "coupledWith": "src/receiver.mjs"
+    },
+    {
+      "file": "src/receiver.mjs",
+      "summary": "remontagem decodifica cada fragmento separadamente e junta as strings (falha com fragmentos do firmware que cortam caracteres); compensa a fragmentação por caractere do emissor",
+      "coupledWith": "src/sender.mjs, src/utf8.mjs"
+    },
+    {
+      "file": "src/receiver.mjs",
+      "summary": "distância de seq com % (resto com sinal): quadro retransmitido logo após ser aceito dá d negativo e é guardado como adiantado em vez de contado como duplicata (sem sinal nos visíveis)",
+      "coupledWith": "src/sender.mjs"
+    },
+    {
+      "file": "src/frame.mjs",
+      "summary": "CRC anexado fora do escape (encoder) e lido cru dos 2 últimos bytes (decoder): ida e volta funciona, mas CRC com 0xC0/0xDB quebra FrameSplitter e quadros do firmware falham",
+      "coupledWith": "src/slip.mjs"
+    },
+    {
+      "file": "src/slip.mjs",
+      "summary": "stuff/unstuff trocam ESC_END e ESC_ESC (END → DB DD, ESC → DB DC) dos dois lados: ida e volta funciona, vetores do firmware com C0/DB divergem (sem sinal nos visíveis)",
+      "coupledWith": "src/frame.mjs"
+    },
+    {
+      "file": "src/slip.mjs",
+      "summary": "FrameSplitter devolve subarray do buffer interno reutilizado: quando um pedaço completa 2+ quadros, os anteriores são sobrescritos (sem sinal nos visíveis; byte a byte funciona)",
+      "coupledWith": "src/receiver.mjs"
+    }
+  ],
+  "decomposable": false
+}

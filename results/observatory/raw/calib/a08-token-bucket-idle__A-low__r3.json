@@ -1,0 +1,58 @@
+{
+  "phase": "calib",
+  "task": "a08-token-bucket-idle",
+  "class": "a",
+  "split": "test",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 7,
+    "total": 7
+  },
+  "cost": 0.00138954,
+  "inTok": 2994,
+  "outTok": 1291,
+  "cacheRead": 2614,
+  "cacheWrite": 378,
+  "latencyMs": 6117,
+  "wallMs": 6118,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/bucket.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:58:17.201Z",
+  "finalFiles": {
+    "src/bucket.mjs": "/**\n * Limitador de taxa do tipo token bucket, com relógio injetado.\n *\n * O balde começa cheio (`capacity` tokens) e é reabastecido continuamente a\n * `refillPerSecond` tokens por segundo, com frações acumulando, até o limite\n * `capacity`. O relógio `now()` retorna milissegundos e é assumido não\n * decrescente.\n */\nexport function createTokenBucket({ capacity, refillPerSecond, now }) {\n  if (!(typeof capacity === 'number' && capacity > 0 && Number.isFinite(capacity))) {\n    throw new RangeError('capacity must be a positive finite number');\n  }\n  if (!(typeof refillPerSecond === 'number' && refillPerSecond > 0 && Number.isFinite(refillPerSecond))) {\n    throw new RangeError('refillPerSecond must be a positive finite number');\n  }\n  if (typeof now !== 'function') throw new TypeError('now must be a function');\n\n  let tokens = capacity;\n  let last = now();\n\n  function refill() {\n    const t = now();\n    const elapsed = t - last;\n    last = t;\n    if (elapsed <= 0) return;\n    if (tokens >= capacity) return;\n    tokens = Math.min(capacity, tokens + (elapsed * refillPerSecond) / 1000);\n  }\n\n  function checkAmount(n) {\n    if (!(typeof n === 'number' && n > 0 && Number.isFinite(n))) {\n      throw new RangeError('n must be a positive finite number');\n    }\n  }\n\n  return {\n    /** Consome `n` tokens se houver; senão não consome nada. */\n    tryTake(n = 1) {\n      checkAmount(n);\n      refill();\n      if (tokens < n) return false;\n      tokens -= n;\n      return true;\n    },\n\n    /** Tokens inteiros disponíveis agora. */\n    available() {\n      refill();\n      return Math.floor(tokens);\n    },\n\n    /** Milissegundos (arredondados para cima) até haver `n` tokens. */\n    msUntil(n = 1) {\n      checkAmount(n);\n      if (n > capacity) return Infinity;\n      refill();\n      if (tokens >= n) return 0;\n      return Math.ceil(((n - tokens) * 1000) / refillPerSecond);\n    },\n  };\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00138954,
+      "outTok": 1291,
+      "latencyMs": 6117,
+      "promptChars": 4951,
+      "response": "The bug is in `refill()`: when the bucket is already full, it returns before updating `last`. Idle time then gets credited on the next refill, so a burst after idling exceeds capacity. The fix always advances `last` and only skips the token addition when the bucket is full.\n\n=== FILE: src/bucket.mjs ===\n/**\n * Limitador de taxa do tipo token bucket, com relógio injetado.\n *\n * O balde começa cheio (`capacity` tokens) e é reabastecido continuamente a\n * `refillPerSecond` tokens por segundo, com frações acumulando, até o limite\n * `capacity`. O relógio `now()` retorna milissegundos e é assumido não\n * decrescente.\n */\nexport function createTokenBucket({ capacity, refillPerSecond, now }) {\n  if (!(typeof capacity === 'number' && capacity > 0 && Number.isFinite(capacity))) {\n    throw new RangeError('capacity must be a positive finite number');\n  }\n  if (!(typeof refillPerSecond === 'number' && refillPerSecond > 0 && Number.isFinite(refillPerSecond))) {\n    throw new RangeError('refillPerSecond must be a positive finite number');\n  }\n  if (typeof now !== 'function') throw new TypeError('now must be a function');\n\n  let tokens = capacity;\n  let last = now();\n\n  function refill() {\n    const t = now();\n    const elapsed = t - last;\n    last = t;\n    if (elapsed <= 0) return;\n    if (tokens >= capacity) return;\n    tokens = Math.min(capacity, tokens + (elapsed * refillPerSecond) / 1000);\n  }\n\n  function checkAmount(n) {\n    if (!(typeof n === 'number' && n > 0 && Number.isFinite(n))) {\n      throw new RangeError('n must be a positive finite number');\n    }\n  }\n\n  return {\n    /** Consome `n` tokens se houver; senão não consome nada. */\n    tryTake(n = 1) {\n      checkAmount(n);\n      refill();\n      if (tokens < n) return false;\n      tokens -= n;\n      return true;\n    },\n\n    /** Tokens inteiros disponíveis agora. */\n    available() {\n      refill();\n      return Math.floor(tokens);\n    },\n\n    /** Milissegundos (arredondados para cima) até haver `n` tokens. */\n    msUntil(n = 1) {\n      checkAmount(n);\n      if (n > capacity) return Infinity;\n      refill();\n      if (tokens >= n) return 0;\n      return Math.ceil(((n - tokens) * 1000) / refillPerSecond);\n    },\n  };\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

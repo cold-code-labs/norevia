@@ -1,0 +1,22 @@
+{
+  "id": "b02-estoque-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "Stock kit: money, stock ledger and discounts",
+  "statement": "# Stock kit (`src/`)\n\nPackage with three independent modules: `money.mjs` (amounts in cents), `ledger.mjs` (stock ledger) and `discounts.mjs` (discount rules). The finance team complains that installment splits and percentage discounts do not match the reference spreadsheet. All modules must fully obey the contract below. Monetary amounts are always integer cents.\n\n## `src/money.mjs`\n\n- `formatBRL(cents)`: `\"R$ 1.234,56\"` — integer part with thousands separated by `.`, decimal comma and always two decimal places; negatives with `-` before `R$` (`formatBRL(-99)` → `'-R$ 0,99'`). `formatBRL(5)` → `'R$ 0,05'`. Non-integer → `TypeError`.\n- `parseBRL(text)`: accepts surrounding whitespace, optional `-` at the start, optional `R$` prefix, integer part with or without the `.` thousands separator and 0, 1 or 2 decimal digits after `,` (`'12,5'` → `1250`, `'1234'` → `123400`, `'R$ 1.234,56'` → `123456`, `'-R$ 0,99'` → `-99`). Any other format (e.g.: `'1,234'`, `'abc'`) → `SyntaxError`.\n- `splitEvenly(cents, n)`: splits `cents` (integer >= 0) into `n` (integer >= 1) integer installments that add up to exactly `cents`, differing by at most 1 cent; the cents left over from the integer division go, one by one, to the **first** installments. E.g.: `splitEvenly(100, 3)` → `[34, 33, 33]`; `splitEvenly(10, 4)` → `[3, 3, 2, 2]`. Invalid arguments → `RangeError`.\n\n## `src/ledger.mjs`\n\nClass `StockLedger` (initial balance 0 for any SKU). Quantities `qty` must be integers > 0 (otherwise `RangeError`). Each movement is `{ type, qty, ref }`, with `ref` defaulting to `null`.\n- `receive(sku, qty, ref = null)`: adds to the balance, records `{ type: 'in', qty, ref }` and returns the new balance.\n- `ship(sku, qty, ref = null)`: if `qty` > balance, throws `RangeError` without changing anything; otherwise subtracts (bringing the balance to zero is allowed), records `{ type: 'out', qty, ref }` and returns the new balance.\n- `adjust(sku, count, ref = null)`: `count` integer >= 0 (otherwise `RangeError`); sets the balance to `count` and records `{ type: 'adjust', qty: count - previousBalance, ref }` (may be negative); if the difference is 0, records nothing. Returns `count`.\n- `balance(sku)`: current balance (unknown SKU → 0).\n- `history(sku)`: array of the SKU's movements, from oldest to most recent (unknown SKU → `[]`). The result is an independent copy: changing the returned array or its objects does not affect the ledger nor future calls.\n- `skus()`: SKUs with balance > 0, in ascending order.\n\n## `src/discounts.mjs`\n\n`applyDiscounts(subtotal, rules)` → `{ total, applied }`. `subtotal` integer >= 0 (otherwise `RangeError`). Each rule is `{ kind: 'percent' | 'fixed', value, minSubtotal? }`; any other `kind` → `TypeError`.\n- Order of application: first **all** `percent` rules, in the order in which they appear in `rules`, each one on the current amount (compounded); then all `fixed` ones, in the order in which they appear.\n- Percentage discount in cents = `current * value / 100` rounded to the nearest integer, with half a cent rounding up. Fixed discount = `value`.\n- A rule with `minSubtotal` is only applied if the current amount, at the moment it would be applied, is `>= minSubtotal`; otherwise it is skipped.\n- The discount is capped at the current amount (the total never becomes negative).\n- `applied`: `{ index, amount }` of each rule actually applied, in order of application (`index` = position in `rules`, `amount` = cents discounted).\n- Examples: `applyDiscounts(1005, [{kind:'percent', value:15}])` → `{ total: 854, applied: [{ index: 0, amount: 151 }] }`; `applyDiscounts(10000, [{kind:'fixed', value:500}, {kind:'percent', value:10}])` → `{ total: 8500, applied: [{ index: 1, amount: 1000 }, { index: 0, amount: 500 }] }`; `applyDiscounts(300, [{kind:'fixed', value:500}])` → `{ total: 0, applied: [{ index: 0, amount: 300 }] }`.",
+  "bugs": [
+    {
+      "file": "src/money.mjs",
+      "summary": "splitEvenly distributes the leftover cents to the last installments (i >= n - rem) instead of the first ones"
+    },
+    {
+      "file": "src/ledger.mjs",
+      "summary": "history returns the internal array (external mutation leaks into the ledger)"
+    },
+    {
+      "file": "src/discounts.mjs",
+      "summary": "percentage discount uses Math.floor instead of rounding to the nearest"
+    }
+  ],
+  "decomposable": true
+}

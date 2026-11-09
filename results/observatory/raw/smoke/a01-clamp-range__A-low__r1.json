@@ -1,0 +1,58 @@
+{
+  "phase": "smoke",
+  "task": "a01-clamp-range",
+  "class": "a",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 4,
+    "total": 4
+  },
+  "cost": 0.0006405,
+  "inTok": 1489,
+  "outTok": 305,
+  "cacheRead": 0,
+  "cacheWrite": 1487,
+  "latencyMs": 2932,
+  "wallMs": 2933,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/range.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:30:56.121Z",
+  "finalFiles": {
+    "src/range.mjs": "/**\n * range(start, end, step = 1): array de números de start (inclusive) até end (exclusive).\n * step pode ser negativo; step 0 lança RangeError.\n */\nexport function range(start, end, step = 1) {\n  if (step === 0) throw new RangeError('step must not be 0');\n  const out = [];\n  if (step > 0) {\n    for (let x = start; x < end; x += step) out.push(x);\n  } else {\n    for (let x = start; x > end; x += step) out.push(x);\n  }\n  return out;\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0006405,
+      "outTok": 305,
+      "latencyMs": 2932,
+      "promptChars": 1600,
+      "response": "=== FILE: src/range.mjs ===\n/**\n * range(start, end, step = 1): array de números de start (inclusive) até end (exclusive).\n * step pode ser negativo; step 0 lança RangeError.\n */\nexport function range(start, end, step = 1) {\n  if (step === 0) throw new RangeError('step must not be 0');\n  const out = [];\n  if (step > 0) {\n    for (let x = start; x < end; x += step) out.push(x);\n  } else {\n    for (let x = start; x > end; x += step) out.push(x);\n  }\n  return out;\n}\n=== END FILE ===\n\nCorrigido: no ramo decrescente, a condição `x >= end` foi trocada por `x > end`, para excluir o limite final."
+    }
+  ],
+  "hiddenFailures": []
+}

@@ -1,0 +1,58 @@
+{
+  "phase": "calib",
+  "task": "a09-deep-equal-zero",
+  "class": "a",
+  "split": "test",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 7,
+    "total": 7
+  },
+  "cost": 0.00121128,
+  "inTok": 2921,
+  "outTok": 1541,
+  "cacheRead": 2538,
+  "cacheWrite": 381,
+  "latencyMs": 7116,
+  "wallMs": 7116,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/equal.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:58:11.058Z",
+  "finalFiles": {
+    "src/equal.mjs": "/**\n * Igualdade estrutural para dados \"JSON-like\" mais Date.\n *\n * deepEqual(a, b):\n *   - valores primitivos seguem a semântica de Object.is (NaN é igual a NaN;\n *     +0 e -0 são diferentes);\n *   - objetos só podem ser iguais se tiverem o mesmo protótipo;\n *   - Date: iguais se getTime() for igual pela mesma regra dos primitivos;\n *   - arrays: mesmo comprimento e elementos iguais, na ordem;\n *   - demais objetos: mesmo conjunto de chaves próprias enumeráveis (a ordem\n *     não importa; chave ausente é diferente de chave com valor undefined) e\n *     valores iguais chave a chave;\n *   - funções e símbolos só são iguais a si mesmos.\n * Estruturas cíclicas não são suportadas.\n */\nexport function deepEqual(a, b) {\n  if (Object.is(a, b)) return true;\n  if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) {\n    // Primitivos (ou funções/símbolos) diferentes por Object.is não são iguais\n    return false;\n  }\n  if (Object.getPrototypeOf(a) !== Object.getPrototypeOf(b)) return false;\n\n  if (a instanceof Date) return Object.is(a.getTime(), b.getTime());\n\n  if (Array.isArray(a)) {\n    if (a.length !== b.length) return false;\n    for (let i = 0; i < a.length; i++) {\n      if (!deepEqual(a[i], b[i])) return false;\n    }\n    return true;\n  }\n\n  const keysA = Object.keys(a);\n  const keysB = Object.keys(b);\n  if (keysA.length !== keysB.length) return false;\n  for (const key of keysA) {\n    if (!Object.hasOwn(b, key)) return false;\n    if (!deepEqual(a[key], b[key])) return false;\n  }\n  return true;\n}\n\n/**\n * Índice do primeiro elemento de `list` estruturalmente igual a `value`, ou -1.\n */\nexport function indexOfDeep(list, value) {\n  for (let i = 0; i < list.length; i++) {\n    if (deepEqual(list[i], value)) return i;\n  }\n  return -1;\n}\n\n/**\n * Remove duplicatas estruturais, mantendo a primeira ocorrência de cada valor.\n */\nexport function uniqueDeep(list) {\n  const out = [];\n  for (const item of list) {\n    if (indexOfDeep(out, item) === -1) out.push(item);\n  }\n  return out;\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00121128,
+      "outTok": 1541,
+      "latencyMs": 7116,
+      "promptChars": 4590,
+      "response": "O bug está em `deepEqual`: o atalho `a === b` trata `+0` e `-0` como iguais, e o ramo de primitivos não os distingue. Passei a usar `Object.is` como verificação de igualdade para valores não-objeto.\n\n=== FILE: src/equal.mjs ===\n/**\n * Igualdade estrutural para dados \"JSON-like\" mais Date.\n *\n * deepEqual(a, b):\n *   - valores primitivos seguem a semântica de Object.is (NaN é igual a NaN;\n *     +0 e -0 são diferentes);\n *   - objetos só podem ser iguais se tiverem o mesmo protótipo;\n *   - Date: iguais se getTime() for igual pela mesma regra dos primitivos;\n *   - arrays: mesmo comprimento e elementos iguais, na ordem;\n *   - demais objetos: mesmo conjunto de chaves próprias enumeráveis (a ordem\n *     não importa; chave ausente é diferente de chave com valor undefined) e\n *     valores iguais chave a chave;\n *   - funções e símbolos só são iguais a si mesmos.\n * Estruturas cíclicas não são suportadas.\n */\nexport function deepEqual(a, b) {\n  if (Object.is(a, b)) return true;\n  if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) {\n    // Primitivos (ou funções/símbolos) diferentes por Object.is não são iguais\n    return false;\n  }\n  if (Object.getPrototypeOf(a) !== Object.getPrototypeOf(b)) return false;\n\n  if (a instanceof Date) return Object.is(a.getTime(), b.getTime());\n\n  if (Array.isArray(a)) {\n    if (a.length !== b.length) return false;\n    for (let i = 0; i < a.length; i++) {\n      if (!deepEqual(a[i], b[i])) return false;\n    }\n    return true;\n  }\n\n  const keysA = Object.keys(a);\n  const keysB = Object.keys(b);\n  if (keysA.length !== keysB.length) return false;\n  for (const key of keysA) {\n    if (!Object.hasOwn(b, key)) return false;\n    if (!deepEqual(a[key], b[key])) return false;\n  }\n  return true;\n}\n\n/**\n * Índice do primeiro elemento de `list` estruturalmente igual a `value`, ou -1.\n */\nexport function indexOfDeep(list, value) {\n  for (let i = 0; i < list.length; i++) {\n    if (deepEqual(list[i], value)) return i;\n  }\n  return -1;\n}\n\n/**\n * Remove duplicatas estruturais, mantendo a primeira ocorrência de cada valor.\n */\nexport function uniqueDeep(list) {\n  const out = [];\n  for (const item of list) {\n    if (indexOfDeep(out, item) === -1) out.push(item);\n  }\n  return out;\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

@@ -1,0 +1,14 @@
+{
+  "id": "a03-allocate-cents",
+  "class": "a",
+  "split": "dev",
+  "title": "Cent allocation breaks ties by the wrong index",
+  "statement": "The module `src/allocate.mjs` allocates monetary values in cents (integers).\n\n**Contract**\n\n- `allocate(totalCents, weights)` returns an array of integers, one per weight, proportional to `weights`, whose sum is exactly `totalCents`. It uses the **largest remainder method**:\n  1. part `i` first receives `floor(totalCents * weights[i] / S)`, where `S` is the sum of the weights;\n  2. the remaining cents are distributed, **one per part**, to the parts with the largest remainder of the division `totalCents * weights[i] / S` (largest remainder first); **in case of a tie in the remainder, the part with the lowest index receives first**.\n- `splitEvenly(totalCents, n)` is equivalent to `allocate(totalCents, [1, 1, ..., 1])` with `n` weights.\n- Validation (`RangeError`): `totalCents` and each weight must be integers ≥ 0; `weights` must be a non-empty array whose sum is > 0; `n` must be an integer ≥ 1.\n- `weights` is not modified.\n\n**Examples**\n\n- `allocate(1000, [1, 3])` → `[250, 750]`.\n- `allocate(5, [1, 1, 2])` → `[1, 1, 3]` (remainders 1, 1, 2: the extra cent goes to the largest remainder).\n- `splitEvenly(10, 4)` → `[3, 3, 2, 2]`.\n\n**Reported symptom:** when splitting a bill evenly, the leftover cent is going to the last people in the list, and not to the first ones as documented. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/allocate.mjs",
+      "summary": "tie-break comparator uses y.index - x.index (highest index first) instead of x.index - y.index"
+    }
+  ],
+  "decomposable": false
+}

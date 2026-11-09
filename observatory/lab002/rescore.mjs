@@ -1,0 +1,5 @@
+// Offline re-score of text requests (qa/lp) from saved outputs after the no-placeholder check fix (PREREG Amendment 1). No model calls.
+import fs from 'node:fs'; import path from 'node:path'; import { OUT } from './api.mjs'; import { REQUESTS } from './requests.mjs';
+const file = path.join(OUT, 'runs-main.jsonl'); const rows = fs.readFileSync(file, 'utf8').split('\n').filter(Boolean).map(JSON.parse); let changed = 0;
+for (const r of rows) { if (r.type === 'repo' || r.rescored) continue; const req = REQUESTS.find((q) => q.id === r.request); const f = path.join(OUT, 'raw', r.phase, `${r.arm}.r${r.rep}.${r.request}.txt`); if (!fs.existsSync(f)) continue; const out = fs.readFileSync(f, 'utf8'); const failed = req.checks.filter((c) => !c.fn(out)).map((c) => c.id); const was = r.accepted; r.originalFailed = r.failed; r.failed = failed; r.accepted = failed.length === 0; r.falseSuccess = r.visiblePass && !r.accepted; r.rescored = true; if (was !== r.accepted) changed++; }
+fs.writeFileSync(file, rows.map((r) => JSON.stringify(r)).join('\n') + '\n'); console.log('rescored', rows.filter((r) => r.rescored).length, 'text records; acceptance changed in', changed);

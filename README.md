@@ -41,7 +41,7 @@ Every card carries exactly one evidence level:
 | `research/theory` | Formal model of a candidate "law of collective efficiency" — one component of the General Theory of Swarm Efficiency (`model.mjs`, tests) |
 | `hypotheses` | Official hypothesis registry with refutation criteria and status |
 | `sims` | Agent-based simulations (Node.js, deterministic by seed, preregistered) |
-| `observatory` | Swarm Efficiency Observatory — benchmarks with real LLMs (harness and results land with the first release) |
+| `observatory` | Swarm Efficiency Observatory — benchmarks with real LLMs: harness (`observatory/`), results of LAB-001…004 (`results/lab00N/`) |
 | `results` | Versioned results of simulations |
 | `site` | Zero-dependency generator and deploy tooling of norevia.coldcodelabs.com (landing page: `site/lib/home.mjs`) |
 | `docs` | Conventions and working briefs |
@@ -52,7 +52,7 @@ node sims/run-all.mjs                       # all simulations, deterministic
 node --test research/theory/model.test.mjs  # theory checks
 node site/build.mjs                         # build the site into site/dist
 ```
-Observatory runs call Claude models and cost money; the harness is published with the first release.
+Observatory runs call Claude models and cost money; each LAB run has its own budget cap and ledger; read the pre-registration and limits in each report before citing a result.
 
 ## License
 Research content CC BY 4.0; code MIT.

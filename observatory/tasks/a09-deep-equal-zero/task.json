@@ -1,0 +1,14 @@
+{
+  "id": "a09-deep-equal-zero",
+  "class": "a",
+  "split": "test",
+  "title": "deepEqual does not distinguish +0 from -0",
+  "statement": "The module `src/equal.mjs` implements structural equality for *JSON-like* data plus `Date`.\n\n**Contract of `deepEqual(a, b)`**\n\n- Primitive values follow **exactly** the semantics of `Object.is`: `NaN` is equal to `NaN`; `+0` and `-0` are **different**; `1` and `'1'` are different; `null` and `undefined` are different.\n- Two objects can only be equal if they have the **same prototype** (hence, an array is never equal to a non-array, and `Object.create(null)` is not equal to `{}`).\n- `Date`: equal if `getTime()` is equal by the same rule as primitives (two invalid dates are equal).\n- Arrays: same length and equal elements (recursively), in order.\n- Other objects: same set of own enumerable keys — key order does not matter; **an absent key is different from a key present with value `undefined`** — and equal values (recursively) key by key.\n- Functions and symbols are only equal to themselves (same reference).\n- Cyclic structures need not be supported.\n\n**Helper functions**\n\n- `indexOfDeep(list, value)`: index of the first element of `list` with `deepEqual(element, value)`, or `-1`.\n- `uniqueDeep(list)`: new array without structural duplicates, keeping the first occurrence of each value, in the original order.\n\n**Examples**\n\n- `deepEqual({ a: [1, { b: NaN }] }, { a: [1, { b: NaN }] })` → `true`.\n- `deepEqual({ a: undefined }, { b: undefined })` → `false`.\n- `uniqueDeep([[0], [-0], [0]])` → `[[0], [-0]]`.\n\n**Reported symptom:** a change-detection system for displacement vectors is not recording the transition from `0` to `-0` (which is meaningful for the direction calculation). Fix the module.",
+  "bugs": [
+    {
+      "file": "src/equal.mjs",
+      "summary": "the a === b shortcut returns true directly, treating +0 and -0 as equal (it should follow Object.is)"
+    }
+  ],
+  "decomposable": false
+}

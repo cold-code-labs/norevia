@@ -1,0 +1,3646 @@
+{
+ "texto-kit": {
+  "base": "b01-texto-kit",
+  "class": "b",
+  "title": "Text kit: tokenization, slugs and line wrapping",
+  "loc": 161,
+  "nBugs": 3,
+  "nCases": 19,
+  "nRev": 4,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "kit.test.mjs": 3
+  },
+  "files": {
+   "slugify.test.mjs": [
+    {
+     "name": "slugify: accents and punctuation",
+     "rev": false
+    },
+    {
+     "name": "slugify: separators at the ends are removed",
+     "rev": false
+    },
+    {
+     "name": "slugify: custom separator",
+     "rev": false
+    },
+    {
+     "name": "slugify: maxLength never leaves a separator at the end",
+     "rev": true
+    },
+    {
+     "name": "slugify: maxLength greater than the slug does not change it",
+     "rev": false
+    },
+    {
+     "name": "uniqueSlug: suffixes 2, 3, ...",
+     "rev": false
+    }
+   ],
+   "tokenize.test.mjs": [
+    {
+     "name": "tokenize: words with inner hyphen and apostrophe, lowercase",
+     "rev": false
+    },
+    {
+     "name": "tokenize: loose hyphens/apostrophes are separators; empty",
+     "rev": false
+    },
+    {
+     "name": "frequencies: order of first occurrence",
+     "rev": false
+    },
+    {
+     "name": "topWords: descending count and cut at n",
+     "rev": false
+    },
+    {
+     "name": "topWords: ties in ascending order",
+     "rev": true
+    },
+    {
+     "name": "topWords: exclude ignores case",
+     "rev": true
+    },
+    {
+     "name": "topWords: n <= 0 returns []",
+     "rev": false
+    }
+   ],
+   "wrap.test.mjs": [
+    {
+     "name": "wrap: a line can have exactly width characters",
+     "rev": true
+    },
+    {
+     "name": "wrap: collapses spaces and line breaks",
+     "rev": false
+    },
+    {
+     "name": "wrap: long word stays alone",
+     "rev": false
+    },
+    {
+     "name": "wrap: no words returns an empty string",
+     "rev": false
+    },
+    {
+     "name": "wrap: invalid width",
+     "rev": false
+    },
+    {
+     "name": "truncate",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "estoque-kit": {
+  "base": "b02-estoque-kit",
+  "class": "b",
+  "title": "Stock kit: money, stock ledger and discounts",
+  "loc": 156,
+  "nBugs": 3,
+  "nCases": 22,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "estoque.test.mjs": 3
+  },
+  "files": {
+   "discounts.test.mjs": [
+    {
+     "name": "percentage rounds to the nearest cent",
+     "rev": true
+    },
+    {
+     "name": "half a cent rounds up",
+     "rev": true
+    },
+    {
+     "name": "percentages before fixed ones, regardless of order",
+     "rev": false
+    },
+    {
+     "name": "percentages are compounded",
+     "rev": false
+    },
+    {
+     "name": "minSubtotal evaluates the current amount (>=)",
+     "rev": false
+    },
+    {
+     "name": "total never negative",
+     "rev": false
+    },
+    {
+     "name": "invalid inputs",
+     "rev": false
+    },
+    {
+     "name": "chained rounding",
+     "rev": true
+    }
+   ],
+   "ledger.test.mjs": [
+    {
+     "name": "receive/ship update and return the balance",
+     "rev": false
+    },
+    {
+     "name": "ship with insufficient balance records nothing; exact balance is allowed",
+     "rev": false
+    },
+    {
+     "name": "invalid quantities",
+     "rev": false
+    },
+    {
+     "name": "adjust records the difference; difference 0 does not record",
+     "rev": false
+    },
+    {
+     "name": "history in chronological order; unknown SKU → []",
+     "rev": false
+    },
+    {
+     "name": "history returns an independent copy",
+     "rev": true
+    },
+    {
+     "name": "skus: only positive balance, sorted",
+     "rev": false
+    }
+   ],
+   "money.test.mjs": [
+    {
+     "name": "formatBRL: thousands and two decimal places",
+     "rev": false
+    },
+    {
+     "name": "formatBRL: negatives and non-integers",
+     "rev": false
+    },
+    {
+     "name": "parseBRL: accepted formats",
+     "rev": false
+    },
+    {
+     "name": "parseBRL: invalid format",
+     "rev": false
+    },
+    {
+     "name": "splitEvenly: leftover goes to the first installments",
+     "rev": true
+    },
+    {
+     "name": "splitEvenly: exact division",
+     "rev": false
+    },
+    {
+     "name": "splitEvenly: invalid arguments",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "geometria-kit": {
+  "base": "b03-geometria-kit",
+  "class": "b",
+  "title": "2D geometry kit: vectors, polygons and boxes",
+  "loc": 160,
+  "nBugs": 3,
+  "nCases": 17,
+  "nRev": 7,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "geometria.test.mjs": 3
+  },
+  "files": {
+   "bbox.test.mjs": [
+    {
+     "name": "boundingBox",
+     "rev": false
+    },
+    {
+     "name": "intersects: overlap and disjointness",
+     "rev": false
+    },
+    {
+     "name": "intersects: touching at an edge counts, in both orders",
+     "rev": true
+    },
+    {
+     "name": "intersects: touching at a corner counts",
+     "rev": true
+    },
+    {
+     "name": "containsPoint includes the border",
+     "rev": false
+    },
+    {
+     "name": "union and expand",
+     "rev": false
+    }
+   ],
+   "polygon.test.mjs": [
+    {
+     "name": "signed and unsigned areas",
+     "rev": false
+    },
+    {
+     "name": "orientation",
+     "rev": false
+    },
+    {
+     "name": "perimeter includes the closing edge",
+     "rev": true
+    },
+    {
+     "name": "perimeter with 2 vertices goes there and back; fewer than 2 → 0",
+     "rev": true
+    },
+    {
+     "name": "centroid",
+     "rev": false
+    }
+   ],
+   "vector.test.mjs": [
+    {
+     "name": "basic operations",
+     "rev": false
+    },
+    {
+     "name": "cross: sign by counterclockwise direction",
+     "rev": true
+    },
+    {
+     "name": "normalize",
+     "rev": false
+    },
+    {
+     "name": "counterclockwise rotate",
+     "rev": false
+    },
+    {
+     "name": "oriented angleBetween",
+     "rev": true
+    },
+    {
+     "name": "angleBetween of opposite vectors is +π",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "agenda-kit": {
+  "base": "b04-agenda-kit",
+  "class": "b",
+  "title": "Scheduling kit: priority queue, scheduler and token bucket",
+  "loc": 207,
+  "nBugs": 3,
+  "nCases": 19,
+  "nRev": 7,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "agenda.test.mjs": 3
+  },
+  "files": {
+   "priority-queue.test.mjs": [
+    {
+     "name": "numbers come out in ascending order; push returns the size",
+     "rev": false
+    },
+    {
+     "name": "empty queue",
+     "rev": false
+    },
+    {
+     "name": "custom comparator",
+     "rev": false
+    },
+    {
+     "name": "ties come out in insertion order",
+     "rev": true
+    },
+    {
+     "name": "FIFO ties with interleaved pops",
+     "rev": true
+    },
+    {
+     "name": "many elements",
+     "rev": false
+    }
+   ],
+   "rate-limiter.test.mjs": [
+    {
+     "name": "starts full",
+     "rev": false
+    },
+    {
+     "name": "continuous and fractional refill",
+     "rev": false
+    },
+    {
+     "name": "refill never exceeds the capacity",
+     "rev": true
+    },
+    {
+     "name": "full idle bucket stays at capacity",
+     "rev": true
+    },
+    {
+     "name": "msUntil",
+     "rev": false
+    },
+    {
+     "name": "errors",
+     "rev": false
+    }
+   ],
+   "scheduler.test.mjs": [
+    {
+     "name": "sequential ids and pending",
+     "rev": false
+    },
+    {
+     "name": "task runs exactly at the scheduled time",
+     "rev": true
+    },
+    {
+     "name": "default delay 0 runs on the next runDue",
+     "rev": true
+    },
+    {
+     "name": "order by time and, on a tie, by scheduling",
+     "rev": false
+    },
+    {
+     "name": "cancel",
+     "rev": false
+    },
+    {
+     "name": "tasks scheduled during runDue are left for the next call",
+     "rev": true
+    },
+    {
+     "name": "nextDue and invalid delay",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "config-kit": {
+  "base": "b05-config-kit",
+  "class": "b",
+  "title": "Configuration kit: .env, deep merge and validation",
+  "loc": 176,
+  "nBugs": 3,
+  "nCases": 21,
+  "nRev": 4,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "config.test.mjs": 3
+  },
+  "files": {
+   "env.test.mjs": [
+    {
+     "name": "simple pairs, trimmed values",
+     "rev": false
+    },
+    {
+     "name": "comments, blank lines, export and CRLF",
+     "rev": false
+    },
+    {
+     "name": "value may contain '='",
+     "rev": true
+    },
+    {
+     "name": "double quotes with escapes and literal single quotes",
+     "rev": false
+    },
+    {
+     "name": "inline comment only after a space",
+     "rev": false
+    },
+    {
+     "name": "last occurrence wins",
+     "rev": false
+    },
+    {
+     "name": "syntax errors with line number",
+     "rev": false
+    }
+   ],
+   "merge.test.mjs": [
+    {
+     "name": "merges nested objects",
+     "rev": false
+    },
+    {
+     "name": "arrays are replaced",
+     "rev": false
+    },
+    {
+     "name": "undefined is ignored; null replaces",
+     "rev": true
+    },
+    {
+     "name": "falsy values replace",
+     "rev": true
+    },
+    {
+     "name": "does not change nor share the inputs",
+     "rev": false
+    },
+    {
+     "name": "object vs non-object",
+     "rev": false
+    },
+    {
+     "name": "mergeAll ignores null layers",
+     "rev": false
+    }
+   ],
+   "validate.test.mjs": [
+    {
+     "name": "defaults and required",
+     "rev": false
+    },
+    {
+     "name": "string conversion",
+     "rev": false
+    },
+    {
+     "name": "type errors",
+     "rev": false
+    },
+    {
+     "name": "min and max are inclusive",
+     "rev": true
+    },
+    {
+     "name": "oneOf",
+     "rev": false
+    },
+    {
+     "name": "unknown keys after the schema errors",
+     "rev": false
+    },
+    {
+     "name": "one error per key; absent optional key is left out",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "estatistica-kit": {
+  "base": "b06-estatistica-kit",
+  "class": "b",
+  "title": "Statistics kit: central tendency, percentiles and histograms",
+  "loc": 160,
+  "nBugs": 3,
+  "nCases": 21,
+  "nRev": 9,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "estatistica.test.mjs": 3
+  },
+  "files": {
+   "central.test.mjs": [
+    {
+     "name": "mean",
+     "rev": false
+    },
+    {
+     "name": "odd median uses numeric order",
+     "rev": true
+    },
+    {
+     "name": "even median: mean of the two middle ones",
+     "rev": true
+    },
+    {
+     "name": "median does not change the input",
+     "rev": false
+    },
+    {
+     "name": "mode: tie returns the smallest",
+     "rev": false
+    },
+    {
+     "name": "variance and stddev",
+     "rev": false
+    },
+    {
+     "name": "invalid inputs",
+     "rev": false
+    }
+   ],
+   "histogram.test.mjs": [
+    {
+     "name": "buckets of equal width; the last one includes the maximum",
+     "rev": true
+    },
+    {
+     "name": "explicit min/max ignore values outside",
+     "rev": true
+    },
+    {
+     "name": "value on the boundary goes to the upper bucket",
+     "rev": true
+    },
+    {
+     "name": "min === max",
+     "rev": false
+    },
+    {
+     "name": "default bins 10",
+     "rev": true
+    },
+    {
+     "name": "empty and errors",
+     "rev": false
+    },
+    {
+     "name": "cumulative",
+     "rev": false
+    }
+   ],
+   "percentile.test.mjs": [
+    {
+     "name": "linear interpolation",
+     "rev": false
+    },
+    {
+     "name": "p = 0 and p = 100 return minimum and maximum",
+     "rev": true
+    },
+    {
+     "name": "single-element sample",
+     "rev": true
+    },
+    {
+     "name": "p out of range and empty",
+     "rev": false
+    },
+    {
+     "name": "does not change the input",
+     "rev": false
+    },
+    {
+     "name": "quantiles and iqr",
+     "rev": false
+    },
+    {
+     "name": "fiveNumberSummary",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "url-kit": {
+  "base": "b07-url-kit",
+  "class": "b",
+  "title": "URL kit: query strings, paths and routes",
+  "loc": 177,
+  "nBugs": 3,
+  "nCases": 23,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "url.test.mjs": 3
+  },
+  "files": {
+   "path.test.mjs": [
+    {
+     "name": "empty segments and . are discarded",
+     "rev": false
+    },
+    {
+     "name": ".. removes the previous segment",
+     "rev": false
+    },
+    {
+     "name": ".. above the absolute root is discarded",
+     "rev": false
+    },
+    {
+     "name": "leading .. of a relative path are kept",
+     "rev": true
+    },
+    {
+     "name": "trailing slash and empty results",
+     "rev": false
+    },
+    {
+     "name": "joinPath",
+     "rev": true
+    },
+    {
+     "name": "basename and extname",
+     "rev": false
+    }
+   ],
+   "query.test.mjs": [
+    {
+     "name": "simple pairs and optional ?",
+     "rev": false
+    },
+    {
+     "name": "'+' is a space, but %2B is '+'",
+     "rev": true
+    },
+    {
+     "name": "keys are decoded too",
+     "rev": false
+    },
+    {
+     "name": "pair without '=', first '=' separates, empty pairs ignored",
+     "rev": false
+    },
+    {
+     "name": "repeated key becomes an array",
+     "rev": false
+    },
+    {
+     "name": "malformed escape stays as it is",
+     "rev": false
+    },
+    {
+     "name": "stringifyQuery",
+     "rev": false
+    },
+    {
+     "name": "round trip preserves +",
+     "rev": true
+    }
+   ],
+   "route.test.mjs": [
+    {
+     "name": "captures parameters",
+     "rev": false
+    },
+    {
+     "name": "does not match: missing, empty or differently cased segments",
+     "rev": false
+    },
+    {
+     "name": "trailing slash tolerated",
+     "rev": false
+    },
+    {
+     "name": "special characters of the pattern are literals",
+     "rev": true
+    },
+    {
+     "name": "decoded parameters",
+     "rev": false
+    },
+    {
+     "name": "trailing wildcard",
+     "rev": false
+    },
+    {
+     "name": "invalid pattern",
+     "rev": false
+    },
+    {
+     "name": "router: first route wins",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "grade-kit": {
+  "base": "b08-grade-kit",
+  "class": "b",
+  "title": "Grid kit: matrices, character grid, flood fill and RLE",
+  "loc": 216,
+  "nBugs": 4,
+  "nCases": 28,
+  "nRev": 10,
+  "referencePasses": true,
+  "visibleBuggy": "2/4",
+  "visibleExpected": {
+   "grade.test.mjs": 4
+  },
+  "files": {
+   "flood.test.mjs": [
+    {
+     "name": "floodFill fills the 4-connected region",
+     "rev": false
+    },
+    {
+     "name": "diagonals do not connect",
+     "rev": false
+    },
+    {
+     "name": "floodFill does not change the input",
+     "rev": true
+    },
+    {
+     "name": "same value returns an independent copy",
+     "rev": true
+    },
+    {
+     "name": "start outside the grid",
+     "rev": false
+    },
+    {
+     "name": "regionSize does not change the input",
+     "rev": true
+    },
+    {
+     "name": "countRegions",
+     "rev": false
+    }
+   ],
+   "grid.test.mjs": [
+    {
+     "name": "dimensions and get",
+     "rev": false
+    },
+    {
+     "name": "inBounds",
+     "rev": true
+    },
+    {
+     "name": "orthogonal neighbors in the middle",
+     "rev": false
+    },
+    {
+     "name": "neighbors on the right edge",
+     "rev": true
+    },
+    {
+     "name": "neighbors with diagonals",
+     "rev": true
+    },
+    {
+     "name": "find, count and toString",
+     "rev": false
+    },
+    {
+     "name": "constructor copies the rows",
+     "rev": false
+    }
+   ],
+   "matrix.test.mjs": [
+    {
+     "name": "shape",
+     "rev": false
+    },
+    {
+     "name": "identity and transpose",
+     "rev": false
+    },
+    {
+     "name": "add",
+     "rev": false
+    },
+    {
+     "name": "multiply square matrices",
+     "rev": false
+    },
+    {
+     "name": "multiply rectangular matrices",
+     "rev": true
+    },
+    {
+     "name": "multiply with incompatible dimensions",
+     "rev": true
+    },
+    {
+     "name": "power",
+     "rev": false
+    }
+   ],
+   "rle.test.mjs": [
+    {
+     "name": "encodeRow",
+     "rev": false
+    },
+    {
+     "name": "encodeRow with long runs",
+     "rev": false
+    },
+    {
+     "name": "decodeRow",
+     "rev": false
+    },
+    {
+     "name": "decodeRow with multi-digit counts",
+     "rev": true
+    },
+    {
+     "name": "round trip",
+     "rev": true
+    },
+    {
+     "name": "errors",
+     "rev": false
+    },
+    {
+     "name": "grids",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "datas-kit": {
+  "base": "b09-datas-kit",
+  "class": "b",
+  "title": "Dates kit: calendar, durations and business days",
+  "loc": 165,
+  "nBugs": 3,
+  "nCases": 21,
+  "nRev": 10,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "datas.test.mjs": 3
+  },
+  "files": {
+   "business.test.mjs": [
+    {
+     "name": "weekends are not business days",
+     "rev": false
+    },
+    {
+     "name": "holidays are not business days",
+     "rev": true
+    },
+    {
+     "name": "addBusinessDays without holidays",
+     "rev": false
+    },
+    {
+     "name": "addBusinessDays skips holidays",
+     "rev": true
+    },
+    {
+     "name": "businessDaysBetween",
+     "rev": false
+    },
+    {
+     "name": "businessDaysBetween with holidays",
+     "rev": true
+    },
+    {
+     "name": "Date input is not changed; errors",
+     "rev": false
+    }
+   ],
+   "dates.test.mjs": [
+    {
+     "name": "isLeapYear: rules of 4, 100 and 400",
+     "rev": true
+    },
+    {
+     "name": "daysInMonth",
+     "rev": true
+    },
+    {
+     "name": "parseISODate and formatISODate",
+     "rev": true
+    },
+    {
+     "name": "addDays and daysBetween",
+     "rev": false
+    },
+    {
+     "name": "addMonths clamps to the last day of the month",
+     "rev": false
+    },
+    {
+     "name": "addMonths in a leap century year",
+     "rev": true
+    },
+    {
+     "name": "dayOfYear",
+     "rev": true
+    }
+   ],
+   "duration.test.mjs": [
+    {
+     "name": "parseDuration: units d, h, m, s",
+     "rev": false
+    },
+    {
+     "name": "parseDuration: milliseconds",
+     "rev": true
+    },
+    {
+     "name": "parseDuration: optional spaces",
+     "rev": false
+    },
+    {
+     "name": "parseDuration: invalid inputs",
+     "rev": false
+    },
+    {
+     "name": "formatDuration",
+     "rev": false
+    },
+    {
+     "name": "formatDuration: invalid inputs",
+     "rev": false
+    },
+    {
+     "name": "round trip",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "billing-kit": {
+  "base": "b10-billing-kit",
+  "class": "b",
+  "title": "Billing kit: rounding, proration, tiers, taxes and invoices",
+  "loc": 495,
+  "nBugs": 5,
+  "nCases": 34,
+  "nRev": 14,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "billing.test.mjs": 3
+  },
+  "files": {
+   "invoice.test.mjs": [
+    {
+     "name": "consolidates by sku + unit price and ignores qty 0",
+     "rev": false
+    },
+    {
+     "name": "minimum usage",
+     "rev": false
+    },
+    {
+     "name": "credits by expiry, no expiry last, ties by order",
+     "rev": false
+    },
+    {
+     "name": "inputs are not changed",
+     "rev": true
+    },
+    {
+     "name": "idempotence: the same call twice gives the same result",
+     "rev": true
+    },
+    {
+     "name": "applyCredits and validation",
+     "rev": false
+    },
+    {
+     "name": "renderInvoice",
+     "rev": false
+    }
+   ],
+   "money.test.mjs": [
+    {
+     "name": "divRound half-even with positives",
+     "rev": false
+    },
+    {
+     "name": "divRound half-even with negatives is symmetric and never -0",
+     "rev": true
+    },
+    {
+     "name": "divRound: other modes",
+     "rev": true
+    },
+    {
+     "name": "divRound: errors",
+     "rev": false
+    },
+    {
+     "name": "applyRate",
+     "rev": true
+    },
+    {
+     "name": "fromDecimal / toDecimal",
+     "rev": true
+    },
+    {
+     "name": "sumCents",
+     "rev": false
+    }
+   ],
+   "proration.test.mjs": [
+    {
+     "name": "Gregorian leap years",
+     "rev": false
+    },
+    {
+     "name": "parseDate and dayNumber",
+     "rev": true
+    },
+    {
+     "name": "daysBetween and addDays across years",
+     "rev": true
+    },
+    {
+     "name": "prorate: proportion, half-even tie-break and no overlap",
+     "rev": false
+    },
+    {
+     "name": "prorate: yearly period crossing the 2000 rollover",
+     "rev": true
+    },
+    {
+     "name": "prorate: errors",
+     "rev": false
+    },
+    {
+     "name": "splitByMonth",
+     "rev": false
+    },
+    {
+     "name": "monthlyCharges",
+     "rev": true
+    }
+   ],
+   "tax.test.mjs": [
+    {
+     "name": "rounding per line vs per invoice",
+     "rev": false
+    },
+    {
+     "name": "compound applies to net + simple, regardless of position",
+     "rev": false
+    },
+    {
+     "name": "two compound taxes do not apply to each other",
+     "rev": true
+    },
+    {
+     "name": "compound with several lines in both modes",
+     "rev": false
+    },
+    {
+     "name": "validation",
+     "rev": false
+    },
+    {
+     "name": "extractInclusive",
+     "rev": false
+    }
+   ],
+   "tiers.test.mjs": [
+    {
+     "name": "validateTiers",
+     "rev": false
+    },
+    {
+     "name": "tierFor: inclusive limits",
+     "rev": true
+    },
+    {
+     "name": "graduated",
+     "rev": false
+    },
+    {
+     "name": "volume: exact limit and flat fee",
+     "rev": true
+    },
+    {
+     "name": "quote and quantity validation",
+     "rev": false
+    },
+    {
+     "name": "breakEven",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "calendar-kit": {
+  "base": "b11-calendar-kit",
+  "class": "b",
+  "title": "Kit de calendário: datas civis, aritmética, recorrência, dias úteis e semanas ISO",
+  "loc": 434,
+  "nBugs": 5,
+  "nCases": 33,
+  "nRev": 7,
+  "referencePasses": true,
+  "visibleBuggy": "3/4",
+  "visibleExpected": {
+   "kit.test.mjs": 4
+  },
+  "files": {
+   "add.test.mjs": [
+    {
+     "name": "addDays",
+     "rev": false
+    },
+    {
+     "name": "addMonths ajusta ao último dia do mês",
+     "rev": false
+    },
+    {
+     "name": "addYears em 29 de fevereiro",
+     "rev": false
+    },
+    {
+     "name": "diffDays",
+     "rev": false
+    },
+    {
+     "name": "diffMonths em datas comuns",
+     "rev": false
+    },
+    {
+     "name": "diffMonths quando o dia de origem não existe no mês de destino",
+     "rev": true
+    },
+    {
+     "name": "startOfMonth, endOfMonth e eachDay",
+     "rev": false
+    }
+   ],
+   "business.test.mjs": [
+    {
+     "name": "isBusinessDay e isHoliday com feriados únicos e anuais",
+     "rev": false
+    },
+    {
+     "name": "nextBusinessDay e previousBusinessDay são estritos",
+     "rev": false
+    },
+    {
+     "name": "adjust: none, following, preceding e dia útil inalterado",
+     "rev": false
+    },
+    {
+     "name": "adjust modificado dentro do ano",
+     "rev": false
+    },
+    {
+     "name": "adjust modificado na virada do ano",
+     "rev": true
+    },
+    {
+     "name": "addBusinessDays",
+     "rev": false
+    },
+    {
+     "name": "businessDaysBetween é semiaberto e antissimétrico",
+     "rev": false
+    }
+   ],
+   "civil.test.mjs": [
+    {
+     "name": "isLeapYear e daysInMonth seguem a regra dos séculos",
+     "rev": false
+    },
+    {
+     "name": "isValidDate e assertDate",
+     "rev": false
+    },
+    {
+     "name": "toOrdinal / fromOrdinal",
+     "rev": false
+    },
+    {
+     "name": "dayOfWeek ISO (1 = segunda, 7 = domingo)",
+     "rev": false
+    },
+    {
+     "name": "dayOfYear em anos bissextos e comuns",
+     "rev": true
+    },
+    {
+     "name": "compareDates, parseISODate e formatISODate",
+     "rev": false
+    }
+   ],
+   "isoweek.test.mjs": [
+    {
+     "name": "isoWeeksInYear",
+     "rev": false
+    },
+    {
+     "name": "isoWeek no meio e no fim do ano",
+     "rev": false
+    },
+    {
+     "name": "isoWeek no início de janeiro pertence ao ano ISO anterior",
+     "rev": true
+    },
+    {
+     "name": "fromIsoWeek",
+     "rev": false
+    },
+    {
+     "name": "isoWeek e fromIsoWeek são inversos em todas as datas de 2014 a 2028",
+     "rev": true
+    },
+    {
+     "name": "formatIsoWeek e parseIsoWeek",
+     "rev": false
+    }
+   ],
+   "recur.test.mjs": [
+    {
+     "name": "diária: interval, until inclusivo e count",
+     "rev": false
+    },
+    {
+     "name": "semanal: dia da semana do início por padrão",
+     "rev": false
+    },
+    {
+     "name": "semanal quinzenal com vários dias: semanas começam na segunda",
+     "rev": true
+    },
+    {
+     "name": "semanal com início no domingo e interval 3",
+     "rev": true
+    },
+    {
+     "name": "mensal por dia do mês: meses sem o dia são pulados",
+     "rev": false
+    },
+    {
+     "name": "mensal por n-ésimo dia da semana",
+     "rev": false
+    },
+    {
+     "name": "validação da regra",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "inventory-kit": {
+  "base": "b12-inventory-kit",
+  "class": "b",
+  "title": "Kit de estoque: lotes FIFO, unidades, alocação, reservas e reposição",
+  "loc": 396,
+  "nBugs": 5,
+  "nCases": 33,
+  "nRev": 16,
+  "referencePasses": true,
+  "visibleBuggy": "2/4",
+  "visibleExpected": {
+   "kit.test.mjs": 4
+  },
+  "files": {
+   "allocate.test.mjs": [
+    {
+     "name": "available e totalAvailable",
+     "rev": false
+    },
+    {
+     "name": "allocate parcial: respeita reservado e pula lotes sem disponível",
+     "rev": false
+    },
+    {
+     "name": "allocate não altera o array nem os lotes recebidos",
+     "rev": true
+    },
+    {
+     "name": "allocate parcial com falta",
+     "rev": false
+    },
+    {
+     "name": "allocate all-or-nothing",
+     "rev": false
+    },
+    {
+     "name": "allocate: validações e qty zero",
+     "rev": false
+    },
+    {
+     "name": "allocateMany: prioridade, empate pela entrada, resultados na ordem de entrada",
+     "rev": true
+    },
+    {
+     "name": "mergePicks soma por lote na ordem de primeira aparição",
+     "rev": false
+    }
+   ],
+   "lots.test.mjs": [
+    {
+     "name": "parseDate e daysBetween",
+     "rev": false
+    },
+    {
+     "name": "sortFifo: empate de data desempata pelo id com < (sensível a maiúsculas)",
+     "rev": true
+    },
+    {
+     "name": "sortFifo: datas comparadas cronologicamente",
+     "rev": false
+    },
+    {
+     "name": "isUsable: validade inclusiva, minShelfDays, quantidade e recebimento",
+     "rev": false
+    },
+    {
+     "name": "usableLots: filtra e ordena em FIFO",
+     "rev": true
+    },
+    {
+     "name": "expiringSoon: janela inclusiva, por validade e depois FIFO",
+     "rev": true
+    },
+    {
+     "name": "totalsBySku na ordem de primeira aparição",
+     "rev": false
+    }
+   ],
+   "reorder.test.mjs": [
+    {
+     "name": "ceilToMultiple: múltiplo exato não sobe",
+     "rev": true
+    },
+    {
+     "name": "floorToMultiple",
+     "rev": false
+    },
+    {
+     "name": "reorderPoint e coverDays",
+     "rev": false
+    },
+    {
+     "name": "suggestOrder: acima do ponto não pede; no ponto pede",
+     "rev": true
+    },
+    {
+     "name": "suggestOrder: embalagem exata e pedido mínimo",
+     "rev": true
+    },
+    {
+     "name": "suggestOrder: limitado pelo estoque máximo arredonda para baixo",
+     "rev": false
+    }
+   ],
+   "reserve.test.mjs": [
+    {
+     "name": "reserve cria e é idempotente enquanto ativa",
+     "rev": false
+    },
+    {
+     "name": "no instante expiresAt a reserva já expirou e a chave pode ser recriada",
+     "rev": true
+    },
+    {
+     "name": "release: true só para reserva ativa; sempre remove",
+     "rev": true
+    },
+    {
+     "name": "reservedQty soma apenas reservas ativas do sku",
+     "rev": true
+    },
+    {
+     "name": "extend prorroga sem encurtar; inativa → false",
+     "rev": true
+    },
+    {
+     "name": "purge remove expiradas na ordem de criação; recriar move a chave para o fim",
+     "rev": true
+    },
+    {
+     "name": "validações e cópias defensivas",
+     "rev": false
+    }
+   ],
+   "units.test.mjs": [
+    {
+     "name": "roundHalfEven: empates para o par, inclusive negativos",
+     "rev": true
+    },
+    {
+     "name": "defineUnits: validações e unidade-base com fator 1",
+     "rev": false
+    },
+    {
+     "name": "toBase: inteiro na unidade-base com meio-par",
+     "rev": true
+    },
+    {
+     "name": "convert: resultado inteiro com meio-par",
+     "rev": true
+    },
+    {
+     "name": "split e format: maior fator primeiro, empate pelo nome",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "path-kit": {
+  "base": "b13-path-kit",
+  "class": "b",
+  "title": "Kit de caminhos: JSON Pointer, patch imutável, quebras de linha, glob e caminhos POSIX",
+  "loc": 490,
+  "nBugs": 5,
+  "nCases": 34,
+  "nRev": 10,
+  "referencePasses": true,
+  "visibleBuggy": "2/4",
+  "visibleExpected": {
+   "kit.test.mjs": 4
+  },
+  "files": {
+   "eol.test.mjs": [
+    {
+     "name": "countEols",
+     "rev": false
+    },
+    {
+     "name": "detectEol: maioria e texto sem quebras",
+     "rev": false
+    },
+    {
+     "name": "detectEol: empates",
+     "rev": true
+    },
+    {
+     "name": "normalizeEol",
+     "rev": false
+    },
+    {
+     "name": "ensureFinalNewline",
+     "rev": false
+    },
+    {
+     "name": "ensureFinalNewline com quebras empatadas",
+     "rev": true
+    },
+    {
+     "name": "splitLines e stripTrailingWhitespace",
+     "rev": false
+    }
+   ],
+   "glob.test.mjs": [
+    {
+     "name": "* não atravessa /",
+     "rev": false
+    },
+    {
+     "name": "? casa exatamente um caractere que não é /",
+     "rev": false
+    },
+    {
+     "name": "classes, intervalos e negação",
+     "rev": true
+    },
+    {
+     "name": "escapes e caracteres especiais de regex são literais",
+     "rev": false
+    },
+    {
+     "name": "arquivos ocultos exigem ponto literal no padrão",
+     "rev": false
+    },
+    {
+     "name": "** como segmento inteiro",
+     "rev": false
+    },
+    {
+     "name": "filterGlob e erros",
+     "rev": true
+    }
+   ],
+   "patch.test.mjs": [
+    {
+     "name": "add em objetos, arrays e raiz",
+     "rev": false
+    },
+    {
+     "name": "remove e replace",
+     "rev": false
+    },
+    {
+     "name": "a entrada nunca é alterada e subárvores intactas são compartilhadas",
+     "rev": true
+    },
+    {
+     "name": "patch que falha não deixa efeitos na entrada",
+     "rev": true
+    },
+    {
+     "name": "move e copy",
+     "rev": false
+    },
+    {
+     "name": "test e deepEqual",
+     "rev": false
+    },
+    {
+     "name": "erros gerais e get",
+     "rev": false
+    }
+   ],
+   "pointer.test.mjs": [
+    {
+     "name": "parsePointer: raiz, tokens vazios e erros",
+     "rev": false
+    },
+    {
+     "name": "parsePointer: ordem de decodificação e escapes inválidos",
+     "rev": false
+    },
+    {
+     "name": "formatPointer e escapeToken",
+     "rev": false
+    },
+    {
+     "name": "getAt em objetos e arrays",
+     "rev": false
+    },
+    {
+     "name": "índices de array: só decimais canônicos dentro do tamanho",
+     "rev": true
+    },
+    {
+     "name": "hasAt",
+     "rev": true
+    },
+    {
+     "name": "covers compara por tokens",
+     "rev": false
+    }
+   ],
+   "posixpath.test.mjs": [
+    {
+     "name": "normalize: básico e barra final",
+     "rev": false
+    },
+    {
+     "name": "normalize: .. acima da raiz em caminho absoluto",
+     "rev": false
+    },
+    {
+     "name": "normalize: .. iniciais em caminho relativo",
+     "rev": true
+    },
+    {
+     "name": "join",
+     "rev": true
+    },
+    {
+     "name": "relative",
+     "rev": false
+    },
+    {
+     "name": "dirname, basename, extname",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "cli-kit": {
+  "base": "b14-cli-kit",
+  "class": "b",
+  "title": "Kit de CLI: argumentos, durações, bytes, INI e sugestões",
+  "loc": 371,
+  "nBugs": 5,
+  "nCases": 38,
+  "nRev": 8,
+  "referencePasses": true,
+  "visibleBuggy": "2/4",
+  "visibleExpected": {
+   "kit.test.mjs": 4
+  },
+  "files": {
+   "argv.test.mjs": [
+    {
+     "name": "posicionais e terminador --",
+     "rev": false
+    },
+    {
+     "name": "--nome=valor divide no primeiro =",
+     "rev": true
+    },
+    {
+     "name": "--nome consome o próximo token só se for valor",
+     "rev": false
+    },
+    {
+     "name": "números negativos",
+     "rev": false
+    },
+    {
+     "name": "--no-nome e alias",
+     "rev": false
+    },
+    {
+     "name": "grupos de opções curtas",
+     "rev": false
+    },
+    {
+     "name": "repetição: strings acumulam, demais substituem",
+     "rev": false
+    },
+    {
+     "name": "defaults, imutabilidade e validação",
+     "rev": false
+    }
+   ],
+   "bytes.test.mjs": [
+    {
+     "name": "formatBytes: abaixo da base fica em B",
+     "rev": false
+    },
+    {
+     "name": "formatBytes: SI e IEC",
+     "rev": false
+    },
+    {
+     "name": "formatBytes: zeros à direita só da parte fracionária",
+     "rev": true
+    },
+    {
+     "name": "formatBytes: arredondamento e promoção de unidade",
+     "rev": false
+    },
+    {
+     "name": "formatBytes: validação",
+     "rev": false
+    },
+    {
+     "name": "parseBytes",
+     "rev": false
+    },
+    {
+     "name": "parseBytes: erros",
+     "rev": false
+    }
+   ],
+   "duration.test.mjs": [
+    {
+     "name": "parseDuration: segmentos",
+     "rev": false
+    },
+    {
+     "name": "parseDuration: inteiro puro, espaços nas pontas e arredondamento",
+     "rev": false
+    },
+    {
+     "name": "parseDuration: erros",
+     "rev": false
+    },
+    {
+     "name": "parseDuration: unidade repetida é erro",
+     "rev": true
+    },
+    {
+     "name": "formatDuration: básicos",
+     "rev": false
+    },
+    {
+     "name": "formatDuration: janela, arredondamento e transporte",
+     "rev": false
+    },
+    {
+     "name": "formatDuration: validação",
+     "rev": false
+    }
+   ],
+   "ini.test.mjs": [
+    {
+     "name": "chaves na raiz e em seções",
+     "rev": false
+    },
+    {
+     "name": "comentários só no início da linha",
+     "rev": false
+    },
+    {
+     "name": "divisão no primeiro =, trim e valor vazio",
+     "rev": false
+    },
+    {
+     "name": "valores entre aspas",
+     "rev": false
+    },
+    {
+     "name": "seções pontuadas e seções repetidas são mescladas",
+     "rev": true
+    },
+    {
+     "name": "chave duplicada: a última vence; CRLF",
+     "rev": false
+    },
+    {
+     "name": "erros com número da linha",
+     "rev": true
+    },
+    {
+     "name": "getIni",
+     "rev": false
+    }
+   ],
+   "suggest.test.mjs": [
+    {
+     "name": "distance: edições básicas",
+     "rev": false
+    },
+    {
+     "name": "distance: transposição adjacente (alinhamento ótimo)",
+     "rev": false
+    },
+    {
+     "name": "distance: code points e maiúsculas",
+     "rev": false
+    },
+    {
+     "name": "suggest: sem distinção de maiúsculas, grafia original",
+     "rev": false
+    },
+    {
+     "name": "suggest: menor distância primeiro; empates na ordem original",
+     "rev": true
+    },
+    {
+     "name": "suggest: maxDistance padrão por code points",
+     "rev": false
+    },
+    {
+     "name": "suggest: duplicatas e limit",
+     "rev": true
+    },
+    {
+     "name": "didYouMean",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "search-kit": {
+  "base": "b15-search-kit",
+  "class": "b",
+  "title": "Kit de busca: análise, fuzzy, BM25, destaque e cursores",
+  "loc": 374,
+  "nBugs": 5,
+  "nCases": 34,
+  "nRev": 11,
+  "referencePasses": true,
+  "visibleBuggy": "2/4",
+  "visibleExpected": {
+   "kit.test.mjs": 4
+  },
+  "files": {
+   "analyze.test.mjs": [
+    {
+     "name": "normalize: NFKD, sem diacríticos, minúsculas",
+     "rev": false
+    },
+    {
+     "name": "analyze: tokens, minLength em code points",
+     "rev": false
+    },
+    {
+     "name": "analyze: stopwords padrão acentuadas também são removidas",
+     "rev": true
+    },
+    {
+     "name": "analyze: stopwords personalizadas são normalizadas",
+     "rev": true
+    },
+    {
+     "name": "termFrequencies: ordem da primeira ocorrência",
+     "rev": true
+    },
+    {
+     "name": "edgeNgrams",
+     "rev": false
+    },
+    {
+     "name": "analyze: validação",
+     "rev": false
+    }
+   ],
+   "cursor.test.mjs": [
+    {
+     "name": "cursor: base64url sem padding, ida e volta",
+     "rev": false
+    },
+    {
+     "name": "decodeCursor rejeita cursores malformados",
+     "rev": false
+    },
+    {
+     "name": "última página exata não devolve cursor",
+     "rev": true
+    },
+    {
+     "name": "desc: chave decrescente, id ainda crescente",
+     "rev": true
+    },
+    {
+     "name": "keyset: continua depois da posição do cursor mesmo com mudanças",
+     "rev": false
+    },
+    {
+     "name": "validação e imutabilidade",
+     "rev": false
+    },
+    {
+     "name": "collectAll devolve tudo na ordem, sem repetir",
+     "rev": false
+    }
+   ],
+   "fuzzy.test.mjs": [
+    {
+     "name": "fuzzyMatch: exemplos de pontuação",
+     "rev": true
+    },
+    {
+     "name": "fuzzyMatch: casamento guloso pela esquerda",
+     "rev": true
+    },
+    {
+     "name": "fuzzyMatch: sem casamento, consulta vazia, code points",
+     "rev": false
+    },
+    {
+     "name": "fuzzyFilter: pontuação decrescente",
+     "rev": true
+    },
+    {
+     "name": "fuzzyFilter: empates por tamanho e depois ordem original",
+     "rev": false
+    },
+    {
+     "name": "fuzzyFilter: limit",
+     "rev": false
+    }
+   ],
+   "highlight.test.mjs": [
+    {
+     "name": "escapeHtml",
+     "rev": false
+    },
+    {
+     "name": "mergeRanges mescla sobrepostos e vizinhos, descarta vazios",
+     "rev": true
+    },
+    {
+     "name": "mergeRanges valida intervalos",
+     "rev": false
+    },
+    {
+     "name": "findMatches: sem distinção de maiúsculas, sem sobreposição por termo",
+     "rev": false
+    },
+    {
+     "name": "highlight escapa texto, não marcadores",
+     "rev": false
+    },
+    {
+     "name": "highlight une trechos vizinhos e sobrepostos",
+     "rev": true
+    },
+    {
+     "name": "snippet",
+     "rev": false
+    }
+   ],
+   "rank.test.mjs": [
+    {
+     "name": "idf segue a fórmula com +1 dentro do logaritmo",
+     "rev": false
+    },
+    {
+     "name": "score BM25 com k1 = 1,2 e b = 0,75",
+     "rev": false
+    },
+    {
+     "name": "termos repetidos na consulta contam uma vez",
+     "rev": false
+    },
+    {
+     "name": "search ordena por pontuação e omite documentos sem pontuação",
+     "rev": false
+    },
+    {
+     "name": "empates por id em ordem crescente de código (<)",
+     "rev": true
+    },
+    {
+     "name": "limit",
+     "rev": false
+    },
+    {
+     "name": "createIndex valida ids e não altera a entrada",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "calendario-fiscal": {
+  "base": "b16-calendario-fiscal",
+  "class": "b",
+  "title": "Kit de calendário fiscal: semanas ISO, Páscoa, dias úteis, 4-4-5 e recorrência mensal",
+  "loc": 445,
+  "nBugs": 5,
+  "nCases": 35,
+  "nRev": 8,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "kit.test.mjs": 3
+  },
+  "files": {
+   "business.test.mjs": [
+    {
+     "name": "feriados do ano",
+     "rev": false
+    },
+    {
+     "name": "próximo e anterior na virada do ano",
+     "rev": false
+    },
+    {
+     "name": "convenções de ajuste",
+     "rev": false
+    },
+    {
+     "name": "addBusinessDays",
+     "rev": false
+    },
+    {
+     "name": "businessDaysBetween no sentido direto",
+     "rev": false
+    },
+    {
+     "name": "businessDaysBetween invertido é o oposto do direto",
+     "rev": true
+    }
+   ],
+   "civil.test.mjs": [
+    {
+     "name": "anos bissextos e dias por mês",
+     "rev": false
+    },
+    {
+     "name": "validação de datas",
+     "rev": false
+    },
+    {
+     "name": "ordinais e dia da semana",
+     "rev": false
+    },
+    {
+     "name": "formato ISO",
+     "rev": false
+    }
+   ],
+   "easter.test.mjs": [
+    {
+     "name": "Páscoa em anos comuns",
+     "rev": false
+    },
+    {
+     "name": "Páscoa nos extremos 22/03 e 25/04",
+     "rev": false
+    },
+    {
+     "name": "Páscoa em 19/04 e 18/04",
+     "rev": false
+    },
+    {
+     "name": "festas móveis",
+     "rev": false
+    },
+    {
+     "name": "Páscoa em séculos distantes",
+     "rev": true
+    }
+   ],
+   "fiscal.test.mjs": [
+    {
+     "name": "fim do ano fiscal quando 31/12 não é quarta-feira",
+     "rev": false
+    },
+    {
+     "name": "fim do ano fiscal quando 31/12 é quarta-feira",
+     "rev": false
+    },
+    {
+     "name": "anos de 52 e 53 semanas",
+     "rev": false
+    },
+    {
+     "name": "intervalos de períodos",
+     "rev": false
+    },
+    {
+     "name": "fiscalInfo",
+     "rev": true
+    },
+    {
+     "name": "fiscalInfo na semana 53",
+     "rev": false
+    },
+    {
+     "name": "fiscalInfo na primeira semana do ano fiscal",
+     "rev": true
+    }
+   ],
+   "isoweek.test.mjs": [
+    {
+     "name": "isoWeeksInYear",
+     "rev": false
+    },
+    {
+     "name": "isoWeek nas viradas de ano",
+     "rev": true
+    },
+    {
+     "name": "fromIsoWeek quando 1º de janeiro não é quinta-feira",
+     "rev": false
+    },
+    {
+     "name": "fromIsoWeek quando 1º de janeiro é quinta-feira",
+     "rev": false
+    },
+    {
+     "name": "isoWeek e fromIsoWeek são inversos",
+     "rev": true
+    },
+    {
+     "name": "formatIsoWeek e parseIsoWeek",
+     "rev": false
+    },
+    {
+     "name": "isoWeek no fim de dezembro",
+     "rev": true
+    }
+   ],
+   "recur.test.mjs": [
+    {
+     "name": "padrão: dia de start; meses sem o dia são pulados",
+     "rev": false
+    },
+    {
+     "name": "byMonthDay com valores negativos e múltiplos",
+     "rev": false
+    },
+    {
+     "name": "bySetPos quando start é o primeiro candidato do mês",
+     "rev": false
+    },
+    {
+     "name": "bySetPos é aplicado ao mês inteiro antes de descartar datas anteriores a start",
+     "rev": false
+    },
+    {
+     "name": "validação e nthWeekdayOfMonth",
+     "rev": false
+    },
+    {
+     "name": "nthWeekdayOfMonth contando do fim",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "numeros-kit": {
+  "base": "b17-numeros-kit",
+  "class": "b",
+  "title": "Kit numérico decimal: arredondamento, rateio, formatação, notação compacta e leitura",
+  "loc": 327,
+  "nBugs": 5,
+  "nCases": 20,
+  "nRev": 9,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "kit.test.mjs": 3
+  },
+  "files": {
+   "allocate.test.mjs": [
+    {
+     "name": "rateio básico",
+     "rev": false
+    },
+    {
+     "name": "validação",
+     "rev": false
+    },
+    {
+     "name": "restos iguais desempatam pelo menor índice",
+     "rev": true
+    },
+    {
+     "name": "total negativo e valores monetários",
+     "rev": true
+    }
+   ],
+   "compact.test.mjs": [
+    {
+     "name": "unidades e modos simétricos",
+     "rev": false
+    },
+    {
+     "name": "promoção de unidade após o arredondamento",
+     "rev": true
+    },
+    {
+     "name": "floor e ceiling usam o valor com sinal",
+     "rev": true
+    },
+    {
+     "name": "parseCompact",
+     "rev": false
+    }
+   ],
+   "format.test.mjs": [
+    {
+     "name": "agrupamento padrão e separadores",
+     "rev": false
+    },
+    {
+     "name": "agrupamento indiano",
+     "rev": true
+    },
+    {
+     "name": "arredondamento antes de agrupar",
+     "rev": true
+    },
+    {
+     "name": "porcentagem",
+     "rev": false
+    }
+   ],
+   "parse.test.mjs": [
+    {
+     "name": "formato padrão",
+     "rev": false
+    },
+    {
+     "name": "indiano",
+     "rev": false
+    },
+    {
+     "name": "separadores europeus",
+     "rev": true
+    }
+   ],
+   "round.test.mjs": [
+    {
+     "name": "modos de arredondamento",
+     "rev": false
+    },
+    {
+     "name": "preenchimento, zero sem sinal e validação",
+     "rev": false
+    },
+    {
+     "name": "vai-um que não atravessa todos os dígitos",
+     "rev": false
+    },
+    {
+     "name": "vai-um que atravessa todos os dígitos mantidos",
+     "rev": true
+    },
+    {
+     "name": "algarismos significativos",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "codecs-kit": {
+  "base": "b18-codecs-kit",
+  "class": "b",
+  "title": "Binary codecs: varints, CRC-32, strict UTF-8, and Base64url",
+  "loc": 245,
+  "nBugs": 4,
+  "nCases": 4,
+  "nRev": 4,
+  "referencePasses": true,
+  "visibleBuggy": "0/4",
+  "visibleExpected": {
+   "codecs.test.mjs": 4
+  },
+  "files": {
+   "boundaries.test.mjs": [
+    {
+     "name": "varints preserve offsets, values, and canonical form",
+     "rev": true
+    },
+    {
+     "name": "CRC-32 can be continued over multiple chunks",
+     "rev": true
+    },
+    {
+     "name": "strict UTF-8 round-trips supplementary and boundary code points",
+     "rev": true
+    },
+    {
+     "name": "Base64url handles every residual length and rejects impossible forms",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "grafos-kit": {
+  "base": "b19-grafos-kit",
+  "class": "b",
+  "title": "Kit de grafos: heap, ordenação topológica, Dijkstra, Kruskal e SCC",
+  "loc": 471,
+  "nBugs": 5,
+  "nCases": 28,
+  "nRev": 6,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "grafos.test.mjs": 3
+  },
+  "files": {
+   "dijkstra.test.mjs": [
+    {
+     "name": "caminho mínimo, inalcançável e origem = destino",
+     "rev": false
+    },
+    {
+     "name": "empate de custo: menos arestas",
+     "rev": false
+    },
+    {
+     "name": "empate de custo e arestas: menor sequência lexicográfica",
+     "rev": false
+    },
+    {
+     "name": "desempate lexicográfico com custos parciais diferentes",
+     "rev": false
+    },
+    {
+     "name": "distances e comparePaths",
+     "rev": false
+    },
+    {
+     "name": "arestas de peso zero: menos arestas mesmo descobertas depois",
+     "rev": true
+    },
+    {
+     "name": "arestas de peso zero: segundo caso",
+     "rev": false
+    }
+   ],
+   "heap.test.mjs": [
+    {
+     "name": "push/pop/peek em ordem crescente",
+     "rev": false
+    },
+    {
+     "name": "empates saem em ordem de inserção (inclusive itens do construtor)",
+     "rev": false
+    },
+    {
+     "name": "replace equivale a pop seguido de push",
+     "rev": false
+    },
+    {
+     "name": "replace repetido mantém FIFO entre iguais",
+     "rev": false
+    },
+    {
+     "name": "pushPop equivale a push seguido de pop",
+     "rev": false
+    },
+    {
+     "name": "toArray não altera; heapSort estável; nSmallest",
+     "rev": false
+    },
+    {
+     "name": "heap construído a partir de array desordenado",
+     "rev": true
+    }
+   ],
+   "mst.test.mjs": [
+    {
+     "name": "UnionFind",
+     "rev": true
+    },
+    {
+     "name": "kruskal com pesos distintos e floresta",
+     "rev": false
+    },
+    {
+     "name": "arestas já normalizadas e empatadas",
+     "rev": false
+    },
+    {
+     "name": "empate usa (min(u,v), max(u,v))",
+     "rev": false
+    }
+   ],
+   "scc.test.mjs": [
+    {
+     "name": "ciclo único e nós isolados",
+     "rev": false
+    },
+    {
+     "name": "DAG: cada nó é uma componente",
+     "rev": false
+    },
+    {
+     "name": "componentes encadeadas",
+     "rev": false
+    },
+    {
+     "name": "condensation",
+     "rev": false
+    },
+    {
+     "name": "condensation não perde arestas entre componentes distintas",
+     "rev": true
+    }
+   ],
+   "topo.test.mjs": [
+    {
+     "name": "ordem lexicográfica por unidades de código e arestas repetidas",
+     "rev": false
+    },
+    {
+     "name": "ciclos de dois nós e laço",
+     "rev": false
+    },
+    {
+     "name": "ciclo canônico com nós pendurados",
+     "rev": true
+    },
+    {
+     "name": "ciclo escolhido pelo menor predecessor",
+     "rev": true
+    },
+    {
+     "name": "isDAG e layers",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "texto-largura": {
+  "base": "b20-texto-largura",
+  "class": "b",
+  "title": "Texto por largura de exibição: grafemas, larguras, quebra, truncamento e alinhamento",
+  "loc": 402,
+  "nBugs": 5,
+  "nCases": 25,
+  "nRev": 9,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "texto.test.mjs": 2
+  },
+  "files": {
+   "align.test.mjs": [
+    {
+     "name": "padEnd, padStart e center por largura",
+     "rev": false
+    },
+    {
+     "name": "justify com sobra divisível",
+     "rev": false
+    },
+    {
+     "name": "justify: lacunas da esquerda recebem os espaços extras",
+     "rev": true
+    },
+    {
+     "name": "justifyText",
+     "rev": true
+    },
+    {
+     "name": "table e columns",
+     "rev": false
+    }
+   ],
+   "box.test.mjs": [
+    {
+     "name": "box simples e com título",
+     "rev": false
+    },
+    {
+     "name": "box alinhado e frameWidth",
+     "rev": false
+    }
+   ],
+   "grapheme.test.mjs": [
+    {
+     "name": "marcas combinantes, seletores de variação, modificadores e CRLF",
+     "rev": false
+    },
+    {
+     "name": "sequências ZWJ",
+     "rev": false
+    },
+    {
+     "name": "indicadores regionais formam pares da esquerda para a direita",
+     "rev": false
+    },
+    {
+     "name": "pares de indicadores recomeçam após outro ponto de código",
+     "rev": true
+    },
+    {
+     "name": "funções derivadas",
+     "rev": false
+    }
+   ],
+   "truncate.test.mjs": [
+    {
+     "name": "truncateEnd e truncateStart",
+     "rev": false
+    },
+    {
+     "name": "truncateMiddle com caracteres estreitos",
+     "rev": false
+    },
+    {
+     "name": "truncateMiddle repassa à direita a largura não usada à esquerda",
+     "rev": true
+    },
+    {
+     "name": "fit",
+     "rev": true
+    }
+   ],
+   "width.test.mjs": [
+    {
+     "name": "larguras por ponto de código",
+     "rev": false
+    },
+    {
+     "name": "limites das faixas largas",
+     "rev": true
+    },
+    {
+     "name": "larguras de strings nos limites das faixas",
+     "rev": true
+    },
+    {
+     "name": "largura de clusters",
+     "rev": false
+    },
+    {
+     "name": "sliceColumns",
+     "rev": false
+    }
+   ],
+   "wrap.test.mjs": [
+    {
+     "name": "quebra gulosa por palavras",
+     "rev": false
+    },
+    {
+     "name": "palavra longa: último pedaço continua a linha",
+     "rev": true
+    },
+    {
+     "name": "palavra longa com clusters largos",
+     "rev": true
+    },
+    {
+     "name": "wrapCount e wrapIndent",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "replicas-kit": {
+  "base": "b21-replicas-kit",
+  "class": "b",
+  "title": "Replica kit: LFU eviction and last-writer-wins maps",
+  "loc": 358,
+  "nBugs": 5,
+  "nCases": 5,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "0/2",
+  "visibleExpected": {
+   "replicas.test.mjs": 2
+  },
+  "files": {
+   "replica-state.test.mjs": [
+    {
+     "name": "LFU buckets preserve the oldest entry when frequencies tie",
+     "rev": true
+    },
+    {
+     "name": "LWW merge is deterministic for equal timestamps",
+     "rev": true
+    },
+    {
+     "name": "OR-Set preserves a concurrent add when another replica removes its old tag",
+     "rev": true
+    },
+    {
+     "name": "PN-counter merge takes component-wise maxima",
+     "rev": true
+    },
+    {
+     "name": "vector-clock order accounts for components absent from the left clock",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "telemetria-varint": {
+  "base": "c01-telemetria-varint",
+  "class": "c",
+  "title": "Codec de telemetria NTEL: writer e reader compensam erros entre si",
+  "loc": 266,
+  "nBugs": 2,
+  "nCases": 10,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "ntel.test.mjs": 2
+  },
+  "files": {
+   "ntel.test.mjs": [
+    {
+     "name": "writer: uvarint e svarint seguem o formato de fio",
+     "rev": true
+    },
+    {
+     "name": "writer: pacotes dourados",
+     "rev": true
+    },
+    {
+     "name": "reader: decodeUVarint com exemplos do formato e offset",
+     "rev": true
+    },
+    {
+     "name": "reader: pacotes dourados",
+     "rev": true
+    },
+    {
+     "name": "reader: lote vindo do firmware com quatro leituras",
+     "rev": true
+    },
+    {
+     "name": "lote dourado nos dois sentidos",
+     "rev": false
+    },
+    {
+     "name": "round-trip de uvarint em várias magnitudes",
+     "rev": false
+    },
+    {
+     "name": "round-trip de pacote com tempos não monotônicos",
+     "rev": false
+    },
+    {
+     "name": "round-trip de lote com vários drones",
+     "rev": false
+    },
+    {
+     "name": "erros: dados truncados, magic inválido e domínio",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "pedido-centavos": {
+  "base": "c02-pedido-centavos",
+  "class": "c",
+  "title": "Pedido com catálogo e cupons: centavos x reais entre módulos",
+  "loc": 217,
+  "nBugs": 3,
+  "nCases": 10,
+  "nRev": 6,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "pedido.test.mjs": 2
+  },
+  "files": {
+   "pedido.test.mjs": [
+    {
+     "name": "parsePrice: formato brasileiro em centavos",
+     "rev": true
+    },
+    {
+     "name": "parseCatalog: comentários, linhas vazias e espaços",
+     "rev": true
+    },
+    {
+     "name": "parseCoupon: percentual em %, fixo em centavos",
+     "rev": true
+    },
+    {
+     "name": "discountFor: arredondamento e limite do cupom fixo",
+     "rev": true
+    },
+    {
+     "name": "carrinho sobre catálogo montado em código",
+     "rev": true
+    },
+    {
+     "name": "frete grátis exatamente no limite, após o desconto",
+     "rev": true
+    },
+    {
+     "name": "integração: recibo com cupom fixo e frete grátis",
+     "rev": false
+    },
+    {
+     "name": "integração: cupom de 12,5% com meio centavo",
+     "rev": false
+    },
+    {
+     "name": "integração: vários itens, remoção e recibo sem cupom",
+     "rev": false
+    },
+    {
+     "name": "erros e carrinho vazio",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "cursor-paginacao": {
+  "base": "c03-cursor-paginacao",
+  "class": "c",
+  "title": "Paginação por cursor: ordem de empate e cursor inclusivo/exclusivo entre servidor e cliente",
+  "loc": 186,
+  "nBugs": 4,
+  "nCases": 12,
+  "nRev": 8,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "paginacao.test.mjs": 2
+  },
+  "files": {
+   "paginacao.test.mjs": [
+    {
+     "name": "ordem canônica: score decrescente, id crescente",
+     "rev": true
+    },
+    {
+     "name": "cursor: tokens dourados e validação",
+     "rev": false
+    },
+    {
+     "name": "compareToKey: posição relativa à chave",
+     "rev": true
+    },
+    {
+     "name": "listPage: as três páginas douradas",
+     "rev": true
+    },
+    {
+     "name": "listPage: cursor de item que não existe mais",
+     "rev": true
+    },
+    {
+     "name": "cliente: segue nextCursor de um endpoint qualquer",
+     "rev": true
+    },
+    {
+     "name": "iteratePages: páginas cheias, índices e número de chamadas",
+     "rev": true
+    },
+    {
+     "name": "integração: limit 1 percorre tudo com uma chamada por item",
+     "rev": true
+    },
+    {
+     "name": "integração: paginar equivale a uma página única (vários limites)",
+     "rev": false
+    },
+    {
+     "name": "integração: muitos empates, entrada embaralhada",
+     "rev": false
+    },
+    {
+     "name": "findFirst para de buscar ao encontrar",
+     "rev": true
+    },
+    {
+     "name": "erros de limit, cursor e laço de cursores",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "cache-chaves": {
+  "base": "c04-cache-chaves",
+  "class": "c",
+  "title": "Cache de leitura: unidade do TTL e formato das chaves acoplados ao repositório",
+  "loc": 224,
+  "nBugs": 3,
+  "nCases": 12,
+  "nRev": 4,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "cache.test.mjs": 2
+  },
+  "files": {
+   "cache.test.mjs": [
+    {
+     "name": "TtlCache: ttl em segundos sobre relógio em ms",
+     "rev": true
+    },
+    {
+     "name": "TtlCache: invalidatePrefix não confunde recursos parecidos",
+     "rev": false
+    },
+    {
+     "name": "TtlCache: validação de ttl e Infinity",
+     "rev": false
+    }
+   ],
+   "keys.test.mjs": [
+    {
+     "name": "entityKey: formato e codificação",
+     "rev": false
+    },
+    {
+     "name": "queryKey: ordenação, omissão de undefined, null e arrays",
+     "rev": true
+    },
+    {
+     "name": "validações e resourceOf",
+     "rev": false
+    }
+   ],
+   "repo.test.mjs": [
+    {
+     "name": "repo: leituras ficam em cache por exatamente ttlSeconds",
+     "rev": false
+    },
+    {
+     "name": "repo: update invalida a entidade e as consultas do recurso",
+     "rev": false
+    },
+    {
+     "name": "repo: update preserva no cache as outras entidades",
+     "rev": true
+    },
+    {
+     "name": "repo: grava sob as chaves canônicas",
+     "rev": true
+    },
+    {
+     "name": "repo: recursos de nome parecido no mesmo cache não interferem",
+     "rev": false
+    },
+    {
+     "name": "repo: registro inexistente não é cacheado",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "expr-ast": {
+  "base": "c05-expr-ast",
+  "class": "c",
+  "title": "Expressões: parser, percurso e impressão com erros que se cancelam",
+  "loc": 248,
+  "nBugs": 3,
+  "nCases": 11,
+  "nRev": 7,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "expr.test.mjs": 2
+  },
+  "files": {
+   "expr.test.mjs": [
+    {
+     "name": "parse: ASTs douradas",
+     "rev": true
+    },
+    {
+     "name": "parse: erros de sintaxe",
+     "rev": false
+    },
+    {
+     "name": "evaluate: ASTs construídas à mão",
+     "rev": true
+    },
+    {
+     "name": "evaluate: erros",
+     "rev": true
+    },
+    {
+     "name": "evaluateSource: associatividade e precedência binária",
+     "rev": false
+    },
+    {
+     "name": "evaluateSource: menos unário e potência",
+     "rev": true
+    },
+    {
+     "name": "print: ASTs construídas à mão",
+     "rev": true
+    },
+    {
+     "name": "print(parse(s)) preserva textos canônicos",
+     "rev": false
+    },
+    {
+     "name": "print(parse(s)) normaliza parênteses e espaços",
+     "rev": true
+    },
+    {
+     "name": "walk: variables e size em ASTs construídas à mão",
+     "rev": true
+    },
+    {
+     "name": "árvores profundas não estouram a pilha",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "diff-patch": {
+  "base": "c06-diff-patch",
+  "class": "c",
+  "title": "Diff/patch unified: base dos inícios e contagem omitida acoplados",
+  "loc": 268,
+  "nBugs": 4,
+  "nCases": 12,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "patch.test.mjs": 2
+  },
+  "files": {
+   "diff.test.mjs": [
+    {
+     "name": "splitLines / joinLines",
+     "rev": false
+    },
+    {
+     "name": "diffLines: hunks com contexto e agrupamento",
+     "rev": false
+    },
+    {
+     "name": "diffLines: lados com zero linhas",
+     "rev": true
+    }
+   ],
+   "patch.test.mjs": [
+    {
+     "name": "applyPatch: hunks dourados com lados de zero linhas",
+     "rev": true
+    },
+    {
+     "name": "applyPatch: texto unified dourado",
+     "rev": true
+    },
+    {
+     "name": "round-trip: diffLines → applyPatch",
+     "rev": false
+    },
+    {
+     "name": "round-trip: texto unified → parseUnified → applyPatch",
+     "rev": false
+    },
+    {
+     "name": "reversePatch desfaz o diff",
+     "rev": false
+    },
+    {
+     "name": "applyPatch: divergências viram PatchError",
+     "rev": false
+    }
+   ],
+   "unified.test.mjs": [
+    {
+     "name": "formatUnified: cabeçalhos com e sem contagem",
+     "rev": true
+    },
+    {
+     "name": "parseUnified: contagem omitida vale 1",
+     "rev": true
+    },
+    {
+     "name": "parseUnified: erros de estrutura",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "agendador-heap": {
+  "base": "c07-agendador-heap",
+  "class": "c",
+  "title": "Agendador de missões: heap e comparador invertidos se compensam; every em s vs ms",
+  "loc": 263,
+  "nBugs": 3,
+  "nCases": 12,
+  "nRev": 7,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "agenda.test.mjs": 3
+  },
+  "files": {
+   "agenda.test.mjs": [
+    {
+     "name": "heap: convenção de Array.prototype.sort",
+     "rev": true
+    },
+    {
+     "name": "heap: from, comparador customizado e toSortedArray",
+     "rev": true
+    },
+    {
+     "name": "agendador: ordem dourada por instante, prioridade e inserção",
+     "rev": false
+    },
+    {
+     "name": "agendador: muitas tarefas saem na ordem especificada",
+     "rev": false
+    },
+    {
+     "name": "agendador: every em segundos",
+     "rev": true
+    },
+    {
+     "name": "agendador: tarefa periódica reinserida entra no fim da fila do instante",
+     "rev": true
+    },
+    {
+     "name": "agendador: callbacks agendam e cancelam tarefas",
+     "rev": false
+    },
+    {
+     "name": "agendador: periódica cancelada pelo próprio callback",
+     "rev": true
+    },
+    {
+     "name": "agendador: validação de argumentos",
+     "rev": false
+    },
+    {
+     "name": "plano: durações e linhas",
+     "rev": true
+    },
+    {
+     "name": "plano de missão completo com formatLog",
+     "rev": false
+    },
+    {
+     "name": "plano e API direta convivem no mesmo agendador",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "diario-checksum": {
+  "base": "c08-diario-checksum",
+  "class": "c",
+  "title": "Diário NVJ1: writer e verificador concordam entre si, mas não com o formato",
+  "loc": 187,
+  "nBugs": 2,
+  "nCases": 10,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "diario.test.mjs": 2
+  },
+  "files": {
+   "diario.test.mjs": [
+    {
+     "name": "checksum: Adler-32 e hex8",
+     "rev": false
+    },
+    {
+     "name": "writer: registros e diário dourados",
+     "rev": true
+    },
+    {
+     "name": "verificador: aceita os registros dourados",
+     "rev": true
+    },
+    {
+     "name": "verificador: detecta adulteração de seq, payload e tamanho",
+     "rev": true
+    },
+    {
+     "name": "verificador: primeiro registro ruim de um diário",
+     "rev": true
+    },
+    {
+     "name": "round-trip: writer → verificador com payloads variados",
+     "rev": false
+    },
+    {
+     "name": "round-trip: payload adulterado é apontado no índice certo",
+     "rev": false
+    },
+    {
+     "name": "round-trip: diários concatenados e lacuna de sequência",
+     "rev": false
+    },
+    {
+     "name": "round-trip: adulterar só o seq de um registro é detectado",
+     "rev": true
+    },
+    {
+     "name": "erros de entrada",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "eventos-projecao": {
+  "base": "c09-eventos-projecao",
+  "class": "c",
+  "title": "Event sourcing: store, projeção e snapshot assumem ordem invertida em cadeia",
+  "loc": 214,
+  "nBugs": 3,
+  "nCases": 10,
+  "nRev": 3,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "contas.test.mjs": 2
+  },
+  "files": {
+   "contas.test.mjs": [
+    {
+     "name": "store: versões e leitura em ordem crescente",
+     "rev": true
+    },
+    {
+     "name": "store: concorrência otimista e validação",
+     "rev": false
+    },
+    {
+     "name": "projeção: sequência dourada (a ordem importa)",
+     "rev": true
+    },
+    {
+     "name": "projeção: regras de cada evento e imutabilidade",
+     "rev": true
+    },
+    {
+     "name": "snapshot: takeSnapshot do stream dourado",
+     "rev": false
+    },
+    {
+     "name": "snapshot: rebuild a partir de um snapshot antigo",
+     "rev": false
+    },
+    {
+     "name": "snapshot: rebuild de snapshot recente após novos eventos",
+     "rev": false
+    },
+    {
+     "name": "repositório: snapshots periódicos",
+     "rev": false
+    },
+    {
+     "name": "repositório: conflito de escrita e comando sem eventos",
+     "rev": false
+    },
+    {
+     "name": "repositório: carregar com snapshots dá o mesmo que projetar tudo",
+     "rev": false
+    }
+   ]
+  }
+ },
+ "protocolo-quadros": {
+  "base": "c10-protocolo-quadros",
+  "class": "c",
+  "title": "Protocolo de quadros: UTF-8, escape SLIP, CRC e numeração com erros que se compensam",
+  "loc": 454,
+  "nBugs": 8,
+  "nCases": 14,
+  "nRev": 12,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "protocolo.test.mjs": 3
+  },
+  "files": {
+   "session.test.mjs": [
+    {
+     "name": "fragment: cortes exatos em bytes",
+     "rev": true
+    },
+    {
+     "name": "Sender: numeração com volta 255 → 0",
+     "rev": true
+    },
+    {
+     "name": "Receiver: fragmentos do firmware cortando caracteres",
+     "rev": true
+    },
+    {
+     "name": "Receiver: reordenação e duplicatas dentro da janela",
+     "rev": false
+    },
+    {
+     "name": "Receiver: retransmissão de quadro já entregue é duplicata",
+     "rev": true
+    },
+    {
+     "name": "Receiver: volta da numeração com quadros fora de ordem e retransmissão",
+     "rev": true
+    },
+    {
+     "name": "fluxo contínuo: pushBytes byte a byte e em pedaços, com quadro corrompido",
+     "rev": true
+    },
+    {
+     "name": "ida e volta: emoji e acentos com vários tamanhos de fragmento",
+     "rev": false
+    },
+    {
+     "name": "ida e volta atravessando a volta da numeração, via fluxo",
+     "rev": true
+    }
+   ],
+   "utf8-frame.test.mjs": [
+    {
+     "name": "encodeUtf8: vetores dourados",
+     "rev": true
+    },
+    {
+     "name": "decodeUtf8: estrito",
+     "rev": true
+    },
+    {
+     "name": "stuff/unstuff e FrameSplitter",
+     "rev": true
+    },
+    {
+     "name": "crc16 e encodeFrame: vetores dourados",
+     "rev": true
+    },
+    {
+     "name": "decodeFrame: quadros do firmware e erros",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "crdt-replicas": {
+  "base": "c11-crdt-replicas",
+  "class": "c",
+  "title": "CRDT replicado: carimbos, LWW, OR-set e deltas com erros que se compensam",
+  "loc": 477,
+  "nBugs": 7,
+  "nCases": 14,
+  "nRev": 14,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "crdt.test.mjs": 3
+  },
+  "files": {
+   "crdt.test.mjs": [
+    {
+     "name": "parseStamp/formatStamp: dourados, @ no id e erros",
+     "rev": true
+    },
+    {
+     "name": "compareStamps: contador, depois id maior vence",
+     "rev": true
+    },
+    {
+     "name": "LWW: escritas concorrentes com o mesmo contador — id maior vence",
+     "rev": true
+    },
+    {
+     "name": "relógio de Lamport, lápides e carimbos devolvidos",
+     "rev": true
+    },
+    {
+     "name": "encodeState: texto canônico dourado",
+     "rev": true
+    },
+    {
+     "name": "encodeState: etiquetas com o mesmo contador em ordem de carimbo",
+     "rev": true
+    },
+    {
+     "name": "OR-set: readição de elemento já presente acumula etiquetas e a remoção enterra todas",
+     "rev": true
+    },
+    {
+     "name": "OR-set: adição concorrente vence remoção",
+     "rev": true
+    },
+    {
+     "name": "três réplicas em cadeia (a — b — c) convergem",
+     "rev": true
+    },
+    {
+     "name": "deltaSince é suficiente mesmo para o que a réplica só retransmite",
+     "rev": true
+    },
+    {
+     "name": "relógio observa lápides e o vetor de versão recebidos",
+     "rev": true
+    },
+    {
+     "name": "convergência: três réplicas, operações intercaladas e ordens de sincronização diferentes",
+     "rev": true
+    },
+    {
+     "name": "decodeState: ids com @, ordem de chaves e erros",
+     "rev": true
+    },
+    {
+     "name": "validação de entradas e ids que coincidem com nomes de propriedades",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "razao-partidas": {
+  "base": "c12-razao-partidas",
+  "class": "c",
+  "title": "Razão de partidas dobradas: sinal de centavos e arredondamento bancário acoplados",
+  "loc": 419,
+  "nBugs": 9,
+  "nCases": 17,
+  "nRev": 16,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "razao.test.mjs": 3
+  },
+  "files": {
+   "journal.test.mjs": [
+    {
+     "name": "post: convenção de sinais (débito +, crédito -), inclusive valores negativos",
+     "rev": true
+    },
+    {
+     "name": "post com câmbio: arredondamento bancário por linha e resíduo",
+     "rev": true
+    },
+    {
+     "name": "post com rateio e estorno",
+     "rev": true
+    }
+   ],
+   "ledger.test.mjs": [
+    {
+     "name": "balanceOf: sinal natural por tipo de conta",
+     "rev": true
+    },
+    {
+     "name": "statement: extrato com saldo inicial e corrido",
+     "rev": true
+    },
+    {
+     "name": "trialBalance: saldos credores em contas devedoras vão para a coluna crédito",
+     "rev": true
+    },
+    {
+     "name": "incomeStatement e closePeriod com saldo natural negativo",
+     "rev": true
+    }
+   ],
+   "money.test.mjs": [
+    {
+     "name": "parseAmount: valores dourados, sinal sobre o valor inteiro",
+     "rev": true
+    },
+    {
+     "name": "formatAmount: duas casas e sinal",
+     "rev": false
+    },
+    {
+     "name": "roundDiv: arredondamento bancário simétrico",
+     "rev": true
+    },
+    {
+     "name": "parseRate e convert",
+     "rev": true
+    },
+    {
+     "name": "allocate: maiores restos e simetria de sinal",
+     "rev": true
+    }
+   ],
+   "report.test.mjs": [
+    {
+     "name": "cell: separador de milhar, sinal e alinhamento",
+     "rev": true
+    },
+    {
+     "name": "renderStatement e renderIncome com valores negativos",
+     "rev": true
+    },
+    {
+     "name": "renderTrialBalance com saldo credor em conta de ativo",
+     "rev": true
+    },
+    {
+     "name": "renderJournal: linhas zeradas pelo câmbio",
+     "rev": true
+    },
+    {
+     "name": "renderJournal: lado D/C pelo sinal e valor absoluto",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "recorrencia-agenda": {
+  "base": "c13-recorrencia-agenda",
+  "class": "c",
+  "title": "Agenda recorrente: convenção de dia da semana, âncora semanal e dias do mês negativos acoplados",
+  "loc": 403,
+  "nBugs": 5,
+  "nCases": 11,
+  "nRev": 9,
+  "referencePasses": true,
+  "visibleBuggy": "1/2",
+  "visibleExpected": {
+   "agenda.test.mjs": 2
+  },
+  "files": {
+   "agenda.test.mjs": [
+    {
+     "name": "civil: dia da semana ISO (1 = segunda … 7 = domingo)",
+     "rev": true
+    },
+    {
+     "name": "weekdays: códigos, início de semana e n-ésimo dia",
+     "rev": true
+    },
+    {
+     "name": "isoWeek: viradas de ano",
+     "rev": true
+    },
+    {
+     "name": "parseRule: valores como escritos",
+     "rev": true
+    },
+    {
+     "name": "formatRule: forma canônica e ida e volta",
+     "rev": true
+    },
+    {
+     "name": "parseRule: erros",
+     "rev": false
+    },
+    {
+     "name": "mensal: dias inexistentes são ignorados; negativos contam do fim",
+     "rev": true
+    },
+    {
+     "name": "semanal: semanas contadas a partir da semana de dtstart, conforme WKST",
+     "rev": true
+    },
+    {
+     "name": "COUNT conta desde dtstart; UNTIL inclusivo; janela semiaberta de occurrences",
+     "rev": false
+    },
+    {
+     "name": "consultas: exdates, nextAfter, firstN",
+     "rev": true
+    },
+    {
+     "name": "byIsoWeek e agenda na virada do ano",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "bytecode-vm": {
+  "base": "c14-bytecode-vm",
+  "class": "c",
+  "title": "Calc: compilador, otimizador, montador e VM de pilha com convenções que se compensam",
+  "loc": 654,
+  "nBugs": 6,
+  "nCases": 12,
+  "nRev": 10,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "calc.test.mjs": 3
+  },
+  "files": {
+   "calc.test.mjs": [
+    {
+     "name": "parse: ASTs douradas",
+     "rev": false
+    },
+    {
+     "name": "compile: ordem dos operandos, chamadas e slots",
+     "rev": true
+    },
+    {
+     "name": "optimize: dobra de constantes com a ordem certa",
+     "rev": true
+    },
+    {
+     "name": "optimize: reassociação de constantes",
+     "rev": true
+    },
+    {
+     "name": "assemble: pools e deslocamentos relativos à instrução seguinte",
+     "rev": true
+    },
+    {
+     "name": "disassemble: programa com if/else dentro de while",
+     "rev": true
+    },
+    {
+     "name": "maxStack: valores dourados, inclusive com chamadas",
+     "rev": true
+    },
+    {
+     "name": "run: bytecode à mão — operandos e saltos",
+     "rev": true
+    },
+    {
+     "name": "execute: ordem de avaliação de chamadas e argumentos",
+     "rev": true
+    },
+    {
+     "name": "execute: programas completos com e sem otimização",
+     "rev": true
+    },
+    {
+     "name": "compile/run: AST construída à mão",
+     "rev": false
+    },
+    {
+     "name": "erros",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "indice-paginas": {
+  "base": "c15-indice-paginas",
+  "class": "c",
+  "title": "Paged ordered index: stable duplicate-key cursors and complete pagination",
+  "loc": 414,
+  "nBugs": 4,
+  "nCases": 8,
+  "nRev": 5,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "indice.test.mjs": 3
+  },
+  "files": {
+   "cursors.test.mjs": [
+    {
+     "name": "cursor encoding uses the stable id.key form",
+     "rev": true
+    },
+    {
+     "name": "duplicate-key positions paginate without skips or duplicates",
+     "rev": false
+    },
+    {
+     "name": "an exact final page has no next cursor",
+     "rev": true
+    }
+   ],
+   "keys-pages.test.mjs": [
+    {
+     "name": "ordem de chaves e posições",
+     "rev": false
+    },
+    {
+     "name": "cursores: formato id.chave",
+     "rev": true
+    },
+    {
+     "name": "lowerBound/upperBound/insertEntry",
+     "rev": false
+    },
+    {
+     "name": "splitPage: corte em ⌈n/2⌉ mesmo dentro de chaves repetidas",
+     "rev": true
+    },
+    {
+     "name": "layouts dourados após inserções",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "layout-texto": {
+  "base": "c16-layout-texto",
+  "class": "c",
+  "title": "Unicode text layout: code-point offsets, soft hyphens, and alignment",
+  "loc": 399,
+  "nBugs": 5,
+  "nCases": 3,
+  "nRev": 3,
+  "referencePasses": true,
+  "visibleBuggy": "1/3",
+  "visibleExpected": {
+   "layout.test.mjs": 3
+  },
+  "files": {
+   "unicode-layout.test.mjs": [
+    {
+     "name": "width and wrapping use code points rather than UTF-16 units",
+     "rev": true
+    },
+    {
+     "name": "soft hyphens do not count as visible characters or slice offsets",
+     "rev": true
+    },
+    {
+     "name": "justification assigns extra spaces from left to right",
+     "rev": true
+    }
+   ]
+  }
+ },
+ "relogio-vetorial": {
+  "base": "c17-relogio-vetorial",
+  "class": "c",
+  "title": "Difusão causal: relógio da mensagem, prontidão e ordem de entrega acoplados",
+  "loc": 408,
+  "nBugs": 4,
+  "nCases": 12,
+  "nRev": 9,
+  "referencePasses": true,
+  "visibleBuggy": "2/3",
+  "visibleExpected": {
+   "causal.test.mjs": 3
+  },
+  "files": {
+   "cluster.test.mjs": [
+    {
+     "name": "Replica: relógio das mensagens inclui o próprio evento",
+     "rev": true
+    },
+    {
+     "name": "três réplicas: entrega causal respeita dependências transitivas",
+     "rev": true
+    },
+    {
+     "name": "quatro réplicas: ordem determinística entre concorrentes prontas juntas",
+     "rev": true
+    },
+    {
+     "name": "concorrência detectada pelos relógios das mensagens",
+     "rev": true
+    },
+    {
+     "name": "três réplicas: escritas concorrentes convergem e duplicatas são ignoradas",
+     "rev": true
+    },
+    {
+     "name": "Store: carimbo (peso, remetente)",
+     "rev": false
+    }
+   ],
+   "delivery.test.mjs": [
+    {
+     "name": "isReady e isDelivered",
+     "rev": true
+    },
+    {
+     "name": "DeliveryBuffer: espera dependências de terceiros",
+     "rev": true
+    },
+    {
+     "name": "DeliveryBuffer: prontas ao mesmo tempo saem em ordem de remetente",
+     "rev": true
+    }
+   ],
+   "vclock.test.mjs": [
+    {
+     "name": "normalize, tick, merge, format e parse",
+     "rev": false
+    },
+    {
+     "name": "compare: ordem parcial com chaves ausentes valendo 0",
+     "rev": false
+    },
+    {
+     "name": "coveredExcept: todas as componentes de a, exceto skip, cobertas por b",
+     "rev": true
+    }
+   ]
+  }
+ }
+}

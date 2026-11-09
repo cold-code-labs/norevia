@@ -1,0 +1,1 @@
+{"phase":"smoke","arm":"CTRL","rep":1,"wallS":6.3,"mainBlockedS":0,"maxAckMs":0,"statusPollMaxMs":0,"playbook":["At most 700 characters."],"timeline":[{"t":0,"thread":"Q1","ev":"ack in 0 ms"},{"t":6.3,"thread":"Q1","ev":"done (6.3s, $0.0007, 2 calls, unfolded=false)"}]}

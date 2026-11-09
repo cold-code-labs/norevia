@@ -1,0 +1,15 @@
+{
+  "id": "c16-layout-texto",
+  "class": "c",
+  "split": "dev",
+  "title": "Unicode text layout: code-point offsets, soft hyphens, and alignment",
+  "statement": "# Unicode-aware text layout (`src/`)\n\nThe package measures, wraps, hyphenates, aligns, and renders text. Width and offsets are measured in Unicode code points; soft hyphens are invisible and do not increase width. For justified lines, distribute remainder spaces from the left. A soft-hyphen break must split at the actual soft-hyphen position, and rendering must slice by code-point offsets. Preserve all current exports and options.",
+  "bugs": [
+    { "file": "src/align.mjs", "summary": "Remainder spaces are assigned to the rightmost gaps instead of the leftmost gaps." },
+    { "file": "src/hyphenate.mjs", "summary": "Soft hyphens are counted as visible characters when calculating later break points." },
+    { "file": "src/measure.mjs", "summary": "Width counts UTF-16 code units instead of Unicode code points." },
+    { "file": "src/render.mjs", "summary": "Rendering slices text with UTF-16 offsets although wrapping returns code-point offsets." },
+    { "file": "src/wrap.mjs", "summary": "Wrapping records UTF-16 positions and treats visible hyphen points as direct slice indices." }
+  ],
+  "decomposable": false
+}

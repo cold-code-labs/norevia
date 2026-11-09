@@ -1,0 +1,1 @@
+{"tasks":630,"families":{"modAffine":9,"digitSum":9,"caesar":9,"roundMultiple":9,"rotate":9,"rle":9,"topK":9,"mergeIv":9,"popcnt":9,"toBase":9,"brackets":9,"wrap":9,"kth":9,"duration":9,"chain":63,"pbe":441},"bad":[{"id":"t114","why":"constant solution passes hidden"}],"trap":{"total":305,"passVisFailHid":305},"distinctSpecs":630,"badCount":1}

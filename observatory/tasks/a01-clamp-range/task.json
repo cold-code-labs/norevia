@@ -1,0 +1,9 @@
+{
+  "id": "a01-clamp-range",
+  "class": "a",
+  "split": "dev",
+  "title": "Descending range() includes the end bound",
+  "statement": "The module `src/range.mjs` exports `range(start, end, step = 1)`, which must return an array with the numbers from `start` (inclusive) up to `end` (EXCLUSIVE), advancing by `step`. `step` may be negative (descending sequence). `step === 0` must throw `RangeError`. If the sequence is empty (for example `start === end`), it returns `[]`. Users report that descending sequences are including the `end` value. Fix the module.",
+  "bugs": [{ "file": "src/range.mjs", "summary": "descending loop condition uses >= instead of >" }],
+  "decomposable": false
+}

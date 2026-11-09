@@ -1,0 +1,3419 @@
+{
+ "Ns": [
+  10,
+  30,
+  100,
+  300,
+  1000
+ ],
+ "arms": {
+  "ORCH": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0302,
+    "committedFrac": 0.0365,
+    "fsRate": 0.1724,
+    "accepted": 19,
+    "falseSuccess": 4,
+    "calls": 40,
+    "costTable": 0.0028,
+    "acceptedPerUsd": 6895.2,
+    "acceptedPerMin": 198.4,
+    "criticalPathS": 5.8,
+    "dupPerCall": 0,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.21,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0746,
+    "committedFrac": 0.0944,
+    "fsRate": 0.2087,
+    "accepted": 47,
+    "falseSuccess": 12.5,
+    "calls": 120,
+    "costTable": 0.0086,
+    "acceptedPerUsd": 5436.8,
+    "acceptedPerMin": 174.7,
+    "criticalPathS": 16.1,
+    "dupPerCall": 0.0292,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.11,
+    "errCorr": 0.45,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2254,
+    "committedFrac": 0.2778,
+    "fsRate": 0.1881,
+    "accepted": 142,
+    "falseSuccess": 33,
+    "calls": 400,
+    "costTable": 0.0287,
+    "acceptedPerUsd": 4949.7,
+    "acceptedPerMin": 143.1,
+    "criticalPathS": 59.5,
+    "dupPerCall": 0.1412,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.63,
+    "errCorr": 0.409,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.2167,
+    "committedFrac": 0.2754,
+    "fsRate": 0.2131,
+    "accepted": 136.5,
+    "falseSuccess": 37,
+    "calls": 400,
+    "costTable": 0.0288,
+    "acceptedPerUsd": 4734.7,
+    "acceptedPerMin": 302.4,
+    "criticalPathS": 27.1,
+    "dupPerCall": 0.1288,
+    "conflictsPerCall": 0,
+    "idleShare": 0.6667,
+    "msgsPerAccepted": 5.87,
+    "errCorr": 0.398,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.227,
+    "committedFrac": 0.2921,
+    "fsRate": 0.2228,
+    "accepted": 143,
+    "falseSuccess": 41,
+    "calls": 400,
+    "costTable": 0.0291,
+    "acceptedPerUsd": 4920.9,
+    "acceptedPerMin": 1300,
+    "criticalPathS": 6.6,
+    "dupPerCall": 0.125,
+    "conflictsPerCall": 0,
+    "idleShare": 0.9,
+    "msgsPerAccepted": 5.59,
+    "errCorr": 0.509,
+    "gregariousFrac": null
+   }
+  },
+  "ORCH-U": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0294,
+    "committedFrac": 0.0341,
+    "fsRate": 0.1396,
+    "accepted": 18.5,
+    "falseSuccess": 3,
+    "calls": 40,
+    "costTable": 0.0029,
+    "acceptedPerUsd": 6442.7,
+    "acceptedPerMin": 207.9,
+    "criticalPathS": 5.4,
+    "dupPerCall": 0,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.33,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0738,
+    "committedFrac": 0.0952,
+    "fsRate": 0.2247,
+    "accepted": 46.5,
+    "falseSuccess": 13.5,
+    "calls": 120,
+    "costTable": 0.0083,
+    "acceptedPerUsd": 5612.7,
+    "acceptedPerMin": 183.6,
+    "criticalPathS": 15.2,
+    "dupPerCall": 0.05,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.17,
+    "errCorr": 0.55,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.223,
+    "committedFrac": 0.2857,
+    "fsRate": 0.2186,
+    "accepted": 140.5,
+    "falseSuccess": 39.5,
+    "calls": 400,
+    "costTable": 0.0286,
+    "acceptedPerUsd": 4915.1,
+    "acceptedPerMin": 144.1,
+    "criticalPathS": 58.8,
+    "dupPerCall": 0.14,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.7,
+    "errCorr": 0.381,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.4032,
+    "committedFrac": 0.5286,
+    "fsRate": 0.2371,
+    "accepted": 254,
+    "falseSuccess": 79,
+    "calls": 1200,
+    "costTable": 0.0879,
+    "acceptedPerUsd": 2889.6,
+    "acceptedPerMin": 237.8,
+    "criticalPathS": 64.1,
+    "dupPerCall": 0.4754,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.45,
+    "errCorr": 0.393,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4063,
+    "committedFrac": 0.5365,
+    "fsRate": 0.2426,
+    "accepted": 256,
+    "falseSuccess": 82,
+    "calls": 1539,
+    "costTable": 0.1129,
+    "acceptedPerUsd": 2268.1,
+    "acceptedPerMin": 500.3,
+    "criticalPathS": 30.7,
+    "dupPerCall": 0.5906,
+    "conflictsPerCall": 0,
+    "idleShare": 0.6152,
+    "msgsPerAccepted": 12.02,
+    "errCorr": 0.421,
+    "gregariousFrac": null
+   }
+  },
+  "INDEP": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0286,
+    "committedFrac": 0.031,
+    "fsRate": 0.0747,
+    "accepted": 18,
+    "falseSuccess": 1.5,
+    "calls": 40,
+    "costTable": 0.0029,
+    "acceptedPerUsd": 6070.4,
+    "acceptedPerMin": 183.4,
+    "criticalPathS": 5.8,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0.0125,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 1,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0683,
+    "committedFrac": 0.0841,
+    "fsRate": 0.1887,
+    "accepted": 43,
+    "falseSuccess": 10,
+    "calls": 120,
+    "costTable": 0.0089,
+    "acceptedPerUsd": 4824.4,
+    "acceptedPerMin": 145.6,
+    "criticalPathS": 17.9,
+    "dupPerCall": 0.1,
+    "conflictsPerCall": 0.0625,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.584,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.1928,
+    "committedFrac": 0.2389,
+    "fsRate": 0.1932,
+    "accepted": 121.5,
+    "falseSuccess": 29,
+    "calls": 400,
+    "costTable": 0.0298,
+    "acceptedPerUsd": 4078.9,
+    "acceptedPerMin": 125.7,
+    "criticalPathS": 58,
+    "dupPerCall": 0.2562,
+    "conflictsPerCall": 0.1225,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.464,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.3428,
+    "committedFrac": 0.446,
+    "fsRate": 0.231,
+    "accepted": 216,
+    "falseSuccess": 65,
+    "calls": 1200,
+    "costTable": 0.088,
+    "acceptedPerUsd": 2454.8,
+    "acceptedPerMin": 188.1,
+    "criticalPathS": 68.9,
+    "dupPerCall": 0.5521,
+    "conflictsPerCall": 0.27,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.505,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4111,
+    "committedFrac": 0.5492,
+    "fsRate": 0.2514,
+    "accepted": 259,
+    "falseSuccess": 87,
+    "calls": 4000,
+    "costTable": 0.2929,
+    "acceptedPerUsd": 884.2,
+    "acceptedPerMin": 167.5,
+    "criticalPathS": 92.8,
+    "dupPerCall": 0.8427,
+    "conflictsPerCall": 0.4313,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.472,
+    "gregariousFrac": null
+   }
+  },
+  "VOTE": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0222,
+    "committedFrac": 0.0222,
+    "fsRate": 0,
+    "accepted": 14,
+    "falseSuccess": 0,
+    "calls": 40,
+    "costTable": 0.0019,
+    "acceptedPerUsd": 7486.6,
+    "acceptedPerMin": 210,
+    "criticalPathS": 4,
+    "dupPerCall": 0.65,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 2.86,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0635,
+    "committedFrac": 0.0635,
+    "fsRate": 0,
+    "accepted": 40,
+    "falseSuccess": 0,
+    "calls": 120,
+    "costTable": 0.0081,
+    "acceptedPerUsd": 4944.4,
+    "acceptedPerMin": 176.6,
+    "criticalPathS": 13.6,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 3,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2071,
+    "committedFrac": 0.2127,
+    "fsRate": 0.0261,
+    "accepted": 130.5,
+    "falseSuccess": 3.5,
+    "calls": 400,
+    "costTable": 0.035,
+    "acceptedPerUsd": 3723.3,
+    "acceptedPerMin": 143.7,
+    "criticalPathS": 54.5,
+    "dupPerCall": 0.665,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 3.06,
+    "errCorr": 1,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.3452,
+    "committedFrac": 0.6349,
+    "fsRate": 0.4563,
+    "accepted": 217.5,
+    "falseSuccess": 182.5,
+    "calls": 1200,
+    "costTable": 0.0916,
+    "acceptedPerUsd": 2375,
+    "acceptedPerMin": 202.8,
+    "criticalPathS": 64.5,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.52,
+    "errCorr": 0.467,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.3984,
+    "committedFrac": 1,
+    "fsRate": 0.6016,
+    "accepted": 251,
+    "falseSuccess": 379,
+    "calls": 1890,
+    "costTable": 0.1363,
+    "acceptedPerUsd": 1840.9,
+    "acceptedPerMin": 432.8,
+    "criticalPathS": 34.8,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0.5275,
+    "msgsPerAccepted": 7.53,
+    "errCorr": 0.479,
+    "gregariousFrac": null
+   }
+  },
+  "BOARD": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0286,
+    "committedFrac": 0.031,
+    "fsRate": 0.0754,
+    "accepted": 18,
+    "falseSuccess": 1.5,
+    "calls": 40,
+    "costTable": 0.0031,
+    "acceptedPerUsd": 5843.2,
+    "acceptedPerMin": 187.7,
+    "criticalPathS": 5.8,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.46,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0635,
+    "committedFrac": 0.0881,
+    "fsRate": 0.2802,
+    "accepted": 40,
+    "falseSuccess": 15.5,
+    "calls": 120,
+    "costTable": 0.0085,
+    "acceptedPerUsd": 4728.5,
+    "acceptedPerMin": 145.8,
+    "criticalPathS": 16.6,
+    "dupPerCall": 0.0375,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 6.04,
+    "errCorr": 0.309,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.223,
+    "committedFrac": 0.2889,
+    "fsRate": 0.2281,
+    "accepted": 140.5,
+    "falseSuccess": 41.5,
+    "calls": 400,
+    "costTable": 0.0288,
+    "acceptedPerUsd": 4885.5,
+    "acceptedPerMin": 147.2,
+    "criticalPathS": 57.5,
+    "dupPerCall": 0.0887,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.7,
+    "errCorr": 0.377,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.4119,
+    "committedFrac": 0.527,
+    "fsRate": 0.2182,
+    "accepted": 259.5,
+    "falseSuccess": 72.5,
+    "calls": 1200,
+    "costTable": 0.0888,
+    "acceptedPerUsd": 2921.7,
+    "acceptedPerMin": 211.3,
+    "criticalPathS": 74,
+    "dupPerCall": 0.475,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.25,
+    "errCorr": 0.396,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4238,
+    "committedFrac": 0.5698,
+    "fsRate": 0.2563,
+    "accepted": 267,
+    "falseSuccess": 92,
+    "calls": 4000,
+    "costTable": 0.2963,
+    "acceptedPerUsd": 901.2,
+    "acceptedPerMin": 178.6,
+    "criticalPathS": 89.7,
+    "dupPerCall": 0.8425,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 29.96,
+    "errCorr": 0.425,
+    "gregariousFrac": null
+   }
+  },
+  "QUORUM": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0079,
+    "committedFrac": 0.0103,
+    "fsRate": 0.2143,
+    "accepted": 5,
+    "falseSuccess": 1.5,
+    "calls": 40,
+    "costTable": 0.0029,
+    "acceptedPerUsd": 1737.5,
+    "acceptedPerMin": 56.6,
+    "criticalPathS": 5.3,
+    "dupPerCall": 0.2125,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 16.66,
+    "errCorr": 0.5,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0428,
+    "committedFrac": 0.0516,
+    "fsRate": 0.1703,
+    "accepted": 27,
+    "falseSuccess": 5.5,
+    "calls": 120,
+    "costTable": 0.0088,
+    "acceptedPerUsd": 3101.7,
+    "acceptedPerMin": 101.8,
+    "criticalPathS": 15.9,
+    "dupPerCall": 0.3667,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 8.94,
+    "errCorr": 0.736,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.1326,
+    "committedFrac": 0.1675,
+    "fsRate": 0.2091,
+    "accepted": 83.5,
+    "falseSuccess": 22,
+    "calls": 400,
+    "costTable": 0.0292,
+    "acceptedPerUsd": 2855.9,
+    "acceptedPerMin": 87.2,
+    "criticalPathS": 57.6,
+    "dupPerCall": 0.3788,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.61,
+    "errCorr": 0.715,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.3453,
+    "committedFrac": 0.4317,
+    "fsRate": 0.2004,
+    "accepted": 217.5,
+    "falseSuccess": 54.5,
+    "calls": 1200,
+    "costTable": 0.0866,
+    "acceptedPerUsd": 2512.6,
+    "acceptedPerMin": 187.1,
+    "criticalPathS": 70.2,
+    "dupPerCall": 0.5271,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 11.04,
+    "errCorr": 0.483,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4175,
+    "committedFrac": 0.5381,
+    "fsRate": 0.2242,
+    "accepted": 263,
+    "falseSuccess": 76,
+    "calls": 4000,
+    "costTable": 0.2948,
+    "acceptedPerUsd": 892.3,
+    "acceptedPerMin": 183.3,
+    "criticalPathS": 86.1,
+    "dupPerCall": 0.8425,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 30.42,
+    "errCorr": 0.247,
+    "gregariousFrac": null
+   }
+  },
+  "LOCUST": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0286,
+    "committedFrac": 0.0325,
+    "fsRate": 0.1172,
+    "accepted": 18,
+    "falseSuccess": 2.5,
+    "calls": 40,
+    "costTable": 0.0029,
+    "acceptedPerUsd": 6132.9,
+    "acceptedPerMin": 211.8,
+    "criticalPathS": 5.1,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.44,
+    "errCorr": 0,
+    "gregariousFrac": 0.3625
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0667,
+    "committedFrac": 0.0873,
+    "fsRate": 0.2364,
+    "accepted": 42,
+    "falseSuccess": 13,
+    "calls": 120,
+    "costTable": 0.0084,
+    "acceptedPerUsd": 4981.9,
+    "acceptedPerMin": 166.8,
+    "criticalPathS": 15.2,
+    "dupPerCall": 0.0625,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.71,
+    "errCorr": 0.307,
+    "gregariousFrac": 0.425
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2103,
+    "committedFrac": 0.2698,
+    "fsRate": 0.2209,
+    "accepted": 132.5,
+    "falseSuccess": 37.5,
+    "calls": 400,
+    "costTable": 0.0295,
+    "acceptedPerUsd": 4487.8,
+    "acceptedPerMin": 133.2,
+    "criticalPathS": 59.9,
+    "dupPerCall": 0.1675,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 6.05,
+    "errCorr": 0.32,
+    "gregariousFrac": 0.4
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.4,
+    "committedFrac": 0.5254,
+    "fsRate": 0.2387,
+    "accepted": 252,
+    "falseSuccess": 79,
+    "calls": 1200,
+    "costTable": 0.0925,
+    "acceptedPerUsd": 2724.2,
+    "acceptedPerMin": 208.9,
+    "criticalPathS": 72.5,
+    "dupPerCall": 0.4983,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.52,
+    "errCorr": 0.297,
+    "gregariousFrac": 0.4
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4365,
+    "committedFrac": 0.5937,
+    "fsRate": 0.2647,
+    "accepted": 275,
+    "falseSuccess": 99,
+    "calls": 4000,
+    "costTable": 0.312,
+    "acceptedPerUsd": 881.5,
+    "acceptedPerMin": 177.2,
+    "criticalPathS": 93.1,
+    "dupPerCall": 0.8425,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 29.09,
+    "errCorr": 0.326,
+    "gregariousFrac": 0.185
+   }
+  },
+  "ECOLI": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0119,
+    "committedFrac": 0.0127,
+    "fsRate": 0.05,
+    "accepted": 7.5,
+    "falseSuccess": 0.5,
+    "calls": 40,
+    "costTable": 0.0034,
+    "acceptedPerUsd": 2263.7,
+    "acceptedPerMin": 77.7,
+    "criticalPathS": 5.9,
+    "dupPerCall": 0.5625,
+    "conflictsPerCall": 0.0125,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.098,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0413,
+    "committedFrac": 0.0476,
+    "fsRate": 0.1315,
+    "accepted": 26,
+    "falseSuccess": 4,
+    "calls": 120,
+    "costTable": 0.0101,
+    "acceptedPerUsd": 2562.1,
+    "acceptedPerMin": 79.9,
+    "criticalPathS": 19.5,
+    "dupPerCall": 0.5375,
+    "conflictsPerCall": 0.0417,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.214,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.1238,
+    "committedFrac": 0.1548,
+    "fsRate": 0.1996,
+    "accepted": 78,
+    "falseSuccess": 19.5,
+    "calls": 400,
+    "costTable": 0.0331,
+    "acceptedPerUsd": 2356.7,
+    "acceptedPerMin": 72.6,
+    "criticalPathS": 64.5,
+    "dupPerCall": 0.565,
+    "conflictsPerCall": 0.0437,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.218,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.273,
+    "committedFrac": 0.369,
+    "fsRate": 0.2601,
+    "accepted": 172,
+    "falseSuccess": 60.5,
+    "calls": 1200,
+    "costTable": 0.1008,
+    "acceptedPerUsd": 1706,
+    "acceptedPerMin": 135.5,
+    "criticalPathS": 76.3,
+    "dupPerCall": 0.6663,
+    "conflictsPerCall": 0.0992,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.194,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4143,
+    "committedFrac": 0.5698,
+    "fsRate": 0.273,
+    "accepted": 261,
+    "falseSuccess": 98,
+    "calls": 4000,
+    "costTable": 0.3327,
+    "acceptedPerUsd": 784.4,
+    "acceptedPerMin": 167,
+    "criticalPathS": 93.8,
+    "dupPerCall": 0.8485,
+    "conflictsPerCall": 0.1825,
+    "idleShare": 0,
+    "msgsPerAccepted": 0,
+    "errCorr": 0.227,
+    "gregariousFrac": null
+   }
+  },
+  "LEADERS": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0222,
+    "committedFrac": 0.0222,
+    "fsRate": 0,
+    "accepted": 14,
+    "falseSuccess": 0,
+    "calls": 40,
+    "costTable": 0.0019,
+    "acceptedPerUsd": 7486.6,
+    "acceptedPerMin": 200.1,
+    "criticalPathS": 4.2,
+    "dupPerCall": 0.65,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 2.86,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0635,
+    "committedFrac": 0.0635,
+    "fsRate": 0,
+    "accepted": 40,
+    "falseSuccess": 0,
+    "calls": 120,
+    "costTable": 0.0081,
+    "acceptedPerUsd": 4959.7,
+    "acceptedPerMin": 152.6,
+    "criticalPathS": 16,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 3,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2095,
+    "committedFrac": 0.2127,
+    "fsRate": 0.0149,
+    "accepted": 132,
+    "falseSuccess": 2,
+    "calls": 400,
+    "costTable": 0.035,
+    "acceptedPerUsd": 3775.2,
+    "acceptedPerMin": 147.5,
+    "criticalPathS": 53.8,
+    "dupPerCall": 0.665,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 3.03,
+    "errCorr": 1,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.3444,
+    "committedFrac": 0.6349,
+    "fsRate": 0.4575,
+    "accepted": 217,
+    "falseSuccess": 183,
+    "calls": 1200,
+    "costTable": 0.0921,
+    "acceptedPerUsd": 2356.4,
+    "acceptedPerMin": 194.3,
+    "criticalPathS": 67.1,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.53,
+    "errCorr": 0.477,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4063,
+    "committedFrac": 1,
+    "fsRate": 0.5937,
+    "accepted": 256,
+    "falseSuccess": 374,
+    "calls": 1890,
+    "costTable": 0.1366,
+    "acceptedPerUsd": 1874.8,
+    "acceptedPerMin": 405.3,
+    "criticalPathS": 37.9,
+    "dupPerCall": 0.6667,
+    "conflictsPerCall": 0,
+    "idleShare": 0.5275,
+    "msgsPerAccepted": 7.38,
+    "errCorr": 0.488,
+    "gregariousFrac": null
+   }
+  },
+  "WOUND": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0301,
+    "committedFrac": 0.0325,
+    "fsRate": 0.0652,
+    "accepted": 19,
+    "falseSuccess": 1.5,
+    "calls": 40,
+    "costTable": 0.0031,
+    "acceptedPerUsd": 6163.3,
+    "acceptedPerMin": 214.1,
+    "criticalPathS": 5.3,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.22,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0611,
+    "committedFrac": 0.0833,
+    "fsRate": 0.2686,
+    "accepted": 38.5,
+    "falseSuccess": 14,
+    "calls": 120,
+    "costTable": 0.0087,
+    "acceptedPerUsd": 4409.9,
+    "acceptedPerMin": 132,
+    "criticalPathS": 17.5,
+    "dupPerCall": 0.0333,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 6.32,
+    "errCorr": 0.393,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2254,
+    "committedFrac": 0.2905,
+    "fsRate": 0.224,
+    "accepted": 142,
+    "falseSuccess": 41,
+    "calls": 400,
+    "costTable": 0.0289,
+    "acceptedPerUsd": 4912.6,
+    "acceptedPerMin": 145.1,
+    "criticalPathS": 58.9,
+    "dupPerCall": 0.0912,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.64,
+    "errCorr": 0.5,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.404,
+    "committedFrac": 0.5254,
+    "fsRate": 0.2311,
+    "accepted": 254.5,
+    "falseSuccess": 76.5,
+    "calls": 1200,
+    "costTable": 0.0883,
+    "acceptedPerUsd": 2883.2,
+    "acceptedPerMin": 207.3,
+    "criticalPathS": 73.8,
+    "dupPerCall": 0.475,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.43,
+    "errCorr": 0.394,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4222,
+    "committedFrac": 0.5619,
+    "fsRate": 0.2486,
+    "accepted": 266,
+    "falseSuccess": 88,
+    "calls": 2764,
+    "costTable": 0.2064,
+    "acceptedPerUsd": 1288.8,
+    "acceptedPerMin": 257.8,
+    "criticalPathS": 61.9,
+    "dupPerCall": 0.7721,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 20.78,
+    "errCorr": 0.39,
+    "gregariousFrac": null
+   }
+  },
+  "RENAL": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0278,
+    "committedFrac": 0.0302,
+    "fsRate": 0.0806,
+    "accepted": 17.5,
+    "falseSuccess": 1.5,
+    "calls": 40,
+    "costTable": 0.0034,
+    "acceptedPerUsd": 5194.7,
+    "acceptedPerMin": 191,
+    "criticalPathS": 5.6,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.61,
+    "errCorr": 0.5,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0635,
+    "committedFrac": 0.0897,
+    "fsRate": 0.2992,
+    "accepted": 40,
+    "falseSuccess": 16.5,
+    "calls": 120,
+    "costTable": 0.0092,
+    "acceptedPerUsd": 4343.5,
+    "acceptedPerMin": 138.8,
+    "criticalPathS": 17.4,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 6.25,
+    "errCorr": 0.084,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.227,
+    "committedFrac": 0.3,
+    "fsRate": 0.2438,
+    "accepted": 143,
+    "falseSuccess": 46,
+    "calls": 400,
+    "costTable": 0.0324,
+    "acceptedPerUsd": 4411.4,
+    "acceptedPerMin": 134.4,
+    "criticalPathS": 63.9,
+    "dupPerCall": 0.0912,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.61,
+    "errCorr": 0.174,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.4151,
+    "committedFrac": 0.5659,
+    "fsRate": 0.2663,
+    "accepted": 261.5,
+    "falseSuccess": 95,
+    "calls": 1200,
+    "costTable": 0.0965,
+    "acceptedPerUsd": 2710.2,
+    "acceptedPerMin": 205.4,
+    "criticalPathS": 76.4,
+    "dupPerCall": 0.475,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.18,
+    "errCorr": 0.166,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4397,
+    "committedFrac": 0.6619,
+    "fsRate": 0.3357,
+    "accepted": 277,
+    "falseSuccess": 140,
+    "calls": 4000,
+    "costTable": 0.3084,
+    "acceptedPerUsd": 898.3,
+    "acceptedPerMin": 193.5,
+    "criticalPathS": 85.9,
+    "dupPerCall": 0.8425,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 28.88,
+    "errCorr": 0.255,
+    "gregariousFrac": null
+   }
+  },
+  "HISTORY": {
+   "10": {
+    "reps": 2,
+    "coverage": 0.0285,
+    "committedFrac": 0.0381,
+    "fsRate": 0.2521,
+    "accepted": 18,
+    "falseSuccess": 6,
+    "calls": 40,
+    "costTable": 0.0045,
+    "acceptedPerUsd": 3978.7,
+    "acceptedPerMin": 188.9,
+    "criticalPathS": 5.7,
+    "dupPerCall": 0.025,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 4.5,
+    "errCorr": 0,
+    "gregariousFrac": null
+   },
+   "30": {
+    "reps": 2,
+    "coverage": 0.0627,
+    "committedFrac": 0.0873,
+    "fsRate": 0.2817,
+    "accepted": 39.5,
+    "falseSuccess": 15.5,
+    "calls": 120,
+    "costTable": 0.0128,
+    "acceptedPerUsd": 3085.8,
+    "acceptedPerMin": 103.9,
+    "criticalPathS": 23.1,
+    "dupPerCall": 0.0375,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 6.13,
+    "errCorr": 0.309,
+    "gregariousFrac": null
+   },
+   "100": {
+    "reps": 2,
+    "coverage": 0.2238,
+    "committedFrac": 0.3111,
+    "fsRate": 0.2794,
+    "accepted": 141,
+    "falseSuccess": 55,
+    "calls": 400,
+    "costTable": 0.0449,
+    "acceptedPerUsd": 3138.4,
+    "acceptedPerMin": 127.1,
+    "criticalPathS": 66.6,
+    "dupPerCall": 0.0837,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 5.67,
+    "errCorr": 0.145,
+    "gregariousFrac": null
+   },
+   "300": {
+    "reps": 2,
+    "coverage": 0.423,
+    "committedFrac": 0.5992,
+    "fsRate": 0.294,
+    "accepted": 266.5,
+    "falseSuccess": 111,
+    "calls": 1200,
+    "costTable": 0.1346,
+    "acceptedPerUsd": 1979.9,
+    "acceptedPerMin": 199,
+    "criticalPathS": 80.3,
+    "dupPerCall": 0.475,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 9.01,
+    "errCorr": 0.144,
+    "gregariousFrac": null
+   },
+   "1000": {
+    "reps": 1,
+    "coverage": 0.4778,
+    "committedFrac": 0.7952,
+    "fsRate": 0.3992,
+    "accepted": 301,
+    "falseSuccess": 200,
+    "calls": 4000,
+    "costTable": 0.4581,
+    "acceptedPerUsd": 657,
+    "acceptedPerMin": 186.4,
+    "criticalPathS": 96.9,
+    "dupPerCall": 0.8425,
+    "conflictsPerCall": 0,
+    "idleShare": 0,
+    "msgsPerAccepted": 26.58,
+    "errCorr": 0.152,
+    "gregariousFrac": null
+   }
+  }
+ },
+ "bestBaseline": {
+  "10": "VOTE",
+  "30": "ORCH",
+  "100": "ORCH",
+  "300": "ORCH",
+  "1000": "ORCH"
+ },
+ "verdicts": {
+  "10": {
+   "BOARD": {
+    "deltaCoverage": 0.006,
+    "deltaCI": [
+     -0.009,
+     0.02
+    ],
+    "ratioAcceptedPerUsd": 0.781,
+    "ratioCI": [
+     0.569,
+     0.997
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "VOTE",
+    "fsRate": 0.0754,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.014,
+    "deltaCI": [
+     -0.028,
+     -0.002
+    ],
+    "ratioAcceptedPerUsd": 0.234,
+    "ratioCI": [
+     0.117,
+     0.352
+    ],
+    "verdict": "WORSE",
+    "reference": "VOTE",
+    "fsRate": 0.2143,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": 0.006,
+    "deltaCI": [
+     -0.008,
+     0.021
+    ],
+    "ratioAcceptedPerUsd": 0.819,
+    "ratioCI": [
+     0.605,
+     1.049
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "VOTE",
+    "fsRate": 0.1172,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.01,
+    "deltaCI": [
+     -0.024,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 0.293,
+    "ratioCI": [
+     0.159,
+     0.484
+    ],
+    "verdict": "WORSE",
+    "reference": "VOTE",
+    "fsRate": 0.05,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     0,
+     0
+    ],
+    "ratioAcceptedPerUsd": 1,
+    "ratioCI": [
+     1,
+     1
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "VOTE",
+    "fsRate": 0,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0.008,
+    "deltaCI": [
+     -0.006,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.823,
+    "ratioCI": [
+     0.61,
+     1.039
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "VOTE",
+    "fsRate": 0.0652,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.006,
+    "deltaCI": [
+     -0.009,
+     0.019
+    ],
+    "ratioAcceptedPerUsd": 0.69,
+    "ratioCI": [
+     0.506,
+     0.888
+    ],
+    "verdict": "WORSE",
+    "reference": "VOTE",
+    "fsRate": 0.0806,
+    "refFsRate": 0,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": 0.006,
+    "deltaCI": [
+     -0.008,
+     0.021
+    ],
+    "ratioAcceptedPerUsd": 0.532,
+    "ratioCI": [
+     0.391,
+     0.684
+    ],
+    "verdict": "WORSE",
+    "reference": "VOTE",
+    "fsRate": 0.2521,
+    "refFsRate": 0,
+    "fsVeto": false
+   }
+  },
+  "30": {
+   "BOARD": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.03,
+     0.008
+    ],
+    "ratioAcceptedPerUsd": 0.869,
+    "ratioCI": [
+     0.691,
+     1.073
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2802,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.032,
+    "deltaCI": [
+     -0.048,
+     -0.017
+    ],
+    "ratioAcceptedPerUsd": 0.565,
+    "ratioCI": [
+     0.455,
+     0.694
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1703,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.008,
+    "deltaCI": [
+     -0.028,
+     0.012
+    ],
+    "ratioAcceptedPerUsd": 0.915,
+    "ratioCI": [
+     0.732,
+     1.143
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2364,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.033,
+    "deltaCI": [
+     -0.051,
+     -0.015
+    ],
+    "ratioAcceptedPerUsd": 0.473,
+    "ratioCI": [
+     0.344,
+     0.651
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1315,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.032,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 0.912,
+    "ratioCI": [
+     0.782,
+     1.097
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": -0.013,
+    "deltaCI": [
+     -0.033,
+     0.004
+    ],
+    "ratioAcceptedPerUsd": 0.813,
+    "ratioCI": [
+     0.642,
+     1.007
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2686,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.029,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 0.803,
+    "ratioCI": [
+     0.646,
+     0.997
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2992,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": -0.012,
+    "deltaCI": [
+     -0.031,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 0.568,
+    "ratioCI": [
+     0.454,
+     0.705
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2817,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   }
+  },
+  "100": {
+   "BOARD": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.026,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.987,
+    "ratioCI": [
+     0.895,
+     1.089
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2281,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.093,
+    "deltaCI": [
+     -0.119,
+     -0.067
+    ],
+    "ratioAcceptedPerUsd": 0.577,
+    "ratioCI": [
+     0.513,
+     0.652
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2091,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.015,
+    "deltaCI": [
+     -0.042,
+     0.012
+    ],
+    "ratioAcceptedPerUsd": 0.907,
+    "ratioCI": [
+     0.811,
+     1.011
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2209,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.102,
+    "deltaCI": [
+     -0.13,
+     -0.073
+    ],
+    "ratioAcceptedPerUsd": 0.476,
+    "ratioCI": [
+     0.398,
+     0.562
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1996,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.016,
+    "deltaCI": [
+     -0.047,
+     0.015
+    ],
+    "ratioAcceptedPerUsd": 0.763,
+    "ratioCI": [
+     0.679,
+     0.866
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.0149,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.025,
+     0.025
+    ],
+    "ratioAcceptedPerUsd": 0.993,
+    "ratioCI": [
+     0.903,
+     1.09
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.224,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.002,
+    "deltaCI": [
+     -0.022,
+     0.027
+    ],
+    "ratioAcceptedPerUsd": 0.892,
+    "ratioCI": [
+     0.811,
+     0.984
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2438,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.026,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.634,
+    "ratioCI": [
+     0.575,
+     0.699
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2794,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   }
+  },
+  "300": {
+   "BOARD": {
+    "deltaCoverage": 0.195,
+    "deltaCI": [
+     0.17,
+     0.221
+    ],
+    "ratioAcceptedPerUsd": 0.617,
+    "ratioCI": [
+     0.571,
+     0.669
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2182,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": 0.129,
+    "deltaCI": [
+     0.103,
+     0.154
+    ],
+    "ratioAcceptedPerUsd": 0.531,
+    "ratioCI": [
+     0.486,
+     0.581
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2004,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": 0.183,
+    "deltaCI": [
+     0.158,
+     0.21
+    ],
+    "ratioAcceptedPerUsd": 0.575,
+    "ratioCI": [
+     0.526,
+     0.632
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2387,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": 0.056,
+    "deltaCI": [
+     0.032,
+     0.08
+    ],
+    "ratioAcceptedPerUsd": 0.36,
+    "ratioCI": [
+     0.323,
+     0.403
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2601,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": 0.128,
+    "deltaCI": [
+     0.1,
+     0.156
+    ],
+    "ratioAcceptedPerUsd": 0.498,
+    "ratioCI": [
+     0.454,
+     0.549
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.4575,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0.187,
+    "deltaCI": [
+     0.163,
+     0.213
+    ],
+    "ratioAcceptedPerUsd": 0.609,
+    "ratioCI": [
+     0.564,
+     0.66
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2311,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.198,
+    "deltaCI": [
+     0.174,
+     0.225
+    ],
+    "ratioAcceptedPerUsd": 0.573,
+    "ratioCI": [
+     0.529,
+     0.623
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2663,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": 0.206,
+    "deltaCI": [
+     0.18,
+     0.233
+    ],
+    "ratioAcceptedPerUsd": 0.418,
+    "ratioCI": [
+     0.385,
+     0.455
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.294,
+    "refFsRate": 0.2131,
+    "fsVeto": false
+   }
+  },
+  "1000": {
+   "BOARD": {
+    "deltaCoverage": 0.197,
+    "deltaCI": [
+     0.167,
+     0.227
+    ],
+    "ratioAcceptedPerUsd": 0.183,
+    "ratioCI": [
+     0.163,
+     0.206
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2563,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": 0.19,
+    "deltaCI": [
+     0.16,
+     0.221
+    ],
+    "ratioAcceptedPerUsd": 0.181,
+    "ratioCI": [
+     0.16,
+     0.205
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2242,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": 0.21,
+    "deltaCI": [
+     0.178,
+     0.243
+    ],
+    "ratioAcceptedPerUsd": 0.179,
+    "ratioCI": [
+     0.158,
+     0.204
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2647,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": 0.187,
+    "deltaCI": [
+     0.154,
+     0.221
+    ],
+    "ratioAcceptedPerUsd": 0.159,
+    "ratioCI": [
+     0.141,
+     0.182
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.273,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": 0.179,
+    "deltaCI": [
+     0.149,
+     0.21
+    ],
+    "ratioAcceptedPerUsd": 0.381,
+    "ratioCI": [
+     0.347,
+     0.422
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.5937,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0.195,
+    "deltaCI": [
+     0.165,
+     0.229
+    ],
+    "ratioAcceptedPerUsd": 0.262,
+    "ratioCI": [
+     0.234,
+     0.295
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2486,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.213,
+    "deltaCI": [
+     0.183,
+     0.246
+    ],
+    "ratioAcceptedPerUsd": 0.183,
+    "ratioCI": [
+     0.163,
+     0.206
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.3357,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": 0.251,
+    "deltaCI": [
+     0.217,
+     0.284
+    ],
+    "ratioAcceptedPerUsd": 0.134,
+    "ratioCI": [
+     0.118,
+     0.152
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.3992,
+    "refFsRate": 0.2228,
+    "fsVeto": false
+   }
+  }
+ },
+ "verdictsCovRef": {
+  "10": {
+   "BOARD": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.014,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 0.852,
+    "ratioCI": [
+     0.607,
+     1.198
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.0754,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.022,
+    "deltaCI": [
+     -0.033,
+     -0.012
+    ],
+    "ratioAcceptedPerUsd": 0.256,
+    "ratioCI": [
+     0.124,
+     0.403
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2143,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.014,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 0.894,
+    "ratioCI": [
+     0.638,
+     1.269
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.1172,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.018,
+    "deltaCI": [
+     -0.029,
+     -0.008
+    ],
+    "ratioAcceptedPerUsd": 0.32,
+    "ratioCI": [
+     0.171,
+     0.537
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.05,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.008,
+    "deltaCI": [
+     -0.023,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 1.091,
+    "ratioCI": [
+     0.866,
+     1.484
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.013,
+     0.013
+    ],
+    "ratioAcceptedPerUsd": 0.898,
+    "ratioCI": [
+     0.645,
+     1.264
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.0652,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.016,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 0.753,
+    "ratioCI": [
+     0.539,
+     1.065
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.0806,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.016,
+     0.012
+    ],
+    "ratioAcceptedPerUsd": 0.581,
+    "ratioCI": [
+     0.409,
+     0.82
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2521,
+    "refFsRate": 0.1724,
+    "fsVeto": false
+   }
+  },
+  "30": {
+   "BOARD": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.03,
+     0.008
+    ],
+    "ratioAcceptedPerUsd": 0.869,
+    "ratioCI": [
+     0.692,
+     1.081
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2802,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.032,
+    "deltaCI": [
+     -0.048,
+     -0.016
+    ],
+    "ratioAcceptedPerUsd": 0.565,
+    "ratioCI": [
+     0.455,
+     0.694
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1703,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.008,
+    "deltaCI": [
+     -0.028,
+     0.012
+    ],
+    "ratioAcceptedPerUsd": 0.915,
+    "ratioCI": [
+     0.729,
+     1.139
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2364,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.033,
+    "deltaCI": [
+     -0.05,
+     -0.017
+    ],
+    "ratioAcceptedPerUsd": 0.473,
+    "ratioCI": [
+     0.343,
+     0.65
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1315,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.033,
+     0.01
+    ],
+    "ratioAcceptedPerUsd": 0.912,
+    "ratioCI": [
+     0.78,
+     1.089
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": -0.013,
+    "deltaCI": [
+     -0.032,
+     0.005
+    ],
+    "ratioAcceptedPerUsd": 0.813,
+    "ratioCI": [
+     0.643,
+     1.006
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2686,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": -0.011,
+    "deltaCI": [
+     -0.031,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 0.803,
+    "ratioCI": [
+     0.639,
+     0.996
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2992,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": -0.012,
+    "deltaCI": [
+     -0.031,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 0.568,
+    "ratioCI": [
+     0.448,
+     0.713
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2817,
+    "refFsRate": 0.2087,
+    "fsVeto": false
+   }
+  },
+  "100": {
+   "BOARD": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.027,
+     0.023
+    ],
+    "ratioAcceptedPerUsd": 0.987,
+    "ratioCI": [
+     0.894,
+     1.085
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2281,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.093,
+    "deltaCI": [
+     -0.118,
+     -0.067
+    ],
+    "ratioAcceptedPerUsd": 0.577,
+    "ratioCI": [
+     0.51,
+     0.647
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2091,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.015,
+    "deltaCI": [
+     -0.042,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 0.907,
+    "ratioCI": [
+     0.809,
+     1.016
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2209,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.102,
+    "deltaCI": [
+     -0.13,
+     -0.074
+    ],
+    "ratioAcceptedPerUsd": 0.476,
+    "ratioCI": [
+     0.402,
+     0.57
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.1996,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.016,
+    "deltaCI": [
+     -0.048,
+     0.016
+    ],
+    "ratioAcceptedPerUsd": 0.763,
+    "ratioCI": [
+     0.678,
+     0.864
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.0149,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.024,
+     0.025
+    ],
+    "ratioAcceptedPerUsd": 0.993,
+    "ratioCI": [
+     0.904,
+     1.096
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.224,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.002,
+    "deltaCI": [
+     -0.023,
+     0.026
+    ],
+    "ratioAcceptedPerUsd": 0.892,
+    "ratioCI": [
+     0.808,
+     0.986
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH",
+    "fsRate": 0.2438,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.026,
+     0.023
+    ],
+    "ratioAcceptedPerUsd": 0.634,
+    "ratioCI": [
+     0.576,
+     0.699
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH",
+    "fsRate": 0.2794,
+    "refFsRate": 0.1881,
+    "fsVeto": false
+   }
+  },
+  "300": {
+   "BOARD": {
+    "deltaCoverage": 0.009,
+    "deltaCI": [
+     0.002,
+     0.016
+    ],
+    "ratioAcceptedPerUsd": 1.011,
+    "ratioCI": [
+     0.981,
+     1.042
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2182,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": -0.058,
+    "deltaCI": [
+     -0.073,
+     -0.044
+    ],
+    "ratioAcceptedPerUsd": 0.87,
+    "ratioCI": [
+     0.81,
+     0.932
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2004,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": -0.003,
+    "deltaCI": [
+     -0.015,
+     0.01
+    ],
+    "ratioAcceptedPerUsd": 0.943,
+    "ratioCI": [
+     0.899,
+     0.989
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2387,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": -0.13,
+    "deltaCI": [
+     -0.156,
+     -0.106
+    ],
+    "ratioAcceptedPerUsd": 0.59,
+    "ratioCI": [
+     0.541,
+     0.643
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2601,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.059,
+    "deltaCI": [
+     -0.078,
+     -0.04
+    ],
+    "ratioAcceptedPerUsd": 0.816,
+    "ratioCI": [
+     0.754,
+     0.885
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH-U",
+    "fsRate": 0.4575,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "WOUND": {
+    "deltaCoverage": 0.001,
+    "deltaCI": [
+     -0.006,
+     0.007
+    ],
+    "ratioAcceptedPerUsd": 0.998,
+    "ratioCI": [
+     0.969,
+     1.027
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2311,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.012,
+    "deltaCI": [
+     0.002,
+     0.023
+    ],
+    "ratioAcceptedPerUsd": 0.938,
+    "ratioCI": [
+     0.901,
+     0.978
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "ORCH-U",
+    "fsRate": 0.2663,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": 0.02,
+    "deltaCI": [
+     0.007,
+     0.032
+    ],
+    "ratioAcceptedPerUsd": 0.685,
+    "ratioCI": [
+     0.655,
+     0.717
+    ],
+    "verdict": "WORSE",
+    "reference": "ORCH-U",
+    "fsRate": 0.294,
+    "refFsRate": 0.2371,
+    "fsVeto": false
+   }
+  },
+  "1000": {
+   "BOARD": {
+    "deltaCoverage": 0.013,
+    "deltaCI": [
+     0.002,
+     0.024
+    ],
+    "ratioAcceptedPerUsd": 1.019,
+    "ratioCI": [
+     0.946,
+     1.099
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "INDEP",
+    "fsRate": 0.2563,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "QUORUM": {
+    "deltaCoverage": 0.006,
+    "deltaCI": [
+     -0.002,
+     0.016
+    ],
+    "ratioAcceptedPerUsd": 1.009,
+    "ratioCI": [
+     0.918,
+     1.097
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "INDEP",
+    "fsRate": 0.2242,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "LOCUST": {
+    "deltaCoverage": 0.025,
+    "deltaCI": [
+     0.013,
+     0.04
+    ],
+    "ratioAcceptedPerUsd": 0.997,
+    "ratioCI": [
+     0.919,
+     1.087
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "INDEP",
+    "fsRate": 0.2647,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "ECOLI": {
+    "deltaCoverage": 0.003,
+    "deltaCI": [
+     -0.016,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.887,
+    "ratioCI": [
+     0.825,
+     0.954
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "INDEP",
+    "fsRate": 0.273,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "LEADERS": {
+    "deltaCoverage": -0.005,
+    "deltaCI": [
+     -0.016,
+     0.006
+    ],
+    "ratioAcceptedPerUsd": 2.12,
+    "ratioCI": [
+     2.041,
+     2.208
+    ],
+    "verdict": "BETTER",
+    "reference": "INDEP",
+    "fsRate": 0.5937,
+    "refFsRate": 0.2514,
+    "fsVeto": true
+   },
+   "WOUND": {
+    "deltaCoverage": 0.011,
+    "deltaCI": [
+     0.003,
+     0.021
+    ],
+    "ratioAcceptedPerUsd": 1.458,
+    "ratioCI": [
+     1.366,
+     1.563
+    ],
+    "verdict": "BETTER",
+    "reference": "INDEP",
+    "fsRate": 0.2486,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "RENAL": {
+    "deltaCoverage": 0.029,
+    "deltaCI": [
+     0.016,
+     0.043
+    ],
+    "ratioAcceptedPerUsd": 1.016,
+    "ratioCI": [
+     0.941,
+     1.1
+    ],
+    "verdict": "INCONCLUSIVE",
+    "reference": "INDEP",
+    "fsRate": 0.3357,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   },
+   "HISTORY": {
+    "deltaCoverage": 0.067,
+    "deltaCI": [
+     0.048,
+     0.087
+    ],
+    "ratioAcceptedPerUsd": 0.743,
+    "ratioCI": [
+     0.685,
+     0.81
+    ],
+    "verdict": "WORSE",
+    "reference": "INDEP",
+    "fsRate": 0.3992,
+    "refFsRate": 0.2514,
+    "fsVeto": false
+   }
+  }
+ },
+ "covRef": {
+  "10": "ORCH",
+  "30": "ORCH",
+  "100": "ORCH",
+  "300": "ORCH-U",
+  "1000": "INDEP"
+ },
+ "vsBase": {
+  "10": {
+   "QUORUM vs BOARD": {
+    "deltaCoverage": -0.021,
+    "deltaCI": [
+     -0.031,
+     -0.01
+    ],
+    "ratioAcceptedPerUsd": 0.3,
+    "ratioCI": [
+     0.148,
+     0.482
+    ],
+    "verdict": "WORSE"
+   },
+   "LOCUST vs BOARD": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.004,
+     0.004
+    ],
+    "ratioAcceptedPerUsd": 1.049,
+    "ratioCI": [
+     0.932,
+     1.182
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "WOUND vs BOARD": {
+    "deltaCoverage": 0.002,
+    "deltaCI": [
+     0,
+     0.004
+    ],
+    "ratioAcceptedPerUsd": 1.054,
+    "ratioCI": [
+     0.998,
+     1.152
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs BOARD": {
+    "deltaCoverage": -0.001,
+    "deltaCI": [
+     -0.003,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 0.883,
+    "ratioCI": [
+     0.807,
+     0.95
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs HISTORY": {
+    "deltaCoverage": -0.001,
+    "deltaCI": [
+     -0.004,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 1.296,
+    "ratioCI": [
+     1.153,
+     1.444
+    ],
+    "verdict": "BETTER"
+   },
+   "ECOLI vs INDEP": {
+    "deltaCoverage": -0.017,
+    "deltaCI": [
+     -0.025,
+     -0.009
+    ],
+    "ratioAcceptedPerUsd": 0.36,
+    "ratioCI": [
+     0.211,
+     0.556
+    ],
+    "verdict": "WORSE"
+   },
+   "LEADERS vs VOTE": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     0,
+     0
+    ],
+    "ratioAcceptedPerUsd": 1,
+    "ratioCI": [
+     1,
+     1
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "BOARD vs INDEP": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.012,
+     0.013
+    ],
+    "ratioAcceptedPerUsd": 0.958,
+    "ratioCI": [
+     0.679,
+     1.351
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "30": {
+   "QUORUM vs BOARD": {
+    "deltaCoverage": -0.021,
+    "deltaCI": [
+     -0.037,
+     -0.005
+    ],
+    "ratioAcceptedPerUsd": 0.65,
+    "ratioCI": [
+     0.512,
+     0.82
+    ],
+    "verdict": "WORSE"
+   },
+   "LOCUST vs BOARD": {
+    "deltaCoverage": 0.003,
+    "deltaCI": [
+     -0.005,
+     0.011
+    ],
+    "ratioAcceptedPerUsd": 1.054,
+    "ratioCI": [
+     0.938,
+     1.182
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "WOUND vs BOARD": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.006,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 0.935,
+    "ratioCI": [
+     0.875,
+     0.99
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs BOARD": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     -0.005,
+     0.005
+    ],
+    "ratioAcceptedPerUsd": 0.924,
+    "ratioCI": [
+     0.859,
+     0.996
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs HISTORY": {
+    "deltaCoverage": 0.001,
+    "deltaCI": [
+     -0.005,
+     0.006
+    ],
+    "ratioAcceptedPerUsd": 1.413,
+    "ratioCI": [
+     1.289,
+     1.547
+    ],
+    "verdict": "BETTER"
+   },
+   "ECOLI vs INDEP": {
+    "deltaCoverage": -0.027,
+    "deltaCI": [
+     -0.04,
+     -0.014
+    ],
+    "ratioAcceptedPerUsd": 0.533,
+    "ratioCI": [
+     0.413,
+     0.679
+    ],
+    "verdict": "WORSE"
+   },
+   "LEADERS vs VOTE": {
+    "deltaCoverage": 0,
+    "deltaCI": [
+     0,
+     0
+    ],
+    "ratioAcceptedPerUsd": 1.003,
+    "ratioCI": [
+     1.003,
+     1.003
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "BOARD vs INDEP": {
+    "deltaCoverage": -0.005,
+    "deltaCI": [
+     -0.023,
+     0.013
+    ],
+    "ratioAcceptedPerUsd": 0.98,
+    "ratioCI": [
+     0.787,
+     1.224
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  },
+  "100": {
+   "QUORUM vs BOARD": {
+    "deltaCoverage": -0.09,
+    "deltaCI": [
+     -0.117,
+     -0.064
+    ],
+    "ratioAcceptedPerUsd": 0.585,
+    "ratioCI": [
+     0.521,
+     0.651
+    ],
+    "verdict": "WORSE"
+   },
+   "LOCUST vs BOARD": {
+    "deltaCoverage": -0.013,
+    "deltaCI": [
+     -0.034,
+     0.008
+    ],
+    "ratioAcceptedPerUsd": 0.919,
+    "ratioCI": [
+     0.843,
+     1.001
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "WOUND vs BOARD": {
+    "deltaCoverage": 0.002,
+    "deltaCI": [
+     -0.012,
+     0.017
+    ],
+    "ratioAcceptedPerUsd": 1.006,
+    "ratioCI": [
+     0.958,
+     1.061
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs BOARD": {
+    "deltaCoverage": 0.004,
+    "deltaCI": [
+     -0.01,
+     0.018
+    ],
+    "ratioAcceptedPerUsd": 0.904,
+    "ratioCI": [
+     0.857,
+     0.954
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs HISTORY": {
+    "deltaCoverage": 0.003,
+    "deltaCI": [
+     -0.01,
+     0.016
+    ],
+    "ratioAcceptedPerUsd": 1.406,
+    "ratioCI": [
+     1.336,
+     1.478
+    ],
+    "verdict": "BETTER"
+   },
+   "ECOLI vs INDEP": {
+    "deltaCoverage": -0.069,
+    "deltaCI": [
+     -0.087,
+     -0.052
+    ],
+    "ratioAcceptedPerUsd": 0.577,
+    "ratioCI": [
+     0.506,
+     0.658
+    ],
+    "verdict": "WORSE"
+   },
+   "LEADERS vs VOTE": {
+    "deltaCoverage": 0.002,
+    "deltaCI": [
+     0,
+     0.006
+    ],
+    "ratioAcceptedPerUsd": 1.014,
+    "ratioCI": [
+     1.002,
+     1.034
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "BOARD vs INDEP": {
+    "deltaCoverage": 0.03,
+    "deltaCI": [
+     0.006,
+     0.056
+    ],
+    "ratioAcceptedPerUsd": 1.197,
+    "ratioCI": [
+     1.078,
+     1.324
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "300": {
+   "QUORUM vs BOARD": {
+    "deltaCoverage": -0.067,
+    "deltaCI": [
+     -0.083,
+     -0.052
+    ],
+    "ratioAcceptedPerUsd": 0.86,
+    "ratioCI": [
+     0.803,
+     0.921
+    ],
+    "verdict": "WORSE"
+   },
+   "LOCUST vs BOARD": {
+    "deltaCoverage": -0.012,
+    "deltaCI": [
+     -0.025,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 0.932,
+    "ratioCI": [
+     0.889,
+     0.979
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "WOUND vs BOARD": {
+    "deltaCoverage": -0.008,
+    "deltaCI": [
+     -0.017,
+     0
+    ],
+    "ratioAcceptedPerUsd": 0.987,
+    "ratioCI": [
+     0.958,
+     1.016
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs BOARD": {
+    "deltaCoverage": 0.003,
+    "deltaCI": [
+     -0.009,
+     0.015
+    ],
+    "ratioAcceptedPerUsd": 0.928,
+    "ratioCI": [
+     0.891,
+     0.963
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs HISTORY": {
+    "deltaCoverage": -0.008,
+    "deltaCI": [
+     -0.019,
+     0.003
+    ],
+    "ratioAcceptedPerUsd": 1.369,
+    "ratioCI": [
+     1.321,
+     1.418
+    ],
+    "verdict": "BETTER"
+   },
+   "ECOLI vs INDEP": {
+    "deltaCoverage": -0.07,
+    "deltaCI": [
+     -0.091,
+     -0.049
+    ],
+    "ratioAcceptedPerUsd": 0.695,
+    "ratioCI": [
+     0.638,
+     0.759
+    ],
+    "verdict": "WORSE"
+   },
+   "LEADERS vs VOTE": {
+    "deltaCoverage": -0.001,
+    "deltaCI": [
+     -0.007,
+     0.006
+    ],
+    "ratioAcceptedPerUsd": 0.992,
+    "ratioCI": [
+     0.974,
+     1.01
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "BOARD vs INDEP": {
+    "deltaCoverage": 0.069,
+    "deltaCI": [
+     0.054,
+     0.087
+    ],
+    "ratioAcceptedPerUsd": 1.19,
+    "ratioCI": [
+     1.122,
+     1.266
+    ],
+    "verdict": "BETTER"
+   }
+  },
+  "1000": {
+   "QUORUM vs BOARD": {
+    "deltaCoverage": -0.006,
+    "deltaCI": [
+     -0.016,
+     0.002
+    ],
+    "ratioAcceptedPerUsd": 0.99,
+    "ratioCI": [
+     0.9,
+     1.077
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "LOCUST vs BOARD": {
+    "deltaCoverage": 0.013,
+    "deltaCI": [
+     0,
+     0.027
+    ],
+    "ratioAcceptedPerUsd": 0.978,
+    "ratioCI": [
+     0.922,
+     1.039
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "WOUND vs BOARD": {
+    "deltaCoverage": -0.002,
+    "deltaCI": [
+     -0.011,
+     0.008
+    ],
+    "ratioAcceptedPerUsd": 1.43,
+    "ratioCI": [
+     1.372,
+     1.49
+    ],
+    "verdict": "BETTER"
+   },
+   "RENAL vs BOARD": {
+    "deltaCoverage": 0.016,
+    "deltaCI": [
+     0.002,
+     0.032
+    ],
+    "ratioAcceptedPerUsd": 0.997,
+    "ratioCI": [
+     0.948,
+     1.053
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "RENAL vs HISTORY": {
+    "deltaCoverage": -0.038,
+    "deltaCI": [
+     -0.056,
+     -0.021
+    ],
+    "ratioAcceptedPerUsd": 1.367,
+    "ratioCI": [
+     1.273,
+     1.465
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "ECOLI vs INDEP": {
+    "deltaCoverage": 0.003,
+    "deltaCI": [
+     -0.016,
+     0.022
+    ],
+    "ratioAcceptedPerUsd": 0.887,
+    "ratioCI": [
+     0.826,
+     0.956
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "LEADERS vs VOTE": {
+    "deltaCoverage": 0.008,
+    "deltaCI": [
+     -0.002,
+     0.019
+    ],
+    "ratioAcceptedPerUsd": 1.018,
+    "ratioCI": [
+     0.994,
+     1.046
+    ],
+    "verdict": "INCONCLUSIVE"
+   },
+   "BOARD vs INDEP": {
+    "deltaCoverage": 0.013,
+    "deltaCI": [
+     0.002,
+     0.025
+    ],
+    "ratioAcceptedPerUsd": 1.019,
+    "ratioCI": [
+     0.948,
+     1.1
+    ],
+    "verdict": "INCONCLUSIVE"
+   }
+  }
+ },
+ "coverageJumps": {
+  "ORCH": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.47,
+    "perDecade": 0.823
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.021,
+    "perDecade": 0.918
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 0.961,
+    "perDecade": -0.036
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.048,
+    "perDecade": 0.039
+   }
+  ],
+  "ORCH-U": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.51,
+    "perDecade": 0.838
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.022,
+    "perDecade": 0.918
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.808,
+    "perDecade": 0.539
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.008,
+    "perDecade": 0.006
+   }
+  ],
+  "INDEP": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.388,
+    "perDecade": 0.792
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 2.823,
+    "perDecade": 0.862
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.778,
+    "perDecade": 0.524
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.199,
+    "perDecade": 0.151
+   }
+  ],
+  "VOTE": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.86,
+    "perDecade": 0.957
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.261,
+    "perDecade": 0.982
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.667,
+    "perDecade": 0.465
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.154,
+    "perDecade": 0.119
+   }
+  ],
+  "BOARD": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.22,
+    "perDecade": 0.726
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.512,
+    "perDecade": 1.043
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.847,
+    "perDecade": 0.559
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.029,
+    "perDecade": 0.024
+   }
+  ],
+  "QUORUM": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 5.418,
+    "perDecade": 1.538
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.098,
+    "perDecade": 0.939
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 2.604,
+    "perDecade": 0.871
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.209,
+    "perDecade": 0.158
+   }
+  ],
+  "LOCUST": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.332,
+    "perDecade": 0.771
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.153,
+    "perDecade": 0.954
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.902,
+    "perDecade": 0.585
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.091,
+    "perDecade": 0.073
+   }
+  ],
+  "ECOLI": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 3.471,
+    "perDecade": 1.133
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 2.998,
+    "perDecade": 0.912
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 2.205,
+    "perDecade": 0.72
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.518,
+    "perDecade": 0.346
+   }
+  ],
+  "LEADERS": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.86,
+    "perDecade": 0.957
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.299,
+    "perDecade": 0.991
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.644,
+    "perDecade": 0.452
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.18,
+    "perDecade": 0.137
+   }
+  ],
+  "WOUND": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.03,
+    "perDecade": 0.644
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.689,
+    "perDecade": 1.084
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.792,
+    "perDecade": 0.531
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.045,
+    "perDecade": 0.037
+   }
+  ],
+  "RENAL": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.284,
+    "perDecade": 0.752
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.575,
+    "perDecade": 1.058
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.829,
+    "perDecade": 0.549
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.059,
+    "perDecade": 0.048
+   }
+  ],
+  "HISTORY": [
+   {
+    "from": 10,
+    "to": 30,
+    "ratio": 2.2,
+    "perDecade": 0.718
+   },
+   {
+    "from": 30,
+    "to": 100,
+    "ratio": 3.569,
+    "perDecade": 1.057
+   },
+   {
+    "from": 100,
+    "to": 300,
+    "ratio": 1.89,
+    "perDecade": 0.579
+   },
+   {
+    "from": 300,
+    "to": 1000,
+    "ratio": 1.13,
+    "perDecade": 0.101
+   }
+  ]
+ }
+}

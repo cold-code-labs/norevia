@@ -1,0 +1,60 @@
+{
+  "phase": "calib",
+  "task": "c08-diario-checksum",
+  "class": "c",
+  "split": "test",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 10,
+    "total": 10
+  },
+  "cost": 0.0026276,
+  "inTok": 6621,
+  "outTok": 3563,
+  "cacheRead": 6240,
+  "cacheWrite": 379,
+  "latencyMs": 12995,
+  "wallMs": 12996,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/writer.mjs",
+    "src/verify.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T23:05:19.081Z",
+  "finalFiles": {
+    "src/writer.mjs": "/**\n * Escritor do diário NVJ1 (um registro por linha).\n */\nimport { checksumHex, utf8Length } from './checksum.mjs';\n\nexport const PREFIX = 'NVJ1';\n\nfunction checkPayload(payload) {\n  if (typeof payload !== 'string') throw new TypeError('payload deve ser string');\n  if (/[\\r\\n]/.test(payload)) throw new SyntaxError('payload não pode conter quebra de linha');\n}\n\n/**\n * Monta uma linha de registro (sem '\\n' no fim).\n * @param {number} seq número de sequência (inteiro >= 1)\n * @param {string} payload\n * @returns {string}\n */\nexport function formatRecord(seq, payload) {\n  if (!Number.isSafeInteger(seq) || seq < 1) throw new RangeError(`seq inválido: ${seq}`);\n  checkPayload(payload);\n  const body = `${PREFIX}|${seq}|${utf8Length(payload)}|${payload}`;\n  return `${body}|${checksumHex(body)}`;\n}\n\n/**\n * Acumula registros com números de sequência consecutivos.\n */\nexport class JournalWriter {\n  /** @param {{startSeq?: number}} [opts] */\n  constructor({ startSeq = 1 } = {}) {\n    if (!Number.isSafeInteger(startSeq) || startSeq < 1) throw new RangeError(`startSeq inválido: ${startSeq}`);\n    this.seq = startSeq;\n    this.lines = [];\n  }\n\n  /** Próximo número de sequência a ser usado. */\n  get nextSeq() {\n    return this.seq;\n  }\n\n  /** Acrescenta um registro e devolve a linha gerada. */\n  append(payload) {\n    const line = formatRecord(this.seq, payload);\n    this.lines.push(line);\n    this.seq += 1;\n    return line;\n  }\n\n  /** Acrescenta vários payloads, na ordem. */\n  appendAll(payloads) {\n    return payloads.map((p) => this.append(p));\n  }\n\n  /** Texto do diário: cada linha terminada por '\\n'; diário vazio → ''. */\n  toString() {\n    return this.lines.map((l) => l + '\\n').join('');\n  }\n}\n",
+    "src/verify.mjs": "/**\n * Leitura e verificação do diário NVJ1.\n */\nimport { checksumHex, utf8Length } from './checksum.mjs';\nimport { PREFIX } from './writer.mjs';\n\nconst DECIMAL = /^(0|[1-9][0-9]*)$/;\nconst HEX8 = /^[0-9a-f]{8}$/;\n\n/**\n * Decompõe uma linha em campos. O payload pode conter '|': ele vai do\n * terceiro separador até o ÚLTIMO '|' da linha.\n * @param {string} line\n * @returns {{seq:number, len:number, payload:string, checksum:string, body:string}}\n */\nexport function parseRecord(line) {\n  if (typeof line !== 'string') throw new TypeError('linha deve ser string');\n  const last = line.lastIndexOf('|');\n  if (last < 0) throw new SyntaxError('registro sem separadores');\n  const body = line.slice(0, last);\n  const checksum = line.slice(last + 1);\n  const parts = body.split('|');\n  if (parts.length < 4) throw new SyntaxError('registro com campos faltando');\n  const [prefix, seqTxt, lenTxt] = parts;\n  if (prefix !== PREFIX) throw new SyntaxError(`prefixo inválido: ${prefix}`);\n  if (!DECIMAL.test(seqTxt) || seqTxt === '0') throw new SyntaxError(`seq inválido: ${seqTxt}`);\n  if (!DECIMAL.test(lenTxt)) throw new SyntaxError(`len inválido: ${lenTxt}`);\n  if (!HEX8.test(checksum)) throw new SyntaxError(`checksum malformado: ${checksum}`);\n  const payload = parts.slice(3).join('|');\n  return { seq: Number(seqTxt), len: Number(lenTxt), payload, checksum, body };\n}\n\n/**\n * Verifica um registro isolado. Ordem das verificações: sintaxe, tamanho,\n * checksum.\n * @returns {{ok:true, seq:number} | {ok:false, reason:'syntax'|'length'|'checksum', seq:number|null}}\n */\nexport function verifyRecord(line) {\n  let rec;\n  try {\n    rec = parseRecord(line);\n  } catch (e) {\n    if (e instanceof SyntaxError) return { ok: false, reason: 'syntax', seq: null };\n    throw e;\n  }\n  if (rec.len !== utf8Length(rec.payload)) return { ok: false, reason: 'length', seq: rec.seq };\n  if (rec.checksum !== checksumHex(rec.body)) return { ok: false, reason: 'checksum', seq: rec.seq };\n  return { ok: true, seq: rec.seq };\n}\n\n/**\n * Verifica um diário inteiro. Um '\\n' final é opcional; qualquer outra linha\n * (inclusive vazia) é um registro. Além de cada registro ser válido, cada seq\n * deve ser exatamente o anterior + 1.\n * @param {string} text\n * @returns {{ok:boolean, count:number, firstBad:null|{index:number, seq:number|null, reason:string}}}\n */\nexport function verifyJournal(text) {\n  if (typeof text !== 'string') throw new TypeError('diário deve ser string');\n  const lines = text.split('\\n');\n  if (lines[lines.length - 1] === '') lines.pop();\n  let prevSeq = null;\n  for (let i = 0; i < lines.length; i++) {\n    const r = verifyRecord(lines[i]);\n    if (!r.ok) return { ok: false, count: i, firstBad: { index: i, seq: r.seq, reason: r.reason } };\n    if (prevSeq !== null && r.seq !== prevSeq + 1) {\n      return { ok: false, count: i, firstBad: { index: i, seq: r.seq, reason: 'sequence' } };\n    }\n    prevSeq = r.seq;\n  }\n  return { ok: true, count: lines.length, firstBad: null };\n}\n\n/** Payloads de um diário válido, na ordem; lança Error se o diário for inválido. */\nexport function readPayloads(text) {\n  const v = verifyJournal(text);\n  if (!v.ok) throw new Error(`diário inválido na linha ${v.firstBad.index}: ${v.firstBad.reason}`);\n  return text.split('\\n').filter((l, i, arr) => !(i === arr.length - 1 && l === '')).map((l) => parseRecord(l).payload);\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0026276,
+      "outTok": 3563,
+      "latencyMs": 12995,
+      "promptChars": 12124,
+      "response": "Corrigi o cálculo de `len` (bytes UTF-8, não `length`) e o checksum, que agora cobre o corpo inteiro `NVJ1|seq|len|payload`. Os dois arquivos abaixo estão completos.\n\n=== FILE: src/writer.mjs ===\n/**\n * Escritor do diário NVJ1 (um registro por linha).\n */\nimport { checksumHex, utf8Length } from './checksum.mjs';\n\nexport const PREFIX = 'NVJ1';\n\nfunction checkPayload(payload) {\n  if (typeof payload !== 'string') throw new TypeError('payload deve ser string');\n  if (/[\\r\\n]/.test(payload)) throw new SyntaxError('payload não pode conter quebra de linha');\n}\n\n/**\n * Monta uma linha de registro (sem '\\n' no fim).\n * @param {number} seq número de sequência (inteiro >= 1)\n * @param {string} payload\n * @returns {string}\n */\nexport function formatRecord(seq, payload) {\n  if (!Number.isSafeInteger(seq) || seq < 1) throw new RangeError(`seq inválido: ${seq}`);\n  checkPayload(payload);\n  const body = `${PREFIX}|${seq}|${utf8Length(payload)}|${payload}`;\n  return `${body}|${checksumHex(body)}`;\n}\n\n/**\n * Acumula registros com números de sequência consecutivos.\n */\nexport class JournalWriter {\n  /** @param {{startSeq?: number}} [opts] */\n  constructor({ startSeq = 1 } = {}) {\n    if (!Number.isSafeInteger(startSeq) || startSeq < 1) throw new RangeError(`startSeq inválido: ${startSeq}`);\n    this.seq = startSeq;\n    this.lines = [];\n  }\n\n  /** Próximo número de sequência a ser usado. */\n  get nextSeq() {\n    return this.seq;\n  }\n\n  /** Acrescenta um registro e devolve a linha gerada. */\n  append(payload) {\n    const line = formatRecord(this.seq, payload);\n    this.lines.push(line);\n    this.seq += 1;\n    return line;\n  }\n\n  /** Acrescenta vários payloads, na ordem. */\n  appendAll(payloads) {\n    return payloads.map((p) => this.append(p));\n  }\n\n  /** Texto do diário: cada linha terminada por '\\n'; diário vazio → ''. */\n  toString() {\n    return this.lines.map((l) => l + '\\n').join('');\n  }\n}\n=== END FILE ===\n\n=== FILE: src/verify.mjs ===\n/**\n * Leitura e verificação do diário NVJ1.\n */\nimport { checksumHex, utf8Length } from './checksum.mjs';\nimport { PREFIX } from './writer.mjs';\n\nconst DECIMAL = /^(0|[1-9][0-9]*)$/;\nconst HEX8 = /^[0-9a-f]{8}$/;\n\n/**\n * Decompõe uma linha em campos. O payload pode conter '|': ele vai do\n * terceiro separador até o ÚLTIMO '|' da linha.\n * @param {string} line\n * @returns {{seq:number, len:number, payload:string, checksum:string, body:string}}\n */\nexport function parseRecord(line) {\n  if (typeof line !== 'string') throw new TypeError('linha deve ser string');\n  const last = line.lastIndexOf('|');\n  if (last < 0) throw new SyntaxError('registro sem separadores');\n  const body = line.slice(0, last);\n  const checksum = line.slice(last + 1);\n  const parts = body.split('|');\n  if (parts.length < 4) throw new SyntaxError('registro com campos faltando');\n  const [prefix, seqTxt, lenTxt] = parts;\n  if (prefix !== PREFIX) throw new SyntaxError(`prefixo inválido: ${prefix}`);\n  if (!DECIMAL.test(seqTxt) || seqTxt === '0') throw new SyntaxError(`seq inválido: ${seqTxt}`);\n  if (!DECIMAL.test(lenTxt)) throw new SyntaxError(`len inválido: ${lenTxt}`);\n  if (!HEX8.test(checksum)) throw new SyntaxError(`checksum malformado: ${checksum}`);\n  const payload = parts.slice(3).join('|');\n  return { seq: Number(seqTxt), len: Number(lenTxt), payload, checksum, body };\n}\n\n/**\n * Verifica um registro isolado. Ordem das verificações: sintaxe, tamanho,\n * checksum.\n * @returns {{ok:true, seq:number} | {ok:false, reason:'syntax'|'length'|'checksum', seq:number|null}}\n */\nexport function verifyRecord(line) {\n  let rec;\n  try {\n    rec = parseRecord(line);\n  } catch (e) {\n    if (e instanceof SyntaxError) return { ok: false, reason: 'syntax', seq: null };\n    throw e;\n  }\n  if (rec.len !== utf8Length(rec.payload)) return { ok: false, reason: 'length', seq: rec.seq };\n  if (rec.checksum !== checksumHex(rec.body)) return { ok: false, reason: 'checksum', seq: rec.seq };\n  return { ok: true, seq: rec.seq };\n}\n\n/**\n * Verifica um diário inteiro. Um '\\n' final é opcional; qualquer outra linha\n * (inclusive vazia) é um registro. Além de cada registro ser válido, cada seq\n * deve ser exatamente o anterior + 1.\n * @param {string} text\n * @returns {{ok:boolean, count:number, firstBad:null|{index:number, seq:number|null, reason:string}}}\n */\nexport function verifyJournal(text) {\n  if (typeof text !== 'string') throw new TypeError('diário deve ser string');\n  const lines = text.split('\\n');\n  if (lines[lines.length - 1] === '') lines.pop();\n  let prevSeq = null;\n  for (let i = 0; i < lines.length; i++) {\n    const r = verifyRecord(lines[i]);\n    if (!r.ok) return { ok: false, count: i, firstBad: { index: i, seq: r.seq, reason: r.reason } };\n    if (prevSeq !== null && r.seq !== prevSeq + 1) {\n      return { ok: false, count: i, firstBad: { index: i, seq: r.seq, reason: 'sequence' } };\n    }\n    prevSeq = r.seq;\n  }\n  return { ok: true, count: lines.length, firstBad: null };\n}\n\n/** Payloads de um diário válido, na ordem; lança Error se o diário for inválido. */\nexport function readPayloads(text) {\n  const v = verifyJournal(text);\n  if (!v.ok) throw new Error(`diário inválido na linha ${v.firstBad.index}: ${v.firstBad.reason}`);\n  return text.split('\\n').filter((l, i, arr) => !(i === arr.length - 1 && l === '')).map((l) => parseRecord(l).payload);\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

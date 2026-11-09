@@ -1,0 +1,58 @@
+{
+  "phase": "calib",
+  "task": "a07-truncate-codepoints",
+  "class": "a",
+  "split": "test",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 8,
+    "total": 8
+  },
+  "cost": 0.00100198,
+  "inTok": 2741,
+  "outTok": 1167,
+  "cacheRead": 2358,
+  "cacheWrite": 381,
+  "latencyMs": 5470,
+  "wallMs": 5474,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/truncate.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:57:00.846Z",
+  "finalFiles": {
+    "src/truncate.mjs": "/**\n * Truncamento de texto para exibição (títulos, notificações, previews).\n *\n * Todos os comprimentos são medidos em code points Unicode, não em unidades\n * UTF-16: um emoji como '😀' conta 1. (Clusters de grafemas compostos, como\n * bandeiras ou sequências com ZWJ, não recebem tratamento especial.)\n */\n\n/** Número de code points de `s`. */\nexport function codePointLength(s) {\n  let n = 0;\n  for (const _ of s) n++;\n  return n;\n}\n\n/**\n * truncate(text, maxLength, ellipsis = '…')\n *\n * - Se `text` cabe em `maxLength` code points, é devolvido inalterado.\n * - Senão, mantém os primeiros (maxLength - comprimento(ellipsis)) code points,\n *   remove espaços em branco no fim desse trecho e acrescenta `ellipsis`.\n * - Se `maxLength` não comporta nem a reticência mais um caractere\n *   (maxLength <= comprimento(ellipsis)), devolve apenas os primeiros\n *   `maxLength` code points de `text`, sem reticência.\n */\nexport function truncate(text, maxLength, ellipsis = '…') {\n  if (typeof text !== 'string' || typeof ellipsis !== 'string') {\n    throw new TypeError('text and ellipsis must be strings');\n  }\n  if (!Number.isInteger(maxLength) || maxLength < 0) {\n    throw new RangeError('maxLength must be a non-negative integer');\n  }\n  const chars = Array.from(text);\n  if (chars.length <= maxLength) return text;\n\n  const ellipsisLength = codePointLength(ellipsis);\n  if (maxLength <= ellipsisLength) return chars.slice(0, maxLength).join('');\n\n  const keep = maxLength - ellipsisLength;\n  return chars.slice(0, keep).join('').trimEnd() + ellipsis;\n}\n\n/**\n * Aplica `truncate` a cada campo string de `record` listado em `limits`, devolvendo um\n * objeto novo (o original não é modificado).\n */\nexport function truncateFields(record, limits, ellipsis = '…') {\n  const out = { ...record };\n  for (const [field, max] of Object.entries(limits)) {\n    if (typeof out[field] === 'string') out[field] = truncate(out[field], max, ellipsis);\n  }\n  return out;\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00100198,
+      "outTok": 1167,
+      "latencyMs": 5470,
+      "promptChars": 4401,
+      "response": "O bug está em `truncate`: o trecho é cortado com `text.slice` (unidades UTF-16), e não com `chars` (code points). Por isso emojis, que ocupam dois code units, são cortados no meio. A correção usa o array de code points para montar o trecho.\n\n=== FILE: src/truncate.mjs ===\n/**\n * Truncamento de texto para exibição (títulos, notificações, previews).\n *\n * Todos os comprimentos são medidos em code points Unicode, não em unidades\n * UTF-16: um emoji como '😀' conta 1. (Clusters de grafemas compostos, como\n * bandeiras ou sequências com ZWJ, não recebem tratamento especial.)\n */\n\n/** Número de code points de `s`. */\nexport function codePointLength(s) {\n  let n = 0;\n  for (const _ of s) n++;\n  return n;\n}\n\n/**\n * truncate(text, maxLength, ellipsis = '…')\n *\n * - Se `text` cabe em `maxLength` code points, é devolvido inalterado.\n * - Senão, mantém os primeiros (maxLength - comprimento(ellipsis)) code points,\n *   remove espaços em branco no fim desse trecho e acrescenta `ellipsis`.\n * - Se `maxLength` não comporta nem a reticência mais um caractere\n *   (maxLength <= comprimento(ellipsis)), devolve apenas os primeiros\n *   `maxLength` code points de `text`, sem reticência.\n */\nexport function truncate(text, maxLength, ellipsis = '…') {\n  if (typeof text !== 'string' || typeof ellipsis !== 'string') {\n    throw new TypeError('text and ellipsis must be strings');\n  }\n  if (!Number.isInteger(maxLength) || maxLength < 0) {\n    throw new RangeError('maxLength must be a non-negative integer');\n  }\n  const chars = Array.from(text);\n  if (chars.length <= maxLength) return text;\n\n  const ellipsisLength = codePointLength(ellipsis);\n  if (maxLength <= ellipsisLength) return chars.slice(0, maxLength).join('');\n\n  const keep = maxLength - ellipsisLength;\n  return chars.slice(0, keep).join('').trimEnd() + ellipsis;\n}\n\n/**\n * Aplica `truncate` a cada campo string de `record` listado em `limits`, devolvendo um\n * objeto novo (o original não é modificado).\n */\nexport function truncateFields(record, limits, ellipsis = '…') {\n  const out = { ...record };\n  for (const [field, max] of Object.entries(limits)) {\n    if (typeof out[field] === 'string') out[field] = truncate(out[field], max, ellipsis);\n  }\n  return out;\n}\n=== END FILE ===\n\nCorrigido: `truncate` usava `text.slice` (UTF-16) em vez do array de code points, cortando emojis ao meio.\nAgora o trecho é montado com `chars.slice(...).join('')`, então nunca há metade de par substituto."
+    }
+  ],
+  "hiddenFailures": []
+}

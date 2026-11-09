@@ -1,0 +1,14 @@
+{
+  "id": "a18-avl-ordered-map",
+  "class": "a",
+  "split": "test",
+  "title": "AVL ordered map: height propagation after deletion rotations",
+  "statement": "# AVL ordered map (`src/ordmap.mjs`)\n\n`OrderedMap` stores ordered keys in an AVL tree and tracks each node's height and subtree size. Its public API includes `set`, `delete`, `get`, `has`, `size`, `height`, `rank`, `select`, `entries`, and `toTree`.\n\nA regression appeared after deleting a key: a subtree rotation can reduce its height, but ancestors are not always revisited. This leaves the tree taller than necessary and may violate the AVL balance bound. Fix the retracing logic while preserving ordering, subtree sizes, and the existing API.",
+  "bugs": [
+    {
+      "file": "src/ordmap.mjs",
+      "summary": "Retracing stops after every rotation, even when deletion reduced the rotated subtree height; higher ancestors can remain unbalanced."
+    }
+  ],
+  "decomposable": false
+}

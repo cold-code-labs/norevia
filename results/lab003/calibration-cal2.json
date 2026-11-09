@@ -1,0 +1,197 @@
+{
+ "share": 0.6,
+ "byK": {
+  "3": {
+   "tasks": 12,
+   "acceptedFirst": 4,
+   "acceptedLast": 12,
+   "probePassLast": 12,
+   "fsAfterRepair": {
+    "probePass": 12,
+    "falseSuccess": 0,
+    "rate": 0,
+    "ci": [
+     0,
+     0.243
+    ]
+   },
+   "fsAfterRepairOld": {
+    "probePass": 12,
+    "falseSuccess": 0,
+    "rate": 0,
+    "ci": [
+     0,
+     0.243
+    ]
+   },
+   "fsFirstNew": {
+    "probePass": 4,
+    "falseSuccess": 0,
+    "rate": 0,
+    "ci": [
+     0,
+     0.49
+    ]
+   },
+   "fsFirstOld": {
+    "probePass": 10,
+    "falseSuccess": 6,
+    "rate": 0.6,
+    "ci": [
+     0.313,
+     0.832
+    ]
+   },
+   "meanCost": 0.0255,
+   "meanFinalFrac": 1,
+   "truncatedCalls": 0
+  },
+  "8": {
+   "tasks": 6,
+   "acceptedFirst": 0,
+   "acceptedLast": 5,
+   "probePassLast": 5,
+   "fsAfterRepair": {
+    "probePass": 5,
+    "falseSuccess": 0,
+    "rate": 0,
+    "ci": [
+     0,
+     0.434
+    ]
+   },
+   "fsAfterRepairOld": {
+    "probePass": 6,
+    "falseSuccess": 1,
+    "rate": 0.167,
+    "ci": [
+     0.03,
+     0.564
+    ]
+   },
+   "fsFirstNew": {
+    "probePass": 0,
+    "falseSuccess": 0,
+    "rate": null,
+    "ci": [
+     0,
+     1
+    ]
+   },
+   "fsFirstOld": {
+    "probePass": 0,
+    "falseSuccess": 0,
+    "rate": null,
+    "ci": [
+     0,
+     1
+    ]
+   },
+   "meanCost": 0.0925,
+   "meanFinalFrac": 0.997,
+   "truncatedCalls": 7
+  },
+  "15": {
+   "tasks": 2,
+   "acceptedFirst": 0,
+   "acceptedLast": 0,
+   "probePassLast": 0,
+   "fsAfterRepair": {
+    "probePass": 0,
+    "falseSuccess": 0,
+    "rate": null,
+    "ci": [
+     0,
+     1
+    ]
+   },
+   "fsAfterRepairOld": {
+    "probePass": 1,
+    "falseSuccess": 1,
+    "rate": 1,
+    "ci": [
+     0.207,
+     1
+    ]
+   },
+   "fsFirstNew": {
+    "probePass": 0,
+    "falseSuccess": 0,
+    "rate": null,
+    "ci": [
+     0,
+     1
+    ]
+   },
+   "fsFirstOld": {
+    "probePass": 0,
+    "falseSuccess": 0,
+    "rate": null,
+    "ci": [
+     0,
+     1
+    ]
+   },
+   "meanCost": 0.1321,
+   "meanFinalFrac": 0.958,
+   "truncatedCalls": 3
+  }
+ },
+ "pooled": {
+  "tasks": 20,
+  "fsAfterRepairNew": {
+   "probePass": 17,
+   "falseSuccess": 0,
+   "rate": 0,
+   "ci": [
+    0,
+    0.184
+   ]
+  },
+  "fsAfterRepairOld": {
+   "probePass": 19,
+   "falseSuccess": 2,
+   "rate": 0.105,
+   "ci": [
+    0.029,
+    0.314
+   ]
+  },
+  "fsFirstNew": {
+   "probePass": 4,
+   "falseSuccess": 0,
+   "rate": 0,
+   "ci": [
+    0,
+    0.49
+   ]
+  },
+  "fsFirstOld": {
+   "probePass": 10,
+   "falseSuccess": 6,
+   "rate": 0.6,
+   "ci": [
+    0.313,
+    0.832
+   ]
+  },
+  "fsFirst80": {
+   "probePass": 4,
+   "falseSuccess": 0,
+   "rate": 0,
+   "ci": [
+    0,
+    0.49
+   ]
+  },
+  "cost": 1.1257
+ },
+ "gate": {
+  "cond1_fsAfterRepairNew_le_020": true,
+  "firstPassPairs": [
+   10,
+   4
+  ],
+  "cond2": true
+ }
+}

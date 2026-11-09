@@ -1,0 +1,18 @@
+[
+ {
+  "k": 1,
+  "team_over_solo_cost_ratio": 0.848
+ },
+ {
+  "k": 3,
+  "team_over_solo_cost_ratio": 0.639
+ },
+ {
+  "k": 8,
+  "team_over_solo_cost_ratio": 0.369
+ },
+ {
+  "k": 15,
+  "team_over_solo_cost_ratio": 0
+ }
+]

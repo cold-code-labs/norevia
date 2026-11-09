@@ -1,0 +1,2914 @@
+{
+  "generated": "2026-11-07T22:36:25.085Z",
+  "phases": [
+    "pilot"
+  ],
+  "nRuns": 45,
+  "archs": [
+    "A-high",
+    "A-low",
+    "A-low-loop",
+    "A-mid",
+    "B-pipeline",
+    "B-vote3",
+    "B-vote5",
+    "C-decompose",
+    "C-elastic"
+  ],
+  "overall": {
+    "B-vote3": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.005195,
+      "totalCost": 0.025973,
+      "costPerAccepted": 0.005195,
+      "meanInTok": 11922,
+      "meanOutTok": 6423,
+      "meanLatencyS": 9.0628,
+      "medianLatencyS": 5.353,
+      "meanCalls": 3,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 2,
+      "meanHiddenPassFrac": 1
+    },
+    "A-high": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.068031,
+      "totalCost": 0.340156,
+      "costPerAccepted": 0.068031,
+      "meanInTok": 3946,
+      "meanOutTok": 1798,
+      "meanLatencyS": 14.603,
+      "medianLatencyS": 8.979,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "B-vote5": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.008441,
+      "totalCost": 0.042203,
+      "costPerAccepted": 0.008441,
+      "meanInTok": 19878,
+      "meanOutTok": 10803,
+      "meanLatencyS": 9.474,
+      "medianLatencyS": 5.664,
+      "meanCalls": 5,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 4,
+      "meanHiddenPassFrac": 1
+    },
+    "A-low": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.001877,
+      "totalCost": 0.009386,
+      "costPerAccepted": 0.001877,
+      "meanInTok": 3975,
+      "meanOutTok": 2158,
+      "meanLatencyS": 8.4686,
+      "medianLatencyS": 4.986,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "C-elastic": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.001655,
+      "totalCost": 0.008273,
+      "costPerAccepted": 0.001655,
+      "meanInTok": 3975,
+      "meanOutTok": 2026,
+      "meanLatencyS": 8.3694,
+      "medianLatencyS": 5.471,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "A-low-loop": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.001683,
+      "totalCost": 0.008416,
+      "costPerAccepted": 0.001683,
+      "meanInTok": 3976,
+      "meanOutTok": 2177,
+      "meanLatencyS": 8.8884,
+      "medianLatencyS": 5.395,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "C-decompose": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.012525,
+      "totalCost": 0.062625,
+      "costPerAccepted": 0.012525,
+      "meanInTok": 12901,
+      "meanOutTok": 2697,
+      "meanLatencyS": 12.0232,
+      "medianLatencyS": 10.577,
+      "meanCalls": 2.8,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0.8,
+      "meanHiddenPassFrac": 1
+    },
+    "A-mid": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.024523,
+      "totalCost": 0.122617,
+      "costPerAccepted": 0.024523,
+      "meanInTok": 3955,
+      "meanOutTok": 1612,
+      "meanLatencyS": 9.9266,
+      "medianLatencyS": 6.093,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "B-pipeline": {
+      "n": 5,
+      "accepted": 5,
+      "acceptRate": 1,
+      "ci95": [
+        0.5655,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.055237,
+      "totalCost": 0.276183,
+      "costPerAccepted": 0.055237,
+      "meanInTok": 15030,
+      "meanOutTok": 4096,
+      "meanLatencyS": 26.4008,
+      "medianLatencyS": 16.813,
+      "meanCalls": 3,
+      "meanReworkCalls": 1,
+      "meanDiscarded": 1,
+      "meanHiddenPassFrac": 1
+    }
+  },
+  "bySplit": {
+    "dev": {
+      "B-vote3": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.005195,
+        "totalCost": 0.025973,
+        "costPerAccepted": 0.005195,
+        "meanInTok": 11922,
+        "meanOutTok": 6423,
+        "meanLatencyS": 9.0628,
+        "medianLatencyS": 5.353,
+        "meanCalls": 3,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 2,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.068031,
+        "totalCost": 0.340156,
+        "costPerAccepted": 0.068031,
+        "meanInTok": 3946,
+        "meanOutTok": 1798,
+        "meanLatencyS": 14.603,
+        "medianLatencyS": 8.979,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-vote5": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.008441,
+        "totalCost": 0.042203,
+        "costPerAccepted": 0.008441,
+        "meanInTok": 19878,
+        "meanOutTok": 10803,
+        "meanLatencyS": 9.474,
+        "medianLatencyS": 5.664,
+        "meanCalls": 5,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 4,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.001877,
+        "totalCost": 0.009386,
+        "costPerAccepted": 0.001877,
+        "meanInTok": 3975,
+        "meanOutTok": 2158,
+        "meanLatencyS": 8.4686,
+        "medianLatencyS": 4.986,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-elastic": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.001655,
+        "totalCost": 0.008273,
+        "costPerAccepted": 0.001655,
+        "meanInTok": 3975,
+        "meanOutTok": 2026,
+        "meanLatencyS": 8.3694,
+        "medianLatencyS": 5.471,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low-loop": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.001683,
+        "totalCost": 0.008416,
+        "costPerAccepted": 0.001683,
+        "meanInTok": 3976,
+        "meanOutTok": 2177,
+        "meanLatencyS": 8.8884,
+        "medianLatencyS": 5.395,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.012525,
+        "totalCost": 0.062625,
+        "costPerAccepted": 0.012525,
+        "meanInTok": 12901,
+        "meanOutTok": 2697,
+        "meanLatencyS": 12.0232,
+        "medianLatencyS": 10.577,
+        "meanCalls": 2.8,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0.8,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.024523,
+        "totalCost": 0.122617,
+        "costPerAccepted": 0.024523,
+        "meanInTok": 3955,
+        "meanOutTok": 1612,
+        "meanLatencyS": 9.9266,
+        "medianLatencyS": 6.093,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-pipeline": {
+        "n": 5,
+        "accepted": 5,
+        "acceptRate": 1,
+        "ci95": [
+          0.5655,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.055237,
+        "totalCost": 0.276183,
+        "costPerAccepted": 0.055237,
+        "meanInTok": 15030,
+        "meanOutTok": 4096,
+        "meanLatencyS": 26.4008,
+        "medianLatencyS": 16.813,
+        "meanCalls": 3,
+        "meanReworkCalls": 1,
+        "meanDiscarded": 1,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "byClass": {
+    "a": {
+      "B-vote3": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.003001,
+        "totalCost": 0.009004,
+        "costPerAccepted": 0.003001,
+        "meanInTok": 8119,
+        "meanOutTok": 2939,
+        "meanLatencyS": 5.1863,
+        "medianLatencyS": 5.271,
+        "meanCalls": 3,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 2,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.03977,
+        "totalCost": 0.11931,
+        "costPerAccepted": 0.03977,
+        "meanInTok": 2678,
+        "meanOutTok": 902,
+        "meanLatencyS": 8.6327,
+        "medianLatencyS": 8.605,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-vote5": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.004596,
+        "totalCost": 0.013789,
+        "costPerAccepted": 0.004596,
+        "meanInTok": 13542,
+        "meanOutTok": 4754,
+        "meanLatencyS": 5.1933,
+        "medianLatencyS": 5.039,
+        "meanCalls": 5,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 4,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.000893,
+        "totalCost": 0.002678,
+        "costPerAccepted": 0.000893,
+        "meanInTok": 2706,
+        "meanOutTok": 960,
+        "meanLatencyS": 4.7793,
+        "medianLatencyS": 4.773,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low-loop": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.000906,
+        "totalCost": 0.002718,
+        "costPerAccepted": 0.000906,
+        "meanInTok": 2708,
+        "meanOutTok": 985,
+        "meanLatencyS": 4.967,
+        "medianLatencyS": 5.135,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-elastic": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.00103,
+        "totalCost": 0.003091,
+        "costPerAccepted": 0.00103,
+        "meanInTok": 2707,
+        "meanOutTok": 943,
+        "meanLatencyS": 4.964,
+        "medianLatencyS": 4.744,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.013365,
+        "totalCost": 0.040096,
+        "costPerAccepted": 0.013365,
+        "meanInTok": 2688,
+        "meanOutTok": 829,
+        "meanLatencyS": 6.0303,
+        "medianLatencyS": 6.065,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.01438,
+        "totalCost": 0.043141,
+        "costPerAccepted": 0.01438,
+        "meanInTok": 5441,
+        "meanOutTok": 1229,
+        "meanLatencyS": 10.0663,
+        "medianLatencyS": 10.019,
+        "meanCalls": 2,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-pipeline": {
+        "n": 3,
+        "accepted": 3,
+        "acceptRate": 1,
+        "ci95": [
+          0.4385,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.030119,
+        "totalCost": 0.090358,
+        "costPerAccepted": 0.030119,
+        "meanInTok": 9776,
+        "meanOutTok": 1545,
+        "meanLatencyS": 14.313,
+        "medianLatencyS": 14.306,
+        "meanCalls": 3,
+        "meanReworkCalls": 1,
+        "meanDiscarded": 1,
+        "meanHiddenPassFrac": 1
+      }
+    },
+    "b": {
+      "C-elastic": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.002591,
+        "totalCost": 0.005182,
+        "costPerAccepted": 0.002591,
+        "meanInTok": 5878,
+        "meanOutTok": 3651,
+        "meanLatencyS": 13.4775,
+        "medianLatencyS": 13.4775,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.009742,
+        "totalCost": 0.019484,
+        "costPerAccepted": 0.009742,
+        "meanInTok": 24092,
+        "meanOutTok": 4898,
+        "meanLatencyS": 14.9585,
+        "medianLatencyS": 14.9585,
+        "meanCalls": 4,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 2,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.110423,
+        "totalCost": 0.220846,
+        "costPerAccepted": 0.110423,
+        "meanInTok": 5847,
+        "meanOutTok": 3141,
+        "meanLatencyS": 23.5585,
+        "medianLatencyS": 23.5585,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.003354,
+        "totalCost": 0.006709,
+        "costPerAccepted": 0.003354,
+        "meanInTok": 5878,
+        "meanOutTok": 3954,
+        "meanLatencyS": 14.0025,
+        "medianLatencyS": 14.0025,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.041261,
+        "totalCost": 0.082521,
+        "costPerAccepted": 0.041261,
+        "meanInTok": 5857,
+        "meanOutTok": 2787,
+        "meanLatencyS": 15.771,
+        "medianLatencyS": 15.771,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-pipeline": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.092912,
+        "totalCost": 0.185825,
+        "costPerAccepted": 0.092912,
+        "meanInTok": 22912,
+        "meanOutTok": 7923,
+        "meanLatencyS": 44.5325,
+        "medianLatencyS": 44.5325,
+        "meanCalls": 3,
+        "meanReworkCalls": 1,
+        "meanDiscarded": 1,
+        "meanHiddenPassFrac": 1
+      },
+      "A-low-loop": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.002849,
+        "totalCost": 0.005698,
+        "costPerAccepted": 0.002849,
+        "meanInTok": 5878,
+        "meanOutTok": 3966,
+        "meanLatencyS": 14.7705,
+        "medianLatencyS": 14.7705,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "B-vote5": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.014207,
+        "totalCost": 0.028414,
+        "costPerAccepted": 0.014207,
+        "meanInTok": 29383,
+        "meanOutTok": 19877,
+        "meanLatencyS": 15.895,
+        "medianLatencyS": 15.895,
+        "meanCalls": 5,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 4,
+        "meanHiddenPassFrac": 1
+      },
+      "B-vote3": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.008484,
+        "totalCost": 0.016968,
+        "costPerAccepted": 0.008484,
+        "meanInTok": 17628,
+        "meanOutTok": 11649,
+        "meanLatencyS": 14.8775,
+        "medianLatencyS": 14.8775,
+        "meanCalls": 3,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 2,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "pareto": {
+    "a": {
+      "points": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.003001,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.03977,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.004596,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.000893,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.000906,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.00103,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.013365,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.01438,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.030119,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "a-dev": {
+      "points": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.003001,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.03977,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.004596,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.000893,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.000906,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.00103,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.013365,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.01438,
+          "acceptRate": 1,
+          "n": 3
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.030119,
+          "acceptRate": 1,
+          "n": 3
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "b": {
+      "points": [
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.002591,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009742,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.110423,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.003354,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.041261,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.092912,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.002849,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.014207,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.008484,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "C-elastic"
+      ]
+    },
+    "b-dev": {
+      "points": [
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.002591,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009742,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.110423,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.003354,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.041261,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.092912,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.002849,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.014207,
+          "acceptRate": 1,
+          "n": 2
+        },
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.008484,
+          "acceptRate": 1,
+          "n": 2
+        }
+      ],
+      "frontier": [
+        "C-elastic"
+      ]
+    },
+    "all": {
+      "points": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.005195,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.068031,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.008441,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.001877,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.001655,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.001683,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.012525,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.024523,
+          "acceptRate": 1
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.055237,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "C-elastic"
+      ]
+    }
+  },
+  "perTask": {
+    "a02-paginate-pages": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "B-vote3": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.003529,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.03971,
+          "fs": 0
+        },
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000893,
+          "fs": 0
+        },
+        "A-low-loop": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000911,
+          "fs": 0
+        },
+        "C-elastic": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000896,
+          "fs": 0
+        },
+        "B-vote5": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.004456,
+          "fs": 0
+        },
+        "B-pipeline": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.036756,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010344,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.011541,
+          "fs": 0
+        }
+      }
+    },
+    "a04-merge-intervals": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "B-vote5": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.00501,
+          "fs": 0
+        },
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000926,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.019738,
+          "fs": 0
+        },
+        "B-pipeline": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.027455,
+          "fs": 0
+        },
+        "A-low-loop": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000943,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.011123,
+          "fs": 0
+        },
+        "B-vote3": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002819,
+          "fs": 0
+        },
+        "C-elastic": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000902,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.040183,
+          "fs": 0
+        }
+      }
+    },
+    "b01-texto-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "C-elastic": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002564,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.008868,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.106506,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.030165,
+          "fs": 0
+        },
+        "B-pipeline": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.098433,
+          "fs": 0
+        },
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002805,
+          "fs": 0
+        },
+        "B-vote5": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.014043,
+          "fs": 0
+        },
+        "B-vote3": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.008446,
+          "fs": 0
+        },
+        "A-low-loop": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002628,
+          "fs": 0
+        }
+      }
+    },
+    "b02-estoque-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.003904,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.052356,
+          "fs": 0
+        },
+        "C-elastic": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002618,
+          "fs": 0
+        },
+        "A-low-loop": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.00307,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.11434,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010616,
+          "fs": 0
+        },
+        "B-vote3": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.008522,
+          "fs": 0
+        },
+        "B-vote5": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.014371,
+          "fs": 0
+        },
+        "B-pipeline": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.087391,
+          "fs": 0
+        }
+      }
+    },
+    "a05-lru-cache": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.020477,
+          "fs": 0
+        },
+        "C-elastic": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.001294,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010014,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.039417,
+          "fs": 0
+        },
+        "B-vote5": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.004324,
+          "fs": 0
+        },
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000859,
+          "fs": 0
+        },
+        "B-pipeline": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.026148,
+          "fs": 0
+        },
+        "B-vote3": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.002657,
+          "fs": 0
+        },
+        "A-low-loop": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000864,
+          "fs": 0
+        }
+      }
+    }
+  },
+  "difficultyBins": {
+    "A-high": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.068031
+      },
+      "media": null,
+      "dificil": null
+    },
+    "A-low": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.001877
+      },
+      "media": null,
+      "dificil": null
+    },
+    "A-low-loop": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.001683
+      },
+      "media": null,
+      "dificil": null
+    },
+    "A-mid": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.024523
+      },
+      "media": null,
+      "dificil": null
+    },
+    "B-pipeline": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.055237
+      },
+      "media": null,
+      "dificil": null
+    },
+    "B-vote3": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.005195
+      },
+      "media": null,
+      "dificil": null
+    },
+    "B-vote5": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.008441
+      },
+      "media": null,
+      "dificil": null
+    },
+    "C-decompose": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.012525
+      },
+      "media": null,
+      "dificil": null
+    },
+    "C-elastic": {
+      "facil": {
+        "n": 5,
+        "nTasks": 5,
+        "acceptRate": 1,
+        "meanCost": 0.001655
+      },
+      "media": null,
+      "dificil": null
+    }
+  },
+  "ladders": {
+    "amostras": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.001877,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "B-vote3",
+          "acceptRate": 1,
+          "meanCost": 0.005195,
+          "dAccept": 0,
+          "dCost": 0.003318,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "B-vote5",
+          "acceptRate": 1,
+          "meanCost": 0.008441,
+          "dAccept": 0,
+          "dCost": 0.003246,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000893,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "B-vote3",
+          "acceptRate": 1,
+          "meanCost": 0.003001,
+          "dAccept": 0,
+          "dCost": 0.002108,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "B-vote5",
+          "acceptRate": 1,
+          "meanCost": 0.004596,
+          "dAccept": 0,
+          "dCost": 0.001595,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003354,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "B-vote3",
+          "acceptRate": 1,
+          "meanCost": 0.008484,
+          "dAccept": 0,
+          "dCost": 0.00513,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "B-vote5",
+          "acceptRate": 1,
+          "meanCost": 0.014207,
+          "dAccept": 0,
+          "dCost": 0.005723,
+          "marginalAcceptPerUsd": 0
+        }
+      ]
+    },
+    "raciocinio": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.001877,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.024523,
+          "dAccept": 0,
+          "dCost": 0.022646,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.068031,
+          "dAccept": 0,
+          "dCost": 0.043508,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000893,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.013365,
+          "dAccept": 0,
+          "dCost": 0.012472,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.03977,
+          "dAccept": 0,
+          "dCost": 0.026405,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003354,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.041261,
+          "dAccept": 0,
+          "dCost": 0.037907,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.110423,
+          "dAccept": 0,
+          "dCost": 0.069162,
+          "marginalAcceptPerUsd": 0
+        }
+      ]
+    },
+    "verificacao": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.001877,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-low-loop",
+          "acceptRate": 1,
+          "meanCost": 0.001683,
+          "dAccept": 0,
+          "dCost": -0.000194,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "C-elastic",
+          "acceptRate": 1,
+          "meanCost": 0.001655,
+          "dAccept": 0,
+          "dCost": -0.000028,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000893,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-low-loop",
+          "acceptRate": 1,
+          "meanCost": 0.000906,
+          "dAccept": 0,
+          "dCost": 0.000013,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "C-elastic",
+          "acceptRate": 1,
+          "meanCost": 0.00103,
+          "dAccept": 0,
+          "dCost": 0.000124,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003354,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-low-loop",
+          "acceptRate": 1,
+          "meanCost": 0.002849,
+          "dAccept": 0,
+          "dCost": -0.000505,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "C-elastic",
+          "acceptRate": 1,
+          "meanCost": 0.002591,
+          "dAccept": 0,
+          "dCost": -0.000258,
+          "marginalAcceptPerUsd": 0
+        }
+      ]
+    }
+  },
+  "paired": {
+    "A-high": {
+      "A-low": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "A-low-loop": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "A-mid": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-pipeline": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-vote3": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-vote5": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "C-decompose": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "C-elastic": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    },
+    "A-low": {
+      "A-high": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "A-low-loop": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "A-mid": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-pipeline": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-vote3": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "B-vote5": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "C-decompose": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      },
+      "C-elastic": {
+        "all": {
+          "nTasks": 5,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 3,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    }
+  },
+  "ledger": {
+    "calls": 102,
+    "totalUsd": 0.919227,
+    "byPhase": {
+      "smoke": {
+        "calls": 8,
+        "usd": 0.023394
+      },
+      "pilot": {
+        "calls": 94,
+        "usd": 0.895833
+      }
+    },
+    "byModelEffort": {
+      "haiku/low": {
+        "calls": 78,
+        "usd": 0.144896,
+        "meanUsd": 0.001858,
+        "meanOutTok": 1900,
+        "meanLatencyS": 8.2111,
+        "failed": 0
+      },
+      "sonnet/medium": {
+        "calls": 19,
+        "usd": 0.434175,
+        "meanUsd": 0.022851,
+        "meanOutTok": 1108,
+        "meanLatencyS": 7.7292,
+        "failed": 0
+      },
+      "opus/high": {
+        "calls": 5,
+        "usd": 0.340156,
+        "meanUsd": 0.068031,
+        "meanOutTok": 1798,
+        "meanLatencyS": 14.603,
+        "failed": 0
+      }
+    }
+  },
+  "charts": {
+    "paretoByClass": {
+      "a": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.003001,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.03977,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.004596,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.000893,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.000906,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.00103,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.013365,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.01438,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.030119,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "a-dev": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.003001,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.03977,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.004596,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.000893,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.000906,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.00103,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.013365,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.01438,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.030119,
+          "acceptRate": 1,
+          "n": 3,
+          "onFrontier": false
+        }
+      ],
+      "b": [
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.002591,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009742,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.110423,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.003354,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.041261,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.092912,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.002849,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.014207,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.008484,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "b-dev": [
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.002591,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009742,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.110423,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.003354,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.041261,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.092912,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.002849,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.014207,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.008484,
+          "acceptRate": 1,
+          "n": 2,
+          "onFrontier": false
+        }
+      ],
+      "all": [
+        {
+          "arch": "B-vote3",
+          "meanCost": 0.005195,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.068031,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-vote5",
+          "meanCost": 0.008441,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-low",
+          "meanCost": 0.001877,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-elastic",
+          "meanCost": 0.001655,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-low-loop",
+          "meanCost": 0.001683,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.012525,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.024523,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "B-pipeline",
+          "meanCost": 0.055237,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ]
+    },
+    "acceptByArchClass": [
+      {
+        "arch": "A-high",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "A-low",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "A-low-loop",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "A-mid",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "B-pipeline",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "B-vote3",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "B-vote5",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "C-decompose",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "C-elastic",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      }
+    ],
+    "costPerAcceptedByArchClass": [
+      {
+        "arch": "A-high",
+        "a": 0.03977,
+        "b": 0.110423,
+        "c": null,
+        "all": 0.068031
+      },
+      {
+        "arch": "A-low",
+        "a": 0.000893,
+        "b": 0.003354,
+        "c": null,
+        "all": 0.001877
+      },
+      {
+        "arch": "A-low-loop",
+        "a": 0.000906,
+        "b": 0.002849,
+        "c": null,
+        "all": 0.001683
+      },
+      {
+        "arch": "A-mid",
+        "a": 0.013365,
+        "b": 0.041261,
+        "c": null,
+        "all": 0.024523
+      },
+      {
+        "arch": "B-pipeline",
+        "a": 0.030119,
+        "b": 0.092912,
+        "c": null,
+        "all": 0.055237
+      },
+      {
+        "arch": "B-vote3",
+        "a": 0.003001,
+        "b": 0.008484,
+        "c": null,
+        "all": 0.005195
+      },
+      {
+        "arch": "B-vote5",
+        "a": 0.004596,
+        "b": 0.014207,
+        "c": null,
+        "all": 0.008441
+      },
+      {
+        "arch": "C-decompose",
+        "a": 0.01438,
+        "b": 0.009742,
+        "c": null,
+        "all": 0.012525
+      },
+      {
+        "arch": "C-elastic",
+        "a": 0.00103,
+        "b": 0.002591,
+        "c": null,
+        "all": 0.001655
+      }
+    ],
+    "falseSuccessByArch": [
+      {
+        "arch": "A-high",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "A-low",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "A-low-loop",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "A-mid",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "B-pipeline",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "B-vote3",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "B-vote5",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "C-decompose",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "C-elastic",
+        "rate": 0,
+        "n": 0
+      }
+    ],
+    "latencyByArch": [
+      {
+        "arch": "A-high",
+        "meanS": 14.603,
+        "medianS": 8.979
+      },
+      {
+        "arch": "A-low",
+        "meanS": 8.4686,
+        "medianS": 4.986
+      },
+      {
+        "arch": "A-low-loop",
+        "meanS": 8.8884,
+        "medianS": 5.395
+      },
+      {
+        "arch": "A-mid",
+        "meanS": 9.9266,
+        "medianS": 6.093
+      },
+      {
+        "arch": "B-pipeline",
+        "meanS": 26.4008,
+        "medianS": 16.813
+      },
+      {
+        "arch": "B-vote3",
+        "meanS": 9.0628,
+        "medianS": 5.353
+      },
+      {
+        "arch": "B-vote5",
+        "meanS": 9.474,
+        "medianS": 5.664
+      },
+      {
+        "arch": "C-decompose",
+        "meanS": 12.0232,
+        "medianS": 10.577
+      },
+      {
+        "arch": "C-elastic",
+        "meanS": 8.3694,
+        "medianS": 5.471
+      }
+    ],
+    "difficulty": [
+      {
+        "arch": "A-high",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "A-low",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "A-low-loop",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "A-mid",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "B-pipeline",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "B-vote3",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "B-vote5",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "C-decompose",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "C-elastic",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      }
+    ]
+  }
+}

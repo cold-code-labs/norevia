@@ -1,0 +1,62 @@
+{
+  "phase": "calib",
+  "task": "b06-estatistica-kit",
+  "class": "b",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 2,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 3,
+    "total": 3
+  },
+  "hidden": {
+    "pass": 21,
+    "total": 21
+  },
+  "cost": 0.00254252,
+  "inTok": 5355,
+  "outTok": 3673,
+  "cacheRead": 4972,
+  "cacheWrite": 381,
+  "latencyMs": 13802,
+  "wallMs": 13802,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/central.mjs",
+    "src/percentile.mjs",
+    "src/histogram.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:56:32.190Z",
+  "finalFiles": {
+    "src/central.mjs": "/**\n * Medidas de tendência central e dispersão. Nenhuma função altera o array recebido.\n * Todas exigem um array de números finitos (senão TypeError) e devolvem NaN para array vazio.\n */\n\nfunction check(xs) {\n  if (!Array.isArray(xs) || !xs.every((x) => typeof x === 'number' && Number.isFinite(x))) {\n    throw new TypeError('expected an array of finite numbers');\n  }\n}\n\nexport function mean(xs) {\n  check(xs);\n  if (xs.length === 0) return NaN;\n  return xs.reduce((s, x) => s + x, 0) / xs.length;\n}\n\n/** Valor do meio da amostra ordenada numericamente; com tamanho par, média dos dois do meio. */\nexport function median(xs) {\n  check(xs);\n  const n = xs.length;\n  if (n === 0) return NaN;\n  const s = [...xs].sort((a, b) => a - b);\n  const mid = n >> 1;\n  return n % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;\n}\n\n/** Valor mais frequente; empate → o menor deles. */\nexport function mode(xs) {\n  check(xs);\n  if (xs.length === 0) return NaN;\n  const counts = new Map();\n  for (const x of xs) counts.set(x, (counts.get(x) ?? 0) + 1);\n  let best = NaN;\n  let bestCount = 0;\n  for (const [x, c] of counts) {\n    if (c > bestCount || (c === bestCount && x < best)) {\n      best = x;\n      bestCount = c;\n    }\n  }\n  return best;\n}\n\n/**\n * Variância populacional (divide por n) ou amostral ({ sample: true }, divide por n - 1;\n * menos de 2 valores → NaN).\n */\nexport function variance(xs, { sample = false } = {}) {\n  check(xs);\n  const n = xs.length;\n  if (n === 0 || (sample && n < 2)) return NaN;\n  const m = mean(xs);\n  const ss = xs.reduce((s, x) => s + (x - m) ** 2, 0);\n  return ss / (sample ? n - 1 : n);\n}\n\nexport function stddev(xs, options) {\n  return Math.sqrt(variance(xs, options));\n}\n",
+    "src/percentile.mjs": "/**\n * Percentis por interpolação linear entre os pontos da amostra ordenada\n * (posição = p/100 * (n - 1)), o mesmo método padrão do NumPy e do Excel PERCENTILE.INC.\n */\n\n/**\n * percentile(xs, p): p em [0, 100] (senão RangeError). Array vazio → NaN.\n * p = 0 devolve o mínimo e p = 100 o máximo. Não altera xs.\n */\nexport function percentile(xs, p) {\n  if (!(p >= 0 && p <= 100)) throw new RangeError('p must be within [0, 100]');\n  if (xs.length === 0) return NaN;\n  const s = [...xs].sort((a, b) => a - b);\n  const last = s.length - 1;\n  const rank = (p / 100) * last;\n  const lo = Math.floor(rank);\n  if (lo >= last) return s[last];\n  return s[lo] + (s[lo + 1] - s[lo]) * (rank - lo);\n}\n\n/** Vários percentis de uma vez, na ordem pedida. */\nexport function quantiles(xs, ps) {\n  return ps.map((p) => percentile(xs, p));\n}\n\n/** Amplitude interquartil: P75 - P25. */\nexport function iqr(xs) {\n  return percentile(xs, 75) - percentile(xs, 25);\n}\n\n/** Resumo de cinco números: { min, q1, median, q3, max } (P0, P25, P50, P75, P100). */\nexport function fiveNumberSummary(xs) {\n  const [min, q1, median, q3, max] = quantiles(xs, [0, 25, 50, 75, 100]);\n  return { min, q1, median, q3, max };\n}\n",
+    "src/histogram.mjs": "/**\n * Histogramas de largura fixa.\n */\n\n/**\n * histogram(xs, { bins = 10, min, max }) → [{ lo, hi, count }]\n *\n * - O intervalo [min, max] (padrão: mínimo e máximo de xs) é dividido em `bins`\n *   faixas de mesma largura. Cada faixa é [lo, hi), exceto a última, que é [lo, hi]\n *   (inclui o próprio max).\n * - Valores fora de [min, max] são ignorados.\n * - Se min === max, usa-se max = min + 1.\n * - bins deve ser inteiro >= 1 (senão RangeError); xs vazio sem min/max → [].\n */\nexport function histogram(xs, { bins = 10, min, max } = {}) {\n  if (!Number.isInteger(bins) || bins < 1) throw new RangeError('bins must be a positive integer');\n  if (xs.length === 0 && (min === undefined || max === undefined)) return [];\n  const lo = min ?? Math.min(...xs);\n  let hi = max ?? Math.max(...xs);\n  if (hi < lo) throw new RangeError('max must be >= min');\n  if (hi === lo) hi = lo + 1;\n  const width = (hi - lo) / bins;\n  const buckets = Array.from({ length: bins }, (_, i) => ({\n    lo: lo + i * width,\n    hi: i === bins - 1 ? hi : lo + (i + 1) * width,\n    count: 0,\n  }));\n  for (const x of xs) {\n    if (x < lo || x > hi) continue;\n    let idx = Math.min(Math.floor((x - lo) / width), bins - 1);\n    while (idx < bins - 1 && x >= buckets[idx].hi) idx++;\n    while (idx > 0 && x < buckets[idx].lo) idx--;\n    buckets[idx].count++;\n  }\n  return buckets;\n}\n\n/** Contagens acumuladas: o i-ésimo elemento é a soma das contagens das faixas 0..i. */\nexport function cumulative(buckets) {\n  let total = 0;\n  return buckets.map((b) => (total += b.count));\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00254252,
+      "outTok": 3673,
+      "latencyMs": 13802,
+      "promptChars": 9391,
+      "response": "=== FILE: src/central.mjs ===\n/**\n * Medidas de tendência central e dispersão. Nenhuma função altera o array recebido.\n * Todas exigem um array de números finitos (senão TypeError) e devolvem NaN para array vazio.\n */\n\nfunction check(xs) {\n  if (!Array.isArray(xs) || !xs.every((x) => typeof x === 'number' && Number.isFinite(x))) {\n    throw new TypeError('expected an array of finite numbers');\n  }\n}\n\nexport function mean(xs) {\n  check(xs);\n  if (xs.length === 0) return NaN;\n  return xs.reduce((s, x) => s + x, 0) / xs.length;\n}\n\n/** Valor do meio da amostra ordenada numericamente; com tamanho par, média dos dois do meio. */\nexport function median(xs) {\n  check(xs);\n  const n = xs.length;\n  if (n === 0) return NaN;\n  const s = [...xs].sort((a, b) => a - b);\n  const mid = n >> 1;\n  return n % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;\n}\n\n/** Valor mais frequente; empate → o menor deles. */\nexport function mode(xs) {\n  check(xs);\n  if (xs.length === 0) return NaN;\n  const counts = new Map();\n  for (const x of xs) counts.set(x, (counts.get(x) ?? 0) + 1);\n  let best = NaN;\n  let bestCount = 0;\n  for (const [x, c] of counts) {\n    if (c > bestCount || (c === bestCount && x < best)) {\n      best = x;\n      bestCount = c;\n    }\n  }\n  return best;\n}\n\n/**\n * Variância populacional (divide por n) ou amostral ({ sample: true }, divide por n - 1;\n * menos de 2 valores → NaN).\n */\nexport function variance(xs, { sample = false } = {}) {\n  check(xs);\n  const n = xs.length;\n  if (n === 0 || (sample && n < 2)) return NaN;\n  const m = mean(xs);\n  const ss = xs.reduce((s, x) => s + (x - m) ** 2, 0);\n  return ss / (sample ? n - 1 : n);\n}\n\nexport function stddev(xs, options) {\n  return Math.sqrt(variance(xs, options));\n}\n=== END FILE ===\n\n=== FILE: src/percentile.mjs ===\n/**\n * Percentis por interpolação linear entre os pontos da amostra ordenada\n * (posição = p/100 * (n - 1)), o mesmo método padrão do NumPy e do Excel PERCENTILE.INC.\n */\n\n/**\n * percentile(xs, p): p em [0, 100] (senão RangeError). Array vazio → NaN.\n * p = 0 devolve o mínimo e p = 100 o máximo. Não altera xs.\n */\nexport function percentile(xs, p) {\n  if (!(p >= 0 && p <= 100)) throw new RangeError('p must be within [0, 100]');\n  if (xs.length === 0) return NaN;\n  const s = [...xs].sort((a, b) => a - b);\n  const last = s.length - 1;\n  const rank = (p / 100) * last;\n  const lo = Math.floor(rank);\n  if (lo >= last) return s[last];\n  return s[lo] + (s[lo + 1] - s[lo]) * (rank - lo);\n}\n\n/** Vários percentis de uma vez, na ordem pedida. */\nexport function quantiles(xs, ps) {\n  return ps.map((p) => percentile(xs, p));\n}\n\n/** Amplitude interquartil: P75 - P25. */\nexport function iqr(xs) {\n  return percentile(xs, 75) - percentile(xs, 25);\n}\n\n/** Resumo de cinco números: { min, q1, median, q3, max } (P0, P25, P50, P75, P100). */\nexport function fiveNumberSummary(xs) {\n  const [min, q1, median, q3, max] = quantiles(xs, [0, 25, 50, 75, 100]);\n  return { min, q1, median, q3, max };\n}\n=== END FILE ===\n\n=== FILE: src/histogram.mjs ===\n/**\n * Histogramas de largura fixa.\n */\n\n/**\n * histogram(xs, { bins = 10, min, max }) → [{ lo, hi, count }]\n *\n * - O intervalo [min, max] (padrão: mínimo e máximo de xs) é dividido em `bins`\n *   faixas de mesma largura. Cada faixa é [lo, hi), exceto a última, que é [lo, hi]\n *   (inclui o próprio max).\n * - Valores fora de [min, max] são ignorados.\n * - Se min === max, usa-se max = min + 1.\n * - bins deve ser inteiro >= 1 (senão RangeError); xs vazio sem min/max → [].\n */\nexport function histogram(xs, { bins = 10, min, max } = {}) {\n  if (!Number.isInteger(bins) || bins < 1) throw new RangeError('bins must be a positive integer');\n  if (xs.length === 0 && (min === undefined || max === undefined)) return [];\n  const lo = min ?? Math.min(...xs);\n  let hi = max ?? Math.max(...xs);\n  if (hi < lo) throw new RangeError('max must be >= min');\n  if (hi === lo) hi = lo + 1;\n  const width = (hi - lo) / bins;\n  const buckets = Array.from({ length: bins }, (_, i) => ({\n    lo: lo + i * width,\n    hi: i === bins - 1 ? hi : lo + (i + 1) * width,\n    count: 0,\n  }));\n  for (const x of xs) {\n    if (x < lo || x > hi) continue;\n    let idx = Math.min(Math.floor((x - lo) / width), bins - 1);\n    while (idx < bins - 1 && x >= buckets[idx].hi) idx++;\n    while (idx > 0 && x < buckets[idx].lo) idx--;\n    buckets[idx].count++;\n  }\n  return buckets;\n}\n\n/** Contagens acumuladas: o i-ésimo elemento é a soma das contagens das faixas 0..i. */\nexport function cumulative(buckets) {\n  let total = 0;\n  return buckets.map((b) => (total += b.count));\n}\n=== END FILE ===\n\nCorrigidos: mediana (ordenação lexicográfica), percentis (acesso fora do array em p=100 e amostras unitárias) e histograma (o valor igual a `max` era descartado e fronteiras internas podiam cair na faixa errada)."
+    }
+  ],
+  "hiddenFailures": []
+}

@@ -1,0 +1,669 @@
+{
+  "generated": "2026-11-07T22:32:31.796Z",
+  "phases": [
+    "smoke"
+  ],
+  "nRuns": 4,
+  "archs": [
+    "A-low",
+    "C-decompose"
+  ],
+  "overall": {
+    "A-low": {
+      "n": 2,
+      "accepted": 2,
+      "acceptRate": 1,
+      "ci95": [
+        0.3424,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.002134,
+      "totalCost": 0.004267,
+      "costPerAccepted": 0.002134,
+      "meanInTok": 3692,
+      "meanOutTok": 1965,
+      "meanLatencyS": 7.978,
+      "medianLatencyS": 7.978,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "C-decompose": {
+      "n": 2,
+      "accepted": 2,
+      "acceptRate": 1,
+      "ci95": [
+        0.3424,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.009563,
+      "totalCost": 0.019127,
+      "costPerAccepted": 0.009563,
+      "meanInTok": 13672,
+      "meanOutTok": 2700,
+      "meanLatencyS": 11.972,
+      "medianLatencyS": 11.972,
+      "meanCalls": 3,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 1,
+      "meanHiddenPassFrac": 1
+    }
+  },
+  "bySplit": {
+    "dev": {
+      "A-low": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.002134,
+        "totalCost": 0.004267,
+        "costPerAccepted": 0.002134,
+        "meanInTok": 3692,
+        "meanOutTok": 1965,
+        "meanLatencyS": 7.978,
+        "medianLatencyS": 7.978,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 2,
+        "accepted": 2,
+        "acceptRate": 1,
+        "ci95": [
+          0.3424,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.009563,
+        "totalCost": 0.019127,
+        "costPerAccepted": 0.009563,
+        "meanInTok": 13672,
+        "meanOutTok": 2700,
+        "meanLatencyS": 11.972,
+        "medianLatencyS": 11.972,
+        "meanCalls": 3,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 1,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "byClass": {
+    "a": {
+      "A-low": {
+        "n": 1,
+        "accepted": 1,
+        "acceptRate": 1,
+        "ci95": [
+          0.2065,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.000641,
+        "totalCost": 0.000641,
+        "costPerAccepted": 0.000641,
+        "meanInTok": 1489,
+        "meanOutTok": 305,
+        "meanLatencyS": 2.932,
+        "medianLatencyS": 2.932,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 1,
+        "accepted": 1,
+        "acceptRate": 1,
+        "ci95": [
+          0.2065,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.009172,
+        "totalCost": 0.009172,
+        "costPerAccepted": 0.009172,
+        "meanInTok": 2998,
+        "meanOutTok": 457,
+        "meanLatencyS": 6.742,
+        "medianLatencyS": 6.742,
+        "meanCalls": 2,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    },
+    "b": {
+      "A-low": {
+        "n": 1,
+        "accepted": 1,
+        "acceptRate": 1,
+        "ci95": [
+          0.2065,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.003627,
+        "totalCost": 0.003627,
+        "costPerAccepted": 0.003627,
+        "meanInTok": 5894,
+        "meanOutTok": 3625,
+        "meanLatencyS": 13.024,
+        "medianLatencyS": 13.024,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "C-decompose": {
+        "n": 1,
+        "accepted": 1,
+        "acceptRate": 1,
+        "ci95": [
+          0.2065,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.009955,
+        "totalCost": 0.009955,
+        "costPerAccepted": 0.009955,
+        "meanInTok": 24346,
+        "meanOutTok": 4942,
+        "meanLatencyS": 17.202,
+        "medianLatencyS": 17.202,
+        "meanCalls": 4,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 2,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "pareto": {
+    "a": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.000641,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009172,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "a-dev": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.000641,
+          "acceptRate": 1,
+          "n": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009172,
+          "acceptRate": 1,
+          "n": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "b": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.003627,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009955,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "b-dev": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.003627,
+          "acceptRate": 1,
+          "n": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009955,
+          "acceptRate": 1,
+          "n": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "all": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002134,
+          "acceptRate": 1
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009563,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    }
+  },
+  "perTask": {
+    "a01-clamp-range": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.000641,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.009172,
+          "fs": 0
+        }
+      }
+    },
+    "b01-texto-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.003627,
+          "fs": 0
+        },
+        "C-decompose": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.009955,
+          "fs": 0
+        }
+      }
+    }
+  },
+  "difficultyBins": {
+    "A-low": {
+      "facil": {
+        "n": 2,
+        "nTasks": 2,
+        "acceptRate": 1,
+        "meanCost": 0.002134
+      },
+      "media": null,
+      "dificil": null
+    },
+    "C-decompose": {
+      "facil": {
+        "n": 2,
+        "nTasks": 2,
+        "acceptRate": 1,
+        "meanCost": 0.009563
+      },
+      "media": null,
+      "dificil": null
+    }
+  },
+  "ladders": {
+    "amostras": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002134,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000641,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003627,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    },
+    "raciocinio": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002134,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000641,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003627,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    },
+    "verificacao": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002134,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.000641,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.003627,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    }
+  },
+  "paired": {
+    "A-high": {},
+    "A-low": {
+      "C-decompose": {
+        "all": {
+          "nTasks": 2,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 1,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 1,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    }
+  },
+  "ledger": {
+    "calls": 8,
+    "totalUsd": 0.023394,
+    "byPhase": {
+      "smoke": {
+        "calls": 8,
+        "usd": 0.023394
+      }
+    },
+    "byModelEffort": {
+      "haiku/low": {
+        "calls": 7,
+        "usd": 0.014831,
+        "meanUsd": 0.002119,
+        "meanOutTok": 1297,
+        "meanLatencyS": 6.5273,
+        "failed": 0
+      },
+      "sonnet/medium": {
+        "calls": 1,
+        "usd": 0.008562,
+        "meanUsd": 0.008562,
+        "meanOutTok": 250,
+        "meanLatencyS": 3.878,
+        "failed": 0
+      }
+    }
+  },
+  "charts": {
+    "paretoByClass": {
+      "a": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.000641,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009172,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "a-dev": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.000641,
+          "acceptRate": 1,
+          "n": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009172,
+          "acceptRate": 1,
+          "n": 1,
+          "onFrontier": false
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.003627,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009955,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "b-dev": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.003627,
+          "acceptRate": 1,
+          "n": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009955,
+          "acceptRate": 1,
+          "n": 1,
+          "onFrontier": false
+        }
+      ],
+      "all": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002134,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "C-decompose",
+          "meanCost": 0.009563,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ]
+    },
+    "acceptByArchClass": [
+      {
+        "arch": "A-low",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      },
+      {
+        "arch": "C-decompose",
+        "a": 1,
+        "b": 1,
+        "c": null,
+        "all": 1
+      }
+    ],
+    "costPerAcceptedByArchClass": [
+      {
+        "arch": "A-low",
+        "a": 0.000641,
+        "b": 0.003627,
+        "c": null,
+        "all": 0.002134
+      },
+      {
+        "arch": "C-decompose",
+        "a": 0.009172,
+        "b": 0.009955,
+        "c": null,
+        "all": 0.009563
+      }
+    ],
+    "falseSuccessByArch": [
+      {
+        "arch": "A-low",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "C-decompose",
+        "rate": 0,
+        "n": 0
+      }
+    ],
+    "latencyByArch": [
+      {
+        "arch": "A-low",
+        "meanS": 7.978,
+        "medianS": 7.978
+      },
+      {
+        "arch": "C-decompose",
+        "meanS": 11.972,
+        "medianS": 11.972
+      }
+    ],
+    "difficulty": [
+      {
+        "arch": "A-low",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      },
+      {
+        "arch": "C-decompose",
+        "facil": 1,
+        "media": null,
+        "dificil": null
+      }
+    ]
+  }
+}

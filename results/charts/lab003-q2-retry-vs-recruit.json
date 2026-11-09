@@ -1,0 +1,30 @@
+[
+ {
+  "x": "NONE",
+  "task_acceptance_rate": 0.417,
+  "package_accept_rate": 0.927,
+  "cost_per_accepted_usd": 0.0989,
+  "extra_calls": 0
+ },
+ {
+  "x": "RETRY",
+  "task_acceptance_rate": 0.917,
+  "package_accept_rate": 0.99,
+  "cost_per_accepted_usd": 0.0896,
+  "extra_calls": 8
+ },
+ {
+  "x": "RECRUIT-U",
+  "task_acceptance_rate": 1,
+  "package_accept_rate": 1,
+  "cost_per_accepted_usd": 0.0851,
+  "extra_calls": 8
+ },
+ {
+  "x": "RECRUIT-T",
+  "task_acceptance_rate": 0.917,
+  "package_accept_rate": 0.99,
+  "cost_per_accepted_usd": 0.0925,
+  "extra_calls": 8
+ }
+]

@@ -1,0 +1,385 @@
+{
+ "reps": [
+  1,
+  2
+ ],
+ "units": 14,
+ "arms": {
+  "CTRL": {
+   "requests": 14,
+   "accepted": 5,
+   "acceptance": 0.357,
+   "acceptanceCI": [
+    0.163,
+    0.612
+   ],
+   "falseSuccess": 9,
+   "costTotal": 0.585,
+   "costPerAccepted": 0.117,
+   "costPerAcceptedCI": [
+    0.042,
+    0.417
+   ],
+   "calls": 111,
+   "budgetHits": 0,
+   "errors": 0
+  },
+  "CTRL-NOMEM": {
+   "requests": 14,
+   "accepted": 6,
+   "acceptance": 0.429,
+   "acceptanceCI": [
+    0.214,
+    0.674
+   ],
+   "falseSuccess": 8,
+   "costTotal": 0.5821,
+   "costPerAccepted": 0.097,
+   "costPerAcceptedCI": [
+    0.033,
+    0.289
+   ],
+   "calls": 109,
+   "budgetHits": 0,
+   "errors": 0
+  },
+  "ALWAYS": {
+   "requests": 14,
+   "accepted": 4,
+   "acceptance": 0.286,
+   "acceptanceCI": [
+    0.117,
+    0.546
+   ],
+   "falseSuccess": 10,
+   "costTotal": 0.5885,
+   "costPerAccepted": 0.1471,
+   "costPerAcceptedCI": [
+    0.052,
+    0.755
+   ],
+   "calls": 138,
+   "budgetHits": 0,
+   "errors": 0
+  },
+  "SOLO-SEQ": {
+   "requests": 14,
+   "accepted": 6,
+   "acceptance": 0.429,
+   "acceptanceCI": [
+    0.214,
+    0.674
+   ],
+   "falseSuccess": 4,
+   "costTotal": 0.4842,
+   "costPerAccepted": 0.0807,
+   "costPerAcceptedCI": [
+    0.028,
+    0.263
+   ],
+   "calls": 31,
+   "budgetHits": 0,
+   "errors": 0
+  }
+ },
+ "byType": {
+  "qa": {
+   "CTRL": {
+    "n": 2,
+    "accepted": 2,
+    "cost": 0.0012,
+    "costPerRequest": 0.0006,
+    "calls": 2,
+    "meanWallS": 122.6
+   },
+   "CTRL-NOMEM": {
+    "n": 2,
+    "accepted": 2,
+    "cost": 0.0007,
+    "costPerRequest": 0.0003,
+    "calls": 1.5,
+    "meanWallS": 30.9
+   },
+   "ALWAYS": {
+    "n": 2,
+    "accepted": 2,
+    "cost": 0.0038,
+    "costPerRequest": 0.0019,
+    "calls": 6,
+    "meanWallS": 286.1
+   },
+   "SOLO-SEQ": {
+    "n": 2,
+    "accepted": 2,
+    "cost": 0.0009,
+    "costPerRequest": 0.0004,
+    "calls": 1.5,
+    "meanWallS": 93.5
+   }
+  },
+  "lp": {
+   "CTRL": {
+    "n": 4,
+    "accepted": 2,
+    "cost": 0.0184,
+    "costPerRequest": 0.0046,
+    "calls": 2,
+    "meanWallS": 149.8
+   },
+   "CTRL-NOMEM": {
+    "n": 4,
+    "accepted": 4,
+    "cost": 0.0275,
+    "costPerRequest": 0.0069,
+    "calls": 2,
+    "meanWallS": 169.9
+   },
+   "ALWAYS": {
+    "n": 4,
+    "accepted": 2,
+    "cost": 0.07,
+    "costPerRequest": 0.0175,
+    "calls": 6,
+    "meanWallS": 221.5
+   },
+   "SOLO-SEQ": {
+    "n": 4,
+    "accepted": 4,
+    "cost": 0.0277,
+    "costPerRequest": 0.0069,
+    "calls": 2,
+    "meanWallS": 126.6
+   }
+  },
+  "small": {
+   "CTRL": {
+    "n": 4,
+    "accepted": 1,
+    "cost": 0.2076,
+    "costPerRequest": 0.0519,
+    "calls": 7.3,
+    "meanWallS": 351.9
+   },
+   "CTRL-NOMEM": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.2122,
+    "costPerRequest": 0.0531,
+    "calls": 7.3,
+    "meanWallS": 338.5
+   },
+   "ALWAYS": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.1654,
+    "costPerRequest": 0.0413,
+    "calls": 8,
+    "meanWallS": 202.2
+   },
+   "SOLO-SEQ": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.1605,
+    "costPerRequest": 0.0401,
+    "calls": 2,
+    "meanWallS": 254
+   }
+  },
+  "large": {
+   "CTRL": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.3578,
+    "costPerRequest": 0.0894,
+    "calls": 17.5,
+    "meanWallS": 301.9
+   },
+   "CTRL-NOMEM": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.3418,
+    "costPerRequest": 0.0854,
+    "calls": 17.3,
+    "meanWallS": 280.7
+   },
+   "ALWAYS": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.3493,
+    "costPerRequest": 0.0873,
+    "calls": 17.5,
+    "meanWallS": 300.5
+   },
+   "SOLO-SEQ": {
+    "n": 4,
+    "accepted": 0,
+    "cost": 0.2951,
+    "costPerRequest": 0.0738,
+    "calls": 3,
+    "meanWallS": 407.5
+   }
+  }
+ },
+ "contrasts": [
+  {
+   "a": "CTRL",
+   "b": "ALWAYS",
+   "deltaAcceptance": 0.071,
+   "deltaCI": [
+    -0.214,
+    0.357
+   ],
+   "costPerAcceptedRatio": 0.795,
+   "ratioCI": [
+    0.194,
+    2.377
+   ],
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "a": "CTRL",
+   "b": "SOLO-SEQ",
+   "deltaAcceptance": -0.071,
+   "deltaCI": [
+    -0.286,
+    0.143
+   ],
+   "costPerAcceptedRatio": 1.45,
+   "ratioCI": [
+    0.743,
+    3.118
+   ],
+   "verdict": "INCONCLUSIVE"
+  },
+  {
+   "a": "CTRL-NOMEM",
+   "b": "ALWAYS",
+   "deltaAcceptance": 0.143,
+   "deltaCI": [
+    0,
+    0.357
+   ],
+   "costPerAcceptedRatio": 0.659,
+   "ratioCI": [
+    0.248,
+    1.07
+   ],
+   "verdict": "INCONCLUSIVE"
+  }
+ ],
+ "memory": {
+  "CTRL": {
+   "LP2": [
+    {
+     "rep": 1,
+     "firstPassVisibleFails": [
+      "viewport"
+     ],
+     "calls": 2,
+     "cost": 0.00264,
+     "accepted": false,
+     "usedPlaybook": true
+    },
+    {
+     "rep": 2,
+     "firstPassVisibleFails": [
+      "lang",
+      "viewport"
+     ],
+     "calls": 2,
+     "cost": 0.00328,
+     "accepted": false,
+     "usedPlaybook": true
+    }
+   ]
+  },
+  "CTRL-NOMEM": {
+   "LP2": [
+    {
+     "rep": 1,
+     "firstPassVisibleFails": [
+      "cta"
+     ],
+     "calls": 2,
+     "cost": 0.00649,
+     "accepted": true,
+     "usedPlaybook": false
+    },
+    {
+     "rep": 2,
+     "firstPassVisibleFails": [
+      "cta"
+     ],
+     "calls": 2,
+     "cost": 0.00634,
+     "accepted": true,
+     "usedPlaybook": false
+    }
+   ]
+  }
+ },
+ "responsiveness": {
+  "CTRL": {
+   "maxAckMs": 0,
+   "mainBlockedS": 0,
+   "batchWallS": 424,
+   "statusPollMaxMs": 2
+  },
+  "CTRL-NOMEM": {
+   "maxAckMs": 0,
+   "mainBlockedS": 0,
+   "batchWallS": 385.5,
+   "statusPollMaxMs": 1
+  },
+  "ALWAYS": {
+   "maxAckMs": 0,
+   "mainBlockedS": 0,
+   "batchWallS": 443,
+   "statusPollMaxMs": 1
+  },
+  "SOLO-SEQ": {
+   "maxAckMs": 1818485,
+   "mainBlockedS": 1669.7,
+   "batchWallS": 1669.7,
+   "statusPollMaxMs": 0
+  }
+ },
+ "unfold": {
+  "CTRL": {
+   "Q1": "0/2",
+   "LP1": "0/2",
+   "R-lm03": "2/2",
+   "R-lm04": "2/2",
+   "R-lx10": "2/2",
+   "R-lx11": "2/2",
+   "LP2": "0/2"
+  },
+  "CTRL-NOMEM": {
+   "Q1": "0/2",
+   "LP1": "0/2",
+   "R-lm03": "2/2",
+   "R-lm04": "2/2",
+   "R-lx10": "2/2",
+   "R-lx11": "2/2",
+   "LP2": "0/2"
+  },
+  "ALWAYS": {
+   "Q1": "2/2",
+   "LP1": "2/2",
+   "R-lm03": "2/2",
+   "R-lm04": "2/2",
+   "R-lx10": "2/2",
+   "R-lx11": "2/2",
+   "LP2": "2/2"
+  },
+  "SOLO-SEQ": {
+   "Q1": "0/2",
+   "LP1": "0/2",
+   "R-lm03": "0/2",
+   "R-lm04": "0/2",
+   "R-lx10": "0/2",
+   "R-lx11": "0/2",
+   "LP2": "0/2"
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "a08-token-bucket-idle",
+  "class": "a",
+  "split": "test",
+  "title": "Token bucket releases an extra burst after idleness",
+  "statement": "The module `src/bucket.mjs` implements a *token bucket* rate limiter with an injected clock.\n\n**Contract**\n\n- `createTokenBucket({ capacity, refillPerSecond, now })`: `capacity` and `refillPerSecond` must be finite numbers > 0 (otherwise `RangeError`); `now` must be a function (otherwise `TypeError`) that returns the current time in milliseconds, assumed **non-decreasing**.\n- The bucket **starts full** (`capacity` tokens) at the moment of creation.\n- **Continuous** refill: between any two instants separated by `Δ` ms, the bucket gains `Δ * refillPerSecond / 1000` tokens (fractions accumulate), but **never exceeds `capacity`**. In particular, the time during which the bucket stays full generates no credit for the future: whatever would exceed the capacity is discarded.\n- `tryTake(n = 1)`: if there are at least `n` tokens now, consumes `n` and returns `true`; otherwise returns `false` **without consuming anything**.\n- `available()`: `Math.floor` of the tokens available now.\n- `msUntil(n = 1)`: milliseconds until there are `n` tokens, rounded up (`Math.ceil`); `0` if there already are; `Infinity` if `n > capacity`.\n- `n` that is not a finite number > 0 → `RangeError`.\n\n**Examples** (clock controlled in the test)\n\n- `capacity: 1, refillPerSecond: 2`: `tryTake()` at t=0 → `true`; at t=250 → `false` (0.5 token); at t=500 → `true`.\n- `capacity: 2, refillPerSecond: 1`, created at t=0: at t=5000, `tryTake()` three times in a row → `true`, `true`, `false`.\n- `capacity: 2, refillPerSecond: 4`: after emptying the bucket, `msUntil(1)` → `250`; 125 ms later, `msUntil(2)` → `375`.\n\n**Reported symptom:** services that go some time without traffic, when they receive a burst, let through many more requests than the bucket capacity allows. With constant traffic the limiter seems to work. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/bucket.mjs",
+      "summary": "refill() returns early when the bucket is full without updating the reference instant (last), so the idle time with a full bucket is credited after the first consumption"
+    }
+  ],
+  "decomposable": false
+}

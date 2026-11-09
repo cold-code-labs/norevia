@@ -1,0 +1,62 @@
+{
+  "phase": "calib",
+  "task": "b03-geometria-kit",
+  "class": "b",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 3,
+    "total": 3
+  },
+  "hidden": {
+    "pass": 17,
+    "total": 17
+  },
+  "cost": 0.0028207,
+  "inTok": 5001,
+  "outTok": 2545,
+  "cacheRead": 0,
+  "cacheWrite": 4999,
+  "latencyMs": 8923,
+  "wallMs": 8925,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/vector.mjs",
+    "src/polygon.mjs",
+    "src/bbox.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:53:33.680Z",
+  "finalFiles": {
+    "src/vector.mjs": "/**\n * Vetores 2D imutáveis no formato { x, y }. Nenhuma função altera seus argumentos.\n */\n\nexport const vec = (x, y) => ({ x, y });\n\nexport function add(a, b) {\n  return { x: a.x + b.x, y: a.y + b.y };\n}\n\nexport function sub(a, b) {\n  return { x: a.x - b.x, y: a.y - b.y };\n}\n\nexport function scale(v, k) {\n  return { x: v.x * k, y: v.y * k };\n}\n\nexport function dot(a, b) {\n  return a.x * b.x + a.y * b.y;\n}\n\n/**\n * Produto vetorial 2D (componente z de a × b). Positivo quando b está no sentido\n * anti-horário a partir de a.\n */\nexport function cross(a, b) {\n  return a.x * b.y - a.y * b.x;\n}\n\nexport function length(v) {\n  return Math.hypot(v.x, v.y);\n}\n\n/** Vetor unitário na direção de v; vetor nulo → RangeError. */\nexport function normalize(v) {\n  const len = length(v);\n  if (len === 0) throw new RangeError('cannot normalize zero vector');\n  return { x: v.x / len, y: v.y / len };\n}\n\n/** Rotaciona v por `angle` radianos no sentido anti-horário. */\nexport function rotate(v, angle) {\n  const c = Math.cos(angle);\n  const s = Math.sin(angle);\n  return { x: v.x * c - v.y * s, y: v.x * s + v.y * c };\n}\n\n/**\n * Ângulo orientado de a para b, em radianos, no intervalo (-π, π]:\n * positivo se b está no sentido anti-horário a partir de a.\n */\nexport function angleBetween(a, b) {\n  return Math.atan2(cross(a, b), dot(a, b));\n}\n",
+    "src/polygon.mjs": "/**\n * Polígonos simples dados como array de vértices { x, y }. O polígono é\n * implicitamente fechado: o último vértice se liga ao primeiro.\n */\n\nfunction dist(p, q) {\n  return Math.hypot(q.x - p.x, q.y - p.y);\n}\n\n/** Área com sinal (fórmula do laço): positiva para vértices em sentido anti-horário. */\nexport function signedArea(poly) {\n  const n = poly.length;\n  let s = 0;\n  for (let i = 0; i < n; i++) {\n    const p = poly[i];\n    const q = poly[(i + 1) % n];\n    s += p.x * q.y - q.x * p.y;\n  }\n  return s / 2;\n}\n\nexport function area(poly) {\n  return Math.abs(signedArea(poly));\n}\n\n/** 'ccw', 'cw' ou 'degenerate' (área zero). */\nexport function orientation(poly) {\n  const a = signedArea(poly);\n  return a > 0 ? 'ccw' : a < 0 ? 'cw' : 'degenerate';\n}\n\n/**\n * Perímetro do polígono fechado (inclui a aresta do último ao primeiro vértice).\n * Menos de 2 vértices → 0.\n */\nexport function perimeter(poly) {\n  const n = poly.length;\n  if (n < 2) return 0;\n  let total = 0;\n  for (let i = 0; i < n; i++) total += dist(poly[i], poly[(i + 1) % n]);\n  return total;\n}\n\n/** Centroide (centro de massa da região). Área zero → RangeError. */\nexport function centroid(poly) {\n  const n = poly.length;\n  const a = signedArea(poly);\n  if (a === 0) throw new RangeError('degenerate polygon');\n  let cx = 0;\n  let cy = 0;\n  for (let i = 0; i < n; i++) {\n    const p = poly[i];\n    const q = poly[(i + 1) % n];\n    const f = p.x * q.y - q.x * p.y;\n    cx += (p.x + q.x) * f;\n    cy += (p.y + q.y) * f;\n  }\n  return { x: cx / (6 * a), y: cy / (6 * a) };\n}\n",
+    "src/bbox.mjs": "/**\n * Caixas delimitadoras alinhadas aos eixos: { minX, minY, maxX, maxY }.\n * As caixas são fechadas: a borda pertence à caixa.\n */\n\n/** Menor caixa que contém todos os pontos; lista vazia → null. */\nexport function boundingBox(points) {\n  if (points.length === 0) return null;\n  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;\n  for (const { x, y } of points) {\n    if (x < minX) minX = x;\n    if (y < minY) minY = y;\n    if (x > maxX) maxX = x;\n    if (y > maxY) maxY = y;\n  }\n  return { minX, minY, maxX, maxY };\n}\n\n/** true se as caixas têm algum ponto em comum (encostar em borda ou canto conta). */\nexport function intersects(a, b) {\n  return a.minX <= b.maxX && b.minX <= a.maxX && a.minY <= b.maxY && b.minY <= a.maxY;\n}\n\n/** Ponto dentro da caixa ou sobre a borda. */\nexport function containsPoint(box, p) {\n  return p.x >= box.minX && p.x <= box.maxX && p.y >= box.minY && p.y <= box.maxY;\n}\n\n/** Menor caixa que contém a e b. */\nexport function union(a, b) {\n  return {\n    minX: Math.min(a.minX, b.minX),\n    minY: Math.min(a.minY, b.minY),\n    maxX: Math.max(a.maxX, b.maxX),\n    maxY: Math.max(a.maxY, b.maxY),\n  };\n}\n\n/** Caixa aumentada de `margin` em todas as direções (margin negativo encolhe; se inverter → null). */\nexport function expand(box, margin) {\n  const out = { minX: box.minX - margin, minY: box.minY - margin, maxX: box.maxX + margin, maxY: box.maxY + margin };\n  return out.minX > out.maxX || out.minY > out.maxY ? null : out;\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0028207,
+      "outTok": 2545,
+      "latencyMs": 8923,
+      "promptChars": 8571,
+      "response": "=== FILE: src/vector.mjs ===\n/**\n * Vetores 2D imutáveis no formato { x, y }. Nenhuma função altera seus argumentos.\n */\n\nexport const vec = (x, y) => ({ x, y });\n\nexport function add(a, b) {\n  return { x: a.x + b.x, y: a.y + b.y };\n}\n\nexport function sub(a, b) {\n  return { x: a.x - b.x, y: a.y - b.y };\n}\n\nexport function scale(v, k) {\n  return { x: v.x * k, y: v.y * k };\n}\n\nexport function dot(a, b) {\n  return a.x * b.x + a.y * b.y;\n}\n\n/**\n * Produto vetorial 2D (componente z de a × b). Positivo quando b está no sentido\n * anti-horário a partir de a.\n */\nexport function cross(a, b) {\n  return a.x * b.y - a.y * b.x;\n}\n\nexport function length(v) {\n  return Math.hypot(v.x, v.y);\n}\n\n/** Vetor unitário na direção de v; vetor nulo → RangeError. */\nexport function normalize(v) {\n  const len = length(v);\n  if (len === 0) throw new RangeError('cannot normalize zero vector');\n  return { x: v.x / len, y: v.y / len };\n}\n\n/** Rotaciona v por `angle` radianos no sentido anti-horário. */\nexport function rotate(v, angle) {\n  const c = Math.cos(angle);\n  const s = Math.sin(angle);\n  return { x: v.x * c - v.y * s, y: v.x * s + v.y * c };\n}\n\n/**\n * Ângulo orientado de a para b, em radianos, no intervalo (-π, π]:\n * positivo se b está no sentido anti-horário a partir de a.\n */\nexport function angleBetween(a, b) {\n  return Math.atan2(cross(a, b), dot(a, b));\n}\n=== END FILE ===\n\n=== FILE: src/polygon.mjs ===\n/**\n * Polígonos simples dados como array de vértices { x, y }. O polígono é\n * implicitamente fechado: o último vértice se liga ao primeiro.\n */\n\nfunction dist(p, q) {\n  return Math.hypot(q.x - p.x, q.y - p.y);\n}\n\n/** Área com sinal (fórmula do laço): positiva para vértices em sentido anti-horário. */\nexport function signedArea(poly) {\n  const n = poly.length;\n  let s = 0;\n  for (let i = 0; i < n; i++) {\n    const p = poly[i];\n    const q = poly[(i + 1) % n];\n    s += p.x * q.y - q.x * p.y;\n  }\n  return s / 2;\n}\n\nexport function area(poly) {\n  return Math.abs(signedArea(poly));\n}\n\n/** 'ccw', 'cw' ou 'degenerate' (área zero). */\nexport function orientation(poly) {\n  const a = signedArea(poly);\n  return a > 0 ? 'ccw' : a < 0 ? 'cw' : 'degenerate';\n}\n\n/**\n * Perímetro do polígono fechado (inclui a aresta do último ao primeiro vértice).\n * Menos de 2 vértices → 0.\n */\nexport function perimeter(poly) {\n  const n = poly.length;\n  if (n < 2) return 0;\n  let total = 0;\n  for (let i = 0; i < n; i++) total += dist(poly[i], poly[(i + 1) % n]);\n  return total;\n}\n\n/** Centroide (centro de massa da região). Área zero → RangeError. */\nexport function centroid(poly) {\n  const n = poly.length;\n  const a = signedArea(poly);\n  if (a === 0) throw new RangeError('degenerate polygon');\n  let cx = 0;\n  let cy = 0;\n  for (let i = 0; i < n; i++) {\n    const p = poly[i];\n    const q = poly[(i + 1) % n];\n    const f = p.x * q.y - q.x * p.y;\n    cx += (p.x + q.x) * f;\n    cy += (p.y + q.y) * f;\n  }\n  return { x: cx / (6 * a), y: cy / (6 * a) };\n}\n=== END FILE ===\n\n=== FILE: src/bbox.mjs ===\n/**\n * Caixas delimitadoras alinhadas aos eixos: { minX, minY, maxX, maxY }.\n * As caixas são fechadas: a borda pertence à caixa.\n */\n\n/** Menor caixa que contém todos os pontos; lista vazia → null. */\nexport function boundingBox(points) {\n  if (points.length === 0) return null;\n  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;\n  for (const { x, y } of points) {\n    if (x < minX) minX = x;\n    if (y < minY) minY = y;\n    if (x > maxX) maxX = x;\n    if (y > maxY) maxY = y;\n  }\n  return { minX, minY, maxX, maxY };\n}\n\n/** true se as caixas têm algum ponto em comum (encostar em borda ou canto conta). */\nexport function intersects(a, b) {\n  return a.minX <= b.maxX && b.minX <= a.maxX && a.minY <= b.maxY && b.minY <= a.maxY;\n}\n\n/** Ponto dentro da caixa ou sobre a borda. */\nexport function containsPoint(box, p) {\n  return p.x >= box.minX && p.x <= box.maxX && p.y >= box.minY && p.y <= box.maxY;\n}\n\n/** Menor caixa que contém a e b. */\nexport function union(a, b) {\n  return {\n    minX: Math.min(a.minX, b.minX),\n    minY: Math.min(a.minY, b.minY),\n    maxX: Math.max(a.maxX, b.maxX),\n    maxY: Math.max(a.maxY, b.maxY),\n  };\n}\n\n/** Caixa aumentada de `margin` em todas as direções (margin negativo encolhe; se inverter → null). */\nexport function expand(box, margin) {\n  const out = { minX: box.minX - margin, minY: box.minY - margin, maxX: box.maxX + margin, maxY: box.maxY + margin };\n  return out.minX > out.maxX || out.minY > out.maxY ? null : out;\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

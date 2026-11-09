@@ -1,0 +1,14 @@
+{
+  "id": "a04-merge-intervals",
+  "class": "a",
+  "split": "dev",
+  "title": "mergeIntervals mutates the input pairs",
+  "statement": "The module `src/intervals.mjs` operates on closed intervals `[start, end]` of numbers.\n\n**Contract**\n\n- `mergeIntervals(intervals)` receives an array of pairs `[start, end]` (in any order) and returns the list of merged intervals, sorted by start, without overlaps. Intervals that overlap **or that merely touch at an endpoint** are merged (`[1, 3]` and `[3, 5]` become `[1, 5]`). An interval contained in another does not change the larger one. Empty input → `[]`; `[s, s]` is a valid one-point interval.\n- The functions are **pure**: they do not modify the received array, nor the `[start, end]` pairs inside it; the returned pairs are **new arrays** (changing the result does not affect the input), even when no interval is merged.\n- `coveredLength(intervals)` returns the sum of `end - start` of the merged intervals.\n- `covers(intervals, x)` returns `true` if `x` belongs to some interval (endpoints included).\n- Validation: input that is not an array, a pair that is not an array of 2 elements, or an endpoint that is not a number (or is `NaN`) → `TypeError`; `start > end` → `RangeError`.\n\n**Examples**\n\n- `mergeIntervals([[8, 10], [1, 3], [2, 6]])` → `[[1, 6], [8, 10]]`.\n- `mergeIntervals([[1, 10], [2, 3], [4, 12]])` → `[[1, 12]]`.\n- `coveredLength([[0, 2], [1, 5], [10, 12]])` → `7`.\n\n**Reported symptom:** a service calls `mergeIntervals` and then `coveredLength` on the same schedule array; the original schedule data appear altered after the calls and subsequent results become inconsistent. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/intervals.mjs",
+      "summary": "the spread copy is shallow: the original input pair is pushed into the result (out.push(iv)) and later mutated when merging, instead of pushing a copy [iv[0], iv[1]]"
+    }
+  ],
+  "decomposable": false
+}

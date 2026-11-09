@@ -1,0 +1,1287 @@
+{
+ "generated": "2026-11-08T19:08:30.725Z",
+ "phases": [
+  "main"
+ ],
+ "tasks": 9,
+ "tasksByTier": {
+  "mid": 4,
+  "multi": 5
+ },
+ "repetitions": 1,
+ "referenceBestArtificial": "SOLO",
+ "arms": [
+  {
+   "arm": "SOLO",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.1262,
+   "meanCalls": 1.78,
+   "medianLatencyS": 187.1,
+   "meanFinalFrac": 0.93,
+   "meanPkgAccepted": 0.477,
+   "budgetHits": 0,
+   "overshootRuns": 1,
+   "meanMsgs": 0,
+   "meanInTokK": 221.6
+  },
+  {
+   "arm": "ORCH",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0623,
+   "meanCalls": 4.56,
+   "medianLatencyS": 128.5,
+   "meanFinalFrac": 0.961,
+   "meanPkgAccepted": 0.552,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 5.1,
+   "meanInTokK": 72.6
+  },
+  {
+   "arm": "PIPE",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 5,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.1163,
+   "meanCalls": 3,
+   "medianLatencyS": 355.2,
+   "meanFinalFrac": 0.89,
+   "meanPkgAccepted": 0.417,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 1,
+   "meanInTokK": 227.3
+  },
+  {
+   "arm": "VOTE3",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 4,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.1869,
+   "meanCalls": 3,
+   "medianLatencyS": 224.4,
+   "meanFinalFrac": 0.82,
+   "meanPkgAccepted": 0.309,
+   "budgetHits": 0,
+   "overshootRuns": 2,
+   "meanMsgs": 0,
+   "meanInTokK": 374
+  },
+  {
+   "arm": "DEBATE",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 7,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.3277,
+   "meanCalls": 4.22,
+   "medianLatencyS": 411.9,
+   "meanFinalFrac": 0.911,
+   "meanPkgAccepted": 0.579,
+   "budgetHits": 6,
+   "overshootRuns": 3,
+   "meanMsgs": 4,
+   "meanInTokK": 481.2
+  },
+  {
+   "arm": "TODAY",
+   "kind": "artificial",
+   "mech": null,
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 3,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.2608,
+   "meanCalls": 8.78,
+   "medianLatencyS": 344.5,
+   "meanFinalFrac": 0.919,
+   "meanPkgAccepted": 0.465,
+   "budgetHits": 9,
+   "overshootRuns": 0,
+   "meanMsgs": 26.2,
+   "meanInTokK": 634.8
+  },
+  {
+   "arm": "CTRL",
+   "kind": "bio",
+   "mech": "division of labour",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0532,
+   "meanCalls": 6.56,
+   "medianLatencyS": 56.4,
+   "meanFinalFrac": 0.955,
+   "meanPkgAccepted": 0.512,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 74.8
+  },
+  {
+   "arm": "GATE",
+   "kind": "bio",
+   "mech": "adaptive activation",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0957,
+   "meanCalls": 5.22,
+   "medianLatencyS": 234.5,
+   "meanFinalFrac": 0.94,
+   "meanPkgAccepted": 0.517,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 183.7
+  },
+  {
+   "arm": "ELASTIC",
+   "kind": "bio",
+   "mech": "clonal expansion",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0836,
+   "meanCalls": 5.11,
+   "medianLatencyS": 212.7,
+   "meanFinalFrac": 0.937,
+   "meanPkgAccepted": 0.503,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 165.3
+  },
+  {
+   "arm": "THRESH-hab",
+   "kind": "bio",
+   "mech": "response threshold",
+   "runs": 9,
+   "accepted": 1,
+   "acceptance": 0.111,
+   "acceptanceCI": [
+    0.02,
+    0.435
+   ],
+   "falseSuccess": 8,
+   "costPerAccepted": 0.9919,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.1102,
+   "meanCalls": 14.56,
+   "medianLatencyS": 145.7,
+   "meanFinalFrac": 0.989,
+   "meanPkgAccepted": 0.799,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 160.9
+  },
+  {
+   "arm": "THRESH-fixed",
+   "kind": "ablation",
+   "mech": "response threshold",
+   "runs": 9,
+   "accepted": 3,
+   "acceptance": 0.333,
+   "acceptanceCI": [
+    0.121,
+    0.646
+   ],
+   "falseSuccess": 6,
+   "costPerAccepted": 0.406,
+   "costPerAcceptedCI": [
+    0.1896,
+    1.345
+   ],
+   "meanCost": 0.1353,
+   "meanCalls": 17.11,
+   "medianLatencyS": 203.2,
+   "meanFinalFrac": 0.989,
+   "meanPkgAccepted": 0.838,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 191.1
+  },
+  {
+   "arm": "STIG-evap",
+   "kind": "bio",
+   "mech": "stigmergy",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0464,
+   "meanCalls": 7.11,
+   "medianLatencyS": 125.4,
+   "meanFinalFrac": 0.948,
+   "meanPkgAccepted": 0.48,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 81.2
+  },
+  {
+   "arm": "STIG-noevap",
+   "kind": "ablation",
+   "mech": "stigmergy",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0533,
+   "meanCalls": 7.78,
+   "medianLatencyS": 147.8,
+   "meanFinalFrac": 0.953,
+   "meanPkgAccepted": 0.474,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 89.5
+  },
+  {
+   "arm": "QUORUM-q2",
+   "kind": "bio",
+   "mech": "quorum",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.0905,
+   "meanCalls": 13.89,
+   "medianLatencyS": 61.5,
+   "meanFinalFrac": 0.956,
+   "meanPkgAccepted": 0.474,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 161.4
+  },
+  {
+   "arm": "QUORUM-q1",
+   "kind": "ablation",
+   "mech": "quorum",
+   "runs": 9,
+   "accepted": 0,
+   "acceptance": 0,
+   "acceptanceCI": [
+    0,
+    0.299
+   ],
+   "falseSuccess": 9,
+   "costPerAccepted": null,
+   "costPerAcceptedCI": [
+    null,
+    null
+   ],
+   "meanCost": 0.044,
+   "meanCalls": 6.89,
+   "medianLatencyS": 57.1,
+   "meanFinalFrac": 0.948,
+   "meanPkgAccepted": 0.458,
+   "budgetHits": 0,
+   "overshootRuns": 0,
+   "meanMsgs": 0,
+   "meanInTokK": 79.2
+  }
+ ],
+ "contrasts": {
+  "CTRL": {
+   "vsBestArtificial": {
+    "mechanism": "CTRL",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "CTRL",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  },
+  "GATE": {
+   "vsBestArtificial": {
+    "mechanism": "GATE",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "GATE",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  },
+  "ELASTIC": {
+   "vsBestArtificial": {
+    "mechanism": "ELASTIC",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "ELASTIC",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  },
+  "THRESH-hab": {
+   "vsBestArtificial": {
+    "mechanism": "THRESH-hab",
+    "reference": "SOLO",
+    "deltaAcceptance": 0.111,
+    "deltaAcceptanceCI": [
+     0,
+     0.333
+    ],
+    "costRatio": 0,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     8,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "THRESH-hab",
+    "reference": "SOLO",
+    "deltaAcceptance": 0.111,
+    "deltaAcceptanceCI": [
+     0,
+     0.333
+    ],
+    "costRatio": 0,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     8,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  },
+  "STIG-evap": {
+   "vsBestArtificial": {
+    "mechanism": "STIG-evap",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "STIG-evap",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  },
+  "QUORUM-q2": {
+   "vsBestArtificial": {
+    "mechanism": "QUORUM-q2",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   },
+   "vsSolo": {
+    "mechanism": "QUORUM-q2",
+    "reference": "SOLO",
+    "deltaAcceptance": 0,
+    "deltaAcceptanceCI": [
+     0,
+     0
+    ],
+    "costRatio": null,
+    "costRatioCI": [
+     null,
+     null
+    ],
+    "falseSuccess": [
+     9,
+     9
+    ],
+    "verdict": "INCONCLUSIVE (no detectable difference)"
+   }
+  }
+ },
+ "byTier": {
+  "mid": {
+   "tasks": 4,
+   "referenceBestArtificial": "SOLO",
+   "arms": [
+    {
+     "arm": "SOLO",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 173.2
+    },
+    {
+     "arm": "ORCH",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 109.1
+    },
+    {
+     "arm": "PIPE",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 355.2
+    },
+    {
+     "arm": "VOTE3",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 192.1
+    },
+    {
+     "arm": "DEBATE",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 387.4
+    },
+    {
+     "arm": "TODAY",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 3,
+     "medianLatencyS": 369.2
+    },
+    {
+     "arm": "CTRL",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 49.8
+    },
+    {
+     "arm": "GATE",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 234.5
+    },
+    {
+     "arm": "ELASTIC",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 179.9
+    },
+    {
+     "arm": "THRESH-hab",
+     "accepted": "1/4",
+     "costPerAccepted": 0.279,
+     "falseSuccess": 3,
+     "medianLatencyS": 137.1
+    },
+    {
+     "arm": "THRESH-fixed",
+     "accepted": "2/4",
+     "costPerAccepted": 0.209,
+     "falseSuccess": 2,
+     "medianLatencyS": 213.5
+    },
+    {
+     "arm": "STIG-evap",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 105.3
+    },
+    {
+     "arm": "STIG-noevap",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 102.2
+    },
+    {
+     "arm": "QUORUM-q2",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 61.5
+    },
+    {
+     "arm": "QUORUM-q1",
+     "accepted": "0/4",
+     "costPerAccepted": null,
+     "falseSuccess": 4,
+     "medianLatencyS": 57.1
+    }
+   ],
+   "contrasts": {
+    "CTRL": {
+     "mechanism": "CTRL",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      4,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "GATE": {
+     "mechanism": "GATE",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      4,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "ELASTIC": {
+     "mechanism": "ELASTIC",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      4,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "THRESH-hab": {
+     "mechanism": "THRESH-hab",
+     "reference": "SOLO",
+     "deltaAcceptance": 0.25,
+     "deltaAcceptanceCI": [
+      0,
+      0.75
+     ],
+     "costRatio": 0,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      3,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "STIG-evap": {
+     "mechanism": "STIG-evap",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      4,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "QUORUM-q2": {
+     "mechanism": "QUORUM-q2",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      4,
+      4
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    }
+   }
+  },
+  "multi": {
+   "tasks": 5,
+   "referenceBestArtificial": "SOLO",
+   "arms": [
+    {
+     "arm": "SOLO",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 442.4
+    },
+    {
+     "arm": "ORCH",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 153.1
+    },
+    {
+     "arm": "PIPE",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 1,
+     "medianLatencyS": 376.2
+    },
+    {
+     "arm": "VOTE3",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 0,
+     "medianLatencyS": 238.2
+    },
+    {
+     "arm": "DEBATE",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 3,
+     "medianLatencyS": 441.9
+    },
+    {
+     "arm": "TODAY",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 0,
+     "medianLatencyS": 307.5
+    },
+    {
+     "arm": "CTRL",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 57
+    },
+    {
+     "arm": "GATE",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 284.7
+    },
+    {
+     "arm": "ELASTIC",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 270.9
+    },
+    {
+     "arm": "THRESH-hab",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 156.7
+    },
+    {
+     "arm": "THRESH-fixed",
+     "accepted": "1/5",
+     "costPerAccepted": 0.7999,
+     "falseSuccess": 4,
+     "medianLatencyS": 203.2
+    },
+    {
+     "arm": "STIG-evap",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 150.5
+    },
+    {
+     "arm": "STIG-noevap",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 187.7
+    },
+    {
+     "arm": "QUORUM-q2",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 71.8
+    },
+    {
+     "arm": "QUORUM-q1",
+     "accepted": "0/5",
+     "costPerAccepted": null,
+     "falseSuccess": 5,
+     "medianLatencyS": 62.7
+    }
+   ],
+   "contrasts": {
+    "CTRL": {
+     "mechanism": "CTRL",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "GATE": {
+     "mechanism": "GATE",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "ELASTIC": {
+     "mechanism": "ELASTIC",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "THRESH-hab": {
+     "mechanism": "THRESH-hab",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "STIG-evap": {
+     "mechanism": "STIG-evap",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    },
+    "QUORUM-q2": {
+     "mechanism": "QUORUM-q2",
+     "reference": "SOLO",
+     "deltaAcceptance": 0,
+     "deltaAcceptanceCI": [
+      0,
+      0
+     ],
+     "costRatio": null,
+     "costRatioCI": [
+      null,
+      null
+     ],
+     "falseSuccess": [
+      5,
+      5
+     ],
+     "verdict": "INCONCLUSIVE (no detectable difference)"
+    }
+   }
+  }
+ },
+ "ablations": [
+  {
+   "what": "stigmergy: evaporation vs none",
+   "mechanism": "STIG-evap",
+   "reference": "STIG-noevap",
+   "deltaAcceptance": 0,
+   "deltaAcceptanceCI": [
+    0,
+    0
+   ],
+   "costRatio": null,
+   "costRatioCI": [
+    null,
+    null
+   ],
+   "falseSuccess": [
+    9,
+    9
+   ],
+   "verdict": "INCONCLUSIVE (no detectable difference)"
+  },
+  {
+   "what": "threshold: habituating vs fixed",
+   "mechanism": "THRESH-hab",
+   "reference": "THRESH-fixed",
+   "deltaAcceptance": -0.222,
+   "deltaAcceptanceCI": [
+    -0.556,
+    0
+   ],
+   "costRatio": 2.443,
+   "costRatioCI": [
+    null,
+    null
+   ],
+   "falseSuccess": [
+    8,
+    6
+   ],
+   "verdict": "INCONCLUSIVE (no detectable difference)"
+  },
+  {
+   "what": "quorum: q=2 vs q=1",
+   "mechanism": "QUORUM-q2",
+   "reference": "QUORUM-q1",
+   "deltaAcceptance": 0,
+   "deltaAcceptanceCI": [
+    0,
+    0
+   ],
+   "costRatio": null,
+   "costRatioCI": [
+    null,
+    null
+   ],
+   "falseSuccess": [
+    9,
+    9
+   ],
+   "verdict": "INCONCLUSIVE (no detectable difference)"
+  }
+ ],
+ "pareto": [
+  {
+   "arm": "SOLO",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 187.1,
+   "dominated": true
+  },
+  {
+   "arm": "ORCH",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 128.5,
+   "dominated": true
+  },
+  {
+   "arm": "PIPE",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 355.2,
+   "dominated": true
+  },
+  {
+   "arm": "VOTE3",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 224.4,
+   "dominated": true
+  },
+  {
+   "arm": "DEBATE",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 411.9,
+   "dominated": true
+  },
+  {
+   "arm": "TODAY",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 344.5,
+   "dominated": true
+  },
+  {
+   "arm": "CTRL",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 56.4,
+   "dominated": false
+  },
+  {
+   "arm": "GATE",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 234.5,
+   "dominated": true
+  },
+  {
+   "arm": "ELASTIC",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 212.7,
+   "dominated": true
+  },
+  {
+   "arm": "THRESH-hab",
+   "costPerAccepted": 0.9919,
+   "acceptance": 0.111,
+   "medianLatencyS": 145.7,
+   "dominated": false
+  },
+  {
+   "arm": "THRESH-fixed",
+   "costPerAccepted": 0.406,
+   "acceptance": 0.333,
+   "medianLatencyS": 203.2,
+   "dominated": false
+  },
+  {
+   "arm": "STIG-evap",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 125.4,
+   "dominated": true
+  },
+  {
+   "arm": "STIG-noevap",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 147.8,
+   "dominated": true
+  },
+  {
+   "arm": "QUORUM-q2",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 61.5,
+   "dominated": true
+  },
+  {
+   "arm": "QUORUM-q1",
+   "costPerAccepted": null,
+   "acceptance": 0,
+   "medianLatencyS": 57.1,
+   "dominated": true
+  }
+ ]
+}

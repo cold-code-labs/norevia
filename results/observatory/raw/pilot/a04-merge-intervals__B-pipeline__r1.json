@@ -1,0 +1,87 @@
+{
+  "phase": "pilot",
+  "task": "a04-merge-intervals",
+  "class": "a",
+  "split": "dev",
+  "arch": "B-pipeline",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 7,
+    "total": 7
+  },
+  "cost": 0.0274545,
+  "inTok": 9933,
+  "outTok": 2037,
+  "cacheRead": 2371,
+  "cacheWrite": 7556,
+  "latencyMs": 16813,
+  "wallMs": 26142,
+  "calls": 3,
+  "reworkCalls": 1,
+  "failedCalls": 0,
+  "candidates": 2,
+  "discarded": 1,
+  "testRuns": 1,
+  "filesChanged": [
+    "src/intervals.mjs"
+  ],
+  "decomposed": null,
+  "events": [
+    {
+      "critiqueApprove": true,
+      "revisedFiles": []
+    }
+  ],
+  "error": null,
+  "ts": "2026-11-07T22:34:26.618Z",
+  "finalFiles": {
+    "src/intervals.mjs": "/**\n * Operações sobre intervalos fechados [start, end] de números.\n *\n * Intervalos que se sobrepõem ou que se tocam num extremo ([1, 3] e [3, 5])\n * são fundidos. As funções são puras: não modificam o array recebido nem os\n * pares [start, end] dentro dele, e os pares devolvidos são arrays novos.\n */\n\nfunction validate(intervals) {\n  if (!Array.isArray(intervals)) throw new TypeError('intervals must be an array');\n  for (const iv of intervals) {\n    if (!Array.isArray(iv) || iv.length !== 2) throw new TypeError('each interval must be [start, end]');\n    const [s, e] = iv;\n    if (typeof s !== 'number' || typeof e !== 'number' || Number.isNaN(s) || Number.isNaN(e)) {\n      throw new TypeError('interval bounds must be numbers');\n    }\n    if (s > e) throw new RangeError(`invalid interval [${s}, ${e}]`);\n  }\n}\n\n/**\n * Funde intervalos sobrepostos ou adjacentes. Resultado ordenado por início,\n * sem sobreposições.\n */\nexport function mergeIntervals(intervals) {\n  validate(intervals);\n  const sorted = [...intervals].sort((a, b) => a[0] - b[0] || a[1] - b[1]);\n  const out = [];\n  for (const iv of sorted) {\n    const last = out[out.length - 1];\n    if (last && iv[0] <= last[1]) {\n      last[1] = Math.max(last[1], iv[1]);\n    } else {\n      out.push([iv[0], iv[1]]);\n    }\n  }\n  return out;\n}\n\n/**\n * Comprimento total coberto pela união dos intervalos (soma de end - start\n * dos intervalos fundidos).\n */\nexport function coveredLength(intervals) {\n  return mergeIntervals(intervals).reduce((acc, [s, e]) => acc + (e - s), 0);\n}\n\n/**\n * true se `x` pertence a algum dos intervalos (extremos inclusos).\n */\nexport function covers(intervals, x) {\n  return mergeIntervals(intervals).some(([s, e]) => s <= x && x <= e);\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.0105324,
+      "outTok": 854,
+      "latencyMs": 6409,
+      "promptChars": 4275,
+      "response": "The bug: `out.push(iv)` pushes the input's own pair, which is later mutated by `last[1] = ...`. The fix is to push a copy.\n\n=== FILE: src/intervals.mjs ===\n/**\n * Operações sobre intervalos fechados [start, end] de números.\n *\n * Intervalos que se sobrepõem ou que se tocam num extremo ([1, 3] e [3, 5])\n * são fundidos. As funções são puras: não modificam o array recebido nem os\n * pares [start, end] dentro dele, e os pares devolvidos são arrays novos.\n */\n\nfunction validate(intervals) {\n  if (!Array.isArray(intervals)) throw new TypeError('intervals must be an array');\n  for (const iv of intervals) {\n    if (!Array.isArray(iv) || iv.length !== 2) throw new TypeError('each interval must be [start, end]');\n    const [s, e] = iv;\n    if (typeof s !== 'number' || typeof e !== 'number' || Number.isNaN(s) || Number.isNaN(e)) {\n      throw new TypeError('interval bounds must be numbers');\n    }\n    if (s > e) throw new RangeError(`invalid interval [${s}, ${e}]`);\n  }\n}\n\n/**\n * Funde intervalos sobrepostos ou adjacentes. Resultado ordenado por início,\n * sem sobreposições.\n */\nexport function mergeIntervals(intervals) {\n  validate(intervals);\n  const sorted = [...intervals].sort((a, b) => a[0] - b[0] || a[1] - b[1]);\n  const out = [];\n  for (const iv of sorted) {\n    const last = out[out.length - 1];\n    if (last && iv[0] <= last[1]) {\n      last[1] = Math.max(last[1], iv[1]);\n    } else {\n      out.push([iv[0], iv[1]]);\n    }\n  }\n  return out;\n}\n\n/**\n * Comprimento total coberto pela união dos intervalos (soma de end - start\n * dos intervalos fundidos).\n */\nexport function coveredLength(intervals) {\n  return mergeIntervals(intervals).reduce((acc, [s, e]) => acc + (e - s), 0);\n}\n\n/**\n * true se `x` pertence a algum dos intervalos (extremos inclusos).\n */\nexport function covers(intervals, x) {\n  return mergeIntervals(intervals).some(([s, e]) => s <= x && x <= e);\n}\n=== END FILE ==="
+    },
+    {
+      "role": "critic",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.0016917999999999998,
+      "outTok": 1174,
+      "latencyMs": 7378,
+      "promptChars": 6122,
+      "response": "APPROVE"
+    },
+    {
+      "role": "reviser",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.0152303,
+      "outTok": 9,
+      "latencyMs": 2979,
+      "promptChars": 6537,
+      "response": "NO CHANGES"
+    }
+  ],
+  "hiddenFailures": []
+}

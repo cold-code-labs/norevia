@@ -1,0 +1,6322 @@
+{
+ "lm01": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "calendario-fiscal",
+   "numeros-kit",
+   "grafos-kit",
+   "texto-largura"
+  ],
+  "loc": 1645,
+  "statementChars": 31371,
+  "promptChars": 87737,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/11",
+    "final": "76/108"
+   },
+   "reference": {
+    "probe": "11/11",
+    "final": "108/108"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm02": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "codecs-kit",
+   "replicas-kit",
+   "billing-kit",
+   "inventory-kit"
+  ],
+  "loc": 1494,
+  "statementChars": 20033,
+  "promptChars": 73628,
+  "expected": {
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "3/13",
+    "final": "37/76"
+   },
+   "reference": {
+    "probe": "13/13",
+    "final": "76/76"
+   },
+   "packages": [
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm03": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "calendar-kit",
+   "path-kit",
+   "cli-kit",
+   "search-kit"
+  ],
+  "loc": 1669,
+  "statementChars": 34360,
+  "promptChars": 97676,
+  "expected": {
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6,
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "9/16",
+    "final": "103/139"
+   },
+   "reference": {
+    "probe": "16/16",
+    "final": "139/139"
+   },
+   "packages": [
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm04": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "numeros-kit",
+   "grafos-kit",
+   "replicas-kit",
+   "path-kit"
+  ],
+  "loc": 1646,
+  "statementChars": 23233,
+  "promptChars": 76036,
+  "expected": {
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "6/12",
+    "final": "57/87"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "87/87"
+   },
+   "packages": [
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm05": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "calendario-fiscal",
+   "texto-largura",
+   "calendar-kit",
+   "search-kit"
+  ],
+  "loc": 1655,
+  "statementChars": 34754,
+  "promptChars": 97345,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "8/13",
+    "final": "92/127"
+   },
+   "reference": {
+    "probe": "13/13",
+    "final": "127/127"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm06": {
+  "tier": "mid",
+  "k": 3,
+  "packages": [
+   "protocolo-quadros",
+   "razao-partidas",
+   "recorrencia-agenda"
+  ],
+  "loc": 1276,
+  "statementChars": 23604,
+  "promptChars": 73489,
+  "expected": {
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "5/8",
+    "final": "5/42"
+   },
+   "reference": {
+    "probe": "8/8",
+    "final": "42/42"
+   },
+   "packages": [
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm07": {
+  "tier": "mid",
+  "k": 3,
+  "packages": [
+   "crdt-replicas",
+   "bytecode-vm",
+   "indice-paginas"
+  ],
+  "loc": 1545,
+  "statementChars": 19921,
+  "promptChars": 69873,
+  "expected": {
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "4/9",
+    "final": "5/34"
+   },
+   "reference": {
+    "probe": "9/9",
+    "final": "34/34"
+   },
+   "packages": [
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm08": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "layout-texto",
+   "relogio-vetorial",
+   "protocolo-quadros",
+   "bytecode-vm"
+  ],
+  "loc": 1915,
+  "statementChars": 24644,
+  "promptChars": 88789,
+  "expected": {
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "6/12",
+    "final": "7/41"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "41/41"
+   },
+   "packages": [
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm09": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "razao-partidas",
+   "recorrencia-agenda",
+   "indice-paginas",
+   "relogio-vetorial"
+  ],
+  "loc": 1644,
+  "statementChars": 24994,
+  "promptChars": 88551,
+  "expected": {
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/11",
+    "final": "9/48"
+   },
+   "reference": {
+    "probe": "11/11",
+    "final": "48/48"
+   },
+   "packages": [
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm10": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "crdt-replicas",
+   "layout-texto",
+   "bytecode-vm",
+   "razao-partidas"
+  ],
+  "loc": 1949,
+  "statementChars": 29276,
+  "promptChars": 98433,
+  "expected": {
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "5/12",
+    "final": "3/46"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "46/46"
+   },
+   "packages": [
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm11": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "calendario-fiscal",
+   "razao-partidas",
+   "grafos-kit",
+   "relogio-vetorial"
+  ],
+  "loc": 1743,
+  "statementChars": 31841,
+  "promptChars": 94397,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "8/12",
+    "final": "53/92"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "92/92"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm12": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "texto-largura",
+   "recorrencia-agenda",
+   "numeros-kit",
+   "indice-paginas"
+  ],
+  "loc": 1546,
+  "statementChars": 24524,
+  "promptChars": 81891,
+  "expected": {
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "6/10",
+    "final": "32/64"
+   },
+   "reference": {
+    "probe": "10/10",
+    "final": "64/64"
+   },
+   "packages": [
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm13": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "codecs-kit",
+   "protocolo-quadros",
+   "replicas-kit",
+   "layout-texto"
+  ],
+  "loc": 1456,
+  "statementChars": 8076,
+  "promptChars": 56574,
+  "expected": {
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "3/12",
+    "final": "2/26"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "26/26"
+   },
+   "packages": [
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm14": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "cli-kit",
+   "bytecode-vm",
+   "search-kit",
+   "crdt-replicas"
+  ],
+  "loc": 1876,
+  "statementChars": 36303,
+  "promptChars": 101863,
+  "expected": {
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "6/14",
+    "final": "55/98"
+   },
+   "reference": {
+    "probe": "14/14",
+    "final": "98/98"
+   },
+   "packages": [
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm15": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "billing-kit",
+   "recorrencia-agenda",
+   "inventory-kit",
+   "layout-texto"
+  ],
+  "loc": 1693,
+  "statementChars": 27261,
+  "promptChars": 92929,
+  "expected": {
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "5/12",
+    "final": "39/81"
+   },
+   "reference": {
+    "probe": "12/12",
+    "final": "81/81"
+   },
+   "packages": [
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm16": {
+  "tier": "mid",
+  "k": 4,
+  "packages": [
+   "calendar-kit",
+   "indice-paginas",
+   "path-kit",
+   "relogio-vetorial"
+  ],
+  "loc": 1746,
+  "statementChars": 24867,
+  "promptChars": 86648,
+  "expected": {
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "9/14",
+    "final": "56/87"
+   },
+   "reference": {
+    "probe": "14/14",
+    "final": "87/87"
+   },
+   "packages": [
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm17": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "pedido-centavos",
+   "cache-chaves",
+   "diff-patch",
+   "diario-checksum",
+   "eventos-projecao"
+  ],
+  "loc": 1110,
+  "statementChars": 25515,
+  "promptChars": 66660,
+  "expected": {
+   "probe/pedido-centavos__v-pedido.test.mjs": 2,
+   "final/pedido-centavos__pedido.test.mjs": 10,
+   "probe/cache-chaves__v-cache.test.mjs": 2,
+   "final/cache-chaves__cache.test.mjs": 3,
+   "final/cache-chaves__keys.test.mjs": 3,
+   "final/cache-chaves__repo.test.mjs": 6,
+   "probe/diff-patch__v-patch.test.mjs": 2,
+   "final/diff-patch__diff.test.mjs": 3,
+   "final/diff-patch__patch.test.mjs": 6,
+   "final/diff-patch__unified.test.mjs": 3,
+   "probe/diario-checksum__v-diario.test.mjs": 2,
+   "final/diario-checksum__diario.test.mjs": 10,
+   "probe/eventos-projecao__v-contas.test.mjs": 2,
+   "final/eventos-projecao__contas.test.mjs": 10
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "5/10",
+    "final": "31/54"
+   },
+   "reference": {
+    "probe": "10/10",
+    "final": "54/54"
+   },
+   "packages": [
+    {
+     "pkg": "pedido-centavos",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cache-chaves",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 8,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "diff-patch",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 7,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "diario-checksum",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 5,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "eventos-projecao",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 7,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm18": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "agenda-kit",
+   "estatistica-kit",
+   "grade-kit",
+   "datas-kit",
+   "geometria-kit"
+  ],
+  "loc": 908,
+  "statementChars": 17031,
+  "promptChars": 47340,
+  "expected": {
+   "probe/agenda-kit__v-agenda.test.mjs": 3,
+   "final/agenda-kit__priority-queue.test.mjs": 6,
+   "final/agenda-kit__rate-limiter.test.mjs": 6,
+   "final/agenda-kit__scheduler.test.mjs": 7,
+   "probe/estatistica-kit__v-estatistica.test.mjs": 3,
+   "final/estatistica-kit__central.test.mjs": 7,
+   "final/estatistica-kit__histogram.test.mjs": 7,
+   "final/estatistica-kit__percentile.test.mjs": 7,
+   "probe/grade-kit__v-grade.test.mjs": 4,
+   "final/grade-kit__flood.test.mjs": 7,
+   "final/grade-kit__grid.test.mjs": 7,
+   "final/grade-kit__matrix.test.mjs": 7,
+   "final/grade-kit__rle.test.mjs": 7,
+   "probe/datas-kit__v-datas.test.mjs": 3,
+   "final/datas-kit__business.test.mjs": 7,
+   "final/datas-kit__dates.test.mjs": 7,
+   "final/datas-kit__duration.test.mjs": 7,
+   "probe/geometria-kit__v-geometria.test.mjs": 3,
+   "final/geometria-kit__bbox.test.mjs": 6,
+   "final/geometria-kit__polygon.test.mjs": 5,
+   "final/geometria-kit__vector.test.mjs": 6
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "6/16",
+    "final": "63/106"
+   },
+   "reference": {
+    "probe": "16/16",
+    "final": "106/106"
+   },
+   "packages": [
+    {
+     "pkg": "agenda-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "estatistica-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "grade-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 18,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "datas-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "geometria-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 10,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm19": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "grafos-kit",
+   "texto-largura",
+   "replicas-kit",
+   "codecs-kit",
+   "numeros-kit"
+  ],
+  "loc": 1803,
+  "statementChars": 23997,
+  "promptChars": 83115,
+  "expected": {
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "5/14",
+    "final": "49/82"
+   },
+   "reference": {
+    "probe": "14/14",
+    "final": "82/82"
+   },
+   "packages": [
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm20": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "protocolo-quadros",
+   "crdt-replicas",
+   "razao-partidas",
+   "recorrencia-agenda",
+   "bytecode-vm"
+  ],
+  "loc": 2407,
+  "statementChars": 42679,
+  "promptChars": 128397,
+  "expected": {
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/14",
+    "final": "7/68"
+   },
+   "reference": {
+    "probe": "14/14",
+    "final": "68/68"
+   },
+   "packages": [
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm21": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "calendario-fiscal",
+   "codecs-kit",
+   "texto-largura",
+   "indice-paginas",
+   "relogio-vetorial"
+  ],
+  "loc": 1914,
+  "statementChars": 25716,
+  "promptChars": 92823,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/15",
+    "final": "49/84"
+   },
+   "reference": {
+    "probe": "15/15",
+    "final": "84/84"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lm22": {
+  "tier": "mid",
+  "k": 5,
+  "packages": [
+   "inventory-kit",
+   "cli-kit",
+   "billing-kit",
+   "bytecode-vm",
+   "layout-texto"
+  ],
+  "loc": 2315,
+  "statementChars": 38642,
+  "promptChars": 123073,
+  "expected": {
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5,
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/17",
+    "final": "69/120"
+   },
+   "reference": {
+    "probe": "17/17",
+    "final": "120/120"
+   },
+   "packages": [
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lp01": {
+  "tier": "probe",
+  "k": 3,
+  "packages": [
+   "texto-kit",
+   "estoque-kit",
+   "geometria-kit"
+  ],
+  "loc": 477,
+  "statementChars": 11393,
+  "promptChars": 28966,
+  "expected": {
+   "probe/texto-kit__v-kit.test.mjs": 3,
+   "final/texto-kit__slugify.test.mjs": 6,
+   "final/texto-kit__tokenize.test.mjs": 7,
+   "final/texto-kit__wrap.test.mjs": 6,
+   "probe/estoque-kit__v-estoque.test.mjs": 3,
+   "final/estoque-kit__discounts.test.mjs": 8,
+   "final/estoque-kit__ledger.test.mjs": 7,
+   "final/estoque-kit__money.test.mjs": 7,
+   "probe/geometria-kit__v-geometria.test.mjs": 3,
+   "final/geometria-kit__bbox.test.mjs": 6,
+   "final/geometria-kit__polygon.test.mjs": 5,
+   "final/geometria-kit__vector.test.mjs": 6
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "3/9",
+    "final": "42/58"
+   },
+   "reference": {
+    "probe": "9/9",
+    "final": "58/58"
+   },
+   "packages": [
+    {
+     "pkg": "texto-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 15,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "estoque-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 22
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 22,
+      "total": 22
+     }
+    },
+    {
+     "pkg": "geometria-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 10,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lp02": {
+  "tier": "probe",
+  "k": 9,
+  "packages": [
+   "agenda-kit",
+   "config-kit",
+   "estatistica-kit",
+   "url-kit",
+   "grade-kit",
+   "datas-kit",
+   "telemetria-varint",
+   "cursor-paginacao",
+   "expr-ast"
+  ],
+  "loc": 1801,
+  "statementChars": 34773,
+  "promptChars": 97624,
+  "expected": {
+   "probe/agenda-kit__v-agenda.test.mjs": 3,
+   "final/agenda-kit__priority-queue.test.mjs": 6,
+   "final/agenda-kit__rate-limiter.test.mjs": 6,
+   "final/agenda-kit__scheduler.test.mjs": 7,
+   "probe/config-kit__v-config.test.mjs": 3,
+   "final/config-kit__env.test.mjs": 7,
+   "final/config-kit__merge.test.mjs": 7,
+   "final/config-kit__validate.test.mjs": 7,
+   "probe/estatistica-kit__v-estatistica.test.mjs": 3,
+   "final/estatistica-kit__central.test.mjs": 7,
+   "final/estatistica-kit__histogram.test.mjs": 7,
+   "final/estatistica-kit__percentile.test.mjs": 7,
+   "probe/url-kit__v-url.test.mjs": 3,
+   "final/url-kit__path.test.mjs": 7,
+   "final/url-kit__query.test.mjs": 8,
+   "final/url-kit__route.test.mjs": 8,
+   "probe/grade-kit__v-grade.test.mjs": 4,
+   "final/grade-kit__flood.test.mjs": 7,
+   "final/grade-kit__grid.test.mjs": 7,
+   "final/grade-kit__matrix.test.mjs": 7,
+   "final/grade-kit__rle.test.mjs": 7,
+   "probe/datas-kit__v-datas.test.mjs": 3,
+   "final/datas-kit__business.test.mjs": 7,
+   "final/datas-kit__dates.test.mjs": 7,
+   "final/datas-kit__duration.test.mjs": 7,
+   "probe/telemetria-varint__v-ntel.test.mjs": 2,
+   "final/telemetria-varint__ntel.test.mjs": 10,
+   "probe/cursor-paginacao__v-paginacao.test.mjs": 2,
+   "final/cursor-paginacao__paginacao.test.mjs": 12,
+   "probe/expr-ast__v-expr.test.mjs": 2,
+   "final/expr-ast__expr.test.mjs": 11
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "10/25",
+    "final": "101/166"
+   },
+   "reference": {
+    "probe": "25/25",
+    "final": "166/166"
+   },
+   "packages": [
+    {
+     "pkg": "agenda-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "config-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "estatistica-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "url-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 18,
+      "total": 23
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 23,
+      "total": 23
+     }
+    },
+    {
+     "pkg": "grade-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 18,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "datas-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "telemetria-varint",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 5,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cursor-paginacao",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "expr-ast",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx01": {
+  "tier": "multi",
+  "k": 8,
+  "packages": [
+   "calendario-fiscal",
+   "numeros-kit",
+   "grafos-kit",
+   "texto-largura",
+   "protocolo-quadros",
+   "razao-partidas",
+   "recorrencia-agenda",
+   "indice-paginas"
+  ],
+  "loc": 3335,
+  "statementChars": 55361,
+  "promptChars": 175731,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "14/22",
+    "final": "84/158"
+   },
+   "reference": {
+    "probe": "22/22",
+    "final": "158/158"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx02": {
+  "tier": "multi",
+  "k": 9,
+  "packages": [
+   "codecs-kit",
+   "replicas-kit",
+   "billing-kit",
+   "calendar-kit",
+   "crdt-replicas",
+   "bytecode-vm",
+   "layout-texto",
+   "relogio-vetorial",
+   "path-kit"
+  ],
+  "loc": 3960,
+  "statementChars": 55193,
+  "promptChars": 191533,
+  "expected": {
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "11/29",
+    "final": "75/151"
+   },
+   "reference": {
+    "probe": "29/29",
+    "final": "151/151"
+   },
+   "packages": [
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx03": {
+  "tier": "multi",
+  "k": 10,
+  "packages": [
+   "inventory-kit",
+   "cli-kit",
+   "search-kit",
+   "texto-kit",
+   "estoque-kit",
+   "telemetria-varint",
+   "cursor-paginacao",
+   "expr-ast",
+   "agendador-heap",
+   "eventos-projecao"
+  ],
+  "loc": 2635,
+  "statementChars": 58488,
+  "promptChars": 157979,
+  "expected": {
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5,
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7,
+   "probe/texto-kit__v-kit.test.mjs": 3,
+   "final/texto-kit__slugify.test.mjs": 6,
+   "final/texto-kit__tokenize.test.mjs": 7,
+   "final/texto-kit__wrap.test.mjs": 6,
+   "probe/estoque-kit__v-estoque.test.mjs": 3,
+   "final/estoque-kit__discounts.test.mjs": 8,
+   "final/estoque-kit__ledger.test.mjs": 7,
+   "final/estoque-kit__money.test.mjs": 7,
+   "probe/telemetria-varint__v-ntel.test.mjs": 2,
+   "final/telemetria-varint__ntel.test.mjs": 10,
+   "probe/cursor-paginacao__v-paginacao.test.mjs": 2,
+   "final/cursor-paginacao__paginacao.test.mjs": 12,
+   "probe/expr-ast__v-expr.test.mjs": 2,
+   "final/expr-ast__expr.test.mjs": 11,
+   "probe/agendador-heap__v-agenda.test.mjs": 3,
+   "final/agendador-heap__agenda.test.mjs": 12,
+   "probe/eventos-projecao__v-contas.test.mjs": 2,
+   "final/eventos-projecao__contas.test.mjs": 10
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "14/29",
+    "final": "127/201"
+   },
+   "reference": {
+    "probe": "29/29",
+    "final": "201/201"
+   },
+   "packages": [
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "texto-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 15,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "estoque-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 22
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 22,
+      "total": 22
+     }
+    },
+    {
+     "pkg": "telemetria-varint",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 5,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cursor-paginacao",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "expr-ast",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "agendador-heap",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 5,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "eventos-projecao",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 7,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx04": {
+  "tier": "multi",
+  "k": 10,
+  "packages": [
+   "protocolo-quadros",
+   "crdt-replicas",
+   "razao-partidas",
+   "recorrencia-agenda",
+   "bytecode-vm",
+   "indice-paginas",
+   "layout-texto",
+   "relogio-vetorial",
+   "grafos-kit",
+   "texto-largura"
+  ],
+  "loc": 4501,
+  "statementChars": 66390,
+  "promptChars": 221598,
+  "retired": "whole-repo prompt above ~195k chars (long-context price tier)",
+  "expected": {
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "15/28",
+    "final": "51/144"
+   },
+   "reference": {
+    "probe": "28/28",
+    "final": "144/144"
+   },
+   "packages": [
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx05": {
+  "tier": "multi",
+  "k": 12,
+  "packages": [
+   "calendario-fiscal",
+   "numeros-kit",
+   "codecs-kit",
+   "grafos-kit",
+   "texto-largura",
+   "replicas-kit",
+   "protocolo-quadros",
+   "crdt-replicas",
+   "razao-partidas",
+   "recorrencia-agenda",
+   "bytecode-vm",
+   "indice-paginas"
+  ],
+  "loc": 5069,
+  "statementChars": 75611,
+  "promptChars": 251122,
+  "retired": "whole-repo prompt above ~195k chars (long-context price tier)",
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "16/34",
+    "final": "86/193"
+   },
+   "reference": {
+    "probe": "34/34",
+    "final": "193/193"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx06": {
+  "tier": "multi",
+  "k": 12,
+  "packages": [
+   "billing-kit",
+   "calendar-kit",
+   "inventory-kit",
+   "path-kit",
+   "cli-kit",
+   "search-kit",
+   "pedido-centavos",
+   "cache-chaves",
+   "diff-patch",
+   "diario-checksum",
+   "layout-texto",
+   "relogio-vetorial"
+  ],
+  "loc": 4263,
+  "statementChars": 80180,
+  "promptChars": 239457,
+  "retired": "whole-repo prompt above ~195k chars (long-context price tier)",
+  "expected": {
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6,
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7,
+   "probe/pedido-centavos__v-pedido.test.mjs": 2,
+   "final/pedido-centavos__pedido.test.mjs": 10,
+   "probe/cache-chaves__v-cache.test.mjs": 2,
+   "final/cache-chaves__cache.test.mjs": 3,
+   "final/cache-chaves__keys.test.mjs": 3,
+   "final/cache-chaves__repo.test.mjs": 6,
+   "probe/diff-patch__v-patch.test.mjs": 2,
+   "final/diff-patch__diff.test.mjs": 3,
+   "final/diff-patch__patch.test.mjs": 6,
+   "final/diff-patch__unified.test.mjs": 3,
+   "probe/diario-checksum__v-diario.test.mjs": 2,
+   "final/diario-checksum__diario.test.mjs": 10,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "19/37",
+    "final": "167/265"
+   },
+   "reference": {
+    "probe": "37/37",
+    "final": "265/265"
+   },
+   "packages": [
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "pedido-centavos",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cache-chaves",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 8,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "diff-patch",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 7,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "diario-checksum",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 5,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx07": {
+  "tier": "multi",
+  "k": 14,
+  "packages": [
+   "texto-kit",
+   "estoque-kit",
+   "geometria-kit",
+   "agenda-kit",
+   "config-kit",
+   "estatistica-kit",
+   "url-kit",
+   "telemetria-varint",
+   "pedido-centavos",
+   "cursor-paginacao",
+   "cache-chaves",
+   "expr-ast",
+   "diff-patch",
+   "agendador-heap"
+  ],
+  "loc": 2869,
+  "statementChars": 60123,
+  "promptChars": 162450,
+  "expected": {
+   "probe/texto-kit__v-kit.test.mjs": 3,
+   "final/texto-kit__slugify.test.mjs": 6,
+   "final/texto-kit__tokenize.test.mjs": 7,
+   "final/texto-kit__wrap.test.mjs": 6,
+   "probe/estoque-kit__v-estoque.test.mjs": 3,
+   "final/estoque-kit__discounts.test.mjs": 8,
+   "final/estoque-kit__ledger.test.mjs": 7,
+   "final/estoque-kit__money.test.mjs": 7,
+   "probe/geometria-kit__v-geometria.test.mjs": 3,
+   "final/geometria-kit__bbox.test.mjs": 6,
+   "final/geometria-kit__polygon.test.mjs": 5,
+   "final/geometria-kit__vector.test.mjs": 6,
+   "probe/agenda-kit__v-agenda.test.mjs": 3,
+   "final/agenda-kit__priority-queue.test.mjs": 6,
+   "final/agenda-kit__rate-limiter.test.mjs": 6,
+   "final/agenda-kit__scheduler.test.mjs": 7,
+   "probe/config-kit__v-config.test.mjs": 3,
+   "final/config-kit__env.test.mjs": 7,
+   "final/config-kit__merge.test.mjs": 7,
+   "final/config-kit__validate.test.mjs": 7,
+   "probe/estatistica-kit__v-estatistica.test.mjs": 3,
+   "final/estatistica-kit__central.test.mjs": 7,
+   "final/estatistica-kit__histogram.test.mjs": 7,
+   "final/estatistica-kit__percentile.test.mjs": 7,
+   "probe/url-kit__v-url.test.mjs": 3,
+   "final/url-kit__path.test.mjs": 7,
+   "final/url-kit__query.test.mjs": 8,
+   "final/url-kit__route.test.mjs": 8,
+   "probe/telemetria-varint__v-ntel.test.mjs": 2,
+   "final/telemetria-varint__ntel.test.mjs": 10,
+   "probe/pedido-centavos__v-pedido.test.mjs": 2,
+   "final/pedido-centavos__pedido.test.mjs": 10,
+   "probe/cursor-paginacao__v-paginacao.test.mjs": 2,
+   "final/cursor-paginacao__paginacao.test.mjs": 12,
+   "probe/cache-chaves__v-cache.test.mjs": 2,
+   "final/cache-chaves__cache.test.mjs": 3,
+   "final/cache-chaves__keys.test.mjs": 3,
+   "final/cache-chaves__repo.test.mjs": 6,
+   "probe/expr-ast__v-expr.test.mjs": 2,
+   "final/expr-ast__expr.test.mjs": 11,
+   "probe/diff-patch__v-patch.test.mjs": 2,
+   "final/diff-patch__diff.test.mjs": 3,
+   "final/diff-patch__patch.test.mjs": 6,
+   "final/diff-patch__unified.test.mjs": 3,
+   "probe/agendador-heap__v-agenda.test.mjs": 3,
+   "final/agendador-heap__agenda.test.mjs": 12
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "15/36",
+    "final": "138/221"
+   },
+   "reference": {
+    "probe": "36/36",
+    "final": "221/221"
+   },
+   "packages": [
+    {
+     "pkg": "texto-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 15,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "estoque-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 22
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 22,
+      "total": 22
+     }
+    },
+    {
+     "pkg": "geometria-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 10,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "agenda-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "config-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "estatistica-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "url-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 18,
+      "total": 23
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 23,
+      "total": 23
+     }
+    },
+    {
+     "pkg": "telemetria-varint",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 5,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "pedido-centavos",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cursor-paginacao",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "cache-chaves",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 8,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "expr-ast",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "diff-patch",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 7,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "agendador-heap",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 5,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx08": {
+  "tier": "multi",
+  "k": 12,
+  "packages": [
+   "calendario-fiscal",
+   "numeros-kit",
+   "grafos-kit",
+   "texto-largura",
+   "billing-kit",
+   "calendar-kit",
+   "path-kit",
+   "protocolo-quadros",
+   "crdt-replicas",
+   "razao-partidas",
+   "bytecode-vm",
+   "layout-texto"
+  ],
+  "loc": 5467,
+  "statementChars": 93801,
+  "promptChars": 286300,
+  "retired": "whole-repo prompt above ~195k chars (long-context price tier)",
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "20/37",
+    "final": "151/269"
+   },
+   "reference": {
+    "probe": "37/37",
+    "final": "269/269"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx09": {
+  "tier": "multi",
+  "k": 8,
+  "packages": [
+   "codecs-kit",
+   "replicas-kit",
+   "texto-kit",
+   "estoque-kit",
+   "crdt-replicas",
+   "bytecode-vm",
+   "layout-texto",
+   "relogio-vetorial"
+  ],
+  "loc": 2858,
+  "statementChars": 36055,
+  "promptChars": 132488,
+  "expected": {
+   "probe/codecs-kit__v-codecs.test.mjs": 4,
+   "final/codecs-kit__boundaries.test.mjs": 4,
+   "probe/replicas-kit__v-replicas.test.mjs": 2,
+   "final/replicas-kit__replica-state.test.mjs": 5,
+   "probe/texto-kit__v-kit.test.mjs": 3,
+   "final/texto-kit__slugify.test.mjs": 6,
+   "final/texto-kit__tokenize.test.mjs": 7,
+   "final/texto-kit__wrap.test.mjs": 6,
+   "probe/estoque-kit__v-estoque.test.mjs": 3,
+   "final/estoque-kit__discounts.test.mjs": 8,
+   "final/estoque-kit__ledger.test.mjs": 7,
+   "final/estoque-kit__money.test.mjs": 7,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/bytecode-vm__v-calc.test.mjs": 3,
+   "final/bytecode-vm__calc.test.mjs": 12,
+   "probe/layout-texto__v-layout.test.mjs": 3,
+   "final/layout-texto__unicode-layout.test.mjs": 3,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "7/24",
+    "final": "37/91"
+   },
+   "reference": {
+    "probe": "24/24",
+    "final": "91/91"
+   },
+   "packages": [
+    {
+     "pkg": "codecs-kit",
+     "probe": {
+      "pass": 0,
+      "total": 4
+     },
+     "final": {
+      "pass": 0,
+      "total": 4
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 4,
+      "total": 4
+     }
+    },
+    {
+     "pkg": "replicas-kit",
+     "probe": {
+      "pass": 0,
+      "total": 2
+     },
+     "final": {
+      "pass": 0,
+      "total": 5
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 5,
+      "total": 5
+     }
+    },
+    {
+     "pkg": "texto-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 15,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "estoque-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 22
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 22,
+      "total": 22
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "bytecode-vm",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    },
+    {
+     "pkg": "layout-texto",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 3
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 3,
+      "total": 3
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx10": {
+  "tier": "multi",
+  "k": 8,
+  "packages": [
+   "billing-kit",
+   "calendar-kit",
+   "inventory-kit",
+   "path-kit",
+   "cli-kit",
+   "search-kit",
+   "pedido-centavos",
+   "cache-chaves"
+  ],
+  "loc": 3001,
+  "statementChars": 62341,
+  "promptChars": 176134,
+  "expected": {
+   "probe/billing-kit__v-billing.test.mjs": 3,
+   "final/billing-kit__invoice.test.mjs": 7,
+   "final/billing-kit__money.test.mjs": 7,
+   "final/billing-kit__proration.test.mjs": 8,
+   "final/billing-kit__tax.test.mjs": 6,
+   "final/billing-kit__tiers.test.mjs": 6,
+   "probe/calendar-kit__v-kit.test.mjs": 4,
+   "final/calendar-kit__add.test.mjs": 7,
+   "final/calendar-kit__business.test.mjs": 7,
+   "final/calendar-kit__civil.test.mjs": 6,
+   "final/calendar-kit__isoweek.test.mjs": 6,
+   "final/calendar-kit__recur.test.mjs": 7,
+   "probe/inventory-kit__v-kit.test.mjs": 4,
+   "final/inventory-kit__allocate.test.mjs": 8,
+   "final/inventory-kit__lots.test.mjs": 7,
+   "final/inventory-kit__reorder.test.mjs": 6,
+   "final/inventory-kit__reserve.test.mjs": 7,
+   "final/inventory-kit__units.test.mjs": 5,
+   "probe/path-kit__v-kit.test.mjs": 4,
+   "final/path-kit__eol.test.mjs": 7,
+   "final/path-kit__glob.test.mjs": 7,
+   "final/path-kit__patch.test.mjs": 7,
+   "final/path-kit__pointer.test.mjs": 7,
+   "final/path-kit__posixpath.test.mjs": 6,
+   "probe/cli-kit__v-kit.test.mjs": 4,
+   "final/cli-kit__argv.test.mjs": 8,
+   "final/cli-kit__bytes.test.mjs": 7,
+   "final/cli-kit__duration.test.mjs": 7,
+   "final/cli-kit__ini.test.mjs": 8,
+   "final/cli-kit__suggest.test.mjs": 8,
+   "probe/search-kit__v-kit.test.mjs": 4,
+   "final/search-kit__analyze.test.mjs": 7,
+   "final/search-kit__cursor.test.mjs": 7,
+   "final/search-kit__fuzzy.test.mjs": 6,
+   "final/search-kit__highlight.test.mjs": 7,
+   "final/search-kit__rank.test.mjs": 7,
+   "probe/pedido-centavos__v-pedido.test.mjs": 2,
+   "final/pedido-centavos__pedido.test.mjs": 10,
+   "probe/cache-chaves__v-cache.test.mjs": 2,
+   "final/cache-chaves__cache.test.mjs": 3,
+   "final/cache-chaves__keys.test.mjs": 3,
+   "final/cache-chaves__repo.test.mjs": 6
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "14/27",
+    "final": "152/228"
+   },
+   "reference": {
+    "probe": "27/27",
+    "final": "228/228"
+   },
+   "packages": [
+    {
+     "pkg": "billing-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 20,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "calendar-kit",
+     "probe": {
+      "pass": 3,
+      "total": 4
+     },
+     "final": {
+      "pass": 26,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "inventory-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 17,
+      "total": 33
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 33,
+      "total": 33
+     }
+    },
+    {
+     "pkg": "path-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 24,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "cli-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 30,
+      "total": 38
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 38,
+      "total": 38
+     }
+    },
+    {
+     "pkg": "search-kit",
+     "probe": {
+      "pass": 2,
+      "total": 4
+     },
+     "final": {
+      "pass": 23,
+      "total": 34
+     },
+     "refProbe": {
+      "pass": 4,
+      "total": 4
+     },
+     "refFinal": {
+      "pass": 34,
+      "total": 34
+     }
+    },
+    {
+     "pkg": "pedido-centavos",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 4,
+      "total": 10
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 10,
+      "total": 10
+     }
+    },
+    {
+     "pkg": "cache-chaves",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 8,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx11": {
+  "tier": "multi",
+  "k": 9,
+  "packages": [
+   "calendario-fiscal",
+   "grafos-kit",
+   "texto-largura",
+   "config-kit",
+   "estatistica-kit",
+   "url-kit",
+   "protocolo-quadros",
+   "razao-partidas",
+   "recorrencia-agenda"
+  ],
+  "loc": 3107,
+  "statementChars": 59118,
+  "promptChars": 171026,
+  "expected": {
+   "probe/calendario-fiscal__v-kit.test.mjs": 3,
+   "final/calendario-fiscal__business.test.mjs": 6,
+   "final/calendario-fiscal__civil.test.mjs": 4,
+   "final/calendario-fiscal__easter.test.mjs": 5,
+   "final/calendario-fiscal__fiscal.test.mjs": 7,
+   "final/calendario-fiscal__isoweek.test.mjs": 7,
+   "final/calendario-fiscal__recur.test.mjs": 6,
+   "probe/grafos-kit__v-grafos.test.mjs": 3,
+   "final/grafos-kit__dijkstra.test.mjs": 7,
+   "final/grafos-kit__heap.test.mjs": 7,
+   "final/grafos-kit__mst.test.mjs": 4,
+   "final/grafos-kit__scc.test.mjs": 5,
+   "final/grafos-kit__topo.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/config-kit__v-config.test.mjs": 3,
+   "final/config-kit__env.test.mjs": 7,
+   "final/config-kit__merge.test.mjs": 7,
+   "final/config-kit__validate.test.mjs": 7,
+   "probe/estatistica-kit__v-estatistica.test.mjs": 3,
+   "final/estatistica-kit__central.test.mjs": 7,
+   "final/estatistica-kit__histogram.test.mjs": 7,
+   "final/estatistica-kit__percentile.test.mjs": 7,
+   "probe/url-kit__v-url.test.mjs": 3,
+   "final/url-kit__path.test.mjs": 7,
+   "final/url-kit__query.test.mjs": 8,
+   "final/url-kit__route.test.mjs": 8,
+   "probe/protocolo-quadros__v-protocolo.test.mjs": 3,
+   "final/protocolo-quadros__session.test.mjs": 9,
+   "final/protocolo-quadros__utf8-frame.test.mjs": 5,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "13/25",
+    "final": "117/195"
+   },
+   "reference": {
+    "probe": "25/25",
+    "final": "195/195"
+   },
+   "packages": [
+    {
+     "pkg": "calendario-fiscal",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 27,
+      "total": 35
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 35,
+      "total": 35
+     }
+    },
+    {
+     "pkg": "grafos-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 22,
+      "total": 28
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 28,
+      "total": 28
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "config-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 17,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "estatistica-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "url-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 18,
+      "total": 23
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 23,
+      "total": 23
+     }
+    },
+    {
+     "pkg": "protocolo-quadros",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 2,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ },
+ "lx12": {
+  "tier": "multi",
+  "k": 9,
+  "packages": [
+   "numeros-kit",
+   "texto-largura",
+   "agenda-kit",
+   "datas-kit",
+   "crdt-replicas",
+   "razao-partidas",
+   "recorrencia-agenda",
+   "indice-paginas",
+   "relogio-vetorial"
+  ],
+  "loc": 3222,
+  "statementChars": 55808,
+  "promptChars": 173247,
+  "expected": {
+   "probe/numeros-kit__v-kit.test.mjs": 3,
+   "final/numeros-kit__allocate.test.mjs": 4,
+   "final/numeros-kit__compact.test.mjs": 4,
+   "final/numeros-kit__format.test.mjs": 4,
+   "final/numeros-kit__parse.test.mjs": 3,
+   "final/numeros-kit__round.test.mjs": 5,
+   "probe/texto-largura__v-texto.test.mjs": 2,
+   "final/texto-largura__align.test.mjs": 5,
+   "final/texto-largura__box.test.mjs": 2,
+   "final/texto-largura__grapheme.test.mjs": 5,
+   "final/texto-largura__truncate.test.mjs": 4,
+   "final/texto-largura__width.test.mjs": 5,
+   "final/texto-largura__wrap.test.mjs": 4,
+   "probe/agenda-kit__v-agenda.test.mjs": 3,
+   "final/agenda-kit__priority-queue.test.mjs": 6,
+   "final/agenda-kit__rate-limiter.test.mjs": 6,
+   "final/agenda-kit__scheduler.test.mjs": 7,
+   "probe/datas-kit__v-datas.test.mjs": 3,
+   "final/datas-kit__business.test.mjs": 7,
+   "final/datas-kit__dates.test.mjs": 7,
+   "final/datas-kit__duration.test.mjs": 7,
+   "probe/crdt-replicas__v-crdt.test.mjs": 3,
+   "final/crdt-replicas__crdt.test.mjs": 14,
+   "probe/razao-partidas__v-razao.test.mjs": 3,
+   "final/razao-partidas__journal.test.mjs": 3,
+   "final/razao-partidas__ledger.test.mjs": 4,
+   "final/razao-partidas__money.test.mjs": 5,
+   "final/razao-partidas__report.test.mjs": 5,
+   "probe/recorrencia-agenda__v-agenda.test.mjs": 2,
+   "final/recorrencia-agenda__agenda.test.mjs": 11,
+   "probe/indice-paginas__v-indice.test.mjs": 3,
+   "final/indice-paginas__cursors.test.mjs": 3,
+   "final/indice-paginas__keys-pages.test.mjs": 5,
+   "probe/relogio-vetorial__v-causal.test.mjs": 3,
+   "final/relogio-vetorial__cluster.test.mjs": 6,
+   "final/relogio-vetorial__delivery.test.mjs": 3,
+   "final/relogio-vetorial__vclock.test.mjs": 3
+  },
+  "validation": {
+   "valid": true,
+   "buggy": {
+    "probe": "13/25",
+    "final": "59/147"
+   },
+   "reference": {
+    "probe": "25/25",
+    "final": "147/147"
+   },
+   "packages": [
+    {
+     "pkg": "numeros-kit",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 20
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 20,
+      "total": 20
+     }
+    },
+    {
+     "pkg": "texto-largura",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 16,
+      "total": 25
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 25,
+      "total": 25
+     }
+    },
+    {
+     "pkg": "agenda-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 12,
+      "total": 19
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 19,
+      "total": 19
+     }
+    },
+    {
+     "pkg": "datas-kit",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 11,
+      "total": 21
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 21,
+      "total": 21
+     }
+    },
+    {
+     "pkg": "crdt-replicas",
+     "probe": {
+      "pass": 1,
+      "total": 3
+     },
+     "final": {
+      "pass": 0,
+      "total": 14
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 14,
+      "total": 14
+     }
+    },
+    {
+     "pkg": "razao-partidas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 1,
+      "total": 17
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 17,
+      "total": 17
+     }
+    },
+    {
+     "pkg": "recorrencia-agenda",
+     "probe": {
+      "pass": 1,
+      "total": 2
+     },
+     "final": {
+      "pass": 2,
+      "total": 11
+     },
+     "refProbe": {
+      "pass": 2,
+      "total": 2
+     },
+     "refFinal": {
+      "pass": 11,
+      "total": 11
+     }
+    },
+    {
+     "pkg": "indice-paginas",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 8
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 8,
+      "total": 8
+     }
+    },
+    {
+     "pkg": "relogio-vetorial",
+     "probe": {
+      "pass": 2,
+      "total": 3
+     },
+     "final": {
+      "pass": 3,
+      "total": 12
+     },
+     "refProbe": {
+      "pass": 3,
+      "total": 3
+     },
+     "refFinal": {
+      "pass": 12,
+      "total": 12
+     }
+    }
+   ]
+  },
+  "blindPackages": []
+ }
+}

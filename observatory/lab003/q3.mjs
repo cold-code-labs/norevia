@@ -1,0 +1,22 @@
+// Q3 — does request-type memory help? One ordered sequence of single-package requests per repetition (all 38 packages, seeded shuffle), run twice: NOMEM and MEM.
+// Request type = package class (b: independent kit; c: coupled system). MEM: after a task whose final probe passes, one distillation call writes ≤ 3 lessons;
+// lessons are kept per type, bounded to 1,200 characters (oldest dropped) and given to later tasks of the same type. Memory starts empty in every repetition.
+import fs from 'node:fs'; import path from 'node:path';
+import { compose, loadTask3, loadPkgs } from './build3.mjs'; import { shuffle } from './plan.mjs'; import { Run, runPolicy, SOLO, CapError } from './engine3.mjs'; import { OUT, spentCounted, CAP } from './api.mjs';
+const argv = process.argv.slice(2); const opt = (k, d) => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i + 1] : d; };
+const rep = Number(opt('rep', 1)), phase = opt('phase', 'q3'), stopAt = Number(opt('stop-at', 14.0)), len = Number(opt('len', 38)); const file = path.join(OUT, `runs-${phase}.jsonl`); const pk = loadPkgs();
+const order = shuffle(Object.keys(pk), 1000 + rep).slice(0, len); for (const n of order) compose(`m-${n}`, [n], 0.6, pk);
+const done = new Set(fs.existsSync(file) ? fs.readFileSync(file, 'utf8').split('\n').filter(Boolean).map((l) => { const r = JSON.parse(l); return `${r.arm}|${r.rep}|${r.pos}`; }) : []);
+const changedLines = (task, files) => Object.entries(files).map(([f, v]) => { const old = (task.src[f] || '').split('\n'); const s = new Set(old); const add = v.split('\n').filter((l) => l.trim() && !s.has(l)).slice(0, 25); return add.length ? `${f}\n${add.map((l) => '+ ' + l).join('\n')}` : ''; }).filter(Boolean).join('\n').slice(0, 3000);
+const BOUND = 1200;
+async function seq(arm) {
+  const mem = { b: [], c: [] }; const memChars = (t) => mem[t].join(' ').length;
+  for (let pos = 0; pos < order.length; pos++) { if (spentCounted() > stopAt) return; const name = order[pos]; if (done.has(`${arm}|${rep}|${pos}`)) continue; const task = loadTask3(`m-${name}`); const type = pk[name].class;
+    const note = arm === 'MEM' && mem[type].length ? `## Lessons from earlier tasks of this type (bug patterns found before; check them first)\n${mem[type].map((l) => `- ${l}`).join('\n')}` : ''; let out;
+    try { out = await runPolicy(task, `${phase}.${arm}.r${rep}.${pos}`, (run) => SOLO(run, { memoryNote: note })); } catch (e) { console.log('STOP', e.message); return; }
+    const { res, rec } = out; let distillCost = 0, lessons = null;
+    if (arm === 'MEM' && res.p.allPass) { const dr = new Run(task, `${phase}.distill.r${rep}.${pos}`, { maxCalls: 1, maxUsd: 0.02 }); const txt = await dr.agent('distill', `A single agent just fixed a ${type === 'b' ? 'kit of independent modules' : 'coupled system'} package. First-attempt probe failures:\n${(res.first.p.failures || []).slice(0, 8).map((f) => `- ${f.name}: ${f.message}`).join('\n') || '(none)'}\n\nLines it changed:\n${changedLines(task, res.files)}\n\nWrite at most 3 generic lessons (each ≤ 160 characters) about bug patterns to check first when fixing this kind of package. No package or function names. Output one lesson per line, starting with "- ".`, { system: 'You write short reusable engineering lessons.', maxTokens: 600 }); distillCost = dr.spent; lessons = (txt || '').split('\n').map((l) => l.replace(/^[-*]\s*/, '').trim()).filter((l) => l.length > 10).slice(0, 3).map((l) => l.slice(0, 160)); mem[type].push(...lessons); while (memChars(type) > BOUND && mem[type].length > 1) mem[type].shift(); }
+    const row = { phase, arm, rep, pos, pkg: name, type, firstPassProbe: res.first.p.allPass, firstPassFail: !res.first.p.allPass, accepted: rec.accepted, falseSuccess: rec.falseSuccess, solveCost: rec.cost, distillCost: +distillCost.toFixed(5), cost: +(rec.cost + distillCost).toFixed(5), calls: rec.calls, memoryChars: note.length, lessonsAdded: lessons?.length || 0, error: rec.error };
+    fs.appendFileSync(file, JSON.stringify(row) + '\n'); console.log(`${arm} r${rep} #${pos} ${name}: first ${row.firstPassProbe ? 'P' : 'x'} ${row.accepted ? 'ACC' : 'fail'} $${row.cost} mem ${row.memoryChars}c | counted $${spentCounted().toFixed(3)}`); }
+}
+console.log(`${phase} rep ${rep}: sequence of ${order.length}; counted $${spentCounted().toFixed(3)} of $${CAP}`); await Promise.all([seq('NOMEM'), seq('MEM')]); console.log(`end; counted $${spentCounted().toFixed(3)} of $${CAP}`);

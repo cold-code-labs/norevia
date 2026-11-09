@@ -1,0 +1,22 @@
+{
+  "id": "b04-agenda-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "Scheduling kit: priority queue, scheduler and token bucket",
+  "statement": "# Scheduling kit with an injected clock (`src/`)\n\nPackage with four modules: `clock.mjs` (clocks), `priority-queue.mjs`, `scheduler.mjs` and `rate-limiter.mjs`. The last three are independent of each other and depend only on a clock object with `now()` (ms). Production reports: jobs of the same priority being processed out of arrival order and the rate limiter releasing large bursts after idle periods. All modules must fully obey the contract below.\n\n## `src/clock.mjs`\n\n- `createManualClock(start = 0)` → `{ now(), advance(ms) }`: `advance` adds `ms >= 0` (otherwise `RangeError`) and returns the new time. `systemClock` uses `Date.now()`.\n\n## `src/priority-queue.mjs`\n\nClass `PriorityQueue(compare = (a, b) => a - b)`: min-heap; `compare` follows the `Array#sort` convention (negative ⇒ `a` comes out first).\n- `push(value)` returns the new size; `pop()` removes and returns the smallest; `peek()` returns the smallest without removing it; both return `undefined` when the queue is empty; `size` (getter); `drain()` empties the queue returning the elements in output order.\n- Stability: elements that the comparator considers equal (`compare` = 0) come out **in insertion order** (FIFO), even with interleaved `push`/`pop`. E.g.: with `compare = (a, b) => a.p - b.p`, inserting `a1(p=2), b(p=1), a2(p=2), c(p=1)` and draining gives `b, c, a1, a2`.\n\n## `src/scheduler.mjs`\n\n`createScheduler(clock)` → object with:\n- `schedule(fn, delay = 0)`: schedules `fn` for the instant `clock.now() + delay`; negative `delay` → `RangeError`. Returns sequential ids `1, 2, 3, …` (per scheduler).\n- `cancel(id)`: removes the pending task; returns `true` if it existed, otherwise `false`.\n- `pending()`: number of pending tasks. `nextDue()`: smallest pending instant, or `null`.\n- `runDue()`: runs all **due** tasks, that is, with instant `<= clock.now()` (a task scheduled for 1100 runs in a call made at 1100); order: ascending instant and, on a tie, scheduling order. Each `fn` receives its own id. Tasks scheduled by the `fn`s themselves during execution only run in a later call. Returns how many tasks it ran. E.g.: `schedule(f)` followed by `runDue()` without advancing the clock runs `f` and returns `1`.\n\n## `src/rate-limiter.mjs`\n\n`createTokenBucket({ capacity, refillPerSecond, clock })` (`capacity > 0` and `refillPerSecond > 0`, otherwise `RangeError`). The bucket starts full and is refilled continuously at the rate of `refillPerSecond` tokens/s (fractions count: 250 ms at 2 tokens/s = 0.5 token), **never exceeding `capacity`** — tokens that would exceed the capacity are lost.\n- `tryRemove(n = 1)`: if there are `>= n` tokens, consumes them and returns `true`; otherwise returns `false` without consuming. `n > capacity` → `RangeError`.\n- `available()`: tokens available now (may be fractional).\n- `msUntil(n = 1)`: `0` if there are already `n` tokens; otherwise `Math.ceil((n - available) * 1000 / refillPerSecond)`.\n- E.g.: `capacity: 2, refillPerSecond: 1`; consuming 2 and waiting 10 s → `available()` is `2`.",
+  "bugs": [
+    {
+      "file": "src/priority-queue.mjs",
+      "summary": "sequence tie-break inverted (a.seq > b.seq): ties come out in LIFO order"
+    },
+    {
+      "file": "src/scheduler.mjs",
+      "summary": "runDue uses due < now instead of <=: a task at the exact instant (and delay 0) does not run"
+    },
+    {
+      "file": "src/rate-limiter.mjs",
+      "summary": "refill is not capped at the capacity (missing Math.min)"
+    }
+  ],
+  "decomposable": true
+}

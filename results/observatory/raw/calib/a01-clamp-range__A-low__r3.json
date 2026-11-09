@@ -1,0 +1,58 @@
+{
+  "phase": "calib",
+  "task": "a01-clamp-range",
+  "class": "a",
+  "split": "dev",
+  "arch": "A-low",
+  "rep": 3,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 2,
+    "total": 2
+  },
+  "hidden": {
+    "pass": 4,
+    "total": 4
+  },
+  "cost": 0.00044967000000000005,
+  "inTok": 1489,
+  "outTok": 344,
+  "cacheRead": 1107,
+  "cacheWrite": 380,
+  "latencyMs": 3344,
+  "wallMs": 3346,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/range.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T22:58:10.973Z",
+  "finalFiles": {
+    "src/range.mjs": "/**\n * range(start, end, step = 1): array de números de start (inclusive) até end (exclusive).\n * step pode ser negativo; step 0 lança RangeError.\n */\nexport function range(start, end, step = 1) {\n  if (step === 0) throw new RangeError('step must not be 0');\n  const out = [];\n  if (step > 0) {\n    for (let x = start; x < end; x += step) out.push(x);\n  } else {\n    for (let x = start; x > end; x += step) out.push(x);\n  }\n  return out;\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "haiku",
+      "effort": "low",
+      "ok": true,
+      "error": null,
+      "cost": 0.00044967000000000005,
+      "outTok": 344,
+      "latencyMs": 3344,
+      "promptChars": 1600,
+      "response": "The descending branch used `x >= end`, which includes `end`. It should be `x > end` to match the exclusive bound.\n\n=== FILE: src/range.mjs ===\n/**\n * range(start, end, step = 1): array de números de start (inclusive) até end (exclusive).\n * step pode ser negativo; step 0 lança RangeError.\n */\nexport function range(start, end, step = 1) {\n  if (step === 0) throw new RangeError('step must not be 0');\n  const out = [];\n  if (step > 0) {\n    for (let x = start; x < end; x += step) out.push(x);\n  } else {\n    for (let x = start; x > end; x += step) out.push(x);\n  }\n  return out;\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

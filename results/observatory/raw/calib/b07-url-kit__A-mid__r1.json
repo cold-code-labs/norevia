@@ -1,0 +1,62 @@
+{
+  "phase": "calib",
+  "task": "b07-url-kit",
+  "class": "b",
+  "split": "test",
+  "arch": "A-mid",
+  "rep": 1,
+  "accepted": true,
+  "visibleAllPass": true,
+  "hiddenAllPass": true,
+  "falseSuccess": false,
+  "visible": {
+    "pass": 3,
+    "total": 3
+  },
+  "hidden": {
+    "pass": 23,
+    "total": 23
+  },
+  "cost": 0.047280199999999994,
+  "inTok": 5429,
+  "outTok": 2498,
+  "cacheRead": 0,
+  "cacheWrite": 5427,
+  "latencyMs": 16345,
+  "wallMs": 16346,
+  "calls": 1,
+  "reworkCalls": 0,
+  "failedCalls": 0,
+  "candidates": 1,
+  "discarded": 0,
+  "testRuns": 0,
+  "filesChanged": [
+    "src/query.mjs",
+    "src/path.mjs",
+    "src/route.mjs"
+  ],
+  "decomposed": null,
+  "events": [],
+  "error": null,
+  "ts": "2026-11-07T23:00:05.810Z",
+  "finalFiles": {
+    "src/query.mjs": "/**\n * Query strings no formato application/x-www-form-urlencoded.\n */\n\nfunction decode(s) {\n  const t = s.replace(/\\+/g, ' ');\n  try {\n    return decodeURIComponent(t);\n  } catch {\n    return t;\n  }\n}\n\nexport function parseQuery(qs) {\n  const out = {};\n  const body = qs.startsWith('?') ? qs.slice(1) : qs;\n  for (const pair of body.split('&')) {\n    if (pair === '') continue;\n    const eq = pair.indexOf('=');\n    const key = decode(eq === -1 ? pair : pair.slice(0, eq));\n    const value = eq === -1 ? '' : decode(pair.slice(eq + 1));\n    if (!Object.hasOwn(out, key)) out[key] = value;\n    else if (Array.isArray(out[key])) out[key].push(value);\n    else out[key] = [out[key], value];\n  }\n  return out;\n}\n\nexport function stringifyQuery(obj) {\n  const parts = [];\n  const enc = encodeURIComponent;\n  for (const [k, v] of Object.entries(obj)) {\n    for (const item of Array.isArray(v) ? v : [v]) {\n      if (item === undefined) continue;\n      parts.push(item === null ? enc(k) : `${enc(k)}=${enc(String(item))}`);\n    }\n  }\n  return parts.join('&');\n}\n",
+    "src/path.mjs": "/**\n * Manipulação de caminhos de URL (sempre com '/').\n */\n\nexport function normalizePath(p) {\n  const abs = p.startsWith('/');\n  const out = [];\n  for (const seg of p.split('/')) {\n    if (seg === '' || seg === '.') continue;\n    if (seg === '..') {\n      if (out.length && out[out.length - 1] !== '..') out.pop();\n      else if (!abs) out.push('..');\n    } else {\n      out.push(seg);\n    }\n  }\n  if (out.length === 0) return abs ? '/' : '.';\n  const trailing = p.endsWith('/') ? '/' : '';\n  return (abs ? '/' : '') + out.join('/') + trailing;\n}\n\n/** Junta as partes não vazias com '/' e normaliza. Sem partes não vazias → '.'. */\nexport function joinPath(...parts) {\n  const nonEmpty = parts.filter((x) => x !== '');\n  if (nonEmpty.length === 0) return '.';\n  return normalizePath(nonEmpty.join('/'));\n}\n\n/** Último segmento do caminho normalizado ('' para '/'). */\nexport function basename(p) {\n  const n = normalizePath(p).replace(/\\/$/, '');\n  return n.slice(n.lastIndexOf('/') + 1);\n}\n\nexport function extname(p) {\n  const b = basename(p);\n  const i = b.lastIndexOf('.');\n  return i > 0 ? b.slice(i) : '';\n}\n",
+    "src/route.mjs": "/**\n * Casamento de rotas no estilo '/users/:id/posts/*'.\n */\n\nfunction escapeRegex(s) {\n  return s.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n}\n\nfunction safeDecode(s) {\n  try {\n    return decodeURIComponent(s);\n  } catch {\n    return s;\n  }\n}\n\nexport function compileRoute(pattern) {\n  if (!pattern.startsWith('/')) throw new SyntaxError('pattern must start with /');\n  const names = [];\n  let src = '';\n  let last = 0;\n  for (const m of pattern.matchAll(/:([A-Za-z_][A-Za-z0-9_]*)|\\*$/g)) {\n    src += escapeRegex(pattern.slice(last, m.index));\n    if (m[0] === '*') {\n      names.push('*');\n      src += '([\\\\s\\\\S]*)';\n    } else {\n      names.push(m[1]);\n      src += '([^/]+?)';\n    }\n    last = m.index + m[0].length;\n  }\n  src += escapeRegex(pattern.slice(last));\n  const re = new RegExp(`^${src.replace(/\\/$/, '')}/?$`);\n  return {\n    names,\n    match(path) {\n      const m = re.exec(path);\n      if (!m) return null;\n      const params = {};\n      names.forEach((n, i) => {\n        params[n] = safeDecode(m[i + 1]);\n      });\n      return params;\n    },\n  };\n}\n\n/** Roteador simples: a primeira rota registrada que casar vence. */\nexport function createRouter() {\n  const routes = [];\n  return {\n    add(pattern, handler) {\n      routes.push({ route: compileRoute(pattern), handler });\n      return this;\n    },\n    resolve(path) {\n      for (const { route, handler } of routes) {\n        const params = route.match(path);\n        if (params) return { handler, params };\n      }\n      return null;\n    },\n  };\n}\n"
+  },
+  "transcript": [
+    {
+      "role": "solver",
+      "model": "sonnet",
+      "effort": "medium",
+      "ok": true,
+      "error": null,
+      "cost": 0.047280199999999994,
+      "outTok": 2498,
+      "latencyMs": 16345,
+      "promptChars": 9973,
+      "response": "I fixed one bug in each module; I haven't run any code or tests.\n\n- **`query.mjs`:** `decode` now turns `+` into a space before percent-decoding, so `%2B` stays a literal `+`.\n- **`path.mjs`:** `..` now removes the previous segment only if it isn't itself `..`; otherwise relative paths keep it and absolute paths drop it.\n- **`route.mjs`:** `.` is now escaped as a literal, which fixes versioned routes matching too much.\n- **`route.mjs` (extra):** the `*` capture now also matches newlines.\n\n=== FILE: src/query.mjs ===\n/**\n * Query strings no formato application/x-www-form-urlencoded.\n */\n\nfunction decode(s) {\n  const t = s.replace(/\\+/g, ' ');\n  try {\n    return decodeURIComponent(t);\n  } catch {\n    return t;\n  }\n}\n\nexport function parseQuery(qs) {\n  const out = {};\n  const body = qs.startsWith('?') ? qs.slice(1) : qs;\n  for (const pair of body.split('&')) {\n    if (pair === '') continue;\n    const eq = pair.indexOf('=');\n    const key = decode(eq === -1 ? pair : pair.slice(0, eq));\n    const value = eq === -1 ? '' : decode(pair.slice(eq + 1));\n    if (!Object.hasOwn(out, key)) out[key] = value;\n    else if (Array.isArray(out[key])) out[key].push(value);\n    else out[key] = [out[key], value];\n  }\n  return out;\n}\n\nexport function stringifyQuery(obj) {\n  const parts = [];\n  const enc = encodeURIComponent;\n  for (const [k, v] of Object.entries(obj)) {\n    for (const item of Array.isArray(v) ? v : [v]) {\n      if (item === undefined) continue;\n      parts.push(item === null ? enc(k) : `${enc(k)}=${enc(String(item))}`);\n    }\n  }\n  return parts.join('&');\n}\n=== END FILE ===\n=== FILE: src/path.mjs ===\n/**\n * Manipulação de caminhos de URL (sempre com '/').\n */\n\nexport function normalizePath(p) {\n  const abs = p.startsWith('/');\n  const out = [];\n  for (const seg of p.split('/')) {\n    if (seg === '' || seg === '.') continue;\n    if (seg === '..') {\n      if (out.length && out[out.length - 1] !== '..') out.pop();\n      else if (!abs) out.push('..');\n    } else {\n      out.push(seg);\n    }\n  }\n  if (out.length === 0) return abs ? '/' : '.';\n  const trailing = p.endsWith('/') ? '/' : '';\n  return (abs ? '/' : '') + out.join('/') + trailing;\n}\n\n/** Junta as partes não vazias com '/' e normaliza. Sem partes não vazias → '.'. */\nexport function joinPath(...parts) {\n  const nonEmpty = parts.filter((x) => x !== '');\n  if (nonEmpty.length === 0) return '.';\n  return normalizePath(nonEmpty.join('/'));\n}\n\n/** Último segmento do caminho normalizado ('' para '/'). */\nexport function basename(p) {\n  const n = normalizePath(p).replace(/\\/$/, '');\n  return n.slice(n.lastIndexOf('/') + 1);\n}\n\nexport function extname(p) {\n  const b = basename(p);\n  const i = b.lastIndexOf('.');\n  return i > 0 ? b.slice(i) : '';\n}\n=== END FILE ===\n=== FILE: src/route.mjs ===\n/**\n * Casamento de rotas no estilo '/users/:id/posts/*'.\n */\n\nfunction escapeRegex(s) {\n  return s.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\n}\n\nfunction safeDecode(s) {\n  try {\n    return decodeURIComponent(s);\n  } catch {\n    return s;\n  }\n}\n\nexport function compileRoute(pattern) {\n  if (!pattern.startsWith('/')) throw new SyntaxError('pattern must start with /');\n  const names = [];\n  let src = '';\n  let last = 0;\n  for (const m of pattern.matchAll(/:([A-Za-z_][A-Za-z0-9_]*)|\\*$/g)) {\n    src += escapeRegex(pattern.slice(last, m.index));\n    if (m[0] === '*') {\n      names.push('*');\n      src += '([\\\\s\\\\S]*)';\n    } else {\n      names.push(m[1]);\n      src += '([^/]+?)';\n    }\n    last = m.index + m[0].length;\n  }\n  src += escapeRegex(pattern.slice(last));\n  const re = new RegExp(`^${src.replace(/\\/$/, '')}/?$`);\n  return {\n    names,\n    match(path) {\n      const m = re.exec(path);\n      if (!m) return null;\n      const params = {};\n      names.forEach((n, i) => {\n        params[n] = safeDecode(m[i + 1]);\n      });\n      return params;\n    },\n  };\n}\n\n/** Roteador simples: a primeira rota registrada que casar vence. */\nexport function createRouter() {\n  const routes = [];\n  return {\n    add(pattern, handler) {\n      routes.push({ route: compileRoute(pattern), handler });\n      return this;\n    },\n    resolve(path) {\n      for (const { route, handler } of routes) {\n        const params = route.match(path);\n        if (params) return { handler, params };\n      }\n      return null;\n    },\n  };\n}\n=== END FILE ==="
+    }
+  ],
+  "hiddenFailures": []
+}

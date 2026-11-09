@@ -1,0 +1,1264 @@
+{
+ "generated": "2026-11-08T22:00:13.493Z",
+ "corpus": 3043,
+ "note": "Machine-extracted fields and keyword matches; an ordering aid, not verified evidence.",
+ "realms": {
+  "seen": {
+   "funnel": {
+    "matched": 395,
+    "relevance≥2": 128,
+    "+baseline single agent or compute-matched": 33,
+    "+full text or reports cost": 30,
+    "+compute-matched yes": 5
+   },
+   "total": {
+    "n": 395,
+    "rel2plus": 128,
+    "textAvailable": 283,
+    "baseline": 37,
+    "computeMatchedYes": 5,
+    "reportsCost": 21,
+    "improves": 21,
+    "mixed": 9,
+    "worse": 1
+   },
+   "byTopic": {
+    "stigmergy / pheromone": {
+     "n": 57,
+     "rel2plus": 16,
+     "textAvailable": 46,
+     "baseline": 4,
+     "computeMatchedYes": 1,
+     "reportsCost": 5,
+     "improves": 3,
+     "mixed": 2,
+     "worse": 1
+    },
+    "response threshold / division of labour": {
+     "n": 123,
+     "rel2plus": 57,
+     "textAvailable": 105,
+     "baseline": 16,
+     "computeMatchedYes": 3,
+     "reportsCost": 8,
+     "improves": 6,
+     "mixed": 6,
+     "worse": 0
+    },
+    "recruitment / quorum (swarm)": {
+     "n": 34,
+     "rel2plus": 17,
+     "textAvailable": 19,
+     "baseline": 3,
+     "computeMatchedYes": 0,
+     "reportsCost": 2,
+     "improves": 1,
+     "mixed": 1,
+     "worse": 0
+    },
+    "foraging / collective motion": {
+     "n": 234,
+     "rel2plus": 59,
+     "textAvailable": 145,
+     "baseline": 14,
+     "computeMatchedYes": 1,
+     "reportsCost": 8,
+     "improves": 12,
+     "mixed": 2,
+     "worse": 1
+    },
+    "voting / diversity / correlated errors": {
+     "n": 13,
+     "rel2plus": 10,
+     "textAvailable": 12,
+     "baseline": 5,
+     "computeMatchedYes": 1,
+     "reportsCost": 2,
+     "improves": 2,
+     "mixed": 0,
+     "worse": 0
+    }
+   },
+   "top": [
+    {
+     "realm": "seen",
+     "topic": "voting / diversity / correlated errors",
+     "score": 16,
+     "id": "arxiv:2610.23246v1",
+     "title": "Think More or Read More? A Token-Budget Theory of Reasoning with Shared Context",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "yes",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2610.23246v1",
+     "pdf": "pdfs/arxiv_2610.23246v1.pdf",
+     "topics": [
+      "voting / diversity / correlated errors"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "stigmergy / pheromone",
+     "score": 16,
+     "id": "arxiv:2601.08129v3",
+     "title": "Emergent Coordination in Multi-Agent Systems via Pressure Fields and Temporal Decay",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2601.08129v3",
+     "pdf": "pdfs/arxiv_2601.08129v3.pdf",
+     "topics": [
+      "stigmergy / pheromone",
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 15,
+     "id": "arxiv:2610.24234v1",
+     "title": "Who Plans, Who Edits? Verified, Cost-Aware Division of Labor for LLM-Driven Analog Layout Repair",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": true,
+     "efficiency": "mixed",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2610.24234v1",
+     "pdf": "pdfs/arxiv_2610.24234v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "stigmergy / pheromone",
+     "score": 14,
+     "id": "arxiv:2608.15407v2",
+     "title": "Chameleon: An Adaptive AI-Driven Honeypot Architecture Using Threat-Calibrated Particle Swarm Optimization and Semantic Deception Rapidly-Exploring Random Trees",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "yes",
+     "cost": true,
+     "efficiency": "mixed",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2608.15407v2",
+     "pdf": "pdfs/arxiv_2608.15407v2.pdf",
+     "topics": [
+      "stigmergy / pheromone",
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 14,
+     "id": "arxiv:2608.23740v1",
+     "title": "AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "yes",
+     "cost": true,
+     "efficiency": "mixed",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2608.23740v1",
+     "pdf": "pdfs/arxiv_2608.23740v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 14,
+     "id": "arxiv:2605.09121v1",
+     "title": "A Communication-Theoretic Framework for LLM Agents: Cost-Aware Adaptive Reliability",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "yes",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2605.09121v1",
+     "pdf": "pdfs/arxiv_2605.09121v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 13,
+     "id": "arxiv:2611.03931v1",
+     "title": "Beyond Division of Labor: How Roles Shape Feedback and Recovery in Multi-Agent Systems",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "yes",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2611.03931v1",
+     "pdf": "pdfs/arxiv_2611.03931v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 13,
+     "id": "https://openalex.org/W7147433259",
+     "title": "Chess as a Model of Collective Intelligence: analyzing a distributed form of chess with piece-wise agency",
+     "year": 2025,
+     "relevance": 3,
+     "basis": "abstract",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": false,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.31219/osf.io/n62jx_v1",
+     "url": "https://doi.org/10.31219/osf.io/n62jx_v1",
+     "pdf": "",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 13,
+     "id": "arxiv:2610.08155v1",
+     "title": "Token-Efficient Multi-Agent Collaboration via System One-Guided Computational Division of Labor",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2610.08155v1",
+     "pdf": "pdfs/arxiv_2610.08155v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "stigmergy / pheromone",
+     "score": 13,
+     "id": "arxiv:2603.12933v1",
+     "title": "Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2603.12933v1",
+     "pdf": "pdfs/arxiv_2603.12933v1.pdf",
+     "topics": [
+      "stigmergy / pheromone",
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "stigmergy / pheromone",
+     "score": 13,
+     "id": "arxiv:2603.28990v1",
+     "title": "Drop the Hierarchy and Roles: How Self-Organizing LLM Agents Outperform Designed Structures",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "mixed",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2603.28990v1",
+     "pdf": "pdfs/arxiv_2603.28990v1.pdf",
+     "topics": [
+      "stigmergy / pheromone"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "foraging / collective motion",
+     "score": 12,
+     "id": "arxiv:2605.08704v3",
+     "title": "AgentPSO: Evolving Agent Reasoning Skill via Multi-agent Particle Swarm Optimization",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2605.08704v3",
+     "pdf": "pdfs/arxiv_2605.08704v3.pdf",
+     "topics": [
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "voting / diversity / correlated errors",
+     "score": 12,
+     "id": "arxiv:2605.30802v1",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2605.30802v1",
+     "pdf": "pdfs/arxiv_2605.30802v1.pdf",
+     "topics": [
+      "voting / diversity / correlated errors"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "voting / diversity / correlated errors",
+     "score": 12,
+     "id": "arxiv:2601.10825v1",
+     "title": "Reasoning Models Generate Societies of Thought",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2601.10825v1",
+     "pdf": "pdfs/arxiv_2601.10825v1.pdf",
+     "topics": [
+      "voting / diversity / correlated errors"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "response threshold / division of labour",
+     "score": 12,
+     "id": "arxiv:2607.28430v1",
+     "title": "AgentRadio: Passive Awareness for Long-Horizon Multi-Agent Collaboration",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2607.28430v1",
+     "pdf": "pdfs/arxiv_2607.28430v1.pdf",
+     "topics": [
+      "response threshold / division of labour"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "recruitment / quorum (swarm)",
+     "score": 12,
+     "id": "arxiv:2507.14928v1",
+     "title": "Byzantine-Robust Decentralized Coordination of LLM Agents",
+     "year": 2025,
+     "relevance": 3,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2507.14928v1",
+     "pdf": "pdfs/arxiv_2507.14928v1.pdf",
+     "topics": [
+      "recruitment / quorum (swarm)"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "voting / diversity / correlated errors",
+     "score": 12,
+     "id": "arxiv:2606.13197v1",
+     "title": "ARMOR-MAD: Adaptive Routing for Heterogeneous Multi-Agent Debate in Large Language Model Reasoning",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2606.13197v1",
+     "pdf": "pdfs/arxiv_2606.13197v1.pdf",
+     "topics": [
+      "voting / diversity / correlated errors"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "foraging / collective motion",
+     "score": 12,
+     "id": "arxiv:2605.15706v3",
+     "title": "Differentiable Mixture-of-Agents Incentivizes Swarm Intelligence of Large Language Models",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": true,
+     "computeMatched": "no",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2605.15706v3",
+     "pdf": "pdfs/arxiv_2605.15706v3.pdf",
+     "topics": [
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "foraging / collective motion",
+     "score": 12,
+     "id": "arxiv:2509.25034v4",
+     "title": "MARLIN: Multi-Agent Reinforcement Learning with Murmuration Intelligence and LLM Guidance for Reservoir Management",
+     "year": 2025,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2509.25034v4",
+     "pdf": "pdfs/arxiv_2509.25034v4.pdf",
+     "topics": [
+      "foraging / collective motion"
+     ]
+    },
+    {
+     "realm": "seen",
+     "topic": "recruitment / quorum (swarm)",
+     "score": 11,
+     "id": "crossref:10.2139/ssrn.7009758",
+     "title": "No Assembly Bonus: A Pre-registered, Seven-regime Disconfirmation of Super-Additivity in Multi-agent Large-Language-Model Decision Boards",
+     "year": 2026,
+     "relevance": 3,
+     "basis": "abstract",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "https://doi.org/10.2139/ssrn.7009758",
+     "url": "https://doi.org/10.2139/ssrn.7009758",
+     "pdf": "",
+     "topics": [
+      "recruitment / quorum (swarm)"
+     ]
+    }
+   ]
+  },
+  "unseen": {
+   "funnel": {
+    "matched": 37,
+    "relevance≥2": 11,
+    "+baseline single agent or compute-matched": 0,
+    "+full text or reports cost": 0,
+    "+compute-matched yes": 1
+   },
+   "total": {
+    "n": 37,
+    "rel2plus": 11,
+    "textAvailable": 25,
+    "baseline": 1,
+    "computeMatchedYes": 1,
+    "reportsCost": 5,
+    "improves": 4,
+    "mixed": 0,
+    "worse": 0
+   },
+   "byTopic": {
+    "quorum sensing (bacterial)": {
+     "n": 1,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "clonal expansion / immune": {
+     "n": 3,
+     "rel2plus": 1,
+     "textAvailable": 1,
+     "baseline": 1,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "chemotaxis / run-and-tumble": {
+     "n": 3,
+     "rel2plus": 1,
+     "textAvailable": 2,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 1,
+     "improves": 1,
+     "mixed": 0,
+     "worse": 0
+    },
+    "slime mould / Physarum / Dictyostelium": {
+     "n": 6,
+     "rel2plus": 1,
+     "textAvailable": 3,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 1,
+     "mixed": 0,
+     "worse": 0
+    },
+    "wound healing / bounded repair": {
+     "n": 3,
+     "rel2plus": 1,
+     "textAvailable": 3,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 1,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "sparse activation / energy budget": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "homeostasis / allostasis": {
+     "n": 8,
+     "rel2plus": 3,
+     "textAvailable": 3,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "neutrophil / relay recruitment": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "context compaction / selective retention": {
+     "n": 15,
+     "rel2plus": 6,
+     "textAvailable": 14,
+     "baseline": 0,
+     "computeMatchedYes": 1,
+     "reportsCost": 3,
+     "improves": 2,
+     "mixed": 0,
+     "worse": 0
+    }
+   },
+   "top": [
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 12,
+     "id": "arxiv:2610.13267v1",
+     "title": "Forgetting is Not Always Bad: A Neuro-Inspired Memory Repair Mechanism for Poisoned LLM Agents",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2610.13267v1",
+     "pdf": "pdfs/arxiv_2610.13267v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "wound healing / bounded repair",
+     "score": 9,
+     "id": "arxiv:2604.20273v1",
+     "title": "ActuBench: A Multi-Agent LLM Pipeline for Generation and Evaluation of Actuarial Reasoning Tasks",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2604.20273v1",
+     "pdf": "pdfs/arxiv_2604.20273v1.pdf",
+     "topics": [
+      "wound healing / bounded repair"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "homeostasis / allostasis",
+     "score": 9,
+     "id": "arxiv:2512.20884v1",
+     "title": "The Silent Scholar Problem: A Probabilistic Framework for Breaking Epistemic Asymmetry in LLM Agents",
+     "year": 2025,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2512.20884v1",
+     "pdf": "pdfs/arxiv_2512.20884v1.pdf",
+     "topics": [
+      "homeostasis / allostasis",
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "homeostasis / allostasis",
+     "score": 8,
+     "id": "crossref:10.64898/2026.03.18.712477",
+     "title": "Behavioral compensation preserves collective behavior when individual members are compromised",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "abstract",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.64898/2026.03.18.712477",
+     "url": "https://doi.org/10.64898/2026.03.18.712477",
+     "pdf": "",
+     "topics": [
+      "homeostasis / allostasis"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 8,
+     "id": "arxiv:2605.17361v2",
+     "title": "MasFACT: Continual Multi-Agent Topology Learning via Geometry-Aware Posterior Transfer",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2605.17361v2",
+     "pdf": "pdfs/arxiv_2605.17361v2.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 8,
+     "id": "arxiv:2610.19128v1",
+     "title": "CLASHarness: Benchmarking Multi-Agent Conflict in Computer Use via a Controllable and Verifiable Generation Pipeline",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2610.19128v1",
+     "pdf": "pdfs/arxiv_2610.19128v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 8,
+     "id": "arxiv:2601.04170v1",
+     "title": "Agent Drift: Quantifying Behavioral Degradation in Multi-Agent LLM Systems Over Extended Interactions",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2601.04170v1",
+     "pdf": "pdfs/arxiv_2601.04170v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "homeostasis / allostasis",
+     "score": 8,
+     "id": "https://openalex.org/W4417063393",
+     "title": "The Computational Foundations of Collective Intelligence",
+     "year": 2025,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.48550/arxiv.2509.07999",
+     "url": "http://arxiv.org/abs/2509.07999",
+     "pdf": "pdfs/W4417063393.pdf",
+     "topics": [
+      "homeostasis / allostasis"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "slime mould / Physarum / Dictyostelium",
+     "score": 8,
+     "id": "arxiv:1511.07654v1",
+     "title": "Automated Guidance of Collective Movement in a Multi-Agent Model of Physarum polycephalum",
+     "year": 2015,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "",
+     "url": "https://arxiv.org/abs/1511.07654v1",
+     "pdf": "pdfs/arxiv_1511.07654v1.pdf",
+     "topics": [
+      "slime mould / Physarum / Dictyostelium"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "chemotaxis / run-and-tumble",
+     "score": 8,
+     "id": "arxiv:2412.12170v1",
+     "title": "PickLLM: Context-Aware RL-Assisted Large Language Model Routing",
+     "year": 2024,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "improves",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2412.12170v1",
+     "pdf": "pdfs/arxiv_2412.12170v1.pdf",
+     "topics": [
+      "chemotaxis / run-and-tumble"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "clonal expansion / immune",
+     "score": 7,
+     "id": "crossref:10.1177/26339137261477746",
+     "title": "Evolution of collective behavior from individually optimized chemotactic agents",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "abstract",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.1177/26339137261477746",
+     "url": "https://doi.org/10.1177/26339137261477746",
+     "pdf": "",
+     "topics": [
+      "clonal expansion / immune",
+      "chemotaxis / run-and-tumble"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 7,
+     "id": "crossref:10.64898/2026.07.12.738017",
+     "title": "Frequent errors are the worst: robustness to individual failures in collective foraging",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "abstract",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.64898/2026.07.12.738017",
+     "url": "https://doi.org/10.64898/2026.07.12.738017",
+     "pdf": "",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "slime mould / Physarum / Dictyostelium",
+     "score": 6,
+     "id": "arxiv:2511.00884v1",
+     "title": "A Meta-Cognitive Swarm Intelligence Framework for Resilient UAV Navigation in GPS-Denied and Cluttered Environments",
+     "year": "2025",
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2511.00884v1",
+     "pdf": "pdfs/arxiv_2511.00884v1.pdf",
+     "topics": [
+      "slime mould / Physarum / Dictyostelium"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 6,
+     "id": "arxiv:2304.12385v1",
+     "title": "PID-inspired modifications in response threshold models in swarm intelligent systems",
+     "year": 2023,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.1145/3583131.3590442",
+     "url": "https://arxiv.org/abs/2304.12385v1",
+     "pdf": "pdfs/arxiv_2304.12385v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "slime mould / Physarum / Dictyostelium",
+     "score": 6,
+     "id": "https://openalex.org/W2154950846",
+     "title": "Smart Swarms of Bacteria-Inspired Agents with Performance Adaptable Interactions",
+     "year": 2011,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "improves",
+     "bio": true,
+     "llm": false,
+     "doi": "https://doi.org/10.1371/journal.pcbi.1002177",
+     "url": "https://doi.org/10.1371/journal.pcbi.1002177",
+     "pdf": "pdfs/W2154950846.pdf",
+     "topics": [
+      "slime mould / Physarum / Dictyostelium"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "clonal expansion / immune",
+     "score": 5,
+     "id": "crossref:10.64898/2026.06.19.26355815",
+     "title": "PHO-Agents: A Large Language Model–Powered Multi-Agent System for Predicting Health Outcomes",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "abstract",
+     "baseline": true,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "https://doi.org/10.64898/2026.06.19.26355815",
+     "url": "https://doi.org/10.64898/2026.06.19.26355815",
+     "pdf": "",
+     "topics": [
+      "clonal expansion / immune"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "wound healing / bounded repair",
+     "score": 5,
+     "id": "arxiv:2601.11816v1",
+     "title": "POLARIS: Typed Planning and Governed Execution for Agentic AI in Back-Office Automation",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2601.11816v1",
+     "pdf": "pdfs/arxiv_2601.11816v1.pdf",
+     "topics": [
+      "wound healing / bounded repair"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 5,
+     "id": "arxiv:2609.32361v1",
+     "title": "Black-Box Auditing of Epistemic Reliability in Multi-Agent Debate Distillation",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2609.32361v1",
+     "pdf": "pdfs/arxiv_2609.32361v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "wound healing / bounded repair",
+     "score": 5,
+     "id": "arxiv:2604.26615v1",
+     "title": "TDD Governance for Multi-Agent Code Generation via Prompt Engineering",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2604.26615v1",
+     "pdf": "pdfs/arxiv_2604.26615v1.pdf",
+     "topics": [
+      "wound healing / bounded repair"
+     ]
+    },
+    {
+     "realm": "unseen",
+     "topic": "context compaction / selective retention",
+     "score": 5,
+     "id": "arxiv:2603.07670v1",
+     "title": "Memory for Autonomous LLM Agents:Mechanisms, Evaluation, and Emerging Frontiers",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2603.07670v1",
+     "pdf": "pdfs/arxiv_2603.07670v1.pdf",
+     "topics": [
+      "context compaction / selective retention"
+     ]
+    }
+   ]
+  },
+  "beyond": {
+   "funnel": {
+    "matched": 2,
+    "relevance≥2": 1,
+    "+baseline single agent or compute-matched": 0,
+    "+full text or reports cost": 0,
+    "+compute-matched yes": 0
+   },
+   "total": {
+    "n": 2,
+    "rel2plus": 1,
+    "textAvailable": 2,
+    "baseline": 0,
+    "computeMatchedYes": 0,
+    "reportsCost": 1,
+    "improves": 0,
+    "mixed": 0,
+    "worse": 1
+   },
+   "byTopic": {
+    "orbital resonance / scheduling": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "Kessler cascade / orphaned work": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "Lagrange / station keeping": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "thermostat / admission control": {
+     "n": 1,
+     "rel2plus": 0,
+     "textAvailable": 1,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "accretion / aggregation threshold": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "shepherd / confinement": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "cosmic web / transport network": {
+     "n": 0,
+     "rel2plus": 0,
+     "textAvailable": 0,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 0,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 0
+    },
+    "celestial analogy (generic)": {
+     "n": 1,
+     "rel2plus": 1,
+     "textAvailable": 1,
+     "baseline": 0,
+     "computeMatchedYes": 0,
+     "reportsCost": 1,
+     "improves": 0,
+     "mixed": 0,
+     "worse": 1
+    }
+   },
+   "top": [
+    {
+     "realm": "beyond",
+     "topic": "celestial analogy (generic)",
+     "score": 9,
+     "id": "arxiv:2604.15664v2",
+     "title": "Stargazer: A Scalable Model-Fitting Benchmark Environment for AI Agents under Astrophysical Constraints",
+     "year": 2026,
+     "relevance": 2,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": true,
+     "efficiency": "worse",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2604.15664v2",
+     "pdf": "pdfs/arxiv_2604.15664v2.pdf",
+     "topics": [
+      "celestial analogy (generic)"
+     ]
+    },
+    {
+     "realm": "beyond",
+     "topic": "thermostat / admission control",
+     "score": 5,
+     "id": "arxiv:2609.12170v1",
+     "title": "NDT Factory: Synthesizing Verified Network Digital Twins from Semantic Models via Multi-Agent LLM",
+     "year": 2026,
+     "relevance": 1,
+     "basis": "fulltext",
+     "baseline": false,
+     "computeMatched": "unclear",
+     "cost": false,
+     "efficiency": "not-reported",
+     "bio": false,
+     "llm": true,
+     "doi": "",
+     "url": "https://arxiv.org/abs/2609.12170v1",
+     "pdf": "pdfs/arxiv_2609.12170v1.pdf",
+     "topics": [
+      "thermostat / admission control"
+     ]
+    }
+   ]
+  }
+ },
+ "cardSources": {
+  "beyond": {
+   "cards": 9,
+   "sources": 23
+  },
+  "seen": {
+   "cards": 33,
+   "sources": 80
+  },
+  "unseen": {
+   "cards": 11,
+   "sources": 29
+  }
+ }
+}

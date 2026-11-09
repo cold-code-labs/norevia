@@ -1,0 +1,14 @@
+{
+  "id": "a02-paginate-pages",
+  "class": "a",
+  "split": "dev",
+  "title": "Pagination loses the last partial page",
+  "statement": "The module `src/paginate.mjs` implements pagination of in-memory arrays.\n\n**Contract**\n\n- `paginate(items, page = 1, pageSize = 10)` returns `{ items, page, pageSize, total, totalPages, hasPrev, hasNext }`.\n  - Pages are numbered starting at 1; page `p` contains the items with index `(p-1)*pageSize` up to `p*pageSize - 1` (whichever exist).\n  - `total` is `items.length`; `totalPages` is the number of pages needed to show all items, with a minimum of 1 (an empty list has 1 empty page).\n  - `hasPrev` is `page > 1`; `hasNext` is `page < totalPages`.\n  - A page beyond the last one returns `items: []` with the other metadata computed normally.\n  - `items` is not modified.\n  - `items` that is not an array throws `TypeError`; `page` or `pageSize` that are not integers ≥ 1 throw `RangeError`.\n- `countPages(total, pageSize)` returns the `totalPages` described above (minimum 1).\n- `pageForIndex(index, pageSize)` returns the page (1-based) on which the item with index `index` (0-based) appears.\n\n**Examples**\n\n- `paginate([1,2,3,4,5,6,7], 3, 3)` → `items: [7]`, `totalPages: 3`, `hasPrev: true`, `hasNext: false`.\n- `paginate([], 1, 5)` → `{ items: [], page: 1, pageSize: 5, total: 0, totalPages: 1, hasPrev: false, hasNext: false }`.\n- `countPages(11, 10)` → `2`; `pageForIndex(10, 10)` → `2`.\n\n**Reported symptom:** in lists whose size is not a multiple of the page size, the last items become inaccessible and the interface does not show the next-page button. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/paginate.mjs",
+      "summary": "countPages uses Math.floor instead of Math.ceil, discarding the last partial page"
+    }
+  ],
+  "decomposable": false
+}

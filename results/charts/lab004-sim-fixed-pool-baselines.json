@@ -1,0 +1,338 @@
+[
+ {
+  "n_agents": 10,
+  "policy": "ORCH",
+  "coverage_rate": 0.027,
+  "false_success_rate": 0.1835,
+  "accepted_per_usd": 5923.3,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100,
+  "policy": "ORCH",
+  "coverage_rate": 0.2196,
+  "false_success_rate": 0.2229,
+  "accepted_per_usd": 4828.4,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 1000,
+  "policy": "ORCH",
+  "coverage_rate": 0.2212,
+  "false_success_rate": 0.2303,
+  "accepted_per_usd": 4863.3,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 3000,
+  "policy": "ORCH",
+  "coverage_rate": 0.2217,
+  "false_success_rate": 0.2127,
+  "accepted_per_usd": 4874.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10000,
+  "policy": "ORCH",
+  "coverage_rate": 0.2339,
+  "false_success_rate": 0.1921,
+  "accepted_per_usd": 5142.5,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 30000,
+  "policy": "ORCH",
+  "coverage_rate": 0.2222,
+  "false_success_rate": 0.235,
+  "accepted_per_usd": 4886.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100000,
+  "policy": "ORCH",
+  "coverage_rate": 0.2222,
+  "false_success_rate": 0.2179,
+  "accepted_per_usd": 4886.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.027,
+  "false_success_rate": 0.1835,
+  "accepted_per_usd": 5985.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.2196,
+  "false_success_rate": 0.2229,
+  "accepted_per_usd": 4870.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 1000,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.4154,
+  "false_success_rate": 0.2341,
+  "accepted_per_usd": 2403.8,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 3000,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.4148,
+  "false_success_rate": 0.2381,
+  "accepted_per_usd": 2412.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10000,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.4169,
+  "false_success_rate": 0.2334,
+  "accepted_per_usd": 2422.5,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 30000,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.4095,
+  "false_success_rate": 0.2522,
+  "accepted_per_usd": 2385.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100000,
+  "policy": "ORCH-U",
+  "coverage_rate": 0.4238,
+  "false_success_rate": 0.2328,
+  "accepted_per_usd": 2488.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10,
+  "policy": "INDEP",
+  "coverage_rate": 0.0296,
+  "false_success_rate": 0.1447,
+  "accepted_per_usd": 6264,
+  "conflicts_rate": 0.0083
+ },
+ {
+  "n_agents": 100,
+  "policy": "INDEP",
+  "coverage_rate": 0.2005,
+  "false_success_rate": 0.2044,
+  "accepted_per_usd": 4245.1,
+  "conflicts_rate": 0.1317
+ },
+ {
+  "n_agents": 1000,
+  "policy": "INDEP",
+  "coverage_rate": 0.4175,
+  "false_success_rate": 0.2493,
+  "accepted_per_usd": 883.8,
+  "conflicts_rate": 0.4431
+ },
+ {
+  "n_agents": 3000,
+  "policy": "INDEP",
+  "coverage_rate": 0.4333,
+  "false_success_rate": 0.2588,
+  "accepted_per_usd": 305.8,
+  "conflicts_rate": 0.5234
+ },
+ {
+  "n_agents": 10000,
+  "policy": "INDEP",
+  "coverage_rate": 0.482,
+  "false_success_rate": 0.2866,
+  "accepted_per_usd": 102,
+  "conflicts_rate": 0.5978
+ },
+ {
+  "n_agents": 30000,
+  "policy": "INDEP",
+  "coverage_rate": 0.5651,
+  "false_success_rate": 0.3074,
+  "accepted_per_usd": 39.9,
+  "conflicts_rate": 0.6754
+ },
+ {
+  "n_agents": 100000,
+  "policy": "INDEP",
+  "coverage_rate": 0.6619,
+  "false_success_rate": 0.3328,
+  "accepted_per_usd": 14,
+  "conflicts_rate": 0.8506
+ },
+ {
+  "n_agents": 10,
+  "policy": "VOTE",
+  "coverage_rate": 0.0222,
+  "false_success_rate": 0,
+  "accepted_per_usd": 4347.8,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100,
+  "policy": "VOTE",
+  "coverage_rate": 0.2069,
+  "false_success_rate": 0.0274,
+  "accepted_per_usd": 4053.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 1000,
+  "policy": "VOTE",
+  "coverage_rate": 0.4074,
+  "false_success_rate": 0.5926,
+  "accepted_per_usd": 1689.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 3000,
+  "policy": "VOTE",
+  "coverage_rate": 0.4074,
+  "false_success_rate": 0.5926,
+  "accepted_per_usd": 1689.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10000,
+  "policy": "VOTE",
+  "coverage_rate": 0.4074,
+  "false_success_rate": 0.5926,
+  "accepted_per_usd": 1689.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 30000,
+  "policy": "VOTE",
+  "coverage_rate": 0.4063,
+  "false_success_rate": 0.5937,
+  "accepted_per_usd": 1685.2,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100000,
+  "policy": "VOTE",
+  "coverage_rate": 0.4063,
+  "false_success_rate": 0.5937,
+  "accepted_per_usd": 1685.2,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10,
+  "policy": "BOARD",
+  "coverage_rate": 0.0286,
+  "false_success_rate": 0.0805,
+  "accepted_per_usd": 6250,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100,
+  "policy": "BOARD",
+  "coverage_rate": 0.236,
+  "false_success_rate": 0.2116,
+  "accepted_per_usd": 5162,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 1000,
+  "policy": "BOARD",
+  "coverage_rate": 0.4296,
+  "false_success_rate": 0.2502,
+  "accepted_per_usd": 939.8,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 3000,
+  "policy": "BOARD",
+  "coverage_rate": 0.4603,
+  "false_success_rate": 0.284,
+  "accepted_per_usd": 335.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10000,
+  "policy": "BOARD",
+  "coverage_rate": 0.5672,
+  "false_success_rate": 0.3174,
+  "accepted_per_usd": 124.1,
+  "conflicts_rate": 0.0004
+ },
+ {
+  "n_agents": 30000,
+  "policy": "BOARD",
+  "coverage_rate": 0.6698,
+  "false_success_rate": 0.3302,
+  "accepted_per_usd": 48.8,
+  "conflicts_rate": 0.3748
+ },
+ {
+  "n_agents": 100000,
+  "policy": "BOARD",
+  "coverage_rate": 0.6571,
+  "false_success_rate": 0.3429,
+  "accepted_per_usd": 14.4,
+  "conflicts_rate": 0.7415
+ },
+ {
+  "n_agents": 10,
+  "policy": "WOUND",
+  "coverage_rate": 0.0286,
+  "false_success_rate": 0.0805,
+  "accepted_per_usd": 6185.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100,
+  "policy": "WOUND",
+  "coverage_rate": 0.236,
+  "false_success_rate": 0.2116,
+  "accepted_per_usd": 5112.3,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 1000,
+  "policy": "WOUND",
+  "coverage_rate": 0.4259,
+  "false_success_rate": 0.2412,
+  "accepted_per_usd": 1353.6,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 3000,
+  "policy": "WOUND",
+  "coverage_rate": 0.4227,
+  "false_success_rate": 0.244,
+  "accepted_per_usd": 1227.7,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 10000,
+  "policy": "WOUND",
+  "coverage_rate": 0.4243,
+  "false_success_rate": 0.2377,
+  "accepted_per_usd": 1212.9,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 30000,
+  "policy": "WOUND",
+  "coverage_rate": 0.4159,
+  "false_success_rate": 0.2514,
+  "accepted_per_usd": 1174.1,
+  "conflicts_rate": 0
+ },
+ {
+  "n_agents": 100000,
+  "policy": "WOUND",
+  "coverage_rate": 0.419,
+  "false_success_rate": 0.25,
+  "accepted_per_usd": 1176.9,
+  "conflicts_rate": 0
+ }
+]

@@ -1,0 +1,22 @@
+[
+ {
+  "x": "CTRL",
+  "conversation_blocked_s": 0,
+  "batch_wall_s": 424
+ },
+ {
+  "x": "CTRL-NOMEM",
+  "conversation_blocked_s": 0,
+  "batch_wall_s": 385.5
+ },
+ {
+  "x": "ALWAYS",
+  "conversation_blocked_s": 0,
+  "batch_wall_s": 443
+ },
+ {
+  "x": "SOLO-SEQ",
+  "conversation_blocked_s": 1669.7,
+  "batch_wall_s": 1669.7
+ }
+]

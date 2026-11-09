@@ -1,0 +1,114 @@
+[
+ {
+  "x": "SOLO",
+  "package_accept_rate": 0.492,
+  "hidden_pass_rate": 0.93,
+  "cost_per_accepted_package_usd": 0.0392,
+  "median_latency_s": 187.1
+ },
+ {
+  "x": "ORCH",
+  "package_accept_rate": 0.61,
+  "hidden_pass_rate": 0.961,
+  "cost_per_accepted_package_usd": 0.0156,
+  "median_latency_s": 128.5
+ },
+ {
+  "x": "PIPE",
+  "package_accept_rate": 0.407,
+  "hidden_pass_rate": 0.89,
+  "cost_per_accepted_package_usd": 0.0436,
+  "median_latency_s": 355.2
+ },
+ {
+  "x": "VOTE3",
+  "package_accept_rate": 0.271,
+  "hidden_pass_rate": 0.82,
+  "cost_per_accepted_package_usd": 0.1051,
+  "median_latency_s": 224.4
+ },
+ {
+  "x": "DEBATE",
+  "package_accept_rate": 0.542,
+  "hidden_pass_rate": 0.911,
+  "cost_per_accepted_package_usd": 0.0922,
+  "median_latency_s": 411.9
+ },
+ {
+  "x": "TODAY",
+  "package_accept_rate": 0.492,
+  "hidden_pass_rate": 0.919,
+  "cost_per_accepted_package_usd": 0.0809,
+  "median_latency_s": 344.5
+ },
+ {
+  "x": "CTRL",
+  "package_accept_rate": 0.559,
+  "hidden_pass_rate": 0.955,
+  "cost_per_accepted_package_usd": 0.0145,
+  "median_latency_s": 56.4
+ },
+ {
+  "x": "GATE",
+  "package_accept_rate": 0.542,
+  "hidden_pass_rate": 0.94,
+  "cost_per_accepted_package_usd": 0.0269,
+  "median_latency_s": 234.5
+ },
+ {
+  "x": "ELASTIC",
+  "package_accept_rate": 0.525,
+  "hidden_pass_rate": 0.937,
+  "cost_per_accepted_package_usd": 0.0243,
+  "median_latency_s": 212.7
+ },
+ {
+  "x": "THRESH-hab",
+  "package_accept_rate": 0.814,
+  "hidden_pass_rate": 0.989,
+  "cost_per_accepted_package_usd": 0.0207,
+  "median_latency_s": 145.7
+ },
+ {
+  "x": "THRESH-fixed",
+  "package_accept_rate": 0.847,
+  "hidden_pass_rate": 0.989,
+  "cost_per_accepted_package_usd": 0.0244,
+  "median_latency_s": 203.2
+ },
+ {
+  "x": "STIG-evap",
+  "package_accept_rate": 0.508,
+  "hidden_pass_rate": 0.948,
+  "cost_per_accepted_package_usd": 0.0139,
+  "median_latency_s": 125.4
+ },
+ {
+  "x": "STIG-noevap",
+  "package_accept_rate": 0.525,
+  "hidden_pass_rate": 0.953,
+  "cost_per_accepted_package_usd": 0.0155,
+  "median_latency_s": 147.8
+ },
+ {
+  "x": "QUORUM-q2",
+  "package_accept_rate": 0.559,
+  "hidden_pass_rate": 0.956,
+  "cost_per_accepted_package_usd": 0.0247,
+  "median_latency_s": 61.5
+ },
+ {
+  "x": "QUORUM-q1",
+  "package_accept_rate": 0.525,
+  "hidden_pass_rate": 0.948,
+  "cost_per_accepted_package_usd": 0.0128,
+  "median_latency_s": 57.1
+ },
+ {
+  "x": "CTRL+PATROL2",
+  "package_accept_rate": 0.763,
+  "hidden_pass_rate": 0.982,
+  "cost_per_accepted_package_usd": 0.031,
+  "median_latency_s": 229.7
+ }
+]

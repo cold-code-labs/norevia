@@ -1,0 +1,2843 @@
+{
+  "generated": "2026-11-07T23:26:41.151Z",
+  "phases": [
+    "calib"
+  ],
+  "nRuns": 272,
+  "archs": [
+    "A-high",
+    "A-low",
+    "A-mid"
+  ],
+  "overall": {
+    "A-low": {
+      "n": 168,
+      "accepted": 159,
+      "acceptRate": 0.9464,
+      "ci95": [
+        0.9013,
+        0.9716
+      ],
+      "falseSuccess": 7,
+      "falseSuccessRate": 0.0417,
+      "falseSuccessGivenVisiblePass": 0.0422,
+      "meanCost": 0.006989,
+      "totalCost": 1.174121,
+      "costPerAccepted": 0.007384,
+      "meanInTok": 11303,
+      "meanOutTok": 9789,
+      "meanLatencyS": 34.2764,
+      "medianLatencyS": 23.2725,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 0.9972
+    },
+    "A-high": {
+      "n": 52,
+      "accepted": 52,
+      "acceptRate": 1,
+      "ci95": [
+        0.9312,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.195916,
+      "totalCost": 10.187624,
+      "costPerAccepted": 0.195916,
+      "meanInTok": 9867,
+      "meanOutTok": 5932,
+      "meanLatencyS": 43.3467,
+      "medianLatencyS": 36.1825,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    },
+    "A-mid": {
+      "n": 52,
+      "accepted": 52,
+      "acceptRate": 1,
+      "ci95": [
+        0.9312,
+        1
+      ],
+      "falseSuccess": 0,
+      "falseSuccessRate": 0,
+      "falseSuccessGivenVisiblePass": 0,
+      "meanCost": 0.087608,
+      "totalCost": 4.55561,
+      "costPerAccepted": 0.087608,
+      "meanInTok": 9875,
+      "meanOutTok": 4851,
+      "meanLatencyS": 25.5829,
+      "medianLatencyS": 22.082,
+      "meanCalls": 1,
+      "meanReworkCalls": 0,
+      "meanDiscarded": 0,
+      "meanHiddenPassFrac": 1
+    }
+  },
+  "bySplit": {
+    "dev": {
+      "A-low": {
+        "n": 111,
+        "accepted": 102,
+        "acceptRate": 0.9189,
+        "ci95": [
+          0.8531,
+          0.9568
+        ],
+        "falseSuccess": 7,
+        "falseSuccessRate": 0.0631,
+        "falseSuccessGivenVisiblePass": 0.0642,
+        "meanCost": 0.007196,
+        "totalCost": 0.798714,
+        "costPerAccepted": 0.007831,
+        "meanInTok": 11422,
+        "meanOutTok": 10197,
+        "meanLatencyS": 35.8158,
+        "medianLatencyS": 24.752,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 0.9958
+      },
+      "A-high": {
+        "n": 35,
+        "accepted": 35,
+        "acceptRate": 1,
+        "ci95": [
+          0.9011,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.203783,
+        "totalCost": 7.132405,
+        "costPerAccepted": 0.203783,
+        "meanInTok": 10264,
+        "meanOutTok": 6230,
+        "meanLatencyS": 45.5397,
+        "medianLatencyS": 37.456,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 35,
+        "accepted": 35,
+        "acceptRate": 1,
+        "ci95": [
+          0.9011,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.091191,
+        "totalCost": 3.191702,
+        "costPerAccepted": 0.091191,
+        "meanInTok": 10273,
+        "meanOutTok": 5115,
+        "meanLatencyS": 26.9413,
+        "medianLatencyS": 22.618,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    },
+    "test": {
+      "A-low": {
+        "n": 57,
+        "accepted": 57,
+        "acceptRate": 1,
+        "ci95": [
+          0.9369,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.006586,
+        "totalCost": 0.375406,
+        "costPerAccepted": 0.006586,
+        "meanInTok": 11071,
+        "meanOutTok": 8996,
+        "meanLatencyS": 31.2788,
+        "medianLatencyS": 20.409,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 17,
+        "accepted": 17,
+        "acceptRate": 1,
+        "ci95": [
+          0.8157,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.179719,
+        "totalCost": 3.055219,
+        "costPerAccepted": 0.179719,
+        "meanInTok": 9049,
+        "meanOutTok": 5319,
+        "meanLatencyS": 38.8316,
+        "medianLatencyS": 33.07,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 17,
+        "accepted": 17,
+        "acceptRate": 1,
+        "ci95": [
+          0.8157,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.08023,
+        "totalCost": 1.363908,
+        "costPerAccepted": 0.08023,
+        "meanInTok": 9056,
+        "meanOutTok": 4308,
+        "meanLatencyS": 22.7863,
+        "medianLatencyS": 20.624,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "byClass": {
+    "a": {
+      "A-low": {
+        "n": 45,
+        "accepted": 45,
+        "acceptRate": 1,
+        "ci95": [
+          0.9213,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.002791,
+        "totalCost": 0.125573,
+        "costPerAccepted": 0.002791,
+        "meanInTok": 5151,
+        "meanOutTok": 3620,
+        "meanLatencyS": 13.4424,
+        "medianLatencyS": 6.117,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 15,
+        "accepted": 15,
+        "acceptRate": 1,
+        "ci95": [
+          0.7961,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.096021,
+        "totalCost": 1.440314,
+        "costPerAccepted": 0.096021,
+        "meanInTok": 5122,
+        "meanOutTok": 2905,
+        "meanLatencyS": 22.3827,
+        "medianLatencyS": 11.189,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-mid": {
+        "n": 15,
+        "accepted": 15,
+        "acceptRate": 1,
+        "ci95": [
+          0.7961,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.044965,
+        "totalCost": 0.674481,
+        "costPerAccepted": 0.044965,
+        "meanInTok": 5130,
+        "meanOutTok": 2601,
+        "meanLatencyS": 14.8833,
+        "medianLatencyS": 6.371,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    },
+    "b": {
+      "A-low": {
+        "n": 72,
+        "accepted": 64,
+        "acceptRate": 0.8889,
+        "ci95": [
+          0.7958,
+          0.9426
+        ],
+        "falseSuccess": 6,
+        "falseSuccessRate": 0.0833,
+        "falseSuccessGivenVisiblePass": 0.0857,
+        "meanCost": 0.009737,
+        "totalCost": 0.701038,
+        "costPerAccepted": 0.010954,
+        "meanInTok": 15040,
+        "meanOutTok": 14108,
+        "meanLatencyS": 49.0255,
+        "medianLatencyS": 38.099,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 0.9973
+      },
+      "A-mid": {
+        "n": 22,
+        "accepted": 22,
+        "acceptRate": 1,
+        "ci95": [
+          0.8513,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.117004,
+        "totalCost": 2.574093,
+        "costPerAccepted": 0.117004,
+        "meanInTok": 13011,
+        "meanOutTok": 6555,
+        "meanLatencyS": 33.8721,
+        "medianLatencyS": 31.3825,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 22,
+        "accepted": 22,
+        "acceptRate": 1,
+        "ci95": [
+          0.8513,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.267833,
+        "totalCost": 5.892333,
+        "costPerAccepted": 0.267833,
+        "meanInTok": 13003,
+        "meanOutTok": 8318,
+        "meanLatencyS": 60.6095,
+        "medianLatencyS": 54.568,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    },
+    "c": {
+      "A-low": {
+        "n": 51,
+        "accepted": 50,
+        "acceptRate": 0.9804,
+        "ci95": [
+          0.897,
+          0.9965
+        ],
+        "falseSuccess": 1,
+        "falseSuccessRate": 0.0196,
+        "falseSuccessGivenVisiblePass": 0.0196,
+        "meanCost": 0.006814,
+        "totalCost": 0.347509,
+        "costPerAccepted": 0.00695,
+        "meanInTok": 11455,
+        "meanOutTok": 9137,
+        "meanLatencyS": 31.8372,
+        "medianLatencyS": 25.558,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 0.9947
+      },
+      "A-mid": {
+        "n": 15,
+        "accepted": 15,
+        "acceptRate": 1,
+        "ci95": [
+          0.7961,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.087136,
+        "totalCost": 1.307037,
+        "costPerAccepted": 0.087136,
+        "meanInTok": 10019,
+        "meanOutTok": 4601,
+        "meanLatencyS": 24.1249,
+        "medianLatencyS": 21.607,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      },
+      "A-high": {
+        "n": 15,
+        "accepted": 15,
+        "acceptRate": 1,
+        "ci95": [
+          0.7961,
+          1
+        ],
+        "falseSuccess": 0,
+        "falseSuccessRate": 0,
+        "falseSuccessGivenVisiblePass": 0,
+        "meanCost": 0.190332,
+        "totalCost": 2.854977,
+        "costPerAccepted": 0.190332,
+        "meanInTok": 10011,
+        "meanOutTok": 5460,
+        "meanLatencyS": 38.9917,
+        "medianLatencyS": 34.909,
+        "meanCalls": 1,
+        "meanReworkCalls": 0,
+        "meanDiscarded": 0,
+        "meanHiddenPassFrac": 1
+      }
+    }
+  },
+  "pareto": {
+    "a": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002791,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.096021,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.044965,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "a-dev": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.00279,
+          "acceptRate": 1,
+          "n": 30
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.092712,
+          "acceptRate": 1,
+          "n": 10
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.043393,
+          "acceptRate": 1,
+          "n": 10
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "a-test": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002792,
+          "acceptRate": 1,
+          "n": 15
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.048109,
+          "acceptRate": 1,
+          "n": 5
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.102638,
+          "acceptRate": 1,
+          "n": 5
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "b": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009737,
+          "acceptRate": 0.8889
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.117004,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.267833,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low",
+        "A-mid"
+      ]
+    },
+    "b-dev": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009847,
+          "acceptRate": 0.8333,
+          "n": 48
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.122348,
+          "acceptRate": 1,
+          "n": 15
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.279742,
+          "acceptRate": 1,
+          "n": 15
+        }
+      ],
+      "frontier": [
+        "A-low",
+        "A-mid"
+      ]
+    },
+    "b-test": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009516,
+          "acceptRate": 1,
+          "n": 24
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.242314,
+          "acceptRate": 1,
+          "n": 7
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.105553,
+          "acceptRate": 1,
+          "n": 7
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "c": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.006814,
+          "acceptRate": 0.9804
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.087136,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.190332,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low",
+        "A-mid"
+      ]
+    },
+    "c-dev": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.007345,
+          "acceptRate": 0.9697,
+          "n": 33
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.092255,
+          "acceptRate": 1,
+          "n": 10
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.200915,
+          "acceptRate": 1,
+          "n": 10
+        }
+      ],
+      "frontier": [
+        "A-low",
+        "A-mid"
+      ]
+    },
+    "c-test": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.005841,
+          "acceptRate": 1,
+          "n": 18
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.076898,
+          "acceptRate": 1,
+          "n": 5
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.169166,
+          "acceptRate": 1,
+          "n": 5
+        }
+      ],
+      "frontier": [
+        "A-low"
+      ]
+    },
+    "all": {
+      "points": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.006989,
+          "acceptRate": 0.9464
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.195916,
+          "acceptRate": 1
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.087608,
+          "acceptRate": 1
+        }
+      ],
+      "frontier": [
+        "A-low",
+        "A-mid"
+      ]
+    }
+  },
+  "perTask": {
+    "a02-paginate-pages": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.000865,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.023387,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010365,
+          "fs": 0
+        }
+      }
+    },
+    "a04-merge-intervals": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.000981,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010472,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.022392,
+          "fs": 0
+        }
+      }
+    },
+    "a07-truncate-codepoints": {
+      "class": "a",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.001131,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.044983,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.020277,
+          "fs": 0
+        }
+      }
+    },
+    "a03-allocate-cents": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.001231,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.04593,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.022354,
+          "fs": 0
+        }
+      }
+    },
+    "b08-grade-kit": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003124,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.120511,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.058043,
+          "fs": 0
+        }
+      }
+    },
+    "b03-geometria-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.002314,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.042522,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.092472,
+          "fs": 0
+        }
+      }
+    },
+    "b01-texto-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.002795,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.065936,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.026735,
+          "fs": 0
+        }
+      }
+    },
+    "a01-clamp-range": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.000429,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.016852,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.004429,
+          "fs": 0
+        }
+      }
+    },
+    "b09-datas-kit": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.00375,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.059751,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.129743,
+          "fs": 0
+        }
+      }
+    },
+    "a12-acl-policy": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.005355,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.184693,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.089764,
+          "fs": 0
+        }
+      }
+    },
+    "a09-deep-equal-zero": {
+      "class": "a",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.001362,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.048781,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.021728,
+          "fs": 0
+        }
+      }
+    },
+    "b06-estatistica-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.002729,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.04631,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.099963,
+          "fs": 0
+        }
+      }
+    },
+    "a05-lru-cache": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.000876,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.021536,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.010002,
+          "fs": 0
+        }
+      }
+    },
+    "b02-estoque-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.002939,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.028858,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.071866,
+          "fs": 0
+        }
+      }
+    },
+    "b07-url-kit": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003264,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.04728,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.105132,
+          "fs": 0
+        }
+      }
+    },
+    "a08-token-bucket-idle": {
+      "class": "a",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.001417,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.020502,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.043561,
+          "fs": 0
+        }
+      }
+    },
+    "a14-expr-printer": {
+      "class": "a",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.004732,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.085437,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.181561,
+          "fs": 0
+        }
+      }
+    },
+    "b12-inventory-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.006847,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.120923,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.258885,
+          "fs": 0
+        }
+      }
+    },
+    "a10-semver-range": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.007781,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.231693,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.104993,
+          "fs": 0
+        }
+      }
+    },
+    "b05-config-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003958,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.051622,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.125086,
+          "fs": 0
+        }
+      }
+    },
+    "b10-billing-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.010778,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.139307,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.331609,
+          "fs": 0
+        }
+      }
+    },
+    "b13-path-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.009131,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.304688,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.142994,
+          "fs": 0
+        }
+      }
+    },
+    "b04-agenda-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.00266,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.041498,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.09331,
+          "fs": 0
+        }
+      }
+    },
+    "a06-csv-quoting": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.001141,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.019173,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.039081,
+          "fs": 0
+        }
+      }
+    },
+    "b11-calendar-kit": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 0,
+          "cost": 0.009134,
+          "fs": 3
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.156586,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.345018,
+          "fs": 0
+        }
+      }
+    },
+    "a13-template-engine": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.00445,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.074245,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.160361,
+          "fs": 0
+        }
+      }
+    },
+    "a11-markdown-table": {
+      "class": "a",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.004787,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.088137,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.181199,
+          "fs": 0
+        }
+      }
+    },
+    "a15-cron-next": {
+      "class": "a",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.005319,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.194305,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.092603,
+          "fs": 0
+        }
+      }
+    },
+    "b15-search-kit": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.00767,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.113354,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.250236,
+          "fs": 0
+        }
+      }
+    },
+    "b14-cli-kit": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.007963,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.108109,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.255841,
+          "fs": 0
+        }
+      }
+    },
+    "c09-eventos-projecao": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003096,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.118158,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.051912,
+          "fs": 0
+        }
+      }
+    },
+    "c04-cache-chaves": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003128,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.0537,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.118526,
+          "fs": 0
+        }
+      }
+    },
+    "c02-pedido-centavos": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003519,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.065206,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.134916,
+          "fs": 0
+        }
+      }
+    },
+    "c07-agendador-heap": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.004154,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.074277,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.151927,
+          "fs": 0
+        }
+      }
+    },
+    "c01-telemetria-varint": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003782,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.061841,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.137221,
+          "fs": 0
+        }
+      }
+    },
+    "c08-diario-checksum": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.00285,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.054435,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.115668,
+          "fs": 0
+        }
+      }
+    },
+    "c06-diff-patch": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.005256,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.076899,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.168147,
+          "fs": 0
+        }
+      }
+    },
+    "c03-cursor-paginacao": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.003135,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.058275,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.119763,
+          "fs": 0
+        }
+      }
+    },
+    "c05-expr-ast": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.005298,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.163222,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.072646,
+          "fs": 0
+        }
+      }
+    },
+    "cx06-repo-diario-eventos": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.006039,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.216569,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.093125,
+          "fs": 0
+        }
+      }
+    },
+    "cx01-repo-telemetria-pedido": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.007148,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.112813,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.251171,
+          "fs": 0
+        }
+      }
+    },
+    "bx01-repo-texto-estoque-geo": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.007656,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.283944,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.113992,
+          "fs": 0
+        }
+      }
+    },
+    "bx02-repo-agenda-config-stats": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 0.3333,
+          "cost": 0.008771,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.125915,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.270135,
+          "fs": 0
+        }
+      }
+    },
+    "cx02-repo-cursor-cache": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.006297,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.226171,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.098823,
+          "fs": 0
+        }
+      }
+    },
+    "cx03-repo-expr-diff": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.012048,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.138534,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.311376,
+          "fs": 0
+        }
+      }
+    },
+    "bx06-repo-url-grade-datas": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.009238,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.140753,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.338537,
+          "fs": 0
+        }
+      }
+    },
+    "cx04-repo-tres-sistemas": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 0.6667,
+          "cost": 0.012628,
+          "fs": 1
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.183811,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.378634,
+          "fs": 0
+        }
+      }
+    },
+    "cx05-repo-agendador-diario": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.007638,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.11074,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.243509,
+          "fs": 0
+        }
+      }
+    },
+    "bx04-repo-inventory-path": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.017406,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.231078,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.529396,
+          "fs": 0
+        }
+      }
+    },
+    "bx07-repo-cli-search": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.016192,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.496197,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.211581,
+          "fs": 0
+        }
+      }
+    },
+    "bx03-repo-billing-calendar": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.021016,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.267432,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.677622,
+          "fs": 0
+        }
+      }
+    },
+    "bx05-repo-quatro-kits": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.025943,
+          "fs": 0
+        },
+        "A-mid": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.299448,
+          "fs": 0
+        },
+        "A-high": {
+          "n": 1,
+          "acc": 1,
+          "cost": 0.646205,
+          "fs": 0
+        }
+      }
+    },
+    "cx08-repo-tres-sistemas-teste": {
+      "class": "c",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.011269,
+          "fs": 0
+        }
+      }
+    },
+    "cx07-repo-quatro-sistemas": {
+      "class": "c",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.01855,
+          "fs": 0
+        }
+      }
+    },
+    "bx08-repo-cinco-kits": {
+      "class": "b",
+      "split": "dev",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 0,
+          "cost": 0.023474,
+          "fs": 3
+        }
+      }
+    },
+    "bx09-repo-cinco-kits-teste": {
+      "class": "b",
+      "split": "test",
+      "archs": {
+        "A-low": {
+          "n": 3,
+          "acc": 1,
+          "cost": 0.024928,
+          "fs": 0
+        }
+      }
+    }
+  },
+  "difficultyBins": {
+    "A-high": {
+      "easy": {
+        "n": 50,
+        "nTasks": 50,
+        "acceptRate": 1,
+        "meanCost": 0.191449
+      },
+      "medium": {
+        "n": 2,
+        "nTasks": 2,
+        "acceptRate": 1,
+        "meanCost": 0.307576
+      },
+      "hard": null
+    },
+    "A-low": {
+      "easy": {
+        "n": 156,
+        "nTasks": 52,
+        "acceptRate": 0.9615,
+        "meanCost": 0.006022
+      },
+      "medium": null,
+      "hard": null
+    },
+    "A-mid": {
+      "easy": {
+        "n": 50,
+        "nTasks": 50,
+        "acceptRate": 1,
+        "meanCost": 0.085462
+      },
+      "medium": {
+        "n": 2,
+        "nTasks": 2,
+        "acceptRate": 1,
+        "meanCost": 0.141251
+      },
+      "hard": null
+    }
+  },
+  "ladders": {
+    "samples": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9464,
+          "meanCost": 0.006989,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002791,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.8889,
+          "meanCost": 0.009737,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9804,
+          "meanCost": 0.006814,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    },
+    "reasoning": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9464,
+          "meanCost": 0.006989,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.087608,
+          "dAccept": 0.0536,
+          "dCost": 0.080619,
+          "marginalAcceptPerUsd": 0.6649
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.195916,
+          "dAccept": 0,
+          "dCost": 0.108308,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002791,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.044965,
+          "dAccept": 0,
+          "dCost": 0.042174,
+          "marginalAcceptPerUsd": 0
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.096021,
+          "dAccept": 0,
+          "dCost": 0.051056,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.8889,
+          "meanCost": 0.009737,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.117004,
+          "dAccept": 0.1111,
+          "dCost": 0.107267,
+          "marginalAcceptPerUsd": 1.0357
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.267833,
+          "dAccept": 0,
+          "dCost": 0.150829,
+          "marginalAcceptPerUsd": 0
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9804,
+          "meanCost": 0.006814,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        },
+        {
+          "arch": "A-mid",
+          "acceptRate": 1,
+          "meanCost": 0.087136,
+          "dAccept": 0.0196,
+          "dCost": 0.080322,
+          "marginalAcceptPerUsd": 0.244
+        },
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.190332,
+          "dAccept": 0,
+          "dCost": 0.103196,
+          "marginalAcceptPerUsd": 0
+        }
+      ]
+    },
+    "verification": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9464,
+          "meanCost": 0.006989,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002791,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.8889,
+          "meanCost": 0.009737,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9804,
+          "meanCost": 0.006814,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    },
+    "effortHaiku": {
+      "all": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9464,
+          "meanCost": 0.006989,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-low",
+          "acceptRate": 1,
+          "meanCost": 0.002791,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.8889,
+          "meanCost": 0.009737,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-low",
+          "acceptRate": 0.9804,
+          "meanCost": 0.006814,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    },
+    "effortOpus": {
+      "all": [
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.195916,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "a": [
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.096021,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.267833,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-high",
+          "acceptRate": 1,
+          "meanCost": 0.190332,
+          "dAccept": null,
+          "dCost": null,
+          "marginalAcceptPerUsd": null
+        }
+      ]
+    }
+  },
+  "paired": {
+    "A-high": {
+      "A-low": {
+        "all": {
+          "nTasks": 52,
+          "meanDiff": -0.0385,
+          "ci95": [
+            -0.0897,
+            0
+          ],
+          "wins": 0,
+          "losses": 3
+        },
+        "a": {
+          "nTasks": 15,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 22,
+          "meanDiff": -0.0758,
+          "ci95": [
+            -0.197,
+            0
+          ],
+          "wins": 0,
+          "losses": 2
+        },
+        "c": {
+          "nTasks": 15,
+          "meanDiff": -0.0222,
+          "ci95": [
+            -0.0667,
+            0
+          ],
+          "wins": 0,
+          "losses": 1
+        }
+      },
+      "A-mid": {
+        "all": {
+          "nTasks": 52,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 15,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 22,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "c": {
+          "nTasks": 15,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        }
+      }
+    },
+    "A-low": {
+      "A-high": {
+        "all": {
+          "nTasks": 52,
+          "meanDiff": 0.0385,
+          "ci95": [
+            0,
+            0.0897
+          ],
+          "wins": 3,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 15,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 22,
+          "meanDiff": 0.0758,
+          "ci95": [
+            0,
+            0.197
+          ],
+          "wins": 2,
+          "losses": 0
+        },
+        "c": {
+          "nTasks": 15,
+          "meanDiff": 0.0222,
+          "ci95": [
+            0,
+            0.0667
+          ],
+          "wins": 1,
+          "losses": 0
+        }
+      },
+      "A-mid": {
+        "all": {
+          "nTasks": 52,
+          "meanDiff": 0.0385,
+          "ci95": [
+            0,
+            0.0897
+          ],
+          "wins": 3,
+          "losses": 0
+        },
+        "a": {
+          "nTasks": 15,
+          "meanDiff": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "wins": 0,
+          "losses": 0
+        },
+        "b": {
+          "nTasks": 22,
+          "meanDiff": 0.0758,
+          "ci95": [
+            0,
+            0.197
+          ],
+          "wins": 2,
+          "losses": 0
+        },
+        "c": {
+          "nTasks": 15,
+          "meanDiff": 0.0222,
+          "ci95": [
+            0,
+            0.0667
+          ],
+          "wins": 1,
+          "losses": 0
+        }
+      }
+    }
+  },
+  "ledger": {
+    "calls": 374,
+    "totalUsd": 16.836581,
+    "byPhase": {
+      "smoke": {
+        "calls": 8,
+        "usd": 0.023394
+      },
+      "pilot": {
+        "calls": 94,
+        "usd": 0.895833
+      },
+      "calib": {
+        "calls": 272,
+        "usd": 15.917354
+      }
+    },
+    "byModelEffort": {
+      "haiku/low": {
+        "calls": 246,
+        "usd": 1.319017,
+        "meanUsd": 0.005362,
+        "meanOutTok": 7288,
+        "meanLatencyS": 26.0118,
+        "failed": 0
+      },
+      "sonnet/medium": {
+        "calls": 71,
+        "usd": 4.989785,
+        "meanUsd": 0.070279,
+        "meanOutTok": 3850,
+        "meanLatencyS": 20.8052,
+        "failed": 0
+      },
+      "opus/high": {
+        "calls": 57,
+        "usd": 10.52778,
+        "meanUsd": 0.184698,
+        "meanOutTok": 5569,
+        "meanLatencyS": 40.8253,
+        "failed": 0
+      }
+    }
+  },
+  "charts": {
+    "paretoByClass": {
+      "a": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002791,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.096021,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.044965,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "a-dev": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.00279,
+          "acceptRate": 1,
+          "n": 30,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.092712,
+          "acceptRate": 1,
+          "n": 10,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.043393,
+          "acceptRate": 1,
+          "n": 10,
+          "onFrontier": false
+        }
+      ],
+      "a-test": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.002792,
+          "acceptRate": 1,
+          "n": 15,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.048109,
+          "acceptRate": 1,
+          "n": 5,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.102638,
+          "acceptRate": 1,
+          "n": 5,
+          "onFrontier": false
+        }
+      ],
+      "b": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009737,
+          "acceptRate": 0.8889,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.117004,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.267833,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "b-dev": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009847,
+          "acceptRate": 0.8333,
+          "n": 48,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.122348,
+          "acceptRate": 1,
+          "n": 15,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.279742,
+          "acceptRate": 1,
+          "n": 15,
+          "onFrontier": false
+        }
+      ],
+      "b-test": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.009516,
+          "acceptRate": 1,
+          "n": 24,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.242314,
+          "acceptRate": 1,
+          "n": 7,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.105553,
+          "acceptRate": 1,
+          "n": 7,
+          "onFrontier": false
+        }
+      ],
+      "c": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.006814,
+          "acceptRate": 0.9804,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.087136,
+          "acceptRate": 1,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.190332,
+          "acceptRate": 1,
+          "onFrontier": false
+        }
+      ],
+      "c-dev": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.007345,
+          "acceptRate": 0.9697,
+          "n": 33,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.092255,
+          "acceptRate": 1,
+          "n": 10,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.200915,
+          "acceptRate": 1,
+          "n": 10,
+          "onFrontier": false
+        }
+      ],
+      "c-test": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.005841,
+          "acceptRate": 1,
+          "n": 18,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.076898,
+          "acceptRate": 1,
+          "n": 5,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.169166,
+          "acceptRate": 1,
+          "n": 5,
+          "onFrontier": false
+        }
+      ],
+      "all": [
+        {
+          "arch": "A-low",
+          "meanCost": 0.006989,
+          "acceptRate": 0.9464,
+          "onFrontier": true
+        },
+        {
+          "arch": "A-high",
+          "meanCost": 0.195916,
+          "acceptRate": 1,
+          "onFrontier": false
+        },
+        {
+          "arch": "A-mid",
+          "meanCost": 0.087608,
+          "acceptRate": 1,
+          "onFrontier": true
+        }
+      ]
+    },
+    "acceptByArchClass": [
+      {
+        "arch": "A-high",
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "all": 1
+      },
+      {
+        "arch": "A-low",
+        "a": 1,
+        "b": 0.8889,
+        "c": 0.9804,
+        "all": 0.9464
+      },
+      {
+        "arch": "A-mid",
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "all": 1
+      }
+    ],
+    "costPerAcceptedByArchClass": [
+      {
+        "arch": "A-high",
+        "a": 0.096021,
+        "b": 0.267833,
+        "c": 0.190332,
+        "all": 0.195916
+      },
+      {
+        "arch": "A-low",
+        "a": 0.002791,
+        "b": 0.010954,
+        "c": 0.00695,
+        "all": 0.007384
+      },
+      {
+        "arch": "A-mid",
+        "a": 0.044965,
+        "b": 0.117004,
+        "c": 0.087136,
+        "all": 0.087608
+      }
+    ],
+    "falseSuccessByArch": [
+      {
+        "arch": "A-high",
+        "rate": 0,
+        "n": 0
+      },
+      {
+        "arch": "A-low",
+        "rate": 0.0417,
+        "n": 7
+      },
+      {
+        "arch": "A-mid",
+        "rate": 0,
+        "n": 0
+      }
+    ],
+    "latencyByArch": [
+      {
+        "arch": "A-high",
+        "meanS": 43.3467,
+        "medianS": 36.1825
+      },
+      {
+        "arch": "A-low",
+        "meanS": 34.2764,
+        "medianS": 23.2725
+      },
+      {
+        "arch": "A-mid",
+        "meanS": 25.5829,
+        "medianS": 22.082
+      }
+    ],
+    "difficulty": [
+      {
+        "arch": "A-high",
+        "easy": 1,
+        "medium": 1,
+        "hard": null
+      },
+      {
+        "arch": "A-low",
+        "easy": 0.9615,
+        "medium": null,
+        "hard": null
+      },
+      {
+        "arch": "A-mid",
+        "easy": 1,
+        "medium": 1,
+        "hard": null
+      }
+    ]
+  }
+}

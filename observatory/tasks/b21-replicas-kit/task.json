@@ -1,0 +1,15 @@
+{
+  "id": "b21-replicas-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "Replica kit: LFU eviction and last-writer-wins maps",
+  "statement": "# Replicated-state kit (`src/`)\n\nThe package contains LFU caching, last-writer-wins registers and maps, observed-remove sets, PN counters, and vector clocks. Preserve the APIs in all five modules. The package has independent regressions in each module: LFU ties must evict the least recently used entry; equal-timestamp LWW writes use the greater replica id; OR-Set merges preserve concurrent additions; PN-counter merges take component-wise maxima; and vector-clock dominance checks include keys missing from either clock.",
+  "bugs": [
+    { "file": "src/lfu.mjs", "summary": "Equal-frequency eviction chooses the newest entry instead of the oldest entry in the frequency bucket." },
+    { "file": "src/lww.mjs", "summary": "Equal-timestamp writes use the reverse of the documented lexicographically greater replica-id tie-break." },
+    { "file": "src/orset.mjs", "summary": "Merging one tombstone drops all entries from the other replica, including concurrent additions with different tags." },
+    { "file": "src/pncounter.mjs", "summary": "Counter-state merge uses component-wise minima instead of maxima." },
+    { "file": "src/vclock.mjs", "summary": "Vector-clock dominance ignores keys that exist only in the second clock." }
+  ],
+  "decomposable": true
+}

@@ -1,0 +1,14 @@
+{
+  "id": "a05-lru-cache",
+  "class": "a",
+  "split": "dev",
+  "title": "LRU does not refresh the key when updating a value",
+  "statement": "The module `src/lru.mjs` exports the class `LRUCache`, a cache with fixed capacity and an LRU (*least recently used*) eviction policy.\n\n**Contract**\n\n- `new LRUCache(capacity, { onEvict } = {})`: `capacity` must be an integer ≥ 1, otherwise `RangeError`. Getters `size` and `capacity`.\n- `get(key)` returns the value (or `undefined` if absent) and marks the key as **the most recently used**.\n- `set(key, value)` inserts or updates the value and marks the key as **the most recently used** (this also applies to updating an already existing key). Returns the cache itself (chainable).\n- When inserting a **new** key with the cache full, the least recently used key is removed and `onEvict(key, value)` is called with the removed key and value. `onEvict` is only called on capacity evictions — never on value update, `delete` or `clear`.\n- `has(key)` and `peek(key)` query without changing the usage order. A stored `undefined` value counts as present for `has`.\n- `delete(key)` returns `true` if the key existed; `clear()` empties the cache.\n- `keys()` returns an array with the keys from the **least** to the **most** recently used.\n\n**Example**\n\n```js\nconst c = new LRUCache(3);\nc.set('a', 1).set('b', 2).set('c', 3);\nc.set('a', 4);\nc.keys(); // ['b', 'c', 'a']\nc.set('d', 5); // removes 'b'\n```\n\n**Reported symptom:** keys whose value was just updated are being discarded from the cache before keys that have not been touched for a long time. Fix the module.",
+  "bugs": [
+    {
+      "file": "src/lru.mjs",
+      "summary": "set() of an existing key does Map.set without a prior delete, keeping the old position in insertion order (does not refresh recency)"
+    }
+  ],
+  "decomposable": false
+}

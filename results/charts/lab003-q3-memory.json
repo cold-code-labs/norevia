@@ -1,0 +1,12 @@
+[
+ {
+  "x": "NOMEM",
+  "first_pass_failure_rate": 0.14,
+  "cost_per_accepted_usd": 0.0062
+ },
+ {
+  "x": "MEM",
+  "first_pass_failure_rate": 0.193,
+  "cost_per_accepted_usd": 0.0065
+ }
+]

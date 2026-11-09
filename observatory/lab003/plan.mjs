@@ -1,0 +1,5 @@
+import { loadPkgs } from './build3.mjs';
+const rng = (seed) => { let s = seed; return () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296; };
+// seeded compositions: for each [k, n] a list of n tasks of k distinct packages (shuffles are concatenated so packages recur only after the pool is exhausted)
+export function plan(seed, sizes, tag = 'q') { const names = Object.keys(loadPkgs()); const r = rng(seed); const out = []; for (const [k, n] of sizes) { let pool = []; for (let i = 0; i < n; i++) { if (pool.length < k) { const sh = [...names]; for (let j = sh.length - 1; j > 0; j--) { const x = Math.floor(r() * (j + 1)); [sh[j], sh[x]] = [sh[x], sh[j]]; } pool = pool.concat(sh); } const pkgs = pool.splice(0, k); if (new Set(pkgs).size < k) { pool = []; i--; continue; } out.push({ id: `${tag}${seed}-k${k}-${i + 1}`, k, pkgs }); } } return out; }
+export const shuffle = (arr, seed) => { const r = rng(seed); const a = [...arr]; for (let j = a.length - 1; j > 0; j--) { const x = Math.floor(r() * (j + 1)); [a[j], a[x]] = [a[x], a[j]]; } return a; };

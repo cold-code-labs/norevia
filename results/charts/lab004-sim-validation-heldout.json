@@ -1,0 +1,122 @@
+[
+ {
+  "x": "ORCH",
+  "condition": "N=300",
+  "coverage_error_pct": 2.1
+ },
+ {
+  "x": "ORCH",
+  "condition": "N=1000",
+  "coverage_error_pct": 2.4
+ },
+ {
+  "x": "ORCH-U",
+  "condition": "N=300",
+  "coverage_error_pct": 2.4
+ },
+ {
+  "x": "ORCH-U",
+  "condition": "N=1000",
+  "coverage_error_pct": 2
+ },
+ {
+  "x": "INDEP",
+  "condition": "N=300",
+  "coverage_error_pct": 2
+ },
+ {
+  "x": "INDEP",
+  "condition": "N=1000",
+  "coverage_error_pct": 1.6
+ },
+ {
+  "x": "VOTE",
+  "condition": "N=300",
+  "coverage_error_pct": 0.2
+ },
+ {
+  "x": "VOTE",
+  "condition": "N=1000",
+  "coverage_error_pct": 2.2
+ },
+ {
+  "x": "BOARD",
+  "condition": "N=300",
+  "coverage_error_pct": 0.1
+ },
+ {
+  "x": "BOARD",
+  "condition": "N=1000",
+  "coverage_error_pct": 1.6
+ },
+ {
+  "x": "QUORUM",
+  "condition": "N=300",
+  "coverage_error_pct": 2.4
+ },
+ {
+  "x": "QUORUM",
+  "condition": "N=1000",
+  "coverage_error_pct": 0.1
+ },
+ {
+  "x": "LOCUST",
+  "condition": "N=300",
+  "coverage_error_pct": 1.3
+ },
+ {
+  "x": "LOCUST",
+  "condition": "N=1000",
+  "coverage_error_pct": 0.1
+ },
+ {
+  "x": "ECOLI",
+  "condition": "N=300",
+  "coverage_error_pct": 3.2
+ },
+ {
+  "x": "ECOLI",
+  "condition": "N=1000",
+  "coverage_error_pct": 0.5
+ },
+ {
+  "x": "LEADERS",
+  "condition": "N=300",
+  "coverage_error_pct": 1
+ },
+ {
+  "x": "LEADERS",
+  "condition": "N=1000",
+  "coverage_error_pct": 1.9
+ },
+ {
+  "x": "WOUND",
+  "condition": "N=300",
+  "coverage_error_pct": 2.1
+ },
+ {
+  "x": "WOUND",
+  "condition": "N=1000",
+  "coverage_error_pct": 0.5
+ },
+ {
+  "x": "RENAL",
+  "condition": "N=300",
+  "coverage_error_pct": 0.4
+ },
+ {
+  "x": "RENAL",
+  "condition": "N=1000",
+  "coverage_error_pct": 2.4
+ },
+ {
+  "x": "HISTORY",
+  "condition": "N=300",
+  "coverage_error_pct": 2.5
+ },
+ {
+  "x": "HISTORY",
+  "condition": "N=1000",
+  "coverage_error_pct": 9.8
+ }
+]

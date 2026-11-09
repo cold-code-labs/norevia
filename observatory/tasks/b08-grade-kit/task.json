@@ -1,0 +1,26 @@
+{
+  "id": "b08-grade-kit",
+  "class": "b",
+  "split": "test",
+  "title": "Grid kit: matrices, character grid, flood fill and RLE",
+  "statement": "# Grid and matrix kit (`src/`)\n\nPackage with four independent modules: `matrix.mjs` (matrix algebra), `grid.mjs` (character grid), `flood.mjs` (connected regions) and `rle.mjs` (run-length compression of rows). Reports: products of non-square matrices are refused and maps passed to the flood fill appear altered after the call. All modules must fully obey the contract below.\n\n## `src/matrix.mjs`\n\nMatrices are arrays of rows (`number[][]`); no function changes the inputs.\n- `shape(m)` → `[rows, columns]`; `[]` → `[0, 0]`; rows of different lengths → `RangeError`.\n- `identity(n)`, `transpose(m)`, `add(a, b)` (different shapes → `RangeError`).\n- `multiply(a, b)`: usual product of `a` (n×k) by `b` (k×m), resulting in n×m; valid whenever the number of **columns of `a`** equals the number of **rows of `b`** (matrices need not be square); otherwise → `RangeError`. E.g.: `multiply([[1,2,3],[4,5,6]], [[7,8],[9,10],[11,12]])` → `[[58,64],[139,154]]`; `multiply([[1],[2],[3]], [[4,5,6]])` → 3×3 matrix.\n- `power(m, p)`: `m` square and `p` an integer `>= 0` (otherwise `RangeError`); `p = 0` → identity. E.g.: `power([[1,1],[1,0]], 5)` → `[[8,5],[5,3]]`.\n\n## `src/grid.mjs`\n\nClass `Grid(rows)`: `rows` is an array of strings of the same length (otherwise `RangeError`); the grid keeps a copy of the array. Coordinates `(r, c)` = (row, column) starting from `(0, 0)` at the top-left corner.\n- `height`, `width` (getters).\n- `inBounds(r, c)`: `0 <= r < height` and `0 <= c < width`.\n- `get(r, c)`: character, or `undefined` outside the grid.\n- `neighbors(r, c, { diagonal = false } = {})`: pairs `[r, c]` of the neighbors **within the grid**, in the order N, E, S, W (`[r-1,c]`, `[r,c+1]`, `[r+1,c]`, `[r,c-1]`); with `diagonal: true`, in the order N, NE, E, SE, S, SW, W, NW. E.g.: in a 3×3 grid, `neighbors(0, 2)` → `[[1, 2], [0, 1]]`; `neighbors(0, 0, { diagonal: true })` → `[[0, 1], [1, 1], [1, 0]]`.\n- `find(ch)`: first position `[r, c]` containing `ch`, scanning row by row, or `null`. `count(ch)`: occurrences. `toString()`: rows joined by `'\\n'`.\n\n## `src/flood.mjs`\n\nGrids as arrays of arrays (`cells[r][c]`), 4-connectivity (up, down, left, right — diagonals do not connect). **No function changes `cells`** (neither the outer array nor the rows).\n- `floodFill(cells, r, c, value)`: returns a **new** grid (with new rows) in which all cells of the 4-connected region of values equal to `cells[r][c]` that contains `(r, c)` take the value `value`. If `value` is already the cell's value, returns an equal copy (still independent of the input). Start outside the grid → `RangeError`. E.g.: `floodFill([[1,1,0],[1,0,0],[0,1,1]], 0, 0, 7)` → `[[7,7,0],[7,0,0],[0,1,1]]`.\n- `regionSize(cells, r, c)`: number of cells in that region (outside the grid → `RangeError`).\n- `countRegions(cells)`: number of 4-connected regions of equal values (`[[1,1,0],[1,0,0],[0,1,1]]` → `4`; `[]` → `0`).\n\n## `src/rle.mjs`\n\n- `encodeRow(s)`: each maximal run of the same character becomes `<length><character>`, omitting the length when it is 1; lengths may have several digits. `s` with digits → `RangeError`. E.g.: `'aaabcc'` → `'3ab2c'`; `'x'.repeat(12) + 'y'` → `'12xy'`.\n- `decodeRow(s)`: inverse of `encodeRow`; a number (of one or more digits) applies to the following character; a character without a number appears once. A number at the end without a character → `SyntaxError`. E.g.: `'10.2#'` → `'..........##'`.\n- `encodeGrid(rows)` / `decodeGrid(rows)`: apply the functions above to each row.",
+  "bugs": [
+    {
+      "file": "src/matrix.mjs",
+      "summary": "multiply checks rows(a) == rows(b) instead of columns(a) == rows(b)"
+    },
+    {
+      "file": "src/grid.mjs",
+      "summary": "inBounds uses c <= width (off-by-one), neighbors includes a column outside the grid"
+    },
+    {
+      "file": "src/flood.mjs",
+      "summary": "floodFill makes a shallow copy (cells.slice()) and changes the rows of the input grid"
+    },
+    {
+      "file": "src/rle.mjs",
+      "summary": "decodeRow overwrites the count at each digit (count = ch): multi-digit counts break"
+    }
+  ],
+  "decomposable": true
+}

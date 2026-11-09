@@ -1,0 +1,32 @@
+[
+ {
+  "x": "k=1 first pass",
+  "condition": "visible-only probe",
+  "false_success_rate": 0.127
+ },
+ {
+  "x": "k=1 first pass",
+  "condition": "strengthened probe",
+  "false_success_rate": 0
+ },
+ {
+  "x": "k=1 after repair",
+  "condition": "strengthened probe",
+  "false_success_rate": 0
+ },
+ {
+  "x": "k>=3 first pass",
+  "condition": "visible-only probe",
+  "false_success_rate": 0.6
+ },
+ {
+  "x": "k>=3 first pass",
+  "condition": "strengthened probe",
+  "false_success_rate": 0
+ },
+ {
+  "x": "k>=3 after repair",
+  "condition": "strengthened probe",
+  "false_success_rate": 0
+ }
+]

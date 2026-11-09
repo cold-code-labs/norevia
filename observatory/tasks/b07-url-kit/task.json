@@ -1,0 +1,22 @@
+{
+  "id": "b07-url-kit",
+  "class": "b",
+  "split": "test",
+  "title": "URL kit: query strings, paths and routes",
+  "statement": "# URL kit (`src/`)\n\nPackage with three independent modules: `query.mjs` (query strings), `path.mjs` (paths) and `route.mjs` (route matching). Reports: searches containing `+` reach the backend corrupted and versioned routes match URLs they should not. All modules must fully obey the contract below.\n\n## `src/query.mjs`\n\n- `parseQuery(qs)` → plain object.\n  - Leading `?` is optional; pairs separated by `&`; empty pairs are ignored (`''` and `'?'` → `{}`).\n  - Key and value separated by the **first** `=`; a pair without `=` has value `''` (`'flag&x=1=2'` → `{ flag: '', x: '1=2' }`).\n  - Decoding (of keys and values): first each literal `+` becomes a space, **then** percent-decoding (`decodeURIComponent`) is applied. So `'a+b'` → `'a b'`, but `'a%2Bb'` → `'a+b'`. If the `%` sequence is malformed, the text (already with `+` → space) stays as it is (`'1+1%'` → `'1 1%'`).\n  - A repeated key becomes an array with the values in order of appearance (`'t=a&t=b&u=1'` → `{ t: ['a', 'b'], u: '1' }`).\n- `stringifyQuery(obj)` → string without `?`. Keys in insertion order; key and value encoded with `encodeURIComponent` (value via `String(v)`); `undefined` is omitted; `null` produces only the key; arrays produce one pair per element. E.g.: `stringifyQuery({ a: 1, b: 'x y', c: undefined, d: null, e: ['p', 'q&r'] })` → `'a=1&b=x%20y&d&e=p&e=q%26r'`. It must hold that `parseQuery(stringifyQuery({ msg: '1+1=2' }))` → `{ msg: '1+1=2' }`.\n\n## `src/path.mjs`\n\n- `normalizePath(p)`:\n  - it is absolute if it starts with `/`; empty segments and `.` are discarded;\n  - `..` removes the previous segment when there is a previous segment that is not `..`; otherwise, in an **absolute** path it is discarded and in a **relative** path it is kept (accumulating). E.g.: `'/a/b/../c'` → `'/a/c'`; `'/../a'` → `'/a'`; `'../../a/b'` → `'../../a/b'`; `'a/../../b'` → `'../b'`;\n  - a trailing slash is preserved if `p` ends with `/` and at least one segment remains (`'a/b/../'` → `'a/'`);\n  - no segments: `'/'` if absolute, `'.'` if relative (`''` → `'.'`).\n- `joinPath(...parts)`: joins the non-empty parts with `/` and normalizes; no non-empty parts → `'.'`. E.g.: `joinPath('/api/', '/v1', 'users/')` → `'/api/v1/users/'`; `joinPath('..', '..', 'x')` → `'../../x'`.\n- `basename(p)`: last segment of the normalized path, disregarding a trailing slash (`'/a/b/'` → `'b'`; `'/'` → `''`).\n- `extname(p)`: from the last `.` of the basename to the end, if that `.` is not the first character; otherwise `''` (`'archive.tar.gz'` → `'.gz'`; `'.env'` → `''`).\n\n## `src/route.mjs`\n\n- `compileRoute(pattern)` → `{ names, match(path) }`. `pattern` must start with `/` (otherwise `SyntaxError`).\n  - `:name` (name = `[A-Za-z_][A-Za-z0-9_]*`) captures a **non-empty** stretch without `/`, the shortest possible that allows the rest to match; `*` at the end of the pattern captures the whole rest of the path in the parameter `'*'`. `names` lists the parameters in order.\n  - All other characters of the pattern are **literals** and case-sensitive — including `.`, `+`, `(` etc. E.g.: `compileRoute('/api/v1.0/:id').match('/api/v1x0/7')` → `null`; `compileRoute('/files/:name.json').match('/files/report.v2.json')` → `{ name: 'report.v2' }`.\n  - The path must match in full; one extra trailing slash is tolerated (`'/users/:id'` matches `'/users/42/'`).\n  - `match` returns `{ name: value }` with values decoded by `decodeURIComponent` (malformed: stays as it is), or `null`.\n- `createRouter()` → `{ add(pattern, handler) (chainable), resolve(path) }`; `resolve` returns `{ handler, params }` of the **first** registered route that matches, or `null`.",
+  "bugs": [
+    {
+      "file": "src/query.mjs",
+      "summary": "decodes % before replacing '+' with a space: '%2B' becomes a space"
+    },
+    {
+      "file": "src/path.mjs",
+      "summary": "'..' removes a previous '..' in relative paths ('../../a' becomes 'a')"
+    },
+    {
+      "file": "src/route.mjs",
+      "summary": "escapeRegex does not escape '.', which matches any character"
+    }
+  ],
+  "decomposable": true
+}

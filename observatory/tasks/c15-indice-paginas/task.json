@@ -1,0 +1,14 @@
+{
+  "id": "c15-indice-paginas",
+  "class": "c",
+  "split": "dev",
+  "title": "Paged ordered index: stable duplicate-key cursors and complete pagination",
+  "statement": "# Paged ordered index (`src/`)\n\nRepair the package that implements a paged ordered index with duplicate keys, range queries, opaque cursors, and forward/reverse pagination. Entries are ordered by `(key, insertion id)`. A cursor must round-trip as `id.key`; locating a cursor must compare the full position; page splitting uses the balanced midpoint; and a next cursor is returned only when an additional result exists. Preserve the existing `PagedIndex`, `range`, and pagination APIs.",
+  "bugs": [
+    { "file": "src/index.mjs", "summary": "Page lookup compares only keys, not the full key-and-id position." },
+    { "file": "src/keys.mjs", "summary": "Cursor encoding and decoding use key.id instead of the documented id.key representation." },
+    { "file": "src/page.mjs", "summary": "Page splitting moves the midpoint to avoid separating equal keys, producing an unbalanced split." },
+    { "file": "src/paginate.mjs", "summary": "Pagination does not fetch a look-ahead item and reports a next cursor even when the page is final." }
+  ],
+  "decomposable": false
+}

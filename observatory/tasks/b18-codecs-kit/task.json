@@ -1,0 +1,14 @@
+{
+  "id": "b18-codecs-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "Binary codecs: varints, CRC-32, strict UTF-8, and Base64url",
+  "statement": "# Binary codec kit (`src/`)\n\nThe package contains four ESM modules: unsigned LEB128 and ZigZag varints, incremental CRC-32, strict UTF-8 encoding/decoding, and unpadded Base64url. Preserve the documented APIs and validation behavior. Fix the offset-sensitive varint canonicality check, CRC continuation state, UTF-8 surrogate boundary, and invalid Base64url length handling. These defects are independent but live in one codec package.",
+  "bugs": [
+    { "file": "src/varint.mjs", "summary": "The minimal-encoding check compares the byte index with zero instead of the requested offset, rejecting a canonical zero varint at a nonzero offset." },
+    { "file": "src/crc32.mjs", "summary": "CRC continuation fails to un-finalize the previous CRC before processing the next chunk." },
+    { "file": "src/utf8.mjs", "summary": "The three-byte UTF-8 upper-bound check is applied to U+EFxx instead of the surrogate range U+EDxx." },
+    { "file": "src/base64url.mjs", "summary": "Decoding accepts an impossible encoded length congruent to one modulo four." }
+  ],
+  "decomposable": true
+}

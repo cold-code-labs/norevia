@@ -1,0 +1,25 @@
+{
+  "id": "c04-cache-chaves",
+  "class": "c",
+  "split": "dev",
+  "title": "Cache de leitura: unidade do TTL e formato das chaves acoplados ao repositório",
+  "statement": "# Cache de leitura com chaves canônicas (`src/`)\n\nOs serviços do enxame compartilham um cache em memória na frente de um armazenamento de registros. São três módulos:\n\n## `src/keys.mjs` — chaves canônicas\n\nToda chave começa pelo nome do recurso. Nome de recurso válido: casa com `/^[a-z][a-z0-9_-]*$/`; caso contrário → `TypeError`.\n\n- `encodeValue(v)`: `null` → `''`; array → elementos codificados (recursivamente) unidos por `,`; qualquer outro valor → `encodeURIComponent(String(v))`.\n- `entityKey(resource, id)` → **`<recurso>:<encodeValue(id)>`**. `id` `undefined`, `null` ou `''` → `TypeError`.\n- `queryKey(resource, params = {})` → **`<recurso>?`** seguido dos pares `encodeURIComponent(nome)=encodeValue(valor)` unidos por `&`, em ordem crescente do nome do parâmetro (ordenação padrão de strings do JavaScript). Parâmetros com valor `undefined` são omitidos. `params` que não seja objeto simples (ex.: array, `null`) → `TypeError`.\n- `resourceOf(key)`: texto antes do primeiro `:` ou `?`.\n\nComo `:` e `?` não podem aparecer em nomes de recurso, o prefixo `<recurso>?` seleciona **todas e somente** as consultas daquele recurso (por exemplo, `user?` não casa com chaves do recurso `users`).\n\nExemplos dourados:\n\n| chamada | chave |\n|---|---|\n| `entityKey('user', 42)` | `user:42` |\n| `entityKey('doc', 'a/b c')` | `doc:a%2Fb%20c` |\n| `queryKey('user', { role: 'admin', page: 2 })` | `user?page=2&role=admin` |\n| `queryKey('user')` | `user?` |\n| `queryKey('post', { tags: ['a b', 'c'], q: undefined, author: null })` | `post?author=&tags=a%20b,c` |\n\n## `src/cache.mjs` — `TtlCache`\n\n- `new TtlCache({ now })`: `now()` devolve o instante atual em **milissegundos** (padrão `Date.now`).\n- `set(key, value, ttlSeconds)`: grava por `ttlSeconds` **segundos** (número `> 0`; `Infinity` = nunca expira; `0`, negativo ou `NaN` → `RangeError`; `value === undefined` → `TypeError`). Devolve o próprio cache (encadeável). Uma entrada gravada no instante `t0` está viva enquanto `now() < t0 + ttlSeconds * 1000`; em `now() >= t0 + ttlSeconds * 1000` ela não existe mais.\n  - Ex.: gravada em `t0 = 1000` com `ttlSeconds = 2` → viva em `2999`, inexistente em `3000`.\n- `get(key)`: valor vivo ou `undefined`; incrementa `stats.hits` ou `stats.misses` (`stats` começa `{ hits: 0, misses: 0 }`).\n- `has(key)`: se há entrada viva (não mexe em `stats`).\n- `invalidate(key)`: remove; devolve `true` se havia entrada viva.\n- `invalidatePrefix(prefix)`: remove todas as entradas cuja chave começa com `prefix`; devolve quantas delas estavam vivas.\n- `keys()`: chaves vivas em ordem de inserção; `size`: quantidade de chaves vivas.\n\n## `src/repo.mjs` — `MemoryStore` e `Repository`\n\n- `new MemoryStore(records)`: \"banco\" em memória indexado por `id`. `get(id)` (cópia ou `undefined`), `list(params)` (cópias dos registros cujos campos são `===` a todos os parâmetros não-`undefined`, ordenadas por `id`), `update(id, patch)` (mescla; id inexistente → `Error`). Cada chamada incrementa o contador correspondente em `calls = { get, list, update }`, o que permite observar quando o cache foi usado.\n- `new Repository({ resource, store, cache, ttlSeconds = 60 })`:\n  - `get(id)`: lê do cache sob `entityKey(resource, id)`; em falta, busca em `store.get` e grava no cache com TTL de `ttlSeconds` segundos. Resultado `undefined` não é gravado.\n  - `list(params = {})`: idem, sob `queryKey(resource, params)` e `store.list(params)`.\n  - `update(id, patch)`: grava no `store` e invalida **exatamente** a chave da entidade alterada e **todas** as chaves de consulta do recurso. Entradas de outras entidades do mesmo recurso e de outros recursos que compartilham o cache permanecem.\n\n## Sintomas relatados\n\n- Os testes de integração do repositório (expiração após `ttlSeconds`, listas atualizadas após `update`) passam.\n- Porém outros serviços que leem o mesmo cache não encontram as chaves que esperam pelo formato canônico; cada `update` provoca uma onda de leituras no banco para entidades que não mudaram; e um serviço que usa `TtlCache` diretamente reclama que as entradas somem quase imediatamente.\n\nCorrija o pacote para que obedeça integralmente ao contrato acima.",
+  "bugs": [
+    {
+      "file": "src/keys.mjs",
+      "summary": "queryKey usa ':' como separador (mesmo das entidades) em vez de '?'",
+      "coupledWith": "src/repo.mjs"
+    },
+    {
+      "file": "src/cache.mjs",
+      "summary": "set trata o TTL como milissegundos (now + ttlSeconds) em vez de segundos",
+      "coupledWith": "src/repo.mjs"
+    },
+    {
+      "file": "src/repo.mjs",
+      "summary": "compensa os dois erros: passa ttlSeconds*1000 ao cache e invalida o prefixo '<recurso>:' (que casa com as consultas mal formadas, mas também apaga todas as entidades do recurso)",
+      "coupledWith": "src/keys.mjs, src/cache.mjs"
+    }
+  ],
+  "decomposable": false
+}

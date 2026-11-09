@@ -1,0 +1,22 @@
+{
+  "id": "b06-estatistica-kit",
+  "class": "b",
+  "split": "dev",
+  "title": "Statistics kit: central tendency, percentiles and histograms",
+  "statement": "# Descriptive statistics kit (`src/`)\n\nPackage with three independent modules — `central.mjs`, `percentile.mjs`, `histogram.mjs` — and an `index.mjs` that re-exports them and defines `describe`. Reports from the observability team: latency medians sometimes come out absurd and the histograms \"lose\" samples. All modules must fully obey the contract below. No function changes the received array.\n\n## `src/central.mjs`\n\nAll functions require an array of finite numbers (otherwise `TypeError`) and return `NaN` for an empty array.\n- `mean(xs)`: arithmetic mean.\n- `median(xs)`: central value of the sample in **ascending numeric order**; with an even size, mean of the two central values. E.g.: `median([10, 9, 2])` → `9`; `median([100, 20, 3, 4])` → `12`.\n- `mode(xs)`: most frequent value; tie → the smallest of them (`mode([4, 4, 1, 1, 9])` → `1`).\n- `variance(xs, { sample = false } = {})`: population (sum of the squared deviations / n) or sample (/ (n − 1); with fewer than 2 values → `NaN`). `stddev(xs, options)` = square root of the variance. E.g.: `variance([2,4,4,4,5,5,7,9])` → `4`.\n\n## `src/percentile.mjs`\n\n- `percentile(xs, p)`: `p` must be in [0, 100] (otherwise, including `NaN`, `RangeError`); empty array → `NaN`. Sorts a copy numerically and interpolates linearly: position `r = p/100 · (n − 1)`, `lo = ⌊r⌋`, result `s[lo] + (s[lo+1] − s[lo]) · (r − lo)`, where, when `lo` is already the last index, the result is `s[lo]`. So `p = 0` gives the minimum, `p = 100` gives the maximum and a single-element sample returns that element for any `p`. E.g.: `percentile([1, 2, 3, 4], 25)` → `1.75`; `percentile([3, 1, 2], 100)` → `3`; `percentile([7], 30)` → `7`.\n- `quantiles(xs, ps)`: `ps.map(p => percentile(xs, p))`.\n- `iqr(xs)`: `percentile(xs, 75) − percentile(xs, 25)`.\n- `fiveNumberSummary(xs)`: `{ min, q1, median, q3, max }` = percentiles 0, 25, 50, 75 and 100.\n\n## `src/histogram.mjs`\n\n- `histogram(xs, { bins = 10, min, max } = {})` → array of `{ lo, hi, count }`.\n  - Default `min`/`max`: minimum and maximum of `xs`. `max < min` → `RangeError`; if `min === max`, `max = min + 1` is used. `bins` must be an integer `>= 1` (otherwise `RangeError`). Empty `xs` without explicit `min` and `max` → `[]`.\n  - `[min, max]` is divided into `bins` buckets of width `(max − min) / bins`; bucket `i` has `lo = min + i·width` and `hi = min + (i+1)·width` (the last one has exactly `hi = max`).\n  - Each bucket is half-open `[lo, hi)`, **except the last, which is closed `[lo, max]`**: the value equal to `max` is counted in the last bucket. A value exactly on an inner boundary goes to the upper bucket. Values outside `[min, max]` are ignored.\n  - E.g.: `histogram([0,1,2,3,4,5,6,7,8,9,10], { bins: 5 })` → counts `[2, 2, 2, 2, 3]`; `histogram([-1, 0, 5, 10, 11], { bins: 2, min: 0, max: 10 })` → `[{ lo: 0, hi: 5, count: 1 }, { lo: 5, hi: 10, count: 2 }]`; `histogram([3, 3, 3], { bins: 2 })` → `[{ lo: 3, hi: 3.5, count: 3 }, { lo: 3.5, hi: 4, count: 0 }]`.\n- `cumulative(buckets)`: cumulative counts (`[2, 0, 3]` → `[2, 2, 5]`).\n\n## `src/index.mjs`\n\nRe-exports everything and defines `describe(xs, { bins = 5 })` → `{ n, mean, stddev, min, q1, median, q3, max, histogram }`.",
+  "bugs": [
+    {
+      "file": "src/central.mjs",
+      "summary": "median sorts without a comparator (lexicographic order)"
+    },
+    {
+      "file": "src/percentile.mjs",
+      "summary": "upper index of the interpolation is not capped at the last element: p=100 and 1-element samples give NaN"
+    },
+    {
+      "file": "src/histogram.mjs",
+      "summary": "values equal to max are discarded (x >= hi instead of x > hi)"
+    }
+  ],
+  "decomposable": true
+}

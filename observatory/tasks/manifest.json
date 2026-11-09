@@ -1,0 +1,4978 @@
+{
+  "generated": "2026-11-08T12:44:47.981Z",
+  "node": "v22.23.0",
+  "tasks": {
+    "a01-clamp-range": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "range.mjs"
+      ],
+      "solFiles": [
+        "range.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/range.test.mjs": 2,
+        "test/range.test.mjs": 4
+      },
+      "srcLines": 15,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "3/4"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "4/4"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "7b10925d0c77dcda",
+        "solution": "6c1d2db9c2aaec38",
+        "visible": "839f03cb54812861",
+        "test": "8cae0a8b4ff33ba6"
+      },
+      "problems": []
+    },
+    "a02-paginate-pages": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "paginate.mjs"
+      ],
+      "solFiles": [
+        "paginate.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/paginate.test.mjs": 2,
+        "test/paginate.test.mjs": 9
+      },
+      "srcLines": 55,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/9"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "9/9"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "24ed6683c4d22ca2",
+        "solution": "4ab8456218b0d558",
+        "visible": "d84407623cb8233a",
+        "test": "516db3fc8b3d0726"
+      },
+      "problems": []
+    },
+    "a03-allocate-cents": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "allocate.mjs"
+      ],
+      "solFiles": [
+        "allocate.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/allocate.test.mjs": 2,
+        "test/allocate.test.mjs": 8
+      },
+      "srcLines": 53,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "5/8"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "8/8"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "a4ecabad4972ae2e",
+        "solution": "93014042b98fda92",
+        "visible": "e54f9e1dd2949006",
+        "test": "751f8fc9140f9ca0"
+      },
+      "problems": []
+    },
+    "a04-merge-intervals": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "intervals.mjs"
+      ],
+      "solFiles": [
+        "intervals.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/intervals.test.mjs": 2,
+        "test/intervals.test.mjs": 7
+      },
+      "srcLines": 54,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/7"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "7/7"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "8709290014769be8",
+        "solution": "62547b09308dcab9",
+        "visible": "6781c037d2f39def",
+        "test": "4f1075e682aead33"
+      },
+      "problems": []
+    },
+    "a05-lru-cache": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "lru.mjs"
+      ],
+      "solFiles": [
+        "lru.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/lru.test.mjs": 2,
+        "test/lru.test.mjs": 7
+      },
+      "srcLines": 74,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/7"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "7/7"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "cb2c10aebfe7e6a2",
+        "solution": "245404ca068575f7",
+        "visible": "479f54f4780ddbd2",
+        "test": "570656755956c8d2"
+      },
+      "problems": []
+    },
+    "a06-csv-quoting": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "csv.mjs"
+      ],
+      "solFiles": [
+        "csv.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/csv.test.mjs": 2,
+        "test/csv.test.mjs": 7
+      },
+      "srcLines": 49,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/7"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "7/7"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "e97b6c1cf2f1f66c",
+        "solution": "729c5fcb263f0382",
+        "visible": "ee8c247bcdc60806",
+        "test": "a6e4c6fcdf593437"
+      },
+      "problems": []
+    },
+    "a07-truncate-codepoints": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "truncate.mjs"
+      ],
+      "solFiles": [
+        "truncate.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/truncate.test.mjs": 2,
+        "test/truncate.test.mjs": 8
+      },
+      "srcLines": 54,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/8"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "8/8"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "3bcc31ce4a1fde85",
+        "solution": "075859a0aefe8122",
+        "visible": "8708dbb205bc6b0c",
+        "test": "6cac643963de4423"
+      },
+      "problems": []
+    },
+    "a08-token-bucket-idle": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "bucket.mjs"
+      ],
+      "solFiles": [
+        "bucket.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/bucket.test.mjs": 2,
+        "test/bucket.test.mjs": 7
+      },
+      "srcLines": 62,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/7"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "7/7"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "1d000d2db2284a34",
+        "solution": "e9562ca59442714b",
+        "visible": "10e4a3071342ac21",
+        "test": "13a23c6f70ae1e1f"
+      },
+      "problems": []
+    },
+    "a09-deep-equal-zero": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "equal.mjs"
+      ],
+      "solFiles": [
+        "equal.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/equal.test.mjs": 2,
+        "test/equal.test.mjs": 7
+      },
+      "srcLines": 64,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/7"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "7/7"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "a78c1703b2af7de1",
+        "solution": "73458d1ba13f2f71",
+        "visible": "02b717b0d0ba3407",
+        "test": "cb5b1e4bed6c1efb"
+      },
+      "problems": []
+    },
+    "a10-semver-range": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "semver.mjs"
+      ],
+      "solFiles": [
+        "semver.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/semver.test.mjs": 3,
+        "test/semver.test.mjs": 13
+      },
+      "srcLines": 309,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "11/13"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "b62599a24a74b9ff",
+        "solution": "8aadfe0294ada657",
+        "visible": "cdf7b18b30cbf820",
+        "test": "d884a1bcef7fbc2e"
+      },
+      "problems": []
+    },
+    "a11-markdown-table": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "mdtable.mjs"
+      ],
+      "solFiles": [
+        "mdtable.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/mdtable.test.mjs": 3,
+        "test/mdtable.test.mjs": 13
+      },
+      "srcLines": 258,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "10/13"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "feb232262d485ba6",
+        "solution": "f113a511e5b0d472",
+        "visible": "3fc40549e31eb70e",
+        "test": "27dddaca515997b7"
+      },
+      "problems": []
+    },
+    "a12-acl-policy": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "policy.mjs"
+      ],
+      "solFiles": [
+        "policy.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/policy.test.mjs": 3,
+        "test/policy.test.mjs": 13
+      },
+      "srcLines": 300,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "10/13"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "5aad76c227c2894c",
+        "solution": "bdb616c0c946e973",
+        "visible": "4ecefa3911489425",
+        "test": "9333dc1451c3f7a8"
+      },
+      "problems": []
+    },
+    "a13-template-engine": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "template.mjs"
+      ],
+      "solFiles": [
+        "template.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/template.test.mjs": 3,
+        "test/template.test.mjs": 13
+      },
+      "srcLines": 278,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "10/13"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "28bfdaffb52de1d4",
+        "solution": "6e6332d1f241f7bf",
+        "visible": "c197b982597cc830",
+        "test": "31ffb58d236a9bf2"
+      },
+      "problems": []
+    },
+    "a14-expr-printer": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "expr.mjs"
+      ],
+      "solFiles": [
+        "expr.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/expr.test.mjs": 3,
+        "test/expr.test.mjs": 12
+      },
+      "srcLines": 348,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "10/12"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "5ed98ef59e614d9a",
+        "solution": "41faf910e3042351",
+        "visible": "119e0f16d8b5c995",
+        "test": "ef8e10a1b7a170a1"
+      },
+      "problems": []
+    },
+    "a15-cron-next": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "cron.mjs"
+      ],
+      "solFiles": [
+        "cron.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/cron.test.mjs": 3,
+        "test/cron.test.mjs": 13
+      },
+      "srcLines": 310,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "9/13"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "0f556fa60054f00c",
+        "solution": "afbc5c8fa9b46aa1",
+        "visible": "927a7d0bf4ad89a8",
+        "test": "ac6ea8d3f0fe8e1d"
+      },
+      "problems": []
+    },
+    "a16-bigint-divmod": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "bignum.mjs"
+      ],
+      "solFiles": [
+        "bignum.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/bignum.test.mjs": 2,
+        "test/core.test.mjs": 5,
+        "test/derived.test.mjs": 3,
+        "test/divmod.test.mjs": 6,
+        "test/gcd.test.mjs": 1,
+        "test/mul.test.mjs": 5
+      },
+      "srcLines": 429,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "17/20"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "20/20"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "96ec7c4c0fa04454",
+        "solution": "df24233ba26c8bf7",
+        "visible": "2b5ac2c57b50981a",
+        "test": "c39dac17fecbd7fd"
+      },
+      "problems": []
+    },
+    "a17-fraction-limit": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "fraction.mjs"
+      ],
+      "solFiles": [
+        "fraction.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/fraction.test.mjs": 2,
+        "test/basics.test.mjs": 5,
+        "test/limit.test.mjs": 5,
+        "test/rounding.test.mjs": 3
+      },
+      "srcLines": 272,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "10/13"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "13/13"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "60aa0053003e7a29",
+        "solution": "5247955c1455845e",
+        "visible": "f51d567152f41686",
+        "test": "ed2d061040593670"
+      },
+      "problems": []
+    },
+    "a18-avl-ordered-map": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "ordmap.mjs"
+      ],
+      "solFiles": [
+        "ordmap.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/height.test.mjs": 1,
+        "test/invariants.test.mjs": 1
+      },
+      "srcLines": 307,
+      "buggy": {
+        "visible": "0/1",
+        "hidden": "0/1"
+      },
+      "reference": {
+        "visible": "1/1",
+        "hidden": "1/1"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "8d25cde14ded143c",
+        "solution": "bca5078dcdc70361",
+        "visible": "ab954b093cb1b6f0",
+        "test": "e28e7e2fc0c8de63"
+      },
+      "problems": []
+    },
+    "a19-lz77-codec": {
+      "class": "a",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "lz77.mjs"
+      ],
+      "solFiles": [
+        "lz77.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/lz77.test.mjs": 3,
+        "test/lz77.test.mjs": 10
+      },
+      "srcLines": 269,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "6/10"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "10/10"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "19c2993a692dec74",
+        "solution": "2170b44a9721cfe9",
+        "visible": "03bab0ba18e2d5f7",
+        "test": "544ebc7d29fb4431"
+      },
+      "problems": []
+    },
+    "a20-glob-matcher": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "glob.mjs"
+      ],
+      "solFiles": [
+        "glob.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/glob.test.mjs": 3,
+        "test/glob.test.mjs": 11
+      },
+      "srcLines": 265,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "9/11"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "11/11"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "e58c15678822304d",
+        "solution": "ed6d492ad565a7ef",
+        "visible": "ae8db0e27add1e16",
+        "test": "d7e2b5f6272f12df"
+      },
+      "problems": []
+    },
+    "a21-stack-vm": {
+      "class": "a",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "vm.mjs"
+      ],
+      "solFiles": [
+        "vm.mjs"
+      ],
+      "nBugs": 1,
+      "expected": {
+        "visible/vm.test.mjs": 3,
+        "test/vm.test.mjs": 15
+      },
+      "srcLines": 388,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "13/15"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "15/15"
+      },
+      "singleFileFix": {},
+      "hash": {
+        "src": "00668c553fd6ca25",
+        "solution": "ab7379782fa8c447",
+        "visible": "a53912fd49b2a661",
+        "test": "88b1b55bb1c37458"
+      },
+      "problems": []
+    },
+    "b01-texto-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "index.mjs",
+        "slugify.mjs",
+        "tokenize.mjs",
+        "wrap.mjs"
+      ],
+      "solFiles": [
+        "slugify.mjs",
+        "tokenize.mjs",
+        "wrap.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/kit.test.mjs": 3,
+        "test/slugify.test.mjs": 6,
+        "test/tokenize.test.mjs": 7,
+        "test/wrap.test.mjs": 6
+      },
+      "srcLines": 161,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "15/19"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "19/19"
+      },
+      "singleFileFix": {
+        "slugify.mjs": {
+          "hiddenPass": 16,
+          "hiddenTotal": 19,
+          "delta": 1
+        },
+        "tokenize.mjs": {
+          "hiddenPass": 17,
+          "hiddenTotal": 19,
+          "delta": 2
+        },
+        "wrap.mjs": {
+          "hiddenPass": 16,
+          "hiddenTotal": 19,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "ba8eed239565fbdb",
+        "solution": "326fa058975950d3",
+        "visible": "77e83470ad538e58",
+        "test": "3196eaea4ad829a7"
+      },
+      "problems": []
+    },
+    "b02-estoque-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "discounts.mjs",
+        "ledger.mjs",
+        "money.mjs"
+      ],
+      "solFiles": [
+        "discounts.mjs",
+        "ledger.mjs",
+        "money.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/estoque.test.mjs": 3,
+        "test/discounts.test.mjs": 8,
+        "test/ledger.test.mjs": 7,
+        "test/money.test.mjs": 7
+      },
+      "srcLines": 156,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "17/22"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "22/22"
+      },
+      "singleFileFix": {
+        "discounts.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 22,
+          "delta": 3
+        },
+        "ledger.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 22,
+          "delta": 1
+        },
+        "money.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 22,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "7e4f5eb22863ea8b",
+        "solution": "5eaaeb4fd87bcd37",
+        "visible": "a9a2dd28eb1fcc78",
+        "test": "605da05f6e7a4848"
+      },
+      "problems": []
+    },
+    "b03-geometria-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "bbox.mjs",
+        "polygon.mjs",
+        "vector.mjs"
+      ],
+      "solFiles": [
+        "bbox.mjs",
+        "polygon.mjs",
+        "vector.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/geometria.test.mjs": 3,
+        "test/bbox.test.mjs": 6,
+        "test/polygon.test.mjs": 5,
+        "test/vector.test.mjs": 6
+      },
+      "srcLines": 160,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "10/17"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "17/17"
+      },
+      "singleFileFix": {
+        "bbox.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 17,
+          "delta": 2
+        },
+        "polygon.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 17,
+          "delta": 2
+        },
+        "vector.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 17,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "91b5fcd3204ad7b3",
+        "solution": "895e4a50a0fbfe51",
+        "visible": "f33b88b5b815adda",
+        "test": "aeb5eb43c2b210b3"
+      },
+      "problems": []
+    },
+    "b04-agenda-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "clock.mjs",
+        "priority-queue.mjs",
+        "rate-limiter.mjs",
+        "scheduler.mjs"
+      ],
+      "solFiles": [
+        "priority-queue.mjs",
+        "rate-limiter.mjs",
+        "scheduler.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/agenda.test.mjs": 3,
+        "test/priority-queue.test.mjs": 6,
+        "test/rate-limiter.test.mjs": 6,
+        "test/scheduler.test.mjs": 7
+      },
+      "srcLines": 207,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "12/19"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "19/19"
+      },
+      "singleFileFix": {
+        "priority-queue.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 19,
+          "delta": 2
+        },
+        "rate-limiter.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 19,
+          "delta": 2
+        },
+        "scheduler.mjs": {
+          "hiddenPass": 15,
+          "hiddenTotal": 19,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "b6735e989240179e",
+        "solution": "bf60c42759a8dd93",
+        "visible": "b4e6d22e3919c4ed",
+        "test": "a6ee1601bc3151cb"
+      },
+      "problems": []
+    },
+    "b05-config-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "env.mjs",
+        "index.mjs",
+        "merge.mjs",
+        "validate.mjs"
+      ],
+      "solFiles": [
+        "env.mjs",
+        "merge.mjs",
+        "validate.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/config.test.mjs": 3,
+        "test/env.test.mjs": 7,
+        "test/merge.test.mjs": 7,
+        "test/validate.test.mjs": 7
+      },
+      "srcLines": 176,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "17/21"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "21/21"
+      },
+      "singleFileFix": {
+        "env.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 21,
+          "delta": 1
+        },
+        "merge.mjs": {
+          "hiddenPass": 19,
+          "hiddenTotal": 21,
+          "delta": 2
+        },
+        "validate.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 21,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "e5c41820da6fe8e8",
+        "solution": "0a6e7330a28ac035",
+        "visible": "3d52d80ca258e0ab",
+        "test": "41a35ec5ad9e5c6e"
+      },
+      "problems": []
+    },
+    "b06-estatistica-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "central.mjs",
+        "histogram.mjs",
+        "index.mjs",
+        "percentile.mjs"
+      ],
+      "solFiles": [
+        "central.mjs",
+        "histogram.mjs",
+        "percentile.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/estatistica.test.mjs": 3,
+        "test/central.test.mjs": 7,
+        "test/histogram.test.mjs": 7,
+        "test/percentile.test.mjs": 7
+      },
+      "srcLines": 160,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "12/21"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "21/21"
+      },
+      "singleFileFix": {
+        "central.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 21,
+          "delta": 2
+        },
+        "histogram.mjs": {
+          "hiddenPass": 16,
+          "hiddenTotal": 21,
+          "delta": 4
+        },
+        "percentile.mjs": {
+          "hiddenPass": 15,
+          "hiddenTotal": 21,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "63f68cdb929ae0c7",
+        "solution": "b9efe1cb1cfa72ad",
+        "visible": "d299305e92cb15ff",
+        "test": "fb89a081eedfe6bd"
+      },
+      "problems": []
+    },
+    "b07-url-kit": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "path.mjs",
+        "query.mjs",
+        "route.mjs"
+      ],
+      "solFiles": [
+        "path.mjs",
+        "query.mjs",
+        "route.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/url.test.mjs": 3,
+        "test/path.test.mjs": 7,
+        "test/query.test.mjs": 8,
+        "test/route.test.mjs": 8
+      },
+      "srcLines": 177,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "18/23"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "23/23"
+      },
+      "singleFileFix": {
+        "path.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 23,
+          "delta": 2
+        },
+        "query.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 23,
+          "delta": 2
+        },
+        "route.mjs": {
+          "hiddenPass": 19,
+          "hiddenTotal": 23,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "7b1f3bb3c031942f",
+        "solution": "ce1791666f3a02a3",
+        "visible": "130d08f76f9bb051",
+        "test": "f1c23f0513d6e586"
+      },
+      "problems": []
+    },
+    "b08-grade-kit": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "flood.mjs",
+        "grid.mjs",
+        "matrix.mjs",
+        "rle.mjs"
+      ],
+      "solFiles": [
+        "flood.mjs",
+        "grid.mjs",
+        "matrix.mjs",
+        "rle.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/grade.test.mjs": 4,
+        "test/flood.test.mjs": 7,
+        "test/grid.test.mjs": 7,
+        "test/matrix.test.mjs": 7,
+        "test/rle.test.mjs": 7
+      },
+      "srcLines": 216,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "18/28"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "28/28"
+      },
+      "singleFileFix": {
+        "flood.mjs": {
+          "hiddenPass": 21,
+          "hiddenTotal": 28,
+          "delta": 3
+        },
+        "grid.mjs": {
+          "hiddenPass": 21,
+          "hiddenTotal": 28,
+          "delta": 3
+        },
+        "matrix.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 28,
+          "delta": 2
+        },
+        "rle.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 28,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "2df75e21497259ec",
+        "solution": "4278ab12ff887cdd",
+        "visible": "6a22c35b2a4dbbc6",
+        "test": "86f6f5c147ab2e64"
+      },
+      "problems": []
+    },
+    "b09-datas-kit": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "business.mjs",
+        "dates.mjs",
+        "duration.mjs"
+      ],
+      "solFiles": [
+        "business.mjs",
+        "dates.mjs",
+        "duration.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/datas.test.mjs": 3,
+        "test/business.test.mjs": 7,
+        "test/dates.test.mjs": 7,
+        "test/duration.test.mjs": 7
+      },
+      "srcLines": 165,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "11/21"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "21/21"
+      },
+      "singleFileFix": {
+        "business.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 21,
+          "delta": 3
+        },
+        "dates.mjs": {
+          "hiddenPass": 16,
+          "hiddenTotal": 21,
+          "delta": 5
+        },
+        "duration.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 21,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "439375168f8d9652",
+        "solution": "da7613b10d0674cc",
+        "visible": "38ce25c99d3f8119",
+        "test": "deffdd7d992d79cb"
+      },
+      "problems": []
+    },
+    "b10-billing-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "invoice.mjs",
+        "money.mjs",
+        "proration.mjs",
+        "tax.mjs",
+        "tiers.mjs"
+      ],
+      "solFiles": [
+        "invoice.mjs",
+        "money.mjs",
+        "proration.mjs",
+        "tax.mjs",
+        "tiers.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/billing.test.mjs": 3,
+        "test/invoice.test.mjs": 7,
+        "test/money.test.mjs": 7,
+        "test/proration.test.mjs": 8,
+        "test/tax.test.mjs": 6,
+        "test/tiers.test.mjs": 6
+      },
+      "srcLines": 495,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "20/34"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "34/34"
+      },
+      "singleFileFix": {
+        "invoice.mjs": {
+          "hiddenPass": 22,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "money.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 34,
+          "delta": 4
+        },
+        "proration.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 34,
+          "delta": 4
+        },
+        "tax.mjs": {
+          "hiddenPass": 21,
+          "hiddenTotal": 34,
+          "delta": 1
+        },
+        "tiers.mjs": {
+          "hiddenPass": 23,
+          "hiddenTotal": 34,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "070c1765841c4387",
+        "solution": "2aea86a2a06e98f4",
+        "visible": "4a21f29cd000cdaf",
+        "test": "4706dbbb5700811f"
+      },
+      "problems": []
+    },
+    "b11-calendar-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "add.mjs",
+        "business.mjs",
+        "civil.mjs",
+        "isoweek.mjs",
+        "recur.mjs"
+      ],
+      "solFiles": [
+        "add.mjs",
+        "business.mjs",
+        "civil.mjs",
+        "isoweek.mjs",
+        "recur.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 4,
+        "test/add.test.mjs": 7,
+        "test/business.test.mjs": 7,
+        "test/civil.test.mjs": 6,
+        "test/isoweek.test.mjs": 6,
+        "test/recur.test.mjs": 7
+      },
+      "srcLines": 434,
+      "buggy": {
+        "visible": "3/4",
+        "hidden": "26/33"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "33/33"
+      },
+      "singleFileFix": {
+        "add.mjs": {
+          "hiddenPass": 27,
+          "hiddenTotal": 33,
+          "delta": 1
+        },
+        "business.mjs": {
+          "hiddenPass": 27,
+          "hiddenTotal": 33,
+          "delta": 1
+        },
+        "civil.mjs": {
+          "hiddenPass": 27,
+          "hiddenTotal": 33,
+          "delta": 1
+        },
+        "isoweek.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 33,
+          "delta": 2
+        },
+        "recur.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 33,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "f49475730bf8e95c",
+        "solution": "4864c23c8b8c53bc",
+        "visible": "bc7f00f55e893293",
+        "test": "d3fd13edf16da0a1"
+      },
+      "problems": []
+    },
+    "b12-inventory-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "allocate.mjs",
+        "index.mjs",
+        "lots.mjs",
+        "reorder.mjs",
+        "reserve.mjs",
+        "units.mjs"
+      ],
+      "solFiles": [
+        "allocate.mjs",
+        "lots.mjs",
+        "reorder.mjs",
+        "reserve.mjs",
+        "units.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 4,
+        "test/allocate.test.mjs": 8,
+        "test/lots.test.mjs": 7,
+        "test/reorder.test.mjs": 6,
+        "test/reserve.test.mjs": 7,
+        "test/units.test.mjs": 5
+      },
+      "srcLines": 396,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "17/33"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "33/33"
+      },
+      "singleFileFix": {
+        "allocate.mjs": {
+          "hiddenPass": 19,
+          "hiddenTotal": 33,
+          "delta": 2
+        },
+        "lots.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 33,
+          "delta": 3
+        },
+        "reorder.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 33,
+          "delta": 3
+        },
+        "reserve.mjs": {
+          "hiddenPass": 22,
+          "hiddenTotal": 33,
+          "delta": 5
+        },
+        "units.mjs": {
+          "hiddenPass": 20,
+          "hiddenTotal": 33,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "f5cef8d16958362a",
+        "solution": "d53db88947d91369",
+        "visible": "78be34ca24d4dedb",
+        "test": "bdf29befc118a40c"
+      },
+      "problems": []
+    },
+    "b13-path-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "eol.mjs",
+        "glob.mjs",
+        "patch.mjs",
+        "pointer.mjs",
+        "posixpath.mjs"
+      ],
+      "solFiles": [
+        "eol.mjs",
+        "glob.mjs",
+        "patch.mjs",
+        "pointer.mjs",
+        "posixpath.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 4,
+        "test/eol.test.mjs": 7,
+        "test/glob.test.mjs": 7,
+        "test/patch.test.mjs": 7,
+        "test/pointer.test.mjs": 7,
+        "test/posixpath.test.mjs": 6
+      },
+      "srcLines": 490,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "24/34"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "34/34"
+      },
+      "singleFileFix": {
+        "eol.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "glob.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "patch.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "pointer.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "posixpath.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "99cc7b6dda3de55c",
+        "solution": "ffc02eabb8ded1df",
+        "visible": "85374d0f1232e6e8",
+        "test": "45d33f248bd1dab6"
+      },
+      "problems": []
+    },
+    "b14-cli-kit": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "argv.mjs",
+        "bytes.mjs",
+        "duration.mjs",
+        "index.mjs",
+        "ini.mjs",
+        "suggest.mjs"
+      ],
+      "solFiles": [
+        "argv.mjs",
+        "bytes.mjs",
+        "duration.mjs",
+        "ini.mjs",
+        "suggest.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 4,
+        "test/argv.test.mjs": 8,
+        "test/bytes.test.mjs": 7,
+        "test/duration.test.mjs": 7,
+        "test/ini.test.mjs": 8,
+        "test/suggest.test.mjs": 8
+      },
+      "srcLines": 371,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "30/38"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "38/38"
+      },
+      "singleFileFix": {
+        "argv.mjs": {
+          "hiddenPass": 31,
+          "hiddenTotal": 38,
+          "delta": 1
+        },
+        "bytes.mjs": {
+          "hiddenPass": 31,
+          "hiddenTotal": 38,
+          "delta": 1
+        },
+        "duration.mjs": {
+          "hiddenPass": 31,
+          "hiddenTotal": 38,
+          "delta": 1
+        },
+        "ini.mjs": {
+          "hiddenPass": 32,
+          "hiddenTotal": 38,
+          "delta": 2
+        },
+        "suggest.mjs": {
+          "hiddenPass": 33,
+          "hiddenTotal": 38,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "112bd117c2a4dc37",
+        "solution": "87b4705b1c93200d",
+        "visible": "5517cc42c552240f",
+        "test": "c262efd97e93a3b1"
+      },
+      "problems": []
+    },
+    "b15-search-kit": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "analyze.mjs",
+        "cursor.mjs",
+        "fuzzy.mjs",
+        "highlight.mjs",
+        "index.mjs",
+        "rank.mjs"
+      ],
+      "solFiles": [
+        "analyze.mjs",
+        "cursor.mjs",
+        "fuzzy.mjs",
+        "highlight.mjs",
+        "rank.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 4,
+        "test/analyze.test.mjs": 7,
+        "test/cursor.test.mjs": 7,
+        "test/fuzzy.test.mjs": 6,
+        "test/highlight.test.mjs": 7,
+        "test/rank.test.mjs": 7
+      },
+      "srcLines": 374,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "23/34"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "34/34"
+      },
+      "singleFileFix": {
+        "analyze.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 3
+        },
+        "cursor.mjs": {
+          "hiddenPass": 25,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "fuzzy.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 34,
+          "delta": 3
+        },
+        "highlight.mjs": {
+          "hiddenPass": 25,
+          "hiddenTotal": 34,
+          "delta": 2
+        },
+        "rank.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 34,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "620894604ac34593",
+        "solution": "bdd16a0d60a38e44",
+        "visible": "112d9a181a15e5ad",
+        "test": "eebfb0f8106d24bc"
+      },
+      "problems": []
+    },
+    "b16-calendario-fiscal": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "business.mjs",
+        "civil.mjs",
+        "easter.mjs",
+        "fiscal.mjs",
+        "isoweek.mjs",
+        "recur.mjs"
+      ],
+      "solFiles": [
+        "business.mjs",
+        "easter.mjs",
+        "fiscal.mjs",
+        "isoweek.mjs",
+        "recur.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 3,
+        "test/business.test.mjs": 6,
+        "test/civil.test.mjs": 4,
+        "test/easter.test.mjs": 5,
+        "test/fiscal.test.mjs": 7,
+        "test/isoweek.test.mjs": 7,
+        "test/recur.test.mjs": 6
+      },
+      "srcLines": 445,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "27/35"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "35/35"
+      },
+      "singleFileFix": {
+        "business.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 35,
+          "delta": 1
+        },
+        "easter.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 35,
+          "delta": 1
+        },
+        "fiscal.mjs": {
+          "hiddenPass": 29,
+          "hiddenTotal": 35,
+          "delta": 2
+        },
+        "isoweek.mjs": {
+          "hiddenPass": 30,
+          "hiddenTotal": 35,
+          "delta": 3
+        },
+        "recur.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 35,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "8cc23aaf0c1917f7",
+        "solution": "8397b85161ae71cd",
+        "visible": "89bb3098cc7648c7",
+        "test": "8a950f0244760274"
+      },
+      "problems": []
+    },
+    "b17-numeros-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "allocate.mjs",
+        "compact.mjs",
+        "decimal.mjs",
+        "format.mjs",
+        "parse.mjs",
+        "round.mjs"
+      ],
+      "solFiles": [
+        "allocate.mjs",
+        "compact.mjs",
+        "format.mjs",
+        "parse.mjs",
+        "round.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/kit.test.mjs": 3,
+        "test/allocate.test.mjs": 4,
+        "test/compact.test.mjs": 4,
+        "test/format.test.mjs": 4,
+        "test/parse.test.mjs": 3,
+        "test/round.test.mjs": 5
+      },
+      "srcLines": 327,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "11/20"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "20/20"
+      },
+      "singleFileFix": {
+        "allocate.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 20,
+          "delta": 2
+        },
+        "compact.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 20,
+          "delta": 1
+        },
+        "format.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 20,
+          "delta": 1
+        },
+        "parse.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 20,
+          "delta": 1
+        },
+        "round.mjs": {
+          "hiddenPass": 15,
+          "hiddenTotal": 20,
+          "delta": 4
+        }
+      },
+      "hash": {
+        "src": "7c182517153a320b",
+        "solution": "71c1ee9aadf3970e",
+        "visible": "f47d66bdbd74714f",
+        "test": "036d9c92614e0652"
+      },
+      "problems": []
+    },
+    "b18-codecs-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "base64url.mjs",
+        "crc32.mjs",
+        "utf8.mjs",
+        "varint.mjs"
+      ],
+      "solFiles": [
+        "base64url.mjs",
+        "crc32.mjs",
+        "utf8.mjs",
+        "varint.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/codecs.test.mjs": 4,
+        "test/boundaries.test.mjs": 4
+      },
+      "srcLines": 245,
+      "buggy": {
+        "visible": "0/4",
+        "hidden": "0/4"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "4/4"
+      },
+      "singleFileFix": {
+        "base64url.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 4,
+          "delta": 1
+        },
+        "crc32.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 4,
+          "delta": 1
+        },
+        "utf8.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 4,
+          "delta": 1
+        },
+        "varint.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 4,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "cc6c899047e6e863",
+        "solution": "967366d988cfa62a",
+        "visible": "1d5c06fe7e4f4af2",
+        "test": "d361130a13a1fdb5"
+      },
+      "problems": []
+    },
+    "b19-grafos-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "dijkstra.mjs",
+        "graph.mjs",
+        "heap.mjs",
+        "mst.mjs",
+        "scc.mjs",
+        "topo.mjs"
+      ],
+      "solFiles": [
+        "dijkstra.mjs",
+        "heap.mjs",
+        "mst.mjs",
+        "scc.mjs",
+        "topo.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/grafos.test.mjs": 3,
+        "test/dijkstra.test.mjs": 7,
+        "test/heap.test.mjs": 7,
+        "test/mst.test.mjs": 4,
+        "test/scc.test.mjs": 5,
+        "test/topo.test.mjs": 5
+      },
+      "srcLines": 471,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "22/28"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "28/28"
+      },
+      "singleFileFix": {
+        "dijkstra.mjs": {
+          "hiddenPass": 23,
+          "hiddenTotal": 28,
+          "delta": 1
+        },
+        "heap.mjs": {
+          "hiddenPass": 23,
+          "hiddenTotal": 28,
+          "delta": 1
+        },
+        "mst.mjs": {
+          "hiddenPass": 23,
+          "hiddenTotal": 28,
+          "delta": 1
+        },
+        "scc.mjs": {
+          "hiddenPass": 23,
+          "hiddenTotal": 28,
+          "delta": 1
+        },
+        "topo.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 28,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "4a9fc0bdeae73774",
+        "solution": "44d77293584c2be0",
+        "visible": "60cb5c3710c875c8",
+        "test": "46d70051eefb8745"
+      },
+      "problems": []
+    },
+    "b20-texto-largura": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "align.mjs",
+        "box.mjs",
+        "grapheme.mjs",
+        "truncate.mjs",
+        "width.mjs",
+        "wrap.mjs"
+      ],
+      "solFiles": [
+        "align.mjs",
+        "grapheme.mjs",
+        "truncate.mjs",
+        "width.mjs",
+        "wrap.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/texto.test.mjs": 2,
+        "test/align.test.mjs": 5,
+        "test/box.test.mjs": 2,
+        "test/grapheme.test.mjs": 5,
+        "test/truncate.test.mjs": 4,
+        "test/width.test.mjs": 5,
+        "test/wrap.test.mjs": 4
+      },
+      "srcLines": 402,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "16/25"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "25/25"
+      },
+      "singleFileFix": {
+        "align.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 25,
+          "delta": 2
+        },
+        "grapheme.mjs": {
+          "hiddenPass": 17,
+          "hiddenTotal": 25,
+          "delta": 1
+        },
+        "truncate.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 25,
+          "delta": 2
+        },
+        "width.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 25,
+          "delta": 2
+        },
+        "wrap.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 25,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "f439397052f7ae37",
+        "solution": "9893eadb6cba6cc3",
+        "visible": "a7f4ace301f5f310",
+        "test": "89503d91b1636c75"
+      },
+      "problems": []
+    },
+    "b21-replicas-kit": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "lfu.mjs",
+        "lww.mjs",
+        "orset.mjs",
+        "pncounter.mjs",
+        "vclock.mjs"
+      ],
+      "solFiles": [
+        "lfu.mjs",
+        "lww.mjs",
+        "orset.mjs",
+        "pncounter.mjs",
+        "vclock.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/replicas.test.mjs": 2,
+        "test/replica-state.test.mjs": 5
+      },
+      "srcLines": 358,
+      "buggy": {
+        "visible": "0/2",
+        "hidden": "0/5"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "5/5"
+      },
+      "singleFileFix": {
+        "lfu.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 5,
+          "delta": 1
+        },
+        "lww.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 5,
+          "delta": 1
+        },
+        "orset.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 5,
+          "delta": 1
+        },
+        "pncounter.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 5,
+          "delta": 1
+        },
+        "vclock.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 5,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "efab451aa375ed2d",
+        "solution": "bdae36e262b066b3",
+        "visible": "5691cde0f9d773d6",
+        "test": "65390588d4bbb2ac"
+      },
+      "problems": []
+    },
+    "bx01-repo-texto-estoque-geo": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "estoque-kit/discounts.mjs",
+        "estoque-kit/ledger.mjs",
+        "estoque-kit/money.mjs",
+        "geometria-kit/bbox.mjs",
+        "geometria-kit/polygon.mjs",
+        "geometria-kit/vector.mjs",
+        "texto-kit/index.mjs",
+        "texto-kit/slugify.mjs",
+        "texto-kit/tokenize.mjs",
+        "texto-kit/wrap.mjs"
+      ],
+      "solFiles": [
+        "estoque-kit/discounts.mjs",
+        "estoque-kit/ledger.mjs",
+        "estoque-kit/money.mjs",
+        "geometria-kit/bbox.mjs",
+        "geometria-kit/polygon.mjs",
+        "geometria-kit/vector.mjs",
+        "texto-kit/slugify.mjs",
+        "texto-kit/tokenize.mjs",
+        "texto-kit/wrap.mjs"
+      ],
+      "nBugs": 9,
+      "expected": {
+        "visible/texto-kit__v-kit.test.mjs": 3,
+        "test/estoque-kit__discounts.test.mjs": 8,
+        "test/estoque-kit__ledger.test.mjs": 7,
+        "test/estoque-kit__money.test.mjs": 7,
+        "test/estoque-kit__v-estoque.test.mjs": 3,
+        "test/geometria-kit__bbox.test.mjs": 6,
+        "test/geometria-kit__polygon.test.mjs": 5,
+        "test/geometria-kit__v-geometria.test.mjs": 3,
+        "test/geometria-kit__vector.test.mjs": 6,
+        "test/texto-kit__slugify.test.mjs": 6,
+        "test/texto-kit__tokenize.test.mjs": 7,
+        "test/texto-kit__wrap.test.mjs": 6
+      },
+      "srcLines": 477,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "44/64"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "64/64"
+      },
+      "singleFileFix": {
+        "estoque-kit/discounts.mjs": {
+          "hiddenPass": 48,
+          "hiddenTotal": 64,
+          "delta": 4
+        },
+        "estoque-kit/ledger.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 64,
+          "delta": 1
+        },
+        "estoque-kit/money.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 64,
+          "delta": 2
+        },
+        "geometria-kit/bbox.mjs": {
+          "hiddenPass": 47,
+          "hiddenTotal": 64,
+          "delta": 3
+        },
+        "geometria-kit/polygon.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 64,
+          "delta": 2
+        },
+        "geometria-kit/vector.mjs": {
+          "hiddenPass": 48,
+          "hiddenTotal": 64,
+          "delta": 4
+        },
+        "texto-kit/slugify.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 64,
+          "delta": 1
+        },
+        "texto-kit/tokenize.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 64,
+          "delta": 2
+        },
+        "texto-kit/wrap.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 64,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "c308ded144e14da3",
+        "solution": "7cf9142cd21bdb60",
+        "visible": "2591eca4c9b5cbdd",
+        "test": "58960c345dff8bb3"
+      },
+      "problems": []
+    },
+    "bx02-repo-agenda-config-stats": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "agenda-kit/clock.mjs",
+        "agenda-kit/priority-queue.mjs",
+        "agenda-kit/rate-limiter.mjs",
+        "agenda-kit/scheduler.mjs",
+        "config-kit/env.mjs",
+        "config-kit/index.mjs",
+        "config-kit/merge.mjs",
+        "config-kit/validate.mjs",
+        "estatistica-kit/central.mjs",
+        "estatistica-kit/histogram.mjs",
+        "estatistica-kit/index.mjs",
+        "estatistica-kit/percentile.mjs"
+      ],
+      "solFiles": [
+        "agenda-kit/priority-queue.mjs",
+        "agenda-kit/rate-limiter.mjs",
+        "agenda-kit/scheduler.mjs",
+        "config-kit/env.mjs",
+        "config-kit/merge.mjs",
+        "config-kit/validate.mjs",
+        "estatistica-kit/central.mjs",
+        "estatistica-kit/histogram.mjs",
+        "estatistica-kit/percentile.mjs"
+      ],
+      "nBugs": 9,
+      "expected": {
+        "visible/agenda-kit__v-agenda.test.mjs": 3,
+        "test/agenda-kit__priority-queue.test.mjs": 6,
+        "test/agenda-kit__rate-limiter.test.mjs": 6,
+        "test/agenda-kit__scheduler.test.mjs": 7,
+        "test/config-kit__env.test.mjs": 7,
+        "test/config-kit__merge.test.mjs": 7,
+        "test/config-kit__v-config.test.mjs": 3,
+        "test/config-kit__validate.test.mjs": 7,
+        "test/estatistica-kit__central.test.mjs": 7,
+        "test/estatistica-kit__histogram.test.mjs": 7,
+        "test/estatistica-kit__percentile.test.mjs": 7,
+        "test/estatistica-kit__v-estatistica.test.mjs": 3
+      },
+      "srcLines": 543,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "43/67"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "67/67"
+      },
+      "singleFileFix": {
+        "agenda-kit/priority-queue.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 67,
+          "delta": 2
+        },
+        "agenda-kit/rate-limiter.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 67,
+          "delta": 2
+        },
+        "agenda-kit/scheduler.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 67,
+          "delta": 3
+        },
+        "config-kit/env.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 67,
+          "delta": 2
+        },
+        "config-kit/merge.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 67,
+          "delta": 2
+        },
+        "config-kit/validate.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 67,
+          "delta": 2
+        },
+        "estatistica-kit/central.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 67,
+          "delta": 3
+        },
+        "estatistica-kit/histogram.mjs": {
+          "hiddenPass": 48,
+          "hiddenTotal": 67,
+          "delta": 5
+        },
+        "estatistica-kit/percentile.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 67,
+          "delta": 3
+        }
+      },
+      "hash": {
+        "src": "13f4c10c3c996447",
+        "solution": "7cfdd473b604b4a7",
+        "visible": "7f8c2eded6e062d1",
+        "test": "bf781b134c24e03b"
+      },
+      "problems": []
+    },
+    "bx03-repo-billing-calendar": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "billing-kit/invoice.mjs",
+        "billing-kit/money.mjs",
+        "billing-kit/proration.mjs",
+        "billing-kit/tax.mjs",
+        "billing-kit/tiers.mjs",
+        "calendar-kit/add.mjs",
+        "calendar-kit/business.mjs",
+        "calendar-kit/civil.mjs",
+        "calendar-kit/isoweek.mjs",
+        "calendar-kit/recur.mjs"
+      ],
+      "solFiles": [
+        "billing-kit/invoice.mjs",
+        "billing-kit/money.mjs",
+        "billing-kit/proration.mjs",
+        "billing-kit/tax.mjs",
+        "billing-kit/tiers.mjs",
+        "calendar-kit/add.mjs",
+        "calendar-kit/business.mjs",
+        "calendar-kit/civil.mjs",
+        "calendar-kit/isoweek.mjs",
+        "calendar-kit/recur.mjs"
+      ],
+      "nBugs": 10,
+      "expected": {
+        "visible/billing-kit__v-billing.test.mjs": 3,
+        "test/billing-kit__invoice.test.mjs": 7,
+        "test/billing-kit__money.test.mjs": 7,
+        "test/billing-kit__proration.test.mjs": 8,
+        "test/billing-kit__tax.test.mjs": 6,
+        "test/billing-kit__tiers.test.mjs": 6,
+        "test/calendar-kit__add.test.mjs": 7,
+        "test/calendar-kit__business.test.mjs": 7,
+        "test/calendar-kit__civil.test.mjs": 6,
+        "test/calendar-kit__isoweek.test.mjs": 6,
+        "test/calendar-kit__recur.test.mjs": 7,
+        "test/calendar-kit__v-kit.test.mjs": 4
+      },
+      "srcLines": 929,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "49/71"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "71/71"
+      },
+      "singleFileFix": {
+        "billing-kit/invoice.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "billing-kit/money.mjs": {
+          "hiddenPass": 53,
+          "hiddenTotal": 71,
+          "delta": 4
+        },
+        "billing-kit/proration.mjs": {
+          "hiddenPass": 53,
+          "hiddenTotal": 71,
+          "delta": 4
+        },
+        "billing-kit/tax.mjs": {
+          "hiddenPass": 50,
+          "hiddenTotal": 71,
+          "delta": 1
+        },
+        "billing-kit/tiers.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "calendar-kit/add.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "calendar-kit/business.mjs": {
+          "hiddenPass": 50,
+          "hiddenTotal": 71,
+          "delta": 1
+        },
+        "calendar-kit/civil.mjs": {
+          "hiddenPass": 50,
+          "hiddenTotal": 71,
+          "delta": 1
+        },
+        "calendar-kit/isoweek.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "calendar-kit/recur.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 71,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "c74bb29efa0e6725",
+        "solution": "8d52e40ba5aeac35",
+        "visible": "139666ccc5d767ec",
+        "test": "21e65eb75cdf5164"
+      },
+      "problems": []
+    },
+    "bx04-repo-inventory-path": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "inventory-kit/allocate.mjs",
+        "inventory-kit/index.mjs",
+        "inventory-kit/lots.mjs",
+        "inventory-kit/reorder.mjs",
+        "inventory-kit/reserve.mjs",
+        "inventory-kit/units.mjs",
+        "path-kit/eol.mjs",
+        "path-kit/glob.mjs",
+        "path-kit/patch.mjs",
+        "path-kit/pointer.mjs",
+        "path-kit/posixpath.mjs"
+      ],
+      "solFiles": [
+        "inventory-kit/allocate.mjs",
+        "inventory-kit/lots.mjs",
+        "inventory-kit/reorder.mjs",
+        "inventory-kit/reserve.mjs",
+        "inventory-kit/units.mjs",
+        "path-kit/eol.mjs",
+        "path-kit/glob.mjs",
+        "path-kit/patch.mjs",
+        "path-kit/pointer.mjs",
+        "path-kit/posixpath.mjs"
+      ],
+      "nBugs": 10,
+      "expected": {
+        "visible/inventory-kit__v-kit.test.mjs": 4,
+        "test/inventory-kit__allocate.test.mjs": 8,
+        "test/inventory-kit__lots.test.mjs": 7,
+        "test/inventory-kit__reorder.test.mjs": 6,
+        "test/inventory-kit__reserve.test.mjs": 7,
+        "test/inventory-kit__units.test.mjs": 5,
+        "test/path-kit__eol.test.mjs": 7,
+        "test/path-kit__glob.test.mjs": 7,
+        "test/path-kit__patch.test.mjs": 7,
+        "test/path-kit__pointer.test.mjs": 7,
+        "test/path-kit__posixpath.test.mjs": 6,
+        "test/path-kit__v-kit.test.mjs": 4
+      },
+      "srcLines": 886,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "43/71"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "71/71"
+      },
+      "singleFileFix": {
+        "inventory-kit/allocate.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "inventory-kit/lots.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "inventory-kit/reorder.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "inventory-kit/reserve.mjs": {
+          "hiddenPass": 48,
+          "hiddenTotal": 71,
+          "delta": 5
+        },
+        "inventory-kit/units.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "path-kit/eol.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "path-kit/glob.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "path-kit/patch.mjs": {
+          "hiddenPass": 46,
+          "hiddenTotal": 71,
+          "delta": 3
+        },
+        "path-kit/pointer.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 71,
+          "delta": 2
+        },
+        "path-kit/posixpath.mjs": {
+          "hiddenPass": 45,
+          "hiddenTotal": 71,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "5016c59426b6c158",
+        "solution": "d3a09ed8631850ad",
+        "visible": "16514bf48f5be349",
+        "test": "c3b43c329af86234"
+      },
+      "problems": []
+    },
+    "bx05-repo-quatro-kits": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "billing-kit/invoice.mjs",
+        "billing-kit/money.mjs",
+        "billing-kit/proration.mjs",
+        "billing-kit/tax.mjs",
+        "billing-kit/tiers.mjs",
+        "config-kit/env.mjs",
+        "config-kit/index.mjs",
+        "config-kit/merge.mjs",
+        "config-kit/validate.mjs",
+        "inventory-kit/allocate.mjs",
+        "inventory-kit/index.mjs",
+        "inventory-kit/lots.mjs",
+        "inventory-kit/reorder.mjs",
+        "inventory-kit/reserve.mjs",
+        "inventory-kit/units.mjs",
+        "texto-kit/index.mjs",
+        "texto-kit/slugify.mjs",
+        "texto-kit/tokenize.mjs",
+        "texto-kit/wrap.mjs"
+      ],
+      "solFiles": [
+        "billing-kit/invoice.mjs",
+        "billing-kit/money.mjs",
+        "billing-kit/proration.mjs",
+        "billing-kit/tax.mjs",
+        "billing-kit/tiers.mjs",
+        "config-kit/env.mjs",
+        "config-kit/merge.mjs",
+        "config-kit/validate.mjs",
+        "inventory-kit/allocate.mjs",
+        "inventory-kit/lots.mjs",
+        "inventory-kit/reorder.mjs",
+        "inventory-kit/reserve.mjs",
+        "inventory-kit/units.mjs",
+        "texto-kit/slugify.mjs",
+        "texto-kit/tokenize.mjs",
+        "texto-kit/wrap.mjs"
+      ],
+      "nBugs": 16,
+      "expected": {
+        "visible/config-kit__v-config.test.mjs": 3,
+        "test/billing-kit__invoice.test.mjs": 7,
+        "test/billing-kit__money.test.mjs": 7,
+        "test/billing-kit__proration.test.mjs": 8,
+        "test/billing-kit__tax.test.mjs": 6,
+        "test/billing-kit__tiers.test.mjs": 6,
+        "test/billing-kit__v-billing.test.mjs": 3,
+        "test/config-kit__env.test.mjs": 7,
+        "test/config-kit__merge.test.mjs": 7,
+        "test/config-kit__validate.test.mjs": 7,
+        "test/inventory-kit__allocate.test.mjs": 8,
+        "test/inventory-kit__lots.test.mjs": 7,
+        "test/inventory-kit__reorder.test.mjs": 6,
+        "test/inventory-kit__reserve.test.mjs": 7,
+        "test/inventory-kit__units.test.mjs": 5,
+        "test/inventory-kit__v-kit.test.mjs": 4,
+        "test/texto-kit__slugify.test.mjs": 6,
+        "test/texto-kit__tokenize.test.mjs": 7,
+        "test/texto-kit__v-kit.test.mjs": 3,
+        "test/texto-kit__wrap.test.mjs": 6
+      },
+      "srcLines": 1228,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "73/117"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "117/117"
+      },
+      "singleFileFix": {
+        "billing-kit/invoice.mjs": {
+          "hiddenPass": 75,
+          "hiddenTotal": 117,
+          "delta": 2
+        },
+        "billing-kit/money.mjs": {
+          "hiddenPass": 78,
+          "hiddenTotal": 117,
+          "delta": 5
+        },
+        "billing-kit/proration.mjs": {
+          "hiddenPass": 77,
+          "hiddenTotal": 117,
+          "delta": 4
+        },
+        "billing-kit/tax.mjs": {
+          "hiddenPass": 74,
+          "hiddenTotal": 117,
+          "delta": 1
+        },
+        "billing-kit/tiers.mjs": {
+          "hiddenPass": 77,
+          "hiddenTotal": 117,
+          "delta": 4
+        },
+        "config-kit/env.mjs": {
+          "hiddenPass": 74,
+          "hiddenTotal": 117,
+          "delta": 1
+        },
+        "config-kit/merge.mjs": {
+          "hiddenPass": 75,
+          "hiddenTotal": 117,
+          "delta": 2
+        },
+        "config-kit/validate.mjs": {
+          "hiddenPass": 74,
+          "hiddenTotal": 117,
+          "delta": 1
+        },
+        "inventory-kit/allocate.mjs": {
+          "hiddenPass": 76,
+          "hiddenTotal": 117,
+          "delta": 3
+        },
+        "inventory-kit/lots.mjs": {
+          "hiddenPass": 76,
+          "hiddenTotal": 117,
+          "delta": 3
+        },
+        "inventory-kit/reorder.mjs": {
+          "hiddenPass": 77,
+          "hiddenTotal": 117,
+          "delta": 4
+        },
+        "inventory-kit/reserve.mjs": {
+          "hiddenPass": 78,
+          "hiddenTotal": 117,
+          "delta": 5
+        },
+        "inventory-kit/units.mjs": {
+          "hiddenPass": 76,
+          "hiddenTotal": 117,
+          "delta": 3
+        },
+        "texto-kit/slugify.mjs": {
+          "hiddenPass": 74,
+          "hiddenTotal": 117,
+          "delta": 1
+        },
+        "texto-kit/tokenize.mjs": {
+          "hiddenPass": 76,
+          "hiddenTotal": 117,
+          "delta": 3
+        },
+        "texto-kit/wrap.mjs": {
+          "hiddenPass": 75,
+          "hiddenTotal": 117,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "e0cd0259864dba03",
+        "solution": "02f341092fa9c67b",
+        "visible": "0508e3489fd8e355",
+        "test": "307ab45ac8c7c6d3"
+      },
+      "problems": []
+    },
+    "bx06-repo-url-grade-datas": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "datas-kit/business.mjs",
+        "datas-kit/dates.mjs",
+        "datas-kit/duration.mjs",
+        "grade-kit/flood.mjs",
+        "grade-kit/grid.mjs",
+        "grade-kit/matrix.mjs",
+        "grade-kit/rle.mjs",
+        "url-kit/path.mjs",
+        "url-kit/query.mjs",
+        "url-kit/route.mjs"
+      ],
+      "solFiles": [
+        "datas-kit/business.mjs",
+        "datas-kit/dates.mjs",
+        "datas-kit/duration.mjs",
+        "grade-kit/flood.mjs",
+        "grade-kit/grid.mjs",
+        "grade-kit/matrix.mjs",
+        "grade-kit/rle.mjs",
+        "url-kit/path.mjs",
+        "url-kit/query.mjs",
+        "url-kit/route.mjs"
+      ],
+      "nBugs": 10,
+      "expected": {
+        "visible/grade-kit__v-grade.test.mjs": 4,
+        "test/datas-kit__business.test.mjs": 7,
+        "test/datas-kit__dates.test.mjs": 7,
+        "test/datas-kit__duration.test.mjs": 7,
+        "test/datas-kit__v-datas.test.mjs": 3,
+        "test/grade-kit__flood.test.mjs": 7,
+        "test/grade-kit__grid.test.mjs": 7,
+        "test/grade-kit__matrix.test.mjs": 7,
+        "test/grade-kit__rle.test.mjs": 7,
+        "test/url-kit__path.test.mjs": 7,
+        "test/url-kit__query.test.mjs": 8,
+        "test/url-kit__route.test.mjs": 8,
+        "test/url-kit__v-url.test.mjs": 3
+      },
+      "srcLines": 558,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "49/78"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "78/78"
+      },
+      "singleFileFix": {
+        "datas-kit/business.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 78,
+          "delta": 3
+        },
+        "datas-kit/dates.mjs": {
+          "hiddenPass": 55,
+          "hiddenTotal": 78,
+          "delta": 6
+        },
+        "datas-kit/duration.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 78,
+          "delta": 3
+        },
+        "grade-kit/flood.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 78,
+          "delta": 3
+        },
+        "grade-kit/grid.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 78,
+          "delta": 3
+        },
+        "grade-kit/matrix.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 78,
+          "delta": 2
+        },
+        "grade-kit/rle.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 78,
+          "delta": 2
+        },
+        "url-kit/path.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 78,
+          "delta": 2
+        },
+        "url-kit/query.mjs": {
+          "hiddenPass": 52,
+          "hiddenTotal": 78,
+          "delta": 3
+        },
+        "url-kit/route.mjs": {
+          "hiddenPass": 51,
+          "hiddenTotal": 78,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "0dce81b44f8b0644",
+        "solution": "bd5447cdc0c68b8a",
+        "visible": "2f6327b1ca8c3286",
+        "test": "0f5bc85b3bb8a42e"
+      },
+      "problems": []
+    },
+    "bx07-repo-cli-search": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "cli-kit/argv.mjs",
+        "cli-kit/bytes.mjs",
+        "cli-kit/duration.mjs",
+        "cli-kit/index.mjs",
+        "cli-kit/ini.mjs",
+        "cli-kit/suggest.mjs",
+        "search-kit/analyze.mjs",
+        "search-kit/cursor.mjs",
+        "search-kit/fuzzy.mjs",
+        "search-kit/highlight.mjs",
+        "search-kit/index.mjs",
+        "search-kit/rank.mjs"
+      ],
+      "solFiles": [
+        "cli-kit/argv.mjs",
+        "cli-kit/bytes.mjs",
+        "cli-kit/duration.mjs",
+        "cli-kit/ini.mjs",
+        "cli-kit/suggest.mjs",
+        "search-kit/analyze.mjs",
+        "search-kit/cursor.mjs",
+        "search-kit/fuzzy.mjs",
+        "search-kit/highlight.mjs",
+        "search-kit/rank.mjs"
+      ],
+      "nBugs": 10,
+      "expected": {
+        "visible/search-kit__v-kit.test.mjs": 4,
+        "test/cli-kit__argv.test.mjs": 8,
+        "test/cli-kit__bytes.test.mjs": 7,
+        "test/cli-kit__duration.test.mjs": 7,
+        "test/cli-kit__ini.test.mjs": 8,
+        "test/cli-kit__suggest.test.mjs": 8,
+        "test/cli-kit__v-kit.test.mjs": 4,
+        "test/search-kit__analyze.test.mjs": 7,
+        "test/search-kit__cursor.test.mjs": 7,
+        "test/search-kit__fuzzy.test.mjs": 6,
+        "test/search-kit__highlight.test.mjs": 7,
+        "test/search-kit__rank.test.mjs": 7
+      },
+      "srcLines": 745,
+      "buggy": {
+        "visible": "2/4",
+        "hidden": "55/76"
+      },
+      "reference": {
+        "visible": "4/4",
+        "hidden": "76/76"
+      },
+      "singleFileFix": {
+        "cli-kit/argv.mjs": {
+          "hiddenPass": 56,
+          "hiddenTotal": 76,
+          "delta": 1
+        },
+        "cli-kit/bytes.mjs": {
+          "hiddenPass": 57,
+          "hiddenTotal": 76,
+          "delta": 2
+        },
+        "cli-kit/duration.mjs": {
+          "hiddenPass": 56,
+          "hiddenTotal": 76,
+          "delta": 1
+        },
+        "cli-kit/ini.mjs": {
+          "hiddenPass": 58,
+          "hiddenTotal": 76,
+          "delta": 3
+        },
+        "cli-kit/suggest.mjs": {
+          "hiddenPass": 58,
+          "hiddenTotal": 76,
+          "delta": 3
+        },
+        "search-kit/analyze.mjs": {
+          "hiddenPass": 58,
+          "hiddenTotal": 76,
+          "delta": 3
+        },
+        "search-kit/cursor.mjs": {
+          "hiddenPass": 57,
+          "hiddenTotal": 76,
+          "delta": 2
+        },
+        "search-kit/fuzzy.mjs": {
+          "hiddenPass": 58,
+          "hiddenTotal": 76,
+          "delta": 3
+        },
+        "search-kit/highlight.mjs": {
+          "hiddenPass": 57,
+          "hiddenTotal": 76,
+          "delta": 2
+        },
+        "search-kit/rank.mjs": {
+          "hiddenPass": 56,
+          "hiddenTotal": 76,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "fbb7899346e93111",
+        "solution": "e7394c281ab5fa9a",
+        "visible": "35f4635c61b0dafc",
+        "test": "aa1b9e4a19938909"
+      },
+      "problems": []
+    },
+    "bx08-repo-cinco-kits": {
+      "class": "b",
+      "split": "dev",
+      "decomposable": true,
+      "srcFiles": [
+        "agenda-kit/clock.mjs",
+        "agenda-kit/priority-queue.mjs",
+        "agenda-kit/rate-limiter.mjs",
+        "agenda-kit/scheduler.mjs",
+        "calendar-kit/add.mjs",
+        "calendar-kit/business.mjs",
+        "calendar-kit/civil.mjs",
+        "calendar-kit/isoweek.mjs",
+        "calendar-kit/recur.mjs",
+        "estatistica-kit/central.mjs",
+        "estatistica-kit/histogram.mjs",
+        "estatistica-kit/index.mjs",
+        "estatistica-kit/percentile.mjs",
+        "geometria-kit/bbox.mjs",
+        "geometria-kit/polygon.mjs",
+        "geometria-kit/vector.mjs",
+        "path-kit/eol.mjs",
+        "path-kit/glob.mjs",
+        "path-kit/patch.mjs",
+        "path-kit/pointer.mjs",
+        "path-kit/posixpath.mjs"
+      ],
+      "solFiles": [
+        "agenda-kit/priority-queue.mjs",
+        "agenda-kit/rate-limiter.mjs",
+        "agenda-kit/scheduler.mjs",
+        "calendar-kit/add.mjs",
+        "calendar-kit/business.mjs",
+        "calendar-kit/civil.mjs",
+        "calendar-kit/isoweek.mjs",
+        "calendar-kit/recur.mjs",
+        "estatistica-kit/central.mjs",
+        "estatistica-kit/histogram.mjs",
+        "estatistica-kit/percentile.mjs",
+        "geometria-kit/bbox.mjs",
+        "geometria-kit/polygon.mjs",
+        "geometria-kit/vector.mjs",
+        "path-kit/eol.mjs",
+        "path-kit/glob.mjs",
+        "path-kit/patch.mjs",
+        "path-kit/pointer.mjs",
+        "path-kit/posixpath.mjs"
+      ],
+      "nBugs": 19,
+      "expected": {
+        "visible/estatistica-kit__v-estatistica.test.mjs": 3,
+        "test/agenda-kit__priority-queue.test.mjs": 6,
+        "test/agenda-kit__rate-limiter.test.mjs": 6,
+        "test/agenda-kit__scheduler.test.mjs": 7,
+        "test/agenda-kit__v-agenda.test.mjs": 3,
+        "test/calendar-kit__add.test.mjs": 7,
+        "test/calendar-kit__business.test.mjs": 7,
+        "test/calendar-kit__civil.test.mjs": 6,
+        "test/calendar-kit__isoweek.test.mjs": 6,
+        "test/calendar-kit__recur.test.mjs": 7,
+        "test/calendar-kit__v-kit.test.mjs": 4,
+        "test/estatistica-kit__central.test.mjs": 7,
+        "test/estatistica-kit__histogram.test.mjs": 7,
+        "test/estatistica-kit__percentile.test.mjs": 7,
+        "test/geometria-kit__bbox.test.mjs": 6,
+        "test/geometria-kit__polygon.test.mjs": 5,
+        "test/geometria-kit__v-geometria.test.mjs": 3,
+        "test/geometria-kit__vector.test.mjs": 6,
+        "test/path-kit__eol.test.mjs": 7,
+        "test/path-kit__glob.test.mjs": 7,
+        "test/path-kit__patch.test.mjs": 7,
+        "test/path-kit__pointer.test.mjs": 7,
+        "test/path-kit__posixpath.test.mjs": 6,
+        "test/path-kit__v-kit.test.mjs": 4
+      },
+      "srcLines": 1451,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "91/138"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "138/138"
+      },
+      "singleFileFix": {
+        "agenda-kit/priority-queue.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "agenda-kit/rate-limiter.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "agenda-kit/scheduler.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "calendar-kit/add.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "calendar-kit/business.mjs": {
+          "hiddenPass": 92,
+          "hiddenTotal": 138,
+          "delta": 1
+        },
+        "calendar-kit/civil.mjs": {
+          "hiddenPass": 92,
+          "hiddenTotal": 138,
+          "delta": 1
+        },
+        "calendar-kit/isoweek.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "calendar-kit/recur.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "estatistica-kit/central.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "estatistica-kit/histogram.mjs": {
+          "hiddenPass": 95,
+          "hiddenTotal": 138,
+          "delta": 4
+        },
+        "estatistica-kit/percentile.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "geometria-kit/bbox.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "geometria-kit/polygon.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "geometria-kit/vector.mjs": {
+          "hiddenPass": 95,
+          "hiddenTotal": 138,
+          "delta": 4
+        },
+        "path-kit/eol.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "path-kit/glob.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "path-kit/patch.mjs": {
+          "hiddenPass": 94,
+          "hiddenTotal": 138,
+          "delta": 3
+        },
+        "path-kit/pointer.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        },
+        "path-kit/posixpath.mjs": {
+          "hiddenPass": 93,
+          "hiddenTotal": 138,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "bf665c2839a396e2",
+        "solution": "512fc4b3ef776ded",
+        "visible": "5ffc267ee7be6841",
+        "test": "dde25961cadffcbb"
+      },
+      "problems": []
+    },
+    "bx09-repo-cinco-kits-teste": {
+      "class": "b",
+      "split": "test",
+      "decomposable": true,
+      "srcFiles": [
+        "cli-kit/argv.mjs",
+        "cli-kit/bytes.mjs",
+        "cli-kit/duration.mjs",
+        "cli-kit/index.mjs",
+        "cli-kit/ini.mjs",
+        "cli-kit/suggest.mjs",
+        "datas-kit/business.mjs",
+        "datas-kit/dates.mjs",
+        "datas-kit/duration.mjs",
+        "grade-kit/flood.mjs",
+        "grade-kit/grid.mjs",
+        "grade-kit/matrix.mjs",
+        "grade-kit/rle.mjs",
+        "search-kit/analyze.mjs",
+        "search-kit/cursor.mjs",
+        "search-kit/fuzzy.mjs",
+        "search-kit/highlight.mjs",
+        "search-kit/index.mjs",
+        "search-kit/rank.mjs",
+        "url-kit/path.mjs",
+        "url-kit/query.mjs",
+        "url-kit/route.mjs"
+      ],
+      "solFiles": [
+        "cli-kit/argv.mjs",
+        "cli-kit/bytes.mjs",
+        "cli-kit/duration.mjs",
+        "cli-kit/ini.mjs",
+        "cli-kit/suggest.mjs",
+        "datas-kit/business.mjs",
+        "datas-kit/dates.mjs",
+        "datas-kit/duration.mjs",
+        "grade-kit/flood.mjs",
+        "grade-kit/grid.mjs",
+        "grade-kit/matrix.mjs",
+        "grade-kit/rle.mjs",
+        "search-kit/analyze.mjs",
+        "search-kit/cursor.mjs",
+        "search-kit/fuzzy.mjs",
+        "search-kit/highlight.mjs",
+        "search-kit/rank.mjs",
+        "url-kit/path.mjs",
+        "url-kit/query.mjs",
+        "url-kit/route.mjs"
+      ],
+      "nBugs": 20,
+      "expected": {
+        "visible/datas-kit__v-datas.test.mjs": 3,
+        "test/cli-kit__argv.test.mjs": 8,
+        "test/cli-kit__bytes.test.mjs": 7,
+        "test/cli-kit__duration.test.mjs": 7,
+        "test/cli-kit__ini.test.mjs": 8,
+        "test/cli-kit__suggest.test.mjs": 8,
+        "test/cli-kit__v-kit.test.mjs": 4,
+        "test/datas-kit__business.test.mjs": 7,
+        "test/datas-kit__dates.test.mjs": 7,
+        "test/datas-kit__duration.test.mjs": 7,
+        "test/grade-kit__flood.test.mjs": 7,
+        "test/grade-kit__grid.test.mjs": 7,
+        "test/grade-kit__matrix.test.mjs": 7,
+        "test/grade-kit__rle.test.mjs": 7,
+        "test/grade-kit__v-grade.test.mjs": 4,
+        "test/search-kit__analyze.test.mjs": 7,
+        "test/search-kit__cursor.test.mjs": 7,
+        "test/search-kit__fuzzy.test.mjs": 6,
+        "test/search-kit__highlight.test.mjs": 7,
+        "test/search-kit__rank.test.mjs": 7,
+        "test/search-kit__v-kit.test.mjs": 4,
+        "test/url-kit__path.test.mjs": 7,
+        "test/url-kit__query.test.mjs": 8,
+        "test/url-kit__route.test.mjs": 8,
+        "test/url-kit__v-url.test.mjs": 3
+      },
+      "srcLines": 1303,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "107/159"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "159/159"
+      },
+      "singleFileFix": {
+        "cli-kit/argv.mjs": {
+          "hiddenPass": 108,
+          "hiddenTotal": 159,
+          "delta": 1
+        },
+        "cli-kit/bytes.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        },
+        "cli-kit/duration.mjs": {
+          "hiddenPass": 108,
+          "hiddenTotal": 159,
+          "delta": 1
+        },
+        "cli-kit/ini.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "cli-kit/suggest.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "datas-kit/business.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "datas-kit/dates.mjs": {
+          "hiddenPass": 112,
+          "hiddenTotal": 159,
+          "delta": 5
+        },
+        "datas-kit/duration.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        },
+        "grade-kit/flood.mjs": {
+          "hiddenPass": 111,
+          "hiddenTotal": 159,
+          "delta": 4
+        },
+        "grade-kit/grid.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "grade-kit/matrix.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "grade-kit/rle.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        },
+        "search-kit/analyze.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "search-kit/cursor.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        },
+        "search-kit/fuzzy.mjs": {
+          "hiddenPass": 111,
+          "hiddenTotal": 159,
+          "delta": 4
+        },
+        "search-kit/highlight.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "search-kit/rank.mjs": {
+          "hiddenPass": 108,
+          "hiddenTotal": 159,
+          "delta": 1
+        },
+        "url-kit/path.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        },
+        "url-kit/query.mjs": {
+          "hiddenPass": 110,
+          "hiddenTotal": 159,
+          "delta": 3
+        },
+        "url-kit/route.mjs": {
+          "hiddenPass": 109,
+          "hiddenTotal": 159,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "712437d57aecf5e0",
+        "solution": "e02bcad8c63c2301",
+        "visible": "a011e0f72de22091",
+        "test": "834f06f6d9a18c76"
+      },
+      "problems": []
+    },
+    "c01-telemetria-varint": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "format.mjs",
+        "reader.mjs",
+        "writer.mjs"
+      ],
+      "solFiles": [
+        "reader.mjs",
+        "writer.mjs"
+      ],
+      "nBugs": 2,
+      "expected": {
+        "visible/ntel.test.mjs": 2,
+        "test/ntel.test.mjs": 10
+      },
+      "srcLines": 266,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "5/10"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "10/10"
+      },
+      "singleFileFix": {
+        "reader.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 10,
+          "delta": 0
+        },
+        "writer.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 10,
+          "delta": -1
+        }
+      },
+      "hash": {
+        "src": "1acb55e39b0a7c10",
+        "solution": "4ff7b22164f5d98e",
+        "visible": "b141c1d97cab4b39",
+        "test": "406eb6af0b78c58a"
+      },
+      "problems": []
+    },
+    "c02-pedido-centavos": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "cart.mjs",
+        "catalog.mjs",
+        "discount.mjs",
+        "money.mjs"
+      ],
+      "solFiles": [
+        "cart.mjs",
+        "catalog.mjs",
+        "discount.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/pedido.test.mjs": 2,
+        "test/pedido.test.mjs": 10
+      },
+      "srcLines": 217,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/10"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "10/10"
+      },
+      "singleFileFix": {
+        "cart.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 10,
+          "delta": -2
+        },
+        "catalog.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 10,
+          "delta": -1
+        },
+        "discount.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 10,
+          "delta": 0
+        }
+      },
+      "hash": {
+        "src": "ca781ec2a5cdaaa1",
+        "solution": "89fe8b00ca7b8db7",
+        "visible": "33b8aa3e7f096cde",
+        "test": "ee7f3b24916f70ff"
+      },
+      "problems": []
+    },
+    "c03-cursor-paginacao": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "client.mjs",
+        "cursor.mjs",
+        "order.mjs",
+        "server.mjs"
+      ],
+      "solFiles": [
+        "client.mjs",
+        "cursor.mjs",
+        "order.mjs",
+        "server.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/paginacao.test.mjs": 2,
+        "test/paginacao.test.mjs": 12
+      },
+      "srcLines": 186,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/12"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "client.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": -1
+        },
+        "cursor.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": -1
+        },
+        "order.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": -1
+        },
+        "server.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 12,
+          "delta": -2
+        }
+      },
+      "hash": {
+        "src": "d4c36abb1acb1e79",
+        "solution": "b25ecbcaf67be4f0",
+        "visible": "8a9e0b11d19e0d67",
+        "test": "35ffb8f37a5040cc"
+      },
+      "problems": []
+    },
+    "c04-cache-chaves": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "cache.mjs",
+        "keys.mjs",
+        "repo.mjs"
+      ],
+      "solFiles": [
+        "cache.mjs",
+        "keys.mjs",
+        "repo.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/cache.test.mjs": 2,
+        "test/cache.test.mjs": 3,
+        "test/keys.test.mjs": 3,
+        "test/repo.test.mjs": 6
+      },
+      "srcLines": 224,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "8/12"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "cache.mjs": {
+          "hiddenPass": 8,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "keys.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 12,
+          "delta": 1
+        },
+        "repo.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 12,
+          "delta": -1
+        }
+      },
+      "hash": {
+        "src": "0b3a9dfd8d8c5de2",
+        "solution": "d56a3969a24dac21",
+        "visible": "aa9da324dfc10c90",
+        "test": "125786037725a53f"
+      },
+      "problems": []
+    },
+    "c05-expr-ast": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "evaluate.mjs",
+        "parser.mjs",
+        "print.mjs",
+        "walk.mjs"
+      ],
+      "solFiles": [
+        "parser.mjs",
+        "print.mjs",
+        "walk.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/expr.test.mjs": 2,
+        "test/expr.test.mjs": 11
+      },
+      "srcLines": 248,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "4/11"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "11/11"
+      },
+      "singleFileFix": {
+        "parser.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 11,
+          "delta": -2
+        },
+        "print.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 11,
+          "delta": 0
+        },
+        "walk.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 11,
+          "delta": -2
+        }
+      },
+      "hash": {
+        "src": "9fcb168cb28c601c",
+        "solution": "b835afe6dcd522aa",
+        "visible": "c8368ef3a94442d9",
+        "test": "49f26acf20e585e3"
+      },
+      "problems": []
+    },
+    "c06-diff-patch": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "diff.mjs",
+        "parse.mjs",
+        "patch.mjs",
+        "unified.mjs"
+      ],
+      "solFiles": [
+        "diff.mjs",
+        "parse.mjs",
+        "patch.mjs",
+        "unified.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/patch.test.mjs": 2,
+        "test/diff.test.mjs": 3,
+        "test/patch.test.mjs": 6,
+        "test/unified.test.mjs": 3
+      },
+      "srcLines": 268,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "7/12"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "diff.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 12,
+          "delta": -2
+        },
+        "parse.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "patch.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 12,
+          "delta": -2
+        },
+        "unified.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 12,
+          "delta": 0
+        }
+      },
+      "hash": {
+        "src": "060213c54ef089d1",
+        "solution": "c7736ce71e6d0b91",
+        "visible": "bd6004c85ec265bc",
+        "test": "8f7bb78737e3447e"
+      },
+      "problems": []
+    },
+    "c07-agendador-heap": {
+      "class": "c",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "heap.mjs",
+        "plan.mjs",
+        "scheduler.mjs"
+      ],
+      "solFiles": [
+        "heap.mjs",
+        "plan.mjs",
+        "scheduler.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/agenda.test.mjs": 3,
+        "test/agenda.test.mjs": 12
+      },
+      "srcLines": 263,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "5/12"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "heap.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": -2
+        },
+        "plan.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "scheduler.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 12,
+          "delta": -3
+        }
+      },
+      "hash": {
+        "src": "060d36802786776d",
+        "solution": "5663c4168381010b",
+        "visible": "bffaa4ea4f0ac8d5",
+        "test": "51af9d3473b2ce8a"
+      },
+      "problems": []
+    },
+    "c08-diario-checksum": {
+      "class": "c",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "checksum.mjs",
+        "verify.mjs",
+        "writer.mjs"
+      ],
+      "solFiles": [
+        "verify.mjs",
+        "writer.mjs"
+      ],
+      "nBugs": 2,
+      "expected": {
+        "visible/diario.test.mjs": 2,
+        "test/diario.test.mjs": 10
+      },
+      "srcLines": 187,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "5/10"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "10/10"
+      },
+      "singleFileFix": {
+        "verify.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 10,
+          "delta": 0
+        },
+        "writer.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 10,
+          "delta": -2
+        }
+      },
+      "hash": {
+        "src": "a5cf3878c0b00b9c",
+        "solution": "4feda5293019c99b",
+        "visible": "694d2dc2334d9435",
+        "test": "c7e5f2d989b2f7aa"
+      },
+      "problems": []
+    },
+    "c09-eventos-projecao": {
+      "class": "c",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "project.mjs",
+        "snapshot.mjs",
+        "store.mjs"
+      ],
+      "solFiles": [
+        "project.mjs",
+        "snapshot.mjs",
+        "store.mjs"
+      ],
+      "nBugs": 3,
+      "expected": {
+        "visible/contas.test.mjs": 2,
+        "test/contas.test.mjs": 10
+      },
+      "srcLines": 214,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "7/10"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "10/10"
+      },
+      "singleFileFix": {
+        "project.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 10,
+          "delta": -4
+        },
+        "snapshot.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 10,
+          "delta": -6
+        },
+        "store.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 10,
+          "delta": -5
+        }
+      },
+      "hash": {
+        "src": "da2efb9f329bb8ec",
+        "solution": "429e8d0b85d77707",
+        "visible": "8ad762c6dfaf658b",
+        "test": "e3136cf8d6195fc9"
+      },
+      "problems": []
+    },
+    "c10-protocolo-quadros": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "frame.mjs",
+        "receiver.mjs",
+        "sender.mjs",
+        "slip.mjs",
+        "utf8.mjs"
+      ],
+      "solFiles": [
+        "frame.mjs",
+        "receiver.mjs",
+        "sender.mjs",
+        "slip.mjs",
+        "utf8.mjs"
+      ],
+      "nBugs": 8,
+      "expected": {
+        "visible/protocolo.test.mjs": 3,
+        "test/session.test.mjs": 9,
+        "test/utf8-frame.test.mjs": 5
+      },
+      "srcLines": 454,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "2/14"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "14/14"
+      },
+      "singleFileFix": {
+        "frame.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 14,
+          "delta": 0
+        },
+        "receiver.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 14,
+          "delta": 2
+        },
+        "sender.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 14,
+          "delta": 0
+        },
+        "slip.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 14,
+          "delta": 1
+        },
+        "utf8.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 14,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "4f31e153ee015e17",
+        "solution": "8698ccbc4fb699e6",
+        "visible": "bf92f69d1efade12",
+        "test": "7e9ca086e59dde6e"
+      },
+      "problems": []
+    },
+    "c11-crdt-replicas": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "clock.mjs",
+        "codec.mjs",
+        "lww.mjs",
+        "orset.mjs",
+        "replica.mjs"
+      ],
+      "solFiles": [
+        "clock.mjs",
+        "codec.mjs",
+        "orset.mjs",
+        "replica.mjs"
+      ],
+      "nBugs": 7,
+      "expected": {
+        "visible/crdt.test.mjs": 3,
+        "test/crdt.test.mjs": 14
+      },
+      "srcLines": 477,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "0/14"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "14/14"
+      },
+      "singleFileFix": {
+        "clock.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 14,
+          "delta": 7
+        },
+        "codec.mjs": {
+          "hiddenPass": 0,
+          "hiddenTotal": 14,
+          "delta": 0
+        },
+        "orset.mjs": {
+          "hiddenPass": 0,
+          "hiddenTotal": 14,
+          "delta": 0
+        },
+        "replica.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 14,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "c20dacb63a509f67",
+        "solution": "2c1cd7ddfdf60043",
+        "visible": "daa65d5c62a3a8ad",
+        "test": "5fbe5d1f616cc296"
+      },
+      "problems": []
+    },
+    "c12-razao-partidas": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "closing.mjs",
+        "journal.mjs",
+        "ledger.mjs",
+        "money.mjs",
+        "report.mjs"
+      ],
+      "solFiles": [
+        "journal.mjs",
+        "ledger.mjs",
+        "money.mjs",
+        "report.mjs"
+      ],
+      "nBugs": 9,
+      "expected": {
+        "visible/razao.test.mjs": 3,
+        "test/journal.test.mjs": 3,
+        "test/ledger.test.mjs": 4,
+        "test/money.test.mjs": 5,
+        "test/report.test.mjs": 5
+      },
+      "srcLines": 419,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "1/17"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "17/17"
+      },
+      "singleFileFix": {
+        "journal.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 17,
+          "delta": 0
+        },
+        "ledger.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 17,
+          "delta": 0
+        },
+        "money.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 17,
+          "delta": 9
+        },
+        "report.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 17,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "0ee67c7cb937e5c8",
+        "solution": "5bb77c91ff5e8835",
+        "visible": "3b6723ba9a4501da",
+        "test": "88c6638d0cab8be5"
+      },
+      "problems": []
+    },
+    "c13-recorrencia-agenda": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "civil.mjs",
+        "expand.mjs",
+        "query.mjs",
+        "rrule.mjs",
+        "weekdays.mjs"
+      ],
+      "solFiles": [
+        "civil.mjs",
+        "expand.mjs",
+        "rrule.mjs",
+        "weekdays.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/agenda.test.mjs": 2,
+        "test/agenda.test.mjs": 11
+      },
+      "srcLines": 403,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "2/11"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "11/11"
+      },
+      "singleFileFix": {
+        "civil.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 11,
+          "delta": 2
+        },
+        "expand.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 11,
+          "delta": 2
+        },
+        "rrule.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 11,
+          "delta": 1
+        },
+        "weekdays.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 11,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "45250d1a469d4f90",
+        "solution": "4745c111335fa3ed",
+        "visible": "f29705027b31f01c",
+        "test": "f66e3c2baf23a075"
+      },
+      "problems": []
+    },
+    "c14-bytecode-vm": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "asm.mjs",
+        "compiler.mjs",
+        "optimize.mjs",
+        "parser.mjs",
+        "vm.mjs"
+      ],
+      "solFiles": [
+        "asm.mjs",
+        "compiler.mjs",
+        "optimize.mjs",
+        "vm.mjs"
+      ],
+      "nBugs": 6,
+      "expected": {
+        "visible/calc.test.mjs": 3,
+        "test/calc.test.mjs": 12
+      },
+      "srcLines": 654,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "2/12"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "asm.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": 1
+        },
+        "compiler.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "optimize.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "vm.mjs": {
+          "hiddenPass": 2,
+          "hiddenTotal": 12,
+          "delta": 0
+        }
+      },
+      "hash": {
+        "src": "35b00c237fb3e77a",
+        "solution": "eac9e2d56586bbe4",
+        "visible": "49356444275133d6",
+        "test": "5e29471ccc1de3a6"
+      },
+      "problems": []
+    },
+    "c15-indice-paginas": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "index.mjs",
+        "keys.mjs",
+        "page.mjs",
+        "paginate.mjs",
+        "range.mjs"
+      ],
+      "solFiles": [
+        "index.mjs",
+        "keys.mjs",
+        "page.mjs",
+        "paginate.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/indice.test.mjs": 3,
+        "test/cursors.test.mjs": 3,
+        "test/keys-pages.test.mjs": 5
+      },
+      "srcLines": 414,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "3/8"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "8/8"
+      },
+      "singleFileFix": {
+        "index.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 8,
+          "delta": 0
+        },
+        "keys.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 8,
+          "delta": 2
+        },
+        "page.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 8,
+          "delta": 2
+        },
+        "paginate.mjs": {
+          "hiddenPass": 4,
+          "hiddenTotal": 8,
+          "delta": 1
+        }
+      },
+      "hash": {
+        "src": "403d10a14d46dcb5",
+        "solution": "70d8a90e9c5cc8e1",
+        "visible": "6509b4f1480dcf7d",
+        "test": "6ed0463c9306e319"
+      },
+      "problems": []
+    },
+    "c16-layout-texto": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": false,
+      "srcFiles": [
+        "align.mjs",
+        "hyphenate.mjs",
+        "measure.mjs",
+        "render.mjs",
+        "wrap.mjs"
+      ],
+      "solFiles": [
+        "align.mjs",
+        "hyphenate.mjs",
+        "measure.mjs",
+        "render.mjs",
+        "wrap.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/layout.test.mjs": 3,
+        "test/unicode-layout.test.mjs": 3
+      },
+      "srcLines": 399,
+      "buggy": {
+        "visible": "1/3",
+        "hidden": "0/3"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "3/3"
+      },
+      "singleFileFix": {
+        "align.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 3,
+          "delta": 1
+        },
+        "hyphenate.mjs": {
+          "hiddenPass": 0,
+          "hiddenTotal": 3,
+          "delta": 0
+        },
+        "measure.mjs": {
+          "hiddenPass": 1,
+          "hiddenTotal": 3,
+          "delta": 1
+        },
+        "render.mjs": {
+          "hiddenPass": 0,
+          "hiddenTotal": 3,
+          "delta": 0
+        },
+        "wrap.mjs": {
+          "hiddenPass": 0,
+          "hiddenTotal": 3,
+          "delta": 0
+        }
+      },
+      "hash": {
+        "src": "bf0cf7d2225bd2b1",
+        "solution": "40127c81b7f8a24b",
+        "visible": "0930f677f2830095",
+        "test": "48b59ccf028a9d02"
+      },
+      "problems": []
+    },
+    "c17-relogio-vetorial": {
+      "class": "c",
+      "split": "test",
+      "decomposable": false,
+      "srcFiles": [
+        "delivery.mjs",
+        "network.mjs",
+        "node.mjs",
+        "store.mjs",
+        "vclock.mjs"
+      ],
+      "solFiles": [
+        "delivery.mjs",
+        "node.mjs",
+        "vclock.mjs"
+      ],
+      "nBugs": 4,
+      "expected": {
+        "visible/causal.test.mjs": 3,
+        "test/cluster.test.mjs": 6,
+        "test/delivery.test.mjs": 3,
+        "test/vclock.test.mjs": 3
+      },
+      "srcLines": 408,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "3/12"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "12/12"
+      },
+      "singleFileFix": {
+        "delivery.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "node.mjs": {
+          "hiddenPass": 3,
+          "hiddenTotal": 12,
+          "delta": 0
+        },
+        "vclock.mjs": {
+          "hiddenPass": 5,
+          "hiddenTotal": 12,
+          "delta": 2
+        }
+      },
+      "hash": {
+        "src": "88ae94ab001c9252",
+        "solution": "34016a3e418d014f",
+        "visible": "99713b7adc9bea59",
+        "test": "4832fbff88a8e397"
+      },
+      "problems": []
+    },
+    "cx01-repo-telemetria-pedido": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "pedido-centavos/cart.mjs",
+        "pedido-centavos/catalog.mjs",
+        "pedido-centavos/discount.mjs",
+        "pedido-centavos/money.mjs",
+        "telemetria-varint/format.mjs",
+        "telemetria-varint/reader.mjs",
+        "telemetria-varint/writer.mjs"
+      ],
+      "solFiles": [
+        "pedido-centavos/cart.mjs",
+        "pedido-centavos/catalog.mjs",
+        "pedido-centavos/discount.mjs",
+        "telemetria-varint/reader.mjs",
+        "telemetria-varint/writer.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/telemetria-varint__v-ntel.test.mjs": 2,
+        "test/pedido-centavos__pedido.test.mjs": 10,
+        "test/pedido-centavos__v-pedido.test.mjs": 2,
+        "test/telemetria-varint__ntel.test.mjs": 10
+      },
+      "srcLines": 483,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "10/22"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "22/22"
+      },
+      "singleFileFix": {
+        "pedido-centavos/cart.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 22,
+          "delta": -3
+        },
+        "pedido-centavos/catalog.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 22,
+          "delta": -1
+        },
+        "pedido-centavos/discount.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 22,
+          "delta": 0
+        },
+        "telemetria-varint/reader.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 22,
+          "delta": 0
+        },
+        "telemetria-varint/writer.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 22,
+          "delta": -1
+        }
+      },
+      "hash": {
+        "src": "8c3f817f9c1fd9a6",
+        "solution": "c885e13acc6dc074",
+        "visible": "9cdbd9dcd2049b21",
+        "test": "5f05e56f57b62a82"
+      },
+      "problems": []
+    },
+    "cx02-repo-cursor-cache": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "cache-chaves/cache.mjs",
+        "cache-chaves/keys.mjs",
+        "cache-chaves/repo.mjs",
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs"
+      ],
+      "solFiles": [
+        "cache-chaves/cache.mjs",
+        "cache-chaves/keys.mjs",
+        "cache-chaves/repo.mjs",
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs"
+      ],
+      "nBugs": 7,
+      "expected": {
+        "visible/cache-chaves__v-cache.test.mjs": 2,
+        "test/cache-chaves__cache.test.mjs": 3,
+        "test/cache-chaves__keys.test.mjs": 3,
+        "test/cache-chaves__repo.test.mjs": 6,
+        "test/cursor-paginacao__paginacao.test.mjs": 12,
+        "test/cursor-paginacao__v-paginacao.test.mjs": 2
+      },
+      "srcLines": 410,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "13/26"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "26/26"
+      },
+      "singleFileFix": {
+        "cache-chaves/cache.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 26,
+          "delta": 0
+        },
+        "cache-chaves/keys.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 26,
+          "delta": 1
+        },
+        "cache-chaves/repo.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 26,
+          "delta": -1
+        },
+        "cursor-paginacao/client.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 26,
+          "delta": -2
+        },
+        "cursor-paginacao/cursor.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 26,
+          "delta": -2
+        },
+        "cursor-paginacao/order.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 26,
+          "delta": -1
+        },
+        "cursor-paginacao/server.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 26,
+          "delta": -3
+        }
+      },
+      "hash": {
+        "src": "6c49195b62c87585",
+        "solution": "f7bcc390df6ae731",
+        "visible": "ce31a9a228b6cafa",
+        "test": "c548283de0eebc78"
+      },
+      "problems": []
+    },
+    "cx03-repo-expr-diff": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "diff-patch/diff.mjs",
+        "diff-patch/parse.mjs",
+        "diff-patch/patch.mjs",
+        "diff-patch/unified.mjs",
+        "expr-ast/evaluate.mjs",
+        "expr-ast/parser.mjs",
+        "expr-ast/print.mjs",
+        "expr-ast/walk.mjs"
+      ],
+      "solFiles": [
+        "diff-patch/diff.mjs",
+        "diff-patch/parse.mjs",
+        "diff-patch/patch.mjs",
+        "diff-patch/unified.mjs",
+        "expr-ast/parser.mjs",
+        "expr-ast/print.mjs",
+        "expr-ast/walk.mjs"
+      ],
+      "nBugs": 7,
+      "expected": {
+        "visible/diff-patch__v-patch.test.mjs": 2,
+        "test/diff-patch__diff.test.mjs": 3,
+        "test/diff-patch__patch.test.mjs": 6,
+        "test/diff-patch__unified.test.mjs": 3,
+        "test/expr-ast__expr.test.mjs": 11,
+        "test/expr-ast__v-expr.test.mjs": 2
+      },
+      "srcLines": 516,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "12/25"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "25/25"
+      },
+      "singleFileFix": {
+        "diff-patch/diff.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 25,
+          "delta": -2
+        },
+        "diff-patch/parse.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 25,
+          "delta": 0
+        },
+        "diff-patch/patch.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 25,
+          "delta": -2
+        },
+        "diff-patch/unified.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 25,
+          "delta": 0
+        },
+        "expr-ast/parser.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 25,
+          "delta": -2
+        },
+        "expr-ast/print.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 25,
+          "delta": 0
+        },
+        "expr-ast/walk.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 25,
+          "delta": -3
+        }
+      },
+      "hash": {
+        "src": "5d31c280b656993f",
+        "solution": "3b24e32b9dfc3be5",
+        "visible": "3bc286384ea8ac3e",
+        "test": "feebc634aca11563"
+      },
+      "problems": []
+    },
+    "cx04-repo-tres-sistemas": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs",
+        "expr-ast/evaluate.mjs",
+        "expr-ast/parser.mjs",
+        "expr-ast/print.mjs",
+        "expr-ast/walk.mjs",
+        "pedido-centavos/cart.mjs",
+        "pedido-centavos/catalog.mjs",
+        "pedido-centavos/discount.mjs",
+        "pedido-centavos/money.mjs"
+      ],
+      "solFiles": [
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs",
+        "expr-ast/parser.mjs",
+        "expr-ast/print.mjs",
+        "expr-ast/walk.mjs",
+        "pedido-centavos/cart.mjs",
+        "pedido-centavos/catalog.mjs",
+        "pedido-centavos/discount.mjs"
+      ],
+      "nBugs": 10,
+      "expected": {
+        "visible/pedido-centavos__v-pedido.test.mjs": 2,
+        "test/cursor-paginacao__paginacao.test.mjs": 12,
+        "test/cursor-paginacao__v-paginacao.test.mjs": 2,
+        "test/expr-ast__expr.test.mjs": 11,
+        "test/expr-ast__v-expr.test.mjs": 2,
+        "test/pedido-centavos__pedido.test.mjs": 10
+      },
+      "srcLines": 651,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "14/37"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "37/37"
+      },
+      "singleFileFix": {
+        "cursor-paginacao/client.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 37,
+          "delta": -2
+        },
+        "cursor-paginacao/cursor.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 37,
+          "delta": -2
+        },
+        "cursor-paginacao/order.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 37,
+          "delta": -1
+        },
+        "cursor-paginacao/server.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 37,
+          "delta": -3
+        },
+        "expr-ast/parser.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 37,
+          "delta": -2
+        },
+        "expr-ast/print.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 37,
+          "delta": 0
+        },
+        "expr-ast/walk.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 37,
+          "delta": -3
+        },
+        "pedido-centavos/cart.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 37,
+          "delta": -2
+        },
+        "pedido-centavos/catalog.mjs": {
+          "hiddenPass": 13,
+          "hiddenTotal": 37,
+          "delta": -1
+        },
+        "pedido-centavos/discount.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 37,
+          "delta": 0
+        }
+      },
+      "hash": {
+        "src": "7b64d0d1b21a1bf5",
+        "solution": "bfcb2d653c36764a",
+        "visible": "9a7cde19b2a50761",
+        "test": "e7f4e41aad0d64bd"
+      },
+      "problems": []
+    },
+    "cx05-repo-agendador-diario": {
+      "class": "c",
+      "split": "test",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "agendador-heap/heap.mjs",
+        "agendador-heap/plan.mjs",
+        "agendador-heap/scheduler.mjs",
+        "diario-checksum/checksum.mjs",
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs"
+      ],
+      "solFiles": [
+        "agendador-heap/heap.mjs",
+        "agendador-heap/plan.mjs",
+        "agendador-heap/scheduler.mjs",
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/diario-checksum__v-diario.test.mjs": 2,
+        "test/agendador-heap__agenda.test.mjs": 12,
+        "test/agendador-heap__v-agenda.test.mjs": 3,
+        "test/diario-checksum__diario.test.mjs": 10
+      },
+      "srcLines": 450,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "12/25"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "25/25"
+      },
+      "singleFileFix": {
+        "agendador-heap/heap.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 25,
+          "delta": -3
+        },
+        "agendador-heap/plan.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 25,
+          "delta": -1
+        },
+        "agendador-heap/scheduler.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 25,
+          "delta": -5
+        },
+        "diario-checksum/verify.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 25,
+          "delta": 0
+        },
+        "diario-checksum/writer.mjs": {
+          "hiddenPass": 10,
+          "hiddenTotal": 25,
+          "delta": -2
+        }
+      },
+      "hash": {
+        "src": "68973d97f2d914b1",
+        "solution": "854369be980c9e0c",
+        "visible": "93e971ee43bcd8da",
+        "test": "707ed22d1fab1ecb"
+      },
+      "problems": []
+    },
+    "cx06-repo-diario-eventos": {
+      "class": "c",
+      "split": "test",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "diario-checksum/checksum.mjs",
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs",
+        "eventos-projecao/project.mjs",
+        "eventos-projecao/snapshot.mjs",
+        "eventos-projecao/store.mjs"
+      ],
+      "solFiles": [
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs",
+        "eventos-projecao/project.mjs",
+        "eventos-projecao/snapshot.mjs",
+        "eventos-projecao/store.mjs"
+      ],
+      "nBugs": 5,
+      "expected": {
+        "visible/eventos-projecao__v-contas.test.mjs": 2,
+        "test/diario-checksum__diario.test.mjs": 10,
+        "test/diario-checksum__v-diario.test.mjs": 2,
+        "test/eventos-projecao__contas.test.mjs": 10
+      },
+      "srcLines": 401,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "13/22"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "22/22"
+      },
+      "singleFileFix": {
+        "diario-checksum/verify.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 22,
+          "delta": -1
+        },
+        "diario-checksum/writer.mjs": {
+          "hiddenPass": 11,
+          "hiddenTotal": 22,
+          "delta": -2
+        },
+        "eventos-projecao/project.mjs": {
+          "hiddenPass": 9,
+          "hiddenTotal": 22,
+          "delta": -4
+        },
+        "eventos-projecao/snapshot.mjs": {
+          "hiddenPass": 7,
+          "hiddenTotal": 22,
+          "delta": -6
+        },
+        "eventos-projecao/store.mjs": {
+          "hiddenPass": 8,
+          "hiddenTotal": 22,
+          "delta": -5
+        }
+      },
+      "hash": {
+        "src": "55e698fc4783c985",
+        "solution": "ff4f71d41e0a9c25",
+        "visible": "52ec25577adbcfa8",
+        "test": "d050c9dba4f109f5"
+      },
+      "problems": []
+    },
+    "cx07-repo-quatro-sistemas": {
+      "class": "c",
+      "split": "dev",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "cache-chaves/cache.mjs",
+        "cache-chaves/keys.mjs",
+        "cache-chaves/repo.mjs",
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs",
+        "diff-patch/diff.mjs",
+        "diff-patch/parse.mjs",
+        "diff-patch/patch.mjs",
+        "diff-patch/unified.mjs",
+        "telemetria-varint/format.mjs",
+        "telemetria-varint/reader.mjs",
+        "telemetria-varint/writer.mjs"
+      ],
+      "solFiles": [
+        "cache-chaves/cache.mjs",
+        "cache-chaves/keys.mjs",
+        "cache-chaves/repo.mjs",
+        "cursor-paginacao/client.mjs",
+        "cursor-paginacao/cursor.mjs",
+        "cursor-paginacao/order.mjs",
+        "cursor-paginacao/server.mjs",
+        "diff-patch/diff.mjs",
+        "diff-patch/parse.mjs",
+        "diff-patch/patch.mjs",
+        "diff-patch/unified.mjs",
+        "telemetria-varint/reader.mjs",
+        "telemetria-varint/writer.mjs"
+      ],
+      "nBugs": 13,
+      "expected": {
+        "visible/cursor-paginacao__v-paginacao.test.mjs": 2,
+        "test/cache-chaves__cache.test.mjs": 3,
+        "test/cache-chaves__keys.test.mjs": 3,
+        "test/cache-chaves__repo.test.mjs": 6,
+        "test/cache-chaves__v-cache.test.mjs": 2,
+        "test/cursor-paginacao__paginacao.test.mjs": 12,
+        "test/diff-patch__diff.test.mjs": 3,
+        "test/diff-patch__patch.test.mjs": 6,
+        "test/diff-patch__unified.test.mjs": 3,
+        "test/diff-patch__v-patch.test.mjs": 2,
+        "test/telemetria-varint__ntel.test.mjs": 10,
+        "test/telemetria-varint__v-ntel.test.mjs": 2
+      },
+      "srcLines": 944,
+      "buggy": {
+        "visible": "1/2",
+        "hidden": "27/52"
+      },
+      "reference": {
+        "visible": "2/2",
+        "hidden": "52/52"
+      },
+      "singleFileFix": {
+        "cache-chaves/cache.mjs": {
+          "hiddenPass": 27,
+          "hiddenTotal": 52,
+          "delta": 0
+        },
+        "cache-chaves/keys.mjs": {
+          "hiddenPass": 28,
+          "hiddenTotal": 52,
+          "delta": 1
+        },
+        "cache-chaves/repo.mjs": {
+          "hiddenPass": 25,
+          "hiddenTotal": 52,
+          "delta": -2
+        },
+        "cursor-paginacao/client.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        },
+        "cursor-paginacao/cursor.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        },
+        "cursor-paginacao/order.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        },
+        "cursor-paginacao/server.mjs": {
+          "hiddenPass": 25,
+          "hiddenTotal": 52,
+          "delta": -2
+        },
+        "diff-patch/diff.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 52,
+          "delta": -3
+        },
+        "diff-patch/parse.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        },
+        "diff-patch/patch.mjs": {
+          "hiddenPass": 24,
+          "hiddenTotal": 52,
+          "delta": -3
+        },
+        "diff-patch/unified.mjs": {
+          "hiddenPass": 27,
+          "hiddenTotal": 52,
+          "delta": 0
+        },
+        "telemetria-varint/reader.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        },
+        "telemetria-varint/writer.mjs": {
+          "hiddenPass": 26,
+          "hiddenTotal": 52,
+          "delta": -1
+        }
+      },
+      "hash": {
+        "src": "a960e0f6b69fb465",
+        "solution": "de78b6719750529a",
+        "visible": "6692c2b891e9f979",
+        "test": "081dfa8ed89cb8bf"
+      },
+      "problems": []
+    },
+    "cx08-repo-tres-sistemas-teste": {
+      "class": "c",
+      "split": "test",
+      "decomposable": "parcial",
+      "srcFiles": [
+        "agendador-heap/heap.mjs",
+        "agendador-heap/plan.mjs",
+        "agendador-heap/scheduler.mjs",
+        "diario-checksum/checksum.mjs",
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs",
+        "eventos-projecao/project.mjs",
+        "eventos-projecao/snapshot.mjs",
+        "eventos-projecao/store.mjs"
+      ],
+      "solFiles": [
+        "agendador-heap/heap.mjs",
+        "agendador-heap/plan.mjs",
+        "agendador-heap/scheduler.mjs",
+        "diario-checksum/verify.mjs",
+        "diario-checksum/writer.mjs",
+        "eventos-projecao/project.mjs",
+        "eventos-projecao/snapshot.mjs",
+        "eventos-projecao/store.mjs"
+      ],
+      "nBugs": 8,
+      "expected": {
+        "visible/agendador-heap__v-agenda.test.mjs": 3,
+        "test/agendador-heap__agenda.test.mjs": 12,
+        "test/diario-checksum__diario.test.mjs": 10,
+        "test/diario-checksum__v-diario.test.mjs": 2,
+        "test/eventos-projecao__contas.test.mjs": 10,
+        "test/eventos-projecao__v-contas.test.mjs": 2
+      },
+      "srcLines": 664,
+      "buggy": {
+        "visible": "2/3",
+        "hidden": "19/36"
+      },
+      "reference": {
+        "visible": "3/3",
+        "hidden": "36/36"
+      },
+      "singleFileFix": {
+        "agendador-heap/heap.mjs": {
+          "hiddenPass": 17,
+          "hiddenTotal": 36,
+          "delta": -2
+        },
+        "agendador-heap/plan.mjs": {
+          "hiddenPass": 19,
+          "hiddenTotal": 36,
+          "delta": 0
+        },
+        "agendador-heap/scheduler.mjs": {
+          "hiddenPass": 16,
+          "hiddenTotal": 36,
+          "delta": -3
+        },
+        "diario-checksum/verify.mjs": {
+          "hiddenPass": 18,
+          "hiddenTotal": 36,
+          "delta": -1
+        },
+        "diario-checksum/writer.mjs": {
+          "hiddenPass": 17,
+          "hiddenTotal": 36,
+          "delta": -2
+        },
+        "eventos-projecao/project.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 36,
+          "delta": -5
+        },
+        "eventos-projecao/snapshot.mjs": {
+          "hiddenPass": 12,
+          "hiddenTotal": 36,
+          "delta": -7
+        },
+        "eventos-projecao/store.mjs": {
+          "hiddenPass": 14,
+          "hiddenTotal": 36,
+          "delta": -5
+        }
+      },
+      "hash": {
+        "src": "04988f62394d25b7",
+        "solution": "8e4bbb6b1d1a2d16",
+        "visible": "54f2fc28eb14d21c",
+        "test": "dcde6f85551d5d9c"
+      },
+      "problems": []
+    }
+  }
+}
