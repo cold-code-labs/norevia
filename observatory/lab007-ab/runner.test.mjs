@@ -1,0 +1,12 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import os from 'node:os';import {spawnSync} from 'node:child_process';import {fileURLToPath} from 'node:url';
+const here=path.dirname(fileURLToPath(import.meta.url));
+test('full offline runner: 961 calls, four waves, no efficacy, exact reconciliation',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'ab-runner-')),out=path.join(dir,'results'),ledger=path.join(dir,'global.json'),api=path.join(dir,'mock.mjs');
+ try{fs.writeFileSync(ledger,JSON.stringify({capUsd:50,commitments:{past:{committedUsd:.19887756}},history:[]}));
+ fs.writeFileSync(api,`import fs from 'node:fs';import {claims,verdict} from ${JSON.stringify(new URL('./protocol.mjs',import.meta.url).href)};
+const make=p=>{const data=JSON.parse(p.messages[0].content);const records=data.records||data.upstream.flatMap(o=>o.claims.flatMap(c=>c.evidence_ids.map(id=>({id,indicator:c.indicator,value:c.value}))));const v=verdict(records);return {model:'offline',stop_reason:'end_turn',usage:{input_tokens:100,output_tokens:100},content:[{type:'text',text:JSON.stringify({claims:claims(records),verdict:v,abstain:v==='unsure',note:''})}]};};let saved;
+export async function directMessage(p){return make(p);}export async function createBatch(rows){saved=rows;return {id:'mock-batch-'+rows[0].custom_id};}export async function waitForBatch(id){return {id};}export async function fetchBatchResults(){return saved.map(q=>({custom_id:q.custom_id,result:{type:'succeeded',message:make(q.params)}}));}`);
+ const env={...process.env,AB_OUT:out,AB_GLOBAL_LEDGER:ledger,AB_API_MODULE:api};const run=arg=>spawnSync(process.execPath,[path.join(here,'run.mjs'),arg],{env,encoding:'utf8'});
+ let r=run('--freeze');assert.equal(r.status,0,r.stderr);const frozen=JSON.parse(fs.readFileSync(path.join(out,'frozen.json')));fs.writeFileSync(path.join(out,'approval.json'),JSON.stringify({approved:true,capUsd:10,digest:frozen.digest}));r=run('--live');assert.equal(r.status,0,r.stderr);const s=JSON.parse(fs.readFileSync(path.join(out,'summary.json')));assert.equal(s.status,'B-calibration-complete');assert.equal(Object.keys(s.journal).length,5);assert.equal(s.detail.factuality.harm,0);assert.equal(s.detail.authority.pass,false);assert.equal(s.detail.factuality.pass,false);assert(Math.abs(s.spentUsd-(960*.00003+.00006))<1e-9);assert(Math.abs(s.cumulativeUsd-(.19887756+s.spentUsd))<1e-9);
+ }finally{fs.rmSync(dir,{recursive:true});}
+});

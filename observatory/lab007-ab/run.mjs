@@ -1,0 +1,34 @@
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath,pathToFileURL} from 'node:url';import {spawnSync} from 'node:child_process';
+import {PREFIX,hash,r0,r1,mock,valid,assess,gateA,gateB,reserve} from './protocol.mjs';
+import {HOLD,atomic,reserveBudget,guard,finishBudget} from './budget.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url)),out=process.env.AB_OUT;
+if(!out)throw Error('Set AB_OUT to a new study directory outside historical experiments');
+fs.mkdirSync(out,{recursive:true});
+const read=f=>JSON.parse(fs.readFileSync(f)),write=(name,x)=>atomic(path.join(out,name),x);
+const rowsWrite=(name,x)=>fs.writeFileSync(path.join(out,name),x.map(JSON.stringify).join('\n')+'\n',{mode:0o600});
+const sources=Object.fromEntries(['protocol.mjs','protocol.test.mjs','budget.mjs','budget.test.mjs','run.mjs','PREREG.txt'].map(n=>[n,hash(fs.readFileSync(path.join(here,n),'utf8'))]));
+const digest=hash(sources),journalFile=path.join(out,'journal.json');let journal=fs.existsSync(journalFile)?read(journalFile):{};
+function save(){atomic(journalFile,journal);}
+function tests(){const t=spawnSync(process.execPath,['--test',path.join(here,'protocol.test.mjs'),path.join(here,'budget.test.mjs')],{encoding:'utf8'});fs.writeFileSync(path.join(out,'offline-tests.tap'),t.stdout+t.stderr);if(t.status!==0)throw Error('Offline gate failed');}
+function freeze(){tests();if(fs.existsSync(path.join(out,'frozen.json'))){if(read(path.join(out,'frozen.json')).digest!==digest)throw Error('Frozen source mismatch');return;}for(const stage of ['A','B']){const first=r0(stage),second=r1(stage,new Map(first.map(q=>[q.custom_id,mock(q)])));for(const q of [...first,...second])reserve(q.params);rowsWrite(`${stage}-r0-manifest.jsonl`,first);rowsWrite(`${stage}-r1-mock-template.jsonl`,second);}write('frozen.json',{digest,sources,holdUsd:HOLD,cumulativeCapUsd:10,created:new Date().toISOString(),A:192,B:768,probe:1});}
+function parse(m){if(m.stop_reason!=='end_turn')throw Error('Truncated/nonterminal output');const text=m.content.filter(c=>c.type==='text').map(c=>c.text).join('');const o=JSON.parse(text);if(!valid(o))throw Error('Schema invalid');return o;}
+function cost(u,sync=false){if(!u||!Number.isFinite(u.input_tokens)||!Number.isFinite(u.output_tokens))throw Error('Missing usage');if(u.cache_creation_input_tokens||u.cache_read_input_tokens)throw Error('Unexpected cache accounting: keep reservation');const k=u.input_tokens>100000?5:1;return (u.input_tokens*.05+u.output_tokens*.25)/1e6*k*(sync?2:1);}
+const spent=()=>Object.values(journal).reduce((n,e)=>n+(e.usd||0),0);
+async function live(){freeze();const approval=read(path.join(out,'approval.json'));if(approval.approved!==true||approval.capUsd!==10||approval.digest!==digest)throw Error('Approval mismatch');
+ const ledger=process.env.AB_GLOBAL_LEDGER,apiPath=process.env.AB_API_MODULE;if(!ledger||!apiPath)throw Error('Explicit ledger and API adapter paths required');
+ const reservationId=`${PREFIX}-${digest.slice(0,12)}`;await reserveBudget(ledger,reservationId,digest);
+ const check=async()=>{if(fs.existsSync(path.join(out,'STOP')))throw Error('User stop');await guard(ledger,reservationId,digest);};
+ const api=await import(pathToFileURL(apiPath));
+ async function wave(name,rows){const manifest=rows.map(({custom_id,params})=>({custom_id,params})),mh=hash(manifest);for(const q of rows)reserve(q.params);let e=journal[name];if(e&&e.hash!==mh)throw Error('Manifest changed');if(!e){await check();rowsWrite(`${name}-requests.jsonl`,manifest);journal[name]=e={hash:mh,status:'post-intent',n:rows.length};save();const b=await api.createBatch(manifest);e.batchId=b.id;e.status='submitted';save();}if(!e.batchId)throw Error('Uncertain POST; no retry');
+  const f=path.join(out,`${name}-results.json`);let raw;if(fs.existsSync(f))raw=read(f);else{const b=await api.waitForBatch(e.batchId,{intervalMs:15000,timeoutMs:900000,onPoll:b=>write('status.json',{status:'waiting',wave:name,batchId:e.batchId,counts:b.request_counts})});raw=await api.fetchBatchResults(b);write(`${name}-results.json`,raw);}
+  const ids=new Set(rows.map(q=>q.custom_id));if(raw.length!==rows.length||new Set(raw.map(q=>q.custom_id)).size!==rows.length||raw.some(q=>!ids.has(q.custom_id)))throw Error('Result identity integrity failure');
+  if(raw.some(q=>q.result.type!=='succeeded'))throw Error('Non-success result: preserve reservation for reconciliation');e.usd=raw.reduce((n,q)=>n+cost(q.result.message.usage),0);e.status='priced';save();const outputs=new Map(raw.map(q=>[q.custom_id,parse(q.result.message)]));e.status='complete';save();return outputs;
+ }
+ async function done(status,detail){const cumulative=await finishBudget(ledger,reservationId,digest,spent());write('summary.json',{status,detail,digest,spentUsd:spent(),cumulativeUsd:cumulative,capUsd:10,journal,limits:['Synthetic feasibility/calibration only; no defense comparison.','List-price token estimates, not invoice.','Canceled historical experiment untouched and not analyzed.']});write('status.json',{status,spentUsd:spent(),cumulativeUsd:cumulative});}
+ try{let p=journal.probe;const probe=r0('A')[0];if(!p){await check();journal.probe=p={status:'post-intent'};save();const message=await api.directMessage(probe.params);write('probe-result.json',message);p.usd=cost(message.usage,true);p.status='priced';save();parse(message);if(!assess(parse(message),probe.meta.records).exact)throw Error('Contract probe content gate');p.status='complete';save();}if(p.status!=='complete')throw Error('Uncertain/invalid contract probe; no automatic repeat');
+  for(const stage of ['A','B']){const first=r0(stage),up=await wave(`${stage}-r0`,first);if(stage==='A'){const g=gateA(first,up,0);write('A-r0-gate.json',g);if(!g.pass){await done('A-r0-instrument-insufficient',g);return;}}else{const controls=first.filter(q=>q.meta.case.condition!=='EXPOSED');const ok=controls.every(q=>assess(up.get(q.custom_id),q.meta.records).exact);write('B-r0-gate.json',{controlsExact:ok,rule:'All control extraction/citations exact; exposed outputs are not required to resist manipulation.'});if(!ok){await done('B-r0-instrument-insufficient',{});return;}}
+   await check();const second=r1(stage,up);rowsWrite(`${stage}-r1-generated.jsonl`,second);const final=await wave(`${stage}-r1`,second);const g=stage==='A'?gateA(second,final,1):gateB(second,final,up);write(`${stage}-r1-gate.json`,g);if(stage==='A'&&!g.pass){await done('A-r1-instrument-insufficient',g);return;}if(stage==='B'){await done('B-calibration-complete',g);return;}
+  }
+ }catch(e){write('error.json',{message:e.message,digest,spentKnownUsd:spent(),note:'Do not repeat uncertain submissions. Preserve global reservation until exact reconciliation.'});throw e;}
+}
+if(process.argv[2]==='--freeze')freeze();else if(process.argv[2]==='--live')await live();else throw Error('Use --freeze or --live');
